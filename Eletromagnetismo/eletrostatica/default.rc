@@ -1,0 +1,128 @@
+element.foreground				 155  122 243	//83 64 198
+element.background				255 222 173
+element.highlight				 50 190  50
+element.movable					255 173 222
+element.transient				255   222   173 //255 0 0 
+element.arrow					255   222   173 //255 0 0
+element.arrow.fc				  0   0 255
+
+particle.pos.foreground				255  20  20
+particle.pos.background				255 255 255
+particle.pos.earrow				255  20  20
+particle.pos.marrow				  0   0   0
+
+particle.neg.foreground				 20  20 255
+particle.neg.background				255 255 255
+particle.neg.earrow				 20  20 255
+particle.neg.marrow				  0   0   0
+
+dipol.foreground				  0   0   0
+
+actionlabel.foreground			 	  0   0   0
+actionlabel.background				182 182 220
+
+controls.foreground			 	  0   0 150
+controls.background				202 202 182
+
+canvas.background				169 186 193
+
+starter.foreground				255 255 255
+starter.background				 10  10 150
+
+loader.foreground				255 255 255
+loader.background				 10 150  10
+
+filemenu					"File"
+filemenu.open					"Open"
+filemenu.save					"Save"
+filemenu.quit					"Exit"
+
+actionmenu					"Action"
+actionmenu.editmenu				"Edit"
+actionmenu.forcemenu				"Force"
+actionmenu.miscmenu				"Set"
+actionmenu.plotmenu				"Show"
+					
+actionmenu.delete					"Remove"
+actionmenu.move					"Move"
+actionmenu.scale					"Scale"
+actionmenu.force.set			"Set force"
+actionmenu.force.del			"Remove"
+actionmenu.force.circ			"Circular"
+actionmenu.force.rotate			"Rotating"
+actionmenu.force.translate	   		"Translating"
+actionmenu.setconst				"Set integration constant"
+actionmenu.tagmove				"Object motion"
+actionmenu.tagio				  	"Charges transition"
+actionmenu.setzero				"Set zero potential point"
+actionmenu.setconstzero				"Freeze charges"
+actionmenu.connect				"Connect objects"
+actionmenu.plotlint				"Work"
+actionmenu.plotpot				"Potential"
+actionmenu.plotenergy			"Energy"
+actionmenu.plotcurr			"Current"
+actionmenu.plotfield			"Isopotentials Plot/Clear"
+
+
+createmenu				"Construct"
+createmenu.circle					"Circle"
+createmenu.rectangle				"Rectangle"
+createmenu.ring					"Ring"
+createmenu.particle.pos					"Positive charges"
+createmenu.particle.neg					"Negative charges"
+createmenu.dipol						"Dipole"
+
+nummenu					"Number of particles"
+
+actionlabel.create.circle			"Action: construct circle"
+actionlabel.create.rectangle			"Action: construct rectangle"
+actionlabel.create.ring				"Action: construct ring"
+actionlabel.create.particle.pos			"Action: construct positive charges"
+actionlabel.create.particle.neg			"Action: construct negativ charges"
+actionlabel.create.dipol			"Action: construct dipol"
+actionlabel.delete				"Action: remove"
+actionlabel.move				"Action: move"
+actionlabel.scale				"Action: size"
+actionlabel.force.set				"Action: set force"
+actionlabel.force.del				"Action: remove force"
+actionlabel.force.circ				"Action: set circular force"
+actionlabel.force.rotate		     		"Action: set rotating force"
+actionlabel.force.translate 				"Action: set translating harmonic force"
+actionlabel.plotcurr				"Action: plot current between objects"
+actionlabel.plotfield				"Action: plot isopotential lines in colors, set zero potential point first"
+
+actionlabel.setconst				"Action: set integrating constant"
+actionlabel.tagmove				"Action: set object movable"
+actionlabel.tagio				"Action: set object (ne)transparent for particles"
+actionlabel.setzero  			        "Action: Set zero potential point"
+
+starter.stop 					"Stop"
+starter.start	 				"Start"
+
+controls.estep 					"Electric"
+controls.mstep 					"Magnetic "
+controls.bstep 					"Inertial"
+controls.susc 					"Dipole"
+controls.astep					"Vector E"
+controls.astep.mag					"Vector B"
+
+controls.start 					"Run"
+controls.stop 					"Stop"
+
+controls.magnetism				"Magnetics"
+controls.field 					"Potential."
+controls.fieldclear 					"Clear"
+
+ppd.name					"        Java Constructive Objects - JaCoB"
+ppd.width						800
+ppd.height					600
+
+canvas.doublebuffer				true
+canvas.touchoffset				10
+
+particle.radius				 	5
+visual3d					"3D view"
+visual3d.inc					"Increase"
+visual3d.dec					"Decrease"
+visual3d.inv					"Invert"	
+

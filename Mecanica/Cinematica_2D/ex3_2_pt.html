@@ -1,0 +1,469 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="JavaScript">
+var sid1=0;
+var lid1=0;
+var cid0=0;
+var cid1=0;
+var timerID=0;
+var loaded=false;
+var fpx=0;
+var fpy=0;
+var xa=0;
+var ya=0;
+var vxa=0;
+var vya=0;
+	
+	
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position0()",100);
+}
+  	
+function position0(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.animator2.setAutoRefresh(false);
+    document.animator2.setDefault();
+    document.animator2.setTimeDisplay(false);
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+    document.animator.setGridUnit(0);
+    document.animator2.setGridUnit(0);
+    rid=document.animator2.addObject("line","h=14,v=0,x=0,y=0");
+    rid=document.animator2.addObject("line","h=-14,v=0,x=0,y=0");
+    rid=document.animator2.addObject("line","v=14,h=0,y=0,x=0");
+    rid=document.animator2.addObject("line","v=-14,h=0,y=0,x=0");
+    document.animator2.addObject("text","text=Seleciona um Controlo,x=-8,y=12");
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=-10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=0,y=7");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=0,y=-12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=10,x=13,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=10,x=6,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=10,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,122,122,122);
+   	document.animator.setSticky(rid,true);
+
+
+    tid=document.animator.addObject("text","text=Meta,x=7.4,y=12");
+     
+     document.animator.setTimeDisplay(false);
+   cid1=document.animator.addObject("circle","r=10,x=-13,y=-13");
+    document.animator.setRGB(cid1,0,0,0);
+	document.animator2.shiftPixOrigin(0,0);
+   	sid1=document.animator2.addObject("arrow2","x=0,y=0,h=-13,v=-13,false,filled");
+   	document.animator2.setAutoRefresh(true);
+   	document.animator.setAutoRefresh(true);
+}
+
+
+function position(){
+    if(!loaded) return;
+    timerID=0;
+    document.animator2.setAutoRefresh(false);
+    document.animator2.setDefault();
+    document.animator2.setTimeDisplay(false);
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+    document.animator.setGridUnit(0);
+    document.animator2.setGridUnit(0);
+    rid=document.animator2.addObject("line","h=14,v=0,x=0,y=0");
+    rid=document.animator2.addObject("line","h=-14,v=0,x=0,y=0");
+    rid=document.animator2.addObject("line","v=14,h=0,y=0,x=0");
+    rid=document.animator2.addObject("line","v=-14,h=0,y=0,x=0");
+    document.animator2.addObject("caption","text=Controlo da Posição,x=8,y=12");
+    rid=document.animator.addObject("rectangle","h=158,w=26,x=-10,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,255,255,255);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=0,y=7");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=158,w=26,x=0,y=-12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=26,x=13,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=26,x=6,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=26,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,255,255,255);
+   	document.animator.setSticky(rid,true);
+     rid=document.animator.addObject("rectangle","h=140,w=10,x=-10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=0,y=7");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=0,y=-12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=10,x=13,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=10,x=6,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=10,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,122,122,122);
+   	document.animator.setSticky(rid,true);
+    tid=document.animator.addObject("text","text=Meta,x=7.4,y=12");     
+
+     cid0=document.animator.addObject("circle","r=10,x=-13,y=-13");
+    document.animator.setRGB(cid0,0,0,0);
+    document.animator.setForce(cid0,"0","0",-13,-13,0,0);
+    document.animator.setSticky(cid0,true);
+    document.scriptlistener1.setDefault();
+	document.animator2.shiftPixOrigin(0,0);
+   	sid1=document.animator2.addObject("arrow2","x=0,y=0,h=-13,v=-13,false,filled");
+   	document.animator2.setDragable(sid1,false);
+   	document.animator2.setResizable(sid1,true);
+   	   	
+   	document.animator2.setRGB(sid1,255,0,0);
+   	document.scriptlistener1.setJSFunction("movedpos()");
+  	lid1=document.scriptlistener1.getID();
+   	document.animator2.makeDataConnection(sid1,lid1,1,"0","0"); 
+   	document.animator2.setAutoRefresh(true);
+   	document.animator.setAutoRefresh(true);
+}
+
+
+function movedpos(){
+	 if(timerID==0) 
+	 timerID=setTimeout("movedpos2()",50);
+}
+
+
+function movedpos2(){
+    xa=eval(document.animator2.getW(sid1));
+   	ya=eval(document.animator2.getH(sid1));
+    vxa=0;
+    vya=0;
+if(document.animator.isClockRunning()==true){
+    document.animator.setForce(cid0,"0","0",xa,ya,vxa,vya);
+	document.animator.setSticky(cid0,true);
+}
+	document.animator.setAutoRefresh(true);
+	timerID=0;
+}
+
+
+function velocity(){   
+    if(!loaded) return;
+    document.animator2.setAutoRefresh(false);
+    document.animator2.setDefault();
+    document.animator2.setTimeDisplay(false);
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+    document.animator.setGridUnit(0);
+    document.animator2.setGridUnit(0);
+    rid=document.animator2.addObject("line","h=180,v=0,x=-20,y=0");
+    rid=document.animator2.addObject("line","v=180,h=0,y=-20,x=0");
+    document.animator2.addObject("caption","text=Controlo da Velocidade,x=8,y=12");
+        rid=document.animator.addObject("rectangle","h=158,w=26,x=-10,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,255,255,255);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=0,y=7");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=158,w=26,x=0,y=-12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=26,x=13,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=26,x=6,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+        
+    rid=document.animator.addObject("rectangle","h=26,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,255,255,255);
+   	document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=-10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=0,y=7");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=0,y=-12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=10,x=13,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=10,x=6,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=10,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,122,122,122);
+   	document.animator.setSticky(rid,true);
+    tid=document.animator.addObject("text","text=Meta,x=7.4,y=12");
+    
+
+   cid1=document.animator.addObject("circle","r=10,x=-13,y=-13");
+    document.animator.setForce(cid1,"0","0",-13,-13,0,0);
+    document.animator.setRGB(cid1,0,0,0);
+    document.scriptlistener1.setDefault();
+    document.animator2.shiftPixOrigin(0,0);
+    sid1=document.animator2.addObject("arrow2","x=0,y=0,h=0,v=0.5,false,filled");
+   	document.animator2.setDragable(sid1,false);
+   	document.animator2.setResizable(sid1,true);
+   	document.animator2.setRGB(sid1,255,0,0);
+   	document.animator2.setAutoRefresh(true);
+   	document.scriptlistener1.setJSFunction("movedvel()");
+	lid1=document.scriptlistener1.getID();
+	document.animator2.makeDataConnection(sid1,lid1,1,"0","0"); 
+}
+
+
+function movedvel(){
+	 if(timerID==0)
+	 timerID=setTimeout("movedvel2()",50);
+}
+
+
+function movedvel2(){
+    vxa=eval(document.animator2.getW(sid1));
+    vya=eval(document.animator2.getH(sid1));
+    xa=eval(document.animator.getXPos(cid1));
+	ya=eval(document.animator.getYPos(cid1));
+   
+    document.animator.setForce(cid1,"0","0",xa,ya,vxa,vya);
+	document.animator.setSticky(cid1,true);
+	document.animator.setAutoRefresh(true);
+	timerID=0;
+}
+
+
+function acceleration(){   
+    if(!loaded) return;
+    document.animator2.setAutoRefresh(false);
+    document.animator2.setDefault();
+    document.animator.setAutoRefresh(false);
+    document.animator2.setTimeDisplay(false);
+    document.animator.setDefault();
+    document.animator.setGridUnit(0);
+    document.animator2.setGridUnit(0);
+    rid=document.animator2.addObject("line","h=180,v=0,x=-20,y=0");
+    rid=document.animator2.addObject("line","v=180,h=0,y=-20,x=0");
+    document.animator2.addObject("caption","text=Controlo da Aceleração,x=8,y=12");
+    rid=document.animator.addObject("rectangle","h=158,w=26,x=-10,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,255,255,255);
+    rid=document.animator.addObject("rectangle","h=198,w=26,x=0,y=7");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=158,w=26,x=0,y=-12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=26,x=13,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=26,x=6,y=12");
+    document.animator.setRGB(rid,255,255,255);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=26,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,255,255,255);
+   	document.animator.setSticky(rid,true);
+     rid=document.animator.addObject("rectangle","h=140,w=10,x=-10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=-10,y=-7");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    rid=document.animator.addObject("rectangle","h=180,w=10,x=0,y=7");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=140,w=10,x=0,y=-12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=40,w=10,x=13,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+        rid=document.animator.addObject("rectangle","h=40,w=10,x=6,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    
+    rid=document.animator.addObject("rectangle","h=10,w=80,x=9.5,y=14");
+    document.animator.setRGB(rid,122,122,122);
+   	document.animator.setSticky(rid,true);
+    tid=document.animator.addObject("text","text=Meta,x=7.4,y=12");
+   	 
+     cid2=document.animator.addObject("circle","r=10,x=-13,y=-13");
+    document.animator.setRGB(cid2,0,0,0);
+       document.animator.setForce(cid2,"0","0",-13,-13,0,0);
+    document.animator.setSticky(cid2,true);
+   	document.scriptlistener1.setDefault();
+	document.animator2.shiftPixOrigin(0,0);
+	sid2=document.animator2.addObject("arrow2","x=0,y=0,h=0,v=0.5,false,filled");
+   	document.animator2.setDragable(sid2,false);
+   	document.animator2.setResizable(sid2,true);
+   	document.animator2.setRGB(sid2,255,0,0);
+   	document.animator2.setAutoRefresh(true);
+   	document.scriptlistener1.setJSFunction("movedacc()");
+   	lid2=document.scriptlistener1.getID();
+   	document.animator2.makeDataConnection(sid2,lid2,1,"0","0"); 
+}
+
+
+function movedacc(){
+	 if(timerID==0)
+	 timerID=setTimeout("movedacc2()",50);
+}
+
+
+function movedacc2(){
+    fpx=eval(document.animator2.getW(sid2));
+    fpy=eval(document.animator2.getH(sid2));
+	xa=eval(document.animator.getXPos(cid2));
+	ya=eval(document.animator.getYPos(cid2));
+	vxa=eval(document.animator.getVX(cid2));
+	vya=eval(document.animator.getVY(cid2));
+	document.animator.setForce(cid2," "+fpx," "+fpy,xa,ya,vxa,vya);
+	document.animator.setSticky(cid2,true);
+        document.animator.setAutoRefresh(true);
+	timerID=0;
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+
+<title>Physlet Physics by Christian and Belloni: Exploration 3.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<body  onunload="killmenow()">
+<h2 align="center">Exploração 3.2 - Labirinto</h2>
+<h2 align="center"><applet codebase="../../classes/" code="script.ScriptListener.class"
+archive="Physlets.jar" name="scriptlistener1" width="0" height="0" hspace="0" vspace="0" align="middle" mayscript> 
+  <param name="min" value="-10">
+  <param name="max" value="10">
+  <param name="value" value="5">
+</applet></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet code="animator4.Animator.class" codebase="../../classes" 
+        archive="Physlets.jar" name="animator2" width="300"
+        height="300" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+          <param name="FPS" value="10">
+          <param name="dt" value="0.05">
+          <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes" 
+        archive="Physlets.jar" name="animator" width="300"
+        height="300" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.05">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,animator2,scriptlistener1">
+        <param name="Resources" value="animator_pt.rc">
+         </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+<p align="center">
+<input type="button" value="começar"
+  onclick="document.animator.forward()"><input type="button" value="pausa"
+  onclick="document.animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="document.animator.reset()"></p>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <p><a href="JavaScript:position()">Controlo da Posição</a></p>
+      </td>
+      <td>
+        <p>&nbsp;<a href="JavaScript:velocity()">Controlo da Velocidade</a></p>
+      </td>
+      <td>
+        <p>&nbsp;<a href="JavaScript:acceleration()">Controlo da Aceleração</a></p>
+      </td>
+
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>A animação mostra um labirinto. O objetivo é fazer a bola preta chegar à meta 
+sem tocar nas paredes do labirinto. Para tal podes controlar a posição, a 
+velocidade ou a aceleração da bola, dependendo da animação escolhida. Para usar 
+o controlador basta carregar com o rato na ponta do vetor e movê-la na direção 
+desejada <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;<a href="JavaScript:position0()">Início</a></p>
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

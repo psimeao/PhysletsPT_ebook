@@ -1,0 +1,105 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 23.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("ques()",100);
+}
+  	
+function ques(){ 
+      if(!loaded) return;
+       timerID=0;
+document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(true);
+     document.EField.setShowEOnDrag(false);
+     document.EField.setShowForce(false);
+ id=document.EField.addObject("charge","x=0,y=0,q=-3.5,r=15");
+	  document.EField.setDragable(id,false);
+	  document.EField.setRGB(id,0,0,0);
+	  document.EField.setLabel(id,"?");
+  tid=document.EField.addObject("testcharge","x=2,y=2,r=7");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,255,0,0);
+	  document.EField.setLabel(tid,"t");
+     cid=document.EField.addObject("text","text=|E| =,calc=28*step(0.5-sqrt(x^2+y^2))*sqrt(x^2+y^2)+step(sqrt(x^2+y^2)-0.5)*3.5/(x^2+y^2)");
+     document.EField.setDisplayOffset(cid,15,-15);
+     document.EField.setAnimationSlave(tid,cid);
+     document.EField.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 23.1</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet CODEBASE="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" NAME="EField" WIDTH="300" 
+      HEIGHT="300" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+    </tr>
+  </table>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+  </center>
+</div>
+<p>A animação mostra uma partícula fixa no espaço, carregada com uma carga 
+desconhecida, juntamente com uma carga de teste móvel. Os vetores na animação 
+indicam o sentido do campo elétrico e a sua cor representa a intensidade do 
+campo <b>(a posição é dada em centímetros e o valor do campo elétrico em newtons/coulomb</b>).&nbsp; 
+<a href="JavaScript:ques()">Início</a></p>
+
+<p>&nbsp;</p>
+
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

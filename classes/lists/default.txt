@@ -1,0 +1,7 @@
+setGrid("rows=8,cols=5");
+addObject("wire","row=1,col=1,to=h");
+addObject("resistor","row=3,col=1,to=h,r=1000.0");
+addObject("wire","row=2,col=2,to=v");
+addObject("capacitor","row=1,col=2,to=v,c=1.0E-7");
+addObject("wire","row=2,col=1,to=v");
+addObject("squarewave","row=1,col=1,to=v,d=1,freq=1000,amp=1");

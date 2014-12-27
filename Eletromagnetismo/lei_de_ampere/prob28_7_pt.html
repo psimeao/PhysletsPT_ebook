@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+var c3=0;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("reset()",100);
+}
+  	
+function reset(){ 
+      if(!loaded) return;
+       timerID=0;
+document.BField.setAutoRefresh(false);
+   document.BField.setDefault();
+   document.slider1.setValue(3);
+   	r1=document.slider1.getValue();
+   	r2=r1*24;
+   document.BField.setShowBOnDrag(true);
+   document.BField.setShowFieldLineOnDoubleClick(true);
+   document.BField.setShowFieldVectors(true); 
+	document.BField.setBFunctions("5*y/4*step(4-(x*x+y*y))+5*y/(x*x+y*y)*step(x*x+y*y-4)","-5*x/4*step(4-(x*x+y*y))-5*x/(x*x+y*y)*step(x*x+y*y-4)",-5,5,-5,5);
+
+//	document.BField.setBFunctions("y/(x*x+y*y)*step(x*x+y*y-4)","-x/(x*x+y*y)*step(x*x+y*y-4)",-5,5,-5,5);
+   cid=document.BField.addObject("circle","x=0,y=0,r=48");
+   document.BField.setRGB(cid,180,180,180);
+   c3=document.BField.addObject("shell","x=0,y=0,s=5,r="+r2);
+   
+     document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesRGB(1,255,0,0);  
+    document.DataGraph.setSeriesStyle(1,false,3);
+        document.DataGraph.setLastPointMarker(1,true); 
+	document.DataGraph.setMarkerSize(1,0.6);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxY(0,3);
+	document.DataGraph.setLabelX("Raio (mm)");
+	document.DataGraph.setLabelY("|B| (10{^-3}T)");  
+
+    gid=document.DataGraph.getGraphID();
+ //   x1=r1/24;
+	bid=document.BField.getBy(r1,0);   
+   	
+   	document.DataGraph.addDatum(1,r1,bid);
+    //document.BField.updateDataConnections();    
+   	
+   document.slider1.setJSFunction("slidermove1()");
+   document.BField.forward();
+   document.BField.setAutoRefresh(true);
+   }
+
+
+function slidermove1() {
+	 if(timerID==0){
+	 timerID=setTimeout("slidermove11()",33);
+}	
+}
+
+ 
+function slidermove11() {
+	timerID=0;
+	document.BField.setAutoRefresh(false);
+	b1=document.BField.addObject("rectangle","x=0,y=0,w=400,h=400");
+	document.BField.setRGB(b1,255,255,255);
+	 cid=document.BField.addObject("circle","x=0,y=0,r=48");
+   document.BField.setRGB(cid,180,180,180);
+
+	r1=document.slider1.getValue();
+	r2=r1*24;
+	c3=document.BField.addObject("shell","x=0,y=0,s=5,r="+r2);
+		bid=document.BField.getBy(r1,0);  
+ 
+	   	document.DataGraph.addDatum(1,r1,-bid);    
+ document.BField.setAutoRefresh(true);
+	}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 28.7</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 28.7</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/"  
+      archive="Physlets.jar"  
+      CODE="bfield.BField.class" NAME="BField" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField,DataGraph,slider1">
+        <param name="Resources" value="bfield_pt.rc">        
+      </applet>&nbsp;
+          </td>
+      <td>
+      <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="250" height="250" mayscript>
+          <param name="XMin" value="0">
+          <param name="XMax" value="2">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      
+      <p align="center">
+      
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider1"  width="500" height="19" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="0">
+            <param name="ShowControls" value="true">
+            <param name="max" value="6">
+            <param name="value" value="3">
+            <param name="label" value="Raio do caminho fechado (mm)">
+          </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>O círculo cinzento representa a secção reta de um fio condutor que transporta 
+corrente elétrica. A corrente está uniformemente distribuída pelo interior do 
+fio <b> (a 
+posição é dada em milímetros, 10<sup>-3</sup> m e a intensidade do campo 
+magnético é dada em militesla, 10<sup>-3</sup> T)</b>. O círculo preto representa um 
+caminho fechado, cujo raio pode ser alterado com o cursor.&nbsp;&nbsp;
+<a href="JavaScript:reset()">Início</a>.&nbsp; </p>
+<p>&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

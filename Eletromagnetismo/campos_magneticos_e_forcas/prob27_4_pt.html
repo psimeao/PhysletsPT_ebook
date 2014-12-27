@@ -1,0 +1,399 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+bstr="";x1=0;y1=0;ch1=0;ch0=0;w1=0;w2=0;r1=0;pil=0;txt=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.addObject("caption","text=Seleciona uma Configuração");
+         document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+	r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*(-2)+1;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+	}
+	document.EField.setBz(0);
+	document.EField.setPotential("0",-5,5,-5,5);
+	document.EField.setAutoRefresh(true);
+}
+
+
+function bfield_in(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+        r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*0.2+.8;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+			pil=document.EField.addObject("arrow","x=0,y=0,h=0,v=0.4");
+			document.EField.setAnimationSlave(ch1,pil);
+			document.EField.setDisplayOffset(pil,0,0);
+	}
+	document.EField.setChargeRGB(200,200,200);
+	document.EField.setChargeLabel("×");
+	for(i=-5.5;i<=5.5;i++){
+		for(j=-1.75;j<=1.75;j+=0.5){
+			x1=1*i;
+			y1=1*j;
+			bstr="x="+x1+",y="+y1+",q=0,r=4";
+			ch0=document.EField.addObject("charge",bstr);
+			document.EField.setSticky(ch0,false);
+		}
+	}
+		
+	document.EField.setAutoRefresh(true);
+}
+
+function bfield_out(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+        r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=-Math.random()*0.2-.8;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+			pil=document.EField.addObject("arrow","x=0,y=0,h=0,v=-0.4");
+			document.EField.setAnimationSlave(ch1,pil);
+			document.EField.setDisplayOffset(pil,0,0);
+	}
+	document.EField.setChargeRGB(200,200,200);
+	document.EField.setChargeLabel("");
+	for(i=-5.5;i<=5.5;i++){
+		for(j=-1.75;j<=1.75;j+=0.5){
+			x1=1*i;
+			y1=1*j;
+			bstr="x="+x1+",y="+y1+",q=0,r=4";
+			ch0=document.EField.addObject("charge",bstr);
+			bstr="x="+x1+",y="+y1+",q=0,r=2";
+			ch1=document.EField.addObject("charge",bstr);
+			document.EField.setRGB(ch1,255,255,255);
+			document.EField.setSticky(ch0,false);
+			document.EField.setSticky(ch1,false);
+		}
+	}	
+	document.EField.setAutoRefresh(true);
+}
+
+function config1(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+	document.EField.addObject("caption","text=Configuração 1");
+r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=-Math.random()*(20);
+			y1=Math.random()*(-2)+1;
+			bstr="x="+x1+",y="+y1+",vx=2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+	}
+	document.EField.setBz(0);
+	document.EField.setPotential("0",-5,5,-5,5);
+	document.EField.setAutoRefresh(true);
+}
+
+function config1_field(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+	document.EField.addObject("caption","text=Configuração 1");
+        r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=-Math.random()*(20);
+			y1=Math.random()*0.2+.8;
+			bstr="x="+x1+",y="+y1+",vx=2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+			pil=document.EField.addObject("arrow","x=0,y=0,h=0,v=0.4");
+			document.EField.setAnimationSlave(ch1,pil);
+			document.EField.setDisplayOffset(pil,0,0);
+	}
+	document.EField.setChargeRGB(200,200,200);
+	document.EField.setChargeLabel("×");
+		
+	document.EField.setAutoRefresh(true);
+}
+
+function config2_field(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+	document.EField.addObject("caption","text=Configuração 2");
+      r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(250,100,100);
+	document.EField.setChargeLabel("+");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*0.2+.8;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+				pil=document.EField.addObject("arrow","x=0,y=0,h=0,v=0.4");
+			document.EField.setAnimationSlave(ch1,pil);
+			document.EField.setDisplayOffset(pil,0,0);
+
+	}
+	document.EField.setBz(0);
+	document.EField.setPotential("0",-5,5,-5,5);
+	document.EField.setAutoRefresh(true);
+}
+
+function config2(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+	document.EField.addObject("caption","text=Configuração 2");
+        r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(250,100,100);
+	document.EField.setChargeLabel("+");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*(-2)+1;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+	}
+
+	document.EField.setBz(0);
+	document.EField.setPotential("0",-5,5,-5,5);
+	document.EField.setAutoRefresh(true);
+}
+
+
+function bfield_right(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+		
+	r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*(-2)+1;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+	}
+	
+	for(i=-5.5;i<=5.5;i++){
+		for(j=-1.75;j<=1.75;j+=0.5){
+			x1=1*i;
+			y1=1*j;
+			bstr="x="+x1+",y="+y1+",v=0,h=.4";
+			ch0=document.EField.addObject("arrow",bstr);
+			document.EField.setRGB(ch0,200,200,200);
+			document.EField.setSticky(ch0,false);
+		}
+	}
+	document.EField.setAutoRefresh(true);
+}
+
+function bfield_left(){
+	if(!loaded) return;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeCycle(7);
+	document.EField.setDrag(false);
+		
+	r1=document.EField.addObject("rectangle","x=0,y=0,w=498,h=100");
+	document.EField.setRGB(r1,208,230,208);
+	w1=document.EField.addObject("line","x=-5,y=1,v=0,h=600");
+	w2=document.EField.addObject("line","x=-5,y=-1,v=0,h=600");
+	
+	document.EField.setChargeRGB(100,100,228);
+	document.EField.setChargeLabel("-");
+	for(i=0;i<=20;i++){
+			x1=Math.random()*(20);
+			y1=Math.random()*(-2)+1;
+			bstr="x="+x1+",y="+y1+",vx=-2.0,vy=0,q=-1,r=5";
+			ch1=document.EField.addObject("testcharge",bstr);
+			document.EField.setSticky(ch1,false);
+	}
+	
+	for(i=-5.5;i<=5.5;i++){
+		for(j=-1.75;j<=1.75;j+=0.5){
+			x1=1*i;
+			y1=1*j;
+			bstr="x="+x1+",y="+y1+",v=0,h=-.4";
+			ch0=document.EField.addObject("arrow",bstr);
+			document.EField.setRGB(ch0,200,200,200);
+			document.EField.setSticky(ch0,false);
+		}
+	}
+
+	document.EField.setAutoRefresh(true);
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 27.4</title>
+</head>
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 27.4</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet codebase="../../classes/" archive="Physlets.jar"
+        code="eField4.EField.class" name="EField" width="500" height="200"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.05">
+          <param name="ShowControls" value="false">
+          <param name="ShowContours" value="false">
+          <param name="ShowFieldLines" value="false">
+          <param name="ShowFieldVectors" value="false">
+          <param name="ShowLabels" value="false">
+          <param name="ShowCharge" value="true">
+          <param name="Range" value="-5,5,-5,5">
+          <param name="GridSize" value="40">
+          <param name="OnLoad" value="initApplets()">
+          <param name="AppletNames" value="EField">
+          <param name="Resources" value="efield_pt.rc">
+        </applet> </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Configuração 1:&nbsp;&nbsp;&nbsp; 
+		<a href="JavaScript:config1()" style="text-decoration: none">Sem Campo</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a href="JavaScript:config1_field()" style="text-decoration: none">Com Campo</a></td>
+    </tr>
+    <tr>
+      <td align="center">
+      Configuração 2:&nbsp;&nbsp;&nbsp; 
+		<a href="JavaScript:config2()" style="text-decoration: none">Sem Campo</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a href="JavaScript:config2_field()" style="text-decoration: none">Com Campo</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="form1">
+<p align="center">
+<input type="button" value="começar" 
+onclick="document.EField.forward()"><input type="button" value="pausa" 
+onclick="document.EField.pause()"><input type="button" value="início" 
+onclick="document.EField.reset()"></p>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p style="margin-bottom: 0">Esta animação mostra um conjunto de partículas 
+carregadas que se deslocam no interior de um fio <b>
+(a posição é dada em milímetros e o tempo em segundos)</b>.&nbsp;A corrente elétrica 
+consiste no movimento das cargas elétricas através de um fio condutor (1 C/s = 1 
+ampere).&nbsp; Lembra-te que num condutor as cargas são livres de se mover, em 
+resposta a forças aplicadas. Inicialmente não há campo magnético na região 
+mostrada na animação. As partículas deslocam-se coletivamente num determinado 
+sentido.&nbsp;
+<a href="JavaScript:init()">Início</a> </p>
+<p>&nbsp;</p>
+<p align="left"> Problema da autoria de Morten Brydensholt, modificado por Anne 
+J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

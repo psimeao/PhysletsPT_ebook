@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script><script language="JavaScript"> 
+var cid=0;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initEField(0.0)",100);
+}
+  	
+function initEField(eStr){ 
+      if(!loaded) return;
+       timerID=0;
+    if( !checkRange(eStr,-2,2)){
+     	  alert("O campo deve estar entre -2 e 2. O valor inserido foi "+eStr);
+     	  return;
+        }     
+        document.paramForm.reset();  
+     potStr= "y*0.2+ x*"+ eStr;
+     document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPotential(potStr,-5,5,-5,5);
+     document.EField.setDrag(false);
+	  document.EField.setShowFieldVectors(true);
+     id=document.EField.addRectangle(0, -2.2, 250, 10 );
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(-2, -4.6, 10, 150);
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(2, -4.6, 10, 150 );
+     document.EField.setRGB(id,128,128,128);
+	  document.EField.setDrag(true);
+	  document.EField.setChargeRGB(0,255,0);
+     cid=document.EField.addTestCharge(-2,-1.236,0,0);
+    document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1",-2.7,2.7);
+     document.EField.setShowConstraintPath(cid,true);
+     document.EField.setShowFVector(cid,false);
+     document.EField.setShowFComponents(cid,false);
+     document.EField.setShowVVector(cid,false);
+     document.EField.setShowVComponents(cid,false);
+     document.EField.setOnScreenSize(cid,10); 
+     document.EField.setAutoRefresh(true);    
+}
+
+function update(eStr){
+        if( !checkRange(eStr,-2,2)){
+     	  alert("O campo deve estar entre -2 e 2. O valor inserido foi "+eStr);
+     	  return;
+        }
+     document.EField.setAutoRefresh(false);
+      potStr= "y*0.2+ x*"+ eStr;
+     document.EField.setPotential(potStr,-5,5,-5,5);
+     document.EField.setAutoRefresh(true);
+      document.EField.forward();
+}
+
+function dampSpeed(){
+     document.EField.setSpeed(cid,0);  
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 23.3</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 23.3 - Somando Campos</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+<applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+CODE="eField4.EField.class" NAME="EField" WIDTH="300" HEIGHT="300" HSPACE="0" 
+VSPACE="0" ALIGN="Middle" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.2">
+  <param name="ShowControls" value="false">
+  <param name="ShowContours" value="false">
+  <param name="ShowFieldLines" value="false">
+  <param name="ShowFieldVectors" value="false">
+  <param name="ShowLabels" value="false">
+  <param name="ShowCharge" value="true">
+  <param name="Potential" value="y*0.2">
+  <param name="Range" value="-5,5,-5,5">
+  <param name="GridSize" value="64">
+  <param name="OnLoad" value="initApplets()">
+  <param name="AppletNames" value="EField">
+  <param name="Resources" value="efield_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="paramForm">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="registar valores e começar" 
+    onclick="JavaScript:update(document.paramForm.field.value);"><input type="button" value="continuar" onclick="document.EField.forward()"><input 
+    type="button" value="pausa" onclick="document.EField.pause()"><input 
+    type="button" value="início" onclick="document.EField.reset()"><input type="button" value="fixar v = 0" onclick="dampSpeed()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <strong><i>E</i><sub>x</sub> = </strong><input type="text" name="field" size="10" 
+    value="0"> N/C</div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>
+<b>Descrição da Animação</b></p>
+<p>
+Uma conta carregada é colocada num fio circular, conforme mostra a animação.&nbsp;O 
+centro do círculo está no ponto (0 m; 1m).&nbsp;Além do campo gravítico, é possível 
+adicionar um campo elétrico uniforme segundo o eixo dos <i>xx</i><b>
+(a posição é dada em metros, o tempo em segundos e o campo elétrico em newtons/coulomb)</b>. 
+O campo resultante é apresentado usando setas, conforme foi mostrado na 
+Ilustração 23.1.&nbsp;&nbsp;
+<a href="JavaScript:initEField(0.0);">Início</a>&nbsp; </p>
+<p>
+&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox, Mario Belloni e Wolfgang 
+Christian.<br>
+<i>Script</i> da autoria de Mario Belloni e Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

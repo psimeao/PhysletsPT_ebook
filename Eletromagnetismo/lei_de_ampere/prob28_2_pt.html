@@ -1,0 +1,135 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var w1=0;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("field()",100);
+}
+  	
+function field(){ 
+      if(!loaded) return;
+       timerID=0;     
+   document.BField.setAutoRefresh(false);      
+   document.BField.setDefault();
+   document.slider1.setValue(0);
+   	i1=document.slider1.getValue();
+
+   	document.BField.setShowFieldVectors(true);
+ //  	document.BField.setShowBOnDrag(true);
+	w1=document.BField.addObject("wire","x=-2,y=-2,i=3");
+	document.BField.setShowFVector(w1,false);
+	document.BField.setDragable(w1,false);
+
+	w1=document.BField.addObject("wire","x=2,y=-2,i=3");
+	document.BField.setShowFVector(w1,false);
+	document.BField.setDragable(w1,false);
+	
+	w1=document.BField.addObject("wire","x=3,y=3,i="+i1);
+	document.BField.setShowFVector(w1,false);
+	document.BField.setDragable(w1,true);
+	
+	document.BField.addObject("arrow","x=-5,y=0,v=0,h=100");
+   	document.BField.addObject("arrow","x=0,y=-5,v=100,h=0");
+
+    document.BField.setAutoRefresh(true);
+      document.slider1.setJSFunction("slidermove1()");
+
+   }
+function slidermove1() {
+	 if(timerID==0){
+	 timerID=setTimeout("slidermove11()",33);
+}	
+}
+
+ 
+function slidermove11() {
+	timerID=0;
+	i1=document.slider1.getValue();
+	document.BField.setCurrent(w1,i1);
+	}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 28.2</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 28.2</h2>
+
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet CODEBASE="../../classes/" 
+        ARCHIVE="Physlets.jar" 
+      CODE="bfield.BField.class" NAME="BField" WIDTH="350" 
+      HEIGHT="300" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField,slider1">
+        <param name="Resources" value="bfield_pt.rc">        
+      </applet>       </td>
+    </tr>
+    <tr>
+      <td>
+      
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider1"  width="350" height="19" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="-5">
+            <param name="ShowControls" value="true">
+            <param name="max" value="5">
+            <param name="value" value="0">
+            <param name="label" value="corrente (A)">
+          </applet></td>
+    </tr>
+  </table>  </center>
+</div>
+ 
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left">A intensidade da corrente nos dois fios vermelhos é de 3 A, com 
+o sentido para fora do monitor do computador
+<b>(a posição é dada em metros</b>).&nbsp; O fio preto tem uma corrente 
+inicialmente nula; mas pode transportar corrente elétrica com o sentido para 
+dentro ou para fora do monitor, dependendo do valor atribuído pelo cursor.&nbsp;&nbsp;
+<a href="JavaScript:field()">Início</a>.  </p>
+<p align="left"> &nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+button.oval Adicionar Oval
+button.rect Adicionar Reta
+button.reset Limpar
+label.rhov rho|V
+label.contours Contornos
+label.vectors Vetores do Campo
+label.grid Grelha
+label.rho rho=
+label.v V=
+label.e |E|=
+label.calculating Calculando...
+label.not_converge Falha na convergência
+
+

@@ -1,0 +1,13 @@
+button.reset Início
+button.currentin Corrente à Entrada
+button.currentout Corrente à Saída
+label.newfield Novo Campo: Bx By
+label.coil Espira
+label.vectors Vetores
+label.doubleclick Duplo Clique
+label.force_undefined F=Não definida
+label.field_undefined B=Não definido dentro do cabo
+
+
+
+

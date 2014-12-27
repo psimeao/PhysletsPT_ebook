@@ -1,0 +1,233 @@
+<html>
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="pt">
+ 
+<script LANGUAGE="JavaScript"> 
+var timerID=0;
+var loaded=false;
+ 
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb3_1()",50);
+}
+  	
+function mjb3_1(){ 
+      if(!loaded) return;
+       timerID=0; 
+	document.Animator.setAutoRefresh(false); 
+	document.Animator.setDefault(); 
+	document.Animator.setPixPerUnit(10); 
+	document.Animator.shiftPixOrigin(-250,-90); 
+	document.Animator.setGridUnit(0);
+	document.Animator.setTimeInterval(0,10); 
+	rid=document.Animator.addObject("rectangle","h=400,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,175,203,255);
+	document.Animator.addObject("image","file=images/bg2.gif,x=-0.8,y=22");
+	rid=document.Animator.addObject("rectangle","h=40,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,155,155,155);
+	cid=document.Animator.addObject("image","file=images/r_ghini.gif,x=-14+2*t+0.5*t*t,y=7.5");
+	document.Animator.setAutoRefresh(true); 
+	document.Animator.forward();
+	//document.getElementById("waitmsg").style.display="none"; 
+} 
+ 
+function killmenow(){
+	clearTimeout(timerID);
+		loaded=false;
+		timerID=-1;
+}
+</script>
+<title>Title Page</title>
+<link rel="STYLESHEET" type="text/css" href="../workbook.css">
+<base target="_blank">
+<style> 
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+ 
+<body onunload="killmenow()">
+ 
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div><div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td width="100%">
+		<applet code="animator4.Animator.class" codebase="../classes/" 
+		archive="Physlets.jar" name="Animator" width="510" height="111" 
+		hspace="0" align="middle">
+  			<param name="FPS" value="15">
+  			<param name="ShowControls" value="false">
+  			<param name="dt" value="0.1">
+  			<param name="PixPerUnit" value="10">
+  			<param name="GridUnit" value="1.0">
+  			<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+  </center>
+</div>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<hr>
+<div align="center">
+  <center>
+<div align="center">
+  <p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../Amazon_buy_now.png" /></a> </div>
+	<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+  <font size="3"><b>FLUIDOS</b></font></center>
+</div>
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" width="45%">
+	<tr>
+		<td>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+		<p class="MsoNormal" style="margin-top: 0"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 14 – Fluidos 
+		- Estática</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 14.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Pressão num líquido</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 14.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Princípio de Pascal</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 14.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força de Impulsão</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 14.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Tirar Água de um Poço</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 14.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Flutuar ou afundar</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 14.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força de Impulsão</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 14.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Impulsão em óleo e em água</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 15 – Fluidos 
+		- Dinâmica</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 15.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Equação da Continuidade</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 15.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A Equação de Bernoulli</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 15.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Fluidos Ideais e Fluidos Viscosos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 15.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Elevação de um Avião</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 15.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Fluxo Sanguíneo e a Equação da Continuidade</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 15.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Equação de Bernoulli</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 15.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Aplicação da Equação de Bernoulli</span><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%">&nbsp;</td>
+	</tr>
+	</table>
+	</center>
+</div>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<hr>
+<p align="center" style="margin-bottom: 6px"><b><i>© 2014: Paulo Simeão 
+Carvalho, Edite Pereira Briosa, Wolfgang Christian, Mario Belloni, Manuel Filipe 
+Costa</i></b></p>
+<p align="center" style="margin-top: 3px; margin-bottom: 0">&nbsp;</p>
+ 
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+ 
+</html>

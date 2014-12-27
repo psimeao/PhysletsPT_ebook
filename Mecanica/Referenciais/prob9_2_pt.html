@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 9.2</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("shm3_3()",100);
+}
+  	
+function shm3_3(){ 
+      if(!loaded) return;
+       timerID=0;
+	pi=Math.PI;
+	vx=3.6; 
+	vy=1.4;
+	theta=Math.atan(vy/vx)/pi*180;
+	document.Animator.setAutoRefresh(false);
+ 	document.Animator.setDefault();
+ 	document.Animator.shiftPixOrigin(-220,-60);
+ 	document.Animator.setTimeOneShot(10,"Fim da Animação");
+ 	document.Animator.addObject("rectangle","x=22,y=-3,h=20,w=500");
+ 	idlb=document.Animator.addObject("rectangle","x=22,y=-3,h=18,w=500");
+ 	document.Animator.setRGB(idlb,145,100,45);
+ 	document.Animator.addObject("rectangle","x=22,y=15,h=20,w=500");
+ 	idub=document.Animator.addObject("rectangle","x=22,y=15,h=18,w=500");
+ 	document.Animator.setRGB(idub,145,100,45);
+ 	idr=document.Animator.addObject("rectangle","x=22,y=6,h=160,w=500");
+ 	document.Animator.setRGB(idr,24,134,250);
+  	document.Animator.setPaintBeforeGrid(idr,true);
+	document.Animator.addObject("rectangle","x=36,y=13,h=22,w=10");
+ 	idt=document.Animator.addObject("rectangle","x=36,y=13,h=20,w=8");
+ 	document.Animator.setRGB(idt,255,0,0);
+  	id1=document.Animator.addObject("polyshape","n=5,h=0/0/5/10/10,v=0/15/20/15/0");
+ 	document.Animator.setForce(id1,"0","0",-.5,-2.,vx,vy);
+	document.Animator.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Problema 9.2</h2>
+<div align="center">
+      <center>
+      <table border="1" bgcolor="#C0C0C0">
+        <tr>
+          <td>
+	<applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="500"
+        height="200" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+        </tr>
+      </table>
+      </center>
+    </div>
+
+<form>
+   <div align="center"><center>
+     <p>
+		<input type="button" value="começar" onclick="document.Animator.forward()"><input type="button"
+    value="pausa" onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+    onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Animator.stepForward()"><input type="button" value="início"
+    onclick="document.Animator.reset()"></p>
+    </div>
+</form>
+
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+
+<p align="left">
+Imagina que estás num barco a remos e queres atravessar o rio <b>(</b>nesta 
+animação<b>, a posição é dada em metros e o tempo em segundos)</b>.&nbsp;A corrente 
+do rio, na animação, segue da esquerda para a direita. A velocidade do barco em 
+relação à água é constante, vertical e controlada través dos remos.&nbsp; <a href="JavaScript:shm3_3()">
+Início</a></p>
+
+
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Steve Mellema e Chuck Niederriter.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

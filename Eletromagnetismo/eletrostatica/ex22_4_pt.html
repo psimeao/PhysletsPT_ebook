@@ -1,0 +1,163 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 22.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+   document.EField.setCaption("Seleciona uma Animação");
+   document.EField.setAutoRefresh(true);
+}
+  
+function initApplet1(){
+    if(!loaded) return;
+    timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+   document.EField.setCaption("Animação 1");
+   id1=document.EField.addObject("charge","x=-3,y=1,q=-5,r=7");
+   id2=document.EField.addObject("charge","x=-3,y=-1,q=5,r=7");
+   id3=document.EField.addObject("charge","x=2,y=0,q=2.5,r=7");
+   document.EField.setRGB(id1,0,0,200);
+   document.EField.setRGB(id2,0,0,200);
+   document.EField.setRGB(id3,200,0,0);
+   document.EField.setShowFVector(id3,true);
+	document.EField.setDragable(id2,false);
+	document.EField.setDragable(id1,false);
+   document.EField.setDragable(id3,true);
+   document.EField.setConstrainY(id3,0,-2,4);
+   document.EField.setShowFOnDrag(id3,true);
+   document.EField.setAutoRefresh(true);
+}
+
+function initApplet2(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+   document.EField.setCaption("Animação 2");
+   id1=document.EField.addObject("charge","x=-3,y=1,q=5,r=7");
+   id2=document.EField.addObject("charge","x=-3,y=-1,q=5,r=7");
+   id3=document.EField.addObject("charge","x=2,y=0,q=2.5,r=7");
+   document.EField.setRGB(id1,0,0,200);
+   document.EField.setRGB(id2,0,0,200);
+   document.EField.setRGB(id3,200,0,0);
+   document.EField.setShowFVector(id3,true);
+	document.EField.setDragable(id2,false);
+	document.EField.setDragable(id1,false);
+   document.EField.setDragable(id3,true);
+   document.EField.setConstrainY(id3,0,-2,4);
+   document.EField.setShowFOnDrag(id3,true);
+   document.EField.setAutoRefresh(true);
+}
+
+function initApplet3(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+   document.EField.setCaption("Animação 3");
+   id1=document.EField.addObject("charge","x=-3,y=1,q=-10,r=7");
+   id2=document.EField.addObject("charge","x=-3,y=-1,q=5,r=7");
+   id3=document.EField.addObject("charge","x=2,y=0,q=2.5,r=7");
+   document.EField.setRGB(id1,0,0,200);
+   document.EField.setRGB(id2,0,0,200);
+   document.EField.setRGB(id3,200,0,0);
+   document.EField.setShowFVector(id3,true);
+	document.EField.setDragable(id2,false);
+	document.EField.setDragable(id1,false);
+   document.EField.setDragable(id3,true);
+   document.EField.setConstrainY(id3,0,-2,4);
+   document.EField.setShowFOnDrag(id3,true);
+   document.EField.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Exploração 22.4 - Simetria de um Dipolo</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%" colspan="3">
+      <p align="center">
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" name="EField" width="400" 
+      height="250" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="64">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="33%">
+      <p align="center">
+		<a href="JavaScript:initApplet1()" style="text-decoration: none">Animação 1</a></td>
+      <td width="33%">
+      <p align="center">
+		<a href="JavaScript:initApplet2()" style="text-decoration: none">Animação 2</a></td>
+      <td width="34%">
+      <p align="center">
+		<a href="JavaScript:initApplet3()" style="text-decoration: none">Animação 3</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Cada animação mostra uma carga elétrica positiva (vermelha) e duas cargas 
+desconhecidas (azuis). A força elétrica exercida na carga positiva está 
+representada por um vetor. Podes arrastar a carga positiva ao longo do metade 
+positiva do eixo horizontal <b>
+(a posição é dada em metros e a força é dada em (newtons/k), onde k é a 
+constante de Coulomb)</b>.&nbsp; <a href="JavaScript:initApplet()">Início</a> </p>
+<p>&nbsp;</p>
+<p align="left">Exploração da autoria de Melissa Dancy<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

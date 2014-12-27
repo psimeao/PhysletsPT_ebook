@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var timerID=0;
+var whichAnim=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb0()",100);
+}
+  	
+function startProb0(){ 
+      if(!loaded) return;
+       timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+	        	all=document.Animator.getEnsembleID();
+			document.Animator.setShowCoordinates(all,false);
+			document.DataGraph1.setAutoRefresh(false);
+  		 document.DataGraph1.setDefault();
+   		document.DataGraph1.deleteAllSeries();
+   		document.Animator.setCaption("Seleciona uma Animação");
+		document.Animator.setTimeDisplay(false);
+		document.Animator.shiftPixOrigin(-50,-100);
+		document.Animator.setPixPerUnit(25);
+		document.Animator.setGridUnit(0);
+		
+		ground=document.Animator.addObject("rectangle","x=0,y=-0.5,w=600,h=20");
+		document.Animator.setRGB(ground,0,150,0);
+				
+		xaxis=document.Animator.addObject("arrow","v=0,h=2");
+		yaxis=document.Animator.addObject("arrow","v=2,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=0.8*2,y=+0.2*2,text=+x");
+		ytext=document.Animator.addObject("text","y=0.8*2,x=-0.5*2,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		document.DataGraph1.setAutoscaleX(false);
+		document.DataGraph1.setAutoscaleY(false);
+		document.DataGraph1.setMinMaxX(0,35);
+		document.DataGraph1.setMinMaxY(-0.7,0.1);
+		document.DataGraph1.clearSeries(1);
+	        document.DataGraph1.setSeriesStyle(1,true,3);  
+                document.DataGraph1.setMarkerSize(1,0.6);  
+		document.DataGraph1.setLabelY("v_{x} (m/s)"); 
+		document.DataGraph1.setLabelX("t (s)"); 
+		document.DataGraph1.setTitle("v_{x} vs. t"); 
+		document.DataGraph1.setLastPointMarker(1,true); 
+		graph1=document.DataGraph1.getGraphID();		
+		document.Animator.setAutoRefresh(true);
+		document.DataGraph1.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+
+function startProb(whichAnim){
+   		if(!loaded) return;
+   		timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+    		        	all=document.Animator.getEnsembleID();
+			document.Animator.setShowCoordinates(all,false);
+			document.DataGraph1.setAutoRefresh(false);
+   		document.DataGraph1.setDefault();
+   		document.DataGraph1.deleteAllSeries();
+		xStrGraph="((1-step(t-18))*(5-0.6*t+1/2*1/3/10*t*t)+step(t-18)*((5-0.6*18+1/2*1/3/10*18*18)-1/2*1/3/10*(t-18)*(t-18)))";
+		yStrGraph="8";
+
+		if(whichAnim==1) {
+			xStr=xStrGraph;
+			yStr="5";
+			document.Animator.setCaption("Animação 1");
+}
+		if(whichAnim==2) {
+			xStr="-9+15/36*t";
+			yStr="(1-step(t-18))*(1.5+6/18*t)+step(t-18)*(7.5-6/18*(t-18))";
+			document.Animator.setCaption("Animação 2");
+
+}
+		if(whichAnim==3) {
+			xStr="((1-step(t-18))*(-9+1/2*1/3/10*t*t)+step(t-18)*((-9+1/2*1/3/10*18*18)+(1/30*18)*(t-18)-1/2*1/3/10*(t-18)*(t-18)))";
+			yStr="5";
+			document.Animator.setCaption("Animação 3");
+}
+
+		
+		document.Animator.shiftPixOrigin(-50,-100);
+		document.Animator.setPixPerUnit(25);
+		document.Animator.setGridUnit(0);
+		
+		ground=document.Animator.addObject("rectangle","x=0,y=-0.5,w=600,h=20");
+		document.Animator.setRGB(ground,0,150,0);
+		
+		objToGraph=document.Animator.addObject("circle","r=0");
+		document.Animator.setRGB(objToGraph,255,255,255);
+		h=document.Animator.addObject("image","file=images/helicopter.gif,m=1");
+		
+		document.Animator.setTrajectory(h,xStr,yStr);		
+		document.Animator.setTrajectory(objToGraph,xStrGraph,yStrGraph);		
+		
+		xaxis=document.Animator.addObject("arrow","v=0,h=2");
+		yaxis=document.Animator.addObject("arrow","v=2,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=0.8*2,y=+0.2*2,text=+x");
+		ytext=document.Animator.addObject("text","y=0.8*2,x=-0.5*2,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		document.Animator.setOneShot(0,36,"Fim da Animação");
+		document.DataGraph1.setAutoscaleX(false);
+		document.DataGraph1.setAutoscaleY(false);
+		document.DataGraph1.setMinMaxX(0,35);
+		document.DataGraph1.setMinMaxY(-0.7,0.1);
+		document.DataGraph1.clearSeries(1);
+	        document.DataGraph1.setSeriesStyle(1,true,3);  
+                document.DataGraph1.setMarkerSize(1,0.6);  
+		document.DataGraph1.setLabelY("v_{x} (m/s)"); 
+		document.DataGraph1.setLabelX("t (s)"); 
+		document.DataGraph1.setTitle("v_{x} vs. t"); 
+		document.DataGraph1.setLastPointMarker(1,true); 
+		graph1=document.DataGraph1.getGraphID();
+		document.Animator.makeDataConnection(objToGraph,graph1,1,"t","vx");  		
+		document.DataGraph1.setAutoRefresh(true);
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 2.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.3</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+            <applet width="449" height="200" code="dataGraph.DataGraph.class" 
+            codebase="../../classes/" archive="Physlets.jar" 
+            align="baseline" name="DataGraph1" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+        </tr>
+    <tr>
+      <td>
+		<applet width="448" height="235" code="animator4.Animator.class" 
+		codebase="../../classes/" archive="Physlets.jar" 
+		align="baseline" name="Animator" mayscript>
+                  <param name="FPS" value="10">
+                  <param name="dt" value="1">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+        		<param name="AppletNames" value="Animator,DataGraph1">
+                <param name="Resources" value="animator_pt.rc">
+                </applet></td>
+        </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  	onclick="document.Animator.forward()"><input type="button" value="pausa"
+  	onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  	onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+ 	 onclick="document.Animator.stepForward()"><input type="button" value="início"
+ 	 onclick="document.Animator.reset()"> </p>
+  </center></div>
+</form>
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center">&nbsp;<a href="JavaScript:startProb(1)" style="text-decoration: none">Animação 1</a> </td>
+    <td align="center">&nbsp;<a href="JavaScript:startProb(2)" style="text-decoration: none">Animação 2</a> </td>
+    <td align="center">&nbsp;<a href="JavaScript:startProb(3)" style="text-decoration: none">Animação 3</a> </td>
+  </tr>
+</table>
+</center></div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">Nesta animação,<b> a posição é dada em metros e o 
+tempo é dado em segundos</b>.&nbsp;
+<a href="JavaScript:startProb0(1)">Início</a></p>
+
+
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Aaron Titus, com o apoio da National 
+Science Foundation, Grant No. DUE-9952323 e colocado no domínio público.
+<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 19.3</title>
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("heat0()",100);
+}
+  	
+function heat0(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.selection.reset();
+	m1=eval(document.selection.D2.value);
+	
+	if(!checkRange(m1,1,3)){
+	alert("A massa deve estar entre 1 kg e 3 kg. O valor inserido foi "+m1+" kg.");
+	return;
+}
+	temp=eval(document.selection.D3.value);
+	
+	if(!checkRange(temp,300,1000)){
+	alert("A temperatura deve estar entre 300 K e 1000 K. O valor inserido foi "+temp+" K.");
+	return;
+}
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+         document.Animator.setPixPerUnit(40);
+   	document.Animator.shiftPixOrigin(-120,-90);
+   	document.Animator.setShapeRGB(255,255,255);
+   	document.Animator.addRectangle(500,250,"3","2.25");
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,120,"0","1.5");
+    document.Animator.addRectangle(4,120,"3","1.5");
+	document.Animator.addRectangle(124,4,"1.5","-.05");
+	document.Animator.setShapeRGB(0,55,255);
+	document.Animator.addPiston(116,"0","2.5+(.1/.6)*"+m1+"*(t-.4)*step(t-.4)*step(1-t)+.1*"+m1+"*step(t-1)","1.5","0");
+	id1=document.Animator.addRectangle(20,20,"1.5","5.5");
+	document.Animator.setRGB(id1,0,0,0);
+	document.Animator.setShapeRGB(0,180,180);
+    id2=document.Animator.addPiston(40,"0",+m1+"/2","1.5","(3-2*t)*step(1-t)+1*step(t-1)");
+    document.Animator.addConnectorLine(id1,id2);
+	tempf=eval(41.86*300+.39*m1*temp)/(41.86+.39*m1);
+	  	
+   	tid1=document.Animator.addPiston(14,"0","2.5","-1.5","2");
+   	document.Animator.setRGB(tid1,155,155,155);
+   	tid2=document.Animator.addObject("circle","r=12");
+   	document.Animator.setRGB(tid2,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid2);
+   	document.Animator.setDisplayOffset(tid2,0,0);
+   	tid3=document.Animator.addCircle(14,"0","0");
+   	document.Animator.setRGB(tid3,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid3);
+   	document.Animator.setDisplayOffset(tid3,0,100);
+   	tid4=document.Animator.addCircle(20,"0","0");
+   	document.Animator.setRGB(tid4,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid4);
+   	document.Animator.setDisplayOffset(tid4,0,0);
+   	tid5=document.Animator.addPiston(10,"0",".25+(("+tempf+"-300)*(t-.5)/(10*4.5))*step(t-.5)","0","0");
+   	document.Animator.setRGB(tid5,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid5);
+   	document.Animator.setDisplayOffset(tid5,0,-1);
+   	tid6=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid6,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid6);
+   	document.Animator.setDisplayOffset(tid6,-10,10);
+   	tid7=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid7,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid7);
+   	document.Animator.setDisplayOffset(tid7,-10,30);
+   	tid8=document.Animator.addLine(".5","0","-11","1");
+   	document.Animator.setRGB(tid8,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid8);
+   	document.Animator.setDisplayOffset(tid8,-10,50);
+   	tid9=document.Animator.addLine(".5","0","-11","3");
+   	document.Animator.setRGB(tid9,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid9);
+   	document.Animator.setDisplayOffset(tid9,-10,70);
+   	tid10=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid10,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid10);
+   	document.Animator.setDisplayOffset(tid10,-10,90);
+   	document.Animator.setShapeRGB(0,0,0);
+   	cap1=document.Animator.addText("300","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap1);
+   	document.Animator.setDisplayOffset(cap1,-36,6);
+   	document.Animator.setObjectFont(cap1,"Helvetica",1,10);
+   	cap2=document.Animator.addText("305","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap2);
+   	document.Animator.setDisplayOffset(cap2,-36,26);
+   	document.Animator.setObjectFont(cap2,"Helvetica",1,10);
+  	cap3=document.Animator.addText("310","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap3);
+   	document.Animator.setDisplayOffset(cap3,-36,46);
+   	document.Animator.setObjectFont(cap3,"Helvetica",1,10);
+   	cap4=document.Animator.addText("315","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap4);
+   	document.Animator.setDisplayOffset(cap4,-36,66);
+   	document.Animator.setObjectFont(cap4,"Helvetica",1,10);
+   	cap5=document.Animator.addText("320","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap5);
+   	document.Animator.setDisplayOffset(cap5,-37,86);
+    document.Animator.setObjectFont(cap5,"Helvetica",1,10);
+   	cap6=document.Animator.addText(" ","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap6);
+   	document.Animator.setDisplayOffset(cap6,-7,0);
+   	document.Animator.setObjectFont(cap6,"Helvetica",1,11);
+   	cap7=document.Animator.addText("K","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap7);
+   	document.Animator.setDisplayOffset(cap7,-1,-6);
+   	document.Animator.setObjectFont(cap7,"Helvetica",1,11);
+   document.Animator.addText("água","-1.9","1.4");
+    document.Animator.addText("bloco","4","1.4");
+   thid1=document.Animator.addPiston(14,"0","2.5","4.5","2");
+   document.Animator.setRGB(thid1,155,155,155);
+   thid2=document.Animator.addObject("circle","r=12");
+   document.Animator.setRGB(thid2,155,155,155);
+   document.Animator.setAnimationSlave(thid1,thid2);
+   document.Animator.setDisplayOffset(thid2,0,0);
+   thid3=document.Animator.addCircle(14,"0","0");
+   document.Animator.setRGB(thid3,155,155,155);
+   document.Animator.setAnimationSlave(thid1,thid3);
+   document.Animator.setDisplayOffset(thid3,0,100);
+   thid4=document.Animator.addCircle(20,"0","0");
+   document.Animator.setRGB(thid4,255,0,0);
+   document.Animator.setAnimationSlave(thid1,thid4);
+   document.Animator.setDisplayOffset(thid4,0,0);
+   thid5=document.Animator.addPiston(10,"0",".25+("+temp+"-300)/400+step(t-.5)*("+tempf+"-"+temp+")*(t-.5)/(400*4.5)","0","0");
+   document.Animator.setRGB(thid5,255,0,0);
+   document.Animator.setAnimationSlave(thid1,thid5);
+   document.Animator.setDisplayOffset(thid5,0,-1);
+   thid6=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid6,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid6);
+   document.Animator.setDisplayOffset(thid6,-10,10);
+   thid7=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid7,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid7);
+   document.Animator.setDisplayOffset(thid7,-10,30);
+   thid8=document.Animator.addLine(".5","0","-11","1");
+   document.Animator.setRGB(thid8,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid8);
+   document.Animator.setDisplayOffset(thid8,-10,50);
+   thid9=document.Animator.addLine(".5","0","-11","3");
+   document.Animator.setRGB(thid9,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid9);
+   document.Animator.setDisplayOffset(thid9,-10,70);
+   thid10=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid10,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid10);
+   document.Animator.setDisplayOffset(thid10,-10,90);
+   document.Animator.setShapeRGB(0,0,0);
+   capt1=document.Animator.addText("300","1","0");
+   document.Animator.setAnimationSlave(thid1,capt1);
+   document.Animator.setDisplayOffset(capt1,-36,6);
+   document.Animator.setObjectFont(capt1,"Helvetica",1,10);
+   capt2=document.Animator.addText("500","1","0");
+   document.Animator.setAnimationSlave(thid1,capt2);
+   document.Animator.setDisplayOffset(capt2,-36,26);
+   document.Animator.setObjectFont(capt2,"Helvetica",1,10);
+  capt3=document.Animator.addText("700","1","0");
+   document.Animator.setAnimationSlave(thid1,capt3);
+   document.Animator.setDisplayOffset(capt3,-36,46);
+   document.Animator.setObjectFont(capt3,"Helvetica",1,10);
+   capt4=document.Animator.addText("900","1","0");
+   document.Animator.setAnimationSlave(thid1,capt4);
+   document.Animator.setDisplayOffset(capt4,-36,66);
+   document.Animator.setObjectFont(capt4,"Helvetica",1,10);
+   capt5=document.Animator.addText("1000","1","0");
+   document.Animator.setAnimationSlave(thid1,capt5);
+   document.Animator.setDisplayOffset(capt5,-37,86);
+    document.Animator.setObjectFont(capt5,"Helvetica",1,10);
+   capt6=document.Animator.addText(" ","1","0");
+   document.Animator.setAnimationSlave(thid1,capt6);
+   document.Animator.setDisplayOffset(capt6,-7,0);
+   document.Animator.setObjectFont(capt6,"Helvetica",1,11);
+   capt7=document.Animator.addText("K","1","0");
+   document.Animator.setAnimationSlave(thid1,capt7);
+   document.Animator.setDisplayOffset(capt7,-1,-6);
+   document.Animator.setObjectFont(capt7,"Helvetica",1,11);
+
+	document.Animator.setShapeRGB(155,155,155);
+	document.Animator.addRectangle(34,164,"6","2.5");
+	document.Animator.addRectangle(34,164,"8","2.5");
+	document.Animator.setShapeRGB(0,0,255);
+	qid1=document.Animator.addPiston(30,"0","(41.86*("+tempf+"-300)*(t-.5)/900)*step(t-.5)","6",".5");
+	document.Animator.setShapeRGB(255,0,0);
+ 	rid1=document.Animator.addPiston(30,"0","(.39*"+m1+"*("+temp+"-"+tempf+")*(t-.5)/900)*step(t-.5)","8",".5");
+	document.Animator.setShapeRGB(0,0,0);
+	caption1=document.Animator.addText("Calor absorvido","5",".3");
+	document.Animator.setObjectFont(caption1,"Helvetica",1,10);
+	caption2=document.Animator.addText("      pela água","5",".1");
+ 	document.Animator.setObjectFont(caption2,"Helvetica",1,10);
+	caption3=document.Animator.addText("Calor libertado","7.2",".3");
+ 	document.Animator.setObjectFont(caption3,"Helvetica",1,10);
+	caption4=document.Animator.addText("      pelo bloco","7",".1");
+ 	document.Animator.setObjectFont(caption4,"Helvetica",1,10);
+ 	document.Animator.setShapeRGB(0,0,0);
+ 	qid2=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid2);
+ 	document.Animator.setDisplayOffset(qid2,-15,40);
+ 	qid3=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid3);
+ 	document.Animator.setDisplayOffset(qid3,-15,80);
+	qid4=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid4);
+ 	document.Animator.setDisplayOffset(qid4,-15,120);
+	qid5=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid5);
+ 	document.Animator.setDisplayOffset(qid5,-15,160);
+	rid2=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid2);
+ 	document.Animator.setDisplayOffset(rid2,-15,40);
+ 	rid3=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid3);
+ 	document.Animator.setDisplayOffset(rid3,-15,80);
+	rid4=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid4);
+ 	document.Animator.setDisplayOffset(rid4,-15,120);
+	rid5=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid5);
+ 	document.Animator.setDisplayOffset(rid5,-15,160);
+	tempn=chop(tempf,1);
+   document.Animator.setOneShot(0,5,"Temperatura final = "+tempn+" K");
+   document.Animator.setAutoRefresh(true);     
+}
+
+
+function heat1(){
+    if(!loaded) return;
+	m1=eval(document.selection.D2.value);
+	
+	if(!checkRange(m1,1,3)){
+	alert("A massa deve estar entre 1 kg e 3 kg. O valor inserido foi "+m1+" kg.");
+	return;
+}
+	temp=eval(document.selection.D3.value);
+	
+	if(!checkRange(temp,300,1000)){
+	alert("A temperatura deve estar entre 300 K e 1000 K. O valor inserido foi  "+temp+" K.");
+	return;
+}
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+         document.Animator.setPixPerUnit(40);
+   	document.Animator.shiftPixOrigin(-120,-90);
+   	document.Animator.setShapeRGB(255,255,255);
+   	document.Animator.addRectangle(500,250,"3","2.25");
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,120,"0","1.5");
+    document.Animator.addRectangle(4,120,"3","1.5");
+	document.Animator.addRectangle(124,4,"1.5","-.05");
+	document.Animator.setShapeRGB(0,55,255);
+	document.Animator.addPiston(116,"0","2.5+(.1/.6)*"+m1+"*(t-.4)*step(t-.4)*step(1-t)+.1*"+m1+"*step(t-1)","1.5","0");
+	id1=document.Animator.addRectangle(20,20,"1.5","5.5");
+	document.Animator.setRGB(id1,0,0,0);
+	document.Animator.setShapeRGB(0,180,180);
+    id2=document.Animator.addPiston(40,"0",+m1+"/2","1.5","(3-2*t)*step(1-t)+1*step(t-1)");
+    document.Animator.addConnectorLine(id1,id2);
+	tempf=eval(41.86*300+.39*m1*temp)/(41.86+.39*m1);
+	  	
+   	tid1=document.Animator.addPiston(14,"0","2.5","-1.5","2");
+   	document.Animator.setRGB(tid1,155,155,155);
+   	tid2=document.Animator.addObject("circle","r=12");
+   	document.Animator.setRGB(tid2,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid2);
+   	document.Animator.setDisplayOffset(tid2,0,0);
+   	tid3=document.Animator.addCircle(14,"0","0");
+   	document.Animator.setRGB(tid3,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid3);
+   	document.Animator.setDisplayOffset(tid3,0,100);
+   	tid4=document.Animator.addCircle(20,"0","0");
+   	document.Animator.setRGB(tid4,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid4);
+   	document.Animator.setDisplayOffset(tid4,0,0);
+   	tid5=document.Animator.addPiston(10,"0",".25+(("+tempf+"-300)*(t-.5)/(10*4.5))*step(t-.5)","0","0");
+   	document.Animator.setRGB(tid5,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid5);
+   	document.Animator.setDisplayOffset(tid5,0,-1);
+   	tid6=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid6,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid6);
+   	document.Animator.setDisplayOffset(tid6,-10,10);
+   	tid7=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid7,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid7);
+   	document.Animator.setDisplayOffset(tid7,-10,30);
+   	tid8=document.Animator.addLine(".5","0","-11","1");
+   	document.Animator.setRGB(tid8,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid8);
+   	document.Animator.setDisplayOffset(tid8,-10,50);
+   	tid9=document.Animator.addLine(".5","0","-11","3");
+   	document.Animator.setRGB(tid9,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid9);
+   	document.Animator.setDisplayOffset(tid9,-10,70);
+   	tid10=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid10,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid10);
+   	document.Animator.setDisplayOffset(tid10,-10,90);
+   	document.Animator.setShapeRGB(0,0,0);
+   	cap1=document.Animator.addText("300","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap1);
+   	document.Animator.setDisplayOffset(cap1,-36,6);
+   	document.Animator.setObjectFont(cap1,"Helvetica",1,10);
+   	cap2=document.Animator.addText("305","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap2);
+   	document.Animator.setDisplayOffset(cap2,-36,26);
+   	document.Animator.setObjectFont(cap2,"Helvetica",1,10);
+  	cap3=document.Animator.addText("310","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap3);
+   	document.Animator.setDisplayOffset(cap3,-36,46);
+   	document.Animator.setObjectFont(cap3,"Helvetica",1,10);
+   	cap4=document.Animator.addText("315","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap4);
+   	document.Animator.setDisplayOffset(cap4,-36,66);
+   	document.Animator.setObjectFont(cap4,"Helvetica",1,10);
+   	cap5=document.Animator.addText("320","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap5);
+   	document.Animator.setDisplayOffset(cap5,-37,86);
+    document.Animator.setObjectFont(cap5,"Helvetica",1,10);
+   	cap6=document.Animator.addText(" ","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap6);
+   	document.Animator.setDisplayOffset(cap6,-7,0);
+   	document.Animator.setObjectFont(cap6,"Helvetica",1,11);
+   	cap7=document.Animator.addText("K","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap7);
+   	document.Animator.setDisplayOffset(cap7,-1,-6);
+   	document.Animator.setObjectFont(cap7,"Helvetica",1,11);
+      document.Animator.addText("água","-1.9","1.4");
+    document.Animator.addText("bloco","4","1.4");
+   thid1=document.Animator.addPiston(14,"0","2.5","4.5","2");
+   document.Animator.setRGB(thid1,155,155,155);
+   thid2=document.Animator.addObject("circle","r=12");
+   document.Animator.setRGB(thid2,155,155,155);
+   document.Animator.setAnimationSlave(thid1,thid2);
+   document.Animator.setDisplayOffset(thid2,0,0);
+   thid3=document.Animator.addCircle(14,"0","0");
+   document.Animator.setRGB(thid3,155,155,155);
+   document.Animator.setAnimationSlave(thid1,thid3);
+   document.Animator.setDisplayOffset(thid3,0,100);
+   thid4=document.Animator.addCircle(20,"0","0");
+   document.Animator.setRGB(thid4,255,0,0);
+   document.Animator.setAnimationSlave(thid1,thid4);
+   document.Animator.setDisplayOffset(thid4,0,0);
+   thid5=document.Animator.addPiston(10,"0",".25+("+temp+"-300)/400+step(t-.5)*("+tempf+"-"+temp+")*(t-.5)/(400*4.5)","0","0");
+   document.Animator.setRGB(thid5,255,0,0);
+   document.Animator.setAnimationSlave(thid1,thid5);
+   document.Animator.setDisplayOffset(thid5,0,-1);
+   thid6=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid6,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid6);
+   document.Animator.setDisplayOffset(thid6,-10,10);
+   thid7=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid7,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid7);
+   document.Animator.setDisplayOffset(thid7,-10,30);
+   thid8=document.Animator.addLine(".5","0","-11","1");
+   document.Animator.setRGB(thid8,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid8);
+   document.Animator.setDisplayOffset(thid8,-10,50);
+   thid9=document.Animator.addLine(".5","0","-11","3");
+   document.Animator.setRGB(thid9,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid9);
+   document.Animator.setDisplayOffset(thid9,-10,70);
+   thid10=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(thid10,0,0,0);
+   document.Animator.setAnimationSlave(thid1,thid10);
+   document.Animator.setDisplayOffset(thid10,-10,90);
+   document.Animator.setShapeRGB(0,0,0);
+   capt1=document.Animator.addText("300","1","0");
+   document.Animator.setAnimationSlave(thid1,capt1);
+   document.Animator.setDisplayOffset(capt1,-36,6);
+   document.Animator.setObjectFont(capt1,"Helvetica",1,10);
+   capt2=document.Animator.addText("500","1","0");
+   document.Animator.setAnimationSlave(thid1,capt2);
+   document.Animator.setDisplayOffset(capt2,-36,26);
+   document.Animator.setObjectFont(capt2,"Helvetica",1,10);
+  capt3=document.Animator.addText("700","1","0");
+   document.Animator.setAnimationSlave(thid1,capt3);
+   document.Animator.setDisplayOffset(capt3,-36,46);
+   document.Animator.setObjectFont(capt3,"Helvetica",1,10);
+   capt4=document.Animator.addText("900","1","0");
+   document.Animator.setAnimationSlave(thid1,capt4);
+   document.Animator.setDisplayOffset(capt4,-36,66);
+   document.Animator.setObjectFont(capt4,"Helvetica",1,10);
+   capt5=document.Animator.addText("1000","1","0");
+   document.Animator.setAnimationSlave(thid1,capt5);
+   document.Animator.setDisplayOffset(capt5,-37,86);
+    document.Animator.setObjectFont(capt5,"Helvetica",1,10);
+   capt6=document.Animator.addText(" ","1","0");
+   document.Animator.setAnimationSlave(thid1,capt6);
+   document.Animator.setDisplayOffset(capt6,-7,0);
+   document.Animator.setObjectFont(capt6,"Helvetica",1,11);
+   capt7=document.Animator.addText("K","1","0");
+   document.Animator.setAnimationSlave(thid1,capt7);
+   document.Animator.setDisplayOffset(capt7,-1,-6);
+   document.Animator.setObjectFont(capt7,"Helvetica",1,11);
+
+	document.Animator.setShapeRGB(155,155,155);
+	document.Animator.addRectangle(34,164,"6","2.5");
+	document.Animator.addRectangle(34,164,"8","2.5");
+	document.Animator.setShapeRGB(0,0,255);
+	qid1=document.Animator.addPiston(30,"0","(41.86*("+tempf+"-300)*(t-.5)/900)*step(t-.5)","6",".5");
+	document.Animator.setShapeRGB(255,0,0);
+ 	rid1=document.Animator.addPiston(30,"0","(.39*"+m1+"*("+temp+"-"+tempf+")*(t-.5)/900)*step(t-.5)","8",".5");
+	document.Animator.setShapeRGB(0,0,0);
+	caption1=document.Animator.addText("Calor absorvido","5",".3");
+	document.Animator.setObjectFont(caption1,"Helvetica",1,10);
+	caption2=document.Animator.addText("      pela água","5",".1");
+ 	document.Animator.setObjectFont(caption2,"Helvetica",1,10);
+	caption3=document.Animator.addText("Calor libertado","7.2",".3");
+ 	document.Animator.setObjectFont(caption3,"Helvetica",1,10);
+	caption4=document.Animator.addText("      pelo bloco","7",".1");
+ 	document.Animator.setObjectFont(caption4,"Helvetica",1,10);
+ 	document.Animator.setShapeRGB(0,0,0);
+ 	qid2=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid2);
+ 	document.Animator.setDisplayOffset(qid2,-15,40);
+ 	qid3=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid3);
+ 	document.Animator.setDisplayOffset(qid3,-15,80);
+	qid4=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid4);
+ 	document.Animator.setDisplayOffset(qid4,-15,120);
+	qid5=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(qid1,qid5);
+ 	document.Animator.setDisplayOffset(qid5,-15,160);
+	rid2=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid2);
+ 	document.Animator.setDisplayOffset(rid2,-15,40);
+ 	rid3=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid3);
+ 	document.Animator.setDisplayOffset(rid3,-15,80);
+	rid4=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid4);
+ 	document.Animator.setDisplayOffset(rid4,-15,120);
+	rid5=document.Animator.addLine(".75","0","0","0");
+ 	document.Animator.setAnimationSlave(rid1,rid5);
+ 	document.Animator.setDisplayOffset(rid5,-15,160);
+	tempn=chop(tempf,1);
+   document.Animator.setOneShot(0,5,"Temperatura final = "+tempn+" K");
+   document.Animator.setAutoRefresh(true);     
+    document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Exploração 19.3 - Calorimetria</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="500" height="250" name="Animator" mayscript>
+	    <param name="FPS" value="10">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+<form name="selection">
+        <input onclick="Javascript:heat1();" type="button" value="registar valores e começar">
+        <INPUT onclick="document.Animator.forward()" type="button" value="continuar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td><p>
+        <b>massa =
+      <input name="D2" size="2" value="2"> kg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		temperatura inicial =
+      <input name="D3" size="4" value="700"> K</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+      </form>            
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b><p align="left">Quando dois objetos 
+com temperaturas diferentes entram em contacto térmico um com o outro, 
+eventualmente vão ficar ambos à mesma temperatura. O calor vai fluir do objeto 
+com temperatura mais elevada para o objeto com temperatura mais baixa, até os 
+dois ficarem à mesma temperatura. Usando a equação do calor absorvido ou 
+libertado em função da variação da temperatura,  
+
+<p><i>Q</i> = <i>m c</i>&nbsp; (<i>T</i><sub>f</sub> 
+- <i>T</i><sub>i</sub>)<p align="left">onde <i>Q</i> é o calor transferido, <i>m</i> 
+é a massa do objeto, <i>c</i> é a sua capacidade térmica mássica e <i>T</i> é a 
+temperatura, podemos determinar a capacidade térmica mássica de um objeto.&nbsp;  
+
+<p align="left">Nesta animação, um bloco de metal a uma temperatura muito 
+elevada é colocado dentro de água e, se o tanque que contém a água estiver bem 
+isolado, podemos assumir que não há perda de calor para o meio ambiente e que a 
+temperatura final da água e do metal depende da massa da água, da massa do metal 
+e da capacidade térmica mássica de cada um deles <b>(a temperatura é dada em 
+kelvin e o calor em joules)</b>. Ao igualar o calor perdido pelo metal com o 
+calor absorvido pela água, podemos calcular a capacidade térmica mássica de um 
+objeto desconhecido ou determinar a temperatura final do sistema. 
+<p align="left">Nesta animação o tanque contém 10 kg de água (c = 4186 J kg<sup>-1</sup>K<sup>-1</sup>).&nbsp;A 
+capacidade térmica mássica do bloco é 390 J kg<sup>-1</sup>K<sup>-1</sup>.&nbsp;&nbsp;
+<a href="JavaScript:heat0()">
+Início</a>&nbsp; 
+<p align="left">&nbsp;<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

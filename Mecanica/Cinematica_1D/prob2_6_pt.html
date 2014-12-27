@@ -1,0 +1,255 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var id2=0;
+var cid=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.fieldform.reset();
+    
+    document.scriptlistener.setDefault();  
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+    document.animator.setTimeDisplay(false);
+    document.animator.setCaption("Registar Valores");
+     bid1=document.animator.addObject("rectangle","h=400,w=15,x=-20.1,y=-10");
+    bid2=document.animator.addObject("rectangle","h=400,w=15,x=20.1,y=-10");
+    bid3=document.animator.addObject("rectangle","h=15,w=800,x=0,y=10.3");
+    bid4=document.animator.addObject("rectangle","h=15,w=800,x=0,y=-10.3");
+    document.animator.setBouncy(bid1,true);
+    document.animator.setBouncy(bid2,true);
+    document.animator.setBouncy(bid3,true);
+    document.animator.setBouncy(bid4,true);
+    rid=document.animator.addObject("rectangle","h=40,w=15,x=-8,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,192,192,122);
+    document.animator.setTrajectory(rid,"-8","10*step(-0.5+0)*step(0.9-0)");   
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=-8,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=-8,y=-12");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    
+    rid=document.animator.addObject("rectangle","h=40,w=15,x=10,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,192,192,122);
+    document.animator.setTrajectory(rid,"10","10*step(-1.5+0)*step(1.9-0)");   
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=10,y=-12");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    
+    
+
+     cid2=document.animator.addObject("circle","r=1,x=-15,y=0");
+     document.animator.setTrail(cid2,1000);
+     document.animator.setFootPrints(cid2,5);
+
+     cid0=document.animator.addObject("circle","r=8,x=-15,y=-0");
+     cid=document.animator.addObject("circle","r=7,x=-15,y=-0");
+     document.animator.setAnimationSlave(cid2,cid0);
+     document.animator.setRGB(cid,255,0,0);
+     document.animator.setSticky(cid,true);
+     document.animator.setAnimationSlave(cid,cid2);
+     
+     document.animator.addObject("circle","r=12,x=15,y=0");
+     cid3=document.animator.addObject("circle","r=11,x=15,y=0");
+     document.animator.setRGB(cid3,0,255,0);
+     document.animator.setSticky(cid3,true);
+     document.animator.setAutoRefresh(true);
+          
+}
+
+function defined(){
+   if(!loaded) return;
+   timerID=0; 
+    vel=document.fieldform.velocity.value;
+
+    if( !checkRange(vel,-15,15)){
+     	alert("A velocidade inicial deve estar entre -15.0 cm/s e 15.0 cm/s. O valor inserido foi "+vel+" cm/s.");
+     	return;
+} 
+
+    document.scriptlistener.setDefault();  
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+  bid1=document.animator.addObject("rectangle","h=400,w=15,x=-20.1,y=-10");
+    bid2=document.animator.addObject("rectangle","h=400,w=15,x=20.1,y=-10");
+    bid3=document.animator.addObject("rectangle","h=15,w=800,x=0,y=10.3");
+    bid4=document.animator.addObject("rectangle","h=15,w=800,x=0,y=-10.3");
+    document.animator.setBouncy(bid1,true);
+    document.animator.setBouncy(bid2,true);
+    document.animator.setBouncy(bid3,true);
+    document.animator.setBouncy(bid4,true);
+
+    rid=document.animator.addObject("rectangle","h=40,w=26,x=-8,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setVisibility(rid,false);
+    document.animator.setTrajectory(rid,"-8","10*step(-0.72+t)*step(1.14-t)");   
+    rid=document.animator.addObject("rectangle","h=40,w=26,x=10,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setVisibility(rid,false);
+    document.animator.setTrajectory(rid,"10","10*step(-3.14+t)*step(3.52-t)");  
+
+
+
+    rid=document.animator.addObject("rectangle","h=40,w=15,x=-8,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,192,192,122);
+    document.animator.setTrajectory(rid,"-8","10*step(-0.72+t)*step(1.14-t)");   
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=-8,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=-8,y=-12");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    
+    rid=document.animator.addObject("rectangle","h=40,w=15,x=10,y=0");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,192,192,122);
+    document.animator.setTrajectory(rid,"10","10*step(-3.14+t)*step(3.52-t)");   
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=10,y=12");
+    document.animator.setRGB(rid,122,122,122);
+    document.animator.setSticky(rid,true);
+    rid=document.animator.addObject("rectangle","h=200,w=15,x=10,y=-12");
+    document.animator.setSticky(rid,true);
+    document.animator.setRGB(rid,122,122,122);
+    
+    
+     cid2=document.animator.addObject("circle","r=1,x=-15,y=0");
+     document.animator.setTrail(cid2,1000);
+     document.animator.setFootPrints(cid2,5);
+     cid0=document.animator.addObject("circle","r=8,x=-15,y=-0");
+      cid=document.animator.addObject("circle","r=7,x=-15,y=-0");
+     document.animator.setAnimationSlave(cid,cid0);
+    document.animator.setRGB(cid,255,0,0);
+     document.animator.setSticky(cid,true);
+     document.animator.setAnimationSlave(cid,cid2);
+     document.animator.setForce(cid,"0","0",-15,0,eval(vel),0);
+     document.animator.addObject("circle","r=12,x=15,y=0");
+     cid3=document.animator.addObject("circle","r=11,x=15,y=0");
+     document.animator.setRGB(cid3,0,255,0);
+     document.animator.setSticky(cid3,true);
+     document.animator.setAutoRefresh(true);
+          
+     id=document.animator.getCollisionID();
+     
+     document.scriptlistener.setJSFunction("collision()");
+     document.scriptlistener.setRespondToDeleteSeries(false);
+     document.scriptlistener.setRespondToClearSeries(false);
+     
+     id2=document.scriptlistener.getID();       
+     document.animator.makeDataConnection(id,id2,1,"1","1"); 
+     document.animator.setOneShot(0,5, "Fim da Animação"); 
+     document.animator.forward();
+}
+
+function collision(){
+	 if(timerID==0) timerID=setTimeout("collision2()",50);
+}
+function collision2(){
+     x=document.animator.getXPos(cid);
+     if(eval(x)<12){
+       alert("Tenta outra vez");
+     } 
+     else alert("Parabéns");
+     
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 2.6</title>
+
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.6<applet codebase="../../classes/" code="script.ScriptListener.class"
+archive="Physlets.jar" name="scriptlistener" width="0"
+height="0" hspace="0" vspace="0" align="middle" mayscript>
+
+
+
+</applet></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="animator"
+        width="400" height="204" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,scriptlistener">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="fieldform">
+  <p align="center">
+  <input type="button" value="registar valores e começar"
+  onclick="JavaScript:defined()"> 
+	<input type="button" value="continuar"
+  onclick="document.animator.forward()"><input type="button" value="pausa"
+  onclick="document.animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="document.animator.reset()"></p>
+  <p align="center"><b>&nbsp; v<sub>x</sub> = <input type="text" name="velocity" size="10" value="0" tabindex="3">&nbsp;cm/s</b></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>A animação mostra uma bola de golfe vermelha , que queres introduzir no 
+buraco assinalado a verde <b> (a posição é dada em centímetros e o tempo é dado 
+em segundos)</b>.&nbsp;Dois obstáculos estão no caminho, mas desaparecem em 
+intervalos de tempo definidos.
+<a href="JavaScript:initApplet()">Início</a></p>
+<p><i>Nota: para valores decimais, usa um ponto e não uma virgula. Ex: 1.5 e não 
+1,5.</i></p>
+
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+	Manuel Filipe Costa</p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

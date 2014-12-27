@@ -1,0 +1,258 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="pt">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build0()",100);
+}
+
+function build0(){
+    if(!loaded) return;
+    timerID=0;
+	document.circuit.setGrid("rows=2,cols=2");
+	 document.circuit.setNumberOfDT(10);
+	 document.circuit.setDT(1e-2);
+	 document.circuit.setNOC(10);
+	 document.circuit.setFPS(10.);
+	 id[0]=document.circuit.addObject("sinwave","row=0,col=0,to=v,label=,d=-1,amp=2,freq=100.0,phase=0");
+	 id[1]=document.circuit.addObject("capacitor","row=0,col=0,to=h,label=C,c=1.0");
+	 id[2]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=R,r=1.0");
+	 id[3]=document.circuit.addObject("inductor","row=1,col=0,to=h,label=L,l=1.0");
+	 document.circuit.setValueVisible(id[1],false);
+	 document.circuit.setValueVisible(id[2],false);
+	 document.circuit.setValueVisible(id[3],false);
+	 document.circuit.parse();
+	 graf10();
+	 }
+
+function graf10(){
+    if(!loaded) return;
+    timerID=0;
+    document.selectionr.reset();
+    document.selectionl.reset();
+    document.selectionc.reset();
+	document.slider10_1.setValue(5);
+	document.slider10_2.setValue(5);
+	document.slider10_3.setValue(5);
+ 
+	document.slider10_1.setJSFunction("sliderMoved()");
+	document.slider10_2.setJSFunction("sliderMoved()");
+	document.slider10_3.setJSFunction("sliderMoved()");
+	sliderMoved();
+}
+
+function sliderMoved(){
+	if(!loaded) return;
+	if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+
+function sliderMoved2(){
+   if(!loaded) return;
+   index=document.selectionr.D1.selectedIndex;
+   vr=document.selectionr.D1.options[index].value;
+
+   index=eval(document.selectionc.D2.selectedIndex);
+   vc=document.selectionc.D2.options[index].value;
+
+   index=eval(document.selectionl.D3.selectedIndex);
+   vl=document.selectionl.D3.options[index].value;	
+	
+	nyr=document.slider10_1.getValue(); 
+	nyc=document.slider10_2.getValue(); 
+	nyl=document.slider10_3.getValue();
+		r1=Math.round(nyr) + vr;
+		c1=Math.round(nyc) + vc;
+		l1=Math.round(nyl) + vl;
+		strR='R(' + r1 + ')'; 
+		strL='L(' + l1 + ')'; 
+		strC='C(' + c1 + ')'; 
+		strZ=strR+'+'+ strL+'+'+strC;
+	document.Impedance1.setNetwork(strZ);
+	timerID=0;
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+</script>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Physlet Physics by Christian and Belloni: Illustration 31.8</title>
+<base target="_self">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Ilustração 31.8 - Impedância e Ressonância, 
+circuito RLC </span></h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet codebase="../../classes/" 
+    archive="Physlets.jar" 
+    code="circuitsimulator.Circuit.class" width="150" height="150" name="circuit" mayscript>
+      <param name="numberofdt" value="10">
+      <param name="dt" value="1e-6">
+      <param name="fps" value="10">
+      <param name="noc" value="10">
+      <param name="imagedir" value="circuitimages">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="circuit,slider10_1,Impedance1">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+    </applet> </td>
+    <td>
+    <applet code="impedance.ImpAppl.class" codeBase="../../classes/" 
+    archive="Physlets.jar" name="Impedance1" 
+    height="250" width="450" mayscript>
+      <param NAME="noText" VALUE="true">
+      <param NAME="network" VALUE="(R(1E2)+L(3E-2)+C(1E-6))" mayscript>
+      <param name="ShowControls" value="false">
+        <param name="Resources" value="impedance_pt.rc">
+    </applet> </td>
+  </tr>
+</table>
+<table border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td valign="top" align="right">
+    <applet CODEBASE="../../classes/" CODE="slider.SliderApplet.class" 
+    archive="Physlets.jar" NAME="slider10_1" 
+    WIDTH="333" HEIGHT="22" mayscript>
+      <param NAME="min" VALUE="1">
+      <param NAME="max" VALUE="100">
+      <param NAME="value" VALUE="5">
+      <param NAME="label" VALUE="  R">
+        <param name="Resources" value="slider_pt.rc">
+    </applet> </td>
+    <td valign="top" align="left"><font face="Arial" size="3">
+    <form name="selectionr">
+     <p><span lang="pt"><select name="D1" size="1" style="text-align: center" onchange="sliderMoved();">
+     <option value="E-3">x 1 milliohm</option>
+     <option value="E-2">x 10 milliohm</option>
+     <option value="E-1">x 100 milliohm</option>
+     <option value="E0">x 1 ohm</option>
+     <option selected value="E1">x 10 ohm</option>
+     <option value="E2">x 100 ohm</option>
+     <option value="E3">x 1 Quiloohm</option>
+     <option value="E4">x 10 Quiloohm</option>
+     <option value="E5">x 100 Quiloohm</option>
+     <option value="E6">x 1 megaohm</option>
+     <option value="E7">x 10 megaohm</option>
+     </select></span></p>
+    </form>
+    </font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" height="26">
+    <applet CODEBASE="../../classes/" CODE="slider.SliderApplet.class" 
+    archive="Physlets.jar" NAME="slider10_3" 
+    WIDTH="333" HEIGHT="22" mayscript>
+      <param NAME="min" VALUE="1">
+      <param NAME="max" VALUE="100">
+      <param NAME="value" VALUE="5">
+      <param NAME="label" VALUE="  L">
+        <param name="Resources" value="slider_pt.rc">
+    </applet> </td>
+    <td valign="top" align="left" height="26"><font face="Arial" size="3">
+    <form name="selectionl">
+     <p><span lang="pt"><select name="D3" size="1" style="text-align: center" onchange="sliderMoved()">
+     <option value="E-9">x 1 nanohenry</option>
+     <option value="E-8">x 10 nanohenry</option>
+     <option value="E-7">x 100 nanohenry</option>
+     <option value="E-6">x 1 microhenry</option>
+     <option value="E-5">x 10 microhenry</option>
+     <option value="E-4">x 100 microhenry</option>
+     <option selected value="E-3">x 1 millihenry</option>
+     <option value="E-2">x 10 millihenry</option>
+     <option value="E-1">x 100 millihenry</option>
+     <option value="E0">x 1 henry</option>
+     <option value="E1">x 10 henry</option>
+     </select></span></p>
+    </form>
+    </font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" height="26">
+    <applet CODEBASE="../../classes/" CODE="slider.SliderApplet.class" 
+    archive="Physlets.jar" NAME="slider10_2" 
+    WIDTH="333" HEIGHT="22" mayscript>
+      <param NAME="min" VALUE="1">
+      <param NAME="max" VALUE="100">
+      <param NAME="value" VALUE="5">
+      <param NAME="label" VALUE="  C">
+        <param name="Resources" value="slider_pt.rc">
+    </applet> </td>
+    <td valign="top" align="left" height="26"><font face="Arial" size="3">
+    <form name="selectionc">
+     <p><span lang="pt"><select name="D2" size="1" style="text-align: center" onchange="sliderMoved()">
+     <option value="E-9">x 1 nanofarad</option>
+     <option value="E-8">x 10 nanofarad</option>
+     <option value="E-7">x 100 nanofarad</option>
+     <option selected value="E-6">x 1 microfarad</option>
+     <option value="E-5">x 10 microfarad</option>
+     <option value="E-4">x 100 microfarad</option>
+     <option value="E-3">x 1 millifarad</option>
+     <option value="E-2">x 10 millifarad</option>
+     <option value="E-1">x 100 millifarad</option>
+     <option value="E0">x 1 farad</option>
+     <option value="E1">x 10 farad</option>
+     </select></span></p>
+    </form>
+    </font></td>
+  </tr>
+</table>
+<center>
+
+       
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+	<p align="left"><span lang="pt"><b>Descrição da animação</b></span></p>
+
+       
+<p align="left">A impedância <i>Z </i>de um circuito é a relação entre a d.d.p. 
+(<i>V</i>) e a intensidade da corrente (<i>I</i>)<i> </i>nesse circuito,<span lang="pt">
+<i>V = I Z</i>.&nbsp; Num circuito puramente resistivo, <i>Z = R</i> e a d.d.p. 
+e a intensidade da corrente estão sempre em fase. Quando se incluem 
+condensadores e/ou bobinas num circuito, a relação entre a d.d.p. e a 
+intensidade da corrente torna-se mais complicada. O cálculo da impedância 
+envolve, então, não apenas o cociente dos valores máximos da d.d.p. e da 
+intensidade da corrente, mas também a diferença de fase entre essas grandezas. 
+Num circuito RLC em série, a impedância do circuito é dada por: </span></p>
+<p align="center"><span lang="pt"><i>Z</i> = (<i>R</i><sup>2 </sup>+ (<i>ωL</i> 
+- 1/<i>ωC</i>)<sup>2</sup>)<sup>1/2</sup>.</span></p>
+<p align="justify"><span lang="pt">Nota que a impedância do circuito é mínima 
+sempre que <i>ωL</i> = 1/<i>ωC</i>.&nbsp; <a href="JavaScript:build0()">Início.</a></span></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<center><center>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Ilustração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Morten Brydensholt.<br>
+<i>Applet</i> da autoria de Harry Broeders&nbsp;e modificado por Wolfgang Christian.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+</center></center></center></center>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

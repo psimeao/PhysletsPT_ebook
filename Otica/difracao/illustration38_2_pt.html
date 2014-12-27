@@ -1,0 +1,544 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 38.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+
+var timerID=0;
+var timerID2=0;
+var timerID3=0;
+var timerID4=0;
+var timerID5=0;
+
+var lid=0;
+var lid2=0;
+var lid3=0;
+var mid=0;
+var mid2=0;
+var mid3=0;
+var gid=0;
+var conid1=0;
+var conid2=0;
+var conid3=0;
+var text1=0;
+var text2=0;
+var text3=0;
+var text4=0;
+var text5=0;
+var text6=0;
+var rect1=0;
+var circ1=0;
+var circ2=0;
+var circ3=0;
+var circ4=0;
+var circ5=0;
+var circ6=0;
+var circ7=0;
+var circ8=0;
+var conline1=0;
+var conline2=0;
+var conline3=0;
+var conline4=0;
+var conline5=0;
+var conline6=0;
+var j=0; 
+var dummy=0;
+var circ4dummy=0;
+var lambda=0;
+var n12=0;
+var n21=0;
+var intencity=0;
+var R=0;
+var G=0;
+var B=0;
+var WL=0;
+var i=0;
+var b1=0;
+var b2=0;
+var x1=350;
+var y1=250;
+var x3=523.2;
+var y3=50;
+var x4=100;
+var y4=100;
+var x5=300;
+var y5=192;
+var x6=0;
+var y6=0;
+var x7=0;
+var y7=0;
+var x8=0;
+var y8=0;
+var am=0;
+var bm=0;
+var an=0;
+var bn=0;
+var ak=0;
+var lambdaW=0;
+var n12W=0;
+var n21W=0;
+var intencityW=0;
+var RW=0;
+var GW=0;
+var BW=0;
+var WLW=0;
+var iW=0;
+var b1W=0;
+var b2W=0;
+var x6W=0;
+var y6W=0;
+var x8W=0;
+var y8W=0;
+var amW=0;
+var bmW=0;
+var anW=0;
+var bnW=0;
+var akW=0;
+
+		
+
+		var circArray6= new Array();
+		var circArray7= new Array();
+		var circArray8= new Array();
+		var circArray9= new Array();
+
+
+		nx1=486;nx2=656;	//calculating refraction index
+		ny1=1.6523;ny2=1.6182;	
+		a=Math.log(ny2/ny1)/Math.log(nx2/nx1);
+		b=ny1/Math.pow(nx1,a);
+				
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+ 	
+ 	document.slider.setDefault();
+	document.animator.setAutoRefresh(false);
+	document.animator.setDefault(); 
+	document.animator.setPixPerUnit(1); 
+	document.animator.shiftPixOrigin(-305,-175); 
+	document.animator.setGridUnit(0);
+	document.animator.setTimeVisibility(false);
+	
+	rect1=document.animator.addObject("rectangle","x=350,y=175,w=700,h=350");
+		document.animator.setRGB(rect1,0,0,0);
+		
+	rect1=document.animator.addObject("rectangle","x=100,y=175,w=5,h=20");
+		document.animator.setRGB(rect1,120,120,120);
+	rect1=document.animator.addObject("rectangle","x=600,y=175,w=10,h=350");
+		document.animator.setRGB(rect1,180,180,180);
+
+	
+	text3=document.animator.addObject("text","x=70,y=190,text=Rede de difração");
+		document.animator.setObjectFont(text3,"helvetica",0,10);
+		document.animator.setRGB(text3,255,255,255);
+	
+	circ1=document.animator.addObject("circle","x=10,y=175,r=2");
+		document.animator.setRGB(circ1,0,0,0);
+	circ2=document.animator.addObject("circle","x=100,y=175,r=1");
+		document.animator.setRGB(circ2,0,0,0);
+	circ3=document.animator.addObject("circle","x=600,y=175,r=2");
+		document.animator.setRGB(circ3,0,0,0);
+	
+	conline1=document.animator.addConnectorLine(circ2,circ1);
+		document.animator.setRGB(conline1,200,200,200);
+	conline2=document.animator.addConnectorLine(circ3,circ2);
+		document.animator.setRGB(conline2,200,200,200);
+	
+	
+	document.slider.setValue(656);
+	lambda=document.slider.getValue();
+	d1=5000;
+
+	firstmin();
+	circ4=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+	circ5=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+	conline3=document.animator.addConnectorLine(circ4,circ2);
+	conline4=document.animator.addConnectorLine(circ5,circ2);
+	
+	secondmin();
+	circ6=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+	circ7=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+	conline5=document.animator.addConnectorLine(circ6,circ2);
+	conline6=document.animator.addConnectorLine(circ7,circ2);
+
+	
+	makeSpectrum();
+	
+	document.animator.setRGB(conline1,R,G,B);
+	document.animator.setRGB(circ1,R,G,B);
+	document.animator.setRGB(circ2,R,G,B);
+	document.animator.setRGB(circ3,R,G,B);
+	document.animator.setRGB(circ4,R,G,B);
+	document.animator.setRGB(circ5,R,G,B);
+	document.animator.setRGB(circ6,R,G,B);
+	document.animator.setRGB(circ7,R,G,B);
+	document.animator.setRGB(conline2,R,G,B);
+	document.animator.setRGB(conline3,R,G,B);
+	document.animator.setRGB(conline4,R,G,B);
+	document.animator.setRGB(conline5,R,G,B);
+	document.animator.setRGB(conline6,R,G,B);
+
+	
+	document.slider.setFormat(0,"%4.1f");
+	document.slider.setJSFunction("sliderMoved1a()");
+			
+	document.animator.setAutoRefresh(true);
+} 
+
+function sliderMoved1a(){
+	 if(timerID==0)  timerID=setTimeout("sliderMoved1b()",50);
+}
+
+function sliderMoved1b(){
+	document.animator.setAutoRefresh(false);
+	
+	lambda=document.slider.getValue();		
+	
+	firstmin();
+	document.animator.setY(circ4,y1);
+	document.animator.setY(circ5,y2);
+	secondmin();
+	document.animator.setY(circ6,y3);
+	document.animator.setY(circ7,y4);
+	
+	makeSpectrum();
+
+	//****** Now draw the entire spectra from the rgb codes
+	
+	document.animator.setRGB(conline1,R,G,B);
+	document.animator.setRGB(circ1,R,G,B);
+	document.animator.setRGB(circ2,R,G,B);
+	document.animator.setRGB(circ3,R,G,B);
+	document.animator.setRGB(circ4,R,G,B);
+	document.animator.setRGB(circ5,R,G,B);
+	document.animator.setRGB(circ6,R,G,B);
+	document.animator.setRGB(circ7,R,G,B);
+	document.animator.setRGB(conline2,R,G,B);
+	document.animator.setRGB(conline3,R,G,B);
+	document.animator.setRGB(conline4,R,G,B);
+	document.animator.setRGB(conline5,R,G,B);
+	document.animator.setRGB(conline6,R,G,B);
+	
+	//document.slider.setFormat(0,"%4.1f");
+	//document.slider.setJSFunction("sliderMoved1a()");
+			
+	//document.animator.setAutoRefresh(true);
+
+	document.animator.setAutoRefresh(true);
+    timerID=0;  
+}
+
+
+function firstmin(){
+	//lambda=document.slider.getValue();
+	sinth=lambda/d1;
+	ysq=500*500*sinth*sinth/(1-sinth*sinth);
+	y1=Math.sqrt(ysq)+175;
+	y2=175-Math.sqrt(ysq);
+}
+
+function secondmin(){
+	//lambda=document.slider.getValue();
+	sinth=2*lambda/d1;
+	ysq=500*500*sinth*sinth/(1-sinth*sinth);
+	y3=Math.sqrt(ysq)+175;
+	y4=175-Math.sqrt(ysq);
+}
+
+
+function makeSpectrum(){
+	
+			WL=lambda;
+
+            if (WL>=380 && WL<440){ 
+              R = -1*(WL-440)/(440-380);
+              G = 0;
+              B = 1;
+            }
+            if (WL>=440 && WL<490){ 
+              R = 0;
+              G = .5*(WL-440)/(490-440);
+              B = 1;
+            }
+            if (WL>=490 && WL<510){ 
+              R = 0;
+              G = 1;
+              B = -.8*(WL-510)/(510-490);
+            }
+			 if (WL>=510 && WL<580){ 
+              R = (WL-510)/(580-510);
+              G = 1;
+              B = 0;
+            }
+            if (WL>=580 && WL<645){ 
+              R = 1;
+              G = -1*(WL-645)/(645-580);
+              B = 0;
+            }
+            if (WL>=645 && WL<=780){ 
+              R = 1;
+              G = 0;
+              B = 0;
+            }
+//
+//      LET THE INTENSITY intencity FALL OFF NEAR THE VISION LIMITS
+//
+         if (WL>=700){
+         	intencity=0.3+0.7*(780-WL)/(780-700);
+         }
+         else if (WL<420){
+         	intencity=0.3+0.7*(WL-380)/(420-380);
+         }
+         else{
+         	intencity=1;
+         }
+		
+			R=Math.round(intencity*R*255);
+			G=Math.round(intencity*G*255);
+			B=Math.round(intencity*B*255);
+}
+
+function showWhiteLight(){
+	timerID=5;	//stop slider and scriptlistener
+	document.animator.setAutoRefresh(false);
+	for (j=0;j<=37;j++){
+		lambda=750-10*j;
+		
+		firstmin();
+		secondmin();	
+		makeSpectrum();
+		
+		circArray6[j]=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+			document.animator.setVisibility(circArray6[j],false);
+		circArray8[j]=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+			document.animator.setVisibility(circArray8[j],false);
+		circArray7[j]=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+			document.animator.setVisibility(circArray7[j],false);
+		circArray9[j]=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+			document.animator.setVisibility(circArray9[j],false);
+
+		dummy=document.animator.addConnectorLine(circ2,circArray6[j]);
+			//document.animator.setRGB(dummy,RW,GW,BW);
+			document.animator.setRGB(dummy,R,G,B);	
+		dummy=document.animator.addConnectorLine(circ2,circArray7[j]);
+			//document.animator.setRGB(dummy,RW,GW,BW);
+			document.animator.setRGB(dummy,R,G,B);	
+		dummy=document.animator.addConnectorLine(circ2,circArray8[j]);
+			//document.animator.setRGB(dummy,RW,GW,BW);
+			document.animator.setRGB(dummy,R,G,B);	
+		dummy=document.animator.addConnectorLine(circ2,circArray9[j]);
+			//document.animator.setRGB(dummy,RW,GW,BW);
+			document.animator.setRGB(dummy,R,G,B);	
+	}
+	
+	document.animator.setRGB(circ1,255,255,255);
+	document.animator.setRGB(circ3,255,255,255);
+	document.animator.setRGB(conline1,255,255,255);
+	document.animator.setRGB(conline2,255,255,255);
+	document.animator.setRGB(conline3,255,255,255);
+	
+
+	document.animator.setAutoRefresh(true);
+	timerID=0;		//start slider and scriptlistener
+}
+
+function showHydrogen(){
+	initApplet();	
+	timerID=5;	//stop slider and scriptlistener
+	document.animator.setAutoRefresh(false);
+	
+	lambda=656;
+		
+		firstmin();
+		secondmin();	
+		makeSpectrum();
+		
+		circ9=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+	
+			
+		lambda=486;
+		
+		firstmin();
+		secondmin();	
+		makeSpectrum();
+		
+		circ9=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+
+		
+	lambda=434;
+		
+		firstmin();
+		secondmin();	
+		makeSpectrum();
+		
+		circ9=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+
+	lambda=410;
+		
+		firstmin();
+		secondmin();	
+		makeSpectrum();
+		
+		circ9=document.animator.addObject("circle","x=600,y="+y1+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y2+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y3+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+		circ9=document.animator.addObject("circle","x=600,y="+y4+",r=2");
+			document.animator.setVisibility(circ9,false);
+		dummy=document.animator.addConnectorLine(circ2,circ9);
+			document.animator.setRGB(dummy,R,G,B);	
+	document.animator.setRGB(circ1,255,255,255);
+	document.animator.setRGB(circ3,255,255,255);
+	document.animator.setRGB(conline1,255,255,255);
+	document.animator.setRGB(conline2,255,255,255);
+	//document.animator.setRGB(conline3,255,255,255);
+	
+
+	document.animator.setAutoRefresh(true);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 38.2 - Aplicações de redes de difração</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet CODEBASE="../../classes/" 
+ARCHIVE="Physlets.jar" 
+CODE="animator4.Animator.class" align="baseline" width="601" height="350" name="animator" mayscript>
+ <param name="FPS" value="10"> 
+<param name="dt" value="0.1"> 
+<param name="showControls" value="false"> 
+<param name="OnLoad" value="initApplets()">
+        <param name="Resources" value="animator_pt.rc">
+        <param name="AppletNames" value="animator,slider">
+</applet></td>
+    </tr>
+    <tr>
+       <td align="center">
+       <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+       archive="Physlets.jar"
+        name="slider" width="601" height="25" hspace="0" vspace="0" align="middle" mayscript>
+                <param name="min" value="380">
+                <param name="max" value="750">
+                <param name="value" value="700">
+                 <param name="label" value="comprimento de onda (nm)">
+                 </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="form1">
+<p align="center"> 
+<input type="button" 
+value="luz branca" onclick="showWhiteLight();"><input type="button" 
+value="espectro do hidrogénio" onclick="showHydrogen();"><input type="button" value="início" onclick="initApplet();"></p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+
+<p align="left">Esta animação modela uma rede de difração, que é formada por uma 
+série de fendas paralelas. Quando mudas o comprimento de onda, observa onde 
+estão os pontos brilhantes. Estes são os pontos onde a luz que viaja através de 
+diferentes trajetórias, interfere construtivamente. Isto é devido à difração da 
+luz a partir das diferentes fendas, o que cria diferenças de percurso da 
+radiação.&nbsp; <a href="javascript:initApplet()">Início</a>.  </p>
+
+
+<p>&nbsp;</p>
+<p>Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setPixPerUnit(10);
+   	document.Animator.shiftPixOrigin(0,0);
+   	cid=document.Animator.getClockID();
+   	document.Animator.addObject("circle","r=50,x=0,y=0");
+   	document.Animator.setShapeRGB(200,200,200);
+    document.Animator.addObject("circle","r=49,x=0,y=0");
+	document.Animator.setShapeRGB(0,0,255);
+	sid=document.Animator.addObject("exshell","x=0,y=0,r=0,s=1");
+    document.Animator.setCaption("Seleciona uma Animação");
+ 	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+      document.DataGraph.setSeriesStyle(1,true,3);
+        document.DataGraph.setMarkerSize(1,0.6);
+	document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setLabelX("Tempo (s)");
+	document.DataGraph.setLabelY("Fluxo (N cm^{2}/C)");
+	document.DataGraph.setSeriesRGB(1,0,0,255);
+
+ 	gid=document.DataGraph.getGraphID();
+   
+   document.Animator.deleteDataConnections();
+
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph.setAutoRefresh(true);
+   
+}
+   
+   function anim1(){
+	if(!loaded) return;
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+	document.Animator.setPixPerUnit(10);
+   	document.Animator.shiftPixOrigin(0,0);
+   	cid=document.Animator.getClockID();
+   	document.Animator.addObject("circle","r=50,x=0,y=0");
+   	document.Animator.setShapeRGB(200,200,200);
+    document.Animator.addObject("circle","r=49,x=0,y=0");
+	document.Animator.setShapeRGB(0,0,255);
+	sid=document.Animator.addObject("exshell","x=0,y=0,r=1*t,s=1");
+	  document.Animator.setOneShot(0,10,"Fim da Animação"); 
+    document.Animator.setCaption("Animação 1");
+ 	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setSeriesStyle(1,true,3);
+        document.DataGraph.setMarkerSize(1,0.6);
+       document.DataGraph.setLastPointMarker(1,true);
+	document.DataGraph.setLabelX("Tempo (s)");
+	document.DataGraph.setLabelY("Fluxo (N cm^{2}/C)");
+	document.DataGraph.setSeriesRGB(1,0,0,255);
+
+ 	gid=document.DataGraph.getGraphID();
+   
+   document.Animator.deleteDataConnections();
+   document.Animator.makeDataConnection(sid,gid,1,"t","300*t*t*t*step(5-t)/125+300*step(t-5)");
+   document.Animator.updateDataConnections();
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph.setAutoRefresh(true);
+   
+   }
+
+function anim2(){
+	if(!loaded) return;
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+	document.Animator.setPixPerUnit(10);
+   	document.Animator.shiftPixOrigin(0,0);
+   	cid=document.Animator.getClockID();
+   	document.Animator.addObject("circle","r=50,x=0,y=0");
+   	 document.Animator.setShapeRGB(50,120,120);
+    document.Animator.addObject("circle","r=49,x=0,y=0");
+	document.Animator.setShapeRGB(255,0,0);
+	sid=document.Animator.addObject("exshell","x=0,y=0,r=1*t,s=1");
+	  document.Animator.setOneShot(0,10,"Fim da Animação"); 
+	document.Animator.setCaption("Animação 2");
+ 	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setSeriesStyle(1,true,3);
+        document.DataGraph.setMarkerSize(1,0.6);
+	document.DataGraph.setLastPointMarker(1,true);
+        document.DataGraph.setLabelX("Tempo (s)");
+	document.DataGraph.setLabelY("Fluxo (N cm^{2}/C)");
+	document.DataGraph.setSeriesRGB(1,255,0,0);
+
+ 	gid=document.DataGraph.getGraphID();
+   
+   document.Animator.deleteDataConnections();
+   document.Animator.makeDataConnection(sid,gid,1,"t","0*step(5-t)+300*step(t-5)");
+   document.Animator.updateDataConnections();
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph.setAutoRefresh(true);
+   
+   }
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 24.12</title>
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Problema 24.12</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+  <tr>
+   <td align="center">
+     <applet code="animator4.Animator.class" 
+     archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="250" height="250" name="Animator" mayscript>
+	    <param name="FPS" value="10">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+    <td align="center">
+     <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="300" height="250">
+          <param name="XMin" value="0">
+          <param name="XMax" value="2">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+  </tr>
+</table>  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:anim1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:anim2()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"></p>
+  </center></div>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+<p>O gráfico apresenta o fluxo através de uma superfície esférica em expansão <b>
+(a posição é dada em centímetros, o tempo é dado em segundos e o fluxo é dado em 
+N cm<sup>2</sup>/C)</b>.&nbsp; Carrega em&nbsp; &quot;começar&quot; para iniciar cada 
+animação e a expansão da superfície esférica .&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.&nbsp; </p>
+<p align="left"> &nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

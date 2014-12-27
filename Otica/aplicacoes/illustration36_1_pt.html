@@ -1,0 +1,270 @@
+﻿<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 36.1</title>
+
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var idfs=0;
+var idns=0;
+var idg=0;
+var id=0;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+      	idfs=0;
+      	idns=0;
+      	idg=0;
+    document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+     document.Optics.addObject("image","file=opticsimages/normaleye.gif, x=4.1, y=0.65");
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	  	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+}
+
+  
+function Near(){
+		if(!loaded) return;
+		idfs=0;
+     	idns=0;
+     	idg=0;
+document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	document.Optics.addObject("image","file=opticsimages/neareye.gif, x=4.1, y=0.65");
+	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+}
+
+function Far(){
+		if(!loaded) return;
+		idfs=0;
+		idns=0;
+		idg=0;
+
+document.Optics.setDefault();
+     document.Optics.setElementSize(0.65);
+	  id=document.Optics.addObject("lens","x=4.4,f= 1");
+	  document.Optics.setDragable(id,false);
+	document.Optics.addObject("image","file=opticsimages/fareye.gif, x=4.1, y=0.65");
+	document.slider.setValue(1);
+ 	document.slider.setJSFunction("sliderMoved()");
+
+}
+
+function sliderMoved(){
+	 if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+	fl=document.slider.getValue();
+	document.Optics.set(id,"lens","f="+fl);
+	timerID=0;
+}
+	
+function farsource(){
+ if(!loaded) return;
+  document.Optics.setAutoRefresh(false);
+  	if (idfs!=0){ 
+  	  document.Optics.deleteObject(idfs);
+  	  idfs=0;
+}
+  	else {
+  		document.Optics.setRayRGB(0,250,0);
+  		idfs=document.Optics.addObject("source","infinite,x=0,y=0,s=100,slope=0");
+}
+	  document.Optics.setAutoRefresh(true);
+}
+	
+function nearsource(){
+	if(!loaded) return;
+	document.Optics.setAutoRefresh(false);
+if (idns!=0){ 
+  	  document.Optics.deleteObject(idns);
+  	  idns=0;
+}
+  	else {
+	document.Optics.setRayRGB(0,0,250);
+	idns=document.Optics.addObject("source","point,x=0.15,y=0,s=50,slope=0.3,inc=0.05");
+	document.Optics.setDragable(idns,true);
+	document.Optics.setResizable(idns,true);
+} 
+	document.Optics.setAutoRefresh(true);
+	
+}
+	
+function glasses(){
+    if(!loaded) return;
+    document.Optics.setAutoRefresh(false);
+  	if (idg!=0){ 
+  	  document.Optics.deleteObject(idg);
+  	  document.Optics.deleteObject(id3);
+  	  idg=0;
+}
+  	else {
+	idg=document.Optics.addObject("lens","x=3.6,f=1");
+		document.Optics.setDragable(idg,false);
+	document.Optics.setResizable(idg,true);
+	id3=document.Optics.addObject("text"," text=Distância Focal (u. a.)=, calc=f");
+    document.Optics.setDisplayOffset(id3,-45,70);
+    document.Optics.setAnimationSlave(idg,id3);
+
+}
+	document.Optics.setAutoRefresh(true);
+}
+		
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 36.1 - O olho humano</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center"><applet code="optics.OpticsApplet.class" codebase="../../classes/" 
+      height="200" name="Optics" width="600" 
+      archive="Physlets.jar" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="align" value="middle">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics,slider">
+        <param name="Resources" value="optics_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" width="500" hspace="0" vspace="0" align="middle" mayscript style="height: 39px">
+        <param name="min" value="0.7">
+        <param name="max" value="1">
+        <param name="value" value="1">
+        <param name="label" 
+        value="Distância focal do olho (unidades arbitrárias)">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <b>Adicionar/Remover:</b>&nbsp;&nbsp;&nbsp; <a href="javascript:farsource()">
+		Fonte Longínqua</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:nearsource()">Fonte Próxima</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:glasses()">Óculos</a></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">Olho Saudável:&nbsp; <a href="javascript:initApplet()">Começar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Olho Hipermétrope: <a href="javascript:Far()">Começar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Olho Míope: <a href="javascript:Near()">Começar</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+<p>A animação retrata um modelo simplificado de um olho, no qual a frente do olho é uma 
+lente convergente simples <b>(a posição é dada em unidades arbitrárias e o 
+ângulo é dado em graus)</b>.&nbsp; <a href="javascript:initApplet()">Início</a></p>
+<p>&nbsp;</p>
+<p><b>Exploração:</b></p>
+
+<ol type="a">
+	<li>
+	<p style="margin-top: 6px">Escolhe um <a href="javascript:initApplet()">olho saudável</a> e 
+adiciona uma <a href="javascript:farsource()">fonte longínqua</a>.&nbsp;O que 
+	observas? Repara como os raios de luz paralelos da fonte longínqua convergem na 
+	parte de trás do olho na retina.&nbsp; A retina é para o olho o que a 
+	película é para a câmara fotográfica.&nbsp; A retina é feita de tecido nervoso, que converte a 
+	energia luminosa em sinais elétricos que são, depois, enviados para o cérebro.&nbsp; 
+	Por isso, para que um objeto seja &quot;visto&quot;, a sua imagem deve estar 
+	FOCADA na retina.
+	
+	</li>
+	<li>
+	<p style="margin-top: 6px">Agora remove a <a href="javascript:farsource()">fonte longínqua</a> e adiciona a 
+	<a href="javascript:nearsource()">fonte próxima</a>.&nbsp; Repara que a luz da fonte próxima é focada atrás da retina.&nbsp; 
+Neste caso, a pessoa iria ver uma imagem desfocada.&nbsp; Contudo,&nbsp; o olho 
+	tem a capacidade de se acomodar e assim a imagem 
+	ficaria nítida. A distância focal do olho é alterada pelos músculos oculares 
+	que variam a curvatura do cristalino (uma das &quot;lentes&quot; do olho).&nbsp; Tenta olhar para um objeto que esteja longe e depois 
+para algo perto, como um dedo teu.&nbsp; Sentirás os músculos oculares a 
+responder à medida que mudas o foco.&nbsp; Na animação, a acomodação é feita 
+usando a barra ajustável em baixo para variar a distância focal da lente. Varia o comprimento focal da lente, usando a barra, até a imagem da fonte 
+de luz ser focada na retina.</li>
+	<li>
+	<p style="margin-top: 6px">Se não o fizeste até agora, inicializa a animação 
+	com o olho saudável e uma fonte próxima, com os raios 
+	focados na retina.&nbsp; Agora desloca a fonte de luz em direção ao olho.&nbsp; 
+	Existe um ponto em que não serás mais capaz de acomodar o olho (usando a barra) para focar 
+	a fonte.&nbsp; Este é o <b>ponto próximo</b> para o olho da animação.&nbsp; Repara 
+	que o olho da animação não esta à escala relativamente a um olho real.&nbsp; 
+	Se tivesse sido feito à escala, irias precisar de um ecrã de computador muito 
+	maior.
+	
+</li>
+	<li>
+	<p style="margin-top: 6px">O <b>ponto remoto</b> de um olho corresponde ao ponto mais longe 
+que o olho pode focar.&nbsp; Para pessoas com visão normal, o ponto remoto está 
+	no infinito. Escolhe um <a href="javascript:Near()">olho míope</a> e adiciona 
+	uma 
+	<a href="javascript:farsource()">fonte longínqua</a>.&nbsp; Repara que a luz não 
+	se foca na retina quando o olho está 
+relaxado.&nbsp; Em vez disso, foca-se à frente da retina.&nbsp; Usa a barra para 
+tentar focar a luz.&nbsp; 
+Repara que a acomodação não ajuda nesta situação.&nbsp;&nbsp; De seguida, remove a 
+	<a href="javascript:farsource()">fonte longínqua</a> e adiciona a 
+	<a href="javascript:nearsource()">fonte próxima</a>.&nbsp; Repara que a pessoa míope não tem problemas em focar uma 
+fonte que esteja perto.&nbsp; 
+	</li>
+	<li>
+	<p style="margin-top: 6px">Agora, escolhe um <a href="javascript:Far()">olho hipermétrope</a> e estuda-o como 
+fizeste para o olho míope. Começa com a <a href="javascript:farsource()">fonte longínqua</a>.&nbsp; 
+Sozinho, este olho não consegue focar uma fonte ao longe. Acrescenta então uns 
+óculos.&nbsp; Repara que podes variar a distância focal das lentes dos óculos, deslocando um 
+dos pontos brancos.&nbsp; Podes tornar os óculos convergentes ou divergentes, 
+deslocando um dos pontos de um dos lados para o outro. Uma vez que a luz é focada à frente da retina 
+	num olho míope, a <u>miopia é 
+corrigida com uma lente divergente</u>.&nbsp; Consegues encontrar o comprimento 
+focal correto para corrigir o olho?&nbsp; Do mesmo modo, <u>a hipermetropia é 
+corrigida com uma lente convergente</u>. </li>
+</ol>
+<p>&nbsp;</p>
+
+	<p>Ilustração da autoria de Melissa Dancy e Wolfgang Christian.<br>
+	© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+</ol>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

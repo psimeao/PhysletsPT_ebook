@@ -1,0 +1,293 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 12.1</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("shm12_20()",100);
+}
+  	
+function shm12_20(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+		id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setGridUnit(0);
+	document.Animator.setCaption("Seleciona uma Animação");
+	document.Animator.shiftPixOrigin(-130,0);
+	id0a=document.Animator.addObject("circle","x=0,y=0,r=21");
+	document.Animator.setRGB(id0a,0,0,0);
+   	id1a=document.Animator.addObject("circle","x=0,y=0,r=20");
+	document.Animator.setRGB(id1a,155,155,155);
+    
+    id0=document.Animator.addObject("circle","x=25,y=0,r=11");
+	document.Animator.setRGB(id0,0,0,0);
+   	id1=document.Animator.addObject("circle","x=25,y=0,r=10");
+	document.Animator.setRGB(id1,55,155,155);
+	document.Animator.setAnimationSlave(id0,id1);
+    document.Animator.setConstrainY(id0,0,3.5,25);
+  	document.Animator.setDragable(id0,false);
+   
+     document.DataTable.setSeriesLabel(1,"|r| (m)");
+     document.DataTable.setSeriesLabel(2,"F (N)");  
+     document.DataTable.setNumericFormat(2,"%+-4.3G");
+     document.DataTable.sizeToFit(true);
+	  tid=document.DataTable.getTableID();
+	   document.Animator.deleteDataConnections();    
+     document.DataTable.setAutoRefresh(true);
+	document.Animator.setAutoRefresh(true);
+	document.Animator.updateDataConnections();
+}
+
+function shm12_2a(){
+	if(!loaded) return;
+	timerID=0;
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+		id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setGridUnit(0);
+	document.Animator.shiftPixOrigin(-130,0);
+	document.Animator.setCaption("Animação 1");
+	id0a=document.Animator.addObject("circle","x=0,y=0,r=21");
+	document.Animator.setRGB(id0a,0,0,0);
+   	id1a=document.Animator.addObject("circle","x=0,y=0,r=20");
+	document.Animator.setRGB(id1a,155,155,155);
+    
+    id0=document.Animator.addObject("circle","x=25,y=0,r=11");
+	document.Animator.setRGB(id0,0,0,0);
+   	id1=document.Animator.addObject("circle","x=25,y=0,r=10");
+	document.Animator.setRGB(id1,55,155,155);
+	document.Animator.setAnimationSlave(id0,id1);
+    document.Animator.setConstrainY(id0,0,3.5,25);
+  	document.Animator.setDragable(id0,true);
+   
+     document.DataTable.setSeriesLabel(1,"|r| (m)");
+     document.DataTable.setSeriesLabel(2,"F (N)");  
+     document.DataTable.setNumericFormat(2,"%+-4.3G");
+     document.DataTable.sizeToFit(true);
+	  tid=document.DataTable.getTableID();
+	   document.Animator.deleteDataConnections();  
+      document.Animator.makeDataConnection(id0,tid,1,"x","0");    
+      document.Animator.makeDataConnection(id0,tid,2,"6.67*10^(-8)/(x)","0");    
+     document.DataTable.setAutoRefresh(true);
+	document.Animator.setAutoRefresh(true);
+	document.Animator.updateDataConnections();
+}
+
+
+function shm12_2b(){
+	if(!loaded) return;
+	timerID=0;
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+		id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setGridUnit(0);
+	document.Animator.shiftPixOrigin(-130,0);
+	document.Animator.setCaption("Animação 2");
+	id0a=document.Animator.addObject("circle","x=0,y=0,r=21");
+	document.Animator.setRGB(id0a,0,0,0);
+   	id1a=document.Animator.addObject("circle","x=0,y=0,r=20");
+	document.Animator.setRGB(id1a,155,155,155);
+    
+    id0=document.Animator.addObject("circle","x=25,y=0,r=11");
+	document.Animator.setRGB(id0,0,0,0);
+   	id1=document.Animator.addObject("circle","x=25,y=0,r=10");
+	document.Animator.setRGB(id1,55,155,155);
+	document.Animator.setAnimationSlave(id0,id1);
+    document.Animator.setConstrainY(id0,0,3.5,25);
+  	document.Animator.setDragable(id0,true);
+   
+     document.DataTable.setSeriesLabel(1,"|r| (m)");
+     document.DataTable.setSeriesLabel(2,"F (N)");  
+     document.DataTable.setNumericFormat(2,"%+-4.3G");
+     document.DataTable.sizeToFit(true);
+	  tid=document.DataTable.getTableID();
+	   document.Animator.deleteDataConnections();  
+      document.Animator.makeDataConnection(id0,tid,1,"x","0");    
+      document.Animator.makeDataConnection(id0,tid,2,"6.67*10^(-8)*(x*x)","0");    
+     document.DataTable.setAutoRefresh(true);
+	document.Animator.setAutoRefresh(true);
+	document.Animator.updateDataConnections();
+}
+
+
+function shm12_2c(){
+	if(!loaded) return;
+	timerID=0;
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+		id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setGridUnit(0);
+	document.Animator.setCaption("Animação 3");
+	document.Animator.shiftPixOrigin(-130,0);
+	id0a=document.Animator.addObject("circle","x=0,y=0,r=21");
+	document.Animator.setRGB(id0a,0,0,0);
+   	id1a=document.Animator.addObject("circle","x=0,y=0,r=20");
+	document.Animator.setRGB(id1a,155,155,155);
+    
+    id0=document.Animator.addObject("circle","x=25,y=0,r=11");
+	document.Animator.setRGB(id0,0,0,0);
+   	id1=document.Animator.addObject("circle","x=25,y=0,r=10");
+	document.Animator.setRGB(id1,55,155,155);
+	document.Animator.setAnimationSlave(id0,id1);
+    document.Animator.setConstrainY(id0,0,3.5,25);
+  	document.Animator.setDragable(id0,true);
+   
+     document.DataTable.setSeriesLabel(1,"|r| (m)");
+     document.DataTable.setSeriesLabel(2,"F (N)");  
+     document.DataTable.setNumericFormat(2,"%+-4.3G");
+     document.DataTable.sizeToFit(true);
+	  tid=document.DataTable.getTableID();
+	   document.Animator.deleteDataConnections();  
+      document.Animator.makeDataConnection(id0,tid,1,"x","0");    
+      document.Animator.makeDataConnection(id0,tid,2,"6.67*10^(-8)/(x*x)","0");    
+     document.DataTable.setAutoRefresh(true);
+	document.Animator.setAutoRefresh(true);
+	document.Animator.updateDataConnections();
+}
+
+
+function shm12_2d(){
+	if(!loaded) return;
+	timerID=0;
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+	id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setGridUnit(0);
+	document.Animator.setCaption("Animação 4");
+	document.Animator.shiftPixOrigin(-130,0);
+	id0a=document.Animator.addObject("circle","x=0,y=0,r=21");
+	document.Animator.setRGB(id0a,0,0,0);
+   	id1a=document.Animator.addObject("circle","x=0,y=0,r=20");
+	document.Animator.setRGB(id1a,155,155,155);
+    
+    id0=document.Animator.addObject("circle","x=25,y=0,r=11");
+	document.Animator.setRGB(id0,0,0,0);
+   	id1=document.Animator.addObject("circle","x=25,y=0,r=10");
+	document.Animator.setRGB(id1,55,155,155);
+	document.Animator.setAnimationSlave(id0,id1);
+    document.Animator.setConstrainY(id0,0,3.5,25);
+  	document.Animator.setDragable(id0,true);
+   
+     document.DataTable.setSeriesLabel(1,"|r| (m)");
+     document.DataTable.setSeriesLabel(2,"F (N)");  
+     document.DataTable.setNumericFormat(2,"%+-4.3G");
+     document.DataTable.sizeToFit(true);
+	  tid=document.DataTable.getTableID();
+	   document.Animator.deleteDataConnections();  
+      document.Animator.makeDataConnection(id0,tid,1,"x","0");    
+      document.Animator.makeDataConnection(id0,tid,2,"6.67*10^(-8)*2.7^(-x+10)","0");    
+     document.DataTable.setAutoRefresh(true);
+	document.Animator.setAutoRefresh(true);
+	document.Animator.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+<body onunload="killmenow()">    
+<h2 align="center">Problema 12.1</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="315"
+        height="100" hspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+             <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="DataTable" width="317" height="45"
+        hspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="true">
+          <param name="CellWidth" value="100">
+          <param name="NumRows" value="1">
+          <param name="NumCols" value="2">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+          <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center"><center>
+<table bgColor="#c0c0c0" border="1" height="19">
+  <tr>
+    <td align="middle" height="13">&nbsp;&nbsp;
+	<a href="JavaScript:shm12_2a()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+    <td align="middle" height="13">&nbsp;&nbsp;
+	<a href="JavaScript:shm12_2b()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+    <td align="middle" height="13">&nbsp;&nbsp;
+	<a href="JavaScript:shm12_2c()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp; </td>
+    <td align="middle" height="13">&nbsp;&nbsp;
+	<a href="JavaScript:shm12_2d()" style="text-decoration: none">Animação 4</a>&nbsp;&nbsp; </td>
+  </tr>
+</table>
+</center>     
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p>Um corpo de massa 100 kg pode ser movido (arrastando-o com o ponteiro do 
+rato) relativamente a um outro corpo com massa de valor desconhecido, como se 
+pode ver nas quatro animações
+<span lang="en-us"> 
+(</span><b>a dist<span lang="en-us">ância é dada em metros e a força em newtons</span></b><span lang="en-us">)</span>. 
+A tabela apresenta os valores da força exercida sobre o corpo de massa de valor 
+desconhecido, face à posição do corpo de massa 100 kg.&nbsp;&nbsp;
+<a href="JavaScript:shm12_20()">Início</a>.&nbsp; </p>
+
+       
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+       
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

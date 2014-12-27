@@ -1,0 +1,204 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 4.7</title>
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script> 
+<script language="JavaScript">
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0; 
+     document.selection.reset();
+    pi=Math.PI;
+   m=20;
+   f=eval(document.selection.force.value);
+   theta=eval(document.selection.angle.value);
+   theta=theta*pi/180;
+   a=f*Math.cos(theta)/m;
+   
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,-20);
+   document.Animator.addObject("rectangle","x=0,y=0,h=5,w=500");
+    idr=document.Animator.addObject("rectangle","x=0,y=0,h=3,w=500");
+   document.Animator.setRGB(idr,150,100,100);
+   id1=document.Animator.addObject("circle","x=0,y=0,r=10,m=20");
+   document.Animator.setRGB(id1,0,0,0);
+   document.Animator.setDragable(id1,false);
+   fxstr=f*Math.cos(theta);
+   document.Animator.setForce(id1,fxstr,"0",0,0,0,0);
+   id2=document.Animator.addObject("text","text=velocidade =,calc=vx");
+   document.Animator.setFormat(id2,"%3.2f"); 
+   document.Animator.setDisplayOffset(id2,-120,-25);
+   document.Animator.setAnimationSlave(id1,id2);
+   fx=f*Math.cos(theta);
+   fy=f*Math.sin(theta);
+   id3=document.Animator.addObject("arrow2","filled,thickness=3,h="+fx+",v="+fy);
+   document.Animator.setRGB(id3,255,0,0);
+   document.Animator.setAnimationSlave(id1,id3);
+   id7=document.Animator.addObject("caption","text=Aceleração =,calc=fx/m");
+   document.Animator.setAnimationSlave(id1,id7);
+   document.Animator.setVisibility(id7,false); 
+   document.Animator.setAutoRefresh(true);
+}
+
+function runme() { 
+	if(!loaded) return;
+	timerID=0;  
+     newforce=document.selection.force.value;
+     if( !checkRange(newforce,0,7)){
+     alert("A intensidade da força deve estar entre 0 N and 7 N. O valor inserido foi "+newforce+" N.");
+     return;
+} 
+	 newangle=document.selection.angle.value;
+    if( !checkRange(newangle,10,170)){
+    alert("O ângulo pode variar entre 10 e 170 graus. O valor inserido foi "+newangle+" graus.");
+    return;
+}
+  
+   pi=Math.PI;
+   m=20;
+   f=eval(document.selection.force.value);
+   theta=eval(document.selection.angle.value);
+   theta=theta*pi/180;
+   a=f*Math.cos(theta)/m;
+   
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,-20);
+   document.Animator.addObject("rectangle","x=0,y=0,h=5,w=500");
+    idr=document.Animator.addObject("rectangle","x=0,y=0,h=3,w=500");
+   document.Animator.setRGB(idr,150,100,100);
+   id1=document.Animator.addObject("circle","x=0,y=0,r=10,m=20");
+   document.Animator.setRGB(id1,0,0,0);
+   document.Animator.setDragable(id1,false);
+   fxstr=f*Math.cos(theta);
+   document.Animator.setForce(id1,fxstr,"0",0,0,0,0);
+   id2=document.Animator.addObject("text","text=velocidade =,calc=vx");
+   document.Animator.setFormat(id2,"%3.2f"); 
+   document.Animator.setDisplayOffset(id2,-120,-25);
+   document.Animator.setAnimationSlave(id1,id2);
+   fx=f*Math.cos(theta);
+   fy=f*Math.sin(theta);
+   id3=document.Animator.addObject("arrow2","filled,thickness=3,h="+fx+",v="+fy);
+   document.Animator.setRGB(id3,255,0,0);
+   document.Animator.setAnimationSlave(id1,id3);
+   id7=document.Animator.addObject("caption","text=Aceleração =,calc=fx/m");
+   document.Animator.setAnimationSlave(id1,id7);
+   document.Animator.setVisibility(id7,false); 
+   document.Animator.setAutoRefresh(true);
+   document.Animator.setOneShot(0,15,"Fim da Animação");
+   document.Animator.forward();
+}
+
+
+function chop(val,n){
+     if(n<0) return eval(val);
+     val=eval(val);
+     for(i=0;i<n;i++) val=val*10;
+     val=Math.round(val);
+     for(i=0;i<n;i++) val=val/10;
+     return val;    
+} 
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script> 
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 4.7</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/"
+      archive="Physlets.jar" name="Animator" width="500"
+      height="100" hspace="0" vspace="0" align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.1">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+      <form name="selection">
+    <div align="center">
+      <center>
+      <input onclick="JavaScript:runme()" type="button" value="registar valores e começar"> 
+      <input onclick="document.Animator.forward()" type="button" value="continuar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início"></center></div> 
+    <div align="center">
+      <center>
+      <div align="center">
+        <center>
+        <table border="1" bgcolor="#C0C0C0">
+          <tr>
+            <td><b>
+    		| <i>F</i> | = <input type="text" name="force" size="3" value="3">
+            <span lang="en-us">&nbsp;N</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
+			<i>θ</i><b>
+    		= <input type="text" name="angle" size="3" value="45"> </b>° </td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </center></div> 
+            </form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Uma bola de massa 20 kg tem um buraco pelo qual passa uma barra; esta exerce 
+sobre a bola uma força que a mantém em movimento à sua volta.&nbsp; Uma força 
+adicional é aplicada na bola, de tal maneira que esta é puxada como mostra a 
+animação <b>(a posição está em metros e o tempo em segundos)</b>.&nbsp;O vetor força 
+é representado por uma seta vermelha e faz um ângulo <i>θ</i> 
+com a horizontal. A velocidade é dada em m/s. Quer a magnitude da força aplicada 
+(<i>F</i> &lt; 7 N) quer o ângulo (10 º &lt; <i>θ </i> 
+<font face="Arial">&lt; 170 º ) podem</font> ser ajustados.&nbsp;&nbsp; <a href="JavaScript:initApplet()">
+Início</a></p>
+
+<p>&nbsp;</p>
+
+<p>Script da autoria de Steve Mellema e Chuck Niederriter e modificado por by 
+Mario Belloni.<br>
+Problema da autoria de Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

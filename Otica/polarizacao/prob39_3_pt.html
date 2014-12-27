@@ -1,0 +1,301 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("wave0()",100);
+}
+  	
+function wave0(){ 
+      if(!loaded) return;
+       timerID=0;
+  cid=document.wave3d.getClockID();
+  document.wave3d2.setExternalClock(cid);
+  document.wave3d3.setExternalClock(cid);
+  // wave 1
+    document.wave3d.setDefault();
+    document.wave3d.setPixPerUnit(8);
+    id=document.wave3d.addFilledSquare(-20, 20);
+    document.wave3d.setRGB(id, 22, 50, 134);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    id=document.wave3d.addLinear(-20, 25, 10, 0, 0);
+    document.wave3d.setRGB(id, 135, 52, 55);
+    document.wave3d.addText("Onda A",100,410);
+
+  //wave2
+    document.wave3d2.setDefault();
+    document.wave3d2.setPixPerUnit(8);
+    id=document.wave3d2.addFilledSquare(-20, 20);
+    document.wave3d2.setRGB(id, 22, 50, 134);
+    id=document.wave3d2.addAxes(0, 0, -20, 12);
+    document.wave3d2.setRGB(id, 222, 223, 27);
+    id=document.wave3d2.addLinear(-20, 25, 10, 1.57, 1.57);
+    document.wave3d2.setRGB(id, 135, 52, 55);
+    document.wave3d2.addText("Onda B",100,410);
+  
+  //wave3
+    document.wave3d3.setDefault();
+    document.wave3d3.setPixPerUnit(8);
+    id=document.wave3d3.addFilledSquare(-20, 20);
+    document.wave3d3.setRGB(id, 22, 50, 134);
+    id=document.wave3d3.addAxes(0, 0, -20, 12);
+    document.wave3d3.setRGB(id, 222, 223, 27);
+    document.wave3d3.addText("Seleciona uma Onda",30,410);
+    document.wave3d.forward();
+}
+
+function waveA() {
+  if(!loaded) return;
+  cid=document.wave3d.getClockID();
+  document.wave3d2.setExternalClock(cid);
+  document.wave3d3.setExternalClock(cid);
+  // wave 1
+    document.wave3d.setDefault();
+    document.wave3d.setPixPerUnit(8);
+    id=document.wave3d.addFilledSquare(-20, 20);
+    document.wave3d.setRGB(id, 22, 50, 134);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    id=document.wave3d.addLinear(-20, 25, 10, 0, 0);
+    document.wave3d.setRGB(id, 135, 52, 55);
+    document.wave3d.addText("Onda A",100,410);
+
+  //wave2
+    document.wave3d2.setDefault();
+    document.wave3d2.setPixPerUnit(8);
+    id=document.wave3d2.addFilledSquare(-20, 20);
+    document.wave3d2.setRGB(id, 22, 50, 134);
+    id=document.wave3d2.addAxes(0, 0, -20, 12);
+    document.wave3d2.setRGB(id, 222, 223, 27);
+    id=document.wave3d2.addLinear(-20, 25, 10, 1.57, 1.57);
+    document.wave3d2.setRGB(id, 135, 52, 55);
+    document.wave3d2.addText("Onda B",100,410);
+  
+  //wave3
+    document.wave3d3.setDefault();
+    document.wave3d3.setPixPerUnit(8);
+    id = document.wave3d3.addFilledSquare(-20, 20);
+    document.wave3d3.setRGB(id, 22, 50, 134);
+    id= document.wave3d3.addAxes(0, 0, -20, 12);
+    document.wave3d3.setRGB(id, 222, 223, 27);
+    id=document.wave3d3.addCircularRight(-20,25,10,1.57);
+    document.wave3d3.setRGB(id, 135, 52, 55);
+    document.wave3d3.addText("Onda 1",100,410);
+    document.wave3d.forward();
+}
+
+
+function waveB() {
+  if(!loaded) return;
+  cid=document.wave3d.getClockID();
+  document.wave3d2.setExternalClock(cid);
+  document.wave3d3.setExternalClock(cid);
+  // wave 1
+    document.wave3d.setDefault();
+    document.wave3d.setPixPerUnit(8);
+    id=document.wave3d.addFilledSquare(-20, 20);
+    document.wave3d.setRGB(id, 22, 50, 134);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    id=document.wave3d.addLinear(-20, 25, 10, 0, 0);
+    document.wave3d.setRGB(id, 135, 52, 55);
+    document.wave3d.addText("Onda A",100,410);
+
+  //wave2
+    document.wave3d2.setDefault();
+    document.wave3d2.setPixPerUnit(8);
+    id=document.wave3d2.addFilledSquare(-20, 20);
+    document.wave3d2.setRGB(id, 22, 50, 134);
+    id=document.wave3d2.addAxes(0, 0, -20, 12);
+    document.wave3d2.setRGB(id, 222, 223, 27);
+    id=document.wave3d2.addLinear(-20, 25, 10, 1.57, 1.57);
+    document.wave3d2.setRGB(id, 135, 52, 55);
+    document.wave3d2.addText("Onda B",100,410);
+  
+  //wave3
+    document.wave3d3.setDefault();
+    document.wave3d3.setPixPerUnit(8);
+    id=document.wave3d3.addFilledSquare(-20, 20);
+    document.wave3d3.setRGB(id, 22, 50, 134);
+    id=document.wave3d3.addAxes(0, 0, -20, 12);
+    document.wave3d3.setRGB(id, 222, 223, 27);
+    id=document.wave3d3.addCircularLeft(-20,25,10,1.57);
+    document.wave3d3.setRGB(id, 135, 52, 55);
+    document.wave3d3.addText("Onda 2",100,410);
+    document.wave3d.forward();
+}
+
+function waveC() {
+  if(!loaded) return;
+  cid=document.wave3d.getClockID();
+  document.wave3d2.setExternalClock(cid);
+  document.wave3d3.setExternalClock(cid);
+  // wave 1
+    document.wave3d.setDefault();
+    document.wave3d.setPixPerUnit(8);
+    id=document.wave3d.addFilledSquare(-20, 20);
+    document.wave3d.setRGB(id, 22, 50, 134);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    id=document.wave3d.addLinear(-20, 25, 10, 0, 0);
+    document.wave3d.setRGB(id, 135, 52, 55);
+    document.wave3d.addText("Onda A",100,410);
+
+  //wave2
+    document.wave3d2.setDefault();
+    document.wave3d2.setPixPerUnit(8);
+    id=document.wave3d2.addFilledSquare(-20, 20);
+    document.wave3d2.setRGB(id, 22, 50, 134);
+    id=document.wave3d2.addAxes(0, 0, -20, 12);
+    document.wave3d2.setRGB(id, 222, 223, 27);
+    id=document.wave3d2.addLinear(-20, 25, 10, 1.57, 1.57);
+    document.wave3d2.setRGB(id, 135, 52, 55);
+    document.wave3d2.addText("Onda B",100,410);
+  
+  //wave3
+    document.wave3d3.setDefault();
+    document.wave3d3.setPixPerUnit(8);
+    id=document.wave3d3.addFilledSquare(-20, 20);
+    document.wave3d3.setRGB(id, 22, 50, 134);
+    id=document.wave3d3.addAxes(0, 0, -20, 12);
+    document.wave3d3.setRGB(id, 222, 223, 27);
+    id=document.wave3d3.addLinear(-20,25,10,1.57,2.0);
+    document.wave3d3.setRGB(id, 135, 52, 55);
+    document.wave3d3.addText("Onda 3",100,410);
+    document.wave3d.forward();
+}
+
+
+function waveD() {
+  if(!loaded) return;
+  cid=document.wave3d.getClockID();
+  document.wave3d2.setExternalClock(cid);
+  document.wave3d3.setExternalClock(cid);
+  // wave 1
+    document.wave3d.setDefault();
+    document.wave3d.setPixPerUnit(8);
+    id=document.wave3d.addFilledSquare(-20, 20);
+    document.wave3d.setRGB(id, 22, 50, 134);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    id=document.wave3d.addLinear(-20, 25, 10, 0, 0);
+    document.wave3d.setRGB(id, 135, 52, 55);
+    document.wave3d.addText("Onda A",100,410);
+
+  //wave2
+    document.wave3d2.setDefault();
+    document.wave3d2.setPixPerUnit(8);
+    id=document.wave3d2.addFilledSquare(-20, 20);
+    document.wave3d2.setRGB(id, 22, 50, 134);
+    id=document.wave3d2.addAxes(0, 0, -20, 12);
+    document.wave3d2.setRGB(id, 222, 223, 27);
+    id=document.wave3d2.addLinear(-20, 25, 10, 1.57, 1.57);
+    document.wave3d2.setRGB(id, 135, 52, 55);
+    document.wave3d2.addText("Onda B",100,410);
+  
+  //wave3
+    document.wave3d3.setDefault();
+    document.wave3d3.setPixPerUnit(8);
+    id=document.wave3d3.addFilledSquare(-20, 20);
+    document.wave3d3.setRGB(id, 22, 50, 134);
+    id=document.wave3d3.addAxes(0, 0, -20, 12);
+    document.wave3d3.setRGB(id, 222, 223, 27);
+    id=document.wave3d3.addLinear(-20,25,10,1.57,0.8);
+    document.wave3d3.setRGB(id, 135, 52, 55);
+    document.wave3d3.addText("Onda 4",100,410);
+    document.wave3d.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 39.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 39.3</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet codebase="../../classes/" code="wave3d.Wave3d.class" archive="Physlets.jar" 
+    name="wave3d" width="200" height="420" hspace="0" vspace="0" align="left" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Orientation" value="0">
+      <param name="FPS" value="10">
+      <param name="Dz" value=".4">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="wave3d,wave3d2,wave3d3">
+    </applet></td>
+    <td>
+    <applet codebase="../../classes/" code="wave3d.Wave3d.class" archive="Physlets.jar" 
+    name="wave3d2" width="200" height="420" hspace="0" vspace="0" align="left" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Orientation" value="0">
+      <param name="FPS" value="10">
+      <param name="Dz" value=".4">
+    </applet></td>
+    <td>
+    <applet codebase="../../classes/" code="wave3d.Wave3d.class" archive="Physlets.jar" 
+    name="wave3d3" width="200" height="420" hspace="0" vspace="0" align="left" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Orientation" value="0">
+      <param name="FPS" value="10">
+      <param name="Dz" value=".4">
+    </applet></td>
+  </tr>
+</table>
+</center>
+<form>
+ <p align="center">
+	<input type="button" value="começar" onclick="document.wave3d.forward()"><input type="button" value="pausa" onclick="document.wave3d.pause()"><input type="button" 
+ value="passo &gt;&gt;" onclick="document.wave3d.stepTimeForward()"></p>
+</form>
+
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;<a href="javascript:waveA()">Onda 1</a> </td>
+      <td>&nbsp;<a href="javascript:waveB()">Onda 2</a> </td>
+      <td>&nbsp;<a href="javascript:waveC()">Onda 3</a> </td>
+      <td>&nbsp;<a href="javascript:waveD()">Onda 4</a> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p align="left">As animações mostram a componente do campo elétrico de uma onda 
+que se está a propagar. Clica e arrasta em cada animação para obteres vistas 
+alternativas da onda.&nbsp; <a href="JavaScript:wave0()">Início</a>.</p>
+
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

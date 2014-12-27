@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var id2=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);          
+   document.Animator.setDefault();  
+   document.Animator.setPixPerUnit(75);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(-75,-20);
+   id1=document.Animator.addObject("circle","r=10,x=0,y=0");
+   document.Animator.setTrajectory(id1,"-1.8+2*t+3*t*t","0");
+   document.Animator.setRGB(id1,255,128,128);
+   document.Animator.setSticky(id1,true);
+   id2=document.Animator.addObject("rectangle","w=30,h=50");
+   document.Animator.setForce(id2,"0","0",2,0,0,0);
+   document.Animator.setDragable(id2,true);
+   document.Animator.setConstrainY(id2,0,0.5,3.5);
+   document.Animator.setSticky(id2,true);
+   id3=document.Animator.addObject("text","text=x =, calc=x");
+   document.Animator.setDisplayOffset(id3,-15,30);
+   document.Animator.setAnimationSlave(id2,id3);
+   id4=document.Animator.addObject("rectangle","w=5000,h=35,x=0,y=-0.5");
+   document.Animator.setRGB(id4,0,128,0);
+   id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,false);
+   document.Animator.setCaption("Arrasta o bloco e começa a Animação");
+   document.Animator.setCollisionMessage("Colisão");
+   document.Animator.setAutoRefresh(true);   
+}
+
+
+function startAnimation(){
+  document.Animator.setDragable(id2,false);
+  document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 2.17</title>
+
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.17</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet code="animator4.Animator.class" codebase="../../classes" archive="Physlets.jar" 
+name="Animator" width="400" height="150" hspace="0" vspace="0" align="Middle" mayscript>
+  <param name="FPS" value="10">
+  <param name="ShowControls" value="false">
+  <param name="dt" value="0.01">
+  <param name="PixPerUnit" value="10">
+  <param name="GridUnit" value="0">
+  <param name="OnLoad" value="initApplets()">
+  <param name="AppletNames" value="Animator">
+  <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+<p align="center">&nbsp;<input type="button" value="começar" onclick="startAnimation()"><input 
+type="button" value="início" onclick="initApplet()"></p>
+</form>
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">A animação mostra um bloco preto que pode ser arrastado e 
+colocado em diversas posições (entre x = 0,5 m e x = 3,5 m) usando o rato <b>(a 
+posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp;Corre a animação 
+várias vezes, colocando o bloco preto em diversas posições para veres o tempo 
+que a bola demora a atingir o bloco. Depois de cada animação acabar, tens que 
+voltar ao início para colocares o bloco numa posição diferente e veres a 
+animação outra vez. <a href="JavaScript:initApplet()">Início</a></p>
+
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+	Manuel Filipe Costa</p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

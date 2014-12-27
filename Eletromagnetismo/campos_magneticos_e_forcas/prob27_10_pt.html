@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 27.10</title>
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var cap1=0;
+var cap2=0;
+var cap3=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("field1()",100);
+}
+  	
+function field1(){ 
+      if(!loaded) return;
+       timerID=0;
+
+	document.slider1.setValue(2);
+	document.slider2.setValue(2);
+	 b1=document.slider1.getValue();
+	i1=document.slider2.getValue();
+
+
+
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.shiftPixOrigin(0,0);
+   	id=document.Animator.addRectangle(250,200,"0","0");
+   	document.Animator.setRGB(id,255,255,255);
+ 	for(i=-4;i<=4;i++){
+		for(j=-3;j<=3;j++){
+			x1=3*i+.3;
+			y1=3*j-.4;
+			str="x="+x1+",y="+y1+",r=3";
+			id=document.Animator.addObject("circle",str);
+			document.Animator.setRGB(id,180,180,180);
+				str2="x="+x1+",y="+y1+",r=1";
+			id=document.Animator.addObject("circle",str2);
+			document.Animator.setRGB(id,255,255,255);
+		}
+	}
+
+ 
+    id1=document.Animator.addRectangle(140,4,"0","-2");
+    document.Animator.setRGB(id1,0,0,250);
+	id2=document.Animator.addRectangle(4,4,"7","-2");
+    document.Animator.setRGB(id2,0,0,250);
+	id3=document.Animator.addRectangle(4,4,"-7","-2");
+    document.Animator.setRGB(id3,0,0,250);
+
+
+
+
+	id4=document.Animator.addRectangle(4,4,"0","2");
+	document.Animator.setRGB(id4,0,0,0);
+	    document.Animator.addConnectorLine(id2,id4);
+	        document.Animator.addConnectorLine(id3,id4);
+	id5=document.Animator.addRectangle(80,40,"0","6");
+	document.Animator.setRGB(id5,0,0,0);
+    document.Animator.addConnectorLine(id4,id5);
+    id6=document.Animator.addRectangle(60,30,"0","6");
+	document.Animator.setRGB(id6,255,255,255);
+	cap1=document.Animator.addObject("text","text=F =,calc=10-.143*"+b1+"*"+i1);
+	document.Animator.setFormat(cap1,"%2.2f");
+	document.Animator.setAnimationSlave(id6,cap1);
+   	document.Animator.setDisplayOffset(cap1,-26,-10);
+	document.Animator.setRGB(cap1,0,0,0);
+	
+	cap2=document.Animator.addObject("text","text=|I| =,calc=1*"+i1+",x=-2,y=-4");
+	cap3=document.Animator.addObject("text","text=|B| =,calc=1*"+b1+",x=-11,y=3");
+	
+	document.slider1.setJSFunction("slidermove1()");
+  	document.slider2.setJSFunction("slidermove1()");
+   document.Animator.setAutoRefresh(true);  
+}
+
+function slidermove1() {
+	 if(timerID==0){
+	 timerID=setTimeout("slidermove11()",50);
+}	
+}
+  
+ 
+function slidermove11() {
+	document.Animator.setAutoRefresh(false); 
+	b1=document.slider1.getValue();
+	i1=document.slider2.getValue();
+	document.Animator.deleteObject(cap3);
+	document.Animator.deleteObject(cap2);
+	document.Animator.deleteObject(cap1);
+	cap1=document.Animator.addObject("text","text=F =,calc=10-.143*"+b1+"*"+i1);
+	document.Animator.setFormat(cap1,"%2.2f");
+	document.Animator.setAnimationSlave(id6,cap1);
+   	document.Animator.setDisplayOffset(cap1,-26,-10);
+	document.Animator.setRGB(cap1,0,0,0);
+	cap3=document.Animator.addObject("text","text=|B| =,calc=1*"+b1+",x=-11,y=3");
+	cap2=document.Animator.addObject("text","text=|I| =,calc=1*"+i1+",x=-2,y=-4");
+	document.Animator.setAutoRefresh(true); 
+	timerID=0;
+}
+
+
+
+
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY  onunload="killmenow()">
+<h2 align="center">Problema 27.10</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class"  
+	archive="Physlets.jar"  
+	codebase="../../classes/"
+	width="240" height="150" name="Animator" mayscript>
+	    <param name="FPS" value="10">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,slider1,slider2">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+  <tr>
+    <td>
+
+<applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider1"  width="240" height="19" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="1">
+            <param name="ShowControls" value="false">
+            <param name="max" value="3">
+            <param name="value" value="2">
+            <param name="label" value="campo (T)">
+          </applet></td>
+  </tr>
+  <tr>
+    <td>
+          <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider2"  width="240" height="19" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="1">
+            <param name="ShowControls" value="false">
+            <param name="max" value="5">
+            <param name="value" value="2">
+            <param name="label" value="corrente (A)">
+          </applet></td>
+  </tr>
+</table>
+
+&nbsp;
+
+      
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p align="left">A barra azul transporta uma corrente elétrica e encontra-se em 
+repouso, numa zona onde existe um campo magnético uniforme que aponta para fora 
+da página (representado pelos círculos cinzentos com pontos brancos).&nbsp; A 
+sonda que se encontra na parte de cima regista a força necessária para suportar 
+a barra <b>(a posição é dada em centímetros, o campo magnético em tesla, a 
+intensidade da corrente elétrica em amperes e a força em newtons)</b>.&nbsp; 
+<a href="JavaScript:field1()">Início</a>&nbsp; 
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

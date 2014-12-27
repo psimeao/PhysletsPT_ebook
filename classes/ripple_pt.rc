@@ -1,0 +1,20 @@
+button.start Começar
+button.stop Parar
+button.forward Passo>>
+button.back <<Passo
+button.edit Editar
+button.cancel Cancelar
+button.calculate Calcular
+button.add Adicionar
+button.delete Apagar
+label.stopped Parado
+label.drag Arrasta qualquer fonte.
+label.wait Espera, por favor...
+label.wavelength Comprimento de Onda=
+label.nosource Não há fontes.
+label.running executando
+label.frame Imagem:
+label.clickdrag Clica e arrasta.
+
+
+

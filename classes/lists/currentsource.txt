@@ -1,0 +1,14 @@
+setGrid("rows=8,cols=5");
+setNumberOfDT(1000);
+setDT(0.01);
+setNOC(10);
+setFPS(10.0);
+addObject("wire","row=2,col=1,to=v");
+addObject("currentsource","row=1,col=1,to=h,d=1,a=2.0");
+addObject("resistor","row=1,col=2,to=v,r=10.0");
+addObject("resistor","row=3,col=1,to=h,r=10.0");
+addObject("wire","row=1,col=1,to=v");
+addObject("ameter","row=2,col=2,to=v,d=-1,r=0.1");
+addObject("vmeter","row=1,col=3,to=v,d=1,r=2000000.0");
+addObject("wire","row=1,col=2,to=h");
+addObject("wire","row=2,col=2,to=h");

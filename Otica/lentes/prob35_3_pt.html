@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 35.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<SCRIPT language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initapplet()",100);
+}
+  	
+function initapplet(){ 
+      if(!loaded) return;
+       timerID=0;
+	Object1();
+	Object2();
+	Object3();
+	Object4();
+}
+
+
+function Object1(){
+    document.Optics1.setAutoRefresh(false);
+     document.Optics1.setDefault();
+     document.Optics1.setElementSize(0.9);
+     id=document.Optics1.addObject("matrix","x=2, height=h,angle=-a-h*2");
+     document.Optics1.setDirection(-1);
+     id=document.Optics1.addObject("source","point,x=1,y=0.4,slope=-0.5, inc=0.1");
+     document.Optics1.setDragable(id,true);
+     document.Optics1.setResizable(id,false);
+     document.Optics1.setAutoRefresh(true);
+}
+
+  
+function Object2(){
+    document.Optics2.setAutoRefresh(false);
+     document.Optics2.setDefault();
+     document.Optics2.setElementSize(0.9);
+     id=document.Optics2.addObject("matrix","x=2, height=h,angle=a-(h-0.3)*2");
+     document.Optics2.setDirection(1);
+     id=document.Optics2.addObject("source","point,x=3,y=0.4,slope=-0.5, inc=0.1");
+     document.Optics2.setDragable(id,true);
+     document.Optics2.setResizable(id,false);
+     document.Optics2.setAutoRefresh(true);
+}
+
+
+
+function Object3(){
+    document.Optics3.setAutoRefresh(false);
+     document.Optics3.setDefault();
+     document.Optics3.setElementSize(0.9);
+     id=document.Optics3.addObject("matrix","x=2, height=h,angle=a-h*2");
+     document.Optics3.setDirection(1);
+     id=document.Optics3.addObject("source","point,x=3,y=0.4,slope=-0.5, inc=0.1");
+     document.Optics3.setDragable(id,true);
+     document.Optics3.setResizable(id,false);
+     document.Optics3.setAutoRefresh(true);
+}
+
+
+function Object4(){
+    document.Optics4.setAutoRefresh(false);
+     document.Optics4.setDefault();
+     document.Optics4.setElementSize(0.9);
+     id=document.Optics4.addObject("matrix","x=2, height=h,angle=-a-(h-0.3)*2");
+     document.Optics4.setDirection(-1);
+     id=document.Optics4.addObject("source","point,x=1,y=0.4,slope=-0.5, inc=0.1");
+     document.Optics4.setDragable(id,true);
+     document.Optics4.setResizable(id,false);
+     document.Optics4.setAutoRefresh(true);
+} 
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</SCRIPT>
+
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 35.3</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <p align="center">
+        <applet code="optics.OpticsApplet.class" codebase="../../classes/" height="150"
+        name="Optics1" width="320" archive="Physlets.jar" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="align" value="middle">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics1,Optics2,Optics3,Optics4">
+        <param name="Resources" value="optics_pt.rc">
+        </applet></p>
+      </td>
+      <td>
+        <p align="center">
+        <applet align="middle" code="optics.OpticsApplet.class" codebase="../../classes/" height="150"
+        name="Optics2" width="320" archive="Physlets.jar" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="align" value="middle">
+          <param name="Resources" value="optics_pt.rc">
+        </applet></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%" align="center">Objeto A:&nbsp;
+		<a href="javascript:Object1()">Início</a>.</td>
+      <td width="50%" align="center">Objeto B:&nbsp;
+		<a href="javascript:Object2()">Início</a>.</td>
+    </tr>
+    <tr>
+      <td width="50%">
+        <p align="center">
+        <applet align="middle" code="optics.OpticsApplet.class" codebase="../../classes/" height="150"
+        name="Optics3" width="320" archive="Physlets.jar" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="align" value="middle">
+          <param name="Resources" value="optics_pt.rc">
+        </applet></p>
+      </td>
+      <td width="50%">
+        <p align="center">
+        <applet align="middle" code="optics.OpticsApplet.class" codebase="../../classes/" height="150"
+         name="Optics4" width="320" archive="Physlets.jar" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="align" value="middle">
+          <param name="Resources" value="optics_pt.rc">
+        </applet></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%" align="center">Objeto C:&nbsp;
+		<a href="javascript:Object3()">Início</a>.</td>
+      <td width="50%" align="center">Objeto D:&nbsp;
+		<a href="javascript:Object4()">Início</a>.</td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação estar 
+	completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>Quatro lentes estão representadas por linhas verticais.&nbsp; Podes deslocar 
+as fontes de luz para qualquer posição 
+<b>(</b><span style="mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: PT; mso-fareast-language: PT; mso-bidi-language: AR-SA"><strong>a 
+posição é dada em metros</strong></span><b>)</b>.&nbsp; </p>
+<p>&nbsp;</p>
+
+<p style="margin-top: 0; margin-bottom: 0">Problema da autoria de Melissa Dancy.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa
+</p>
+
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,431 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb0()",100);
+}
+  	
+function startProb0(){ 
+      if(!loaded) return;
+       timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph.setAutoRefresh(false);
+		document.DataGraph.setDefault();
+		document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+		document.DataGraph2.setDefault();
+		document.DataGraph2.deleteAllSeries();
+		document.DataGraph3.setAutoRefresh(false);
+		document.DataGraph3.setDefault();
+		document.DataGraph3.deleteAllSeries();
+	
+		document.Animator.shiftPixOrigin(0,-110);
+		document.Animator.setPixPerUnit(3);
+		document.Animator.setTimeDisplay(false);
+                document.Animator.setGridUnit(0);
+		id=document.Animator.addObject("text","text=Seleciona,x=-11,y=80");
+		id=document.Animator.addObject("text","text=uma animação,x=-15,y=75");
+		id=document.Animator.addObject("text","text=para começar,x=-14,y=70");
+
+		document.DataGraph.setAutoscaleX(false);
+		document.DataGraph.setAutoscaleY(false);
+		document.DataGraph.setMinMaxX(0,4.1);
+		document.DataGraph.setMinMaxY(0,90);
+		document.DataGraph.clearSeries(1);
+		document.DataGraph.setSeriesStyle(1,true,3);  
+                document.DataGraph.setMarkerSize(1,0.6);
+		document.DataGraph.setLabelY("y (m)"); 
+		document.DataGraph.setLabelX("t (s)"); 
+		document.DataGraph.setLastPointMarker(1,true); 
+		gid=document.DataGraph.getGraphID();
+		document.Animator.deleteDataConnections(); 
+		
+		document.DataGraph2.setAutoscaleX(false);
+		document.DataGraph2.setAutoscaleY(false);
+		document.DataGraph2.setMinMaxX(0,4.1);
+		document.DataGraph2.setMinMaxY(-41,41);
+		document.DataGraph2.clearSeries(1);
+		document.DataGraph2.setSeriesStyle(1,true,3);  
+                document.DataGraph2.setMarkerSize(1,0.6);
+		document.DataGraph2.setLabelY("v_{y} (m/s)"); 
+		document.DataGraph2.setLabelX("t (s)"); 
+		document.DataGraph2.setLastPointMarker(1,true); 
+		gid2=document.DataGraph2.getGraphID(); 
+		
+		document.DataGraph3.setAutoscaleX(false);
+		document.DataGraph3.setAutoscaleY(false);
+		document.DataGraph3.setMinMaxX(0,4.1);
+		document.DataGraph3.setMinMaxY(-11,0);
+		document.DataGraph3.clearSeries(1);
+		document.DataGraph3.setSeriesStyle(1,true,3);  
+                document.DataGraph3.setMarkerSize(1,0.6);
+		document.DataGraph3.setLabelY("a_{y} (m/s^{2})"); 
+		document.DataGraph3.setLabelX("t (s)"); 
+		document.DataGraph3.setLastPointMarker(1,true); 
+		gid3=document.DataGraph3.getGraphID();
+		document.DataGraph.setAutoRefresh(true);
+		document.DataGraph2.setAutoRefresh(true);
+		document.DataGraph3.setAutoRefresh(true);
+		document.Animator.setAutoRefresh(true);
+}
+
+
+
+function startProb(y_of_t){
+   		if(!loaded) return;
+   		timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph.setAutoRefresh(false);
+		document.DataGraph.setDefault();
+		document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+		document.DataGraph2.setDefault();
+		document.DataGraph2.deleteAllSeries();
+		document.DataGraph3.setAutoRefresh(false);
+		document.DataGraph3.setDefault();
+		document.DataGraph3.deleteAllSeries();
+		document.Animator.shiftPixOrigin(0,-110);
+		document.Animator.setPixPerUnit(3);
+		document.Animator.setGridUnit(0);
+		id=document.Animator.addObject("text","text=Animação 1,x=-12,y=86");
+		id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+		document.Animator.setTrail(id,400);
+		document.Animator.setFootPrints(id,10);
+		document.Animator.setGhost(id,true);
+		document.Animator.setShowCoordinates(id,true);
+		document.Animator.setObjectFont(id,"Helvetica",1,12);
+		document.Animator.setShowVVector(id,true);
+		document.Animator.setCoordinateOffset(id,15,0);
+               
+                id2=document.Animator.addObject("circle","r=12,x=0,y="+y_of_t);
+		document.Animator.setRGB(id2,0,0,0);
+                id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+		
+		document.Animator.setOneShot(0,4,"Fim da Animação");
+		
+		document.DataGraph.setAutoscaleX(false);
+		document.DataGraph.setAutoscaleY(false);
+		document.DataGraph.setMinMaxX(0,4.1);
+		document.DataGraph.setMinMaxY(0,90);
+		document.DataGraph.clearSeries(1);
+		document.DataGraph.setSeriesStyle(1,true,3);  
+                document.DataGraph.setMarkerSize(1,0.6);
+		document.DataGraph.setLabelY("y (m)"); 
+		document.DataGraph.setLabelX("t (s)"); 
+		document.DataGraph.setLastPointMarker(1,true); 
+		gid=document.DataGraph.getGraphID();
+		document.Animator.deleteDataConnections(); 
+		conid=document.Animator.makeDataConnection(id,gid,1,"t","y");  
+		
+		document.DataGraph2.setAutoscaleX(false);
+		document.DataGraph2.setAutoscaleY(false);
+		document.DataGraph2.setMinMaxX(0,4.1);
+		document.DataGraph2.setMinMaxY(-41,41);
+		document.DataGraph2.clearSeries(1);
+		document.DataGraph2.setSeriesStyle(1,true,3);  
+                document.DataGraph2.setMarkerSize(1,0.6);
+		document.DataGraph2.setLabelY("v_{y} (m/s)"); 
+		document.DataGraph2.setLabelX("t (s)"); 
+		document.DataGraph2.setLastPointMarker(1,true); 
+		gid2=document.DataGraph2.getGraphID();
+		conid2=document.Animator.makeDataConnection(id,gid2,1,"t","vy");  
+		
+		document.DataGraph3.setAutoscaleX(false);
+		document.DataGraph3.setAutoscaleY(false);
+		document.DataGraph3.setMinMaxX(0,4.1);
+		document.DataGraph3.setMinMaxY(-11,0);
+		document.DataGraph3.clearSeries(1);
+		document.DataGraph3.setSeriesStyle(1,true,3);  
+                document.DataGraph3.setMarkerSize(1,0.6);
+		document.DataGraph3.setLabelY("a_{y} (m/s^{2})"); 
+		document.DataGraph3.setLabelX("t (s)"); 
+		document.DataGraph3.setLastPointMarker(1,true); 
+		gid3=document.DataGraph3.getGraphID();
+		conid3=document.Animator.makeDataConnection(id,gid3,1,"t","ay");  
+		document.DataGraph.setAutoRefresh(true);
+		document.DataGraph2.setAutoRefresh(true);
+		document.DataGraph3.setAutoRefresh(true);
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+	
+	
+function startProb2(y_of_t){ 
+		if(!loaded) return;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph.setAutoRefresh(false);
+		document.DataGraph.setDefault();
+		document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+		document.DataGraph2.setDefault();
+		document.DataGraph2.deleteAllSeries();
+		document.DataGraph3.setAutoRefresh(false);
+		document.DataGraph3.setDefault();
+		document.DataGraph3.deleteAllSeries();
+		document.Animator.shiftPixOrigin(0,-110);
+		document.Animator.setPixPerUnit(3);
+		document.Animator.setGridUnit(0);
+		id=document.Animator.addObject("text","text=Animação 2,x=-12,y=86");
+		id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+		document.Animator.setTrail(id,400);
+		document.Animator.setFootPrints(id,10);
+		document.Animator.setGhost(id,true);
+		document.Animator.setShowCoordinates(id,true);
+		document.Animator.setObjectFont(id,"Helvetica",1,12);
+		document.Animator.setShowVVector(id,true);
+		document.Animator.setCoordinateOffset(id,15,0);
+               id=document.Animator.addObject("circle","r=12,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,0);
+                id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+
+		document.Animator.setOneShot(0,8,"Fim da Animação");
+		
+		document.DataGraph.setAutoscaleX(false);
+		document.DataGraph.setAutoscaleY(false);
+		document.DataGraph.setMinMaxX(0,8.1);
+		document.DataGraph.setMinMaxY(0,90);
+		document.DataGraph.clearSeries(1);
+	    document.DataGraph.setSeriesStyle(1,true,3);  
+        document.DataGraph.setMarkerSize(1,0.6);
+		document.DataGraph.setLabelY("y (m)"); 
+		document.DataGraph.setLabelX("t (s)"); 
+		document.DataGraph.setLastPointMarker(1,true); 
+		gid=document.DataGraph.getGraphID();
+		document.Animator.deleteDataConnections(); 
+		conid=document.Animator.makeDataConnection(id,gid,1,"t","y");  
+		
+		document.DataGraph2.setAutoscaleX(false);
+		document.DataGraph2.setAutoscaleY(false);
+		document.DataGraph2.setMinMaxX(0,8.1);
+		document.DataGraph2.setMinMaxY(-41,41);
+		document.DataGraph2.clearSeries(1);
+		document.DataGraph2.setSeriesStyle(1,true,3);  
+        document.DataGraph2.setMarkerSize(1,0.6);
+		document.DataGraph2.setLabelY("v_{y} (m/s)"); 
+		document.DataGraph2.setLabelX("t (s)"); 
+		document.DataGraph2.setLastPointMarker(1,true); 
+		gid2=document.DataGraph2.getGraphID();
+		conid2=document.Animator.makeDataConnection(id,gid2,1,"t","vy");  
+		
+		document.DataGraph3.setAutoscaleX(false);
+		document.DataGraph3.setAutoscaleY(false);
+		document.DataGraph3.setMinMaxX(0,8.1);
+		document.DataGraph3.setMinMaxY(-11,0);
+		document.DataGraph3.clearSeries(1);
+		document.DataGraph3.setSeriesStyle(1,true,3);  
+        document.DataGraph3.setMarkerSize(1,0.6);
+		document.DataGraph3.setLabelY("a_{y} (m/s^{2})"); 
+		document.DataGraph3.setLabelX("t (s)"); 
+		document.DataGraph3.setLastPointMarker(1,true); 
+		gid3=document.DataGraph3.getGraphID();
+		conid3=document.Animator.makeDataConnection(id,gid3,1,"t","ay");  
+		document.DataGraph.setAutoRefresh(true);
+		document.DataGraph2.setAutoRefresh(true);
+		document.DataGraph3.setAutoRefresh(true);
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+function startProb3(y_of_t){ 
+		if(!loaded) return;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph.setAutoRefresh(false);
+		document.DataGraph.setDefault();
+		document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+		document.DataGraph2.setDefault();
+		document.DataGraph2.deleteAllSeries();
+		document.DataGraph3.setAutoRefresh(false);
+		document.DataGraph3.setDefault();
+		document.DataGraph3.deleteAllSeries();
+		document.Animator.shiftPixOrigin(0,-110);
+		document.Animator.setPixPerUnit(3);
+		document.Animator.setGridUnit(0);
+		id=document.Animator.addObject("text","text=Animação 3,x=-12,y=86");
+		id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+		document.Animator.setTrail(id,400);
+		document.Animator.setFootPrints(id,10);
+		document.Animator.setGhost(id,true);
+		document.Animator.setShowCoordinates(id,true);
+		document.Animator.setObjectFont(id,"Helvetica",1,12);
+		document.Animator.setShowVVector(id,true);
+		document.Animator.setCoordinateOffset(id,15,0);
+               id=document.Animator.addObject("circle","r=12,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,0);
+                id=document.Animator.addObject("circle","r=11,x=0,y="+y_of_t);
+		document.Animator.setRGB(id,0,0,255);
+
+		document.Animator.setOneShot(0,8,"Fim da Animação");
+		
+		document.DataGraph.setAutoscaleX(false);
+		document.DataGraph.setAutoscaleY(false);
+		document.DataGraph.setMinMaxX(0,8.1);
+		document.DataGraph.setMinMaxY(-560,120);
+		document.DataGraph.clearSeries(1);
+	    document.DataGraph.setSeriesStyle(1,true,3);  
+        document.DataGraph.setMarkerSize(1,0.6);
+		document.DataGraph.setLabelY("y (m)"); 
+		document.DataGraph.setLabelX("t (s)"); 
+		document.DataGraph.setLastPointMarker(1,true); 
+		gid=document.DataGraph.getGraphID();
+		document.Animator.deleteDataConnections(); 
+		conid=document.Animator.makeDataConnection(id,gid,1,"t","y");  
+		
+		document.DataGraph2.setAutoscaleX(false);
+		document.DataGraph2.setAutoscaleY(false);
+		document.DataGraph2.setMinMaxX(0,8.1);
+		document.DataGraph2.setMinMaxY(-120,-40);
+		document.DataGraph2.clearSeries(1);
+		document.DataGraph2.setSeriesStyle(1,true,3);  
+        document.DataGraph2.setMarkerSize(1,0.6);
+		document.DataGraph2.setLabelY("v_{y} (m/s)"); 
+		document.DataGraph2.setLabelX("t (s)"); 
+		document.DataGraph2.setLastPointMarker(1,true); 
+		gid2=document.DataGraph2.getGraphID();
+		conid2=document.Animator.makeDataConnection(id,gid2,1,"t","vy");  
+		
+		document.DataGraph3.setAutoscaleX(false);
+		document.DataGraph3.setAutoscaleY(false);
+		document.DataGraph3.setMinMaxX(0,8.1);
+		document.DataGraph3.setMinMaxY(-11,0);
+		document.DataGraph3.clearSeries(1);
+		document.DataGraph3.setSeriesStyle(1,true,3);  
+        document.DataGraph3.setMarkerSize(1,0.6);
+		document.DataGraph3.setLabelY("a_{y} (m/s^{2})"); 
+		document.DataGraph3.setLabelX("t (s)"); 
+		document.DataGraph3.setLastPointMarker(1,true); 
+		gid3=document.DataGraph3.getGraphID();
+		conid3=document.Animator.makeDataConnection(id,gid3,1,"t","ay");  
+		document.DataGraph.setAutoRefresh(true);
+		document.DataGraph2.setAutoRefresh(true);
+		document.DataGraph3.setAutoRefresh(true);
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+		loaded=false;
+		timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 2.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 2.6 - Queda livre</h2>
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+        <tr> 
+          <td align=center>
+            <applet width="300" height="110" code="dataGraph.DataGraph.class" codebase="../../classes/" 
+            archive="Physlets.jar" 
+            align="baseline"  name="DataGraph" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+          <td align=center rowspan="3"> 
+            <applet width="150" height="343" code="animator4.Animator.class" codebase="../../classes/" 
+            archive="Physlets.jar" 
+            align="baseline"  name="Animator" mayscript>
+                <param name="FPS" value="10">
+                <param name="dt" value="0.1">
+                <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph,DataGraph2,DataGraph3">
+        <param name="Resources" value="animator_pt.rc">
+              </applet></td>
+        </tr>
+        <tr> 
+          <td align=center>
+            <applet width="300" height="110" code="dataGraph.DataGraph.class" codebase="../../classes/" 
+            archive="Physlets.jar" 
+            align="baseline"  name="DataGraph2" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+        </tr>
+        <tr> 
+          <td align=center>
+            <applet width="300" height="110" code="dataGraph.DataGraph.class" codebase="../../classes/" 
+            archive="Physlets.jar" 
+            align="baseline"  name="DataGraph3" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+        </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"></p>
+  </center></div>
+</form>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;<a href="JavaScript:startProb('80-4.9*t*t')" style="text-decoration: none">Animação 1</a> </td>
+      <td>&nbsp;<a href="JavaScript:startProb2('39.2*t-4.9*t*t')" style="text-decoration: none">Animação 2</a> </td>
+      <td>&nbsp;<a href="JavaScript:startProb3('80-39.2*t-4.9*t*t')" style="text-decoration: none">Animação 3</a> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">As animações mostram o movimento de uma bola em três situações 
+distintas: Na <a href="JavaScript:startProb('80-4.9*t*t')">Animação 1</a> a bola 
+é deixada cair do repouso perto da superfície da Terra; na
+<a href="JavaScript:startProb2('39.2*t-4.9*t*t')">Animação 2</a> 
+a bola é atirada para cima; na <a href="JavaScript:startProb3('80-39.2*t-4.9*t*t')">
+Animação 3</a> 
+a bola é atirada para baixo<b> (a posição é dada em metros e o tempo é dado em 
+segundos)</b>. O vetor verde representa a velocidade da bola.&nbsp;<a href="JavaScript:startProb0()">Início</a></p>
+
+
+<p align="left"><span lang="en-us"><i>Quando obtiveres um bom gráfico, </i>
+</span><i>carrega no botão do lado direito do rato quando o cursor está em cima 
+do gráfico, para </i><span lang="en-us"><i>captares uma imagem deste. </i>
+</span></p>
+<p align="left">&nbsp;</p>
+<p align="left">
+Ilustração da autoria de Aaron Titus.
+<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

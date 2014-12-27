@@ -1,0 +1,261 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 25.8</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.poisson.setShowEOnDrag(false);
+   document.poisson.setShowVOnDrag(false);
+   document.poisson.set(0,"chargescale","scale=5");
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowCharge(0,false);
+   
+    id=document.poisson.addObject("caption","text=Seleciona uma Configuração");
+   document.poisson.setRGB(id,0,0,0);
+       document.poisson.setAutoRefresh(true);
+  
+   
+  }
+  
+function config_a(){
+   if(!loaded) return;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+       id=document.poisson.addObject("caption","text=Configuração 1");
+   document.poisson.setRGB(id,0,0,0);
+   document.poisson.setShowEOnDrag(false);
+   document.poisson.setShowVOnDrag(false);
+   document.poisson.set(0,"chargescale","scale=5");
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowCharge(0,false);
+   
+   id=document.poisson.addObject("conductor","box,v=2,w=10,h=150,x=-3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+   document.poisson.setRGB(id,0,255,0);
+    id=document.poisson.addObject("conductor","box,v=0,w=10,h=150,x=-.6,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,0,255,255); 
+    id=document.poisson.addObject("conductor","box,v=-6,w=10,h=150,x=1.2,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);  
+   document.poisson.setRGB(id,255,0,255);
+ id=document.poisson.addObject("conductor","box,v=5,w=1,h=150,x=3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,255,255,0);   
+   id=document.poisson.addObject("text","text=1,x=-2,y=1");
+   document.poisson.setRGB(id,0,0,0);
+     id=document.poisson.addObject("text","text=2,x=0,y=1");
+   document.poisson.setRGB(id,0,0,0);
+  id=document.poisson.addObject("text","text=3,x=2,y=1");
+   document.poisson.setRGB(id,0,0,0);
+
+   
+   id=document.poisson.addObject("circle","x=0,y=0,r=4");
+   document.poisson.setRGB(id,0,0,0);
+   document.poisson.setDragable(id,true);
+   id3=document.poisson.addObject("text","text=V=,calc=v");
+    document.poisson.setDisplayOffset(id3,-20,5);
+   document.poisson.setRGB(id3,0,0,0);
+   document.poisson.setAnimationSlave(id,id3);
+   document.poisson.setFormat(id3,"%3.2f");
+ 
+  document.poisson.setAutoRefresh(true);
+  
+   
+  }
+
+
+function config_b(){
+   if(!loaded) return;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+          id=document.poisson.addObject("caption","text=Configuração 2");
+   document.poisson.setRGB(id,0,0,0);
+   document.poisson.setShowEOnDrag(false);
+   document.poisson.setShowVOnDrag(false);
+   document.poisson.set(0,"chargescale","scale=5");
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(true);
+   document.poisson.setShowCharge(0,false);
+   
+   id=document.poisson.addObject("conductor","box,v=-1,w=10,h=150,x=-3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+   document.poisson.setRGB(id,0,120,120);
+    id=document.poisson.addObject("conductor","box,v=1,w=10,h=150,x=-.6,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,180,180,180); 
+    id=document.poisson.addObject("conductor","box,v=0,w=10,h=150,x=1.2,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);  
+   document.poisson.setRGB(id,120,0,120);
+ id=document.poisson.addObject("conductor","box,v=-3,w=1,h=150,x=3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,255,0,0);   
+   id=document.poisson.addObject("text","text=1,x=-2,y=1");
+   document.poisson.setRGB(id,0,0,0);
+     id=document.poisson.addObject("text","text=2,x=0,y=1");
+   document.poisson.setRGB(id,0,0,0);
+  id=document.poisson.addObject("text","text=3,x=2,y=1");
+   document.poisson.setRGB(id,0,0,0);
+  document.poisson.setAutoRefresh(true);
+  
+   
+  }
+
+function config_c(){
+   if(!loaded) return;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.poisson.setShowEOnDrag(false);
+   document.poisson.setShowVOnDrag(false);
+          id=document.poisson.addObject("caption","text=Configuração 3");
+   document.poisson.setRGB(id,0,0,0);
+   document.poisson.set(0,"chargescale","scale=5");
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowCharge(0,false);
+   
+   id=document.poisson.addObject("conductor","box,v=1,w=10,h=150,x=-3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+   document.poisson.setRGB(id,0,120,255);
+    id=document.poisson.addObject("conductor","box,v=4,w=10,h=150,x=-1,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,150,0,255); 
+    id=document.poisson.addObject("conductor","box,v=0,w=10,h=150,x=1,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);  
+   document.poisson.setRGB(id,255,120,0);
+ id=document.poisson.addObject("conductor","box,v=-2,w=1,h=150,x=3,y=0");
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setDragable(id,false);
+   document.poisson.setResizable(id,false);
+     document.poisson.setRGB(id,120,255,0);   
+   id=document.poisson.addObject("text","text=1,x=-3,y=2");
+   document.poisson.setRGB(id,0,0,0);
+     id=document.poisson.addObject("text","text=2,x=-1,y=2");
+   document.poisson.setRGB(id,0,0,0);
+  id=document.poisson.addObject("text","text=3,x=1,y=2");
+   document.poisson.setRGB(id,0,0,0);
+   id=document.poisson.addObject("text","text=4,x=3,y=2");
+   document.poisson.setRGB(id,0,0,0);
+
+
+   id=document.poisson.addObject("testcharge","x=0,y=0,r=4");
+   document.poisson.setRGB(id,0,0,0);
+   document.poisson.setDragable(id,true);
+      id3=document.poisson.addObject("arrow","x=0,y=0,h=ax,v=ay");
+    document.poisson.setDisplayOffset(id3,0,0);
+   document.poisson.setRGB(id3,0,0,0);
+   document.poisson.setAnimationSlave(id,id3);
+ 
+  document.poisson.setAutoRefresh(true);
+  
+   
+  }
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 25.8</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+  <applet code="poisson.Poisson.class" codebase="../../classes" 
+  archive="Physlets.jar"
+align="middle" width="250" height="250" name="poisson" mayscript>
+  <param name="ShowControls" value="false">
+  <param name="Range" value="-4,4,-4,4">
+  <param name="ShowContours" value="true">
+  <param name="ShowGrid" value="false">
+  <param name="ShowFieldVectors" value="true">
+  <param name="GridSize" value="64">
+  <param name="Gutter" value="32">
+  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="poisson">
+        <param name="Resources" value="poisson_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>As animações seguintes mostram quatro condutores uniformemente carregados <b>
+(a posição é dada em metros e o potencial elétrico é dado em volts)</b>.&nbsp; 
+<a href="JavaScript:initApplet()">Início</a></p>
+<ol type="a">
+  <li>
+	<p style="margin-top: 6px"><a href="JavaScript:config_a()">Configuração 1:</a> 
+	</li>
+  <li>
+	<p style="margin-top: 6px"><a href="JavaScript:config_b()">Configuração 2:</a> </li>
+  <li>
+	<p style="margin-top: 6px"><a href="JavaScript:config_c()">Configuração 3:</a> </li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

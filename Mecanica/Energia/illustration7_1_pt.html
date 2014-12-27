@@ -1,0 +1,510 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet0()",100);
+}
+  	
+function initApplet0(){ 
+      if(!loaded) return;
+       timerID=0;
+	 cid=0;
+     rid=0;
+   	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setShowTime(false);
+    document.EField.setCaption("Seleciona uma Animação");
+	document.EField.setDrag(false);
+   	document.EField.setPotential("0",-5,5,-5,5);
+	document.EField.setShowFieldVectors(false);
+   	document.EField.setShowCoordOnDrag(true);
+	id=document.EField.addRectangle(0,0.5,250,10);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(-4,-2,10,150);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(4, -2, 10, 150 );
+   	document.EField.setRGB(id,145,115,60);  
+   	document.EField.setChargeRGB(0,255,0);
+   	cid=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid,true);
+   	document.EField.setDamping(cid,0.1);
+   	document.EField.setShowFVector(cid,false);
+   	document.EField.setShowFComponents(cid,false);
+   	document.EField.setShowVVector(cid,false);
+   	document.EField.setShowVComponents(cid,false);
+   	document.EField.setOnScreenSize(cid,10);     
+
+   	cid1=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid1,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid1,false);
+   	document.EField.setDamping(cid1,0.1);
+   	document.EField.setOnScreenSize(cid1,10);
+   	   	
+   	   	document.EField.setChargeRGB(0,0,0);
+   	cid1=document.EField.addTestCharge(-82.6,-88.16,0,0);
+
+    document.Bar.setMin(0);
+    document.Bar.setMax(20);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3.1f");  
+        
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(20);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,155);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3.1f");  
+        
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(20);
+    document.Bar3.setPosRGB(255,0,0);
+    document.Bar3.setNegRGB(155,0,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3.1f");   
+	  
+	  document.EField.deleteDataConnections();  
+     document.EField.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.EField.makeDataConnection(cid,bid2,1,"0","0");
+     document.EField.makeDataConnection(cid,bid3,1,"-0.4+9.8*(1.54)-9.8*(y+1.7)-vx*vx/2-vy*vy/2","0");
+     document.EField.updateDataConnections(); 
+    document.EField.setAutoRefresh(true);
+}
+
+
+function initAppletA(){
+	 if(!loaded) return;
+	 cid=0;
+     rid=0;
+   	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setDrag(false);
+   	   	document.EField.setMaxTime(50, "Fim da Animação");
+	document.EField.setCaption("Animação 1");
+	document.EField.setPotential("y*9.8+x*0.0",-5,5,-5,5);
+	document.EField.setShowFieldVectors(false);
+   	document.EField.setShowCoordOnDrag(true);
+	id=document.EField.addRectangle(0,0.5,250,10);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(-4,-2,10,150);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(4, -2, 10, 150 );
+   	document.EField.setRGB(id,145,115,60);  
+	document.EField.setChargeRGB(0,255,0);
+   	cid=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid,true);
+   	document.EField.setDamping(cid,0.1);
+   	document.EField.setShowFVector(cid,false);
+   	document.EField.setShowFComponents(cid,false);
+   	document.EField.setShowVVector(cid,false);
+   	document.EField.setShowVComponents(cid,false);
+   	document.EField.setOnScreenSize(cid,10);     
+
+   	cid1=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid1,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid1,false);
+   	document.EField.setDamping(cid1,0.1);
+   	document.EField.setOnScreenSize(cid1,10);
+
+   	document.EField.setChargeRGB(0,0,0);
+   	cid1=document.EField.addTestCharge(-82.6,-88.16,0,0);
+    document.Bar.setMin(0);
+    document.Bar.setMax(20);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3.1f");  
+        
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(20);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,155);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3.1f");  
+        
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(20);
+    document.Bar3.setPosRGB(255,0,0);
+    document.Bar3.setNegRGB(155,0,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3.1f");   
+	  
+	  document.EField.deleteDataConnections();  
+     document.EField.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.EField.makeDataConnection(cid,bid2,1,"0","0");
+     document.EField.makeDataConnection(cid,bid3,1,"0","0");
+     document.EField.updateDataConnections(); 
+    document.EField.setAutoRefresh(true);
+}
+
+function initAppletAB(){
+	 if(!loaded) return;
+	 cid=0;
+     rid=0;
+   	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	   	document.EField.setMaxTime(50, "Fim da Animação");
+	document.EField.setCaption("Animação 1 com Sistema");
+	document.EField.setDrag(false);
+   	document.EField.setPotential("y*9.8+x*0.0",-5,5,-5,5);
+	document.EField.setShowFieldVectors(false);
+   	document.EField.setShowCoordOnDrag(true);
+	slaveid=document.EField.addObject("circle","r=14,x=0,y=0");
+   	document.EField.setRGB(slaveid,205,205,205);
+   	id=document.EField.addRectangle(0,0.5,250,10);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(-4,-2,10,150);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(4, -2, 10, 150 );
+   	document.EField.setRGB(id,145,115,60);  
+	document.EField.setChargeRGB(0,255,0);
+   	cid=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid,true);
+   	document.EField.setDamping(cid,0.1);
+   	document.EField.setShowFVector(cid,false);
+   	document.EField.setShowFComponents(cid,false);
+   	document.EField.setShowVVector(cid,false);
+   	document.EField.setShowVComponents(cid,false);
+   	document.EField.setOnScreenSize(cid,10);     
+
+
+   	
+   	cid1=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid1,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid1,false);
+   	document.EField.setDamping(cid1,0.1);
+   	document.EField.setOnScreenSize(cid1,10);
+   	document.EField.setAnimationSlave(cid1,slaveid);
+   	document.EField.setChargeRGB(0,0,0);
+   	cid1=document.EField.addTestCharge(-82.6,-88.16,0,0);
+    document.Bar.setMin(0);
+    document.Bar.setMax(20);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3.1f");  
+        
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(20);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,155);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3.1f");  
+        
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(20);
+    document.Bar3.setPosRGB(255,0,0);
+    document.Bar3.setNegRGB(155,0,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3.1f");   
+	  
+	  document.EField.deleteDataConnections();  
+     document.EField.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.EField.makeDataConnection(cid,bid2,1,"0","0");
+     document.EField.makeDataConnection(cid,bid3,1,"0","0");
+     document.EField.updateDataConnections(); 
+    document.EField.setAutoRefresh(true);
+}
+
+function initAppletB() {
+   if(!loaded) return;
+   cid=0;
+rid=0;
+   	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	   	document.EField.setMaxTime(50, "Fim da Animação");
+	document.EField.setCaption("Animação 2");
+	document.EField.setDrag(false);
+   	document.EField.setPotential("y*9.8+x*0.0",-5,5,-5,5);
+	document.EField.setShowFieldVectors(false);
+   	document.EField.setShowCoordOnDrag(true);
+	id=document.EField.addRectangle(0,0.5,250,10);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(-4,-2,10,150);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(4, -2, 10, 150 );
+   	document.EField.setRGB(id,145,115,60);  
+	document.EField.setChargeRGB(0,255,0);
+cid=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid,true);
+   	document.EField.setDamping(cid,0.1);
+   	document.EField.setShowFVector(cid,false);
+   	document.EField.setShowFComponents(cid,false);
+   	document.EField.setShowVVector(cid,false);
+   	document.EField.setShowVComponents(cid,false);
+   	document.EField.setOnScreenSize(cid,10);     
+
+   	cid1=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid1,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid1,false);
+   	document.EField.setDamping(cid1,0.1);
+   	document.EField.setOnScreenSize(cid1,10);
+     	
+     	document.EField.setChargeRGB(0,0,0);
+   	cid1=document.EField.addTestCharge(-82.6,-88.16,0,0);
+
+    document.Bar.setMin(0);
+    document.Bar.setMax(20);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3.1f");  
+        
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(20);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,155);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3.1f");  
+        
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(20);
+    document.Bar3.setPosRGB(255,0,0);
+    document.Bar3.setNegRGB(155,0,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3.1f");    
+	  
+	  document.EField.deleteDataConnections();  
+     document.EField.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.EField.makeDataConnection(cid,bid2,1,"9.8*(y+1.7)","0");
+     document.EField.makeDataConnection(cid,bid3,1,"9.8*(1.54)-9.8*(y+1.7)-vx*vx/2-vy*vy/2-0.4","0");
+     document.EField.updateDataConnections(); 
+    document.EField.setAutoRefresh(true);
+}
+
+
+function initAppletBB() {
+   if(!loaded) return;
+   cid=0;
+rid=0;
+   	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	   	document.EField.setMaxTime(50, "Fim da Animação");
+	document.EField.setCaption("Animação 2 com Sistema");
+	document.EField.setDrag(false);
+   	document.EField.setPotential("y*9.8+x*0.0",-5,5,-5,5);
+	document.EField.setShowFieldVectors(false);
+   	document.EField.setShowCoordOnDrag(true);
+    slaveid=document.EField.addObject("rectangle","w=200,h=120,x=0,y=-1.5");
+   	document.EField.setRGB(slaveid,205,205,205);
+   	
+   	id=document.EField.addRectangle(0,0.5,250,10);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(-4,-2,10,150);
+   	document.EField.setRGB(id,145,115,60);
+   	id=document.EField.addRectangle(4, -2, 10, 150 );
+   	document.EField.setRGB(id,145,115,60);  
+
+	document.EField.setChargeRGB(0,255,0);
+   	cid=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid,true);
+   	document.EField.setDamping(cid,0.1);
+   	document.EField.setShowFVector(cid,false);
+   	document.EField.setShowFComponents(cid,false);
+   	document.EField.setShowVVector(cid,false);
+   	document.EField.setShowVComponents(cid,false);
+   	document.EField.setOnScreenSize(cid,10);     
+
+   	cid1=document.EField.addTestCharge(-2.6,-0.16,0,0);
+   	document.EField.setConstraintStr(cid1,"-sqrt(9-(x)*(x))+1.3",-2.9,2.9);
+   	document.EField.setShowConstraintPath(cid1,false);
+   	document.EField.setDamping(cid1,0.1);
+   	document.EField.setOnScreenSize(cid1,10);
+
+   	document.EField.setChargeRGB(0,0,0);
+   	cid1=document.EField.addTestCharge(-82.6,-88.16,0,0);
+    document.Bar.setMin(0);
+    document.Bar.setMax(20);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3.1f");  
+        
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(20);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,155);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3.1f");  
+        
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(20);
+    document.Bar3.setPosRGB(255,0,0);
+    document.Bar3.setNegRGB(155,0,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3.1f");    
+	  
+	  document.EField.deleteDataConnections();  
+     document.EField.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.EField.makeDataConnection(cid,bid2,1,"9.8*(y+1.7)","0");
+     document.EField.makeDataConnection(cid,bid3,1,"9.8*(1.54)-9.8*(y+1.7)-vx*vx/2-vy*vy/2-0.4","0");
+     document.EField.updateDataConnections(); 
+    document.EField.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 7.1</title>
+
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Ilustração 7.1 - Escolha dos constituintes de um Sistema</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><applet codebase="../../classes/"
+       archive="Physlets.jar" code="eField4.EField.class"
+    name="EField" width="300" height="200" hspace="0" vspace="0" align="Middle" mayscript>
+  <param name="FPS" value="15">
+  <param name="dt" value="0.02">
+  <param name="ShowControls" value="false">
+  <param name="ShowContours" value="false">
+  <param name="ShowFieldLines" value="false">
+  <param name="ShowFieldVectors" value="false">
+  <param name="ShowLabels" value="false">
+  <param name="ShowCharge" value="true">
+  <param name="Potential" value="0">
+  <param name="Range" value="-5,5,-5,5">
+  <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField,Bar,Bar2,Bar3">
+        <param name="Resources" value="efield_pt.rc">
+        </applet>     
+         </td>
+      <td width="40"><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar"  width="40" height="200" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar2"  width="40" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+        </applet>
+      </td>
+            <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar3" width="40" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+        </applet>
+      </td>
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.EField.forward()"><input
+      type="button" value="pausa" onclick="document.EField.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.EField.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.EField.stepForward()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tbody>
+      <tr>
+        <td align="center">&nbsp;
+		<a href="JavaScript:initAppletA()" style="text-decoration: none">
+		Animação 1</a>&nbsp; </td>
+        <td align="center">&nbsp;
+		<a href="JavaScript:initAppletB()" style="text-decoration: none">
+		Animação 2</a>&nbsp; </td>
+      </tr>
+    </tbody>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>A animação mostra uma bola que desliza num fio de arame curvo, sujeita à 
+força gravítica, à força de reação normal e à força que resulta do atrito com o 
+fio <b>(a posição é dada em metros, o tempo em segundos e a energia em joule). </b>
+Nota que o fio não descreve a função de energia potencial da bola (vê a 
+Ilustração 7.3 sobre diagramas de energia potencial).&nbsp;Na animação também é 
+apresentado um gráfico com três barras, que representam a energia cinética (<b><font color="#FF9900">laranja</font></b>), 
+a energia potencial gravítica (<font color="#0000FF"><b>azul</b></font>) e a 
+energia dissipada devido ao atrito (<b><font color="#FF0000">vermelho)</font></b>.&nbsp;</p>
+<p>As animações 1 e 2 apresentam dois sistemas diferentes, nos quais podemos 
+analisar o movimento do corpo através dos gráficos da energia.&nbsp;<a href="JavaScript:initApplet0()">Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p><b>Sabias que ...</b></p>
+<p>Vê outra vez a <a href="JavaScript:initAppletA()">Animação 1</a>.&nbsp; Nota 
+que neste caso não há energia potencial gravítica e também não há energia 
+dissipada por atrito. Como é que isto é possível? Neste caso, nós escolhemos 
+como sistema apenas a bola. <a href="JavaScript:initAppletAB()">
+Animação 1: mostrar sistema</a>.&nbsp; Assim, o sistema não é isolado e a bola 
+sente uma força externa devida à atração gravítica da Terra, bem como uma força 
+externa dissipativa devida à existência de atrito.&nbsp;A força gravítica realiza 
+inicialmente um trabalho positivo e depois negativo, fazendo variar a energia 
+cinética da bola. Além disto, a força de atrito dissipa energia e portanto 
+realiza um trabalho negativo sobre a bola.</p>
+<p>Agora vê a <a href="JavaScript:initAppletB()">Animação 2</a>.&nbsp;O que está a 
+acontecer? Qual é o sistema, agora? Aqui há energia potencial gravítica, assim 
+como energia dissipada devido ao atrito. O sistema inclui, assim, a Terra e a 
+própria sala, pelo que a energia total deve incluir todas as energias.&nbsp;
+<a href="JavaScript:initAppletBB()">Animação 2: mostrar sistema</a>.&nbsp;Dado que 
+definimos um sistema que inclui a terra e a sala, a energia total (soma das três 
+energias apresentadas no gráfico) deve permanecer constante.</p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

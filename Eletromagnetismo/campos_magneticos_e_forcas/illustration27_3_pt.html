@@ -1,0 +1,442 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+
+var velval=50;
+var efield=50;
+var bfield=0.5;
+var mass=0.3;
+var charge=-1;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;   
+   document.animator.setAutoRefresh(false); 
+   document.animator.setTolerance(0.1); 
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false);
+    document.animator.setOneShot(0,10, "Fim da Animação");  
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(0);
+   
+   backgr=document.animator.addObject("rectangle","x=-11,y=9, h=100, w=170");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=10,y=0, h=300, w=250");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=-13,y=-7.5, h=150, w=200");
+   document.animator.setRGB(backgr,50,50,50);
+   
+   velval=document.parameterForm.B1.value;
+        if( !checkRange(velval,5,100)){alert("A velocidade inicial deve estar entre 5 m/s e 100 m/s. O valor inserido foi "+velval+" m/s.");
+     	return;}
+   efield=document.parameterForm.B2.value;
+        if( !checkRange(efield,0,100)){alert("O campo elétrico deve estar entre 0 N/C e 100 N/C. O valor inserido foi "+efield+" N/C.");
+     	return;}
+    bfield=document.parameterForm.B3.value;
+        if( !checkRange(bfield,0,2)){alert("O campo magnético deve estar entre 0 T e 2 T. O valor inserido foi "+bfield+" T.");
+     	return;}
+    mass=document.parameterForm.B4.value;
+        if( !checkRange(mass,0,1)){alert("A massa deve estar entre 0 gramas e 1 grama. O valor inserido foi "+mass+" gramas.");
+     	return;}
+    charge=document.parameterForm.B5.value;
+        if( !checkRange(charge,-1,0)){alert("A carga deve estar entre 0 mC e -1 mC. O valor inserido foi "+charge+" mC.");
+     	return;}
+   
+   bin=document.animator.addObject("text","x=-12,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-12,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   
+   numy=9;
+   //var yid= new Array(numy);
+   for(p=0; p<numy; p++){
+      ypos=3*p;
+   
+   
+   numPart=8;
+   //var bid= new Array(numPart);
+   for(i=0; i<numPart; i++){
+   		xpos=3*i;
+   		xid=document.animator.addObject("text","x=-0.6+"+eval(xpos)+",y=11.5-"+eval(ypos)+",text=x");
+   		document.animator.setRGB(xid,150,150,150);
+   }}
+   
+   
+   id2=document.animator.addObject("rectangle","x=-11,y=13, h=50, w=170");
+   document.animator.setRGB(id2,128,255,128);
+   
+   
+   
+   document.animator.setSticky(id2,true);
+   id3=document.animator.addObject("rectangle","x=-11,y=2, h=50, w=170");
+   document.animator.setRGB(id3,128,128,255);
+   document.animator.setSticky(id3,true);
+   
+   document.animator.addObject("text","text=+ + + + + + + + + + + + +, x=-18.7, y=11");
+   document.animator.addObject("text","text=-  -  -  -  -  -  -  -  -  -  -  -, x=-18.7, y=3");
+
+   cid=document.animator.addObject("circle","x=-23, y=7.5, r=5, m="+mass);
+   document.animator.setRGB(cid,0,0,250);
+   document.animator.setTrail(cid,500);
+   document.animator.setSticky(cid,true);
+   document.animator.setForce(cid,"-"+eval(charge)+"*(step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*"+bfield+"*vy+step(x+2.5)*"+bfield+"*vy)","-"+eval(charge)+"*(-step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*("+bfield+"*vx-"+efield+")-step(x+2.5)*vx*"+bfield+")",-23,7.5,eval(velval),0);
+   document.animator.setDragable(cid,false); 
+ 
+   id4=document.animator.addObject("rectangle","x=-2.5,y=12, h=84, w=20");
+   document.animator.setRGB(id4,255,128,128);
+   document.animator.setSticky(id4,true);
+   id5=document.animator.addObject("rectangle","x=-2.5,y=-5, h=244, w=20");
+   document.animator.setRGB(id5,255,128,128);
+   id6=document.animator.addObject("rectangle","x=23,y=0, h=300, w=20");
+   document.animator.setRGB(id6,255,128,128);
+   document.animator.setSticky(id6,true);
+   id7=document.animator.addObject("rectangle","x=10,y=-15.5, h=20, w=250");
+   document.animator.setRGB(id7,255,128,128);
+   document.animator.setSticky(id7,true);
+   id8=document.animator.addObject("rectangle","x=10,y=15.5, h=20, w=250");
+   document.animator.setRGB(id8,255,128,128);
+   document.animator.setSticky(id8,true);
+   document.animator.setSticky(id5,true);
+   document.animator.setAutoRefresh(true);  
+}
+
+
+function register(){ 
+      if(!loaded) return;
+       timerID=0;   
+   document.animator.setAutoRefresh(false); 
+   document.animator.setTolerance(0.1); 
+   document.animator.setDefault();
+   document.animator.setOneShot(0,10, "Fim da Animação");  
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(0);
+   
+   backgr=document.animator.addObject("rectangle","x=-11,y=9, h=100, w=170");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=10,y=0, h=300, w=250");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=-13,y=-7.5, h=150, w=200");
+   document.animator.setRGB(backgr,50,50,50);
+   
+   velval=document.parameterForm.B1.value;
+        if( !checkRange(velval,5,100)){alert("A velocidade inicial deve estar entre 5 m/s e 100 m/s. O valor inserido foi "+velval+" m/s.");
+     	return;}
+   efield=document.parameterForm.B2.value;
+        if( !checkRange(efield,0,100)){alert("O campo elétrico deve estar entre 0 N/C e 100 N/C. O valor inserido foi "+efield+" N/C.");
+     	return;}
+    bfield=document.parameterForm.B3.value;
+        if( !checkRange(bfield,0,2)){alert("O campo magnético deve estar entre 0 T e 2 T. O valor inserido foi "+bfield+" T.");
+     	return;}
+    mass=document.parameterForm.B4.value;
+        if( !checkRange(mass,0,1)){alert("A massa deve estar entre 0 gramas e 1 grama. O valor inserido foi "+mass+" gramas.");
+     	return;}
+    charge=document.parameterForm.B5.value;
+        if( !checkRange(charge,-1,0)){alert("A carga deve estar entre 0 mC e -1 mC. O valor inserido foi "+charge+" mC.");
+     	return;}
+   
+   bin=document.animator.addObject("text","x=-12,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-12,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   
+   numy=9;
+   //var yid= new Array(numy);
+   for(p=0; p<numy; p++){
+      ypos=3*p;
+   
+   
+   numPart=8;
+   //var bid= new Array(numPart);
+   for(i=0; i<numPart; i++){
+   		xpos=3*i;
+   		xid=document.animator.addObject("text","x=-0.6+"+eval(xpos)+",y=11.5-"+eval(ypos)+",text=x");
+   		document.animator.setRGB(xid,150,150,150);
+   }}
+   
+   
+   id2=document.animator.addObject("rectangle","x=-11,y=13, h=50, w=170");
+   document.animator.setRGB(id2,128,255,128);
+   
+   
+   
+   document.animator.setSticky(id2,true);
+   id3=document.animator.addObject("rectangle","x=-11,y=2, h=50, w=170");
+   document.animator.setRGB(id3,128,128,255);
+   document.animator.setSticky(id3,true);
+   
+   document.animator.addObject("text","text=+ + + + + + + + + + + + +, x=-18.7, y=11");
+   document.animator.addObject("text","text=-  -  -  -  -  -  -  -  -  -  -  -, x=-18.7, y=3");
+
+   cid=document.animator.addObject("circle","x=-23, y=7.5, r=5, m="+mass);
+   document.animator.setRGB(cid,0,0,250);
+   document.animator.setTrail(cid,500);
+   document.animator.setSticky(cid,true);
+   document.animator.setForce(cid,"-"+eval(charge)+"*(step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*"+bfield+"*vy+step(x+2.5)*"+bfield+"*vy)","-"+eval(charge)+"*(-step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*("+bfield+"*vx-"+efield+")-step(x+2.5)*vx*"+bfield+")",-23,7.5,eval(velval),0);
+   document.animator.setDragable(cid,false); 
+ 
+   id4=document.animator.addObject("rectangle","x=-2.5,y=12, h=84, w=20");
+   document.animator.setRGB(id4,255,128,128);
+   document.animator.setSticky(id4,true);
+   id5=document.animator.addObject("rectangle","x=-2.5,y=-5, h=244, w=20");
+   document.animator.setRGB(id5,255,128,128);
+   id6=document.animator.addObject("rectangle","x=23,y=0, h=300, w=20");
+   document.animator.setRGB(id6,255,128,128);
+   document.animator.setSticky(id6,true);
+   id7=document.animator.addObject("rectangle","x=10,y=-15.5, h=20, w=250");
+   document.animator.setRGB(id7,255,128,128);
+   document.animator.setSticky(id7,true);
+   id8=document.animator.addObject("rectangle","x=10,y=15.5, h=20, w=250");
+   document.animator.setRGB(id8,255,128,128);
+   document.animator.setSticky(id8,true);
+   document.animator.setSticky(id5,true);
+   document.animator.setOneShot(0,2,"Fim da Animação");
+   document.animator.setAutoRefresh(true);  
+   document.animator.forward();
+}
+
+function masses(){
+if(!loaded) return;
+timerID=0;
+   document.animator.setAutoRefresh(false);
+   document.parameterForm.reset(); 
+   document.animator.setTolerance(0.1); 
+   document.animator.setDefault();
+   document.animator.setOneShot(0,10, "Fim da Animação");  
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(0);
+   
+   backgr=document.animator.addObject("rectangle","x=-11,y=9, h=100, w=170");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=10,y=0, h=300, w=250");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=-13,y=-7.5, h=150, w=200");
+   document.animator.setRGB(backgr,50,50,50);
+   
+   velval=30;
+   efield=30;
+   bfield=1;
+   charge=1;
+   
+   bin=document.animator.addObject("text","x=-12,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-12,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   
+   numy=9;
+   //var yid= new Array(numy);
+   for(p=0; p<numy; p++){
+      ypos=3*p;
+   
+   
+   numPart=8;
+   //var bid= new Array(numPart);
+   for(i=0; i<numPart; i++){
+   		xpos=3*i;
+   		xid=document.animator.addObject("text","x=-0.6+"+eval(xpos)+",y=11.5-"+eval(ypos)+",text=x");
+   		document.animator.setRGB(xid,150,150,150);
+   }}
+   
+   
+   id2=document.animator.addObject("rectangle","x=-11,y=13, h=50, w=170");
+   document.animator.setRGB(id2,128,255,128);
+   
+   
+   
+   document.animator.setSticky(id2,true);
+   id3=document.animator.addObject("rectangle","x=-11,y=2, h=50, w=170");
+   document.animator.setRGB(id3,128,128,255);
+   document.animator.setSticky(id3,true);
+   
+   document.animator.addObject("text","text=+ + + + + + + + + + + + +, x=-18.7, y=11");
+   document.animator.addObject("text","text=-  -  -  -  -  -  -  -  -  -  -  -, x=-18.7, y=3");
+
+
+  
+   
+   
+   id4=document.animator.addObject("rectangle","x=-2.5,y=12, h=84, w=20");
+   document.animator.setRGB(id4,255,128,128);
+   document.animator.setSticky(id4,true);
+   id5=document.animator.addObject("rectangle","x=-2.5,y=-5, h=244, w=20");
+   document.animator.setRGB(id5,255,128,128);
+   id6=document.animator.addObject("rectangle","x=23,y=0, h=300, w=20");
+   document.animator.setRGB(id6,255,128,128);
+   document.animator.setSticky(id6,true);
+   id7=document.animator.addObject("rectangle","x=10,y=-15.5, h=20, w=250");
+   document.animator.setRGB(id7,255,128,128);
+   document.animator.setSticky(id7,true);
+   id8=document.animator.addObject("rectangle","x=10,y=15.5, h=20, w=250");
+   document.animator.setRGB(id8,255,128,128);
+   document.animator.setSticky(id8,true);
+   document.animator.setSticky(id5,true); 	
+   
+   nummass=5;
+   var cid= new Array(nummass);
+   for(m=0; m<nummass; m++){
+   		cid[m]=document.animator.addObject("circle","x=-23, y=7.5, r=5, m=0.1");
+   		document.animator.setSticky(cid[m],false);
+   		document.animator.setTrail(cid[m],500);
+   		mass=0.1*m+0.2;
+   		red=Math.round(128*Math.random() );
+   		green=Math.round(128*Math.random() );
+   		blue=Math.round(128*Math.random() );
+   		document.animator.setRGB(cid[m],red,green,blue);
+   		document.animator.setMass(cid[m],eval(mass));
+   		document.animator.setForce(cid[m],"step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*(vy*2)+step(x+2.5)*(vy*2)","-step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*2*(vx-50)-step(x+2.5)*2*vx",-23,7.5,50,0);
+   		document.animator.setDragable(cid[m],false);	
+   }
+   
+   document.animator.setOneShot(0,0.7,"Fim da Animação");
+   document.animator.setAutoRefresh(true);  
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 27.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 27.3 - Espectrómetro de Massa</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/" 
+      archive="Physlets.jar" 
+      name="animator" width="450" height="300" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.02">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+		<param name="Resources" value="animator_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="parameterForm">
+  <p align="center"> 
+  <a href="JavaScript:masses();document.animator.forward()">Demonstração com 
+	várias massas</a>&nbsp;&nbsp; Para uma partícula só: 
+  <input type="button" value="registar valores e começar" onclick="register()">&nbsp;</p>
+  <p align="center" style="margin: 0 0%"><strong>velocidade inicial = </strong><input type="text" name="B1" size="4" value="50">
+  <strong>m/s</strong><b>&nbsp;</b>&nbsp;<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	campo elétrico&nbsp; = </strong><input type="text" name="B2" size="4" value="50">
+  <strong>N/C</strong><b>&nbsp;</b>&nbsp;<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	campo magnético&nbsp; = </strong><input type="text" name="B3" size="4" value="0.5">
+  <strong>T</strong><b>&nbsp;</b>&nbsp;</p>
+  <p align="center" style="margin: 0 0%"><strong>massa&nbsp; = </strong><input type="text" name="B4" size="4" value="0.3"><strong> 
+	x 10<sup>-3 </sup>
+  kg</strong> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	carga&nbsp; = </strong><input type="text" name="B5" size="4" 
+  value="-1"> <strong>x 10<sup>-3 </sup>C</strong></p>
+</form>
+
+
+
+  <b>
+
+<p align="center"><font color="#FF0000"><i>Por favor espera até a animação estar 
+completamente carregada.</i></font></p>
+
+</b>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>Nesta animação, partículas com carga e com massa atravessam uma zona onde é 
+aplicado um campo elétrico vertical para baixo e um campo magnético horizontal 
+que aponta para dentro do ecrã. Após atravessarem esta zona entram noutra onde 
+existe apenas campo magnético. <a href="JavaScript:masses()">Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p><b>Sabias que...</b></p>
+<p>Observa a <a href="JavaScript:masses();document.animator.forward()">
+Demonstração com várias massas</a>.&nbsp;As partículas têm massas diferentes, mas são 
+idênticas em tudo o resto. Nota que as partículas são separadas com base na sua 
+massa. Este é o princípio de funcionamento de um espectrómetro de massa!</p>
+<p>&nbsp;</p>
+<p align="left">Ilustração da autoria de Melissa Dancy e Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("gaslaw3(100,1)",100);
+}
+  	
+function gaslaw3(initT,initR){ 
+      if(!loaded) return;
+   	timerID=0;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+      document.Molecular.setTemp(initT);
+      document.Molecular.setDefaultColor(0,250,250);
+     document.Molecular.createParticles(50);
+      for(i=0;i<25;i++){
+       document.Molecular.setParticleMass(i,1);
+       document.Molecular.setParticleSize(i,0.3*initR);
+       document.Molecular.setParticleRGB(i,0,250,250);
+    }
+     document.Molecular.setParticleRGB(0,0,0,255);
+  
+     id1=document.Molecular.addParticleDataSource(0);
+	for(i=0;i<25;i++){
+       document.Molecular.setParticleRGB(i+25,250,250,0);
+       document.Molecular.setParticleMass(i+25,10);
+       document.Molecular.setParticleSize(i+25,0.5*initR);
+           }
+            document.Molecular.setParticleRGB(26,250,150,0);
+               id2=document.Molecular.addParticleDataSource(26);
+       document.Molecular.setTemp(initT);
+	document.Molecular.setAutoRefresh(true);
+
+     eid=document.Molecular.getEnsembleID();
+   	 
+   	document.DataGraph.setAutoscaleX(true);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.clearSeries(2);
+         
+     document.DataGraph.setSeriesRGB(1,0,0,255);
+	 document.DataGraph.setSeriesLegend(1,80,50,"partícula pequena");
+	 document.DataGraph.setSeriesRGB(2,250,150,0);
+	 document.DataGraph.setSeriesLegend(2,80,30,"partícula grande");
+     document.DataGraph.setLabelY("Energia Cinética");
+     document.DataGraph.setLabelX("Tempo");
+       
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setStripChart(1,200,true);
+     document.DataGraph.setStripChart(2,200,true);
+    	     gid=document.DataGraph.getGraphID();
+        document.DataGraph.setMarkerSize(1,0.6);  
+	document.DataGraph.setLastPointMarker(1,true);  
+        document.DataGraph.setMarkerSize(2,0.6);  
+	document.DataGraph.setLastPointMarker(2,true); 
+
+    hid=document.Molecular.getHistogramID(30,0.0,40.0);
+   	document.DataGraph2.clearSeries(1);
+   	document.DataGraph2.setAutoscaleX(false);
+   	document.DataGraph2.setAutoscaleY(false);
+	  document.DataGraph2.setMinMaxX(0,40.0);
+    document.DataGraph2.setMinMaxY(0,15); 
+        
+    
+    document.DataGraph2.setSeriesStyle(1,false,-3);
+    document.DataGraph2.setSeriesRGB(1,255,0,0);
+     document.DataGraph2.setAutoReplaceData(1,true);
+    document.DataGraph2.setMarkerSize(1,1.0); 
+
+
+
+    document.DataGraph2.setLabelY("N"); 
+    document.DataGraph2.setLabelX("| v |"); 
+    document.DataGraph2.setTitle("Histograma de Rapidez"); 
+
+     gid2=document.DataGraph2.getGraphID();
+     
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"<P>");
+	document.DataTable.setSeriesLabel(2,"N");
+	document.DataTable.setSeriesLabel(3,"T");
+	document.DataTable.setSeriesLabel(4,"V");
+	document.DataTable.setSeriesLabel(5,"N*T/V");
+	tid=document.DataTable.getTableID();
+     
+     document.Molecular.deleteDataConnections();
+     cid=document.Molecular.makeDataConnection(eid,tid,1,"(pr+pl+pt+pb)/4","0");
+	 document.Molecular.setConnectionSmoothing(cid,100);
+	 document.Molecular.makeDataConnection(eid,tid,2,"n","0");
+     document.Molecular.makeDataConnection(eid,tid,3,"t","0");
+     document.Molecular.makeDataConnection(eid,tid,4,"v","0");
+     document.Molecular.makeDataConnection(eid,tid,5,"p","0");
+       document.Molecular.makeDataConnection(id1,gid,1,"t","(vx*vx+vy*vy)/2");
+         document.Molecular.makeDataConnection(id2,gid,2,"t","(vx*vx+vy*vy)*10/2");
+  	cid=document.Molecular.makeDataConnection(hid,gid2,1,"v","n");   
+    document.Molecular.setConnectionStride(cid,10);
+         document.Molecular.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Illustration 20.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+<h2 align="center">Ilustração 20.2 - Teoria Cinética, Temperatura e Pressão</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td rowspan="2">
+    <APPLET name="Molecular" codeBase="../../classes/" 
+      code="molecular.MolecularApplet.class" align="middle" width="160" height="311" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="ShowControls" VALUE="false">
+            <PARAM NAME="FPS" VALUE="10">
+            <PARAM NAME="dt" VALUE="0.05">
+      <PARAM NAME="PeriodicH" VALUE="false">
+      <Param name="InitialP" value="1">
+      <param name="PeriodicV" value="false">
+      <Param name="ShowControls" value="false">
+            <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Molecular,DataGraph,DataGraph2,DataTable">
+        <param name="Resources" value="molecular_pt.rc">
+      </APPLET></td>
+      <td>
+    <APPLET name="DataGraph" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="300" height="153" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+       <PARAM NAME="ShowControls" VALUE="false">
+      </APPLET></td>
+    </tr>
+    <tr>
+      <td>
+    <APPLET name="DataGraph2" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="300" height="152" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+       <PARAM NAME="ShowControls" VALUE="false">
+      </APPLET></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<div align="center">
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#c0c0c0">
+      <tr>
+        <td><APPLET name=DataTable codeBase=../../classes/ 
+	code="dataTable.DataTable.class" align="middle" width="400" height="45" 
+	ARCHIVE="Physlets.jar" mayscript>
+	<PARAM NAME="ShowScrollBars" VALUE="false">
+	<PARAM NAME="LastOnTop" VALUE="true">
+	<PARAM NAME="NumRows" VALUE="1">
+	<PARAM NAME="NumCols" VALUE="5">
+	<PARAM NAME="ShowControls" VALUE="false">
+	<PARAM NAME="ShowRowHeader" VALUE="false">
+		<PARAM NAME="ShowColHeader" VALUE="true">
+	</APPLET></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+</div>
+
+<CENTER>
+<FORM>
+&nbsp;<input onclick="document.Molecular.forward()" type="button" value="Começar"><input onclick="document.Molecular.stepForward()" type="button" value="passo &gt;&gt;"></FORM></CENTER>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">
+   <b>Descrição da Animação</b></p>
+<p>Nesta animação <i>N = nR</i> (isto é, <i>k<sub>B</sub></i> = 1). Assim, a lei 
+do gás ideal fica <i>PV = NT</i>. Os valores médios mostrados, &lt; &gt;, são 
+calculados em intervalos de uma unidade de tempo. <a href="Javascript:gaslaw3(100,1)">
+Início</a> </p>
+
+<p style="margin-top: 0; margin-bottom: 0"> &nbsp;</p>
+<p style="margin-top: 0"> <b>Exploração</b></p>
+<ol type="a">
+	<li>
+	<p style="margin-top: 6px">Compara a energia cinética das partículas grandes 
+	(representadas pela partícula laranja) com a energia cinética das partículas 
+	pequenas (representadas pela partícula azul). Têm a mesma energia cinética?</li>
+	<li>
+	<p style="margin-top: 6px">Compara a rapidez média das duas partículas. Qual 
+	delas tem uma rapidez média superior?</li>
+	<li>
+	<p style="margin-top: 6px">Agora <a href="Javascript:gaslaw3(300,1)">
+	triplica a temperatura</a>.&nbsp;O que acontece à energia cinética das 
+	partículas? E o que acontece à rapidez média?&nbsp;</li>
+	<li>
+	<p style="margin-top: 6px">Compara a variação do momento linear médio das 
+	partículas por unidade de tempo, &lt;d<b>p</b>/dt&gt;, com a pressão calculada 
+	pela lei do gás ideal (P = NT/V). Qual dos valores é superior? Porquê?</li>
+	<li>
+	<p style="margin-top: 6px">Agora <a href="Javascript:gaslaw3(300,2)">aumenta 
+	o tamanho das partículas</a> para ver o que acontece à diferença entre o 
+	valor de &lt;d<b>p</b>/dt&gt; e a pressão. </li>
+</ol>
+<p> &nbsp;</p>
+<p align="left">Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

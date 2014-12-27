@@ -1,0 +1,215 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var id=new Array();
+var gidV=0;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build3()",100);
+}
+
+
+function build3(){
+    if(!loaded) return;
+    timerID=0;
+    id[0]=0;
+    id[1]=0;
+    id[2]=0;
+    id[3]=0;
+    id[4]=0;
+    id[5]=0;
+    id[6]=0;
+    document.circuitParameters.reset();
+    noc=10;
+	dt=5.0e-6;
+	fps=10;
+	raVal=eval(document.circuitParameters.A1.value);
+	document.circuit.pause();
+	document.circuit.setDefault();
+	 document.circuit.setDT(dt);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(fps); 
+	 
+   	document.circuit.setGrid("rows=2,cols=4");
+    id[0]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=10.0,r=1.0E-9");
+    id[1]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=,c=2.0E-7");
+    id[4]=document.circuit.addObject("switch","row=0,col=1,to=h,label=,open=1");
+    id[3]=document.circuit.addObject("inductor","row=0,col=2,to=v,label=,l=0.16");
+    id[5]=document.circuit.addObject("resistor","row=1,col=1,to=h,label=,r="+raVal);
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+    id[6]=document.circuit.addObject("switch","row=0,col=2,to=h,label=,open=0");
+    document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=3,to=v,label=");
+	 document.dataGraph.setLabelY("d.d.p. (V)");
+
+    document.circuit.parse();
+    resetCircuit();
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t","-v");
+      document.circuit.makeDataConnection(id[3],gidV,2,"t","v");
+      document.circuit.makeDataConnection(id[5],gidV,3,"t","v");
+    document.circuit.updateDataConnections();
+}
+
+
+function resetCircuit(){
+    if(!loaded) return;
+    isRunning=document.circuit.isClockRunning();
+    document.circuit.reset();
+    document.dataGraph.setAutoscaleY(true);   
+    document.dataGraph.clearSeries(1);
+    document.dataGraph.clearSeries(2);
+    document.dataGraph.clearSeries(3);
+    document.dataGraph.clearSeries(4);
+    document.dataGraph.setStripChart(1,200,true);
+    document.dataGraph.setStripChart(2,200,true);
+    document.dataGraph.setStripChart(3,200,true);
+    document.dataGraph.setStripChart(4,200,true);
+    document.dataGraph.setSeriesRGB(1,255,0,0);  
+    document.dataGraph.setSeriesStyle(1,true,3);
+    document.dataGraph.setSeriesRGB(2,0,0,255);  
+    document.dataGraph.setSeriesStyle(2,true,3);
+    document.dataGraph.setSeriesRGB(3,0,255,0);  
+    document.dataGraph.setSeriesStyle(3,true,3);
+    document.dataGraph.setSeriesRGB(4,0,0,0);  
+    document.dataGraph.setSeriesStyle(4,true,3);
+	document.dataGraph.setLastPointMarker(1,true); 
+	document.dataGraph.setMarkerSize(1,0.6); 
+	document.dataGraph.setLastPointMarker(2,true); 
+	document.dataGraph.setMarkerSize(2,0.6); 
+	document.dataGraph.setLastPointMarker(3,true); 
+	document.dataGraph.setMarkerSize(3,0.6); 
+	document.dataGraph.setLastPointMarker(4,true); 
+	document.dataGraph.setMarkerSize(4,0.6);     
+    document.dataGraph.setLabelX("Tempo (s)");  
+    //document.dataGraph.setLabelY("Voltage & Current");
+    document.dataGraph.setFormat("%3.1e");
+    gidV=document.dataGraph.getGraphID();
+    if(isRunning)document.circuit.forward();
+}
+
+function change(){
+    if(!loaded) return;
+    running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[1],0);
+	document.circuit.setValue(id[4],0);
+	document.circuit.setValue(id[6],0);
+	if(running)document.circuit.forward();
+	}
+	
+function changeR(){
+    if(!loaded) return;
+	value=document.circuitParameters.A1.value;
+	if(!checkRange(value,200,2000)){
+	  alert("A resistência deve estar entre 200 and 2000 ohm. O valor inserido foi "+value+" ohm");
+	  return;
+	}
+	
+	raVal=eval(document.circuitParameters.A1.value);
+    document.circuit.pause();
+	document.circuit.setValue(id[5],raVal.toString());
+	document.circuit.forward();
+	change();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+	
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 31.8</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Exploração 31.8 - Oscilador RLC Amortecido</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><span lang="pt"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="200" name="circuit" mayscript>
+        <param name="numberofdt" value="10">
+        <param name="dt" value="1e-6">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="dataGraph,circuit">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+      <td>
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataGraph.DataGraph.class" 
+      name="dataGraph" width="300" height="200" mayscript>
+        <param name="XMin" value="0">
+        <param name="XMax" value="2">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="circuitParameters">
+ <p align="center">
+ <span lang="pt">
+ <input type="button" value="inserir valor e começar" onclick="JavaScript:changeR()" name="set">
+ <input type="button" value="continuar" onclick="document.circuit.forward()" 
+ name="continue"><input type="button" value="pausa" onclick="document.circuit.pause()" name="pause"><input 
+ type="button" value="início" onclick="JavaScript:resetCircuit()" name="resetb"><input type="button" 
+ value="abrir / fechar" onclick="JavaScript:change()" name="switch"></span></p>
+ <p align="center"><span lang="pt"><b>variável <i>R</i> = <input name="A1" size="4" value="300"> 
+	Ω&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </b></span></p>
+</form>
+
+       
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+	<p align="left"><span lang="pt"><b>Descrição da animação</b></span></p>
+
+       
+<p>Nesta animação, assume que to<span lang="pt">dos os componentes do circuito 
+são ideais.&nbsp;O gráfico mostra a d.d.p. em função do tempo nos terminais do 
+condensador <b> <font color="#FF0000">(a vermelho)</font></b>, da bobina&nbsp; <font color="#0000FF"> <b> 
+(a azul)</b></font> e do resistor <b>
+<font color="#008000">(a verde)</font> (a d.d.p. é dada em volts)</b>.&nbsp; </span>
+<a href="JavaScript:build3()">Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"><span lang="pt">Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e Anne J. Cox.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 25.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript" SRC="../../javascript/tools.js"> 
+</script>
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("restart()",100);
+}
+  	
+function restart(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.selection.reset();
+      q1=eval(document.selection.A1.value);
+   
+   if(!checkRange(q1,-4,4)){
+   alert("A carga deve ser entre -4 C e 4 C. O valor inserido foi "+q1+" C.");
+   return;}
+
+ 
+     //document.EField.setShowFieldVectors(true);
+     document.EField.setShowVOnDrag(true);
+     document.EField.setShowEOnDrag(true);
+     document.EField.setShowTime(false); 
+     //document.EField.setPotential("1/sqrt((x+1)*(x+1)+y*y+.001)+.6/sqrt((x-1)*(x-1)+y*y+.001)+.8/sqrt(x*x+(y-1.8)*(y-1.8)+.001)-.7/sqrt(x*x+(y+.8)*(y+.8)+.001)",-2,2,-2,2);
+     id=document.EField.addObject("charge","x=1,y=0,q=2");
+     document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=+2");
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	id3=document.EField.addObject("text","text=B");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+
+     id=document.EField.addObject("charge","x=-1,y=0,q="+q1);
+          document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=,calc="+q1);
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	  id3=document.EField.addObject("text","text=A");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+    document.EField.setShowContours(true);
+       document.EField.setAutoRefresh(true);
+       document.EField.forward();
+
+}
+
+function init(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+      q1=eval(document.selection.A1.value);
+   
+   if(!checkRange(q1,-4,4)){
+   alert("A carga deve ser entre -4 C e 4 C. O valor inserido foi "+q1+" C.");
+   return;}
+
+ 
+     //document.EField.setShowFieldVectors(true);
+     document.EField.setShowVOnDrag(true);
+     document.EField.setShowEOnDrag(true);
+     document.EField.setShowTime(false); 
+     //document.EField.setPotential("1/sqrt((x+1)*(x+1)+y*y+.001)+.6/sqrt((x-1)*(x-1)+y*y+.001)+.8/sqrt(x*x+(y-1.8)*(y-1.8)+.001)-.7/sqrt(x*x+(y+.8)*(y+.8)+.001)",-2,2,-2,2);
+     id=document.EField.addObject("charge","x=1,y=0,q=2");
+     document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=+2");
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	id3=document.EField.addObject("text","text=B");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+
+     id=document.EField.addObject("charge","x=-1,y=0,q="+q1);
+          document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=,calc="+q1);
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	  id3=document.EField.addObject("text","text=A");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+    document.EField.setShowContours(true);
+       document.EField.setAutoRefresh(true);
+       document.EField.forward();
+
+}
+
+function three(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+      q1=eval(document.selection.A1.value);
+   
+   if(!checkRange(q1,-4,4)){
+   alert("A carga deve ser entre -4 C e 4 C. O valor inserido foi "+q1+" C.");
+   return;}
+
+ 
+     //document.EField.setShowFieldVectors(true);
+     document.EField.setShowVOnDrag(true);
+     document.EField.setShowEOnDrag(true);
+     document.EField.setShowTime(false); 
+     //document.EField.setPotential("1/sqrt((x+1)*(x+1)+y*y+.001)+.6/sqrt((x-1)*(x-1)+y*y+.001)+.8/sqrt(x*x+(y-1.8)*(y-1.8)+.001)-.7/sqrt(x*x+(y+.8)*(y+.8)+.001)",-2,2,-2,2);
+     id=document.EField.addObject("charge","x=1,y=0,q=2");
+     document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=+2");
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	id3=document.EField.addObject("text","text=B");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+
+     id=document.EField.addObject("charge","x=-1,y=0,q=2");
+          document.EField.setDragable(id,false);
+     id2=document.EField.addObject("text","text=Q=+2");
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	  id3=document.EField.addObject("text","text=A");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+	
+	 id=document.EField.addObject("charge","x=1.5,y=1.5,q=-2");
+          document.EField.setDragable(id,true);
+     id2=document.EField.addObject("text","text=Q=-2");
+     document.EField.setDisplayOffset(id2,5,5);
+	document.EField.setAnimationSlave(id,id2);
+	  id3=document.EField.addObject("text","text=C");
+     document.EField.setDisplayOffset(id3,-5,-5);
+     document.EField.setRGB(id3,255,255,255);
+	document.EField.setAnimationSlave(id,id3);
+
+	
+    document.EField.setShowContours(true);
+       document.EField.setAutoRefresh(true);
+       document.EField.forward();
+
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Ilustração 25.3 - Potencial Elétrico de Esferas Carregadas</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">
+      <applet CODEBASE="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" NAME="EField" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="true">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Range" value="-2,2,-2,2">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+    </tr>
+    </table>
+  </center>
+</div>
+<form name="selection">
+ <p align="center"><b>carga da esfera A&nbsp;=&nbsp;
+  <input type="text" name="A1" size="3" value="1"> C</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ <input 
+        type="button" value="inserir valor" onclick="init()">
+  </p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+<p style="margin-bottom: 0">A animação apresenta linhas equipotenciais em torno 
+de duas esferas carregadas. Podes mudar a carga da esfera A na caixa de texto 
+criada para o efeito. Arrasta o rato na janela da animação e clica no botão 
+(esquerdo) para saberes a intensidade do campo elétrico e o potencial elétrico, 
+no ponto desejado<b> (a posição é dada em metros, o potencial elétrico é dado em 
+volts e a intensidade do campo elétrico é dada em newtons/coulomb)</b>.&nbsp; 
+Considera que o potencial elétrico é nulo no infinito (ou seja, em pontos muito 
+afastados da distribuição de carga).&nbsp; <a href="JavaScript:restart()">Início</a> </p>
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p><b>Sabias que...</b></p>
+<p>O potencial elétrico num ponto do espaço devido a uma carga pontual, é 
+proporcional à carga e inversamente proporcional à distância entre a carga e o 
+ponto considerado&nbsp; (<i>V</i> = k <i>q</i>/<i>r</i>).&nbsp; Trata-se de uma 
+<u>grandeza escalar</u>. 
+Quando a carga da esfera A é igual à carga da esfera B (em módulo e sinal), onde 
+terás de colocar uma terceira esfera carregada, com o mesmo módulo mas de sinal 
+contrário (por exemplo, negativa) para que o potencial elétrico no ponto médio 
+entre as esferas A e B [ponto (0, 0)] seja zero?&nbsp;
+<a href="JavaScript:three()">Adiciona uma esfera carregada</a> e move-a para o 
+local previsto, para verificares a tua resposta.&nbsp; Haverá mais do que um 
+local onde podes colocar essa terceira carga? O potencial elétrico criado pelas 
+duas esferas carregadas A e B, medido na origem, é <i>V</i> = k(2<i>Q</i>), uma 
+vez que <i>r </i>= 1 m.&nbsp; Assim, o potencial elétrico, na origem, criado pela 
+terceira carga tem de ser <i>V</i> = -k(2<i>Q</i>) para que, então, o potencial final na 
+origem seja efetivamente nulo.&nbsp; Assim, a terceira carga tem de ser colocada
+<i>numa posição qualquer </i>que esteja à distância <i>r</i> = 0.5 m da origem!</body><p>&nbsp;</p>
+<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> </p>
+
+
+</html>

@@ -1,0 +1,22 @@
+button.start Começar
+button.stop Parar
+button.reset Início
+button.forward Passo>>
+button.back <<Passo
+button.reverse Inverter sentido
+button.test Teste
+button.clear Apagar
+button.potential U ( x, y )
+label.charge Carga
+label.labels Etiquetas
+label.vectors Vetor Campo
+label.contours Contornos
+label.time Tempo:
+label.volt V=
+label.volt_undefined V=Não definido
+label.field |E|=
+label.field_undefined E=Não definido
+label.force |F|=
+label.force_undefined F=Não definido
+label.calculating Calculando. Espera, por favor.
+label.collision Colisão

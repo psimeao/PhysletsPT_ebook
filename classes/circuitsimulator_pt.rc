@@ -1,0 +1,61 @@
+nothing		nada
+wire		fio
+resistor	resistência
+inductor	bobina
+capacitor	condensador
+source		fonte
+battery		bateria
+currentsource	fonte de corrente
+bulb		lâmpada
+sinwave		onda sinusoidal
+squarewave	onda quadrada
+switch		interruptor
+scope		Osciloscópio
+ameter		amperímetro
+vmeter		voltímetro
+vgeneral	Vgeral
+igeneral	Igeral
+probe		sonda
+OK		Aceitar
+Cancel		Cancelar
+rows		linhas
+cols		colunas
+Load		Carga
+setgrid		Grelha
+List		Lista
+arrows		Ver ->
+Direction	Direção
+down		+ baixo/direita
+up		+ cima/esquerda
+Frequency	Frequência
+Calculate	Calcular
+Start		Começar
+Pause		Pausa
+Reset		Início
+scope_title	Sinal de d.d.p.
+scope_vscale	Escala de d.d.p.
+scope_tbase	Base de tempo
+circuitlist	Lista do circuito construído
+menu_delete		Apagar Componente
+menu_changevalue	Alterar Valor
+menu_knobvalue		Mostrar controlo do valor
+menu_knobfrequency	Mostrar controlo da frequência
+menu_showvalue		Mostrar/ocultar Valor/Função
+menu_changeswitch	Alterar Interruptor
+menu_changepolarity	Alterar Polaridade
+menu_elemlabel		Inserir Nome
+menu_getvoltage		Mostrar Osciloscópio
+menu_voltmeter		Mostrar Voltímetro
+menu_ammeter		Mostrar Amperímetro
+menu_vgraph		Mostrar Gráfico da d.d.p.
+menu_igraph		Mostrar Gráfico da Corrente
+changevalue_title	Alterar Valor
+elemlabel_title		Inserir Nome
+vgraph_title	Gráfico da d.d.p.
+igraph_title	Gráfico da Corrente
+gmode_strip	Registador
+gmode_full	Gráfico
+vaxis		d.d.p.(V)
+iaxis		Corrente (A)
+taxis		Tempo (s)
+twindow		Janela do osciloscópio (s)

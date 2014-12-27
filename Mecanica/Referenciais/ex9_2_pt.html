@@ -1,0 +1,415 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.dataForm.reset();
+	document.Animator3.setAutoRefresh(false);
+     document.DataGraph.setAutoRefresh(false);
+
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(8);
+	document.Animator3.shiftPixOrigin(0,-10);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.setTimeDisplay(false);
+	id=document.Animator3.setCaption("Seleciona uma Animação");
+	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,10);
+     document.DataGraph.setMinMaxY(-6,6);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setSeriesRGB(1,255,0,0);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setSeriesRGB(2,0,0,255);
+     document.DataGraph.setMarkerSize(1,0.6);
+     document.DataGraph.setMarkerSize(2,0.6);
+    document.DataGraph.setLabelY("v_x (m/s)"); 
+     document.DataGraph.setLabelX("Tempo (s)"); 
+     gid=document.DataGraph.getGraphID();
+     document.DataGraph.setAutoRefresh(true);
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Ec 1 (J)");
+     document.DataTable.setSeriesLabel(2,"Ec 2 (J)");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+     document.Bar.setValue(0);
+     document.Bar2.setValue(0); 
+    document.Bar.setNumericFormat("%3.1f"); 
+    document.Bar.setMin(0);
+    document.Bar.setMax(50);
+    document.Bar.setPosRGB(255,0,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid1=document.Bar.getID(); 
+
+    document.Bar2.setNumericFormat("%3.1f"); 
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(50);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,128);
+    bid2=document.Bar2.getID(); 
+    document.Animator3.deleteDataConnections(); 
+    document.Animator3.updateDataConnections();
+ 
+}
+
+
+
+function initApplet7a(){
+   if(!loaded) return;
+   v1=3;
+   v2=-3;
+   newvee1=document.dataForm.velField.value;
+       if( !checkRange(newvee1,-10,10)){
+     alert("A velocidade do referencial deve estar entre -10 m/s e 10 m/s. O valor inserido foi "+newvee1+" m/s.");
+     return;
+  } 
+v=eval(-document.dataForm.velField.value);
+
+	document.Animator3.setAutoRefresh(false);
+     document.DataGraph.setAutoRefresh(false);
+
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(8);
+	document.Animator3.shiftPixOrigin(0,-10);
+	document.Animator3.setGridUnit(1);
+	
+	id=document.Animator3.setCaption("                    Velocidade do referencial = "+v+" m/s.");
+	document.Animator3.setCoordinateOffset(id,0,10);
+
+	id1a=document.Animator3.addCircle(20,"0","0");
+        id1=document.Animator3.addCircle(18,"0","0");    
+	document.Animator3.setAnimationSlave(id1,id1a);    
+	document.Animator3.setForce(id1,"0","0",-18,0,v1+v,0); 
+    document.Animator3.setRGB(id1,255,0,0);
+    document.Animator3.setMass(id1,2);
+    cid=document.Animator3.addCalculation("p=","m*vx","0","0");
+    document.Animator3.setDisplayOffset(cid,-15,10);
+    document.Animator3.setAnimationSlave(id1,cid);
+    
+		id2a=document.Animator3.addCircle(20,"0","0");
+        id2=document.Animator3.addCircle(18,"0","0");    
+	document.Animator3.setAnimationSlave(id2,id2a); 
+	document.Animator3.setForce(id2,"0","0",18,0,v2+v,0);
+	document.Animator3.setMass(id2,3);
+	document.Animator3.setRGB(id2,0,0,255);
+    cid=document.Animator3.addCalculation("p=","m*vx","0","0");
+    document.Animator3.setDisplayOffset(cid,-10,-20);
+    document.Animator3.setAnimationSlave(id2,cid);
+    document.Animator3.addInteraction(id1,id2,"20/x*step(-x+2)","x");  
+    
+    document.Animator3.setOneShot(0,10,"Animação terminada");
+	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,10);
+     document.DataGraph.setMinMaxY(-6,6);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setSeriesRGB(1,255,0,0);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setSeriesRGB(2,0,0,255);
+     document.DataGraph.setMarkerSize(1,0.6);
+     document.DataGraph.setMarkerSize(2,0.6);
+    document.DataGraph.setLabelY("v_x (m/s)"); 
+     document.DataGraph.setLabelX("Tempo (s)"); 
+     document.DataGraph.setTitle("Animação 1: v_{x}(t)"); 
+     gid=document.DataGraph.getGraphID();
+     document.DataGraph.setAutoRefresh(true);
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Ec 1 (J)");
+     document.DataTable.setSeriesLabel(2,"Ec 2 (J)");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+     
+    document.Bar.setNumericFormat("%3.1f"); 
+    document.Bar.setMin(0);
+    document.Bar.setMax(50);
+    document.Bar.setPosRGB(255,0,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid1=document.Bar.getID(); 
+
+    document.Bar2.setNumericFormat("%3.1f"); 
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(50);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,128);
+    bid2=document.Bar2.getID(); 
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx"); 
+     document.Animator3.makeDataConnection(id1,bid1,1,"vx*vx*m/2","vx"); 
+     document.Animator3.makeDataConnection(id2,bid2,1,"vx*vx*m/2","vx");  
+     document.Animator3.makeDataConnection(id1,tid,1,"vx*vx*m/2","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx*vx*m/2","0"); 
+    document.Animator3.updateDataConnections();   
+}
+
+
+function initApplet7b(){
+   if(!loaded) return;
+   v1=3;
+   v2=-1;
+   newvee1=document.dataForm.velField.value;
+       if( !checkRange(newvee1,-10,10)){
+     alert("A velocidade do referencial deve estar entre -10 m/s e 10 m/s. O valor inserido foi "+newvee1+" m/s.");
+     return;
+  } 
+v=eval(-document.dataForm.velField.value);
+
+	document.Animator3.setAutoRefresh(false);
+     document.DataGraph.setAutoRefresh(false);
+
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(8);
+	document.Animator3.shiftPixOrigin(0,-10);
+	document.Animator3.setGridUnit(1);
+	
+	id=document.Animator3.setCaption("                    Velocidade do referencial = "+v+" m/s.");
+	document.Animator3.setCoordinateOffset(id,0,10);
+
+		id1a=document.Animator3.addCircle(20,"0","0");
+        id1=document.Animator3.addCircle(18,"0","0");    
+	document.Animator3.setAnimationSlave(id1,id1a);     
+	document.Animator3.setForce(id1,"0","0",-18,0,v1+v,0); 
+    document.Animator3.setRGB(id1,255,0,0);
+    document.Animator3.setMass(id1,2);
+    cid=document.Animator3.addCalculation("p=","m*vx","0","0");
+    document.Animator3.setDisplayOffset(cid,-15,10);
+    document.Animator3.setAnimationSlave(id1,cid);
+    
+		id2a=document.Animator3.addCircle(20,"0","0");
+        id2=document.Animator3.addCircle(18,"0","0");    
+	document.Animator3.setAnimationSlave(id2,id2a); 
+	document.Animator3.setForce(id2,"0","0",18,0,v2+v,0);
+	document.Animator3.setMass(id2,3);
+	document.Animator3.setRGB(id2,0,0,255);
+    cid=document.Animator3.addCalculation("p=","m*vx","0","0");
+    document.Animator3.setDisplayOffset(cid,-10,-20);
+    document.Animator3.setAnimationSlave(id2,cid);
+    
+    document.Animator3.addInteraction(id1,id2,"-v*20/x*step(-x+2)","x");  
+    
+    document.Animator3.setOneShot(0,10,"Animação terminada");
+	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,10);
+     document.DataGraph.setMinMaxY(-6,6);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setSeriesRGB(1,255,0,0);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setSeriesRGB(2,0,0,255);
+     document.DataGraph.setMarkerSize(1,0.7);
+     document.DataGraph.setMarkerSize(2,0.7);
+     document.DataGraph.setLabelY("v_x (m/s)"); 
+     document.DataGraph.setLabelX("Tempo (s)"); 
+     document.DataGraph.setTitle("Animação 2: v_{x}(t)"); 
+     gid=document.DataGraph.getGraphID();
+     document.DataGraph.setAutoRefresh(true);
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Ec 1 (J)");
+     document.DataTable.setSeriesLabel(2,"Ec 2 (J)");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+     
+    document.Bar.setNumericFormat("%3.1f"); 
+    document.Bar.setMin(0);
+    document.Bar.setMax(50);
+    document.Bar.setPosRGB(255,0,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid1=document.Bar.getID(); 
+
+    document.Bar2.setNumericFormat("%3.1f"); 
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(50);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,128);
+    bid2=document.Bar2.getID(); 
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx"); 
+     document.Animator3.makeDataConnection(id1,bid1,1,"vx*vx*m/2","vx"); 
+     document.Animator3.makeDataConnection(id2,bid2,1,"vx*vx*m/2","vx");  
+     document.Animator3.makeDataConnection(id1,tid,1,"vx*vx*m/2","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx*vx*m/2","0"); 
+    document.Animator3.updateDataConnections();   
+
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 9.2</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 9.2 - Comparar a Energia em diferentes 
+referenciais</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar"
+        align=align="middle" width="400" height="83" name="Animator3" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.1">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,Bar,Bar2,DataGraph,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+      <td align="center" rowspan="3">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="20" height="340" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td align="center" rowspan="3">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar2" width="20" height="341" hspace="0"
+        vspace="0" align="middle mayscript">
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="400" height="200"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="259" height="45"
+hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="2">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="começar" onclick="document.Animator3.forward()"><input type="button"
+    value="pausa" onclick="document.Animator3.pause()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Animator3.stepForward()"><input type="button" value="início"
+    onclick="document.Animator3.reset()"></p>
+    </center>
+    <p><b>Velocidade do referencial:&nbsp; v = <input type="text" name="velField" size="5" value="0"> 
+	m/s</b></p>
+  </div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td  align="center">
+      &nbsp;&nbsp;
+      <a href="JavaScript:initApplet7a(document.dataForm.velField.value)" style="text-decoration: none">
+       registar velocidade para a Animação 1</a>&nbsp;&nbsp; </td>
+      <td  align="center">
+      &nbsp;&nbsp;
+      <a href="JavaScript:initApplet7b(document.dataForm.velField.value)" style="text-decoration: none">
+      registar velocidade para a Animação 2</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b><p>A animação mostra a colisão entre duas bolas 
+com diferentes momentos lineares. A energia cinética das duas bolas é apresentada 
+na tabela e nas barras do gráfico à direita. O gráfico mostra a velocidade das 
+bolas ao longo do tempo <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;É possível ver a mesma colisão 
+noutro referencial de inércia, escolhendo um novo valor para a velocidade do 
+referencial do observador, -10 m/s &lt; <i>v </i>&lt; 10 m/s, antes de iniciares a 
+animação.&nbsp;&nbsp;
+<a href="JavaScript:position1()">Início</a><p style="margin-top: 0; margin-bottom: 0">&nbsp;<p style="margin-top: 0; margin-bottom: 0">&nbsp;<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 26.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript" src="../../javascript/tools.js"> 
+</script>
+<script language="JavaScript">
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.input.reset();
+   document.poisson.setTolerance(1.0e-2);
+   document.poisson.setMaxIterations(1000);
+   document.poisson.setShowEOnDrag(true);
+   document.poisson.setShowVOnDrag(true); 
+   document.poisson.setShowFieldVectors(true);
+   document.poisson.setShowContours(false);
+   
+   id1=document.poisson.addObject("conductor","rectangle,v=5.0,w=350,h=20, x=1,y=-1.5");
+   document.poisson.setShowCharge(id1,true);
+   document.poisson.setDragable(id1,false);
+   document.poisson.setResizable(id1,false); 
+   document.poisson.setVisibility(id1,true); 
+   
+   id2=document.poisson.addObject("conductor","rectangle,v=-5.0,w=350,h=20, x=1,y=1.5");
+   document.poisson.setShowCharge(id2,true);
+   document.poisson.setDragable(id2,false);
+   document.poisson.setResizable(id2,false); 
+   document.poisson.setVisibility(id2,true); 
+   
+   die=document.poisson.addObject("dielectric","x=-4,y=0,h=100,w=200,chi=9");
+   document.poisson.setDragable(die,true);
+   document.poisson.setResizable(die,false);
+   document.poisson.setShowCharge(die,true);
+ 
+   idc=document.poisson.addObject("constraint","xmin=-5, xmax=5, ymin=0, ymax=0");
+   document.poisson.setVisibility(idc,false);
+   document.poisson.setConstraint(die,idc);
+
+  document.poisson.setAutoRefresh(true);
+
+}
+
+function dieconst(){
+   if(!loaded) return;
+   a1=document.input.voltage.value;
+   
+       if(document.input.voltage.value==""){
+	a1=0;
+	document.input.voltage.value=0;}
+   
+  if(!checkRange(a1,1,20)){
+		alert("A constante dielétrica deve estar entre 1 e 20.  O valor inserido foi "+a1+".");
+        return;}
+
+        document.poisson.setChi(die,(a1-1));
+   	
+}
+	
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+	
+	
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 26.3 - Condensador com um Dielétrico</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%" colspan="2">
+      <p align="center">
+      <applet code="poisson.Poisson.class" codebase="../../classes" 
+      archive="Physlets.jar" align="middle" width="480" 
+      height="300" name="poisson" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Range" value="-6,6,-4,4">
+        <param name="ShowContours" value="true">
+        <param name="ShowGrid" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="GridSize" value="90">
+        <param name="Gutter" value="32">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="poisson">
+        <param name="Resources" value="poisson_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="50%" align="center">
+      <p align="center">&nbsp; vetores do campo elétrico:
+		<a href="JavaScript:document.poisson.setShowFieldVectors(true)" style="text-decoration: none">
+		mostrar</a>&nbsp;
+      <a href="JavaScript:document.poisson.setShowFieldVectors(false)" style="text-decoration: none">
+		esconder</a>&nbsp;&nbsp;&nbsp; </td>
+      <td width="50%" align="center">
+      linhas equipotenciais:
+		<a href="JavaScript:document.poisson.setShowContours(true)" style="text-decoration: none">
+		mostrar</a>&nbsp;
+      <a href="JavaScript:document.poisson.setShowContours(false)" style="text-decoration: none">
+		esconder</a></td>
+    </tr>
+    <tr>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form name="input">
+        <p align="center">
+        <input 
+        type="button" value="inserir valor e começar" onclick="dieconst()">&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>constante dielétrica , <i><font size="3" face="Symbol">e</font></i><font size="3">
+		</font>=
+        <input type="text" name="voltage" size="3" value="10"></b></p>
+      </form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+
+
+<p>Esta animação apresenta um condensador plano ligado a uma bateria (que não é 
+mostrada na animação). A bateria mantém a diferença de potencial constante entre 
+os terminais do condensador, mesmo quando o dielétrico é movido. Os círculos 
+vermelho e azul representam a carga nas placas do condensador e no dielétrico&nbsp; <b> 
+(a posição é dada em metros, a intensidade do campo elétrico em newtons/coulomb 
+e o potencial elétrico em volts)</b>.&nbsp; Um dielétrico amovível pode ser 
+arrastado para dentro ou para fora da região entre placas (para o arrastar, 
+clica no centro do dielétrico).&nbsp; <a href="JavaScript:init()">Início</a>.&nbsp; </p>
+<p align="left" style="margin-bottom: 0">&nbsp;</p>
+
+<p align="left"> Ilustração da autoria de Melissa Dancy e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   mus=0.4;
+   muk=0.2;
+   g=9.8;
+   document.dataForm.reset();
+
+   f=eval(document.dataForm.Forcetext.value);
+   m=eval(document.dataForm.Masstext.value);
+   		a=0;
+   		fr=f;
+   fxstr=m*a;
+   xbs=10*Math.sqrt(m)/20; 
+   yb=10*Math.sqrt(m)/20;
+
+   tmax=Math.sqrt(100/Math.abs(a)); 
+   document.Animator.setDefault();
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setCaption("Indica valores e começa a Animação");
+   document.Animator.setTimeDisplay(false);
+   document.Animator.shiftPixOrigin(-250,-85);
+   document.Animator.setPixPerUnit(10);
+   id0=document.Animator.addObject("rectangle","x="+xbs+",y="+yb+",h="+Math.round(10*Math.sqrt(m))+",w="+Math.round(10*Math.sqrt(m))+",m="+m);
+   document.Animator.setRGB(id0,0,0,0);
+   id1=document.Animator.addObject("rectangle","x="+xbs+",y="+yb+",h="+Math.round(10*Math.sqrt(m)-2)+",w="+Math.round(10*Math.sqrt(m)-2)+",m="+m);
+   document.Animator.setRGB(id1,255,0,0);
+   document.Animator.addObject("rectangle","x=0,y=-1,h=22,w=1200");
+   rid=document.Animator.addObject("rectangle","x=0,y=-1,h=20,w=1200");
+   document.Animator.setRGB(rid,190,160,125);
+   
+   fystr="0.";
+   document.Animator.setForce(id1,fxstr,fystr,xbs,yb,0,0);
+	idline=document.Animator.addObject("line","h=10,v=0");
+	document.Animator.setDisplayOffset(idline,10*Math.sqrt(m)/2,0);
+	document.Animator.setAnimationSlave(id1,idline);
+	idhand=document.Animator.addObject("image","file=images/rpull.gif");
+	document.Animator.setDisplayOffset(idhand,10*Math.sqrt(m)/2+90,5);
+	document.Animator.setAnimationSlave(id1,idhand);
+   id2=document.Animator.addObject("text","text=Velocidade =,calc=vx");
+   document.Animator.setDisplayOffset(id2,0,10+10*Math.sqrt(m)/2);
+   document.Animator.setAnimationSlave(id1,id2);
+   document.Animator.setAutoRefresh(true);
+}
+
+function setnrun() { 
+   if(!loaded) return;
+   mus=0.4;
+   muk=0.2;
+   g=9.8;
+   f=eval(document.dataForm.Forcetext.value);
+   m=eval(document.dataForm.Masstext.value);
+       if( !checkRange(f,0,1000)){
+     alert("A força aplicada deve estar entre 1 N e 1000 N. O valor inserido foi "+f+" N.");
+     return;
+  } 
+
+       if( !checkRange(m,50,250)){
+     alert("A massa deve estar entre 50 kg e 250 kg. O valor inserido foi "+m+" kg.");
+     return;
+  } 
+
+
+   if(f<mus*m*g)
+   {
+   		a=0;
+   		fr=f;
+   }
+   else
+   {
+   		fr=muk*m*g;
+   		a=(f-fr)/(10*m);
+   }
+   fxstr=m*a;
+   xbs=10*Math.sqrt(m)/20; 
+   yb=10*Math.sqrt(m)/20; 
+   tmax=Math.sqrt(10/Math.abs(a)); 
+      document.Animator.setAutoRefresh(false);
+      document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-250,-85);
+   document.Animator.setTimeOneShot(tmax,"Fim da Animação");
+   document.Animator.setPixPerUnit(10);
+      id0=document.Animator.addObject("rectangle","x="+xbs+",y="+yb+",h="+Math.round(10*Math.sqrt(m))+",w="+Math.round(10*Math.sqrt(m))+",m="+m);
+   document.Animator.setRGB(id0,0,0,0);
+   id1=document.Animator.addObject("rectangle","x="+xbs+",y="+yb+",h="+Math.round(10*Math.sqrt(m)-2)+",w="+Math.round(10*Math.sqrt(m)-2)+",m="+m);
+   document.Animator.setRGB(id1,255,0,0);
+   document.Animator.addObject("rectangle","x=0,y=-1,h=22,w=1200");
+   rid=document.Animator.addObject("rectangle","x=0,y=-1,h=20,w=1200");
+   document.Animator.setRGB(rid,190,160,125);
+   
+   fystr="0.";
+   document.Animator.setForce(id1,fxstr,fystr,xbs,yb,0,0);
+    document.Animator.setForce(id0,fxstr,fystr,xbs,yb,0,0);
+
+	idline=document.Animator.addObject("line","h=10,v=0");
+	document.Animator.setDisplayOffset(idline,10*Math.sqrt(m)/2,0);
+	document.Animator.setAnimationSlave(id1,idline);
+	idhand=document.Animator.addObject("image","file=images/rpull.gif");
+	document.Animator.setDisplayOffset(idhand,10*Math.sqrt(m)/2+90,5);
+	document.Animator.setAnimationSlave(id1,idhand);
+   id2=document.Animator.addObject("text","text=Velocidade =,calc=vx");
+   document.Animator.setDisplayOffset(id2,0,10+10*Math.sqrt(m)/2);
+   document.Animator.setAnimationSlave(id1,id2);
+   document.Animator.setAutoRefresh(true);
+   document.Animator.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script> 
+<title>Physlet Physics by Christian and Belloni: Illustration 5.1</title>
+</head>
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 5.1 - Atrito estático e cinético</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" 
+       codebase="../../classes"
+        archive="Physlets.jar" name="Animator" width="500"
+        height="189" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <center>
+  <p><b>
+  <input onclick="JavaScript:setnrun()" type="button" value="registar valores e começar">
+  <input onclick="document.Animator.forward()" type="button" value="continuar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início"></b></p>
+  </center>
+  <p align="center">
+  &nbsp;<b><i>F</i><sub>aplicada </sub>= 
+  <input type="text" name="Forcetext" size="4" value="0"> N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>
+  &nbsp;<b><i>m</i> = <input type="text" name="Masstext" size="4" value="100"> kg&nbsp;&nbsp;
+</b>
+  </p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p align="left">Considera que aplicas uma força a um bloco, até ao ponto em que 
+ele se começa a movimentar. Nesse momento, deixa de haver atrito estático e 
+passa a haver atrito cinético. Nesta animação, podes variar o valor da força 
+aplicada sobre o bloco cuja massa é possível controlar, determinando o valor 
+para o qual o bloco se começa a mover.&nbsp; <a href="JavaScript:initApplet()">
+Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">Iustração da autoria de Mario Belloni.<br>
+Script da autoria de Steve Mellema e Chuck Niederriter e modificado por Mario 
+Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

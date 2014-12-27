@@ -1,0 +1,172 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var timerID=0;
+var pixPerUnit=80;
+var ramp=0;
+var dxRamp=6;
+var dyRamp=0.2;
+var dxRampPix=dxRamp*pixPerUnit; //width of ramp in pixels
+var dyRampPix=dyRamp*pixPerUnit; //height of ramp in pixels
+var ready=false;
+var load=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("addWeightToBoard()",100);
+}
+  	
+function addWeightToBoard(){ 
+      if(!loaded) return;
+       timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		id=document.Animator.getEnsembleID();
+   		document.Animator.setShowCoordinates(id,false);
+		document.Animator.setTimeDisplay(false);
+	   	document.Animator.shiftPixOrigin(0,-30);
+		document.Animator.setPixPerUnit(pixPerUnit);
+		document.Animator.setGridUnit(0);
+		document.Animator.setTimeVisibility(false);
+		load0=document.Animator.addObject("rectangle","x=2.7,y=0.5,w=50,h=70");
+		load=document.Animator.addObject("rectangle","x=2.7,y=0.5,w=48,h=68");
+		document.Animator.setAnimationSlave(load,load0);
+        document.Animator.setRGB(load,255,0,0);
+		ramp0=document.Animator.addObject("rectangle","x=0,y=0,w=481,h=18");
+        ramp=document.Animator.addObject("rectangle","x=0,y=0,w=479,h=16");
+        document.Animator.setRGB(ramp,255,150,0);
+		bearing1a=document.Animator.addObject("circle","r=6,x=0,y=0");
+		bearing2a=document.Animator.addObject("circle","r=6,x=0,y=0");
+		bearing1=document.Animator.addObject("circle","r=5,x=0,y=0");
+		bearing2=document.Animator.addObject("circle","r=5,x=0,y=0");
+		document.Animator.setRGB(bearing1,177,177,177);
+		document.Animator.setRGB(bearing2,177,177,177);
+		fulcrum0=document.Animator.addObject("rectangle","x=-2.7,y=-0.3,w=22,h=32");
+		fulcrum=document.Animator.addObject("rectangle","x=-2.7,y=-0.3,w=20,h=30");
+		document.Animator.setRGB(fulcrum,175,100,0);
+		fulcrum20=document.Animator.addObject("rectangle","x=2.7,y=-0.3,w=22,h=19");
+		fulcrum2=document.Animator.addObject("rectangle","x=2.7,y=-0.3,w=20,h=17");
+		document.Animator.setAnimationSlave(fulcrum2,fulcrum20);
+        document.Animator.setRGB(fulcrum2,175,100,0);
+		document.Animator.setConstrainY(fulcrum2,-0.3,-1,2.7);
+
+		document.Animator.setAnimationSlave(fulcrum2,bearing1a);
+		document.Animator.setAnimationSlave(fulcrum2,bearing2a);
+		document.Animator.setDisplayOffset(bearing1a,0,10);
+		document.Animator.setDisplayOffset(bearing2a,0,-10);
+	    document.Animator.setAnimationSlave(fulcrum2,bearing1);
+		document.Animator.setAnimationSlave(fulcrum2,bearing2);
+		document.Animator.setDisplayOffset(bearing1,0,10);
+		document.Animator.setDisplayOffset(bearing2,0,-10);
+		
+		document.Animator.setShowConstraintPath(fulcrum2,true);
+		document.Animator.setDragable(fulcrum2,true);
+        axle=document.Animator.addObject("circle","r=4,x=-0.01,y=0");
+		ground=document.Animator.addObject("rectangle","x=0,y=-1,w=800,h=80");
+		document.Animator.setRGB(ground,0,150,0);
+		f0=document.Animator.addObject("arrow2","x=2.7,y=0,v=-0.2,h=0,thickness=2");
+		f2=document.Animator.addObject("arrow2","x=2.7,y=0,v=1.0,h=0,thickness=2");
+		
+		
+		document.DataTable.setSeriesLabel(1,"d (m)"); 
+     	document.DataTable.setSeriesLabel(2,"F2 (N)");
+     	document.DataTable.setSeriesLabel(3,"F_caixa (N)");
+     	document.DataTable.sizeToFit(true);
+	  	tid=document.DataTable.getTableID();   
+		
+		document.Animator.makeDataConnection(fulcrum2,tid,1,"x+2.7","0");    
+        document.Animator.makeDataConnection(fulcrum2,tid,2,"9.8*(51.3)/(2.7+x)","0");  
+        document.Animator.makeDataConnection(fulcrum2,tid,3,"-18.6","0"); 
+        
+		document.Animator.makeDataConnection(fulcrum2,f2,2,"0","0.1*(51.3)/(2.7+x)");  
+		document.Animator.makeDataConnection(fulcrum2,f2,1,"x","0"); 
+		document.Animator.setAutoRefresh(true);
+		document.DataTable.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+        
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 13.13</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 13.13</h2>
+<div align="center">
+  <center>
+  <table bgColor="#c0c0c0" border="1">
+    <tr>
+      <td>
+    <applet CODEBASE="../../classes"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="600" HEIGHT="300"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="20">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+            <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+    <p align="center">
+             <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="DataTable" width="477" height="45"
+        hspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="true">
+          <param name="CellWidth" value="100">
+          <param name="NumRows" value="1">
+          <param name="NumCols" value="3">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">Uma caixa de massa 2 kg, está em repouso a 0,3 m do extremo 
+direito de uma prancha de massa desconhecida. Dois suportes exercem forças na 
+prancha <b> (a posição é dada em metros)</b>.&nbsp;A prancha tem um comprimento total 
+de 6 m e os suportes estão inicialmente a 0,3 m dos extremos da prancha.&nbsp;
+<a href="javascript:onclick=addWeightToBoard()">Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">(<i>Dica: uma barra só está em equilíbrio, se ela estiver <u>simultaneamente</u> 
+em equilíbrio quanto à translação e à rotação</i>). </p>
+
+
+<p align="left">&nbsp;</p>
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

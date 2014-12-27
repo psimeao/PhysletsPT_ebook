@@ -1,0 +1,346 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+
+<script LANGUAGE="JavaScript">
+var cid=0;
+var timerID=0;
+potStr="x";
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;  
+   document.parameters.reset();
+   document.efield.setAutoRefresh(false);      
+   document.efield.setDefault();
+   document.efield.setShowTime(false);
+   document.efield.setShowContours(false);
+   document.efield.setShowFieldVectors(false);
+   document.efield.setShowVOnDrag(false);
+   capid=document.efield.addObject("caption","text=Seleciona uma Animação");
+
+   document.efield.addObject("circle","r=2,x=0,y=0");
+   document.efield.addObject("circle","r=2,x=10,y=0");
+   document.efield.addObject("circle","r=2,x=0,y=10");
+   document.efield.addObject("circle","r=2,x=10,y=10");
+   document.efield.addObject("circle","r=2,x=-10,y=0");
+   document.efield.addObject("circle","r=2,x=0,y=-10");
+   document.efield.addObject("circle","r=2,x=-10,y=-10");
+   document.efield.addObject("circle","r=2,x=10,y=-10");
+   document.efield.addObject("circle","r=2,x=-10,y=10");
+   cid=document.efield.setSketchMode(true);
+   document.efield.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"Fx (N)");
+    document.DataTable.setSeriesLabel(4,"Fy (N)");  
+    document.DataTable.setSeriesLabel(5,"W (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    document.Bar.setMin(-160);
+    document.Bar.setMax(160);
+    document.Bar.setPosRGB(0,0,255);
+    document.Bar.setNegRGB(0,0,155);
+    bid=document.Bar.getID(); 
+    
+    document.efield.deleteDataConnections();
+    
+    document.efield.updateDataConnections();
+}
+
+
+function pathIntegral(pot){  
+   if(!loaded) return;
+   document.parameters.pot.value=pot; 
+   
+      validpot=document.datagraph.isValidFunction(pot,"x,y");
+   if(!validpot){
+       alert("Esta função não é válida: "+pot+".");
+       return;
+   }
+
+
+   potStr=pot;
+   document.efield.setAutoRefresh(false);      
+   document.efield.setDefault();
+   document.efield.setShowTime(false);
+   document.efield.setShowContours(false);
+   document.efield.setShowFieldVectors(false);
+   document.efield.setShowVOnDrag(false);
+   document.efield.setPotential(potStr,-13,13,-13,13);
+   document.efield.addObject("circle","r=2,x=0,y=0");
+   document.efield.addObject("circle","r=2,x=10,y=0");
+   document.efield.addObject("circle","r=2,x=0,y=10");
+   document.efield.addObject("circle","r=2,x=10,y=10");
+   document.efield.addObject("circle","r=2,x=-10,y=0");
+   document.efield.addObject("circle","r=2,x=0,y=-10");
+   document.efield.addObject("circle","r=2,x=-10,y=-10");
+   document.efield.addObject("circle","r=2,x=10,y=-10");
+   document.efield.addObject("circle","r=2,x=-10,y=10");
+   capid=document.efield.addObject("caption","text=Ep = "+potStr);
+   
+   cid=document.efield.setSketchMode(true);
+   document.efield.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"Fx (N)");
+    document.DataTable.setSeriesLabel(4,"Fy (N)");  
+    document.DataTable.setSeriesLabel(5,"W (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+
+    document.Integrator.setLineIntegralMode("fx","fy");
+
+    fid=document.Integrator.getID();
+    
+    document.Bar.setMin(-160);
+    document.Bar.setMax(160);
+    document.Bar.setPosRGB(0,0,255);
+    document.Bar.setNegRGB(0,0,155);
+    bid=document.Bar.getID(); 
+    
+    document.Integrator.deleteDataConnections();
+    document.efield.deleteDataConnections();
+    
+    document.efield.makeDataConnection(cid,fid,1,"x","y");
+
+    document.efield.makeDataConnection(cid,tid,1,"x","0"); 
+    document.efield.makeDataConnection(cid,tid,2,"y","0"); 
+    document.efield.makeDataConnection(cid,tid,3,"fx","0"); 
+    document.efield.makeDataConnection(cid,tid,4,"fy","0"); 
+    document.Integrator.makeDataConnection(fid,tid,5,"integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"integral","0"); 
+    
+    document.efield.updateDataConnections();
+}
+function resetIntegral(){ 
+	if(!loaded) return;
+	document.Integrator.reset();
+	document.efield.updateDataConnections();      
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 7.7</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 7.7 - Explorando funções de Energia Potencial<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="filters.Integrator.class" name="Integrator" width="0" height="0"
+hspace="0" vspace="0" align="middle" mayscript>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <param name="Independent" value="x">
+  <param name="Dependent" value="y">
+  <param name="Differential" value="dx">
+  <param name="Integrand" value="1">
+</applet><applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="datagraph" width="0" height="0"
+        hspace="0" vspace="0" align="middle" mayscript>
+          
+          
+          
+          
+          
+          
+          
+          <param name="Function">
+          <param name="ShowControls" value="false">
+          <param name="DataFile">
+        </applet>
+</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="eField4.EField.class" name="efield" width="250" height="250" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.02">
+          <param name="ShowControls" value="false">
+          <param name="ShowContours" value="false">
+          <param name="ShowFieldLines" value="false">
+          <param name="ShowFieldVectors" value="false">
+          <param name="ShowLabels" value="false">
+          <param name="ShowCharge" value="true">
+          <param name="Potential" value="0">
+          <param name="Range" value="-13,13,-13,13">
+          <param name="GridSize" value="64">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="efield,Bar,DataTable,datagraph,Integrator">
+        <param name="Resources" value="efield_pt.rc">
+        </applet>
+      </td>
+      <td align="center" rowspan="2">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="15" height="250" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="270" height="45"
+hspace="0" vspace="0" align="middle">
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="5">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="parameters">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="Reiniciar integral" name="resetBtn"
+    onclick="resetIntegral()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <center>
+    <p><b><i>E</i>p(<i>x,y</i>) = <input type="text" name="pot" size="20" value="0">&nbsp; 
+    <input
+    type="button" value="registar Ep" name="setBtn"
+    onclick="pathIntegral(document.parameters.pot.value)"></b></p>
+    </center>
+  </div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center"><i>&nbsp;
+		<a href="JavaScript:pathIntegral('9.8*y')" style="text-decoration: none">
+		E</a></i><a href="JavaScript:pathIntegral('9.8*y')" style="text-decoration: none">p(<i>x,y</i>) 
+		= 9.8*<i>y</i></a><i>&nbsp; </i></td>
+      <td align="center"><i>&nbsp;
+		<a href="JavaScript:pathIntegral('x*x')" style="text-decoration: none">E</a></i><a href="JavaScript:pathIntegral('x*x')" style="text-decoration: none">p(<i>x,y</i>) 
+		= 
+		<i>x</i>*<i>x</i></a><i>&nbsp; </i></td>
+      <td align="center"><i>&nbsp;
+		<a href="JavaScript:pathIntegral('y*x')" style="text-decoration: none">E</a></i><a href="JavaScript:pathIntegral('y*x')" style="text-decoration: none">p(<i>x,y</i>) 
+		= 
+		<i>x</i>*<i>y</i></a><i>&nbsp; </i></td>
+      <td align="center"><i>&nbsp;
+		<a href="JavaScript:pathIntegral('x*x+y*y')" style="text-decoration: none">
+		E</a></i><a href="JavaScript:pathIntegral('x*x+y*y')" style="text-decoration: none">p(<i>x,y</i>) 
+		=<i> x</i>*<i>x</i>+<i>y</i>*<i>y</i></a><i>&nbsp;
+		</i></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>Seleciona uma das possíveis funções para a energia potencial. Arrasta com o 
+rato o cursor em forma de cruz. O gráfico de barras à direita mostra o trabalho 
+realizado, no percurso, pela força correspondente à função da energia potencial 
+escolhida.&nbsp;Para referência, são apresentados círculos a cada 10 m, os quais 
+formam uma grelha de coordenadas <b>
+(a posição é dada em metros e o resultado do integral no gráfico é dado em 
+joules)</b>.
+<a href="JavaScript:initApplet()">Início</a></p>
+<p><i>NOTA: O trabalho ( W ) realizado pela força é dado pelo integral da força 
+ao longo do percurso descrito pelo cursor ( <font face="Arial">W = ∫</font><b>F</b>.<b>ds</b>&nbsp; 
+).</i></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var fid=0;
+var bid=0;
+var gid=0;
+var gid3=0;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initGraph()",100);
+}
+  	
+function initGraph(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.slider1.setValue(0.5);
+   	freq=document.slider1.getValue();
+	document.slider2.setValue(4);
+   	ampl=document.slider2.getValue();
+
+	document.Animator.setDefault();
+	bid=document.Animator.addObject("circle","r=10,x="+ampl+"*sin("+freq+"*t),y=0");
+	cid=document.Animator.getClockID();
+	
+
+   document.DataGraph.setDefault();
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-10,10);
+   document.DataGraph.setMinMaxY(-5,5);
+   document.DataGraph.setShowAxes(false);
+	document.DataGraph.setExternalClock(cid);   
+  document.DataGraph.addObject("image","file=images/loop2.gif,x=-3,y=3");  
+  fid=document.DataGraph.addObject("vectorfield","fx="+ampl+"*sin("+freq+"*t),fy=0,n=10"); 
+ 
+      	gid1=document.DataGraph.getGraphID();
+      	
+ 	document.DataGraph2.setAutoRefresh(false);
+   document.DataGraph2.setDefault();
+   document.DataGraph2.clearSeries(1);
+   document.DataGraph2.setSeriesStyle(1,true,3);
+   document.DataGraph2.setMarkerSize(1,0.6);
+   document.DataGraph2.setLastPointMarker(1,true);
+   document.DataGraph2.setTitle("Campo Magnético vs. Tempo"); 
+ document.DataGraph2.setLabelX("Tempo (s)");  
+  document.DataGraph2.setLabelY("B{_x} (mT)");
+ document.DataGraph2.setAutoscaleY(false);
+  document.DataGraph2.setMinMaxY(-10,10);
+  document.DataGraph2.setStripChart(1,400,true); 
+  document.DataGraph2.setAutoRefresh(true);
+   gid=document.DataGraph2.getGraphID();
+
+  document.DataGraph3.setAutoRefresh(false);
+   document.DataGraph3.setDefault();
+   document.DataGraph3.clearSeries(1);
+   document.DataGraph3.setSeriesStyle(1,true,3);
+   document.DataGraph3.setMarkerSize(1,0.6);
+   document.DataGraph3.setLastPointMarker(1,true);
+   document.DataGraph3.setSeriesRGB(1,255,0,0);
+   document.DataGraph3.setTitle("fem Induzida vs. Tempo"); 
+ document.DataGraph3.setLabelX("Tempo (s)");  
+  document.DataGraph3.setLabelY("fem (mV)");
+ document.DataGraph3.setAutoscaleY(false);
+  document.DataGraph3.setMinMaxY(-200,200);
+   document.DataGraph3.setStripChart(1,400,true);  
+    gid3=document.DataGraph3.getGraphID();
+     document.DataGraph3.setAutoRefresh(true);
+ 
+
+  	document.Animator.deleteDataConnections();
+  	document.Animator.makeDataConnection(bid,gid,1,"t","x");
+	document.Animator.makeDataConnection(bid,gid3,1,"t","-14.7*vx");
+  	document.Animator.updateDataConnections();
+    	 document.slider1.setJSFunction("slidermove1()");
+   	    	 document.slider2.setJSFunction("slidermove1()");
+
+}
+
+
+function slidermove1() {
+	 if(timerID==0){
+	 timerID=setTimeout("slidermove11()",100);
+}	
+}
+
+ 
+function slidermove11() {
+	timerID=0;
+	freq=document.slider1.getValue();
+   	ampl=document.slider2.getValue();
+   	document.DataGraph.deleteObject(fid);
+	bid=document.Animator.addObject("circle","r=10,x="+ampl+"*sin("+freq+"*t),y=0");
+	fid=document.DataGraph.addObject("vectorfield","fx="+ampl+"*sin("+freq+"*t),fy=0,n=10"); 
+	document.Animator.deleteDataConnections();
+  document.Animator.makeDataConnection(bid,gid,1,"t","x");
+  	document.Animator.makeDataConnection(bid,gid3,1,"t","-14.7*vx");
+  document.Animator.updateDataConnections();
+   	document.Animator.forward();
+	
+	}
+	
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 29.4</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Exploração 29.4 - <i>Loop</i> num Campo Magnético variável no 
+tempo<applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+     code="animator4.Animator.class" 
+        name="Animator" width="0"  height="0" 
+        hspace="0" vspace="0" align="middle" mayscript>
+          
+          
+          
+          
+          
+          
+          
+          <param name="FPS" value="10">
+          <param name="dt" value="0.1">
+          <param name="GridUnit" value="0">
+          <param name="showControls" value="false">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph,DataGraph2,DataGraph3,slider1,slider2">
+        <param name="Resources" value="animator_pt.rc">
+      </applet></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td rowspan="2">
+
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraph"  
+      width="200" height="306" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="AutoScaleX" value="false">
+        <param name="AutoScaleY" value="false">
+        <param name="ShowControls" value="false">
+      </applet></td>
+      <td>
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraph2" 
+      width="300" height="150" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraph3" 
+      width="300" height="150" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td align="center">
+   <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider2"  width="200" height="25" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="1">
+            <param name="ShowControls" value="false">
+            <param name="max" value="7">
+            <param name="value" value="4">
+            <param name="label" value="|B| Máx">
+          </applet></td>
+      <td align="center"><applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider1"  width="200" height="25" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="0">
+            <param name="ShowControls" value="false">
+            <param name="max" value="2">
+            <param name="value" value="0.5">
+            <param name="label" value="Frequência">
+          </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+<p align="center">
+        <input type="button" value="começar" onclick="document.Animator.forward()"><input 
+        type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" 
+        value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input 
+        type="button" value="início" onclick="document.Animator.reset()">
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p> <b>Descrição da Animação</b></p>
+<p style="margin-bottom: 0"> A animação mostra um <i>loop</i> de fio condutor, 
+numa zona em que o campo magnético varia ao longo do tempo.&nbsp;Os gráficos mostram 
+o campo magnético horizontal e a força eletromotriz (fem) induzida no <i>loop</i>, 
+em função do tempo <b>(a posição é dada em metros, o tempo em segundos, o campo 
+magnético em militesla, 10<sup>-3</sup> 
+T, e a fem em milivolts)</b>.&nbsp;&nbsp; <a href="JavaScript:initGraph()">
+Início</a>&nbsp; </p>
+<p style="margin-top: 0; margin-bottom: 0"> &nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0"> &nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

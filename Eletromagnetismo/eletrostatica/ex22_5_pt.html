@@ -1,0 +1,160 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var id1=0;
+var id2=0;
+var iid=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.animator.setAutoRefresh(false);  
+   document.animator.setDefault();
+   document.animator.setOneShot(0,20, "Animação Parada");  
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+   document.animator.shiftPixOrigin(0,25);
+
+   id1a=document.animator.addObject("circle","x=10, r=8");
+   id1=document.animator.addObject("charge","x=10, r=7, m=2,q=10");
+   document.animator.setAnimationSlave(id1,id1a);
+   document.animator.setForce(id1,"0","-9.8*m",10,0,0,0);
+   document.animator.setConstrainR(id1,10.0,0,0);
+   document.animator.setShowConstraintPath(id1, false);
+   document.animator.setRGB(id1,255,128,128);
+   document.animator.setDragable(id1,false);
+   
+   id2a=document.animator.addObject("circle","x=10, r=8");
+   id2=document.animator.addObject("charge","x=10, r=7, m=2,q=10");
+   document.animator.setAnimationSlave(id2,id2a);
+   document.animator.setForce(id2,"0","-9.8*m",-10,0,0,0);
+   document.animator.setConstrainR(id2,10.0,0,0);
+   document.animator.setShowConstraintPath(id2, false);
+   document.animator.setRGB(id2,255,128,128);
+   document.animator.setDragable(id2,false);
+   
+   id3=document.animator.addObject("circle","x=0, y=0, r=2");
+   document.animator.addObject("connectorline","id1="+id1+",id2="+id3);
+   document.animator.addObject("connectorline","id1="+id2+",id2="+id3);
+   document.animator.addInteraction(id1, id2, "1000*step(-r+1.0)", "r");
+   
+   document.animator.addObject("caption","text=Eletroscópio");
+   document.animator.setAutoRefresh(true);
+   
+	document.slider.setValue(10);
+	document.slider.setJSFunction("sliderMoved()");     
+}
+function dampSpeed(){
+     document.animator.setSpeed(id1,0);  
+     document.animator.setSpeed(id2,0); 
+}
+
+function play(){
+     //document.animator.setSpeed(id1,0); 
+     document.animator.forward(); 
+}
+
+function sliderMoved(){
+	 if(timerID==0)timerID=setTimeout("sliderMoved2()",200);
+}
+
+function sliderMoved2(){
+	q=eval(document.slider.getValue());
+	document.animator.setCharge(id1,q);
+	document.animator.setCharge(id2,q);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 22.5</title>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Exploração 22.5 - Eletroscópio Pendular</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes" 
+      archive="Physlets.jar" name="animator" 
+      width="300" height="250" hspace="0" vspace="0" align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.05">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+               <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,slider">
+        <param name="resources" value="animator_pt.rc">
+      </applet> </td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" 
+      width="300" height="25" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="min" value="-50">
+        <param name="max" value="50">
+        <param name="value" value="10">
+        <param name="label" value="Carga">
+        <param name="resources" value="slider_pt.rc">
+     </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center"></p>
+<form name="SpecForm">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="velocidade = 0" onclick="dampSpeed()">
+    <input type="button" value="começar" onclick="play()"><input type="button" 
+    value="pausa" onclick="document.animator.pause()"><input type="button" 
+    value="início" onclick="document.animator.reset()">&nbsp; </p>
+    </center>
+  </div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Duas esferas idênticas são montadas num sistema pendular, conforme mostra a 
+animação&nbsp; <b>
+(a posição é dada em metros e o tempo em segundos)</b>.&nbsp; A carga elétrica 
+em cada esfera, em mC, pode ser alterada usando o cursor apresentado na animação. 
+A posição pode ser determinada usando o rato.&nbsp;
+<a href="JavaScript:initApplet()">
+Início</a></p>
+<p>&nbsp;</p>
+<p align="left"> © 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

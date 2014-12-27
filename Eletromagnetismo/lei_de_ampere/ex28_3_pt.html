@@ -1,0 +1,191 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var c2=0;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("field()",100);
+}
+  	
+function field(){ 
+      if(!loaded) return;
+       
+timerID=0;
+	document.BField.setAutoRefresh(false);
+   document.BField.setDefault();
+   document.slider1.setValue(0);
+   	i1=document.slider1.getValue();
+   document.BField.setShowBOnDrag(true);
+   document.BField.setShowFieldLineOnDoubleClick(true);
+
+	c1=document.BField.addObject("wire","x=-1,y=-2,i=2");
+   document.BField.setDragable(c1,false);
+   document.BField.setShowFVector(c1,true);
+	document.BField.setRGB(c1,180,0,180);
+   c1=document.BField.addObject("wire","x=3,y=1,i=3");
+   document.BField.setDragable(c1,false);
+   document.BField.setShowFVector(c1,true);
+	document.BField.setRGB(c1,0,200,0);
+     document.BField.setShowFieldVectors(true); 
+	c2=document.BField.addObject("wire","x=-2,y=2,i="+i1);
+	document.BField.setRGB(c2,120,120,120);
+   document.BField.setDragable(c2,true); 
+   document.BField.setShowFVector(c2,true);
+   document.slider1.setJSFunction("slidermove1()");
+   document.BField.setAutoRefresh(true);
+}
+
+
+function reset(){
+if(!loaded) return;
+timerID=0;
+	document.BField.setAutoRefresh(false);
+   document.BField.setDefault();
+   document.slider1.setValue(0);
+   	i1=document.slider1.getValue();
+   document.BField.setShowBOnDrag(true);
+   document.BField.setShowFieldLineOnDoubleClick(true);
+   document.BField.addObject("text","text=Começar a Animação,x=-2,y=4");
+   document.BField.setAutoRefresh(true);
+
+}
+
+
+function field2(){
+if(!loaded) return;
+timerID=0;
+	document.BField.setAutoRefresh(false);
+   document.BField.setDefault();
+   document.slider1.setValue(0);
+   	i1=document.slider1.getValue();
+   document.BField.setShowBOnDrag(true);
+   document.BField.setShowFieldLineOnDoubleClick(true);
+
+	c1=document.BField.addObject("wire","x=-1,y=-2,i=2");
+   document.BField.setDragable(c1,false);
+   document.BField.setShowFVector(c1,true);
+	document.BField.setRGB(c1,180,0,180);
+   c1=document.BField.addObject("wire","x=3,y=1,i=3");
+   document.BField.setDragable(c1,false);
+   document.BField.setShowFVector(c1,true);
+	document.BField.setRGB(c1,0,200,0);
+
+	c1=document.BField.addObject("wire","x=-2,y=2,i=-2");
+   document.BField.setDragable(c1,false);
+   document.BField.setShowFVector(c1,true);
+	document.BField.setRGB(c1,200,200,0);
+
+     document.BField.setShowFieldVectors(true); 
+	c2=document.BField.addObject("wire","x=-2,y=1,i="+i1);
+	document.BField.setRGB(c2,120,120,120);
+   document.BField.setDragable(c2,true); 
+   document.BField.setShowFVector(c2,true);
+   document.slider1.setJSFunction("slidermove1()");
+   document.BField.setAutoRefresh(true);
+}
+
+function slidermove1() {
+	 if(timerID==0){
+	 timerID=setTimeout("slidermove11()",100);
+}	
+}
+
+ 
+function slidermove11() {
+	timerID=0;
+	i1=document.slider1.getValue();
+	document.BField.setCurrent(c2,i1);
+	}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 28.3</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 28.3 - Configurações de fios para uma força 
+resultante nula</h2>
+<form><div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td colspan="2">
+      <applet CODEBASE="../../classes/"  
+      archive="Physlets.jar"  
+      CODE="bfield.BField.class" NAME="BField" WIDTH="350" 
+      HEIGHT="300" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField,slider1">
+        <param name="Resources" value="bfield_pt.rc">
+      </applet>&nbsp;
+          </td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+          archive="Physlets.jar" 
+          name="slider1"  width="300" height="19" hspace="0" vspace="0" align="absmiddle" mayscript>
+            <param name="min" value="-3">
+            <param name="ShowControls" value="true">
+            <param name="max" value="3">
+            <param name="value" value="0">
+            <param name="label" value="corrente (A)">
+          </applet></td>
+      <td>
+      <input type="button" value="I = 0" onclick="document.slider1.setValue(0)"></td>
+    </tr>
+  </table>
+  </center>
+</div></form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+
+<p>O fio roxo e o fio verde têm intensidades da corrente constantes e posições 
+fixas. Podes alterar o valor da intensidade da corrente no fio cinzento usando o 
+cursor; também podes arrastar o fio cinzento para qualquer posição. A animação 
+apresenta os vetores campo magnético, bem como a força exercida nos fios. Podes 
+ainda visualizar as linhas de campo magnético, clicando duas vezes na animação.&nbsp;&nbsp;
+<a href="JavaScript:field()">Início</a>.</p>
+<p>Tenta, depois, uma <a href="JavaScript:field2()">configuração diferente</a>.</p>
+<p>&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

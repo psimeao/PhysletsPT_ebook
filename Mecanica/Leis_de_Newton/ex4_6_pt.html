@@ -1,0 +1,228 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var showVelocityVector=false;
+var showAccelerationVector=true;
+var showAccelerationComponents=false;
+var showTangent=false;
+var aScale=3;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+		
+		with (Math) {
+			
+			v=3.7;
+			ang=23;
+			alpha=3;
+			x0=-8;
+			y0=0;
+			vx=v*cos(ang*PI/180);
+			vy=v*sin(ang*PI/180);
+			ay=-9.8*sin(alpha*PI/180);
+			//a=-1;
+		}
+		
+		coef=0.09;
+		frx=-coef*9.8+"*m*vx/sqrt(vx^2+vy^2)*step(sqrt(vx^2+vy^2)-0.00001)";
+		fry=-coef*9.8+"*m*vy/sqrt(vx^2+vy^2)";
+		
+		
+		Fx="0+"+frx;
+		Fy="(m*"+ay+"+"+fry+")*step(sqrt(vx^2+vy^2)-0.00001)";
+		
+		w="m*"+ay;
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(+180,-20);
+		document.Animator.setPixPerUnit(50);
+		document.Animator.setGridUnit(0.5);
+		background=document.Animator.addObject("rectangle","x=-4,y=1.75,w=600,h=800");
+		document.Animator.setRGB(background,0,150,0);
+		document.Animator.addObject("circle","r=10,x=0,y=0");
+		hole=document.Animator.addObject("circle","r=9,x=0,y=0");
+		document.Animator.setRGB(hole,150,150,150);
+		
+		id0=document.Animator.addObject("circle","r=6,m=0.046");
+		document.Animator.setForce(id0,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id0,0,0,0);
+               id=document.Animator.addObject("circle","r=5,m=0.046");
+		document.Animator.setForce(id,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id,255,255,255);		
+		
+		xaxis=document.Animator.addObject("arrow","v=0,h=1");
+		yaxis=document.Animator.addObject("arrow","v=1,h=0");
+		document.Animator.setRGB(xaxis,255,255,255);
+		document.Animator.setRGB(yaxis,255,255,255);
+		
+		xtext=document.Animator.addObject("text","x=0.8,y=-0.5,text=+x");
+		ytext=document.Animator.addObject("text","y=0.8,x=-0.5,text=+y");
+		document.Animator.setRGB(xtext,255,255,255);
+		document.Animator.setRGB(ytext,255,255,255);
+		
+		if(showVelocityVector==true){
+			vVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,vVector,1,"x","y");
+			document.Animator.makeDataConnection(id,vVector,2,"vx","vy");
+			document.Animator.setRGB(vVector,0,0,255);
+		}
+
+		if(showAccelerationVector==true){
+			aVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aVector,2,"ax*"+aScale,"ay*"+aScale);
+			document.Animator.setRGB(aVector,250,100,0);
+		}
+
+		if(showAccelerationComponents==true){
+
+			aRadVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aRadVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aRadVector,2,"-sin(atan2(vy,vx))*(-vy*ax+vx*ay)/sqrt(vx*vx+vy*vy)*"+aScale,"cos(atan2(vy,vx))*(-vy*ax+vx*ay)/sqrt(vx*vx+vy*vy)*"+aScale);
+			document.Animator.setRGB(aRadVector,255,0,0);
+
+			aTanVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aTanVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aTanVector,2,"cos(atan2(vy,vx))*(vx*ax+vy*ay)/sqrt(vx*vx+vy*vy)*"+aScale,"sin(atan2(vy,vx))*(vx*ax+vy*ay)/sqrt(vx*vx+vy*vy)*"+aScale);
+			document.Animator.setRGB(aTanVector,255,255,0);
+
+		}
+		
+		if(showTangent==true) {
+			tanLine=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine,1,"x","y");
+	//		document.Animator.makeDataConnection(id,tanLine,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine,2,"cos(atan2(vy,vx))*4","sin(atan2(vy,vx))*4");
+			tanLine2=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine2,1,"x","y");
+	//		document.Animator.makeDataConnection(id,tanLine2,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine2,2,"-cos(atan2(vy,vx))*4","-sin(atan2(vy,vx))*4");
+		}
+		
+		document.Animator.setTrail(id,500);
+
+//datatable
+		    document.DataTable.setDefault();
+		    document.DataTable.setSeriesLabel(1,"a_x (m/s^2)");
+		    document.DataTable.setSeriesLabel(2,"a_y (m/s^2)");
+		    document.DataTable.setSeriesLabel(3,"t (s)");  
+		    document.DataTable.sizeToFit(true);
+		    table=document.DataTable.getTableID();  
+		    document.Animator.makeDataConnection(id,table,1,"ax","0"); 
+		    document.Animator.makeDataConnection(id,table,2,"ay","0"); 
+		    document.Animator.makeDataConnection(id,table,3,"t","0"); 
+//end datatable
+
+		
+		document.Animator.setOneShot(0,6,"Fim da Animação");
+		
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 4.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 4.6 - Mandar a bola de golfe para o buraco</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <tr>
+    <td align="center">
+<applet width="500" height="343" code="animator4.Animator.class" codebase="../../classes/" 
+     archive="Physlets.jar" align="baseline"  name="Animator" mayscript>
+                  <param name="FPS" value="20">
+                  <param name="dt" value="0.02">
+                  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+  </tr>
+  <tr>
+  <td align="center">
+  <applet codebase="../../classes/"
+		archive="Physlets.jar"
+		code="dataTable.DataTable.class" name="DataTable" width="326" height="45"
+		hspace="0" vspace="0" align="middle" mayscript>
+		  <param name="ShowScrollBars" value="false">
+		  <param name="LastOnTop" value="true">
+		  <param name="CellWidth" value="60">
+		  <param name="NumRows" value="1">
+		  <param name="NumCols" value="3">
+		  <param name="ShowControls" value="false">
+		  <param name="ShowRowHeader" value="false">
+		  <param name="ShowColHeader" value="true">
+		  <param name="SizeToFit" value="true">
+		</applet>
+
+  </td>
+  </tr>
+</table>
+</center></div>
+
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+	<p align="left"><b>Descrição da Animação</b></p>
+
+<p>Uma bola de golfe rola sobre o relvado, em direção ao buraco. A animação 
+apresenta as posições da bola e do buraco vistos de cima. O vetor aceleração da 
+bola (cor de laranja) é representado na animação, enquanto que os valores das 
+componentes da aceleração da bola são registados na tabela.</p>
+
+<p>
+De acordo com a segunda lei de Newton, a aceleração da bola tem a mesma direção 
+que a da força resultante aplicada sobre esta. Isto significa que se souberes a 
+massa da bola de golfe e a sua aceleração, podes calcular a força resultante que 
+atua sobre a bola.&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.&nbsp; 
+</p>
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">
+Autoria de Aaron Titus. <br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

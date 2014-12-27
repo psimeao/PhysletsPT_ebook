@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 37.9</title>
+<script language="JavaScript">
+var layerID=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("airGlass()",100);
+}
+  	
+function airGlass(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.slider.setDefault();
+    document.dataGraph.setAutoRefresh(false);
+    document.reflection.setAutoRefresh(false);
+    document.reflection.setDefault();
+    document.reflection.setWavelength(16);   
+    id1=document.reflection.addObject("film","n=1,w=14");
+    document.reflection.setShowValue(id1,false);
+    id2=document.reflection.addObject("film","n=2,w=4.7");
+    document.reflection.setShowValue(id2,false);
+    document.reflection.setDragable(id2,false);
+    layerID=id2;
+    id3=document.reflection.addObject("film","n=1,w=19");
+    document.reflection.setShowValue(id3,false);
+    document.reflection.setShowLWave(true,30);
+    document.reflection.setShowRWave(true,-30);
+    document.reflection.setShowWave(false);
+    document.reflection.setRGB(id2,200,200,255);
+    document.reflection.setMessage("comprimento de onda da luz no ar = 16 unidades");
+    document.reflection.setAutoRefresh(true); 
+    
+    document.dataGraph.setAutoscaleX(true);
+    document.dataGraph.setAutoscaleY(true);
+    document.dataGraph.setMinMaxX(0,1);
+    document.dataGraph.setMinMaxY(-1,0);
+    document.dataGraph.clearSeries(1);
+    document.dataGraph.setAddRepeatedDatum(1,false);
+    document.dataGraph.setSeriesStyle(1,true,3);
+    document.dataGraph.setMarkerSize(1,0.4);
+    document.dataGraph.setSorted(1,true);
+    document.dataGraph.setLastPointMarker(1,true);
+    document.dataGraph.setSeriesRGB(1,0,0,0);
+    document.dataGraph.setLabelY("Fração de I_0"); 
+    document.dataGraph.setLabelX("Largura (unidades arbitrárias)"); 
+    document.dataGraph.setTitle("Intensidade da Luz Transmitida"); 
+    gid=document.dataGraph.getGraphID();
+    document.dataGraph.setAutoRefresh(true);
+    
+    
+    document.reflection.deleteDataConnections(); 
+	 document.reflection.makeDataConnection(id2,gid,1,"width","transmission"); 
+    document.reflection.setAutoRefresh(true);
+    document.reflection.forward();
+    document.slider.setValue(4.7);
+    document.slider.setJSFunction("sliderMoved()");
+    }
+
+function sliderMoved(){
+	 if(timerID==0)timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+	width=document.slider.getValue();
+	document.reflection.setMediaWidth(layerID,eval(width) );
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<div align="center">
+  <h2>Problema 37.9</h2>
+</div>
+<p align="center"></p>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet code="reflection.ReflectionApplet.class" codebase="../../classes" 
+    align="middle" width="500" height="150" 
+    archive="Physlets.jar" 
+    name="reflection" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="PPU" value="10">
+      <param name="MaxAmp" value="3">
+      <param name="Wavelength" value="5">
+      <param name="WaveVelocity" value="5">
+      <param name="FPS" value="10">
+       <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="reflection,dataGraph,slider">
+
+    </applet> </td>
+  </tr>
+  <tr>
+    <td>
+    <applet codebase="../../classes/" 
+    archive="Physlets.jar" 
+    code="dataGraph.DataGraph.class" name="dataGraph" 
+    width="500" height="150" hspace="0" vspace="0" align="middle" mayscript>
+      <param name="Function">
+      <param name="XMin" value="-1">
+      <param name="XMax" value="1">
+      <param name="YMin" value="-1">
+      <param name="YMax" value="1">
+      <param name="DataFile">
+      <param name="AutoScaleX" value="false">
+      <param name="AutoScaleY" value="true">
+      <param name="ShowControls" value="false">
+    </applet></td>
+  </tr>
+  <tr>
+    <td>
+    <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+    archive="Physlets.jar" 
+    name="slider" width="500" height="25" hspace="0" vspace="0" align="middle" 
+    mayscript>
+      <param name="min" value="0.1">
+      <param name="max" value="20.0">
+      <param name="value" value="1.5">
+      <param name="label" value="Largura (unidades arbitrárias)">
+    </applet> </td>
+  </tr>
+</table>
+</center>
+<form name="dataForm">
+  <h4 align="center">&nbsp;<input type="button" value="começar" 
+  onclick="document.reflection.forward()"><input type="button" value="pausa" 
+  onclick="document.reflection.pause()"><input type="button" 
+  value="passo &gt;&gt;" onclick="document.reflection.step()"><input 
+  type="button" value="início" onclick="airGlass()"></h4>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">A animação apresenta uma onda propagando-se para a direita (a 
+azul), incidindo numa região composta por um índice de refração desconhecido 
+embutido no ar <b> (a posição é dada em unidades arbitrárias)</b>. A onda que se 
+propaga para a esquerda (a vermelho, por cima) representa a soma de todas as 
+reflexões da onda incidente nas fronteiras. Nota que a amplitude da onda varia 
+com o meio, por forma a conservar a energia.&nbsp;&nbsp;&nbsp; </p>
+<p align="left">Observa como a intensidade da luz transmitida através do meio se 
+altera, ao mover o cursor e alterar a espessura do meio (NOTA: como os pontos de 
+dados estão ligados, deves mover o cursor lentamente para obteres uma curva 
+suave).&nbsp; <a href="JavaScript:airGlass()">Início</a>.</p>
+
+<p>&nbsp;</p>
+
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

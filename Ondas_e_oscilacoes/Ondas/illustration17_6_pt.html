@@ -1,0 +1,537 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 17.6</title>
+<script language="JavaScript">
+var timerID=0;
+var do_move=false;
+var n1=0;
+var n2=0;
+var n3=0;
+var n4=0;
+var n5=0;
+var n6=0;
+var n7=0;
+var n8=0;
+var m=4;
+var alfa1=0;
+var alfa2=0;
+var alfa3=0;
+var alfa4=0;
+var alfa5=0;
+var alfa6=0;
+var alfa7=0;
+var alfa8=0;
+var b1=0;
+var b2=0;
+var b3=0;
+var b4=0;
+var b5=0;
+var b6=0;
+var b7=0;
+var b8=0;
+var stry1=0;
+var stry2=0;
+var stry3=0;
+var stry4=0;
+var stry5=0;
+var stry6=0;
+var stry7=0;
+var stry8=0;
+var fid1=0;
+var fid2=0;
+var fid3=0;
+var fid4=0;
+var fid5=0;
+var fid6=0;
+var fid7=0;
+var fid8=0;
+var loaded=false;
+
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+    timerID=setTimeout("graf0()",100);
+}
+
+function graf0(){
+	if(!loaded) return;
+	timerID=0;
+	n1=0;
+	n2=0;
+	n3=0;
+	n4=0;
+	n5=0;
+	n6=0;
+	n7=0;
+	n8=0;
+    document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	gid1=document.datagraph.getGraphID();
+	document.datagraph.setAutoscaleX(false);
+	document.datagraph.setAutoscaleY(false);
+	document.datagraph.setMinMaxY(-3.5,3.5);
+	document.datagraph.setMinMaxX(0,28);
+	
+	document.datagraph2.setAutoRefresh(false);
+	document.datagraph2.setDefault();
+	gid1=document.datagraph2.getGraphID();
+	document.datagraph2.setAutoscaleX(false);
+	document.datagraph2.setAutoscaleY(false);
+	document.datagraph2.setMinMaxY(-1.5,2.5);
+	document.datagraph2.setMinMaxX(0,10);
+	document.datagraph2.setShowAxes(false);
+	document.datagraph2.setGutters(0,0,0,0);
+	
+    mx=document.slider.getValue();
+	fid0=document.datagraph.addFunction("x","(0.5*x)*step(6-x)+(-3/22*x+42/11)*step(x-6)");
+	document.datagraph.setRGB(fid0,105,105,105);
+	fidtotal=document.datagraph.addFunction("x","-10");
+	fid8=document.datagraph.addFunction("x","0");
+	fid7=document.datagraph.addFunction("x","0");
+	fid6=document.datagraph.addFunction("x","0");
+	fid5=document.datagraph.addFunction("x","0");
+	fid4=document.datagraph.addFunction("x","0");
+	fid3=document.datagraph.addFunction("x","0");
+	fid2=document.datagraph.addFunction("x","0");
+	fid1=document.datagraph.addFunction("x","0");
+	document.datagraph.setRGB(fidtotal,225,0,0);
+	document.datagraph.setRGB(fid1,25,225,0);
+	document.datagraph.setRGB(fid2,50,205,10);
+	document.datagraph.setRGB(fid3,75,180,15);
+	document.datagraph.setRGB(fid4,100,155,20);
+	document.datagraph.setRGB(fid5,125,130,25);
+	document.datagraph.setRGB(fid6,150,105,30);
+	document.datagraph.setRGB(fid7,175,80,35);
+	document.datagraph.setRGB(fid8,200,55,40);
+	
+	alfa1=1*Math.PI/m;
+	alfa2=2*Math.PI/m;
+	alfa3=3*Math.PI/m;
+	alfa4=4*Math.PI/m;
+	alfa5=5*Math.PI/m;
+	alfa6=6*Math.PI/m;
+	alfa7=7*Math.PI/m;
+	alfa8=8*Math.PI/m;
+	
+	b1=6/(alfa1*alfa1*(m-1))*Math.sin(alfa1)*n1;
+	b2=6/(alfa2*alfa2*(m-1))*Math.sin(alfa2)*n2;
+	b3=6/(alfa3*alfa3*(m-1))*Math.sin(alfa3)*n3;
+	b4=6/(alfa4*alfa4*(m-1))*Math.sin(alfa4)*n4;
+	b5=6/(alfa5*alfa5*(m-1))*Math.sin(alfa5)*n5;
+	b6=6/(alfa6*alfa6*(m-1))*Math.sin(alfa6)*n6;
+	b7=6/(alfa7*alfa7*(m-1))*Math.sin(alfa7)*n7;
+	b8=6/(alfa8*alfa8*(m-1))*Math.sin(alfa8)*n8;
+	
+	stry1=b1+"*sin(1*pi/28*x)";
+	stry2=b2+"*sin(2*pi/28*x)";
+	stry3=b3+"*sin(3*pi/28*x)";
+	stry4=b4+"*sin(4*pi/28*x)";
+	stry5=b5+"*sin(5*pi/28*x)";
+	stry6=b6+"*sin(6*pi/28*x)";
+	stry7=b7+"*sin(7*pi/28*x)";
+	stry8=b8+"*sin(8*pi/28*x)";
+	document.datagraph.setFunctionString(fid8,stry8);
+	document.datagraph.setFunctionString(fid7,stry7);
+	document.datagraph.setFunctionString(fid6,stry6);
+	document.datagraph.setFunctionString(fid5,stry5);
+	document.datagraph.setFunctionString(fid4,stry4);
+	document.datagraph.setFunctionString(fid3,stry3);
+	document.datagraph.setFunctionString(fid2,stry2);
+	document.datagraph.setFunctionString(fid1,stry1);
+	
+	stry=stry1;
+	stry+="+"+stry2;
+	stry+="+"+stry3;
+	stry+="+"+stry4;
+	stry+="+"+stry5;
+	stry+="+"+stry6;
+	stry+="+"+stry7;
+	stry+="+"+stry8;
+	document.datagraph.setFunctionString(fidtotal,stry);
+	
+	for(i=1;i<=8;i++){
+		document.datagraph2.clearSeries(i);
+		document.datagraph2.setSeriesStyle(i,true,0);
+		document.datagraph2.setSeriesRGB(i,255,0,0);
+		document.datagraph2.setMarkerSize(i,2);
+		document.datagraph2.addDatum(i,i,0);
+}
+	document.datagraph2.addDatum(1,1,b1);
+	document.datagraph2.addDatum(2,2,b2);
+	document.datagraph2.addDatum(3,3,b3);
+	document.datagraph2.addDatum(4,4,b4);
+	document.datagraph2.addDatum(5,5,b5);
+	document.datagraph2.addDatum(6,6,b6);
+	document.datagraph2.addDatum(7,7,b7);
+	document.datagraph2.addDatum(8,8,b8);
+
+    fid77=document.datagraph.addFunction("x","0");
+	document.datagraph.setRGB(fid77,200,200,200);
+	document.datagraph.setAutoRefresh(true);
+	document.datagraph2.setAutoRefresh(true);
+timerID=0;
+	document.slider.setValue(6);
+ 	document.slider.setJSFunction("sliderMoved()");
+ }
+ 
+ 
+ function sliderMoved() {
+	 if(timerID==0){
+	 do_move=false;
+         timerID=setTimeout("sliderMoved1()",100);
+}
+      else{
+       do_move=true;
+}	
+}
+ 
+function sliderMoved1(){
+        document.datagraph.setAutoRefresh(false);
+	mx=document.slider.getValue();
+	m=28/mx;
+	a0=3/mx;
+	a1=-3/(28-mx);
+	strfunc='('+a0+'*x)*step('+mx+'-x)+(('+a1+')*x-'+a1+'*28)*step(x-'+mx+')';
+	document.datagraph.setFunctionString(fid0,strfunc);
+	
+	alfa1=1*Math.PI/m;alfa2=2*Math.PI/m;alfa3=3*Math.PI/m;
+	alfa4=4*Math.PI/m;alfa5=5*Math.PI/m;alfa6=6*Math.PI/m;alfa7=7*Math.PI/m;alfa8=8*Math.PI/m;
+	
+	b1=6/(alfa1*alfa1*(m-1))*Math.sin(alfa1)*n1;
+	b2=6/(alfa2*alfa2*(m-1))*Math.sin(alfa2)*n2;
+	b3=6/(alfa3*alfa3*(m-1))*Math.sin(alfa3)*n3;
+	b4=6/(alfa4*alfa4*(m-1))*Math.sin(alfa4)*n4;
+	b5=6/(alfa5*alfa5*(m-1))*Math.sin(alfa5)*n5;
+	b6=6/(alfa6*alfa6*(m-1))*Math.sin(alfa6)*n6;
+	b7=6/(alfa7*alfa7*(m-1))*Math.sin(alfa7)*n7;
+	b8=6/(alfa8*alfa8*(m-1))*Math.sin(alfa8)*n8;
+	
+	stry1=b1+"*sin(1*pi/28*x)";
+	stry2=b2+"*sin(2*pi/28*x)";
+	stry3=b3+"*sin(3*pi/28*x)";
+	stry4=b4+"*sin(4*pi/28*x)";
+	stry5=b5+"*sin(5*pi/28*x)";
+	stry6=b6+"*sin(6*pi/28*x)";
+	stry7=b7+"*sin(7*pi/28*x)";
+	stry8=b8+"*sin(8*pi/28*x)";
+	document.datagraph.setFunctionString(fid8,stry8);
+	document.datagraph.setFunctionString(fid7,stry7);
+	document.datagraph.setFunctionString(fid6,stry6);
+	document.datagraph.setFunctionString(fid5,stry5);
+	document.datagraph.setFunctionString(fid4,stry4);
+	document.datagraph.setFunctionString(fid3,stry3);
+	document.datagraph.setFunctionString(fid2,stry2);
+	document.datagraph.setFunctionString(fid1,stry1);
+	stry=stry1;
+	stry+="+"+stry2;
+	stry+="+"+stry3;
+	stry+="+"+stry4;
+	stry+="+"+stry5;
+	stry+="+"+stry6;
+	stry+="+"+stry7;
+	stry+="+"+stry8;
+	document.datagraph.setFunctionString(fidtotal,stry);
+	
+	document.datagraph2.setAutoRefresh(false);
+	for(i=1;i<=8;i++){
+		document.datagraph2.clearSeries(i);
+		document.datagraph2.addDatum(i,i,0);
+}
+	document.datagraph2.addDatum(1,1,b1);
+	document.datagraph2.addDatum(2,2,b2);
+	document.datagraph2.addDatum(3,3,b3);
+	document.datagraph2.addDatum(4,4,b4);
+	document.datagraph2.addDatum(5,5,b5);
+	document.datagraph2.addDatum(6,6,b6);
+	document.datagraph2.addDatum(7,7,b7);
+	document.datagraph2.addDatum(8,8,b8);
+	document.datagraph2.setAutoRefresh(true);	
+	document.datagraph.setAutoRefresh(true);
+	if(do_move){
+	  do_move=false;
+	  timerID=setTimeout("sliderMoved1()",100);
+    } else{
+      timerID=0;
+    }
+}
+
+
+function graf1(){
+	if(!loaded) return;
+	mx=document.slider.getValue();
+	m=28/mx;
+	a0=3/mx;a1=-3/(28-mx);
+	strfunc='('+a0+'*x)*step('+mx+'-x)+(('+a1+')*x-'+a1+'*28)*step(x-'+mx+')';
+	document.datagraph.setFunctionString(fid0,strfunc);
+	
+	alfa1=1*Math.PI/m;alfa2=2*Math.PI/m;alfa3=3*Math.PI/m;
+	alfa4=4*Math.PI/m;alfa5=5*Math.PI/m;alfa6=6*Math.PI/m;alfa7=7*Math.PI/m;alfa8=8*Math.PI/m;
+	
+	b1=6/(alfa1*alfa1*(m-1))*Math.sin(alfa1)*n1;
+	b2=6/(alfa2*alfa2*(m-1))*Math.sin(alfa2)*n2;
+	b3=6/(alfa3*alfa3*(m-1))*Math.sin(alfa3)*n3;
+	b4=6/(alfa4*alfa4*(m-1))*Math.sin(alfa4)*n4;
+	b5=6/(alfa5*alfa5*(m-1))*Math.sin(alfa5)*n5;
+	b6=6/(alfa6*alfa6*(m-1))*Math.sin(alfa6)*n6;
+	b7=6/(alfa7*alfa7*(m-1))*Math.sin(alfa7)*n7;
+	b8=6/(alfa8*alfa8*(m-1))*Math.sin(alfa8)*n8;
+	
+	stry1=b1+"*sin(1*pi/28*x)";
+	stry2=b2+"*sin(2*pi/28*x)";
+	stry3=b3+"*sin(3*pi/28*x)";
+	stry4=b4+"*sin(4*pi/28*x)";
+	stry5=b5+"*sin(5*pi/28*x)";
+	stry6=b6+"*sin(6*pi/28*x)";
+	stry7=b7+"*sin(7*pi/28*x)";
+	stry8=b8+"*sin(8*pi/28*x)";
+	document.datagraph.setFunctionString(fid8,stry8);
+	document.datagraph.setFunctionString(fid7,stry7);
+	document.datagraph.setFunctionString(fid6,stry6);
+	document.datagraph.setFunctionString(fid5,stry5);
+	document.datagraph.setFunctionString(fid4,stry4);
+	document.datagraph.setFunctionString(fid3,stry3);
+	document.datagraph.setFunctionString(fid2,stry2);
+	document.datagraph.setFunctionString(fid1,stry1);
+	
+	stry=stry1;
+	stry+="+"+stry2;
+	stry+="+"+stry3;
+	stry+="+"+stry4;
+	stry+="+"+stry5;
+	stry+="+"+stry6;
+	stry+="+"+stry7;
+	stry+="+"+stry8;
+	document.datagraph.setFunctionString(fidtotal,stry);
+	
+	document.datagraph2.setAutoRefresh(false);
+	for(i=1;i<=8;i++){
+		document.datagraph2.clearSeries(i);
+		document.datagraph2.addDatum(i,i,0);
+}
+	document.datagraph2.addDatum(1,1,b1);
+	document.datagraph2.addDatum(2,2,b2);
+	document.datagraph2.addDatum(3,3,b3);
+	document.datagraph2.addDatum(4,4,b4);
+	document.datagraph2.addDatum(5,5,b5);
+	document.datagraph2.addDatum(6,6,b6);
+	document.datagraph2.addDatum(7,7,b7);
+	document.datagraph2.addDatum(8,8,b8);
+	document.datagraph2.setAutoRefresh(true);
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+
+function ny1(){
+	n1=1;
+	n2=0;
+	n3=0;
+	n4=0;
+	n5=0;
+	n6=0;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny2(){
+	n1=1;
+	n2=1;
+	n3=0;
+	n4=0;
+	n5=0;
+	n6=0;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny3(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=0;
+	n5=0;
+	n6=0;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny4(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=1;
+	n5=0;
+	n6=0;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny5(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=1;
+	n5=1;
+	n6=0;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny6(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=1;
+	n5=1;
+	n6=1;
+	n7=0;
+	n8=0;
+	graf1();
+}
+
+
+function ny7(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=1;
+	n5=1;
+	n6=1;
+	n7=1;
+	n8=0;
+	graf1();
+}
+
+
+function ny8(){
+	n1=1;
+	n2=1;
+	n3=1;
+	n4=1;
+	n5=1;
+	n6=1;
+	n7=1;
+	n8=1;
+	graf1();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 17.6 - Puxar uma corda</h2>
+ <div align="center">
+   <center>
+ <table border="1" bgcolor="#C0C0C0">
+   <tr>
+     <td>
+<p align="center">
+	<applet CODEBASE="../../classes/" 
+	ARCHIVE="Physlets.jar" CODE="dataGraph.DataGraph.class" 
+	NAME="datagraph" WIDTH="400" HEIGHT="300" HSPACE="0" ALIGN="middle" mayscript> 
+		<param name="ShowControls" value="false"> 
+		<param name="Function" value=""> 
+		<param name="DataFile" value="">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="datagraph,datagraph2,slider">  
+	</applet></td>
+     <td rowspan="3">
+	<p align="center">
+	<applet CODEBASE="../../classes/" 
+	ARCHIVE="Physlets.jar" CODE="dataGraph.DataGraph.class" 
+	NAME="datagraph2" WIDTH="50" HEIGHT="352" HSPACE="0" ALIGN="middle" mayscript> 
+		<param name="ShowControls" value="false"> 
+		<param name="Function" value=""> 
+		<param name="DataFile" value=""> 
+	</applet></td>
+   </tr>
+   <tr>
+     <td>
+<p align="center">
+	<applet CODEBASE="../../classes/" CODE="slider.SliderApplet.class" 
+	ARCHIVE="Physlets.jar"
+	NAME="slider" WIDTH="400" HEIGHT="25" HSPACE="0" ALIGN="middle" mayscript>
+		<param NAME="min" VALUE="0.1">
+		<param NAME="max" VALUE="27.9">
+		<param NAME="value" VALUE="7">
+		<param NAME="label" VALUE="coordenada x">
+	</applet></td>
+   </tr>
+   <tr>
+     <td>
+     <p align="center">n:&nbsp;&nbsp;
+<a href="javascript:ny1();">1</a>&nbsp;&nbsp;
+<a href="javascript:ny2();">2</a>&nbsp;&nbsp;&nbsp;<a href="javascript:ny3();">3</a>
+		&nbsp;&nbsp;<a href="javascript:ny4();">4</a>&nbsp;&nbsp;&nbsp;<a href="javascript:ny5();">5</a>
+		&nbsp;&nbsp;<a href="javascript:ny6();">6</a>&nbsp;&nbsp;&nbsp;<a href="javascript:ny7();">7</a>
+		&nbsp;&nbsp;<a href="javascript:ny8();">8</a></td>
+   </tr>
+</table>
+
+   </center>
+</div>
+
+<br>
+ 
+        
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+
+ <p><span style="font-family: Arial">Uma corda de comprimento <i>L </i>= 28 m, é 
+	puxada para a posição <i>x</i> = 6 cm ; <i>y</i> = 3 cm<b> (a posição é dada 
+	em centímetros)</b>. A posição de equilíbrio (inalterada) da corda é 
+	representada a cinzento. Usando os cursores deslizantes podes alterar este 
+	ponto, que é puxado para cima com um pequeno impulso ao longo do comprimento 
+	da corda na direção <i>x</i> (a coordenada <i>y</i> da deformação vertical 
+	da corda permanece constante).</span>&nbsp; <a href="JavaScript:graf0()">
+	Início</a>.</p>
+
+       
+
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p align="left">Ilustração da autoria de Morten Brydensholt, Wolfgang Christian 
+e Mario Belloni.<br>
+Script da autoria de Morten Brydensholt, Wolfgang Christian e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+   
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

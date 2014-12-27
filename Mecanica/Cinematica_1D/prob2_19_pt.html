@@ -1,0 +1,104 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;     
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+	document.Animator.setPixPerUnit(50);
+	document.Animator.setGridUnit(0.2);
+	document.Animator.shiftPixOrigin(0,-120);
+	document.Animator.addObject("image","file=images/tensball.gif,x=-0.32,y=(-1+11*t-9.8/2*t*t)");
+	document.Animator.addRectangle(28,80,"0","-0.6");
+	document.Animator.setOneShot(0,2.25,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni, modoficado por Carvalho: 
+Problem 2.19</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.19</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+ARCHIVE="Physlets.jar" align="middle" width="180"
+height="380" name="Animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.05">
+  <param name="showControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+  <param name="AppletNames" value="Animator">
+  <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  	onclick="document.Animator.forward()"><input type="button" value="pausa"
+  	onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  	onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  	onclick="document.Animator.stepForward()"><input type="button" value="início"
+  	onclick="document.Animator.reset()"></p>
+  </center></div>
+</form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">Um lançador de bolas de ténis dispara uma bola verticalmente 
+para cima <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;Devido ao 
+cilindro do lançador, não é possível ver a posição inicial da bola (assume que 
+esta é lançada no instante t = 0 s).&nbsp;</p>
+
+<p align="left">Para voltares ao início da Animação, clica
+<a href="JavaScript:startProb()">aqui</a></p>
+
+
+<p align="left">&nbsp;</p>
+
+
+<p align="left">
+Problema da autoria de Aaron Titus, modificado por Belloni e por Paulo Simeão 
+Carvalho.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

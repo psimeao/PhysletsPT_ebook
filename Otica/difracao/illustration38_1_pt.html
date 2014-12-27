@@ -1,0 +1,371 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 38.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.ripple.setDefault();
+    tid=document.ripple.addObject("text","x=-13,y=-17,text=Seleciona uma animação para começar");
+     document.ripple.setRGB(tid,0,0,0);         
+}
+
+
+function init1(){
+    if(!loaded) return;
+    document.ripple.setDefault();
+     id=document.ripple.addObject("rectangle","x=0,y=-10,h=10, w=32");
+     document.ripple.setRGB(id,0,0,0);
+     document.ripple.setDragable(id,false);
+     
+     rid=document.ripple.addObject("rectangle","x=-9.25,y=-14,h=75,w=180");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=9.25,y=-14,h=75,w=180");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+	rid=document.ripple.addObject("rectangle","x=9.4,y=-10,h=10,w=162");
+     document.ripple.setRGB(rid,128,128,128); 
+     document.ripple.setDragable(rid,false);      
+     rid=document.ripple.addObject("rectangle","x=-9.35,y=-10,h=10,w=162");
+     document.ripple.setRGB(rid,128,128,128);  
+     document.ripple.setDragable(rid,false);      
+     rid=document.ripple.addObject("rectangle","x=0,y=-14.1,h=75,w=24");
+     document.ripple.setRGB(rid,0,255,0);  
+     document.ripple.setDragable(rid,false);      
+
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,10,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3);         
+      
+	 id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,5,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,0,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-5,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-10,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+	   document.ripple.recalculate();
+        document.ripple.startAnimate();
+}
+
+function init2()
+{
+
+ if(!loaded) return;
+     document.ripple.setDefault();
+   	document.ripple.setWavelength(3);
+
+     id=document.ripple.addObject("rectangle","x=0,y=-10,h=10, w=32");
+     document.ripple.setRGB(id,0,0,0);
+     document.ripple.setDragable(id,false);
+     
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+          document.ripple.setDragable(rid,false); 
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+     document.ripple.setDragable(rid,false);
+      
+      rid=document.ripple.addObject("rectangle","x=0,y=-14.1,h=75,w=34");
+     document.ripple.setRGB(rid,0,255,0);  
+     document.ripple.setDragable(rid,false);      
+      
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,14,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3);         
+      
+	 id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,7,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,0,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-7,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-14,0);
+     document.ripple.setRGB(id3,0,255,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+	   document.ripple.recalculate();
+        document.ripple.startAnimate();
+}
+
+function init3()
+{
+
+ if(!loaded) return;
+     document.ripple.setDefault();
+   	document.ripple.setWavelength(4);
+
+     id=document.ripple.addObject("rectangle","x=0,y=-10,h=10, w=32");
+     document.ripple.setRGB(id,0,0,0);
+     document.ripple.setDragable(id,false);
+     
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+          document.ripple.setDragable(rid,false); 
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+     document.ripple.setDragable(rid,false);
+      
+      rid=document.ripple.addObject("rectangle","x=0,y=-14.1,h=75,w=34");
+     document.ripple.setRGB(rid,255,0,0);  
+     document.ripple.setDragable(rid,false);      
+      
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,14,0);
+     document.ripple.setRGB(id3,255,0,0);
+     document.ripple.setAnimationSlave(id,id3);         
+      
+	 id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,7,0);
+     document.ripple.setRGB(id3,255,0,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,0,0);
+     document.ripple.setRGB(id3,255,0,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-7,0);
+     document.ripple.setRGB(id3,255,0,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-14,0);
+     document.ripple.setRGB(id3,255,0,0);
+     document.ripple.setAnimationSlave(id,id3); 
+     
+	   document.ripple.recalculate();
+        document.ripple.startAnimate();
+}
+
+function init4(){
+if(!loaded) return;
+     document.ripple.setDefault();
+   	document.ripple.setWavelength(2);
+
+     id=document.ripple.addObject("rectangle","x=0,y=-10,h=10, w=32");
+     document.ripple.setRGB(id,0,0,0);
+     document.ripple.setDragable(id,false);
+     
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-14,h=75,w=160");
+     document.ripple.setRGB(rid,0,0,0);
+     document.ripple.setDragable(rid,false);
+     
+     rid=document.ripple.addObject("rectangle","x=9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+          document.ripple.setDragable(rid,false); 
+     rid=document.ripple.addObject("rectangle","x=-9.6,y=-10,h=10,w=160");
+     document.ripple.setRGB(rid,128,128,128);
+     document.ripple.setDragable(rid,false);
+      
+      rid=document.ripple.addObject("rectangle","x=0,y=-14.1,h=75,w=34");
+     document.ripple.setRGB(rid,0,0,255);  
+     document.ripple.setDragable(rid,false);      
+      
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,14,0);
+     document.ripple.setRGB(id3,0,0,255);
+          document.ripple.setAnimationSlave(id,id3);         
+      
+	 id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,7,0);
+     document.ripple.setRGB(id3,0,0,255);
+          document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,0,0);
+     document.ripple.setRGB(id3,0,0,255);
+          document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-7,0);
+     document.ripple.setRGB(id3,0,0,255);
+          document.ripple.setAnimationSlave(id,id3); 
+     
+     id3=document.ripple.addObject("source","r=3"); 
+     document.ripple.setDisplayOffset(id3,-14,0);
+     document.ripple.setRGB(id3,0,0,255);
+          document.ripple.setAnimationSlave(id,id3); 
+     
+	   document.ripple.recalculate();
+        document.ripple.startAnimate();
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+      
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 38.1 - Difração de uma fenda</h2>
+<div align="center">
+  <center>
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td align="center" colspan="4">
+        <p align="center">
+        <applet code="ripple.Ripple.class" codebase="../../classes/" 
+        archive="Physlets.jar" name="ripple" 
+        width="350" height="350" align="left"  mayscript>
+          <param name="pixPerUnit" value="10">
+          <param name="wavelength" value="1.0">
+          <param name="showControls" value="false">
+          <param name="numberOfSources" value="0">
+          <param name="showIntensity" value="true">
+          <param name="animate" value="false">
+          <param name="fps" value="10">
+          <param name="caption" value="Tanque de ondas">
+          <param name="OnLoad" value="initApplets()">
+          <param name="Resources" value="ripple_pt.rc">          
+        <param name="AppletNames" value="ripple">
+        </applet> </td>
+      </tr>
+      <tr>
+        <td align="center">
+        <a href="JavaScript:init1()">Fenda estreita</a></td>
+        <td align="center">
+        <a href="JavaScript:init2()">Fenda larga</a></td>
+        <td align="center">
+        <a href="JavaScript:init3()">Vermelho</a></td>
+        <td align="center">
+        <a href="JavaScript:init4()">Azul</a></td>
+      </tr>
+    </table>
+  </center>
+</div>
+
+
+<form>
+<p align="center">
+   <input onclick="document.ripple.forward();" type="button" value="começar"><input onclick="document.ripple.pause();" type="button" value="pausa"><input onclick="document.ripple.stepForward();" type="button" value="passo &gt;&gt;"></p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+
+<p align="left">Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</p>
+
+<p align="left">Para modelar a difração de uma única fenda, podemos pensar na 
+luz que entra na fenda como proveniente de fontes pontuais de luz (esse é 
+efetivamente o princípio de Huygen; ver Ilustração 34.3). A luz proveniente de 
+cada uma dessas fontes pontuais interfere entre si, sendo a difracção o 
+resultado desta interferência.&nbsp; <a href="JavaScript:init()">Início</a>.&nbsp; </p>
+
+
+<p>&nbsp;</p>
+<p><b>Exploração:</b></p>
+
+
+<p align="left">Na animação da <a href="JavaScript:init1()">fenda estreita</a> 
+há cinco fontes pontuais gerando a luz que passa através da fenda e produzindo o 
+padrão de interferência de fontes pontuais (a difração é devida à interferência 
+das ondas). Nota que as ondas se difundem para fora da fenda e que a largura da 
+luz (ondas) deixando a fenda é mais larga que a largura da fenda. É como se a 
+luz&nbsp; &quot;dobrasse&quot; ao passar a fenda. Sem difração, a luz que saísse da fenda 
+seria da mesma largura que a própria fenda.&nbsp; </p>
+<p align="left">Agora usa uma&nbsp; fenda um pouco mais larga. </p>
+<ul>
+  <li>
+<p align="left">Observa a luz que passa através de uma
+<a href="JavaScript:init2()">fenda larga.</a>&nbsp;<b>&nbsp;</b>Qual a diferença nos efeitos produzidos por uma fenda estreita e uma 
+fenda larga, sobre a luz que passa através dessa fenda?&nbsp; </p>
+  </li>
+  <li>
+<p align="left" style="margin-top: 6px">Se alterares o comprimento de onda da 
+fonte, o padrão de difração também muda. Observa a simulação com uma fonte com
+<a href="JavaScript:init3()">maior comprimento de onda</a> (representada pela 
+cor vermelha).&nbsp; A seguir, observa a onda com <a href="JavaScript:init4()">
+menor comprimento de onda</a> (representada pela cor azul).&nbsp; Qual o efeito 
+do comprimento de onda da largura da luz que sai da fenda? Na difração, quando 
+as ondas de luz passam através de uma fenda, o tamanho da fenda e o comprimento 
+de onda determinam a dimensão do efeito em que as ondas parecem &quot;dobrar&quot; em 
+torno da fenda. </p>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("circuit()",100);
+}
+
+function circuit(){  
+	if(!loaded) return;
+    timerID=0;     
+    document.Animator.setDefault();
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setTimeDisplay(false);
+    document.datagraph.setAutoRefresh(false);
+    picid=document.Animator.addObject("image","x=-1.9,y=0.8,file=dccircuits/loop_rule.gif");
+    document.datagraph.setAutoRefresh(true);
+    document.Animator.setAutoRefresh(true);
+    document.datagraph.setAutoRefresh(false);
+    document.datagraph.setDefault();
+    document.datagraph.setTitle("Animação desativada"); 
+    document.datagraph.setAutoRefresh(true);
+}
+
+function show_electron(){ 
+	if(!loaded) return;
+    timerID=0;      
+    document.Animator.setAutoRefresh(false);
+    document.datagraph.setAutoRefresh(false);
+    
+    document.Animator.setDefault();
+    document.datagraph.setDefault();
+    document.Animator.setTimeDisplay(true);
+    picid=document.Animator.addObject("image","x=-1.9,y=0.8,file=dccircuits/loop_rule2.gif");
+
+    c1id=document.Animator.addObject("circle","x=-1.25+step(t-2)*step(5.5-t)*0.4*(t-2)+step(t-5.5)*1.45+step(t-6.1)*step(8.85-t)*0.4*(t-6.1)+step(t-8.85)*1.1+step(t-9.45)*step(10.7-t)*0.4*(t-9.45)+step(t-10.7)*0.5+step(t-12.7)*(-0.4)*(t-12.7),y=-0.7+step(2.0-t)*0.4*t+step(t-2.0)*0.8+step(t-5.5)*step(6.1-t)*0.4*(t-5.5)+step(t-6.1)*0.24+step(t-8.85)*step(9.45-t)*(-0.4)*(t-8.85)+step(t-9.46)*(-0.24)+step(t-10.7)*step(12.7-t)*(-0.4)*(t-10.7)+step(t-12.7)*(-0.8),r=5");
+    document.Animator.setRGB(c1id,250,0,0);
+    document.datagraph.setAutoRefresh(false);
+    document.datagraph.setDefault();
+    document.datagraph.setTitle("Gráfico desativado"); 
+    document.datagraph.setAutoRefresh(true);
+   document.Animator.setAutoRefresh(true);
+   document.Animator.setTimeCycle(20.2);
+}
+   
+function show_loop(){ 
+	if(!loaded) return;
+    timerID=0;      
+    document.Animator.setAutoRefresh(false);
+    document.datagraph.setAutoRefresh(false);
+    
+    document.Animator.setDefault();
+    document.datagraph.setDefault();
+    document.Animator.setTimeDisplay(true);
+    picid=document.Animator.addObject("image","x=-1.9,y=0.8,file=dccircuits/loop_rule2.gif");
+
+    c1id=document.Animator.addObject("circle","x=-1.25+step(t-2)*step(5.5-t)*0.4*(t-2)+step(t-5.5)*1.45+step(t-6.1)*step(8.85-t)*0.4*(t-6.1)+step(t-8.85)*1.1+step(t-9.45)*step(10.7-t)*0.4*(t-9.45)+step(t-10.7)*0.5+step(t-12.7)*(-0.4)*(t-12.7),y=-0.7+step(2.0-t)*0.4*t+step(t-2.0)*0.8+step(t-5.5)*step(6.1-t)*0.4*(t-5.5)+step(t-6.1)*0.24+step(t-8.85)*step(9.45-t)*(-0.4)*(t-8.85)+step(t-9.46)*(-0.24)+step(t-10.7)*step(12.7-t)*(-0.4)*(t-10.7)+step(t-12.7)*(-0.8),r=5");
+    document.Animator.setRGB(c1id,250,0,0);
+    document.datagraph.setAutoRefresh(false);
+    document.datagraph.setDefault();
+   document.datagraph.setAutoscaleX(false);
+   document.datagraph.setAutoscaleY(false);
+   document.datagraph.setMinMaxX(0,22);
+   document.datagraph.setMinMaxY(0,20);
+   document.datagraph.setMinYRange(true, -5,20);
+   document.datagraph.clearSeries(1);
+   document.datagraph.setSeriesStyle(1,true,2);
+   document.datagraph.setMarkerSize(1,0.6);
+   document.datagraph.setLastPointMarker(1,true);  
+   document.datagraph.setLabelY("Potencial elétrico (V)"); 
+   document.datagraph.setLabelX("Tempo"); 
+   document.datagraph.setTitle("Potencial elétrico vs. Tempo"); 
+   document.datagraph.setDrawGrid(true); 
+   gid=document.datagraph.getGraphID();    
+   sid=document.datagraph.getSeriesID(1);    
+   
+   document.Animator.makeDataConnection(c1id,gid,1,"t","step(t-0.75)*step(1.0-t)*16*(t-0.75)/(0.25)+step(t-1.0)*step(2.4-t)*16+step(t-2.4)*step(4.4-t)*(16-5*(t-2.4))+step(t-4.4)*6+step(t-6.7)*step(8.7-t)*(-3)*(t-6.7)+step(t-8.7)*(-6)");
+   document.Animator.updateDataConnections();
+   document.datagraph.setAutoRefresh(true);
+   document.Animator.setAutoRefresh(true);
+   document.Animator.setTimeCycle(20.2);
+   }
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+        clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+<title>Physlet Physics by Christian and Belloni: Illustration 30.7</title>
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 30.7 - A Lei das Malhas de Kirchhoff</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet codebase="../../classes/" code="animator4.Animator.class" 
+    ARCHIVE="Physlets.jar" align="baseline" width="435" height="180" 
+    name="Animator" mayscript>
+      <param name="FPS" value="20">
+      <param name="dt" value="0.05">
+      <param name="pixPerUnit" value="100">
+      <param name="gridUnit" value="0">
+      <param name="showControls" value="false">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Animator,datagraph">
+        <param name="Resources" value="animator_pt.rc">
+    </applet></td>
+  </tr>
+  <tr>
+    <td>
+    <applet codebase="../../classes/" ARCHIVE="Physlets.jar" 
+    CODE="dataGraph.DataGraph.class" NAME="datagraph" WIDTH="436" HEIGHT="160" HSPACE="0" 
+    VSPACE="0" ALIGN="middle" mayscript>
+      <param name="ShowControls" value="false">
+    </applet> </td>
+  </tr>
+</table>
+<form name="specForm">
+ <div align="center">
+   <center>
+   <p>
+	<input type="button" value="começar" onclick="document.Animator.forward()"><input type="button" value="pausa" 
+   onclick="document.Animator.pause()"><input type="button" 
+   value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button" value="início" 
+   onclick="document.Animator.reset()"></p>
+   </center>
+ </div>
+</form>
+</center>
+
+       
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+	<p align="left"><span lang="pt"><b>Descrição da Animação</b></span></p>
+<p style="margin-bottom: 0">A lei das malhas de Kirchhoff&#39; diz-nos que a soma 
+das diferenças de potencial nos componentes elétricos, ao longo de uma malha 
+fechada do circuito, é igual a zero. Ou seja, Σ ΔV = 0 para uma malha completa.&nbsp;</p>
+<p style="margin-top: 0">Na <a href="JavaScript:show_electron()">animação</a>, a 
+corrente elétrica produzida pela bateria circula através dos componentes do 
+circuito elétrico. A ilustração segue uma carga hipotética à medida que ela flui 
+pelas resistências da parte superior da ligação em paralelo. <u>Nota que se 
+trata simplesmente de uma simulação</u>.&nbsp; A corrente elétrica também 
+flui pelas resistências inferiores da ligação em paralelo, embora a intensidade 
+da corrente através delas não tenha o mesmo valor. De facto, para reproduzir uma 
+situação mais realista, seriam necessários cerca de 10<sup>20</sup> 
+eletrões em movimento ao longo do circuito, no sentido anti-horário. </p>
+<p style="margin-top: 0">Nesta animação é usada a definição padrão para 
+representar o sentido da corrente elétrica (que é oposto ao sentido do movimento 
+eletrónico, como sabes), ou seja, a hipotética unidade de carga positiva é vista 
+a mover-se do polo positivo da bateria para o polo negativo desta.&nbsp; </p>
+<p style="margin-top: 0; margin-bottom:0">&nbsp;</p>
+<p align="left" style="margin-top: 0"><b>Exploração:</b></p>
+<p>Usa a lei das malhas de Kirchhoff para determinar a intensidade da corrente 
+elétrica produzida pela bateria, que flui num circuito constituído por uma 
+bateria de 16 V, ligada a três resistências: uma de 2 Ω ligada em série a uma 
+associação em paralelo de uma resistência de 2 Ω com outra de 3 Ω. </p>
+<ol type="a">
+	<li>
+	<p style="margin-top: 6px">Corre a animação e segue o movimento da carga 
+	elementar. Tenta construir o gráfico do potencial elétrico em função do 
+	tempo, à medida que a carga elementar flui através da malha escolhida do 
+	circuito elétrico.</li>
+	<li>
+	<p style="margin-top: 6px">Compara os teus resultados com o gráfico
+	<a href="JavaScript:show_loop()">correto</a>, fazendo correr novamente a 
+	animação. </li>
+</ol>
+<p align="left">&nbsp;</p>
+<p align="left"><b>Sabias que...</b></p>
+<p>Num circuito, há cargas elétricas a mover-se ao longo deste, percorrendo os 
+componentes do circuito (resistências, por exemplo). Assim, uma outra maneira de 
+enunciar a lei das malhas de Kirchhoff é: <i>quando uma carga elétrica realiza 
+uma volta completa à malha do circuito, regressando ao ponto de partida, a sua 
+energia potencial tem de ser a mesma</i>. Cargas positivas ganham energia quando 
+passam pelas baterias do terminal negativo (-) para o terminal positivo (+); 
+pelo contrário, perdem energia sempre que passam por resistências.</p>
+<p>Vejamos então a <a href="JavaScript:show_loop()">malha de Kirchhoff</a>&nbsp;considerada 
+nesta animação, constituída por uma bateria e duas resistências de 2 Ω. Não 
+importa qual o ponto de partida, desde que este coincida com o ponto de chegada, 
+a variação total do potencial elétrico será sempre zero. Façamos então os 
+cálculos da variação do potencial elétrico, escolhendo como sentido de 
+circulação o sentido horário, começando no canto inferior esquerdo: </p>
+<p align="center">+16 V - (2 Ω)*I - (2 Ω)*3I/5 = 0 </p>
+<p align="center">+16 V = (10 Ω)*I/5 + (6 Ω)*I/5
+</p>
+<p align="center">+16 V = (16 Ω)*I/5.</p>
+<p>O resultado obtido para a intensidade da corrente elétrica é: I = 5 A. </p>
+<p>Corre a animação e segue a energia da unidade de carga, à medida que ela 
+passa através de cada elemento do circuito. Cada queda de potencial representa a 
+quantidade de energia que é perdida ou ganha quando a carga atravessa um 
+elemento do circuito. Isto mostra que, quando a carga dá a volta completa à 
+malha, os ganhos em energia são sempre compensados pelas perdas. A variação 
+total da energia é zero. </p>
+<p>&nbsp;</p>
+<p>Ilustração da autoria de Andrew Duffy.<br>
+<i>Script</i> da autoria de Andrew Duffy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

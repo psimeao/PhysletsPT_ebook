@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 9.4</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+	id1=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0);
+   document.Animator.setTimeDisplay(false);
+   tid=document.Animator.addObject("text","text=círculo cinzento: posição de equilíbrio,x=-8.2,y=3.8");
+   document.Animator.setObjectFont(tid,"Helvetica",1,10);
+   document.Animator.setRGB(tid,120,120,120);
+   sid0=document.Animator.addObject("shell","r=50,x=0,y=0");
+   document.Animator.setRGB(sid0,200,200,200);
+      document.Animator.addObject("image","file=images/man.gif,x=-12.5,y=1.5");
+      document.Animator.addObject("image","file=images/l_woman.gif,x=11.5,y=1.5");
+      id2=document.Animator.addObject("circle","r=2,x=0,y=0");
+   sid=document.Animator.addObject("shell","r=100,x=0,y=0");
+   document.Animator.setRGB(sid,155,0,0);
+id0=document.Animator.addObject("circle","r=10,x=0,y=0");
+   id1=document.Animator.addObject("circle","r=9,x=0,y=0");
+   document.Animator.setAnimationSlave(id1,id0);
+   document.Animator.setDragable(id1,false); 
+   document.Animator.setForce(id1,"0","0",5,0,0,0);
+   document.Animator.setRGB(id1,0,145,0);
+   document.Animator.setTrail(id1,4500);
+   document.Animator.setFootPrints(id1,4);
+   document.Animator.setGhost(id1,true);
+   document.Animator.addConnectorSpring(id2,id1);
+    document.Animator.setCaption("Seleciona uma Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+	
+function mjb2_10_0() { 
+   if(!loaded) return;
+   id1=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0);
+   tid=document.Animator.addObject("text","text=círculo cinzento: posição de equilíbrio,x=-8.2,y=3.8");
+   document.Animator.setObjectFont(tid,"Helvetica",1,10);
+   document.Animator.setRGB(tid,120,120,120);
+   sid0=document.Animator.addObject("shell","r=50,x=0,y=0");
+   document.Animator.setRGB(sid0,200,200,200);
+      document.Animator.addObject("image","file=images/man.gif,x=-12.5,y=1.5");
+      document.Animator.addObject("image","file=images/l_woman.gif,x=11.5,y=1.5");
+      id2=document.Animator.addObject("circle","r=2,x=0,y=0");
+   sid=document.Animator.addObject("shell","r=100,x=0,y=0");
+   document.Animator.setRGB(sid,155,0,0);
+   id0=document.Animator.addObject("circle","r=10,x=0,y=0");
+   id1=document.Animator.addObject("circle","r=9,x=0,y=0");
+   document.Animator.setAnimationSlave(id1,id0);
+   document.Animator.setDragable(id1,false); 
+   document.Animator.setForce(id1,"0","0",5,0,0,0);
+   document.Animator.setRGB(id1,0,145,0);
+   document.Animator.setTrail(id1,4500);
+   document.Animator.setFootPrints(id1,4);
+   document.Animator.setGhost(id1,true);
+      document.Animator.addConnectorSpring(id2,id1);
+    document.Animator.addObject("text","text=Posição de Equilíbrio,x=-7,y=-14");
+   document.Animator.setOneShot(0,10,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb2_10_1() { 
+   if(!loaded) return;
+   id1=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0);
+   tid=document.Animator.addObject("text","text=círculo cinzento: posição de equilíbrio,x=-8.2,y=3.8");
+   document.Animator.setObjectFont(tid,"Helvetica",1,10);
+   document.Animator.setRGB(tid,120,120,120);
+   sid0=document.Animator.addObject("shell","r=50,x=0,y=0");
+   document.Animator.setRGB(sid0,200,200,200);
+   id2=document.Animator.addObject("circle","r=2,x=0,y=0");
+   sid=document.Animator.addObject("shell","r=100,x=0,y=0");
+   document.Animator.setRGB(sid,155,0,0);
+   id0=document.Animator.addObject("circle","r=10,x=0,y=0");
+   id1=document.Animator.addObject("circle","r=9,x=0,y=0");
+   document.Animator.setAnimationSlave(id1,id0);
+    document.Animator.setForce(id1,"-10*(((x*x+y*y)^0.5)-5)*x/(x*x+y*y)^0.5","-10*(((x*x+y*y)^0.5)-5)*y/(x*x+y*y)^0.5",10,0,0,22.36);
+   document.Animator.addObject("image","file=images/man.gif,x=-12.5,y=1.5");
+   document.Animator.addObject("image","file=images/l_woman.gif,x=11.5,y=1.5");
+   document.Animator.setDragable(id1,false); 
+   document.Animator.setRGB(id1,0,145,0);
+   document.Animator.setTrail(id1,4500);
+   document.Animator.setFootPrints(id1,4);
+   document.Animator.setGhost(id1,true);
+      document.Animator.addConnectorSpring(id2,id1);
+    document.Animator.addObject("text","text=Referencial do Laboratório,x=-8.7,y=-14");
+   document.Animator.setOneShot(0,10,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb2_10_2() { 
+   if(!loaded) return;
+   id1=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0);
+   tid=document.Animator.addObject("text","text=círculo cinzento: posição de equilíbrio,x=-8.2,y=3.8");
+   document.Animator.setObjectFont(tid,"Helvetica",1,10);
+   document.Animator.setRGB(tid,120,120,120);
+   wid=document.Animator.addObject("image","file=images/man.gif,x=-12.5,y=0.5");
+  document.Animator.setTrajectory(wid,"-12.5*cos(2.24*t)","12.5*sin(2.24*t)");
+   sid0=document.Animator.addObject("shell","r=50,x=0,y=0");
+   document.Animator.setRGB(sid0,200,200,200);
+   id2=document.Animator.addObject("circle","r=2,x=0,y=0");
+   sid=document.Animator.addObject("shell","r=100,x=0,y=0");
+   document.Animator.setRGB(sid,155,0,0);
+   id0=document.Animator.addObject("circle","r=10,x=0,y=0");
+   id1=document.Animator.addObject("circle","r=9,x=0,y=0");
+   document.Animator.setAnimationSlave(id1,id0);
+   document.Animator.setDragable(id1,false); 
+   document.Animator.setForce(id1,"0","0",10,0,0,0);
+   document.Animator.setRGB(id1,0,145,0);
+   document.Animator.setTrail(id1,4500);
+   document.Animator.setFootPrints(id1,4);
+   document.Animator.setGhost(id1,true);
+   document.Animator.addConnectorSpring(id2,id1);
+   document.Animator.addObject("image","file=images/l_woman.gif,x=9.5,y=1.5");
+   document.Animator.addObject("text","text=Referencial da bola,x=-6.8,y=-14");
+   document.Animator.setOneShot(0,10,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+  <h2 align="center">Ilustração 9.4 - Referenciais com Rotação </h2>
+
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td>
+
+ <applet codebase="../../classes/"
+  archive="Physlets.jar" code="animator4.Animator.class" 
+  width="280" height="300" name="Animator" mayscript>
+    <param name="FPS" value="20">
+    <param name="dt" value="0.02">
+    <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início" onclick="document.Animator.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+
+  <div align="center">
+    <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript: mjb2_10_0()" style="text-decoration: none">Posição de equilíbrio</a>&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript: mjb2_10_1()" style="text-decoration: none">Referencial do 
+		Laboratório</a>&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript: mjb2_10_2()" style="text-decoration: none">Referencial da bola</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+    </center>
+  </div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p><b>Descrição da Animação</b></p>
+
+
+<p>Considera uma bola verde, presa na extremidade de uma mola&nbsp;<b>(a posição é 
+dada em metros e o tempo em segundos)</b>. Se a bola não se move, a força 
+resultante nela exercida é zero e o círculo cinzento representa a
+<a href="JavaScript: mjb2_10_0()">posição de equilíbrio</a> da mola.&nbsp;
+<a href="JavaScript:position1()">Início</a></p>
+
+
+  <p>&nbsp;</p>
+  <p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+  <p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+	</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 18.13</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initPage()",50);
+}
+
+
+function initPage(){
+   if(!loaded) return;
+   timerID=0;
+
+document.animator.setAutoRefresh(false);
+document.animator.setDefault();
+document.animator.setPixPerUnit(20);
+document.animator.setGridUnit(0);
+document.animator.shiftPixOrigin(-250,0);
+document.animator.setClockOneShot(0,30);
+	document.animator.setDt(0.00001);
+	document.animator.setFPS(10);
+
+	document.animator.setShapeRGB(0,0,0);
+	document.animator.setShapeRGB(0,0,0);
+	document.animator.addObject("line","x=-0.1,y=0.5,h=24.3,v=0");
+	document.animator.addObject("line","x=-0.1,y=-0.5,h=24.3,v=0");
+
+	for (i=0; i<=24; i+=0.25){
+		for (j=0; j<=0.4; j+=0.2){
+			strx=i+"+1*sin(2*pi/9.6*"+i+"-pi/2)*cos(2*pi/0.0003*t)";
+			strxy="x="+strx+",y=0.2-"+j+",r=1";
+			document.animator.setShapeRGB(163,163,255);
+			document.animator.addObject("circle",strxy);
+		}
+	}
+	for (i=0; i<=23; i+=4.75){
+		for (j=0; j<=0.4; j+=0.2){
+			
+			strx=i+"+1*sin(2*pi/9.6*"+i+"-pi/2)*cos(2*pi/0.0003*t)";	
+			strxy="x="+strx+",y=0.2-"+j+",r=1";
+			document.animator.setShapeRGB(0,0,0);
+			document.animator.addObject("circle",strxy);
+		}
+	}
+	for (i=24; i<=24; i+=4.75){
+		for (j=0; j<=0.4; j+=0.2){
+			
+			strx=i+"+1*sin(2*pi/9.6*"+i+"-pi/2)*cos(2*pi/0.0003*t)";	
+			strxy="x="+strx+",y=0.2-"+j+",r=1";
+			document.animator.setShapeRGB(0,0,0);
+			document.animator.addObject("circle",strxy);
+		}
+	}
+	for (i=2.5; i<=24; i+=4.75){
+		for (j=0; j<=0.4; j+=0.2){
+			strx=i+"+1*sin(2*pi/9.6*"+i+"-pi/2)*cos(2*pi/0.0003*t)";	
+			strxy="x="+strx+",y=0.2-"+j+",r=1";
+			document.animator.setShapeRGB(0,0,0);
+			document.animator.addObject("circle",strxy);
+		}
+	}
+	
+	document.animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+<body onunload="killmenow()">
+
+                  <h2 align="center">Problema 18.13</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet codebase="../../classes/"
+                        archive="Physlets.jar"
+                        code="animator4.Animator.class" align="baseline"
+                        width="600" height="120" name="animator" mayscript>
+                          <param name="FPS" value="10">
+                          <param name="dt" value="0.1">
+                          <param name="showControls" value="false">
+                          <param name="OnLoad" value="initApplets()">
+                          <param name="AppletNames" value="animator">
+                          <param name="Resources" value="Animator_pt.rc">
+                        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <div align="center"><center><p><input type="button" value="começar"
+  onclick="document.animator.forward()"><input type="button" value="pausa"
+  onclick="document.animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="document.animator.reset()"></p>
+  </center></div>
+</form>
+
+					<p align="center" style="margin-left: 0%; margin-right: 0%">
+					<font color="#FF0000"><b><i>Esta animação pode demorar 3 a 5 
+					segundos a carregar . <br>
+					Por favor espera até a animação estar completamente 
+					carregada.<br>
+&nbsp;</i></b></font></p>
+
+                  
+            <p>Esta animação mostra uma onda estacionária dentro de um tubo 
+			aberto (<b>a posição é dada em centímetros e o tempo é dado em 
+			segund</b><span lang="en-us"><b>os</b>)</span>.&nbsp; 
+			<a href="JavaScript:initPage()">Início</a></p>
+            
+                  <p>&nbsp;</p>
+                  <p>Problema da autoria de Morten Brydensholt, Wolfgang 
+					Christian e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+            
+					<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+					<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+					<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+					</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

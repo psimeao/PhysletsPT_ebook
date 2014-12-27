@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+
+   document.Animator.shiftPixOrigin(-160,0);
+     fStr="2*t";
+     fStr2="2*t-0.4";
+   document.Animator.setOneShot(0,16,"Fim da Animação");  
+   man_id=document.Animator.addObject("image","file=images/man2.gif,x="+fStr2+",y=-3.3");
+    electron_id=document.Animator.addObject("circle","r=6,x="+fStr+",y=-50");
+     document.Animator.setRGB(electron_id,255,155,155);
+     document.Animator.addObject("rectangle","h=10,w=1200,x=0,y=-5.7");
+     rid=document.Animator.addObject("rectangle","h=8,w=1200,x=0,y=-5.7");
+    document.Animator.setRGB(rid,150,150,150);
+   		xaxis=document.Animator.addObject("arrow","v=0,h=10");
+		yaxis=document.Animator.addObject("arrow","v=10,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.Animator.addObject("text","y=9,x=-2.5,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+
+     document.DataTable.setAutoRefresh(false);
+     document.DataTable.setDefault();
+     document.DataTable.setDataStride(1,10);
+     document.DataTable.setSeriesLabel(1,"Tempo");
+     document.DataTable.setDataStride(2,10);
+     document.DataTable.setSeriesLabel(2,"Posição");
+     document.DataTable.setNumericFormat(1,"%3.1f");
+     document.DataTable.setNumericFormat(2,"%3.1f");
+     tid=document.DataTable.getTableID();
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);  
+     document.Animator.setAutoRefresh(true);
+     document.Animator.updateDataConnections();    
+}
+
+function initApplet2(){
+         if(!loaded) return;
+         document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(-160,0);
+     fStr="2*t";
+     fStr2="2*t-0.4";
+   document.Animator.setOneShot(0,16,"Fim da Animação");  
+   man_id=document.Animator.addObject("image","file=images/man2.gif,x="+fStr2+",y=-3.3");
+    electron_id=document.Animator.addObject("circle","r=6,x="+fStr+",y=-50");
+     document.Animator.setRGB(electron_id,255,155,155);
+     document.Animator.addObject("rectangle","h=10,w=1200,x=0,y=-5.7");
+     rid=document.Animator.addObject("rectangle","h=8,w=1200,x=0,y=-5.7");
+    document.Animator.setRGB(rid,150,150,150);
+
+   		xaxis=document.Animator.addObject("arrow","v=0,h=10");
+		yaxis=document.Animator.addObject("arrow","v=10,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.Animator.addObject("text","y=9,x=-2.5,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+     document.DataTable.setAutoRefresh(false);
+     document.DataTable.setDefault();
+     document.DataTable.setDataStride(1,10);
+     document.DataTable.setSeriesLabel(1,"Tempo (s)");
+     document.DataTable.setDataStride(2,10);
+     document.DataTable.setSeriesLabel(2,"Posição (m)");
+     document.DataTable.setNumericFormat(1,"%3.1f");
+     document.DataTable.setNumericFormat(2,"%3.1f");
+     tid=document.DataTable.getTableID();
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);
+     document.Animator.makeDataConnection(electron_id,tid,1,"t","0"); 
+     document.Animator.makeDataConnection(electron_id,tid,2,"x","0");   
+     document.Animator.setAutoRefresh(true);
+     document.Animator.updateDataConnections();    
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 1.1</title>
+<link rel="stylesheet" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 1.1 - Clicar e arrastar para determinar a posição</h2>
+
+<div align="center">
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="400" HEIGHT="314"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="10">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="PixPerUnit" value="10">
+      <param name="GridUnit" value="1.0">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+    </applet></td>
+    <center>
+
+    <td>
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataTable.DataTable.class" NAME="DataTable" WIDTH="144" HEIGHT="314"
+    HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+      <param name="ShowScrollBars" value="false">
+      <param name="LastOnTop" value="false">
+      <param name="CellWidth" value="40">
+      <param name="NumRows" value="17">
+      <param name="NumCols" value="2">
+      <param name="ShowControls" value="false">
+      <param name="ShowRowHeader" value="false">
+      <param name="ShowColHeader" value="true">
+      <param name="SizeToFit" value="true">
+    </applet></td>
+  </tr>
+  </table>
+</center></div>
+
+<form name="specForm">
+  <div align="center"><center><p>
+    <input onclick="document.Animator.forward()" type="button" value="começar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início"></p>
+  </center></div>
+</form>
+
+
+    
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+    
+<p><b>Descrição da Animação</b><p>Muitos problemas requerem a determinação da 
+posição dos objetos dentro da animação. Isto pode ser feito usando o rato do 
+computador, clicando e arrastando o cursor dentro da animação.&nbsp;<b>Estas medições 
+não podem ser mais rigorosas que um pixel do ecrã. </b>Isto significa que, 
+dependendo do lugar em que medimos a posição, podemos obter resultados 
+ligeiramente diferentes que outra pessoa que esteja a&nbsp; fazer as mesmas 
+medições.
+<a href="JavaScript:initApplet()">Início</a><p>&nbsp;<p><b>Exploração</b><p>Agora olha para a <a href="JavaScript:initApplet2()">tabela na animação.</a>&nbsp; 
+Observa com cuidado todas as entradas na tabela. </p>
+
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

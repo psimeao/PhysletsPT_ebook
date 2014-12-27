@@ -1,0 +1,472 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script>
+<SCRIPT language="JavaScript">
+var timerID=0;
+var initT=50;
+var initV=100;
+var finalV=200;
+var finalT=100;
+var steps=30;
+var timerID=0;
+var loaded=false;
+var processloaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("piston0()",100);
+}
+  	
+function piston0(){ 
+      if(processloaded) return;
+      if(!loaded) return;
+       timerID=0;
+       
+       	document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.setAutoRefresh(true);
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,250);
+     document.DataGraph.setMinMaxY(0,20);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","500/v");
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","1500/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+     document.DataGraph.setSeriesRGB(1,0,0,255);
+
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Escolhe uma Animação");
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+
+	 document.DataGraph2.setAutoscaleX(false);
+     document.DataGraph2.setAutoscaleY(false);
+     document.DataGraph2.setMinMaxX(0,50);
+     document.DataGraph2.setMinMaxY(0,150);
+     document.DataGraph2.setDrawGrid(false);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,-1);
+     document.DataGraph2.setSeriesRGB(1,255,0,0);
+
+     document.DataGraph2.setLabelY("Temperatura"); 
+     document.DataGraph2.setLabelX("Entropia"); 
+     document.DataGraph2.setTitle("Diagrama TS"); 
+     document.DataGraph2.setLastPointMarker(1,true);
+     document.DataGraph2.setAddRepeatedDatum(1,false);
+     gid2=document.DataGraph2.getGraphID();
+}
+
+
+function isoP() {
+	      if(!loaded) return;
+         if(processloaded) return;
+	    clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+          
+          i=0;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Evoluindo...");
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setDefaultSize(0.3);
+     document.Molecular.setDefaultMass(1.0);
+     document.Molecular.setDefaultColor(0,250,250);
+     document.Molecular.createParticles(20);
+     eid=document.Molecular.getEnsembleID();
+     document.Molecular.setVolume(initV,1);
+     document.Molecular.setTemp(initT);
+     document.Molecular.setAutoRefresh(true);
+
+    	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+	document.DataGraph2.setDefault();
+	document.DataGraph2.deleteAllSeries();
+	
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,250);
+     document.DataGraph.setMinMaxY(0,20);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","500/v");
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","1500/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+     document.DataGraph.setSeriesRGB(1,0,0,255);
+
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Diagrama PV");
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+
+	 document.DataGraph2.setAutoscaleX(false);
+     document.DataGraph2.setAutoscaleY(false);
+     document.DataGraph2.setMinMaxX(0,50);
+     document.DataGraph2.setMinMaxY(0,150);
+     document.DataGraph2.setDrawGrid(false);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,-1);
+     document.DataGraph2.setSeriesRGB(1,255,0,0);
+
+     document.DataGraph2.setLabelY("Temperatura"); 
+     document.DataGraph2.setLabelX("Entropia"); 
+     document.DataGraph2.setLastPointMarker(1,true);
+     document.DataGraph2.setAddRepeatedDatum(1,false);
+     gid2=document.DataGraph2.getGraphID();
+	document.DataGraph.setAutoRefresh(true);
+	document.DataGraph2.setAutoRefresh(true);
+     document.Molecular.deleteDataConnections(); 
+     cid=document.Molecular.makeDataConnection(eid,gid,1,"v","n*t/v"); 
+     document.Molecular.forward();    
+     timerID=0;
+	      document.DataGraph2.setTitle("TS: Animação 1");
+	      if(timerID==0){
+	 timerID=setTimeout("isoP2()",5000);
+}	
+}
+
+function isoP2(){
+	
+	document.DataGraph.clearSeries(1);
+	document.DataGraph2.clearSeries(1);
+	document.Molecular.setTemp(initT);
+	document.DataGraph2.addDatum(1,5,50);
+    document.Molecular.addCaption("Processando");
+	
+	for (i=1;i<=steps;i++) {
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	heat1=20*2.5*(i*(finalT-initT)/steps);
+		entropy1=20*2.5*Math.log((initT+i*(finalT-initT)/steps)/initT);
+     	document.DataGraph2.addDatum(1,5+entropy1,initT+i*(finalT-initT)/steps);
+}
+        
+     	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);
+}
+
+function isoV() {
+	 	      if(!loaded) return;
+         if(processloaded) return;
+	    clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+          
+          i=0;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Evoluindo...");
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setDefaultSize(0.3);
+     document.Molecular.setDefaultMass(1.0);
+     document.Molecular.setDefaultColor(0,250,250);
+     document.Molecular.createParticles(20);
+     eid=document.Molecular.getEnsembleID();
+     document.Molecular.setVolume(initV,1);
+     document.Molecular.setTemp(initT);
+     document.Molecular.setAutoRefresh(true);
+
+    	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+	document.DataGraph2.setDefault();
+	document.DataGraph2.deleteAllSeries();
+	
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,250);
+     document.DataGraph.setMinMaxY(0,20);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","500/v");
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","1500/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+     document.DataGraph.setSeriesRGB(1,0,0,255);
+
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Diagrama PV");
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+
+	 document.DataGraph2.setAutoscaleX(false);
+     document.DataGraph2.setAutoscaleY(false);
+     document.DataGraph2.setMinMaxX(0,50);
+     document.DataGraph2.setMinMaxY(0,150);
+     document.DataGraph2.setDrawGrid(false);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,-1);
+     document.DataGraph2.setSeriesRGB(1,255,0,0);
+
+     document.DataGraph2.setLabelY("Temperatura"); 
+     document.DataGraph2.setLabelX("Entropia"); 
+     document.DataGraph2.setLastPointMarker(1,true);
+     document.DataGraph2.setAddRepeatedDatum(1,false);
+     gid2=document.DataGraph2.getGraphID();
+	document.DataGraph.setAutoRefresh(true);
+	document.DataGraph2.setAutoRefresh(true);
+     document.Molecular.deleteDataConnections(); 
+     cid=document.Molecular.makeDataConnection(eid,gid,1,"v","n*t/v");
+     document.Molecular.forward();     
+     timerID=0;
+	 document.DataGraph2.setTitle("TS: Animação 2");
+	 if(timerID==0){
+	 timerID=setTimeout("isoV2()",5000);
+}	
+}
+
+
+function isoV2(){
+	document.DataGraph.clearSeries(1);
+	document.DataGraph2.clearSeries(1);
+	document.DataGraph2.addDatum(1,5,50);
+	document.Molecular.setTemp(initT);
+	document.Molecular.addCaption("Processando");
+
+	for (i=1;i<=steps;i++) {
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	heat1=20*1.5*(i*(finalT-initT)/steps);
+		entropy1=20*1.5*Math.log((initT+i*(finalT-initT)/steps)/initT);
+      	document.DataGraph2.addDatum(1,5+entropy1*1.65,initT+i*.5*(finalT-initT)/steps);
+
+}
+      	
+     	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);
+}
+
+
+function isoT() {
+	 	      if(!loaded) return;
+         if(processloaded) return;
+	    clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+          
+          i=0;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Evoluindo...");
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setDefaultSize(0.3);
+     document.Molecular.setDefaultMass(1.0);
+     document.Molecular.setDefaultColor(0,250,250);
+     document.Molecular.createParticles(20);
+     eid=document.Molecular.getEnsembleID();
+     document.Molecular.setVolume(initV,1);
+     document.Molecular.setTemp(initT);
+     document.Molecular.setAutoRefresh(true);
+
+    	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.deleteAllSeries();
+		document.DataGraph2.setAutoRefresh(false);
+	document.DataGraph2.setDefault();
+	document.DataGraph2.deleteAllSeries();
+	
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,250);
+     document.DataGraph.setMinMaxY(0,20);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","500/v");
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","1500/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+     document.DataGraph.setSeriesRGB(1,0,0,255);
+
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Diagrama PV");
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+
+	 document.DataGraph2.setAutoscaleX(false);
+     document.DataGraph2.setAutoscaleY(false);
+     document.DataGraph2.setMinMaxX(0,50);
+     document.DataGraph2.setMinMaxY(0,150);
+     document.DataGraph2.setDrawGrid(false);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,-1);
+     document.DataGraph2.setSeriesRGB(1,255,0,0);
+
+     document.DataGraph2.setLabelY("Temperatura"); 
+     document.DataGraph2.setLabelX("Entropia"); 
+     document.DataGraph2.setLastPointMarker(1,true);
+     document.DataGraph2.setAddRepeatedDatum(1,false);
+     gid2=document.DataGraph2.getGraphID();
+	document.DataGraph.setAutoRefresh(true);
+	document.DataGraph2.setAutoRefresh(true);
+     document.Molecular.deleteDataConnections(); 
+     cid=document.Molecular.makeDataConnection(eid,gid,1,"v","n*t/v");     
+     timerID=0;
+	 document.DataGraph2.setTitle("TS: Animação 3");
+	 document.Molecular.forward();
+	 if(timerID==0){
+	 timerID=setTimeout("isoT2()",5000);
+}	
+}
+
+
+function isoT2()
+{
+	document.DataGraph.clearSeries(1);
+	document.DataGraph2.clearSeries(1);
+	document.DataGraph2.addDatum(1,5,50);
+	document.Molecular.setTemp(initT);
+	document.Molecular.addCaption("Processando");
+    for (i=1;i<=steps;i++) {
+	    document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+        document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);         
+        heat1=20*initT*Math.log((initV+i*(finalV-initV)/steps)/initV);
+     	document.DataGraph2.addDatum(1,5+heat1*2.5/initT,initT);  
+
+}
+     	
+        
+     	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);
+}
+
+function freebuttons() {
+     timerID=0;
+     document.Molecular.addCaption("Terminado");
+	 processloaded=false;
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Problem 21.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Problema 21.6</h2>
+<div align="center">
+&nbsp;<center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td><APPLET name="Molecular" codeBase="../../classes/" 
+      code="molecular.MolecularPiston.class" align="middle" width="110" height="250" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="ShowControls" VALUE="false">
+      <PARAM NAME="InitialP" VALUE="25">
+      <PARAM NAME="FPS" VALUE="20">
+      <PARAM NAME="dt" VALUE="0.05">
+      <PARAM NAME="PeriodicH" VALUE="false">
+      <PARAM NAME="PistonMass" VALUE="300">
+      <PARAM NAME="Gravity" VALUE="-2.0">
+      <PARAM NAME="ParseMode" VALUE="true">
+      <PARAM NAME="ParseString" VALUE="10">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Molecular,DataGraph,DataGraph2">
+      <param name="Resources" value="molecular_pt.rc">
+      </APPLET></td>
+      <td><APPLET name="DataGraph" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="230" height="250" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Function" VALUE="">
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+      <PARAM NAME="DataFile" VALUE="">
+      <PARAM NAME="AutoScaleX" VALUE="false">
+      <PARAM NAME="AutoScaleY" VALUE="true">
+      <PARAM NAME="ShowControls" VALUE="false">
+      <param name="Resources" value="datagraph_pt.rc">
+      </APPLET></td>
+      <td><APPLET name="DataGraph2" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="230" height="250" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Function" VALUE="">
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+      <PARAM NAME="DataFile" VALUE="">
+      <PARAM NAME="AutoScaleX" VALUE="false">
+      <PARAM NAME="AutoScaleY" VALUE="true">
+      <PARAM NAME="ShowControls" VALUE="false">
+      <param name="Resources" value="datagraph_pt.rc">
+      </APPLET></td>
+    </tr>
+    </table>
+  </center>
+</div>
+<CENTER>
+<FORM>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+&nbsp;&nbsp;
+<a href="JavaScript:isoP()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp; </td>
+      <td> 
+	&nbsp;&nbsp; 
+	<a href="JavaScript:isoV()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp;&nbsp; </td>
+      <td> 
+	&nbsp;&nbsp; 
+	<a href="JavaScript:isoT()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+</FORM>
+</CENTER>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+   <p align="center">
+   <font color="#ff0000"><b><i>Há um pequeno atraso temporal — uma vez que o 
+	sistema deve estar em equilíbrio — antes de ocorrer a mudança de estado.</i></b></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Nesta animação, <i>N</i> = <i>nR</i> (isto é, <i>k</i><sub>B</sub> = 1). 
+Assim, a lei do gás ideal (lei dos gases perfeitos) escreve-se<i> PV = NT</i>.&nbsp; 
+Assume que se trata de&nbsp; um gás ideal monoatómico.&nbsp;
+<a href="Javascript:piston0()">Início</a>.</p>
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>
+
+

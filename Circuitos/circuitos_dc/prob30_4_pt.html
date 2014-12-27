@@ -1,0 +1,197 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var loaded=false;
+var timerID=0;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build1()",100);
+}
+
+function build1(){
+    if(!loaded) return;
+    timerID=0;	 
+    document.circuit.pause();
+	document.circuit.setDefault();
+	document.circuit.setGrid("rows=3,cols=4");
+	id[1]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=50.0,r=1.0E-9");
+	document.circuit.setValueVisible(id[1],false);
+	id[2]=document.circuit.addObject("ameter","row=0,col=0,to=h,label=,d=-1,r=0.1");
+	id[3]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=A,r=200.0");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	id[4]=document.circuit.addObject("resistor","row=0,col=2,to=v,label=B,r=100.0");
+	id[6]=document.circuit.addObject("switch","row=0,col=2,to=h,label=S1,open=1");
+	id[5]=document.circuit.addObject("resistor","row=0,col=3,to=v,label=C,r=400.0");
+	id[7]=document.circuit.addObject("switch","row=1,col=2,to=v,label=S2,open=1");
+	document.circuit.addObject("wire","row=1,col=3,to=v,label=");
+	document.circuit.addObject("wire","row=2,col=2,to=h,label=");
+	document.circuit.addObject("wire","row=2,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=v,label=");
+	document.circuit.addObject("wire","row=2,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	document.circuit.setValueVisible(id[3],false);
+	document.circuit.setValueVisible(id[4],false);
+	document.circuit.setValueVisible(id[5],false);
+    document.circuit.parse();
+    document.circuit.reset();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Amperímetro (A)"); 
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],tid,1,"i","0"); 
+    document.circuit.updateDataConnections();
+    document.circuit.forward();
+}
+
+function build2(){
+	if(!loaded) return;
+    timerID=0;
+    document.circuit.pause();
+	document.circuit.setDefault();
+	document.circuit.setGrid("rows=3,cols=3");
+	id[1]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=50.0,r=1.0E-9");
+	id[2]=document.circuit.addObject("ameter","row=0,col=0,to=h,label=,d=-1,r=0.1");
+	id[3]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=B,r=200.0");
+	id[6]=document.circuit.addObject("switch","row=0,col=1,to=h,label=S1,open=1");
+	id[4]=document.circuit.addObject("resistor","row=0,col=2,to=v,label=C,r=100.0");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	id[5]=document.circuit.addObject("resistor","row=1,col=0,to=h,label=A,r=400.0");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	id[7]=document.circuit.addObject("switch","row=2,col=0,to=h,label=S2,open=1");
+	document.circuit.addObject("wire","row=1,col=1,to=v,label=");
+	document.circuit.setValueVisible(id[1],false);
+	document.circuit.setValueVisible(id[3],false);
+	document.circuit.setValueVisible(id[4],false);
+	document.circuit.setValueVisible(id[5],false);
+
+
+    document.circuit.parse();
+    document.circuit.reset();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Amperímetro (A)"); 
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],tid,1,"i","0"); 
+    document.circuit.updateDataConnections();
+    document.circuit.forward();
+}
+
+function change2(){ 
+    if(!loaded) return;
+	document.circuit.setValue(id[7],"0"); 
+}
+function change1(){ 
+    if(!loaded) return;
+	document.circuit.setValue(id[6],"0"); 
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 30.4</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 30.4</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;<font size="2"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="200" name="circuit" mayscript>
+        
+        
+        
+        
+        
+        
+        
+        <param name="numberofdt" value="10">
+        <param name="dt" value="0.05">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="datatable,circuit">
+      </applet></font></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataTable.DataTable.class" 
+      name="datatable" width="150" height="45" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="CellWidth" value="40">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="1">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+      </applet> </td>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="Switch">
+ <div align="center">
+   <center>
+   <p><font size="2">&nbsp;<input type="button" value="abrir/fechar 1" onclick="Javascript:change1()"><input 
+   type="button" value="abrir/fechar 2" onclick="Javascript:change2()"></font></p>
+   </center>
+ </div>
+</form>
+
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+<p align="left"><span lang="pt">Nos dois circuitos 
+apresentados, <b>a corrente no amperímetro é dada em amperes</b>.&nbsp; 
+<a href="JavaScript:build1()">
+Início</a></span></p>
+<ol type="a">
+  <li>
+	<p style="margin-top: 6px"><span lang="pt"><a href="JavaScript:build1()">
+	Circuito 1</a></span></li>
+  <li>
+	<p style="margin-top: 6px"><span lang="pt"><a href="JavaScript:build2()">
+	Circuito 2</a></span></li>
+</ol>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Problema da autoria de Anne J. Cox.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

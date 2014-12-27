@@ -1,0 +1,260 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob4_11_0()",100);
+}
+  	
+function prob4_11_0(){ 
+      if(!loaded) return;
+       timerID=0;
+
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(-20,-30);
+   document.Animator.addObject("caption","text=Escolhe uma Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function forceDemo1(force12,force21){       
+   if(!loaded) return;
+   timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(2);
+    c10=document.Animator.addCircle(20,"-10","0"); 
+   c1=document.Animator.addCircle(18,"-10","0");
+   document.Animator.setAnimationSlave(c1,c10);
+   document.Animator.setConstrainY(c1,0,0,0);
+   document.Animator.setShowConstraintPath(c1,false);
+   document.Animator.setRGB(c10,0,0,0);
+    document.Animator.setRGB(c1,128,0,0);
+   document.Animator.setMass(c1,0.1);
+   document.Animator.setDragable(c1,true);
+  
+    c20=document.Animator.addCircle(20,"10","0"); 
+   c2=document.Animator.addCircle(18,"10","0");
+   document.Animator.setAnimationSlave(c2,c20);
+   document.Animator.setShowConstraintPath(c2,false);
+   document.Animator.setConstrainY(c2,0,0,0);
+   document.Animator.setRGB(c20,0,0,0);
+    document.Animator.setRGB(c2,0,128,0);
+   document.Animator.setMass(c2,0.1);
+   document.Animator.setDragable(c2,true);  
+   
+   a12=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setDisplayOffset(a12,0, 0);
+   document.Animator.setForce(a12,"0","0",0,0,0,0);
+   document.Animator.setRGB(a12,0,255,0);
+   document.Animator.setShowFVector(a12,true);
+   document.Animator.setAnimationSlave(c1,a12);
+   document.Animator.addInteraction(c2,a12,force12,"x"); 
+   
+   a21=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setDisplayOffset(a21,0, 0);
+   document.Animator.setForce(a21,"0","0",0,0,0,0);
+   document.Animator.setRGB(a21,255,0,0);
+   document.Animator.setShowFVector(a21,true);
+   document.Animator.setAnimationSlave(c2,a21);
+   
+     
+   document.Animator.addInteraction(c1,a21,force21,"x"); 
+   document.Animator.setAutoRefresh(true);  
+    document.Animator.deleteDataConnections();
+    document.Animator.updateDataConnections();
+}
+
+function forceDemo2(force12, force21, force13, force23){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(2);
+    
+    
+      c10=document.Animator.addCircle(20,"-15","0"); 
+   c1=document.Animator.addCircle(18,"-15","0");
+   document.Animator.setAnimationSlave(c1,c10);
+   document.Animator.setConstrainY(c1,0,0,0);
+   document.Animator.setShowConstraintPath(c1,false);
+   document.Animator.setRGB(c1,128,0,0);
+   document.Animator.setMass(c1,0.1);
+   document.Animator.setDragable(c1,true);
+  
+   c20=document.Animator.addCircle(20,"0","0"); 
+   c2=document.Animator.addCircle(18,"0","0");
+   document.Animator.setAnimationSlave(c2,c20);
+   document.Animator.setShowConstraintPath(c2,false);
+   document.Animator.setConstrainY(c2,0,0,0);
+   document.Animator.setRGB(c20,0,0,0);
+    document.Animator.setRGB(c2,0,128,0);
+   document.Animator.setMass(c2,0.1);
+   document.Animator.setDragable(c2,true);  
+   
+         c30=document.Animator.addCircle(20,"15","0"); 
+   c3=document.Animator.addCircle(18,"15","0");
+   document.Animator.setAnimationSlave(c3,c30);
+   document.Animator.setShowConstraintPath(c3,false);
+   document.Animator.setConstrainY(c3,0,0,0);
+   document.Animator.setRGB(c3,0,0,128);
+   document.Animator.setMass(c3,0.1);
+   document.Animator.setDragable(c3,true);    
+   
+   a12=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setDisplayOffset(a12,0, 5);
+   document.Animator.setForce(a12,"0","0",0,0,0,0);
+   document.Animator.setRGB(a12,0,255,0);
+   document.Animator.setShowFVector(a12,true);
+   document.Animator.setAnimationSlave(c1,a12);
+   
+   a13=document.Animator.addArrow("0","0","5","5");
+   document.Animator.setDisplayOffset(a13,0, -5);
+   document.Animator.setForce(a13,"0","0",0,0,0,0);
+   document.Animator.setRGB(a13,0,0,255);
+   document.Animator.setShowFVector(a13,true);
+   document.Animator.setAnimationSlave(c1,a13);
+     
+   document.Animator.addInteraction(c2,a12,force12,"x"); 
+   document.Animator.addInteraction(c3,a13,force13,"x"); 
+
+   a21=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setDisplayOffset(a21,0, 5);
+   document.Animator.setForce(a21,"0","0",0,0,0,0);
+   document.Animator.setRGB(a21,255,0,0);
+   document.Animator.setShowFVector(a21,true);
+   document.Animator.setAnimationSlave(c2,a21);
+   
+   a23=document.Animator.addArrow("0","0","5","5");
+   document.Animator.setDisplayOffset(a23,0, -5);
+   document.Animator.setForce(a23,"0","0",0,0,0,0);
+   document.Animator.setRGB(a23,0,0,255);
+   document.Animator.setShowFVector(a23,true);
+   document.Animator.setAnimationSlave(c2,a23);
+     
+   document.Animator.addInteraction(c1,a21,force21,"x"); 
+   document.Animator.addInteraction(c3,a23,force23,"x"); 
+   
+   a31=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setDisplayOffset(a31,0, 5);
+   document.Animator.setForce(a31,"0","0",0,0,0,0);
+   document.Animator.setRGB(a31,255,0,0);
+   document.Animator.setShowFVector(a31,true);
+   document.Animator.setAnimationSlave(c3,a31);
+   
+   a32=document.Animator.addArrow("0","0","5","5");
+   document.Animator.setDisplayOffset(a32,0, -5);
+   document.Animator.setForce(a32,"0","0",0,0,0,0);
+   document.Animator.setRGB(a32,0,255,0);
+   document.Animator.setShowFVector(a32,true);
+   document.Animator.setAnimationSlave(c3,a32);
+     
+   document.Animator.addInteraction(c1,a31,force13,"x"); 
+   document.Animator.addInteraction(c2,a32,force23,"x"); 
+   document.Animator.setAutoRefresh(true);  
+    document.Animator.deleteDataConnections();
+    document.Animator.updateDataConnections();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 4.13</title>
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Problema 4.13</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="400"
+        height="100" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">
+		&nbsp;
+		<a
+        href="JavaScript:forceDemo1('-1000/(50+x*x)','-1000/(50+x*x)+ 2*sin(pi*x/10)')" style="text-decoration: none">
+		Animação 1</a></td>
+      <td align="center">
+		&nbsp;
+		<a
+        href="JavaScript:forceDemo1('10*step(-x+2.0)','10*step(-x+2.0)')" style="text-decoration: none">
+		Animação 2</a></td>
+      <td  align="center">
+		&nbsp;
+		<a
+        href="JavaScript:forceDemo2('-1000/(50+x*x)','-1000/(50+x)','-1000/(50+x)','+500/(50+x*x)')" style="text-decoration: none">
+		Animação 3</a></td>
+      <td  align="center">
+		&nbsp;
+		<a
+        href="JavaScript:forceDemo2('-1000/(50+x*x)','-1000/(50+x*x)','-1000/(50+x*x)','+500/(50+x*x)')" style="text-decoration: none">
+		Animação 4</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>A Terceira Lei de Newton afirma que sempre que dois objetos interagem, eles 
+exercem um sobre o outro forças de intensidades iguais mas de sentidos opostos.&nbsp; 
+As bolas na animação podem ser deslocadas usando o rato<b> (a posição é dada em 
+metros e o tempo em segundos)</b>.&nbsp;À medida que deslocas as bolas, o tamanho das setas vai mudando. Cada seta 
+representa a força que o objeto da cor respetiva exerce sobre aquele onde a 
+força está aplicada (o comprimento da seta indica a intensidade da força).&nbsp;&nbsp;&nbsp; <a href="JavaScript:prob4_11_0()">Início</a></p>
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

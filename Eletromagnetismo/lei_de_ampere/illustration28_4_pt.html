@@ -1,0 +1,256 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var cid=0;
+var gid=0;
+var series=1;
+var conid1=0;
+var conid2=0;
+var conid3=0;
+var pid=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("wires(1)",100);
+}
+  	
+function wires(num_wires){ 
+      if(!loaded) return;
+       timerID=0;
+    cid=0;
+    gid=0;
+    series=1;
+	conid1=0;
+	conid2=0;
+	conid3=0;
+     document.BField.setAutoRefresh(false);
+     document.BField.setDefault();
+     document.BField.addObject("field","");
+     document.BField.addObject("text","text=Lei de Ampère, x=-1.3, y=4");
+     cid=document.BField.addObject("cursor","x=0,y=2,r=5");
+     document.BField.setVisibility(cid,true);
+     document.BField.setDragable(cid,true);
+     if(num_wires==2){
+     	w1=document.BField.addObject("wire","x=0,y=1,i=2");
+	    document.BField.setDragable(w1,false);
+	    document.BField.setShowFVector(w1,false);
+	    w1=document.BField.addObject("wire","x=0,y=-1,i=-2");
+	    document.BField.setDragable(w1,false);
+	    document.BField.setShowFVector(w1,false);
+     }else{
+       w1=document.BField.addObject("wire","x=0,y=0,i=2");
+       document.BField.setDragable(w1,false);
+       document.BField.setShowFVector(w1,false);
+     }
+     gid=document.BField.getGraphID();
+     document.BField.setSeriesStyle(series,true,0);
+     document.BField.setSeriesRGB(series,255,0,0); 
+     pid=document.BField.addObject("image","file=images/pencil.gif");
+     document.BField.setVisibility(pid,false);
+     document.BField.setAnimationSlave(cid,pid);
+    document.BField.setDisplayOffset(pid,-3,53); 
+    document.BField.setAutoRefresh(true);
+    
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x");
+    document.DataTable.setSeriesLabel(2,"y");  
+    document.DataTable.setSeriesLabel(3,"Integral");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    document.Integrator.setLineIntegralMode("bx","by");
+    fid=document.Integrator.getID();
+    document.Integrator.deleteDataConnections();
+    
+    document.Bar.setMin(-40);
+    document.Bar.setMax(40);
+    document.Bar.setPosRGB(200,100,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID(); 
+    
+     document.BField.deleteDataConnections();
+     conid1=document.BField.makeDataConnection(cid,gid,series,"x","y"); 
+     conid2=document.BField.makeDataConnection(cid,fid,1,"x","y");
+     document.Integrator.makeDataConnection(fid,bid,1,"integral","0"); 
+     document.BField.makeDataConnection(cid,tid,1,"x","0"); 
+     document.BField.makeDataConnection(cid,tid,2,"y","0"); 
+     conid3=document.Integrator.makeDataConnection(fid,tid,3,"integral","0"); 
+     document.BField.setConnectionBlock(conid1,true); 
+     document.BField.setConnectionBlock(conid2,true); 
+     document.Integrator.setConnectionBlock(conid3,true); 
+     document.BField.updateDataConnections();
+     document.Integrator.updateDataConnections();
+}
+
+function drawOn(){
+     if(!loaded) return;
+     document.Integrator.reset();
+     document.BField.setConnectionBlock(conid1,false); 
+     document.BField.setConnectionBlock(conid2,false);
+     document.Integrator.setConnectionBlock(conid3,false);
+     document.BField.setSeriesStyle(series,true,0);
+     document.BField.setSeriesRGB(series,255,0,0);
+     document.BField.setVisibility(pid,true);
+     document.BField.setVisibility(cid,false);
+     document.Integrator.updateDataConnections();
+}
+function drawOff(){
+     if(!loaded) return;
+     document.BField.setVisibility(pid,false);
+     document.BField.setVisibility(cid,true);
+     document.BField.setConnectionBlock(conid1,true);
+     document.BField.setConnectionBlock(conid2,true);
+     document.Integrator.setConnectionBlock(conid3,true);
+     series++;
+     document.BField.setSeriesStyle(series,true,0);
+     document.BField.setSeriesRGB(series,255,0,0);
+     conid1=document.BField.makeDataConnection(cid,gid,series,"x","y");
+     document.BField.setConnectionBlock(conid1,true); 
+}
+
+function markerg(){
+if(!loaded) return;
+idx=document.BField.getXPos(cid);
+idy=document.BField.getYPos(cid);
+idm=document.BField.addObject("circle","x="+idx+",y="+idy+",r=3");
+document.BField.setRGB(idm,0,220,0);
+
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 28.4</title>
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Ilustração 28.4 - Integral de linha do campo magnético<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="filters.Integrator.class" name="Integrator"  width="0" height="0" hspace="0"
+vspace="0" align="middle" mayscript>
+  
+  
+  
+  
+  
+  
+  
+  <param name="Independent" value="x">
+  <param name="Dependent" value="y">
+  <param name="Differential" value="dx">
+  <param name="Integrand" value="1">
+</applet></h2>
+
+&nbsp;<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet CODEBASE="../../classes/" 
+        ARCHIVE="Physlets.jar" 
+      CODE="bfield.BField.class" NAME="BField" WIDTH="350" 
+      HEIGHT="300" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField,Bar,DataTable,Integrator">
+      </applet>       </td>
+      <td align="center" rowspan="2">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar"  width="15" height="250" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+  </table>  </center>
+</div>
+<div align="center">
+      <table border="1" bgcolor="#c0c0c0">
+      <tr>
+        <td colspan="2"><applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="200" height="45" hspace="0"
+vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+      </tr>
+      <tr>
+        <td align="center">
+  <a href="JavaScript:wires(1)" style="text-decoration: none">Um fio</a>
+        </td>
+        <td align="center">
+	<a href="JavaScript:wires(2)" style="text-decoration: none">Dois fios</a></td>
+      </tr>
+    </table>
+  </div>
+ 
+  <div align="center">
+ <form>   <center>
+    <p>
+  <input type="button" value="integrar" onclick="drawOn()"><input 
+      type="button" value="não integrar" onclick="drawOff()"><input type="button" value="impor integral = 0" name="resetBtn"
+    onclick="document.Integrator.reset(); document.BField.updateDataConnections();"></p>
+    </center>
+</form>
+  
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+
+<p align="left">A lei de Ampère é traduzida pela expressão ∫<b> <i>B</i> • </b>d<b><i>l</i> </b>
+= μ<sub>o</sub><i>I</i>, onde o integral de linha é feito sobre um caminho fechado, d<i><b>l</b></i> 
+é um elemento (vetorial) do caminho no sentido em que ele é percorrido , μ<sub>o </sub>
+é a permeabilidade no vazio (4π x 10<sup>-7</sup> Tm/A) e <i>I</i> é a intensidade da 
+corrente total no interior do caminho fechado. Quando acionas o botão&nbsp; &quot;<i>integrar&quot;</i>, a animação mostra o caminho fechado do integral à medida que moves o 
+lápis no monitor <b>(os resultados do integral de linha são apresentados em 10<sup>-7</sup> 
+Tm)</b>.&nbsp; <a href="JavaScript:wires(1)">Início</a>.&nbsp; </p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+<i>Script </i>da autoria de Mario Belloni e Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script> 
+<script language="JavaScript">
+var stripchart=false;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+      document.initial.reset();
+   
+     document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+         		xaxis=document.animator.addObject("arrow","v=0,h=10");
+		yaxis=document.animator.addObject("arrow","v=3,h=0");
+		document.animator.setRGB(xaxis,0,0,0);
+		document.animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.animator.addObject("text","y=3,x=-2.5,text=+y");
+		document.animator.setRGB(xtext,0,0,0);
+		document.animator.setRGB(ytext,0,0,0);
+		curid0=document.animator.addObject("circle","r=10,x=0");
+		curid=document.animator.addObject("circle","r=9,x=0"); 
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setDragable(curid,false); 
+   document.animator.setCaption("Introduz a expressão da força aplicada");
+   document.animator.setAutoRefresh(true);
+	
+	document.DataGraph1.setAutoscaleX(true);
+     document.DataGraph1.setAutoscaleY(true);
+     document.DataGraph1.setMinMaxY(-12,12);
+     document.DataGraph1.setLastPointMarker(1,true);   
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph1.getGraphID();
+     document.DataGraph1.setAutoRefresh(true);
+     document.animator.deleteDataConnections(); 
+     document.animator.updateDataConnections();
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph1.getGraphID();
+     document.DataGraph1.setAutoRefresh(true);
+     document.animator.deleteDataConnections(); 
+     document.animator.updateDataConnections();
+     
+}
+
+function initValues(){  
+   if(!loaded) return;
+   valid1=document.DataGraph1.isValidFunction(document.initial.forcex.value, "x,t");
+   
+   if(!valid1){
+       alert("A função não é válida:  "+document.initial.forcex.value+".");
+       return;
+   }
+
+   testx0=document.initial.x0.value;
+   testv0=document.initial.v0.value;
+   testdt=document.initial.dt.value;
+   testinterval=document.initial.interval.value;
+
+
+     if( !checkRange(testx0,-10,10)){
+     alert("A posição inicial deve estar entre -10 m e 10 m. O valor inserido foi "+testx0+" m.");
+     return;
+  } 
+
+
+     if( !checkRange(testv0,-10,10)){
+     alert("A velocidade inicial deve ser entre -10 m/s e 10 m/s. O valor inserido foi "+testv0+" m/s.");
+     return;
+  } 
+
+     if( !checkRange(testdt,0.001,1)){
+     alert("O incremento dt deve ser entre 0.001 s e 1 s. O valor inserido foi "+testdt+" s.");
+     return;
+  } 
+
+
+       if( !checkRange(testinterval,1,50)){
+     alert("O intervalo de tempo deve ser entre 1 s and 50 s. O valor inserido foi "+testinterval+" s.");
+     return;
+  } 
+ 
+   forcex=document.initial.forcex.value;
+   x0=eval(document.initial.x0.value);
+   v0=eval(document.initial.v0.value);
+   dt=eval(document.initial.dt.value);
+   interval=eval(document.initial.interval.value);
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setDt(dt);
+   document.animator.setTimeDisplay(true); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+         		xaxis=document.animator.addObject("arrow","v=0,h=10");
+		yaxis=document.animator.addObject("arrow","v=3,h=0");
+		document.animator.setRGB(xaxis,0,0,0);
+		document.animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.animator.addObject("text","y=3,x=-2.5,text=+y");
+		document.animator.setRGB(xtext,0,0,0);
+		document.animator.setRGB(ytext,0,0,0);
+		document.animator.setAutoRefresh(true);
+		rid1=document.animator.addObject("rectangle","w=80,h=10,x=100");
+		rid2=document.animator.addObject("rectangle","w=80,h=10,x=-100");
+				document.animator.setSticky(rid1,true);
+				document.animator.setSticky(rid2,true);
+				
+				
+		curid0=document.animator.addObject("circle","r=10");
+		curid=document.animator.addObject("circle","r=9"); 
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setDragable(curid,false); 
+   document.animator.setForce(curid,forcex,"0",x0,0,v0,0); 
+document.animator.setAnimationSlave(curid,curid0);
+	document.animator.setSticky(curid,true);
+				document.animator.setCollisionMessage("Fim da Animação");
+
+	document.DataGraph1.setAutoscaleX(true);
+     document.DataGraph1.setAutoscaleY(true);
+     document.DataGraph1.setMinMaxY(-12,12);
+     document.DataGraph1.setDrawGrid(false);
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     numpts=interval/dt;
+     if(stripchart)document.DataGraph1.setStripChart(1,numpts, true);
+     document.DataGraph1.setLastPointMarker(1,true);    
+     document.DataGraph1.setTitle("F(x) = "+forcex);
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph1.getGraphID();
+     document.DataGraph1.setAutoRefresh(true);
+     
+     document.animator.deleteDataConnections(); 
+     document.animator.makeDataConnection(curid,gid1,1,"t","x");  
+     document.animator.updateDataConnections();
+     document.animator.forward();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 4.8</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center" style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+Exploração 4.8 - Gráfico do movimento produzido por uma Força:</h2>
+<h2 align="center" style="line-height: 150%; margin-top: 0; margin-bottom: 6px">
+Introdução de uma expressão para a força aplicada</h2>
+<div align="center">
+  <center>
+  <table bgcolor="#C0C0C0" border="1">
+    <tr>
+      <td>
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraph1" 
+      width="404" height="200" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" 
+      code="animator4.Animator.class" 
+      archive="Physlets.jar" hspace="0" 
+      align="middle" width="407" height="145" name="animator" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.1">
+        <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,DataGraph1">
+        <param name="Resources" value="animator_pt.rc">
+     </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="initial">
+  <p align="center"> 
+  <input type="button" value="começar" 
+  onclick="initValues()">
+  <input type="button" value="continuar" 
+  onclick="document.animator.forward()"><input type="button" value="pausa" 
+  onclick="document.animator.pause()"><input type="button" value="passo &gt;&gt;" 
+  onclick="document.animator.stepForward()"><input type="button" value="início" 
+  onclick="document.animator.pause();document.animator.reset()"></p>
+  <p align="center"><b><i>F</i><sub>x</sub>(<i>x</i>, <i>t</i>) = </b> <i> 
+  <input type="text" size="32" 
+  value="1" name="forcex">
+  </i><b>N</b><i><br>
+  <br>
+  </i>
+  <b><i>x</i><sub>0</sub> =<i> 
+   
+  <input type="text" size="4" value="0" name="x0">
+  </i>m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i> v</i><sub>0</sub> =<i> 
+   
+  <input 
+  type="text" size="4" value="0" name="v0">
+  </i>m/s&nbsp;&nbsp;&nbsp;&nbsp; d<i>t</i> =<i> 
+   
+  <input type="text" 
+  size="4" value="0.1" name="dt">
+  </i> </b>
+  <b>s</b></p>
+  <p align="center"><b>gráfico de escala fixa</b><i><input type="checkbox" name="options" 
+  value="stripchart" onclick="javascript: stripchart = (this.checked);"> <b>
+  &nbsp;</b></i><b>intervalo de tempo =</b><i> <input type="text" size="4" value="10" name="interval"> </i>
+  <b>s</b></p>
+  </center>
+  </div>
+</form>
+
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0"><b>Descrição da Animação</b></p>
+
+<p>Nesta animação podes escrever uma expressão matemática para a força aplicada 
+e escolher as condições iniciais do movimento da bola vermelha. Se clicares no 
+gráfico de cima com o botão direito do rato, obterás uma cópia do gráfico nesse 
+instante. Assinala a caixa &quot;gráfico de escala fixa&quot; para fixares a escala do 
+gráfico de cima durante o intervalo de tempo indicado em &quot;intervalo de tempo&quot;. </p>
+<p style="margin-bottom: 5px">( Nota 1: A animação chegará ao fim quando a bola 
+exceder +/- 100 m da sua posição de partida )&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.</p>
+<p style="margin-top: 5px">( Nota 2: Lembra-te que deves usar a sintaxe correta, 
+como por exemplo: -10+0.5*t&nbsp; ;&nbsp;&nbsp;-10+0.5*t*t&nbsp;&nbsp; ;&nbsp; ou&nbsp;&nbsp; 
+-10+0.5*t^2 )</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

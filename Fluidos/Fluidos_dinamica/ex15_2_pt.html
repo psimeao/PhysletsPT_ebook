@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 15.2</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+timerID=setTimeout("fluid0()",100);
+}
+
+
+function fluid0(){
+    if(!loaded) return;
+    timerID=0;
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+	document.Animator.setPixPerUnit(20);
+   	document.Animator.shiftPixOrigin(-20,0);
+   	cid=document.Animator.getClockID();
+   	document.Animator.setVisibility(cid,false);
+   
+   	document.Animator.setShapeRGB(0,0,0);
+   	document.Animator.addObject("text","text=Tempo: ,calc=t/20,x=-8,y=6");
+   	document.Animator.addRectangle(160,90,"-3.5","-4");
+   	document.Animator.addRectangle(100,90,"-8","-4");
+   	document.Animator.addRectangle(60,250,"0","0");
+    document.Animator.addRectangle(160,50,"3.5","5");
+    document.Animator.addRectangle(160,50,"7","5");
+   
+    document.Animator.setShapeRGB(0,250,250);
+    document.Animator.addRectangle(160,80,"-3.5","-4");
+    document.Animator.addRectangle(100,80,"-8","-4");
+   	document.Animator.addRectangle(50,240,"0","0");
+    document.Animator.addRectangle(160,40,"3.5","5");
+    document.Animator.addRectangle(160,40,"7","5");
+   	
+   	document.Animator.setShapeRGB(0,0,255);
+	document.Animator.addRectangle(10,80,"-5.25+.1*t","-4");
+	document.Animator.addRectangle(40,40,"3+.4*t","5");
+	
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(1,100,"-5","-4");
+	document.Animator.addRectangle(1,60,"4","5");
+	
+	document.Animator.setShapeRGB(0,0,0);
+	pida=document.Animator.addRectangle(10,4,"-4.5","-4");
+        document.Animator.setShapeRGB(255,0,0);
+	pid=document.Animator.addRectangle(8,2,"-4.5","-4");
+	document.Animator.setAnimationSlave(pid,pida);
+         document.Animator.setDragable(pid,true);
+	document.Animator.setConstrainY(pid,-4,-8,-2);
+	document.Animator.setShowConstraintPath(pid,false);
+	cap1=document.Animator.addObject("text","text=P =,calc=1.52e5+1000*(8*8-2*2)/2+1000*9.8*9");
+	document.Animator.setAnimationSlave(pid,cap1);	
+    document.Animator.setDisplayOffset(cap1,10,0);
+    document.Animator.setFormat(cap1,"% .2e");
+
+	document.Animator.setShapeRGB(0,0,0);
+	pid2a=document.Animator.addRectangle(10,4,"5","5");
+	document.Animator.setShapeRGB(255,0,0);
+	pid2=document.Animator.addRectangle(8,2,"5","5");
+	document.Animator.setAnimationSlave(pid2,pid2a);
+       document.Animator.setDragable(pid2,true);
+	document.Animator.setConstrainY(pid2,5,2,9);
+	document.Animator.setShowConstraintPath(pid2,false);
+	cap2=document.Animator.addObject("text","text=P =,calc=1.52e5");
+	document.Animator.setAnimationSlave(pid2,cap2);	
+    document.Animator.setDisplayOffset(cap2,10,0);
+    document.Animator.setFormat(cap2,"% .2e");
+
+	document.Animator.setShapeRGB(0,0,0);
+	pid3a=document.Animator.addRectangle(10,4,"0","0");
+         document.Animator.setShapeRGB(255,0,0);
+	pid3=document.Animator.addRectangle(8,2,"0","0");
+	document.Animator.setAnimationSlave(pid3,pid3a);
+        document.Animator.setDragable(pid3,true);
+	document.Animator.setConstrainX(pid3,0,-2,4);
+	document.Animator.setShowConstraintPath(pid3,false);
+	cap3=document.Animator.addObject("text","text=P =,calc=1.52e5+1000*(8*8-3.555*3.555)/2+1000*9.8*(5-y)");
+	document.Animator.setAnimationSlave(pid3,cap3);	
+    document.Animator.setDisplayOffset(cap3,10,0);
+    document.Animator.setFormat(cap3,"% .2e");
+
+	
+	document.Animator.setOneShot(0,5,"Fim da Animação");   
+    document.Animator.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Exploração 15.2 - Equação de Bernoulli</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="400" height="300" name="Animator" mayscript>
+	    <param name="FPS" value="10">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+<form name="selection">
+        <INPUT onclick="document.Animator.forward()" type="button" value="começar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td></form>            
+       
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b><p align="left">A equação de 
+Bernoulli descreve a conservação da densidade de energia num fluido ideal.&nbsp; 
+Assume que o fluido da animação é ideal <b>(a posição é dada em metros e a 
+pressão em pascal)</b>.&nbsp;&nbsp;A zona azul escura na animação representa uma porção de 
+água, à medida que esta flui através da região assinalada com a linha vertical e 
+a água correspondente que deve deslocar-se na parte de cima do tubo, à direita. 
+Vamos assim explorar a relação entre a equação de Bernoulli e a conservação da 
+energia.&nbsp;<a href="JavaScript:fluid0()">Início</a> <p align="left"><i>Nota o 
+formato em que o valor da pressão é escrito. Por exemplo, a pressão atmosférica, 
+1,01 x 10<sup>5</sup> Pa, é escrita como 1.01e+005.</i><center>
+<center>
+<p align="left">&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<center>
+<center>
+<center>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

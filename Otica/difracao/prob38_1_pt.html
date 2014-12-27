@@ -1,0 +1,215 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 38.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.ripple.setDefault();
+   	document.ripple.setWavelength(1.8);
+
+     rid=document.ripple.addObject("rectangle","x=0,y=-15,h=10,w=250");
+     document.ripple.setRGB(rid,255,0,0);  
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=0,y=-16.5,h=20,w=250");
+     document.ripple.setRGB(rid,255,255,255);  
+     document.ripple.setDragable(rid,false);
+      tid=document.ripple.addObject("text","x=-10.5,y=-17,text=Seleciona uma animação");
+     document.ripple.setRGB(tid,0,0,0);  
+     document.ripple.setDragable(rid,false);
+
+}
+
+function init1(){
+    if(!loaded) return;
+    document.ripple.setDefault();
+   	document.ripple.setWavelength(1.8);
+
+     rid=document.ripple.addObject("rectangle","x=0,y=-15,h=10,w=250");
+     document.ripple.setRGB(rid,255,0,0);  
+     document.ripple.setDragable(rid,false);
+     rid=document.ripple.addObject("rectangle","x=0,y=-16.5,h=20,w=250");
+     document.ripple.setRGB(rid,255,255,255);  
+     document.ripple.setDragable(rid,false);
+      tid=document.ripple.addObject("text","x=-4,y=-17,text=Animação 1");
+     document.ripple.setRGB(tid,0,0,0);  
+     document.ripple.setDragable(rid,false);
+
+
+ 	cid=document.ripple.getClockID();
+     id3=document.ripple.addObject("source","r=3,y=-15,x=0");
+     document.ripple.setDragable(id3,false); 
+     id3=document.ripple.addObject("source","r=3,y=-15,x=.5"); 
+     document.ripple.setDragable(id3,false);
+     id3=document.ripple.addObject("source","r=3,y=-15,x=1"); 
+     document.ripple.setDragable(id3,false);
+     id3=document.ripple.addObject("source","r=3,y=-15,x=1.5");         	      
+	 
+     document.ripple.startAnimate();
+
+}
+
+
+function init2(){
+    if(!loaded) return;
+    document.ripple.setDefault();
+   	document.ripple.setWavelength(1.8);
+
+     rid=document.ripple.addObject("rectangle","x=0,y=-15,h=10,w=250");
+     document.ripple.setRGB(rid,0,255,0);  
+     document.ripple.setDragable(rid,false);
+      rid=document.ripple.addObject("rectangle","x=0,y=-16.5,h=20,w=250");
+     document.ripple.setRGB(rid,255,255,255);  
+     document.ripple.setDragable(rid,false);
+      tid=document.ripple.addObject("text","x=-4,y=-17,text=Animação 2");
+     document.ripple.setRGB(tid,0,0,0);  
+     document.ripple.setDragable(rid,false);
+      
+
+ 	cid=document.ripple.getClockID();
+     id3=document.ripple.addObject("source","r=3,y=-15,x=0");
+     document.ripple.setDragable(id3,false);
+     document.ripple.setRGB(id3,0,255,0); 
+     id3=document.ripple.addObject("source","r=3,y=-15,x=.8"); 
+     document.ripple.setDragable(id3,false);
+          document.ripple.setRGB(id3,0,255,0);
+          id3=document.ripple.addObject("source","r=3,y=-15,x=-.8"); 
+     document.ripple.setDragable(id3,false);
+          document.ripple.setRGB(id3,0,255,0);
+     id3=document.ripple.addObject("source","r=3,y=-15,x=1.6");         	      
+	      document.ripple.setRGB(id3,0,255,0);
+	           document.ripple.setDragable(id3,false);
+	      
+     document.ripple.startAnimate();
+
+}
+
+function init3(){
+    if(!loaded) return;
+    document.ripple.setDefault();
+   	document.ripple.setWavelength(1.8);
+
+     rid=document.ripple.addObject("rectangle","x=0,y=-15,h=10,w=250");
+     document.ripple.setRGB(rid,0,0,255);  
+     document.ripple.setDragable(rid,false);
+      rid=document.ripple.addObject("rectangle","x=0,y=-16.5,h=20,w=250");
+     document.ripple.setRGB(rid,255,255,255);  
+     document.ripple.setDragable(rid,false);
+      tid=document.ripple.addObject("text","x=-4,y=-17,text=Animação 3");
+     document.ripple.setRGB(tid,0,0,0);  
+     document.ripple.setDragable(rid,false);
+      
+
+ 	cid=document.ripple.getClockID();
+     id3=document.ripple.addObject("source","r=3,y=-15,x=-1.1");
+     document.ripple.setDragable(id3,false);
+      document.ripple.setRGB(id3,0,0,255);  
+
+     id3=document.ripple.addObject("source","r=3,y=-15,x=-2.2"); 
+     document.ripple.setDragable(id3,false);
+      document.ripple.setRGB(id3,0,0,255);  
+     id3=document.ripple.addObject("source","r=3,y=-15,x=-3.3"); 
+     document.ripple.setDragable(id3,false);
+      document.ripple.setRGB(id3,0,0,255);  
+     id3=document.ripple.addObject("source","r=3,y=-15,x=-4.4");         	      
+     document.ripple.setDragable(id3,false);
+           document.ripple.setRGB(id3,0,0,255);  
+	 
+     document.ripple.startAnimate();
+
+}
+
+function stopApplet(){
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+      
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 38.1</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td colspan="3">
+        <applet code="ripple.Ripple.class" codebase="../../classes/" 
+        archive="Physlets.jar" name="ripple" 
+        width="250" height="350" align="left"  mayscript>
+          <param name="pixPerUnit" value="10">
+          <param name="wavelength" value="1.0">
+          <param name="showControls" value="false">
+          <param name="numberOfSources" value="0">
+          <param name="showIntensity" value="true">
+          <param name="animate" value="false">
+          <param name="fps" value="10">
+          <param name="caption" value="Tanque de ondas">
+          <param name="OnLoad" value="initApplets()">
+          <param name="Resources" value="ripple_pt.rc">
+        <param name="AppletNames" value="ripple">
+        </applet></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="JavaScript:init1()">Animação 1</a></td>
+      <td align="center">
+        <a href="JavaScript:init2()">Animação 2</a></td>
+      <td align="center">
+        <a href="JavaScript:init3()">Animação 3</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+<p align="center">
+<input type="button" value="começar" onclick="document.ripple.forward();"><input type="button" 
+value="pausa" onclick="document.ripple.pause();"><input type="button" value="passo &gt;&gt;" onclick="document.ripple.stepForward();"></p>
+</p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left">A animação apresenta ondas<span id="result_box" class lang="pt">
+</span><span class="hps"><span id="result_box" lang="pt">provenientes</span></span><span id="result_box" class lang="pt">
+<span class="hps">de uma única</span> <span class="hps">fenda</span>
+<span class="hps">(abaixo da</span> <span class="hps">faixa vermelha</span>, 
+azul ou <span class="hps">verde).</span>&nbsp;&nbsp; </span>
+<a href="JavaScript:init()"><span id="result_box" lang="pt">Início</span></a></p>
+
+<p align="left"><i>NOTA: Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</i></p>
+<p align="left">&nbsp;</p>
+<p>Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

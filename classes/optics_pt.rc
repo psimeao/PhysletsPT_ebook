@@ -1,0 +1,20 @@
+button.lens Lente
+button.source Fonte
+button.clear Apagar Tudo
+button.object Objeto
+button.active Apagar Ativo
+button.mirror Espelho
+button.aperture Diafragma
+button.beam Feixe
+label.angle ângulo:
+label.spacing espaçamento =
+label.spread dispersão =
+label.anglevalue ângulo =
+label.rayinc espaçamento dos raios =
+label.rayslope inclinação dos raios =
+label.opening abertura =
+label.top acima =
+label.bottom abaixo =
+label.index_error ERRO: n2<1.0
+label.focal_length d.f. =
+

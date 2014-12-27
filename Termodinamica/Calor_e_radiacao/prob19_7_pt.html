@@ -1,0 +1,284 @@
+<html>
+
+<head>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("heat0()",100);
+}
+  	
+function heat0(){ 
+      if(!loaded) return;
+   	timerID=0;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,false);
+    document.Animator.setAutoRefresh(true); 
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setCaption("Seleciona uma Animação");
+   	document.DataGraph1.setAutoscaleX(false);
+   	document.DataGraph1.setAutoscaleY(false);
+   	document.DataGraph1.setMinMaxX(0,10.);
+   	document.DataGraph1.setLabelX("Tempo");
+   	document.DataGraph1.setLabelY("Temperatura (K)");
+   	document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0,1000);
+   
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,255,0,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+    gid1=document.DataGraph1.getGraphID();
+    document.Animator.setAutoRefresh(true);
+    document.DataGraph1.setAutoRefresh(true);    
+ }
+ 
+ 
+function heat1() { 
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	document.Animator.setCaption("Animação 1");
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,false);
+   	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(100,100,"0","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=-4,y=0,text=T[K]=,calc=363+(300-363)*exp(-t/2)");
+	document.Animator.setShapeRGB(255,0,0);
+	document.Animator.addRectangle(86,20,"0","-4");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("text","x=-4,y=-4.5,text=T[K]=,calc=363+(1000-363)*exp(-t/2)");
+    document.Animator.setOneShot(0,10,"Fim da Animação");
+   	document.Animator.setAutoRefresh(true);
+   
+   	document.DataGraph1.setAutoscaleX(false);
+   	document.DataGraph1.setAutoscaleY(false);
+   	document.DataGraph1.setMinMaxX(0,10.);
+   	document.DataGraph1.setLabelX("Tempo");
+   	document.DataGraph1.setLabelY("Temperatura (K)");
+   	document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0,1000);
+   
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,255,0,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+    gid1=document.DataGraph1.getGraphID();
+    document.Animator.makeDataConnection(cid,gid1,1,"t","363+(300-363)*exp(-t/2)");
+    document.Animator.makeDataConnection(cid,gid1,2,"t","363+(1000-363)*exp(-t/2)");
+    document.Animator.updateDataConnections();
+    document.Animator.setAutoRefresh(true);
+    document.DataGraph1.setAutoRefresh(true);    
+ }
+ 
+ 
+function heat2() { 
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setCaption("Animação 2");
+   	document.Animator.setShowCoordinates(id,false);
+	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(100,100,"0","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=-4,y=0,text=T[K]=,calc=331+(300-331)*exp(-t/1.5)");
+	document.Animator.setShapeRGB(120,120,120);
+	document.Animator.addRectangle(86,20,"0","-4");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("text","x=-4,y=-4.5,text=T[K]=,calc=331+(1000-331)*exp(-t/1.5)");
+    document.Animator.setOneShot(0,10,"Fim da Animação");
+    document.Animator.setAutoRefresh(true);
+   
+    document.DataGraph1.setAutoscaleX(false);
+    document.DataGraph1.setAutoscaleY(false);
+    document.DataGraph1.setMinMaxX(0,10);
+    document.DataGraph1.setLabelX("Tempo");
+    document.DataGraph1.setLabelY("Temperatura (K)");
+    document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0,1000);
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,120,120,120);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+
+   gid1=document.DataGraph1.getGraphID();
+   document.Animator.makeDataConnection(cid,gid1,1,"t","331+(300-331)*exp(-t/1.5)");
+   document.Animator.makeDataConnection(cid,gid1,2,"t","331+(1000-331)*exp(-t/1.5)");
+   document.Animator.updateDataConnections();
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function heat3() { 
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault();
+    document.Animator.shiftPixOrigin(0,0);
+    document.Animator.setPixPerUnit(10);
+    document.Animator.setGridUnit(0);
+    document.Animator.setCaption("Animação 3");
+    id=document.Animator.getEnsembleID();
+    document.Animator.setShowCoordinates(id,false);
+	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(100,100,"0","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+ 	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=-4,y=0,text=T[K]=,calc=319+(300-319)*exp(-t/1.2)");
+	document.Animator.setShapeRGB(200,255,0);
+	document.Animator.addRectangle(86,20,"0","-4");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("text","x=-4,y=-4.5,text=T[K]=,calc=319+(1000-319)*exp(-t/1.2)");
+    document.Animator.setOneShot(0,10,"Fim da Animação");
+    document.Animator.setAutoRefresh(true);
+   
+    document.DataGraph1.setAutoscaleX(false);
+    document.DataGraph1.setAutoscaleY(false);
+    document.DataGraph1.setMinMaxX(0,10);
+    document.DataGraph1.setLabelX("Tempo");
+    document.DataGraph1.setLabelY("Temperatura (K)");
+    document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0,1000);
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,200,255,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+   	gid1=document.DataGraph1.getGraphID();
+   	document.Animator.makeDataConnection(cid,gid1,1,"t","319+(300-319)*exp(-t/1.2)");
+   	document.Animator.makeDataConnection(cid,gid1,2,"t","319+(1000-319)*exp(-t/1.2)");
+   	document.Animator.updateDataConnections();
+   	document.Animator.setAutoRefresh(true);
+   	document.DataGraph1.setAutoRefresh(true);    
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<title>Physlet Physics by Christian and Belloni: Problem 19.7</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 19.7</h2>
+
+<div align="center">
+
+<p>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+<applet code="animator4.Animator.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="200" height="200"  name="Animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.2">
+  <param name="showControls" value="false">
+    <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph1">
+        <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    <td>
+<applet code="dataGraph.DataGraph.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="300" height="200"  name="DataGraph1" mayscript>  
+  <param name="showControls" value="false">
+</applet></td>
+  </tr>
+</table>
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center" >&nbsp;&nbsp;
+		<a href="JavaScript:heat1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+      <td align="center" >&nbsp;&nbsp;
+		<a href="JavaScript:heat2()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+      <td align="center" >&nbsp;&nbsp;
+		<a href="JavaScript:heat3()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"> Em cada animação, a mesma massa de cada material começa a 
+temperatura idêntica e é colocada num contentor termicamente isolado, contendo água também 
+à mesma temperatura.&nbsp;O gráfico mostra a temperatura da água e do material em 
+função do tempo <b>(a temperatura é 
+dada em Kelvin e o tempo em unidades arbitrárias)</b>.&nbsp; <a href="JavaScript:heat0()">
+Início</a>&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> </p>
+</html>

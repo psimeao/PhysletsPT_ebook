@@ -1,0 +1,484 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setCaption("Seleciona uma Configuração");
+   document.EField.setPointChargeMode(true);
+   document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+   document.EField.setDrag(true);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(false);
+   document.EField.setChargeRGB(0,0,0);
+   document.EField.setAutoRefresh(true);
+}
+
+function point(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPointChargeMode(true);
+     document.EField.setCaption("carga pontual");
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(true);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+
+  
+     id=document.EField.addObject("charge","x=0,y=0,q=5,r=8");
+	  document.EField.setDragable(id,false);
+	  document.EField.setRGB(id,0,0,0);
+          
+        
+          tid=document.EField.addObject("testcharge","x=2,y=2,r=4");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,0,0,255);
+	  document.EField.setShowFVector(tid,true);
+     document.EField.setAutoRefresh(true);
+     }
+
+
+function point_sphere(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPointChargeMode(true);
+     document.EField.setCaption("carga pontual com esfera gaussiana");
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(false);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+  
+     id=document.EField.addObject("charge","x=0,y=0,q=5,r=8");
+	  document.EField.setDragable(id,false);
+	  document.EField.setRGB(id,0,0,0);
+      sid1=document.EField.addObject("shell","x=0,y=0,r=50");
+     document.EField.setRGB(sid1,255,0,0);
+     document.EField.setDragable(sid1,false);
+     //sid2=document.EField.addObject("arrow","h=0,v=1,x=0,y=1");
+     //document.EField.setRGB(sid2,255,0,0);
+     //document.EField.setDragable(sid2,true);
+     sid3=document.EField.addObject("testcharge","x=2,y=0,r=2");
+     document.EField.setShowFVector(sid3,true);
+     document.EField.setDragable(sid3,true);
+     document.EField.setRGB(sid3,255,0,0);
+     document.EField.setConstrainR(sid3,2,0,0);
+     document.EField.setShowConstraintPath(sid3,false);
+     //document.EField.setAnimationSlave(sid3,sid2);
+     
+        
+          tid=document.EField.addObject("testcharge","x=2,y=2,r=4");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,0,0,255);
+	  document.EField.setShowFVector(tid,true);
+     //cid=document.EField.addObject("text","text=|E|=,calc=4/(x^2+y^2)");
+     //document.EField.setDisplayOffset(cid,25,25);
+     //document.EField.setAnimationSlave(tid,cid);
+     //cid2=document.EField.addObject("text","calc=90-atan(abs(y)/abs(x))*360/6.28");
+     //document.EField.setDisplayOffset(cid2,0,5);
+     //document.EField.setAnimationSlave(tid,cid2);
+     //document.EField.setFormat(cid2,"%2i");
+     //cid3=document.EField.addObject("line","h=0,v=2");
+     //document.EField.setDisplayOffset(cid3,0,-20);
+     //document.EField.setAnimationSlave(tid,cid3);
+     document.EField.setAutoRefresh(true);
+     }
+
+
+function point_box(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setCaption("carga pontual com caixa gaussiana");
+     document.EField.setPointChargeMode(true);
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(false);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+  
+     id=document.EField.addObject("charge","x=0,y=0,q=5,r=8");
+	  document.EField.setDragable(id,false);
+	  document.EField.setRGB(id,0,0,0);
+      sid1=document.EField.addObject("box","x=0,y=0,w=50,h=50");
+     document.EField.setRGB(sid1,255,0,0);
+     document.EField.setDragable(sid1,false);
+     sid2=document.EField.addObject("arrow","h=0,v=1,x=0,y=1");
+     document.EField.setRGB(sid2,255,0,0);
+     document.EField.setDragable(sid2,true);
+     sid3=document.EField.addObject("testcharge","x=-.3,y=1,r=2");
+     document.EField.setDragable(sid3,true);
+     document.EField.setRGB(sid3,255,0,0);
+     document.EField.setConstrainY(sid3,1,-.9,.9);
+     document.EField.setShowConstraintPath(sid3,false);
+     document.EField.setAnimationSlave(sid3,sid2);
+     
+     sid4=document.EField.addObject("arrow","h=1,v=0,x=1,y=0");
+     document.EField.setRGB(sid4,255,0,0);
+     document.EField.setDragable(sid4,true);
+     sid5=document.EField.addObject("testcharge","x=1,y=-.3,r=2");
+     document.EField.setDragable(sid5,true);
+     document.EField.setRGB(sid5,255,0,0);
+     document.EField.setConstrainX(sid5,1,-.9,.9);
+     document.EField.setShowConstraintPath(sid5,false);
+     document.EField.setAnimationSlave(sid5,sid4);
+
+     
+          tid=document.EField.addObject("testcharge","x=2,y=2,r=4");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,0,0,255);
+	  document.EField.setShowFVector(tid,true);
+     //cid=document.EField.addObject("text","text=|E|=,calc=4/(x^2+y^2)");
+     //document.EField.setDisplayOffset(cid,25,25);
+     //document.EField.setAnimationSlave(tid,cid);
+     cid2=document.EField.addObject("text","calc=90-atan(abs(y)/abs(x))*360/6.28");
+     document.EField.setDisplayOffset(cid2,0,5);
+     document.EField.setAnimationSlave(tid,cid2);
+     document.EField.setFormat(cid2,"%2i");
+     cid3=document.EField.addObject("line","h=0,v=2");
+     document.EField.setDisplayOffset(cid3,0,-20);
+     document.EField.setAnimationSlave(tid,cid3);
+     document.EField.setAutoRefresh(true);
+     }
+
+
+
+function plate(){
+    if(!loaded) return;
+    document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPointChargeMode(false);
+        document.EField.setChargeRGB(0,0,0);
+     document.EField.setCaption("placa carregada");
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(true);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+    
+    
+x=-5.0;
+y=0;
+   for( i=0; i<50; i++){
+       c1=document.EField.addCharge(x,y,0.05);
+       document.EField.setDragable(c1,false);
+       document.EField.setLabel(c1,"");
+       x+=0.2;
+              }
+     tid=document.EField.addObject("testcharge","x=2,y=2,r=4");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,0,0,255);
+	  document.EField.setShowFVector(tid,true);
+
+  document.EField.setAutoRefresh(true);
+}
+
+
+function plate_box(){
+    if(!loaded) return;
+    document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPointChargeMode(false);
+        document.EField.setChargeRGB(0,0,0);
+     document.EField.setCaption("placa carregada com caixa gaussiana");
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(false);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+
+    
+    
+x=-5.0;
+y=0;
+   for( i=0; i<50; i++){
+       c1=document.EField.addCharge(x,y,0.05);
+       document.EField.setDragable(c1,false);
+       document.EField.setLabel(c1,"");
+        x+=.2;
+}
+     
+     sid1=document.EField.addObject("box","x=0,y=0,w=50,h=50");
+     document.EField.setRGB(sid1,255,0,0);
+     document.EField.setDragable(sid1,false);
+     sid2=document.EField.addObject("arrow","h=0,v=1,x=0,y=2");
+     document.EField.setRGB(sid2,255,0,0);
+     document.EField.setDragable(sid2,true);
+     sid3=document.EField.addObject("testcharge","x=-.3,y=2,r=2");
+     document.EField.setDragable(sid3,true);
+     document.EField.setRGB(sid3,255,0,0);
+     document.EField.setConstrainY(sid3,1,-.9,.9);
+     document.EField.setShowConstraintPath(sid3,false);
+     document.EField.setAnimationSlave(sid3,sid2);
+     
+     sid4=document.EField.addObject("arrow","h=1,v=0,x=2,y=0");
+     document.EField.setRGB(sid4,255,0,0);
+     document.EField.setDragable(sid4,true);
+     sid5=document.EField.addObject("testcharge","x=2,y=1.5,r=2");
+     document.EField.setDragable(sid5,true);
+     document.EField.setRGB(sid5,255,0,0);
+     document.EField.setConstrainX(sid5,1,.5,.9);
+     document.EField.setShowConstraintPath(sid5,false);
+     document.EField.setAnimationSlave(sid5,sid4);
+
+     
+          tid=document.EField.addObject("testcharge","x=2,y=2.5,r=4");
+	  document.EField.setDragable(tid,true);
+	  document.EField.setRGB(tid,0,0,255);
+	  document.EField.setShowFVector(tid,true);
+     //cid2=document.EField.addObject("text","calc=90-atan(abs(y)/abs(x))*360/6.28");
+     //document.EField.setDisplayOffset(cid2,0,5);
+     //document.EField.setAnimationSlave(tid,cid2);
+     //document.EField.setFormat(cid2,"%2i");
+     //cid3=document.EField.addObject("line","h=0,v=2");
+     //document.EField.setDisplayOffset(cid3,0,-20);
+     //document.EField.setAnimationSlave(tid,cid3);
+
+     
+  document.EField.setAutoRefresh(true);
+}
+
+function plate_sphere(){
+    if(!loaded) return;
+    document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setPointChargeMode(false);
+        document.EField.setChargeRGB(0,0,0);
+     document.EField.setCaption("placa carregada com esfera gaussiana");
+     document.EField.setXRange(-5,5);  
+     document.EField.setShowTime(false);
+     document.EField.setShowContours(false);
+     document.EField.setShowFieldLines(false);
+     document.EField.setShowFieldVectors(false);
+     document.EField.setShowForce(false);
+     document.EField.setShowEOnDrag(true);
+
+    
+    
+x=-5.0;
+y=0;
+   for( i=0; i<50; i++){
+       c1=document.EField.addCharge(x,y,0.05);
+       document.EField.setDragable(c1,false);
+       document.EField.setLabel(c1,"");
+       x+=.2;
+ }
+     
+     
+     sid1=document.EField.addObject("shell","x=0,y=0,r=50");
+     document.EField.setRGB(sid1,255,0,0);
+     document.EField.setDragable(sid1,false);
+     sid3=document.EField.addObject("testcharge","x=0,y=2.5,r=4");
+     document.EField.setShowFVector(sid3,true);
+     document.EField.setDragable(sid3,true);
+     document.EField.setRGB(sid3,0,0,255);
+     //document.EField.setConstrainR(sid3,2,0,0);
+     //document.EField.setShowConstraintPath(sid3,false);
+         
+     
+  document.EField.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 24.2</title>
+</head>
+<BODY onunload="stopApplet()">
+<h2 align="center">Exploração 24.2 - Simetria no uso da Lei de Gauss</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center" width="252">
+   <applet CODEBASE="../../classes/" code="eField4.EField.class"
+archive="Physlets.jar"
+NAME="EField" WIDTH="270" HEIGHT="270" HSPACE="0" VSPACE="0"
+ALIGN="middle" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.02">
+  <param name="ShowControls" value="false">
+  <param name="ShowContours" value="false">
+  <param name="ShowFieldLines" value="false">
+  <param name="ShowFieldVectors" value="false">
+  <param name="ShowLabels" value="false">
+  <param name="ShowCharge" value="true">
+  <param name="Potential" value="0">
+  <param name="Range" value="-5,5,-5,5">
+  <param name="GridSize" value="64">
+  <param name="OnLoad" value="initApplets()">
+  <param name="AppletNames" value="EField">
+  <param name="Resources" value="efield_pt.rc">
+</applet>    </td>
+  </tr>
+</table>  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:point()" style="text-decoration: none">carga pontual</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:plate()" style="text-decoration: none">placa carregada</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+<p>A lei de Gauss,&nbsp; <i>Φ</i> = ∫<sub><b>superfície</b></sub><b> <i>E</i> • </b>d<b><i>A</i> </b>
+= <i>q</i><sub>interior</sub>/ε<sub>0</sub>, é universal, mas nem sempre é útil na 
+caracterização do campo elétrico numa certa região do espaço, que é o que 
+habitualmente nos interessa. Tal não deve surpreender, porque para conhecer o 
+campo elétrico <i>
+<b>E</b></i>, através de uma equação como aquela do fluxo,&nbsp; ∫<sub><b>superfície</b></sub><b>&nbsp;<i> 
+E</i> • </b>d<b><i>A</i> </b>=<b> </b><i>q</i><sub>interior</sub>/ε<sub>0</sub>, o campo 
+<i> 
+<b>E</b></i> tem de vir para fora do integral e para que tal seja possível, <i> <b>E</b></i> 
+tem de ser constante em todos os pontos da superfície gaussiana. É aqui que 
+entra o problema da simetria.&nbsp; A lei de Gauss torna-se apenas útil para 
+calcular campos elétricos cuja simetria permite a idealização de uma superfície 
+gaussiana tal, que a intensidade do campo elétrico seja constante sobre a 
+superfície e o ângulo entre o vetor campo elétrico e o vetor da normal à 
+superfície gaussiana não varie para cada ponto da superfície <b>(a posição é 
+dada em metros e a intensidade do campo elétrico é dada em newtons/coulonb)</b>.&nbsp; 
+Na prática, isto significa que deverás idealizar uma superfície gaussiana com a 
+mesma simetria da distribuição da carga elétrica que origina o campo.&nbsp;
+<a href="JavaScript:init()">Início</a>. </p>
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0"><b>Exploração</b></p>
+  
+<p>Considera uma <a href="JavaScript:point_sphere()">esfera em torno de uma 
+carga pontual</a>. &nbsp;A carga de prova azul permite identificar a direção do campo 
+elétrico. Também é visível na animação um vetor apontando na direção da normal à 
+superfície esférica.&nbsp;&nbsp; </p>
+<ol type="a">
+  <li>Movendo o vetor normal à superfície sobre a esfera e colocando a carga de 
+	prova em três pontos diferentes da superfície, calcula o valor do produto 
+	escalar&nbsp; 
+  <b><i>E</i> • </b>d<b><i>A</i> </b>=<b> </b><i>E</i> d<i>A</i> cos<i>θ</i> (considera d<i>A</i> = 1) nesses três pontos 
+	(regista o valor do campo elétrico na caixa de texto amarela).&nbsp; O valor 
+	obtido é o mesmo?&nbsp; Encontra uma justificação para o resultado obtido.</li>
+</ol>
+<p>Agora, coloca uma <a href="JavaScript:point_box()">caixa em torno da mesma 
+carga pontual</a>.&nbsp; A carga de prova permite identificar a direção do campo 
+elétrico; o valor mais pequeno do ângulo (em graus) entre o vetor e o eixo 
+vertical é mostrado na animação. O vetor vermelho aponta na direção da 
+normal à superfície sobre a caixa (na animação são apresentados dois lados).</p>
+<ol type="a" start="2">
+  <li>
+	<p style="margin-top: 6px">Movendo o vetor normal à superfície sobre a caixa e colocando a carga de 
+	prova em três pontos diferentes na superfície de cima, calcula o valor do 
+	produto escalar&nbsp; 
+  <b><i>E</i> •  </b>d<b><i>A</i> </b>= <i>E</i> d<i>A</i> cos<i>θ</i> (considera d<i>A</i> = 1) nesses três pontos.&nbsp; O 
+	valor obtido é o mesmo?&nbsp; Encontra uma justificação para o resultado 
+	obtido.</li>
+  <li>
+	<p style="margin-top: 6px">Na sequência da resposta à alínea anterior, justifica por que razão a 
+	esfera é uma melhor escolha do que a caixa, para usar a lei de Gauss. </li>
+</ol>
+<p>Tentemos agora outra configuração. Vamos colocar uma&nbsp;
+<a href="JavaScript:plate_sphere()">esfera em torno de uma placa carregada</a> 
+(admite que os círculos cinzentos na animação representam cilindros longos 
+eletricamente carregados, estendendo-se para dentro e fora do ecrã do 
+computador, criando assim uma placa carregada que observas de perfil).&nbsp; </p>
+<ol type="a" start="4">
+  <li>
+	<p style="margin-top: 6px">Será que o valor do produto escalar <b><i>E</i> • </b>d<b><i>A</i> </b>=<b> </b>
+	<i>E</i> d<i>A</i> 
+	cos<i>θ&nbsp;</i> é o mesmo em três pontos sobre a superfície gaussiana?&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Explica, então, por que razão não deves querer usar uma esfera para esta 
+	configuração de carga.</li>
+</ol>
+<p>De seguida, coloca uma <a href="JavaScript:plate_box()">caixa em torno da 
+mesma placa carregada</a> (admite que os círculos cinzentos na animação 
+representam cilindros longos eletricamente carregados, estendendo-se para dentro 
+e fora do ecrã do computador, criando assim uma placa carregada que observas 
+de perfil).&nbsp; </p>
+<ol type="a" start="6">
+  <li>
+	<p style="margin-top: 6px">Calcula o valor do produto escalar <b><i>E</i>  </b>•<b>  </b>d<b><i>A</i> </b>= 
+	<i>E</i> d<i>A</i> 
+	cos<i>θ</i>&nbsp; em três pontos do topo da caixa.&nbsp; O valor obtido será 
+	sensivelmente o mesmo?&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Qual o valor do produto escalar&nbsp; 
+  <b><i>E</i>  </b>•<b>  </b>d<b><i>A</i> </b>= <i>E</i> d<i>A</i> cos<i>θ</i>&nbsp; nas superfícies laterais da 
+	caixa?</li>
+</ol>
+<p>Para uma placa carregada, usar uma caixa como superfície gaussiana significa 
+que <b><i>E</i> •  </b>d<b><i>A</i> </b>= <i>E</i> d<i>A</i> cos<i>θ</i>&nbsp; tem um valor constante em cada 
+secção da caixa (cima, baixo e laterais) e que o campo elétrico é constante em 
+cada secção da superfície. Portanto, podes escrever: </p>
+<p align="center">∫<sub><b>superfície</b></sub><b>&nbsp;<i>E</i> • </b>d<b><i>A</i> </b>= 
+<i>E</i> ∫<sub><b>superfície</b></sub><b> </b>
+&nbsp;d<i>A</i> =<i> EA&nbsp;</i> (para as superfícies onde o fluxo não é nulo).&nbsp; </p>
+<ol type="a" start="8">
+  <li>Representando a densidade superficial de carga (ou seja, a carga por 
+	unidade de superfície) na placa grande por <i>σ</i>, usa a lei de Gauss para 
+	mostrar que a expressão do campo elétrico acima e abaixo da placa carregada 
+	é:&nbsp; <i>E</i> = <i>σ</i>/2ε<sub>0 </sub>
+  &nbsp;e que a direção do campo elétrico é sempre perpendicular à placa, 
+	apontando para fora se a placa estiver carregada positivamente. Em alguns 
+	manuais, é possível que encontres escrito que o campo acima ou abaixo de uma 
+	placa carregada tem o valor&nbsp; <i>σ</i>/ε<sub>0</sub>
+  , mas tal apenas é verdade para <u>condutores</u>, em que <i>σ</i> é a densidade de 
+	carga na superfície superior e onde há a mesma densidade de carga na 
+	superfície inferior (ou seja, não há carga elétrica no interior da placa 
+	condutora).</li>
+</ol>
+<p>&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e modificado por Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

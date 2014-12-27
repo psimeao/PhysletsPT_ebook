@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 33.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob_1()",100);
+}
+  	
+function prob_1(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     document.Optics.setElementSize(0.9);
+     id=document.Optics.addObject("mirror","x=1.75,f= -1");
+     document.Optics.setDirection(1);
+     id=document.Optics.addObject("source","point,x=0.5,y=0.3,slope=-0.2, inc=0.1");
+     document.Optics.setDragable(id,true);
+     document.Optics.setResizable(id,true);
+     id=document.Optics.addObject("source","infinite,x=0.5,y=-0.3,slope=.2, inc=0.05");
+     document.Optics.setDragable(id,true);
+     document.Optics.setResizable(id,true);
+	 id1=document.Optics.addObject("circle","x=2.25,y=0,r=2");
+	 document.Optics.setRGB(id1,255,0,0);
+	 id1=document.Optics.addObject("circle","x=2.75,y=0,r=2");
+	 document.Optics.setRGB(id1,0,255,0);
+	 id1=document.Optics.addObject("circle","x=3.25,y=0,r=2");
+	 document.Optics.setRGB(id1,0,0,255);
+	 id1=document.Optics.addObject("circle","x=3.75,y=0,r=2");
+	 document.Optics.setRGB(id1,150,0,200);
+	 id1=document.Optics.addObject("circle","x=1.25,y=0,r=2");
+	 document.Optics.setRGB(id1,255,120,0);
+	 id1=document.Optics.addObject("circle","x=0.75,y=0,r=2");
+	 document.Optics.setRGB(id1,255,255,0);
+	 id1=document.Optics.addObject("circle","x=0.25,y=0,r=2");
+	 document.Optics.setRGB(id1,255,255,255);
+	 
+	  idp=document.Optics.addObject("protractor","x=3,y=-.7,s=50,theta=1.5708,theta0=0, fixedbase");
+   document.Optics.setRGB(idp,255,0,255); 
+   document.Optics.setDragable(idp,true);
+   document.Optics.setResizable(idp,true);
+   cid=document.Optics.addObject("calculation","text=teta =,x=3,y=-2");
+   document.Optics.makeDataConnection(idp,cid,1,"x","y-0.15");
+   document.Optics.makeDataConnection(idp,cid,2,"theta*180/pi","0");
+   document.Optics.updateDataConnections();
+   document.Optics.setAutoRefresh(true);
+
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Problema 33.6</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center">
+<applet codebase="../../classes/" archive="Physlets.jar" code="optics.OpticsApplet.class"
+name="Optics" width="400" height="200" hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação estar 
+	completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>A animação apresenta uma fonte de luz pontual, uma fonte de feixes paralelos 
+e um espelho.&nbsp; É possível determinar um ângulo ou criar uma linha, usando o 
+transferidor cor-de-rosa que podes deslocar e ajustar <b>
+
+(</b><span style="font-family: &quot;Arial&quot;; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: PT; mso-fareast-language: PT; mso-bidi-language: AR-SA"><strong>a 
+posição é dada em metros e o ângulo é dado em graus</strong></span><b>)</b>.<b>
+</b>&nbsp;<a href="JavaScript:prob_1()">Início</a>.&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

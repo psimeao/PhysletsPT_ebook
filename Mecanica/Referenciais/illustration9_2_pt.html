@@ -1,0 +1,296 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Animator.setAutoRefresh(false);
+     document.DataTable.setAutoRefresh(false);
+     document.Animator.setDefault();
+     document.Animator.setPixPerUnit(10);
+     document.Animator.shiftPixOrigin(0,0);
+     document.Animator.setAutoRefresh(true);
+     document.DataTable.setDefault();
+     document.DataTable.setDataStride(1,25);
+     document.DataTable.setSeriesLabel(1,"tempo");
+     document.DataTable.setDataStride(2,25);
+     document.DataTable.setSeriesLabel(2,"nova variável");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true); 
+    
+
+}
+
+
+function initApplet7a1(){
+	if(!loaded) return;
+	document.Animator.setAutoRefresh(false);
+   document.DataTable.setAutoRefresh(false);
+	document.Animator.setDefault();
+   id=document.Animator.setCaption("              Animação 1");
+	document.Animator.setCoordinateOffset(id,20,10);
+	document.Animator.setPixPerUnit(10);
+	document.Animator.shiftPixOrigin(0,0);
+	document.Animator.setGridUnit(1);
+	document.Animator.addCircle(22,"2*t","0");
+        document.Animator.setShapeRGB(200,100,0);
+	cid=document.Animator.addCircle(20,"2*t","0");
+     	document.Animator.setShapeRGB(0,0,0);
+     	calid=document.Animator.addCalculation("x1 =","x","0","0");
+     document.Animator.setDisplayOffset(calid,-20,-20);
+     document.Animator.setAnimationSlave(cid,calid);
+     document.Animator.setFormat(calid,"%-+5.1f");
+    document.Animator.setOneShot(-2,2,"Fim da Animação");
+     document.DataTable.setDefault();
+     document.DataTable.setDataStride(1,25);
+     document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setDataStride(2,25);
+     document.DataTable.setSeriesLabel(2,"x2 (m)");
+
+     tid=document.DataTable.getTableID();
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);
+
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(cid,tid,1,"t","0"); 
+     document.Animator.makeDataConnection(cid,tid,2,"x+2+t","0");   
+    document.Animator.updateDataConnections();    
+	document.Animator.setAutoRefresh(true);
+}
+
+function initApplet7a2(){
+	if(!loaded) return;
+	document.Animator.setAutoRefresh(false);
+   document.DataTable.setAutoRefresh(false);
+	document.Animator.setDefault();
+   id=document.Animator.setCaption("              Animação 2");
+	document.Animator.setCoordinateOffset(id,20,10);
+	document.Animator.setPixPerUnit(10);
+	document.Animator.shiftPixOrigin(0,0);
+	document.Animator.setGridUnit(1);
+	document.Animator.addCircle(22,"2*t","0");
+        document.Animator.setShapeRGB(200,100,0);
+	cid=document.Animator.addCircle(20,"2*t","0");
+     	document.Animator.setShapeRGB(0,0,0);
+     	calid=document.Animator.addCalculation("v1 =","vx","0","0");
+     document.Animator.setDisplayOffset(calid,-20,-20);
+     document.Animator.setAnimationSlave(cid,calid);
+     document.Animator.setFormat(calid,"%-+5.1f");
+    document.Animator.setOneShot(-2,2,"Fim da Animação");
+
+     document.DataTable.setDefault();
+     document.DataTable.setDataStride(1,25);
+     document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setDataStride(2,25);
+     document.DataTable.setSeriesLabel(2,"v2 (m/s)");
+   
+     tid=document.DataTable.getTableID();
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);
+
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(cid,tid,1,"t","0"); 
+     document.Animator.makeDataConnection(cid,tid,2,"vx+1","0"); 
+    document.Animator.updateDataConnections();    
+	document.Animator.setAutoRefresh(true);
+}
+
+function initApplet7b(){
+	if(!loaded) return;
+	document.Animator2.setAutoRefresh(false);
+   document.DataTable2.setAutoRefresh(false);
+	document.Animator2.setDefault();
+   id=document.Animator2.setCaption("         Animação 2");
+	document.Animator2.setCoordinateOffset(id,20,10);
+	document.Animator2.setPixPerUnit(10);
+	document.Animator2.shiftPixOrigin(0,0);
+	document.Animator2.setGridUnit(1);
+	document.Animator2.setShapeRGB(200,100,0);
+	cid=document.Animator2.addCircle(20,"0.8*t*t-3*t","0");
+     	document.Animator2.setShapeRGB(0,0,0);
+
+    document.Animator2.setOneShot(-2,2,"Fim da Animação");
+
+
+
+     document.DataTable2.setDefault();
+     document.DataTable2.setDataStride(1,25);
+     document.DataTable2.setSeriesLabel(1,"t (s)");
+     document.DataTable2.setDataStride(2,25);
+     document.DataTable2.setSeriesLabel(2,"x1 (m)");
+     document.DataTable2.setDataStride(3,25);
+     document.DataTable2.setSeriesLabel(3,"v1 (m/s)");
+     document.DataTable2.setDataStride(4,25);
+     document.DataTable2.setSeriesLabel(4,"x2 (m)");
+     document.DataTable2.setDataStride(5,25);
+     document.DataTable2.setSeriesLabel(5,"v2 (m/s)");
+
+
+     tid=document.DataTable2.getTableID();
+     document.DataTable2.sizeToFit(true);
+     document.DataTable2.setAutoRefresh(true);
+
+     document.Animator2.deleteDataConnections(); 
+     document.Animator2.makeDataConnection(cid,tid,1,"t","0"); 
+     document.Animator2.makeDataConnection(cid,tid,2,"x","0");   
+     document.Animator2.makeDataConnection(cid,tid,3,"vx","0"); 
+     document.Animator2.makeDataConnection(cid,tid,4,"x+0.5*t","0");   
+     document.Animator2.makeDataConnection(cid,tid,5,"vx+0.5","0"); 
+    document.Animator2.updateDataConnections();    
+	document.Animator2.setAutoRefresh(true);
+}
+
+function initApplet7c(){
+	if(!loaded) return;
+	document.Animator2.setAutoRefresh(false);
+   document.DataTable2.setAutoRefresh(false);
+
+	document.Animator2.setDefault();
+   id=document.Animator2.setCaption("         Animação 3");
+	document.Animator2.setCoordinateOffset(id,20,10);
+	document.Animator2.setPixPerUnit(10);
+	document.Animator2.shiftPixOrigin(0,0);
+	document.Animator2.setGridUnit(1);
+	document.Animator2.setShapeRGB(200,100,0);
+	cid=document.Animator2.addCircle(20,"-1*t","0");
+    document.Animator2.setShapeRGB(0,0,0);
+
+    document.Animator2.setOneShot(-2,2,"Fim da Animação");
+
+     document.DataTable2.setDefault();
+     document.DataTable2.setDataStride(1,25);
+     document.DataTable2.setSeriesLabel(1,"tempo");
+     document.DataTable2.setDataStride(2,25);
+     document.DataTable2.setSeriesLabel(2,"x1");
+     document.DataTable2.setDataStride(3,25);
+     document.DataTable2.setSeriesLabel(3,"v1");
+     document.DataTable2.setDataStride(4,25);
+     document.DataTable2.setSeriesLabel(4,"x2");
+     document.DataTable2.setDataStride(5,25);
+     document.DataTable2.setSeriesLabel(5,"v2");
+
+     tid=document.DataTable2.getTableID();
+     document.DataTable2.sizeToFit(true);
+     document.DataTable2.setAutoRefresh(true);
+
+     document.Animator2.deleteDataConnections(); 
+     document.Animator2.makeDataConnection(cid,tid,1,"t","0"); 
+     document.Animator2.makeDataConnection(cid,tid,2,"x","0");   
+     document.Animator2.makeDataConnection(cid,tid,3,"vx","0"); 
+     document.Animator2.makeDataConnection(cid,tid,4,"x+0.5*t+t*t","0");   
+     document.Animator2.makeDataConnection(cid,tid,5,"vx+0.5+2*t","0"); 
+    document.Animator2.updateDataConnections();    
+    document.Animator2.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 9.2</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 9.2 - Referenciais</h2>
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" align="middle"
+        width="200" height="80" name="Animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="dt" value="0.02">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="DataTable" width="200" height="214"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="false">
+          <param name="CellWidth" value="40">
+          <param name="NumRows" value="9">
+          <param name="NumCols" value="2">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+<form>
+    <p align="center">
+    <input type="button" value="começar" onclick="document.Animator.forward()"><input type="button"  value="pausa" onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;" onclick="document.Animator.stepForward()">
+    <div align="center">
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100" align="center">
+		<a href="JavaScript:initApplet7a1()" style="text-decoration: none">
+      Animação 1</a></td>
+      <td width="100" align="center">
+		<a href="JavaScript:initApplet7a2()" style="text-decoration: none">
+		Animação 2</a></td>
+    </tr>
+  </table>
+      </center>
+    </div>
+</form>
+
+       
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+      <p><b>Descrição da Animação</b></p>
+<p>As duas animações mostram um exemplo de um referencial que se desloca 
+relativamente ao referencial da Terra, considerado estacionário. O movimento da 
+bola visto do referencial da Terra, é apresentado na animação em função do 
+tempo, da posição e da velocidade, <i>t,</i> <i>x</i>1 e <i>v</i>1, 
+respetivamente <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;Um 
+observador, num outro referencial que se desloca com velocidade constante em 
+relação à Terra, também anota os valores do tempo, da posição e da velocidade 
+numa tabela (<i>t</i>, <i>x</i>2 e 
+<i>v</i>2, respetivamente).&nbsp;</p>
+<p>A
+<a href="JavaScript:initApplet7a1()">
+      Animação 1</a> mostra a posição e a <a href="JavaScript:initApplet7a2()">
+Animação 2</a> 
+mostra a velocidade da bola. <a href="JavaScript:initApplet()">Início</a></p>
+      <p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

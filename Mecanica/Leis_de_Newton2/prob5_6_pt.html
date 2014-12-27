@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob9_10()",100);
+}
+  	
+function prob9_10(){ 
+      if(!loaded) return;
+       timerID=0;  
+	document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-70,-15);
+
+      document.Animator3.setShapeRGB(0,0,0);
+   id1=document.Animator3.addRectangle(150,20,"13-0.2*t*t","0");
+   document.Animator3.setShapeRGB(255,0,0);
+   id1=document.Animator3.addRectangle(148,18,"13-0.2*t*t","0");
+   document.Animator3.setShapeRGB(0,0,0);
+   id2=document.Animator3.addRectangle(22,22,"19-(0.9*t*t)","2");
+   document.Animator3.setShapeRGB(0,255,0);
+   id2=document.Animator3.addRectangle(20,20,"19-(0.9*t*t)","2"); 
+   imid=document.Animator3.addImage("images/larrow.gif","0","0");   
+   document.Animator3.setAnimationSlave(id2,imid);
+   document.Animator3.setDisplayOffset(imid,10,+10);
+      document.Animator3.setShapeRGB(0,0,0);
+    document.Animator3.addRectangle(600,12,"0","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(600,10,"0","-1.5");
+   document.Animator3.setOneShot(0,4,"Fim da Animação");
+   
+   document.DataTable.setDefault();
+   document.DataTable.setSeriesLabel(1,"vx baixo (m/s)");
+   document.DataTable.setSeriesLabel(2,"vx cima (m/s)");  
+   document.DataTable.sizeToFit(true);
+   document.DataTable.setAutoRefresh(true);   
+   tid=document.DataTable.getTableID();
+	  
+	  document.Animator3.deleteDataConnections();
+     document.Animator3.makeDataConnection(id1,tid,1,"vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx","0");  
+     document.Animator3.updateDataConnections(); 
+   document.Animator3.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 5.6</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 5.<span lang="en-us">6</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  <applet code="animator4.Animator.class" codebase="../../classes/"
+  archive="Physlets.jar" align="middle" width="400"
+  height="74" name="Animator3" mayscript>
+    <param name="FPS" value="10">
+    <param name="dt" value="0.05">
+    <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/"
+      archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="DataTable" width="200" height="45"
+      hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="CellWidth" value="40">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="2">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator3.forward()"><input
+      type="button" value="pausa" onclick="document.Animator3.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.Animator3.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator3.stepForward()"><input type="button"
+      value="início" onclick="prob9_10()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Um bloco de massa 10,0 kg está em cima de um bloco de massa 20,0 kg, como 
+mostra a animação. <b>(a posição é dada em metros e o tempo em segundos)</b>. 
+Existe atrito entre os dois blocos, mas não existe atrito entro o bloco de baixo 
+e a superfície da mesa.&nbsp;&nbsp; <a href="JavaScript:prob9_10()">Início</a> </p>
+
+<p>&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 38.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Ripple.setZScale(3);
+}
+
+
+function setWavelength()
+{
+
+   a1=document.Control.wavelength.value;
+   if(!checkRange(a1,0.5,4)){
+		alert("O comprimento de onda deve estar entre 0.5 e 4. O valor inserido foi "+a1);
+		return;}
+        
+        document.Ripple.setWavelength(eval(a1));
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+
+	
+function setvalues(){
+if(!loaded) return;
+xvar=document.Control.xpos.value;
+   if(!checkRange(xvar,-9,9)){
+		alert("A posição x deve estar entre -9 e 9. O valor inserido foi "+xvar+".");
+        return;}
+        
+yvar=document.Control.ypos.value;
+   if(!checkRange(yvar,-11,11)){
+		alert("A posição y deve estar entre -9 e 9. O valor inserido foi "+yvar+".");
+        return;}
+
+document.Ripple.addSource(eval(xvar),eval(yvar),1,0);
+ }
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+      
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 38.1 - Modelação da difração de uma fenda</h2>
+<div align="center">
+  <center>
+  <form name="Control">
+    <table border="1" bgcolor="#C0C0C0" >
+      <tr>
+        <td align="center">
+        <p align="center">
+        <applet code="ripple.Ripple.class" codebase="../../classes/" 
+        archive="Physlets.jar" name="Ripple" 
+        width="291" height="291" align="left"  mayscript>
+          <param name="pixPerUnit" value="16">
+          <param name="wavelength" value="1.0">
+          <param name="showControls" value="false">
+          <param name="numberOfSources" value="0">
+          <param name="showIntensity" value="true">
+          <param name="animate" value="false">
+          <param name="fps" value="10">
+          <param name="caption" value="Tanque de ondas">
+          <param name="OnLoad" value="initApplets()">
+          <param name="Resources" value="ripple_pt.rc">          
+        <param name="AppletNames" value="Ripple">
+        </applet> </td>
+        <td width="262" align="center">
+        <div align="center">
+          <table border="0" width="90%">
+            <tr>
+              <td width="100%"></center>
+              <p align="center"><br>
+              Comprimento de onda: 
+              <input type="text" name="wavelength" value="1" 
+              length="10" size="6"></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%"><hr></td>
+            </tr>
+            <tr>
+              <td width="100%">
+              <p align="center">Inserir valores para uma nova fonte:<br>
+              </p>
+              <table width="219">
+                <tr>
+                  <td align="center" width="213">
+                  <p align="center">posição x :
+                  <input type="text" name="xpos" value="0" length="10" 
+                  size="6"></td>
+                </tr>
+                <tr>
+                  <td align="center" width="213">
+                  <p align="center">posição y :
+                  <input type="text" name="ypos" value="0" length="10" 
+                  size="6"></td>
+                </tr>
+              </table>
+              <p align="center">
+				<input type="button" value="adicionar fonte" onclick="setvalues()"><p align="center">
+				<input 
+              type="button" value="apagar fontes" 
+              onclick="document.Ripple.deleteAll()"></td>
+            </tr>
+          </table>
+        </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+  </center>
+</div>
+</form>
+<form>
+<p align="center">
+              <input type="button" value="definir comprimento de onda e começar" 
+              onclick="setWavelength()"> 
+				<input onclick="document.Ripple.forward();" type="button" value="continuar"><input onclick="document.Ripple.pause();" type="button" value="pausa"><input onclick="document.Ripple.stepForward();" type="button" value="passo &gt;&gt;"></p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+
+<p align="left"><span id="result_box" class lang="pt"><span class="hps">A 
+animação</span> <span class="hps">simula</span> <span class="hps">ondas</span>
+</span><span class="hps"><span id="result_box" lang="pt">produzidas por</span></span><span id="result_box" class lang="pt"><span class="hps"> 
+uma fonte pontual</span> <span class="hps">de luz.</span> <span class="hps">
+Novas fontes</span> <span class="hps">podem ser adicionados</span>, inserindo
+</span><span class="hps"><span id="result_box" lang="pt">as coordenadas da 
+respetiva</span></span><span id="result_box" class lang="pt"><span class="hps"> 
+posição,</span> <span class="hps atn">clicando em &quot;</span>adicionar
+<span class="hps">fonte</span><span class="atn">&quot; e depois &quot;</span><span class>definir</span>
+<span class="hps">comprimento de onda e</span> </span><span class="hps">
+<span id="result_box" lang="pt">começar</span></span><span id="result_box" class lang="pt">&quot;.
+<span class="hps">A</span> <span class="hps">posição</span> <span class="hps">
+das fontes</span> <span class="hps">pode</span> <span class="hps">ser</span>
+<span class="hps">alterada, arrastando-as</span> </span><span class="hps">
+<span id="result_box" lang="pt">durante a animação.</span></span><b>(a posição é 
+dada em unidades arbitrárias)</b>.</p>
+
+
+<p align="left"><i>NOTA: Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</i></p>
+
+<p>&nbsp;</p>
+<p>Exploração da autoria de Melissa Dancy e Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

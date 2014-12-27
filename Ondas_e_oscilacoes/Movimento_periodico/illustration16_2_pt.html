@@ -1,0 +1,455 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 16.2</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initApplet0()",100);
+}
+
+function initApplet0(){
+ 	if(!loaded) return;
+ 	timerID=0;
+  	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(10);
+	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(0,40);
+	document.animator.setClockOneShot(0,40);
+	document.animator.setTimeVisibility(false);	
+	document.animator.setCaption("Seleciona uma Animação");
+	document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	document.datagraph.setAutoscaleX(true);
+	document.datagraph.setAutoscaleY(true);
+
+	document.datagraph.clearSeries(1);
+	document.datagraph.clearSeries(2);
+	gid1=document.datagraph.getGraphID();
+	document.animator.deleteDataConnections();
+	document.animator.updateDataConnections();
+	document.animator.setAutoRefresh(true);
+	document.datagraph.setAutoRefresh(true);
+	
+}	
+
+function initAppletAA(){ 	
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(10);
+	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(0,70);
+	document.animator.setClockOneShot(0,40);
+		line=document.animator.addObject("line","h=0,v=-8,x=0,y=10");
+		document.animator.setRGB(line,205,200,200);
+		imag5=document.animator.addObject("text","text=teta =             rad,x=7.25,y=8");	
+	document.animator.setObjectFont(imag5,"Helvetica",0,12);
+	calculation1=document.animator.addObject("calculation","text=");
+		document.animator.setObjectFont(calculation1,"Helvetica",0,12);
+		document.animator.setFormat(calculation1,"%4.2f");
+	
+		pendula=document.animator.addObject("circle","x=0, y=-5, r=12");
+               pendul=document.animator.addObject("circle","x=0, y=-5, r=11, m=1");
+		document.animator.setAnimationSlave(pendul,pendula);
+                 document.animator.setRGB(pendul,255,0,0);
+		document.animator.setForce(pendul,"0","-9.8*m",0,-5,0,0);	
+		document.animator.setConstrainR(pendul,15,0,10);
+		document.animator.setShowConstraintPath(pendul,false);
+		
+		document.animator.setDragable(pendul,true);
+
+   
+	topid=document.animator.addObject("circle","x=0, y=10, r=1, m=1");
+		document.animator.addConnectorLine(pendul,topid);
+   	
+	arrow1=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow1,0,255,0);
+	arrow2=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow2,0,155,0);
+	arrow3=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");		
+	document.animator.setRGB(arrow3,0,255,0);
+	arrow4=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow4,225,150,0);
+
+	rect1=document.animator.addObject("rectangle","w=300,h=4,x=0,y=10.2");	
+		document.animator.setRGB(rect1,0,65,0);
+	  					
+
+		
+	document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	document.datagraph.setAutoscaleX(true);
+	document.datagraph.setAutoscaleY(true);
+
+	document.datagraph.setMinYRange(true,-15,15);
+	document.datagraph.setMinXRange(true,-1.6,1.6);
+	document.datagraph.setFormat(0,"%4.2f");
+	document.datagraph.setDrawGrid(false);
+	document.datagraph.setDrawZero(true);
+	document.datagraph.setLabelY("Força Resultante (N)");
+	document.datagraph.setLabelX("Ângulo Teta de deflexão (radianos)");
+	document.datagraph.clearSeries(1);
+		document.datagraph.setSeriesStyle(1,true,3);
+		document.datagraph.setMarkerSize(1,0.6);
+		document.datagraph.setLastPointMarker(1,true);
+		document.datagraph.setSeriesRGB(1,0,200,0);
+		document.datagraph.setSeriesLegend(1,200,20,"F = mg sen(teta)");
+		document.datagraph.setSeriesLegendRGB(1,0,200,0);
+
+	document.datagraph.clearSeries(2);
+		document.datagraph.setSeriesStyle(2,true,3);
+		document.datagraph.setMarkerSize(2,0.6);
+		document.datagraph.setLastPointMarker(2,true);
+		document.datagraph.setSeriesRGB(2,18,18,245);
+		document.datagraph.setSeriesLegend(2,200,40,"F = mg teta");	
+		document.datagraph.setSeriesLegendRGB(2,18,18,245);
+		
+	gid1=document.datagraph.getGraphID();
+	document.animator.deleteDataConnections();
+	
+	document.animator.makeDataConnection(pendul,arrow1,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow1,2,"9.8*m*sin(asin(x/15))*cos(asin(x/15))","-9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	document.animator.makeDataConnection(pendul,arrow2,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow2,2,"0","-9.8*m");
+	
+	document.animator.makeDataConnection(pendul,arrow3,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow3,2,"-9.8*m*sin(asin(x/15))*cos(asin(x/15))","-9.8*m+9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	document.animator.makeDataConnection(pendul,arrow4,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow4,2,"-9.8*m*sin(asin(x/15))*cos(asin(x/15))","9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	conid1=document.animator.makeDataConnection(pendul,gid1,1,"asin(x/15)","-9.82*m*sin(asin(x/15))");
+	conid2=document.animator.makeDataConnection(pendul,gid1,2,"asin(x/15)","-9.8*m*asin(x/15)");
+	
+		conid7=document.animator.makeDataConnection(pendul,calculation1,1,"11","8");	
+		conid8=document.animator.makeDataConnection(pendul,calculation1,2,"asin(x/15)","0");
+		
+		
+	document.animator.updateDataConnections();
+	document.animator.setAutoRefresh(true);
+	document.datagraph.setAutoRefresh(true);
+	
+}	
+
+
+function initAppletAB(){ 	
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(10);
+	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(0,70);
+	document.animator.setClockOneShot(0,40);
+		line=document.animator.addObject("line","h=0,v=-8,x=0,y=10");
+		document.animator.setRGB(line,205,200,200);
+		imag5=document.animator.addObject("text","text=teta =             rad,x=7.25,y=8");	
+	document.animator.setObjectFont(imag5,"Helvetica",0,12);	
+	calculation1=document.animator.addObject("calculation","text=");
+		document.animator.setObjectFont(calculation1,"Helvetica",0,12);
+		document.animator.setFormat(calculation1,"%4.2f");
+	
+		pendula=document.animator.addObject("circle","x=0, y=-5, r=12");
+               pendul=document.animator.addObject("circle","x=0, y=-5, r=11, m=1");
+		document.animator.setAnimationSlave(pendul,pendula);
+        	document.animator.setRGB(pendul,255,0,0);
+		document.animator.setForce(pendul,"0","-9.8*m",0,-5,0,0);	
+		document.animator.setConstrainR(pendul,15,0,10);
+		document.animator.setShowConstraintPath(pendul,true);
+		
+		document.animator.setDragable(pendul,true);
+
+   
+	topid=document.animator.addObject("circle","x=0, y=10, r=1, m=1");
+		document.animator.addConnectorLine(pendul,topid);
+   	
+	arrow1=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow1,0,255,0);
+	arrow2=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow2,0,155,0);
+	arrow3=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");		
+	document.animator.setRGB(arrow3,0,255,0);
+	arrow4=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow4,225,150,0);
+
+	rect1=document.animator.addObject("rectangle","w=300,h=4,x=0,y=10.2");	
+		document.animator.setRGB(rect1,0,65,0);
+	  					
+
+		
+	document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	document.datagraph.setAutoscaleX(true);
+	document.datagraph.setAutoscaleY(true);
+
+	document.datagraph.setMinYRange(true,-15,15);
+	document.datagraph.setMinXRange(true,-1.6,1.6);
+	document.datagraph.setFormat(0,"%4.2f");
+	document.datagraph.setDrawGrid(false);
+	document.datagraph.setDrawZero(true);
+	document.datagraph.setLabelY("Força Resultante (N)");
+	document.datagraph.setLabelX("Ângulo Teta de deflexão (radianos)");
+	document.datagraph.clearSeries(1);
+		document.datagraph.setSeriesStyle(1,true,3);
+		document.datagraph.setMarkerSize(1,0.6);
+		document.datagraph.setLastPointMarker(1,true);
+		document.datagraph.setSeriesRGB(1,0,200,0);
+		document.datagraph.setSeriesLegend(1,200,20,"F = mg sen(teta)");
+		document.datagraph.setSeriesLegendRGB(1,0,200,0);
+
+	document.datagraph.clearSeries(2);
+		document.datagraph.setSeriesStyle(2,true,3);
+		document.datagraph.setMarkerSize(2,0.6);
+		document.datagraph.setLastPointMarker(2,true);
+		document.datagraph.setSeriesRGB(2,18,18,245);
+		document.datagraph.setSeriesLegend(2,200,40,"F = mg teta");	
+		document.datagraph.setSeriesLegendRGB(2,18,18,245);
+		
+	gid1=document.datagraph.getGraphID();
+	document.animator.deleteDataConnections();
+	
+	document.animator.makeDataConnection(pendul,arrow1,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow1,2,"9.8*m*sin(asin(x/15))*cos(asin(x/15))","-9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	document.animator.makeDataConnection(pendul,arrow2,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow2,2,"0","-9.8*m");
+	
+	document.animator.makeDataConnection(pendul,arrow3,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow3,2,"-9.8*m*sin(asin(x/15))*cos(asin(x/15))","-9.8*m+9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	document.animator.makeDataConnection(pendul,arrow4,1,"x","y");
+	document.animator.makeDataConnection(pendul,arrow4,2,"-9.8*m*sin(asin(x/15))*cos(asin(x/15))","9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+	
+	conid1=document.animator.makeDataConnection(pendul,gid1,1,"asin(x/15)","-9.82*m*sin(asin(x/15))");
+	conid2=document.animator.makeDataConnection(pendul,gid1,2,"asin(x/15)","-9.8*m*asin(x/15)");
+	
+		conid7=document.animator.makeDataConnection(pendul,calculation1,1,"11","8");	
+		conid8=document.animator.makeDataConnection(pendul,calculation1,2,"asin(x/15)","0");
+		
+		
+	document.animator.updateDataConnections();
+	document.animator.setAutoRefresh(true);
+	document.datagraph.setAutoRefresh(true);
+	
+}	
+
+
+function initAppletB(){	
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(10);
+	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(0,70);
+	document.animator.setClockOneShot(0,40);	
+	line=document.animator.addObject("line","h=0,v=-8,x=0,y=10");
+		document.animator.setRGB(line,205,200,200);
+		imag5=document.animator.addObject("text","text=teta =             rad,x=7.25,y=8");	
+	document.animator.setObjectFont(imag5,"Helvetica",0,12);
+	calculation1=document.animator.addObject("calculation","text=");
+		document.animator.setObjectFont(calculation1,"Helvetica",0,12);
+		document.animator.setFormat(calculation1,"%4.2f");
+		
+	       pendula=document.animator.addObject("circle","x=0, y=-5, r=12");
+               pendul=document.animator.addObject("circle","x=0, y=-5, r=11, m=1");
+		document.animator.setAnimationSlave(pendul,pendula);
+	document.animator.setRGB(pendul,255,0,0);
+        document.animator.setForce(pendul,"0","-9.8*m",0,-5,0,0);
+		document.animator.setConstrainR(pendul,15,0,10);
+		document.animator.setShowConstraintPath(pendul,false);
+		document.animator.setDragable(pendul,true);
+   
+	topid=document.animator.addObject("circle","x=0, y=10, r=2, m=1");
+		document.animator.addConnectorLine(pendul,topid);
+
+   	
+	arrow3=document.animator.addObject("arrow2","x=0,y=0,filled,thickness=2");
+		document.animator.setRGB(arrow3,18,245,18);
+
+	rect1=document.animator.addObject("rectangle","w=300,h=4,x=0,y=10.2");
+		document.animator.setRGB(rect1,0,65,0);
+
+	ballid=document.animator.addObject("circle","x=0,y=-18,r=2,m=2");
+		
+        document.animator.setForce(ballid,"-2*9.8/15*x","0",0,-18,0,0);
+		document.animator.setDragable(ballid,true);
+		document.animator.setConstrainY(ballid,-18,-15,15);
+		document.animator.setShowConstraintPath(ballid,false);
+		document.animator.setVisibility(ballid,false);
+
+	rect2=document.animator.addObject("rectangle","w=10,h=40,x=-17,y=-18");
+		document.animator.setRGB(rect2,0,0,0);
+
+	document.animator.addConnectorSpring(ballid,rect2);
+	
+	imag0=document.animator.addObject("circle","r=12,x=0,y=-18");
+    imag3=document.animator.addObject("circle","r=11,x=0,y=-18");
+               document.animator.setRGB(imag3,255,0,0);
+	document.animator.setAnimationSlave(ballid,imag0);
+          document.animator.setAnimationSlave(ballid,imag3);
+	 
+	arrow5=document.animator.addObject("arrow2","x=0,y=-18,filled,thickness=2");
+		document.animator.setRGB(arrow5,18,18,245);
+
+	
+	document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	document.datagraph.setAutoscaleX(true);
+	document.datagraph.setAutoscaleY(true);
+	document.datagraph.setMinYRange(true,-10,10);
+	document.datagraph.setFormat(0,"%4.2f");
+	document.datagraph.setDrawGrid(false);
+	document.datagraph.setDrawZero(true);
+	document.datagraph.setLabelY("Posição_{x} (m)");
+	document.datagraph.setLabelX("Tempo (s)");
+	document.datagraph.clearSeries(1);
+		document.datagraph.setSeriesStyle(1,true,3);
+		document.datagraph.setMarkerSize(1,0.6);
+		document.datagraph.setLastPointMarker(1,true);
+		document.datagraph.setSeriesRGB(1,18,245,18);
+		document.datagraph.setSeriesLegend(1,200,20,"Pêndulo");
+		document.datagraph.setSeriesLegendRGB(1,0,200,0);
+	document.datagraph.clearSeries(2);
+		document.datagraph.setSeriesStyle(2,true,3);
+		document.datagraph.setMarkerSize(2,0.6);
+		document.datagraph.setLastPointMarker(2,true);
+		document.datagraph.setSeriesRGB(2,18,18,245);
+		document.datagraph.setSeriesLegend(2,200,40,"Massa e Mola");
+		document.datagraph.setSeriesLegendRGB(2,18,18,245);
+	
+	gid1=document.datagraph.getGraphID();
+	document.animator.deleteDataConnections();
+	
+	conid1=document.animator.makeDataConnection(pendul,arrow3,1,"x","y");
+	conid2=document.animator.makeDataConnection(pendul,arrow3,2,"-9.8*m*sin(asin(x/15))*cos(asin(x/15))","-9.8*m+9.8*m*cos(asin(x/15))*cos(asin(x/15))");
+		
+	conid3=document.animator.makeDataConnection(pendul,gid1,1,"t","x");
+	conid4=document.animator.makeDataConnection(ballid,gid1,2,"t","x");
+	
+	conid5=document.animator.makeDataConnection(ballid,arrow5,1,"x","y");
+	conid6=document.animator.makeDataConnection(ballid,arrow5,2,"fx","0");
+	
+	conid7=document.animator.makeDataConnection(pendul,calculation1,1,"11","8");	
+		conid8=document.animator.makeDataConnection(pendul,calculation1,2,"asin(x/15)","0");
+		
+	document.animator.updateDataConnections();
+	document.animator.setAutoRefresh(true);
+	document.datagraph.setAutoRefresh(true);	
+}
+	
+	
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<link rel="stylesheet" href="../../workbook.css">
+</head>
+<body onunload="killmenow()">
+            <h2 align="center" style="margin-top: 0; margin-bottom: 0">Ilustração 16.2 - <strong>Pêndulo simples e 
+			movimento Massa-Mola </strong></h2>
+			<h2 align="center" style="margin-top: 0; margin-bottom: 0">&nbsp;</h2>
+                  </p>
+            <div align="center">
+              <center>
+            <table border="1" bgcolor="#C0C0C0">
+                    <tr>
+                      <td>
+                        <applet codebase="../../classes/" code="animator4.Animator.class"
+                        archive="Physlets.jar" 
+                        hspace="0" vspace="0" align="middle"
+                        width="350" height="350" name="animator" mayscript>
+                          <param name="FPS" value="15">
+                          <param name="dt" value="0.05">
+                          <param name="showControls" value="false">
+                          <param name="OnLoad" value="initApplets()">
+                          <param name="AppletNames" value="animator,datagraph">
+     					  <param name="Resources" value="animator_pt.rc">
+                       </applet>
+                      </td>
+                      <td>
+                        <applet codebase="../../classes/" archive="Physlets.jar"
+                        code="dataGraph.DataGraph.class" name="datagraph" width="350" height="350" 
+                        hspace="0" vspace="0" align="middle" mayscript>
+                          <param name="Function">
+                          <param name="AutoScaleX" value="false">
+                          <param name="AutoScaleY" value="false">
+                          <param name="YMin" value="0">
+                          <param name="YMax" value="1">
+                          <param name="XMin" value="0">
+                          <param name="XMax" value="1">
+                          <param name="ShowControls" value="false">
+                          <param name="DataFile">
+                        </applet>
+                      </td>
+                    </tr>
+                  </table>
+              </center>
+            </div>
+            <p align="center">
+                    <input type="button" value="começar" onclick="document.animator.forward()"><input type="button" value="pausa" onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.animator.stepForward()"><input type="button" value="início" onclick="document.animator.reset()"> </p>
+<div align="center"><center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center"> 
+	&nbsp;<a href="javascript:initAppletAA()" style="text-decoration: none">Animação 1</a></td>
+    <td align="center">
+&nbsp;<a href="javascript:initAppletAB()" style="text-decoration: none">Animação 1 com trajetória</a></td>
+    <td align="center">
+&nbsp;<a href="javascript:initAppletB()" style="text-decoration: none">Animação 2</a></td>
+  </tr>
+</table>
+</center></div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+			<p align="left" style="margin-bottom: 0">
+			<span style="font-family: Arial">Quando pensamos no movimento 
+			harmónico simples, lembramo-nos da massa &nbsp;ligada a uma mola. Este é 
+			o movimento padrão e é também o mais fácil de estudar, uma vez que
+			<i>K</i>, a constante da mola, é o factor de proporcionalidade entre 
+			força <i>F </i>e deslocamento <i>x </i>da massa. Contudo, existe 
+			outro exemplo padrão bem conhecido, relativo ao movimento harmónico 
+			simples: o movimento do pêndulo. O pêndulo não é mais do que um 
+			objecto pesado (o prumo do pêndulo), suspenso numa corda muito fina 
+			(se a massa da corda é suficientemente elevada, possuímos um 
+			componente do pêndulo em que a corda deve ser considerada). Nesta 
+			animação, </span>o<span style="font-family: Arial"> comprimento da 
+			corda é de 15 m e a massa do prumo do pêndulo é de 1kg <b>(a posição 
+			é dada em metros, o ângulo é dado em radianos e o tempo é dado em 
+			segundos).</b></span></p>
+
+       
+                  <blockquote>
+          
+          <p>&nbsp;</p>
+          
+            </blockquote>
+            <p>Ilustração da autoria de Morten Brydensholt, Wolfgang Christian e 
+			Mario Belloni.<br>
+			Script da autoria de Morten Brydensholt, Wolfgang Christian e Mario 
+			Belloni.<br>
+			© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+          
+            <p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+			<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+			<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+			</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>

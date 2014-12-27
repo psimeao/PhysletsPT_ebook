@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("start()",100);
+}
+  	
+function start(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.diatomic.setRGB(0,224,224,255);
+   document.datagraph.setDefault();
+   document.datagraph.setAutoscaleX(true);
+   document.datagraph.setAutoscaleY(true);
+   document.datagraph.setMinMaxX(0,1);
+   document.datagraph.setMinMaxY(0,100);
+   document.datagraph.clearSeries(1);
+   document.datagraph.setSeriesStyle(1,true,0);
+   document.datagraph.setSeriesRGB(1,255,0,0);
+   document.datagraph.setStripChart(1,100, true);
+  // document.datagraph.setSeriesLegend(1, 350, 50, "Atom");
+   document.datagraph.clearSeries(2);
+   document.datagraph.setSeriesStyle(2,true,0);
+   document.datagraph.setStripChart(2,100, true);
+   document.datagraph.setSeriesRGB(2,0,0,255);
+   //document.datagraph.setSeriesLegend(2, 350, 65, "Diatom");
+   
+   document.datagraph.clearSeries(3);
+   document.datagraph.setSeriesStyle(3,true,0);
+   document.datagraph.setStripChart(3,100, true);
+   document.datagraph.setSeriesRGB(3,0,192,0);
+   //document.datagraph.setSeriesLegend(3, 350, 80, "Diatom Trans.");
+   document.datagraph.clearSeries(4);
+   document.datagraph.setSeriesStyle(4,true,0);
+   document.datagraph.setStripChart(4,100, true);
+   document.datagraph.setSeriesRGB(4,255,0,255);
+   //document.datagraph.setSeriesLegend(4, 350, 95, "Diatom Rot.");
+   
+   document.datagraph.clearSeries(5);
+   document.datagraph.setSeriesStyle(5,true,0);
+   document.datagraph.setStripChart(5,100, true);
+   document.datagraph.setSeriesRGB(5,0,0,0);
+   //document.datagraph.setSeriesLegend(5, 350, 95, "Diatom Rot.");
+
+   
+   document.datagraph.setLabelY("Energia"); 
+   document.datagraph.setLabelX("Tempo"); 
+   //document.datagraph.setTitle("Atomic and Molecular Kinetic Energy"); 
+   gid=document.datagraph.getGraphID();
+   
+     
+   document.diatomic.addObject("atom","n=20");
+   document.diatomic.addObject("molecule","n=10");
+
+   eid=document.diatomic.getEnsembleID();
+ 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,5,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol_rot");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke");             
+   document.diatomic.updateDataConnections();  
+   
+
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Problem 20.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Problema 20.4</h2>
+<div align="center">
+  <center>
+  <table border="2" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="diatomic.Diatomic.class" codebase="../../classes" 
+      archive="Physlets.jar" 
+      name="diatomic" width="250" height="300" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="Dt" value="0.1">
+        <param name="NumAtom" value="16">
+        <param name="NumMol" value="16">
+              <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="diatomic,datagraph">
+        <param name="Resources" value="datagraph_pt.rc">
+      </applet> </td>
+      <td>
+      <applet codebase="../../classes" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="datagraph" width="450" 
+      height="300" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="-1">
+        <param name="XMax" value="1">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="DataFile">
+        <param name="AutoScaleX" value="false">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="datagraph_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+  <p align="center">
+	<input type="button" value="começar" name="runBtn" 
+  onclick="document.diatomic.forward()" tabindex="2"><input type="button" 
+  value="pausa" name="pauseBtn" onclick="document.diatomic.pause()" 
+  tabindex="2"><input type="button" value="passo &gt;&gt;" name="stepBtn" 
+  onclick="document.diatomic.stepTimeForward()" tabindex="2"> </p>
+  
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>O gás apresentado na animação tem 20 partículas monoatómicas e 10 partículas 
+diatómicas.&nbsp;<a href="JavaScript:start()">Início</a></p>
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+<i>Script </i>da autoria de Wolfgang Christian modificado por Anne J. Cox.<br>
+<i>Applet</i> da autoria de Ernesto Martin modificado por Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

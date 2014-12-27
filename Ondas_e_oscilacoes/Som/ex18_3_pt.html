@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 18.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var pi=Math.PI;
+var fb=0;
+var f2=0;
+var f1=0; 
+var omega1=2.*pi*f1;
+var omega2=2.*pi*f2;
+var A=4.;
+var delta=0.;
+var delta2=0;
+var loaded=false;
+
+	
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("shm14_80()",100);
+}
+
+
+
+function shm14_80(){
+   if(!loaded) return;
+   timerID=0;
+   document.Freqform.reset();
+   ff1=document.Freqform.F1text.value;
+   ff2=document.Freqform.F2text.value;
+   f1=eval(ff1);
+       if( !checkRange(f1,20,25)){
+     alert("A frequência f1 deve estar entre 20 e 25 Hz. O valor inserido foi "+f1);
+     return;
+  } 
+
+
+   f2=eval(ff2);
+       if( !checkRange(f2,25,30)){
+     alert("A frequência f2 deve estar entre 25 e 30 Hz. O valor inserido foi "+f2);
+     return;
+  } 
+
+    fb=f1-f2;
+    omega1=2.*pi*f1;
+    omega2=2.*pi*f2;
+	document.animator.setDefault();
+	document.animator.setGridUnit(0);
+         document.animator.setTimeDisplay(false);
+	idleft=document.animator.addObject("polyshape","x=-6.,y=-.625,n=6,h=0/20/40/40/20/0,v=35/35/50/0/15/15");
+	document.animator.setRGB(idleft,255,0,0);
+	idright=document.animator.addObject("polyshape","x=5.,y=-.625,n=6,h=0/20/40/40/20/0,v=50/35/35/15/15/0");
+	document.animator.setRGB(idright,0,0,255);
+	aid=document.animator.addObject("circle","x=0,y=0");
+	idstick=document.animator.addObject("rectangle","h=20,w=5");
+	document.animator.setDisplayOffset(idstick,0,-10);
+	document.animator.setAnimationSlave(aid,idstick);
+    
+    document.datagraph.setDefault();
+    document.datagraph.setLabelX("Tempo (s)");
+    document.datagraph.setLabelY("Sinal");  
+    document.datagraph.setMinMaxX(0,1);  
+    document.datagraph.setMinMaxY(-5,6);  
+    document.datagraph.setDrawGrid(false);  
+	idf=document.datagraph.addFunction("x",A+"*cos("+omega2+"*x-"+delta2+")");
+	document.datagraph.setRGB(idf,255,0,0);	
+	document.datagraph.setSeriesRGB(1,255,0,0);
+	document.datagraph.setSeriesStyle(1,true,0);
+	document.datagraph.setSeriesLegend(1,80,30,"Coluna Esquerda");
+	document.datagraph.setSeriesLegendRGB(1,255,0,0);
+	ids=document.datagraph.addFunction("x",A+"*cos("+omega1+"*x-"+delta+")");
+	
+	document.datagraph.setRGB(ids,0,0,255);
+	document.datagraph.setSeriesRGB(2,0,0,255);
+	document.datagraph.setSeriesStyle(2,true,0);
+	document.datagraph.setSeriesLegend(2,300,30,"Coluna Direita");
+	document.datagraph.setSeriesLegendRGB(2,0,0,255);
+	
+	document.datagraph2.setDefault();
+    document.datagraph2.setLabelX("Tempo (s)");
+    document.datagraph2.setLabelY("Sinal");  
+    document.datagraph2.setMinMaxX(0,1);  
+    document.datagraph2.setMinMaxY(-10.,12.);  
+    document.datagraph2.setDrawGrid(false);  
+   	idsum=document.datagraph2.addFunction("x",A+"*cos("+omega2+"*x-"+delta2+")+"+A+"*cos("+omega1+"*x-"+delta+")");
+	document.datagraph2.setSeriesRGB(3,0,0,0);
+	document.datagraph2.setSeriesStyle(3,true,0);
+	document.datagraph2.setSeriesLegend(3,380,30,"Soma");
+	document.datagraph2.setSeriesLegendRGB(3,0,0,0);
+
+}
+
+function shm14_8(ff1,ff2){
+   if(!loaded) return;
+   timerID=0;
+   f1=eval(ff1);
+       if( !checkRange(f1,20,25)){
+     alert("A frequência f1 deve estar entre 20 e 25 Hz. O valor inserido foi "+f1);
+     return;
+  } 
+
+
+   f2=eval(ff2);
+       if( !checkRange(f2,25,30)){
+     alert("A frequência f2 deve estar entre 25 e 30 Hz. O valor inserido foi "+f2);
+     return;
+  } 
+
+    fb=f1-f2;
+    omega1=2.*pi*f1;
+    omega2=2.*pi*f2;
+	document.animator.setDefault();
+	document.animator.setGridUnit(0);
+         document.animator.setTimeDisplay(false);
+	idleft=document.animator.addObject("polyshape","x=-6.,y=-.625,n=6,h=0/20/40/40/20/0,v=35/35/50/0/15/15");
+	document.animator.setRGB(idleft,255,0,0);
+	idright=document.animator.addObject("polyshape","x=5.,y=-.625,n=6,h=0/20/40/40/20/0,v=50/35/35/15/15/0");
+	document.animator.setRGB(idright,0,0,255);
+	aid=document.animator.addObject("circle","x=0,y=0");
+	idstick=document.animator.addObject("rectangle","h=20,w=5");
+	document.animator.setDisplayOffset(idstick,0,-10);
+	document.animator.setAnimationSlave(aid,idstick);
+    
+    document.datagraph.setDefault();
+    document.datagraph.setLabelX("Tempo (s)");
+    document.datagraph.setLabelY("Sinal");  
+    document.datagraph.setMinMaxX(0,1);  
+    document.datagraph.setMinMaxY(-5,6);  
+    document.datagraph.setDrawGrid(false);  
+	idf=document.datagraph.addFunction("x",A+"*cos("+omega2+"*x-"+delta2+")");
+	document.datagraph.setRGB(idf,255,0,0);	
+	document.datagraph.setSeriesRGB(1,255,0,0);
+	document.datagraph.setSeriesStyle(1,true,0);
+	document.datagraph.setSeriesLegend(1,80,30,"Coluna Esquerda");
+	document.datagraph.setSeriesLegendRGB(1,255,0,0);
+	ids=document.datagraph.addFunction("x",A+"*cos("+omega1+"*x-"+delta+")");
+	
+	document.datagraph.setRGB(ids,0,0,255);
+	document.datagraph.setSeriesRGB(2,0,0,255);
+	document.datagraph.setSeriesStyle(2,true,0);
+	document.datagraph.setSeriesLegend(2,300,30,"Coluna Direita");
+	document.datagraph.setSeriesLegendRGB(2,0,0,255);
+	
+	document.datagraph2.setDefault();
+    document.datagraph2.setLabelX("Tempo (s)");
+    document.datagraph2.setLabelY("Sinal");  
+    document.datagraph2.setMinMaxX(0,1);  
+    document.datagraph2.setMinMaxY(-10.,12.);  
+    document.datagraph2.setDrawGrid(false);  
+   	idsum=document.datagraph2.addFunction("x",A+"*cos("+omega2+"*x-"+delta2+")+"+A+"*cos("+omega1+"*x-"+delta+")");
+	document.datagraph2.setSeriesRGB(3,0,0,0);
+	document.datagraph2.setSeriesStyle(3,true,0);
+	document.datagraph2.setSeriesLegend(3,380,30,"Soma");
+	document.datagraph2.setSeriesLegendRGB(3,0,0,0);
+
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+</head>
+<body onunload="killmenow()"> 
+
+<h2 align="center">Exploração 18.3 - Um microfone entre duas colunas</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/" 
+              archive="Physlets.jar" name="animator" width="450"
+        height="70" hspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="40">
+          <param name="GridUnit" value="1">
+          <param name="OnLoad" value="initApplets()">
+          <param name="AppletNames" value="animator,datagraph,datagraph2">
+          <param name="Resources" value="Animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+    <applet code="dataGraph.DataGraph.class" codebase="../../classes/"
+        archive="Physlets.jar" name="datagraph" 
+        width="450" height="200" hspace="0" align="middle" mayscript>
+		<param name="ShowControls" value="false">
+		<param name="AutoScaleX" value="false">
+		<param name="AutoScaleY" value="false">
+	</applet></td>
+    </tr>
+    <tr>
+      <td>
+    <applet code="dataGraph.DataGraph.class" codebase="../../classes/"
+        archive="Physlets.jar" name="datagraph2" 
+        width="450" height="200" hspace="0" align="middle" mayscript>
+		<param name="ShowControls" value="false">
+		<param name="AutoScaleX" value="false">
+		<param name="AutoScaleY" value="false">
+	</applet></td>
+    </tr>
+    <tr><form name="Freqform">
+          <td align="center">
+            <i>f</i><sub>1</sub> = 
+            <input type="text" name="F1text" size="4" value="25">Hz<i><sub><span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp; </span></sub><span lang="en-us">
+            f</span></i><span lang="en-us"><sub>2 </sub> </span>=&nbsp;<input type="text" name="F2text" size="3" value="26">Hz&nbsp;</td>
+          </form></tr>
+    </table>
+  </center>
+</div>
+<div align="center">
+    <form>
+      <div align="center"><center><p>
+      <input type="button" value="registar valores" name="StartButton1" 
+      onclick="shm14_8(document.Freqform.F1text.value,document.Freqform.F2text.value)"></p>
+      </center></div>
+    </form>
+</div>
+
+<p align="center"><b><font color="#FF0000"><i>Por favor espera até a animação 
+estar completamente carregada.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Um microfone é colocado entre duas colunas <b>(a posição é dada em 
+centímetros e o tempo em segundos)</b>.&nbsp;As colunas estão ligadas a duas fontes 
+de som que têm frequências variáveis, <i>f</i><sub>1</sub> e <i>f</i><sub>2</sub>.&nbsp;O 
+gráfico mostra as ondas sonoras à chegada ao microfone, em função do tempo, para 
+cada coluna e a soma das duas ondas.&nbsp;Muda a frequência de qualquer das colunas (<span lang="en-us">2</span>0 
+Hz&nbsp;&lt;&nbsp;f<sub>1</sub>&lt; 25 Hz ; 25 Hz &lt;&nbsp;f<sub>2</sub>&nbsp;&lt;&nbsp;<span lang="en-us">3</span>0 Hz) e observa a 
+mudança na onda, resultante da interferência entre as duas ondas sonoras. Estuda 
+o fenómeno de batimento e confirma se a frequência de batimento é a prevista 
+teoricamente.&nbsp; <a href="javascript:shm14_80()">Início</a></p>
+<p>( <i>NOTA: Lembra-te que é a <b>diferença</b> entre as duas frequências que 
+determina a frequência de batimento</i> )&nbsp;</p>
+
+<p>&nbsp;</p>
+<p>Exploração da autoria de Steve Mellema e Chuck Niederriter.<br>
+<i>Script</i> da autoria de Steve Mellema e Chuck Niederriter.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

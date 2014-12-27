@@ -1,0 +1,1169 @@
+<html>
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="pt">
+ 
+<script LANGUAGE="JavaScript"> 
+var timerID=0;
+var loaded=false;
+ 
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb3_1()",50);
+}
+  	
+function mjb3_1(){ 
+      if(!loaded) return;
+       timerID=0; 
+	document.Animator.setAutoRefresh(false); 
+	document.Animator.setDefault(); 
+	document.Animator.setPixPerUnit(10); 
+	document.Animator.shiftPixOrigin(-250,-90); 
+	document.Animator.setGridUnit(0);
+	document.Animator.setTimeInterval(0,10); 
+	rid=document.Animator.addObject("rectangle","h=400,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,175,203,255);
+	document.Animator.addObject("image","file=images/bg2.gif,x=-0.8,y=22");
+	rid=document.Animator.addObject("rectangle","h=40,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,155,155,155);
+	cid=document.Animator.addObject("image","file=images/r_ghini.gif,x=-14+2*t+0.5*t*t,y=7.5");
+	document.Animator.setAutoRefresh(true); 
+	document.Animator.forward();
+	//document.getElementById("waitmsg").style.display="none"; 
+} 
+ 
+function killmenow(){
+	clearTimeout(timerID);
+		loaded=false;
+		timerID=-1;
+}
+</script>
+<title>Title Page</title>
+<link rel="STYLESHEET" type="text/css" href="../workbook.css">
+<base target="_blank">
+<style> 
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+ 
+<body onunload="killmenow()">
+ 
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div><div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td width="100%">
+		<applet code="animator4.Animator.class" codebase="../classes/" 
+		archive="Physlets.jar" name="Animator" width="510" height="111" 
+		hspace="0" align="middle">
+  			<param name="FPS" value="15">
+  			<param name="ShowControls" value="false">
+  			<param name="dt" value="0.1">
+  			<param name="PixPerUnit" value="10">
+  			<param name="GridUnit" value="1.0">
+  			<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+  </center>
+</div>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<hr>
+<div align="center">
+  <center>
+<div align="center">
+  <p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../Amazon_buy_now.png" /></a> </div>
+	<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+  <b><font size="3">MECÂNICA</font></b></center>
+</div>
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" width="45%">
+	<tr>
+		<td>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+		<p class="MsoNormal" style="margin-top: 0"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 1 – 
+		Introdução às <i>Physlets</i></span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 1.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Imagens estáticas <i>vs.</i> Animações <i>Physlets</i></span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 1.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Animações, Unidades e Medições</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 1.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Obtenção de dados</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 1.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Clicar e arrastar para determinar a posição</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 1.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Introdução de dados numéricos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 1.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Introdução de fórmulas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 2 – 
+		Cinemática 1D</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.1 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Posição e Deslocamento</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.2 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Velocidade Média</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.3 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Velocidade média e 
+		Velocidade instantânea</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.4 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Movimento com aceleração 
+		constante</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.5 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Movimento numa rampa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 2.6 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Queda livre</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.1 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Gráficos Posição <i>vs.</i> 
+		Tempo e Velocidade <i>vs.</i> Tempo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.2 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Determinação do gráfico 
+		correto</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.3 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Uma cortina bloqueia a 
+		visão da bola de golfe</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.4 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Escolhe o gráfico x(t) de 
+		uma carrinha de brinquedo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.5 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Determina x(t) e v/t( para 
+		o Lamborghini</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.6 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Atirar a bola 
+		verticalmente para cima</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.7 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Duas bolas de ténis que 
+		caem em instantes diferentes</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 2.8 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Determinar a área abaixo 
+		da curva em gráficos a(t) e v(t)</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 3 – 
+		Cinemática 2D</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Decomposição de vetores</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento num Plano Inclinado</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A direção e o sentido dos vetores Velocidade e Aceleração</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento de Projéteis</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento Circular Uniforme e Aceleração</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 3.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento circular e não circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Adição de vetores deslocamento</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Labirinto</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Aceleração de uma bola de golfe</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Sonda espacial com aceleração constante</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento de Projéteis</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 3.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento Circular Uniforme</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 4 – Leis de 
+		Newton</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Primeira Lei de Newton e Referenciais de Inércia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Diagramas de Corpo-Livre</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Segunda Lei de Newton e Força</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Bloco num plano inclinado</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Puxar vagões</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 4.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A Terceira Lei de Newton: Forças de Contacto</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças aplicadas a uma caixa num plano inclinado</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças atrativas e repulsivas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças e movimentos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força aplicada num disco de hóquei</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Sonda espacial com motores</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Mandar a bola de golfe para o buraco</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.7 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Máquina de Atwood</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 4.8 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Gráficos do movimento produzido por uma Força: indução e uma 
+		expressão para a força aplicada</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 5 – Leis de 
+		Newton 2</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 5.1 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Atrito estático e cinético</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 5.2 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Movimento Circular 
+		Uniforme: F<sub>c</sub> e a<sub>c</sub></span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 5.3 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">A Roda Gigante</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 5.4 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Molas e Lei de Hooke</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Ilustração 5.5 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Atrito do ar</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.1 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Movimento Circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.2 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Força tangencial num 
+		objeto com movimento circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.3 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Força numa mola elástica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.4 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Movimento circular e Força 
+		Elástica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.5 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Inserir uma expressão para 
+		a Força</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.6 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Atrito do ar</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Exploração 5.7 – </span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Escrever uma fórmula para 
+		as componentes F<sub>x</sub> e F<sub>y</sub> da Força</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.4pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 6 – Trabalho</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 6.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Produto interno</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 6.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Trabalho realizado por forças constantes</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 6.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força e Deslocamento</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 6.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Molas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 6.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 6.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Definição Operacional de Trabalho</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 6.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Relação entre Força, Aceleração e Trabalho</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 6.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Trabalho e Força Gravítica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 6.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento circular e trabalho</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 6.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças, Trabalho e Integrais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 7 – Energia</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 7.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Escolha dos constituintes de um Sistema</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 7.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Representações de Energia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 7.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Diagrama de Energia Potencial</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 7.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças Exteriores e Energia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 7.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Sistema caixa-mola num plano inclinado</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Empurrar um carrinho num plano horizontal</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Escolha do nível de referência para a Energia Potencial</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Estudo de uma colisão elástica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisão de uma bola com uma massa presa a uma mola</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Determinação da Energia Potencial em função da distância</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Diferentes interações</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 7.7 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Explorando funções da Energia Potencial</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 8 – Momento 
+		linear</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força e Impulso</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Diferença entre Trabalho e Impulso</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisões fortes e fracas e Terceira Lei de Newton</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Velocidades Relativas em colisões</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Referencial do Centro de Massa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Visão Microscópica de uma colisão</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.7 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Centro de Massa e Centro de Gravidade</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 8.8 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Centro de Massa de objetos em movimento</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Compreender as Leis de Conservação</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisão Elástica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisão perfeitamente inelástica entre corpos de massas 
+		desconhecidas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisões Elástica e Inelástica e Δ<b>p</b></span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisões com duas e três bolas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Colisão explosiva</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 8.7 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A Bola Saltitona</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 9 – 
+		Referenciais</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 9.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Primeira Lei de Newton e Referenciais de Inércia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 9.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Referenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 9.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">O Referencial do Centro de Massa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 9.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Referenciais com Rotação</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 9.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Comparar o Momento Linear em diferentes referenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 9.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Comparar a Energia em diferentes referenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 9.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Comparar movimentos relativos em diferentes referenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 9.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Comparar o movimento em referenciais acelerados</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 9.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Dois aviões com velocidades diferentes</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 10 – 
+		Rotações</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 10.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Coordenadas para o Movimento Circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 10.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento em torno de um eixo fixo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 10.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Momento de Inércia, Energia de Rotação e Momento Angular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 10.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento com velocidade angular constante</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 10.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Aceleração angular constante</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 10.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Torque e Momento de Inércia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 10.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Torque devido à tensão de dois fios</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 11 – 
+		Rotações Gerais</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 11.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Produto Vetorial</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 11.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Rolar sem escorregar</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 11.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Energia Cinética de Rotação e de Translação</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 11.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Área e Momento Angular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 11.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Conservação do Momento&nbsp;Angular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 11.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Momento de uma força (Torque)</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 11.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimento Circular não Uniforme</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 11.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Rolando num plano inclinado</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 11.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Momento de Inércia e Momento Angular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 11.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Conservação do Momento Angular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 12 – 
+		Gravitação</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 12.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Órbitas e Massas Planetárias</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 12.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Movimentos circular e não circular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 12.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Momento angular e Área descrita pelo raio-vetor</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 12.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Segunda lei de Kepler</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 12.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Sistema Heliocêntrico <i>vs</i>. Sistema Geocêntrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 12.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Diferentes variáveis <i>x</i><sub>o</sub> ou&nbsp;<i>v</i><sub>o</sub> 
+		nas Órbitas Planetárias</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 12.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Escolher <i>x</i><sub>o</sub> e&nbsp;<i>v</i><sub>o </sub>para Órbitas 
+		Planetárias</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 12.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Propriedades das Órbitas Elípticas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 12.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Momento Angular e Energia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 13 – 
+		Estática</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 13.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Equilíbrio numa Rampa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 13.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Centro de Massa e Força Gravítica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 13.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A Força e o Momento (Torque) da Força no Equilíbrio</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 13.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">O Problema da Prancha</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 13.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Equilíbrio de um Móbil</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 13.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Atrito Estático numa Barra Horizontal</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 13.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Carga Distribuída</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 13.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Blocos Empilhados</span><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%">&nbsp;</td>
+	</tr>
+	</table>
+	</center>
+</div>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<hr>
+<p align="center" style="margin-bottom: 6px"><b><i>© 2014: Paulo Simeão 
+Carvalho, Edite Pereira Briosa, Wolfgang Christian, Mario Belloni, Manuel Filipe 
+Costa</i></b></p>
+<p align="center" style="margin-top: 3px; margin-bottom: 0">&nbsp;</p>
+ 
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+ 
+</html>

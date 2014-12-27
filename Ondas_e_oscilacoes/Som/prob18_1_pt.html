@@ -1,0 +1,116 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("mjb16_1()",100);
+}
+
+function mjb16_1(){
+   if(!loaded) return;
+   timerID=0;
+   id=0;
+   bid=0;
+   conid=0;
+    document.pipes.setDefault();
+    id=document.pipes.addDetector(8.2,0);
+    document.bar.setNumericFormat("%3.0i"); 
+    bid=document.bar.getID(); 
+    document.pipes.deleteDataConnections(); 
+    cid=document.pipes.makeDataConnection(id,bid,1,"p","p");
+    document.pipes.setClockOneShot(0,0.1);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 18.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 18.1 </h2>
+<div align="center"><center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+     ARCHIVE="Physlets.jar"
+    CODE="pipes.PipeApplet.class" NAME="pipes" WIDTH="400"
+    HEIGHT="120" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+      <param name="Speed" value="3500">
+      <param name="InitialString" value="sin(200*pi*t)">
+      <param name="ShowControls" value="false">
+      <param name="ShowLegend" value="false">
+      <param name="Mode" value="s">
+      <param name="WallW" value="4">
+      <param name="Pixper" value="10">
+      <param name="FPS" value="10">
+      <param name="dt" value="0.001">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="pipes,bar">
+      <param name="Resources" value="pipes_pt.rc">
+     </applet>
+    </td>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+     ARCHIVE="Physlets.jar"
+    CODE="dataGraph.Bar.class"  NAME="bar" WIDTH="20" HEIGHT="110" mayscript>
+      <param name="Min" value="-1">
+      <param name="Max" value="1">
+      <param name="Vertical" value="true">
+      <param name="ShowControls" value="false">
+    </applet>
+    </td>
+  </tr>
+</table>
+</center></div>
+    <form>
+      <div align="center"><center><p><input type="button" value="começar"
+      onclick="document.pipes.forward()"><input type="button" value="pausa"
+      onclick="document.pipes.pause()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.pipes.stepForward()"><input type="button" value="início"
+      onclick="mjb16_1()"> </p>
+      </center></div>
+    </form>
+
+<p align="center"><b><font color="#FF0000"><i>Por favor espera até a animação 
+estar completamente carregada.</i></font></b></p>
+
+<p align="left">Esta animação mostra, em câmara lenta, a secção reta de uma onda 
+sonora que se propaga em Lucite (também conhecido por Perspex, Plexiglas ou PMMA). 
+Um detetor (quadrado laranja) é colocado no tubo e mede adequadamente a pressão 
+no meio <b>(a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp;&nbsp;
+<a href="JavaScript:mjb16_1()">Início</a>  
+</p>
+<p align="left">(<i> Nota: A animação corre durante 0.1 s. Para voltar ao início e 
+correr outra vez a animação, carrega no botão &quot;início&quot; </i>)</p>
+
+<p align="left">&nbsp;</p>
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

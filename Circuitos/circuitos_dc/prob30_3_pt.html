@@ -1,0 +1,308 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build0()",100);
+}
+
+function build0(){
+	if(!loaded) return;
+    timerID=0;
+    id[0]=0;
+    id[1]=0;
+    id[2]=0;
+    id[3]=0;
+	document.slider.setDefault();
+	document.slider.setValue(1);
+	document.circuit.setGrid("rows=3,cols=3");
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+
+	document.circuit.addObject("wire","row=2,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=2,col=1,to=h,label=");
+
+	document.circuit.addObject("wire","row=0,col=0,to=v,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+    document.circuit.addObject("wire","row=0,col=2,to=v,label=");
+	document.circuit.addObject("wire","row=1,col=2,to=v,label=");
+   document.circuit.parse();
+    document.circuit.reset();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Voltímetro (V)");
+    document.datatable.setSeriesLabel(2,"Amperímetro (mA)");
+    document.datatable.setNumericFormat(2,"%3.2e");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.updateDataConnections();
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+
+function build1(){
+    if(!loaded) return;
+    timerID=0;
+	document.slider.setDefault();
+	document.slider.setValue(400);
+	document.circuit.reset(); 
+	document.circuit.setGrid("rows=3,cols=3");
+	id[4]=document.circuit.addObject("battery","row=0,col=0,to=v,label=Valor=?,d=-1,v=15.0,r=0.0");
+	document.circuit.setValueVisible(id[4],false);
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[5]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=Valor=?,r=600.0");
+	document.circuit.setValueVisible(id[5],false);
+	id[1]=document.circuit.addObject("vmeter","row=0,col=2,to=v,label=,d=-1,r=1e9");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	id[3]=document.circuit.addObject("resistor","row=1,col=1,to=v,label=Variável,r=400.0");
+	id[2]=document.circuit.addObject("ameter","row=2,col=0,to=h,label=,d=1,r=0.0000001");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+
+    
+    document.circuit.parse();
+    document.circuit.reset();
+    document.circuit.forward();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Voltímetro (V)");
+    document.datatable.setSeriesLabel(2,"Amperímetro (mA)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[1],tid,1,"-v","0"); 
+    document.circuit.makeDataConnection(id[2],tid,2,"i*1000","0");
+    document.circuit.updateDataConnections();
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+function build2(){
+    if(!loaded) return;
+    timerID=0;
+	document.slider.setDefault();
+	document.slider.setValue(400);
+	document.circuit.reset(); 
+
+	document.circuit.setGrid("rows=2,cols=4");
+	id[4]=document.circuit.addObject("battery","row=0,col=0,to=v,label=Valor=?,d=-1,v=7.0,r=0.0");
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[5]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=Valor=?,r=300.0");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	id[3]=document.circuit.addObject("resistor","row=0,col=2,to=v,label=Variável,r=400.0");
+	id[1]=document.circuit.addObject("vmeter","row=0,col=3,to=v,label=,d=-1,r=1e9");
+	document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+	id[2]=document.circuit.addObject("ameter","row=1,col=0,to=h,label=,d=1,r=0.0000001");
+    document.circuit.setValueVisible(id[4],false);
+	document.circuit.setValueVisible(id[5],false);
+
+    document.circuit.parse();
+    document.circuit.reset();
+    document.circuit.forward();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Voltímetro (V)");
+    document.datatable.setSeriesLabel(2,"Amperímetro (mA)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[1],tid,1,"-v","0"); 
+    document.circuit.makeDataConnection(id[2],tid,2,"i*1000","0");
+    document.circuit.updateDataConnections();
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+function build3(){
+    if(!loaded) return;
+    timerID=0;
+	document.slider.setDefault();
+	document.slider.setValue(400);
+	document.circuit.reset(); 
+	document.circuit.setGrid("rows=3,cols=3");
+	id[4]=document.circuit.addObject("battery","row=0,col=0,to=v,label=Valor=?,d=-1,v=15.0,r=0.0");
+	document.circuit.setValueVisible(id[4],false);
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[5]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=Valor=?,r=600.0");
+	document.circuit.setValueVisible(id[5],false);
+	id[1]=document.circuit.addObject("vmeter","row=0,col=2,to=v,label=,d=-1,r=1000000.0");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	id[3]=document.circuit.addObject("resistor","row=1,col=1,to=v,label=Variável,r=400.0");
+	id[2]=document.circuit.addObject("ameter","row=2,col=0,to=h,label=,d=1,r=0.0");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+
+	document.circuit.setGrid("rows=3,cols=4");
+	id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=Valor=?,d=-1,v=12.0,r=1.0E-9");
+	document.circuit.setValueVisible(id[5],false);
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[4]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=Valor=?,r=700.0");
+	document.circuit.setValueVisible(id[4],false);
+	id[3]=document.circuit.addObject("resistor","row=1,col=1,to=v,label=Variável,r=400.0");
+	document.circuit.addObject("wire","row=2,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	id[1]=document.circuit.addObject("vmeter","row=1,col=2,to=v,label=V1,d=-1,r=1000000.0");
+	document.circuit.addObject("wire","row=2,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+	id[2]=document.circuit.addObject("vmeter","row=0,col=3,to=v,label=V2,d=-1,r=1000000.0");
+	document.circuit.addObject("wire","row=1,col=3,to=v,label=");
+	document.circuit.addObject("wire","row=2,col=2,to=h,label=");
+
+
+    
+    document.circuit.parse();
+    document.circuit.reset();
+    document.circuit.forward();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Voltímetro 1 (V)");
+    document.datatable.setSeriesLabel(2,"Voltímetro 2 (V)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[1],tid,1,"v","0"); 
+    document.circuit.makeDataConnection(id[2],tid,2,"-v","0");
+    document.circuit.updateDataConnections();
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+
+function sliderMoved(){
+    if(!loaded) return;
+	if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+    if(!loaded) return;
+	raVal=eval(document.slider.getValue());
+	document.circuit.setValue(id[3],raVal.toString()); 
+	document.circuit.updateDataConnections();
+	timerID=0;
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 30.3</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 30.3</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;<font size="2"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="200" name="circuit" mayscript>
+        
+        
+        
+        
+        
+        
+        
+        <param name="numberofdt" value="10">
+        <param name="dt" value="0.05">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="datatable,circuit,slider">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></font></td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" 
+      width="250" height="25" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="min" value="100">
+        <param name="max" value="1000">
+        <param name="value" value="400">
+        <param name="label" value="R (Ohms)">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataTable.DataTable.class" name="datatable" width="253" height="45" hspace="0" 
+      vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="2">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<center>
+<p align="center"><span lang="pt"><font color="#ff0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font></span></p>
+<table border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td width="100" align="center">
+	<a href="JavaScript:build1()" style="text-decoration: none">Circuito A</a></td>
+    <td width="100" align="center">
+	<a href="JavaScript:build2()" style="text-decoration: none">Circuito B</a></td>
+    <td width="100" align="center">
+	<a href="JavaScript:build3()" style="text-decoration: none">Circuito C</a></td>
+  </tr>
+</table>
+</center>
+<p><span lang="pt">Responde às questões seguintes, para cada um dos circuitos da 
+animação.&nbsp;&nbsp;Assume que a bateria é ideal (não tem resistência 
+interna), bem como os instrumentos de medida, mas nota que a bateria e a 
+resistência desconhecida são diferentes em cada circuito <b>(a diferença de 
+potencial é dada em volts e a intensidade da corrente é dada em amperes)</b>.&nbsp; 
+Usa o cursor deslizante para variar a resistência do reóstato.&nbsp;
+<a href="JavaScript:build0()">Início</a>. </span> </p>
+<p>&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

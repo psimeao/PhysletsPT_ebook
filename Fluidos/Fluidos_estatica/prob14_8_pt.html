@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 14.8</title>
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+    loaded=true;
+    timerID=setTimeout("fluid0()",250);
+}
+
+
+function fluid0(){
+    if(!loaded) return;
+    timerID=0;
+ 	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addObject("circle","r=60,x=0,y=-5.3+.233*t*t");
+    cid=document.Animator.addObject("circle","r=58,x=0,y=-5.3+.233*t*t");
+    document.Animator.setRGB(cid,255,0,0);
+	bid=document.Animator.addObject("rectangle","h=10,w=10");
+   	document.Animator.setAnimationSlave(cid,bid);
+   	document.Animator.setDisplayOffset(bid,0,-70.5);
+	ropeid1=document.Animator.addObject("line","h=1.1,v=1.0");
+	document.Animator.setAnimationSlave(cid,ropeid1);
+	document.Animator.setDisplayOffset(ropeid1,2.5,-70);
+	ropeid2=document.Animator.addObject("line","h=-1.1,v=1.0");
+	document.Animator.setAnimationSlave(cid,ropeid2);
+	document.Animator.setDisplayOffset(ropeid2,-2.5,-70);
+	document.Animator.setShapeRGB(0,0,0);
+     document.Animator.addRectangle(200,25,"0","-13.75");
+       gid=document.Animator.addRectangle(200,23,"0","-13.75");
+	document.Animator.setRGB(gid,0,200,0);
+	 document.Animator.setOneShot(0,10,"Fim da Animação");
+     document.Animator.setAutoRefresh(true);     
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Problema 14.8</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="200" height="300" name="Animator" mayscript>
+	    <param name="FPS" value="15">
+		<param name="dt" value="0.02">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+<form name="selection">
+        <INPUT onclick="document.Animator.forward()" type="button" value="começar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td><p>
+</form>
+
+   <p align="center"><font face="Arial" style="font-size: 9pt"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></font></p>
+
+<p align="left"><font face="Arial" style="font-size: 9pt">À medida que o ar dentro deste balão é aquecido, a sua densidade 
+diminui e o balão expande (revê o capítulo 20 e a teoria cinética dos gases, 
+para uma explicação mais detalhada).&nbsp;A animação mostra o balão a subir com uma 
+aceleração constante <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;
+<a href="JavaScript:fluid0()">
+Início</a> 
+</font> 
+<p align="left"><font face="Arial" style="font-size: 9pt">(NOTA: Despreza o volume do cesto; a densidade do ar exterior é 
+1,3 kg/m<sup>3</sup> 
+)</font><p align="left">&nbsp;</p>
+<p align="left"> <font face="Arial" style="font-size: 9pt">Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</font></p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<center>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

@@ -1,0 +1,337 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+
+<script language="JavaScript">
+var timerID=0;
+var stry=0;  
+var i=0; 
+var j=0;
+var delay=500;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  
+   
+function initApplet(){
+   if(!loaded) return;
+   timerID=0;
+   document.selection.reset();
+   document.DataGraph4.setAutoRefresh(false);
+   document.DataGraph4.setDefault();
+   document.DataGraph5.setAutoRefresh(false);
+   document.DataGraph5.setDefault();
+   document.DataGraph5.deleteAllFunctions(); 
+   document.DataGraph5.setAutoscaleX(false);
+   document.DataGraph5.setAutoscaleY(false);
+   document.DataGraph5.setMinMaxX(0,2);
+   document.DataGraph5.setMinMaxY(-1.4,1.4);
+   document.DataGraph5.setLabelX("x");
+   document.DataGraph5.setLabelY("f(x)");
+   document.DataGraph4.setShowAxes(false);
+   document.DataGraph4.setGutters(0,0,0,0);
+   document.DataGraph4.deleteAllFunctions(); 
+   document.DataGraph4.setAutoscaleX(false);
+   document.DataGraph4.setAutoscaleY(false);
+   document.DataGraph4.setMinMaxY(0,1.35);
+   document.DataGraph4.setLabelX("x");
+   document.DataGraph4.setLabelY("f(x)");   
+   fid4=document.DataGraph5.addFunction("x","(1-2*x)*step(1-x)+(1-2*(x-1))*step(x-1)");              
+   document.DataGraph5.setFunctionRange(fid4,0,2,1000);
+   document.DataGraph5.setRGB(fid4,155,155,155);
+   document.DataGraph5.setTitle("Dente de serra"); 
+}
+
+
+function sawtooth(){
+	if(!loaded) return;
+    clearTimeout(timerID);
+	timerID=-1;
+	i=0;
+	stry=0;
+	newem=document.selection.D1.value;
+		
+	if(!isFinite(newem) ){
+       alert("n tem que ser um número!");
+       return;} 
+          N=eval(document.selection.D1.value); 
+                 
+    if(N!=parseInt(N)){
+       alert("n tem que ser um inteiro!");
+       return;
+	}
+	
+	
+	if( !checkRange(newem,1,35)){
+	alert("O número de termos deve estar entre 1 e 35. O valor inserido foi "+newem);
+	return;
+  } 
+    
+   N=eval(document.selection.D1.value); 
+   document.DataGraph4.setAutoRefresh(false);
+   document.DataGraph4.setDefault();
+   document.DataGraph5.setAutoRefresh(false);
+   document.DataGraph5.setDefault();
+   document.DataGraph5.deleteAllFunctions(); 
+   document.DataGraph5.setAutoscaleX(false);
+   document.DataGraph5.setAutoscaleY(false);
+   document.DataGraph5.setMinMaxX(0,2);
+   document.DataGraph5.setMinMaxY(-1.4,1.4);
+   document.DataGraph5.setLabelX("x");
+   document.DataGraph5.setLabelY("f(x)");
+   document.DataGraph4.setShowAxes(false);
+   document.DataGraph4.setGutters(0,0,0,0);
+   document.DataGraph4.deleteAllFunctions(); 
+   document.DataGraph4.setAutoscaleX(false);
+   document.DataGraph4.setAutoscaleY(false);
+   document.DataGraph4.setMinMaxX(0,36);
+   document.DataGraph4.setMinMaxY(0,1.35);
+   document.DataGraph4.setLabelX("x");
+   document.DataGraph4.setLabelY("f(x)");
+   delay=500;
+   timerID=0;
+   sawaddn();
+	
+}
+
+
+function sawaddn(){
+   if(timerID==0 && i<N)timerID=setTimeout("sawInc()",delay);
+   delay=1500;
+}
+
+function sawInc(){
+   i++;
+   stry="(2/("+i+"*pi))*sin("+i+"*2*pi*x)+"+stry;
+   eye=eval(i);
+   comp=eval((2/(i*3.14)));
+   
+   gid=document.DataGraph4.getGraphID();
+   document.DataGraph4.addDatum(eye,eye,0);
+   document.DataGraph4.addDatum(eye,eye,comp);              
+   document.DataGraph4.setSeriesStyle(eye,true,0);
+   document.DataGraph4.setSeriesRGB(eye,200,0,0);
+   document.DataGraph4.setShowAxes(false);
+   document.DataGraph4.setGutters(0,0,0,0);
+   document.DataGraph5.deleteAllFunctions(); 
+   fid3=document.DataGraph5.addFunction("x","(2/("+i+"*3.14))*sin("+i+"*2*pi*x)");              
+   document.DataGraph5.setFunctionRange(fid3,0,2,1000);
+   document.DataGraph5.setRGB(fid3,20,155,20);
+   document.DataGraph5.setSeriesStyle(fid3,true,0);
+   fid2=document.DataGraph5.addFunction("x",stry);              
+   document.DataGraph5.setFunctionRange(fid2,0,2,1000);
+   document.DataGraph5.setSeriesStyle(fid2,true,0);
+   document.DataGraph5.setRGB(fid2,155,0,0);
+   document.DataGraph5.setTitle("Séries de Fourier com "+i+" termos"); 
+      
+      
+   fid4=document.DataGraph5.addFunction("x","(1-2*x)*step(1-x)+(1-2*(x-1))*step(x-1)");              
+   document.DataGraph5.setFunctionRange(fid4,0,2,1000);
+   document.DataGraph5.setRGB(fid4,155,155,155);
+   
+   document.DataGraph4.setAutoRefresh(true);
+   document.DataGraph5.setAutoRefresh(true);
+   timerID=0;
+   sawaddn();
+}
+
+   
+   
+function square(){
+     if(!loaded) return;
+   clearTimeout(timerID);
+     timerID=-1;
+     j=0;
+     stry=0;
+     newemm=document.selection.D2.value;
+		
+	if(!isFinite(newemm) ){
+       alert("n tem que ser um número!");
+       return;} 
+          N=eval(document.selection.D2.value); 
+                 
+    if(N!=parseInt(N)){
+       alert("n tem que ser um inteiro!");
+       return;
+	}
+	
+	
+	if( !checkRange(newemm,1,35)){
+     alert("O número de termos deve estar entre 1 e 35. O valor inserido foi "+newemm);
+     return;
+  } 
+    
+   document.DataGraph4.setAutoRefresh(false);
+   document.DataGraph4.setDefault();
+   document.DataGraph5.setAutoRefresh(false);
+   document.DataGraph5.setDefault();
+   document.DataGraph5.deleteAllFunctions(); 
+   document.DataGraph5.setAutoscaleX(false);
+   document.DataGraph5.setAutoscaleY(false);
+   document.DataGraph5.setMinMaxX(0,2);
+   document.DataGraph5.setMinMaxY(-1.4,1.4);
+   document.DataGraph5.setLabelX("x");
+   document.DataGraph5.setLabelY("f(x)");
+   document.DataGraph4.setShowAxes(false);
+   document.DataGraph4.setGutters(0,0,0,0);
+   document.DataGraph4.deleteAllFunctions(); 
+   document.DataGraph4.setAutoscaleX(false);
+   document.DataGraph4.setAutoscaleY(false);
+   document.DataGraph4.setMinMaxX(0,36);
+   document.DataGraph4.setMinMaxY(0,1.35);
+   document.DataGraph4.setLabelX("x");
+   document.DataGraph4.setLabelY("f(x)");
+   delay=500;
+   timerID=0;
+   sqaddn();
+}
+
+
+function sqaddn(){
+   if(timerID==0 && j<N/2)timerID=setTimeout("sqInc()",delay);
+   delay=1500;
+}
+
+
+function sqInc(){
+   j++;
+   enne="2*"+j+"-1";
+   n=eval(enne);
+   stry="(4/(pi*(2*"+j+"-1)))*sin((2*"+j+"-1)*2*pi*x)+"+stry;
+   comp=eval(4/(3.14*(2*j-1)));
+   
+   gid=document.DataGraph4.getGraphID();
+   document.DataGraph4.addDatum(n,n,0);
+   document.DataGraph4.addDatum(n,n,comp);              
+   document.DataGraph4.setSeriesStyle(n,true,0);
+   document.DataGraph4.setSeriesRGB(n,200,0,0);
+   document.DataGraph4.setShowAxes(false);
+   document.DataGraph4.setGutters(0,0,0,0);
+      
+   document.DataGraph5.deleteAllFunctions(); 
+   fid3=document.DataGraph5.addFunction("x","(4/(pi*(2*"+j+"-1)))*sin((2*"+j+"-1)*2*pi*x)");              
+   document.DataGraph5.setFunctionRange(fid3,0,2,1000);
+   document.DataGraph5.setRGB(fid3,20,155,20);
+   document.DataGraph5.setSeriesStyle(fid3,true,0);
+   fid2=document.DataGraph5.addFunction("x",stry);              
+   document.DataGraph5.setFunctionRange(fid2,0,2,1000);
+   document.DataGraph5.setSeriesStyle(fid2,true,0);
+   document.DataGraph5.setRGB(fid2,155,0,0);
+   document.DataGraph5.setTitle("Séries de Fourier com "+n+" termos"); 
+   
+   
+   fid4=document.DataGraph5.addFunction("x","step(0.5-x)-step(x-0.5)*step(1-x)+step(x-1)-(2)*step(x-1.5)*step(2-x)");              
+   document.DataGraph5.setFunctionRange(fid4,0,2,1000);
+   document.DataGraph5.setRGB(fid4,155,155,155);
+   
+   document.DataGraph4.setAutoRefresh(true);
+   document.DataGraph5.setAutoRefresh(true);
+   timerID=0;
+   sqaddn();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 16.5</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 16.5 - Séries de Fourier: características 
+qualitativas</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph5" width="350" height="220"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="ShowControls" value="false">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="DataGraph5,DataGraph4">
+        </applet></td>
+      <td>
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph4" width="160" height="220"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+  
+<div align="center">
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>n =&nbsp;&nbsp; <input type="text" size="3" value="1" name="D1"> 
+      <input type="button" value="Séries de Fourier em dente de serra" onclick="sawtooth()"></td>
+    </tr>
+    <tr>
+      <td>n =&nbsp;&nbsp; <input type="text" size="3" value="1" name="D2"> 
+      <input type="button" value="Séries de Fourier em onda quadrada" onclick="square()"></td>
+    </tr>
+    </table>
+  </div>
+  </form>
+
+       
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p style="margin-top: 0; margin-bottom: 0"><span style="font-family: Arial">Na animação, a intensidade da onda é 
+representada em função de <i>x</i>, mas também poderia ter sido em função do 
+tempo. </span><span lang="en-us"> 
+<font face="Arial">&nbsp;</font></span><font face="Arial">A função representada 
+a cinzento<span style="color:red"> </span>é a verdadeira onda, enquanto que a 
+função representada a vermelho é o total aproximado da onda obtida pela soma das 
+séries de Fourier (para <i>n</i> 
+= 1, a animação representa 1 termo apenas). A função seno representada a verde é o termo atual 
+que é adicionado para obter a função vermelha total. À direita, está representado o conjunto relativo de cada 
+função seno, quando este é adicionado ao total</font><span style="font-family: Arial"><b> (a posição é dada 
+em metros)</b></span><font face="Arial">.</font>&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.</p>
+
+       
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+       
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

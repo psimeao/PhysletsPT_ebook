@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 15.10</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+timerID=setTimeout("fluid1()",100);
+}
+
+
+function fluid1(){
+    if(!loaded) return;
+    timerID=0;
+	
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+        document.Animator.setPixPerUnit(20);
+   	document.Animator.shiftPixOrigin(-100,-50);
+   	cid=document.Animator.getClockID();
+   	document.Animator.setVisibility(cid,false);
+      
+   	document.Animator.setShapeRGB(0,0,0);
+   	document.Animator.addObject("text","text=Tempo: ,x=-4,y=7");
+   	document.Animator.addObject("text","text= ,calc=t/4,x=-4,y=6");
+   	document.Animator.addRectangle(600,70,"0","0");
+   	document.Animator.addRectangle(10,120,"3","3");
+   	document.Animator.addRectangle(10,120,"10","3");
+      
+    document.Animator.setShapeRGB(230,200,0);
+    document.Animator.addRectangle(600,60,"0","0");
+    document.Animator.addRectangle(6,80,"3","1.5");
+   	document.Animator.addRectangle(6,80,"10","0.5");
+      	
+   	document.Animator.setShapeRGB(255,0,0);
+	document.Animator.addObject("circle","r=2,y=0,x=-4.8+8*t");
+		
+	
+	document.Animator.setOneShot(0,2,"Fim da Animação");   
+    document.Animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Problema 15.10</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="400" height="250" name="Animator" mayscript>
+	    <param name="FPS" value="10">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+
+<form name="selection">
+        <INPUT onclick="document.Animator.forward()" type="button" value="começar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td></form>            
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">A massa volúmica do fluido da animação é de 900 kg/m<sup>3</sup><b> 
+(a posição é dada em decímetros e o tempo em segundos)</b>.&nbsp;Os tubos verticais 
+estão abertos para o exterior. Assume que todos os tubos são cilíndricos.&nbsp;
+<a href="JavaScript:fluid1()">
+Início</a><p align="left">&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<center>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

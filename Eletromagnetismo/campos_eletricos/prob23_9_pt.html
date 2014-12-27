@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var id1=0;
+var id2=0;
+var id3=0;
+var id4=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.slider.setDefault();
+    document.slider.setValue(0);
+	    document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+       document.efield.setShowTime(false);
+	document.efield.setShowEOnDrag(true);
+	document.efield.setShowFieldVectors(true);
+	document.efield.setShowFieldLines(false);
+	document.efield.setShowContours(false);
+	document.efield.setShowLabels(false);
+	document.efield.setShowCharge(true);	
+	document.efield.setDrag(true);
+	id=document.efield.addObject("circle", "x=6,y=0,r=3");
+	document.efield.setChargeRGB(0,0,0);
+	id1=document.efield.addCharge(-6,6,0);  
+	document.efield.setDragable(id1,false);
+    document.efield.setLabel(id1,"1");    
+   	id2=document.efield.addCharge(6,6,0);
+	document.efield.setDragable(id2,false);
+	document.efield.setLabel(id2,"2");   
+	id3=document.efield.addCharge(6,-6,0);
+   	document.efield.setDragable(id3,false);
+	document.efield.setLabel(id3,"3");    
+	id4=document.efield.addCharge(-6,-6,0);
+	document.efield.setDragable(id4,false);
+	document.efield.setLabel(id4,"4"); 
+        document.efield.setAutoRefresh(true);
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+function sliderMoved(){
+	 if(timerID==0) timerID=setTimeout("sliderMoved2()",33);
+}
+
+function sliderMoved2(){
+	q=eval(document.slider.getValue())*9;
+	document.efield.setChargeMagnitude(id1,-q);
+	document.efield.setChargeMagnitude(id2,q);
+	document.efield.setChargeMagnitude(id3,q);
+	document.efield.setChargeMagnitude(id4,-q);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 23.9</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Problema 23.9</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet codebase="../../classes/" 
+    archive="Physlets.jar" code="eField4.EField.class" 
+    NAME="efield" WIDTH="300" HEIGHT="300" HSPACE="0" VSPACE="0" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Range" value="-10,10,-10,10">
+      <param name="GridSize" value="32">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="efield,slider">
+      <param name="Resources" value="eField_pt.rc">
+    </applet></td>
+  </tr>
+  <tr>
+    <td>
+    <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+    archive="Physlets.jar" name="slider" width="300" 
+    height="25" hspace="0" vspace="0" align="middle" mayscript>
+      <param name="min" value="-10">
+      <param name="max" value="10">
+      <param name="value" value="0">
+      <param name="label" value="carga">
+    </applet> </td>
+  </tr>
+  </tr>
+</table>
+</center>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p style="margin-bottom: 0">Quatro cargas pontuais de igual valor absoluto mas 
+de polaridade diferente, estão colocadas nos vértices de um quadrado conforme 
+mostra a animação. A barra móvel permite alterar o valor das cargas, que está em nC. O rato pode ser usado para visualizar a intensidade do campo elétrico em 
+qualquer ponto da animação <b>(a posição é dada em metros e a intensidade do 
+campo elétrico em newtons/coulomb)</b>.&nbsp;
+<a href="JavaScript:initApplet();">Início</a></p>
+<p></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Problema da autoria de Chuck Bennett e Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

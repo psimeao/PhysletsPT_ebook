@@ -1,0 +1,272 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script> 
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("gaslaw0()",100);
+}
+  	
+function gaslaw0(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Molecular.setAutoRefresh(false);
+	document.Molecular.setDefault();
+    document.Molecular.setRGB(0,0,0);
+    document.Molecular.addCaption("Seleciona uma Animação");
+    document.Molecular.setTemp(55);
+     document.Molecular.setAutoRefresh(true);
+    eid=document.Molecular.getEnsembleID(); 	 
+    hid=document.Molecular.getHistogramID(20,0.0,40.0);
+   	document.DataGraph2.setDefault();
+   	document.DataGraph2.clearSeries(1);
+   	document.DataGraph2.setAutoscaleX(false);
+   	document.DataGraph2.setAutoscaleY(false);
+	document.DataGraph2.setMinMaxX(0,40.0);
+    document.DataGraph2.setMinMaxY(0,20.);
+    
+    document.DataGraph2.setSeriesStyle(1,false,-3);
+    document.DataGraph2.setSeriesRGB(1,255,0,0);
+    document.DataGraph2.setAutoReplaceData(1,true);
+    document.DataGraph2.setMarkerSize(1, 0.5);
+
+    document.DataGraph2.setLabelY("N"); 
+    document.DataGraph2.setLabelX("| v |"); 
+    document.DataGraph2.setTitle("Histograma da rapidez"); 
+
+    gid2=document.DataGraph2.getGraphID();
+     
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"Ec Total");
+	document.DataTable.setSeriesLabel(2,"N");
+	document.DataTable.setSeriesLabel(3,"T");
+	document.DataTable.setSeriesLabel(4,"V");
+	document.DataTable.setSeriesLabel(5,"P");
+	tid=document.DataTable.getTableID();
+        document.Molecular.deleteDataConnections();
+}
+
+
+function gaslaw3(initT,initR){
+	if(!loaded) return;
+	timerID=0;
+	document.Molecular.setAutoRefresh(false);
+	document.Molecular.setDefault();
+    document.Molecular.addCaption("Animação 2");
+    document.Molecular.setTemp(initT);
+    document.Molecular.setDefaultSize(initR);
+    document.Molecular.setDefaultMass(1);
+    document.Molecular.setDefaultColor(0,250,250);
+    document.Molecular.createParticles(20);
+    for(i=0;i<20;i++){
+    	document.Molecular.setParticlePos(i,0,-8.5+i/1.1);
+    	document.Molecular.setParticleVel(i,10,0);
+    }
+    document.Molecular.setAutoRefresh(true);
+    eid=document.Molecular.getEnsembleID(); 	 
+    hid=document.Molecular.getHistogramID(20,0.0,40.0);
+   	
+   	document.DataGraph2.clearSeries(1);
+   	document.DataGraph2.setAutoscaleX(false);
+   	document.DataGraph2.setAutoscaleY(false);
+	document.DataGraph2.setMinMaxX(0,40.0);
+    document.DataGraph2.setMinMaxY(0,20.);
+    
+    document.DataGraph2.setSeriesStyle(1,false,-3);
+    document.DataGraph2.setSeriesRGB(1,255,0,0);
+    document.DataGraph2.setAutoReplaceData(1,true);
+    document.DataGraph2.setMarkerSize(1, 0.5);
+
+    document.DataGraph2.setLabelY("N"); 
+    document.DataGraph2.setLabelX("| v |"); 
+    document.DataGraph2.setTitle("Histograma da rapidez"); 
+
+    gid2=document.DataGraph2.getGraphID();
+     
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"Ec Total");
+	document.DataTable.setSeriesLabel(2,"N");
+	document.DataTable.setSeriesLabel(3,"T");
+	document.DataTable.setSeriesLabel(4,"V");
+	document.DataTable.setSeriesLabel(5,"P");
+	tid=document.DataTable.getTableID();
+     
+    document.Molecular.deleteDataConnections();
+    cid=document.Molecular.makeDataConnection(eid,tid,1,"2*t*n","0");
+	document.Molecular.makeDataConnection(eid,tid,2,"n","0");
+    document.Molecular.makeDataConnection(eid,tid,3,"t","0");
+    document.Molecular.makeDataConnection(eid,tid,4,"v","0");
+    document.Molecular.makeDataConnection(eid,tid,5,"p","0");
+  	cid=document.Molecular.makeDataConnection(hid,gid2,1,"v","n");   
+    document.Molecular.setConnectionStride(cid,10);
+    document.Molecular.updateDataConnections();
+}
+
+
+
+function gaslaw4(initT,initR){
+	if(!loaded) return;
+	timerID=0;
+    document.Molecular.setAutoRefresh(false);
+    document.Molecular.setDefault();
+    document.Molecular.addCaption("Animação 1");	
+    document.Molecular.setTemp(initT);
+    document.Molecular.setDefaultSize(initR);
+    document.Molecular.setDefaultMass(1);
+    document.Molecular.setDefaultColor(0,250,250);
+    document.Molecular.createParticles(20);
+    for(i=0;i<20;i++){
+    	document.Molecular.setParticlePos(i,-8.5+i/1.1,i/50);
+        document.Molecular.setParticleVel(i,10,0);
+    }
+    document.Molecular.setAutoRefresh(true);
+
+    eid=document.Molecular.getEnsembleID(); 
+    hid=document.Molecular.getHistogramID(20,0.0,40.0);
+    
+   	document.DataGraph2.clearSeries(1);
+   	document.DataGraph2.setAutoscaleX(false);
+   	document.DataGraph2.setAutoscaleY(false);
+	document.DataGraph2.setMinMaxX(0,40.0);
+    document.DataGraph2.setMinMaxY(0,20.);
+    
+    document.DataGraph2.setSeriesStyle(1,false,-3);
+    document.DataGraph2.setSeriesRGB(1,255,0,0);
+    document.DataGraph2.setAutoReplaceData(1,true);
+    document.DataGraph2.setMarkerSize(1, 0.5);
+
+    document.DataGraph2.setLabelY("N"); 
+    document.DataGraph2.setLabelX("| v |"); 
+    document.DataGraph2.setTitle("Histograma da rapidez"); 
+
+    gid2=document.DataGraph2.getGraphID();
+     
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"Ec Total");
+	document.DataTable.setSeriesLabel(2,"N");
+	document.DataTable.setSeriesLabel(3,"T");
+	document.DataTable.setSeriesLabel(4,"V");
+	document.DataTable.setSeriesLabel(5,"P");
+	tid=document.DataTable.getTableID();
+     
+    document.Molecular.deleteDataConnections();
+    cid=document.Molecular.makeDataConnection(eid,tid,1,"t*2*n","0");
+	document.Molecular.makeDataConnection(eid,tid,2,"n","0");
+    document.Molecular.makeDataConnection(eid,tid,3,"t","0");
+    document.Molecular.makeDataConnection(eid,tid,4,"v","0");
+    document.Molecular.makeDataConnection(eid,tid,5,"p","0");
+  	cid=document.Molecular.makeDataConnection(hid,gid2,1,"v","n");   
+    document.Molecular.setConnectionStride(cid,10);
+      document.Molecular.updateDataConnections();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Illustration 21.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+<h2 align="center">Ilustração 21.2 - Entropia e Processos 
+Reversíveis/Irreversíveis</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <TBODY>
+  <TR>
+    <TD><APPLET name="Molecular" codeBase="../../classes/" 
+      code="molecular.MolecularApplet.class" align="middle" width="210" height="210" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="ShowControls" VALUE="false">
+      <PARAM NAME="FPS" VALUE="10">
+      <PARAM NAME="dt" VALUE="0.05">
+      <PARAM NAME="PeriodicH" VALUE="false">
+      <Param name="InitialP" value="1">
+      <param name="PeriodicV" value="false">
+      <Param name="ShowControls" value="false">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Molecular,DataGraph2,DataTable">
+      </APPLET> 
+    </TD>
+    <TD>
+    <APPLET name="DataGraph2" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="230" height="210" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+      <PARAM NAME="ShowControls" VALUE="false">
+      </APPLET></TD></TR>
+    <TR>
+    <TD colspan="2" rowspan="1" width="426">
+    <APPLET name="DataTable" codeBase="../../classes/"
+    code="dataTable.DataTable.class" align="middle" width="440" height="45" 
+	ARCHIVE="Physlets.jar" mayscript>
+	<PARAM NAME="ShowScrollBars" VALUE="false">
+	<PARAM NAME="LastOnTop" VALUE="true">
+	<PARAM NAME="NumRows" VALUE="1">
+	<PARAM NAME="NumCols" VALUE="5">
+	<PARAM NAME="ShowControls" VALUE="false">
+	<PARAM NAME="ShowRowHeader" VALUE="false">
+	<PARAM NAME="ShowColHeader" VALUE="true">
+</APPLET></TR>
+    </TBODY></table>
+  </center>
+</div>
+
+<CENTER>
+<FORM>
+     &nbsp;<input onclick="document.Molecular.forward()" type="button" value="começar"><input onclick="document.Molecular.stepForward()" type="button" value="passo &gt;&gt;">
+     <table border="1" bgcolor="#c0c0c0">
+       <tr>
+         <td> 
+	&nbsp;&nbsp; 
+	<a href="Javascript:gaslaw4(100,0.3)" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+	<td> &nbsp;&nbsp; 
+	<a href="Javascript:gaslaw3(100,0.3)" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+       </tr>
+     </table>
+</FORM></CENTER>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+<p align="left">
+   <b>Descrição da Animação</b></p>
+
+<p> Nesta animação, <i>N</i> = <i>nR</i> (isto é, <i>k</i><sub>B</sub> = 1). 
+Assim, a lei dos gases ideais (ou lei dos gases perfeitos) escreve-se: <i>PV</i> 
+= 
+<i>NT</i>.&nbsp;&nbsp; <a href="Javascript:gaslaw0()">Início</a>.&nbsp; </p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+
+&nbsp;<p align="left">Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

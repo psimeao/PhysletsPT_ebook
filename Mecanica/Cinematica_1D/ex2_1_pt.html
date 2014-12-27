@@ -1,0 +1,549 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var autoscale=false;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position0()",100);
+}
+  	
+function position0(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+   	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-51,250);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setLastPointMarker(2,true);  
+     document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+     document.DataGraph1.setSeriesStyle(3,true,3);  
+     document.DataGraph1.setMarkerSize(3,0.6);
+     document.DataGraph1.setLastPointMarker(3,true);  
+     document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+     document.DataGraph1.setTitle("Seleciona uma Animação");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (cm)"); 
+        document.Animator.setAutoRefresh(true);      
+   document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function position1(){
+   if(!loaded) return;
+   timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid1,false); 
+   document.Animator.setTrajectory(curid1,"-50+0.5*t*t","11.7"); 
+   
+   curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid2,false); 
+   document.Animator.setTrajectory(curid2,"0+0.5*t*t","11.7"); 
+   curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid3,false); 
+   document.Animator.setTrajectory(curid3,"50+0.5*t*t","11.7"); 
+
+   document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-51,250);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setLastPointMarker(2,true);  
+     document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+     document.DataGraph1.setSeriesStyle(3,true,3);  
+     document.DataGraph1.setMarkerSize(3,0.6);
+     document.DataGraph1.setLastPointMarker(3,true);  
+     document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+     document.DataGraph1.setTitle("Animação 1: Posição vs. Tempo");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (cm)"); 
+     gid1=document.DataGraph1.getGraphID();
+     
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.clearSeries(3);
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(curid1,gid1,1,"t","x");  
+     document.Animator.makeDataConnection(curid2,gid1,2,"t","x"); 
+     document.Animator.makeDataConnection(curid3,gid1,3,"t","x"); 
+     document.Animator.updateDataConnections();
+     document.Animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+
+
+function velocity1(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid1,false); 
+   document.Animator.setTrajectory(curid1,"-50+0.5*t*t","11.7"); 
+   
+   curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid2,false); 
+   document.Animator.setTrajectory(curid2,"0+0.5*t*t","11.7"); 
+   
+   curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid3,false); 
+   document.Animator.setTrajectory(curid3,"50+0.5*t*t","11.7"); 
+
+   document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-1,25);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setLastPointMarker(2,true);  
+     document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+     document.DataGraph1.setSeriesStyle(3,true,3);  
+     document.DataGraph1.setMarkerSize(3,0.6);
+     document.DataGraph1.setLastPointMarker(3,true);  
+     document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+     document.DataGraph1.setTitle("Animação 1: Velocidade vs. Tempo");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Velocidade (cm/s)"); 
+     gid1=document.DataGraph1.getGraphID();
+     
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.clearSeries(3);
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(curid1,gid1,1,"t","vx");  
+     document.Animator.makeDataConnection(curid2,gid1,2,"t","vx"); 
+     document.Animator.makeDataConnection(curid3,gid1,3,"t","vx"); 
+     document.Animator.updateDataConnections();
+     document.Animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function position2(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid1,false); 
+   document.Animator.setTrajectory(curid1,"0.5*t*t","11.7"); 
+   
+   curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid2,false); 
+   document.Animator.setTrajectory(curid2,"2.5*t+0.5*t*t","11.7"); 
+   
+   curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid3,false); 
+   document.Animator.setTrajectory(curid3,"5*t+0.5*t*t","11.7"); 
+
+   document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-51,250);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setLastPointMarker(2,true);  
+     document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+     document.DataGraph1.setSeriesStyle(3,true,3);  
+     document.DataGraph1.setMarkerSize(3,0.6);
+     document.DataGraph1.setLastPointMarker(3,true);  
+     document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+     document.DataGraph1.setTitle("Animação 2: Posição vs. Tempo");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (cm)"); 
+     gid1=document.DataGraph1.getGraphID();
+     
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.clearSeries(3);
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(curid1,gid1,1,"t","x");  
+     document.Animator.makeDataConnection(curid2,gid1,2,"t","x"); 
+     document.Animator.makeDataConnection(curid3,gid1,3,"t","x"); 
+     document.Animator.updateDataConnections();
+     document.Animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function velocity2(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid1,false); 
+   document.Animator.setTrajectory(curid1,"0.5*t*t","11.7"); 
+   
+   curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid2,false); 
+   document.Animator.setTrajectory(curid2,"2.5*t+0.5*t*t","11.7"); 
+   
+   curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid3,false); 
+   document.Animator.setTrajectory(curid3,"5*t+0.5*t*t","11.7"); 
+
+   document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-1,25);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+    document.DataGraph1.setSeriesStyle(1,true,3);  
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setLastPointMarker(1,true);  
+    document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+    document.DataGraph1.setSeriesStyle(2,true,3);  
+    document.DataGraph1.setMarkerSize(2,0.6);
+    document.DataGraph1.setLastPointMarker(2,true);  
+    document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+    document.DataGraph1.setSeriesStyle(3,true,3);  
+    document.DataGraph1.setMarkerSize(3,0.6);
+    document.DataGraph1.setLastPointMarker(3,true);  
+    document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+    document.DataGraph1.setTitle("Animação 2: Velocidade vs. Tempo");  
+    document.DataGraph1.setLabelX("Tempo (s)");  
+    document.DataGraph1.setLabelY("Velocidade (cm/s)"); 
+    gid1=document.DataGraph1.getGraphID();
+     
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.clearSeries(3);
+    document.Animator.deleteDataConnections(); 
+    document.Animator.makeDataConnection(curid1,gid1,1,"t","vx");  
+    document.Animator.makeDataConnection(curid2,gid1,2,"t","vx"); 
+    document.Animator.makeDataConnection(curid3,gid1,3,"t","vx"); 
+    document.Animator.updateDataConnections();
+    document.Animator.setAutoRefresh(true);
+    document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function position3(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(-140,0);
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid1,false); 
+   document.Animator.setTrajectory(curid1,"0.5*t*t","11.7"); 
+   
+   curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid2,false); 
+   document.Animator.setTrajectory(curid2,"t*t","11.7"); 
+   
+   curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   document.Animator.setDragable(curid3,false); 
+   document.Animator.setTrajectory(curid3,"1.5*t*t","11.7"); 
+
+   document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setAutoscaleX(false); 
+   document.DataGraph1.setMinMaxY(-10,600);
+   document.DataGraph1.setMinMaxX(-0.1,20);
+   document.DataGraph1.setDrawGrid(true);
+   
+	document.DataGraph1.setSeriesStyle(1,true,3);  
+	document.DataGraph1.setMarkerSize(1,0.6);
+	document.DataGraph1.setLastPointMarker(1,true);  
+	document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+	document.DataGraph1.setSeriesStyle(2,true,3);  
+	document.DataGraph1.setMarkerSize(2,0.6);
+	document.DataGraph1.setLastPointMarker(2,true);  
+	document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+    document.DataGraph1.setSeriesStyle(3,true,3);  
+    document.DataGraph1.setMarkerSize(3,0.6);
+    document.DataGraph1.setLastPointMarker(3,true);  
+    document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+    document.DataGraph1.setTitle("Animação 3: Posição vs. Tempo");  
+    document.DataGraph1.setLabelX("Tempo (s)");  
+    document.DataGraph1.setLabelY("Posição (cm)"); 
+    gid1=document.DataGraph1.getGraphID();
+     
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.clearSeries(3);
+    document.Animator.deleteDataConnections(); 
+    document.Animator.makeDataConnection(curid1,gid1,1,"t","x");  
+    document.Animator.makeDataConnection(curid2,gid1,2,"t","x"); 
+    document.Animator.makeDataConnection(curid3,gid1,3,"t","x"); 
+    document.Animator.updateDataConnections();
+    document.Animator.setAutoRefresh(true);
+    document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function velocity3(){
+   	if(!loaded) return;
+   	document.Animator.setAutoRefresh(false);      
+   	document.DataGraph1.setAutoRefresh(false);
+   	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(-140,0);
+   	document.Animator.setTimeDisplay(false); 
+   	document.Animator.setPixPerUnit(2);
+   	document.Animator.setGridUnit(5);
+   	curid1=document.Animator.addObject("image","file=images/red_truck.gif,x=0,y=0"); 
+   	document.Animator.setDragable(curid1,false); 
+   	document.Animator.setTrajectory(curid1,"0.5*t*t","11.7"); 
+   
+   	curid2=document.Animator.addObject("image","file=images/green_truck.gif,x=0,y=0"); 
+   	document.Animator.setDragable(curid2,false); 
+   	document.Animator.setTrajectory(curid2,"t*t","11.7"); 
+   
+   	curid3=document.Animator.addObject("image","file=images/blue_truck.gif,x=0,y=0"); 
+   	document.Animator.setDragable(curid3,false); 
+   	document.Animator.setTrajectory(curid3,"1.5*t*t","11.7"); 
+
+   	document.Animator.setOneShot(0,20, "Fim da Animação"); 
+   	document.Animator.setAutoRefresh(true);
+   	document.DataGraph1.setAutoscaleY(false);
+   	document.DataGraph1.setAutoscaleX(false); 
+   	document.DataGraph1.setMinMaxY(-1,70);
+   	document.DataGraph1.setMinMaxX(-0.1,20);
+   	document.DataGraph1.setDrawGrid(true);
+   
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setSeriesRGB(1,222,0,0);
+     
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setLastPointMarker(2,true);  
+     document.DataGraph1.setSeriesRGB(2,0,222,0);
+     
+     document.DataGraph1.setSeriesStyle(3,true,3);  
+     document.DataGraph1.setMarkerSize(3,0.6);
+     document.DataGraph1.setLastPointMarker(3,true);  
+     document.DataGraph1.setSeriesRGB(3,0,0,222);
+   
+     document.DataGraph1.setTitle("Animação 3: Velocidade vs. Tempo");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Velocidade (cm/s)"); 
+     gid1=document.DataGraph1.getGraphID();
+     
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.clearSeries(3);
+     document.Animator.deleteDataConnections(); 
+     document.Animator.makeDataConnection(curid1,gid1,1,"t","vx");  
+     document.Animator.makeDataConnection(curid2,gid1,2,"t","vx"); 
+     document.Animator.makeDataConnection(curid3,gid1,3,"t","vx"); 
+     document.Animator.updateDataConnections();
+     document.Animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+ </script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 2.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 2.1 - Gráficos Posição <i>vs</i>. Tempo e Velocidade 
+<i>vs</i>. 
+Tempo</h2>
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" bordercolor="#C0C0C0" bordercolorlight="#C0C0C0"
+bordercolordark="#808080" border="1">
+  <tr>
+    <td>
+    <p align="center">
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class" name="DataGraph1" WIDTH="400" HEIGHT="200" HSPACE="0"
+    VSPACE="0" ALIGN="middle" mayscript>
+      <param name="Function">
+      <param name="ShowControls" value="false">
+    </applet>
+    </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="400" HEIGHT="50"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="20">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph1">
+        <param name="Resources" value="animator_pt.rc">
+    </applet>
+    </td>
+  </tr>
+</table>
+</center></div>
+<form><p align="center">
+	<input type="button" value="começar"
+	onclick="document.Animator.forward()"><input type="button" value="pausa"
+	onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+	onclick="document.Animator.stepForward()"><input type="button" value="início"
+	onclick="document.Animator.reset()"> </p>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><b>&nbsp;Animação 1:</b></td>
+      <td>&nbsp;<a href="JavaScript: position1()" style="text-decoration: none">Gráfico <i>x</i> vs. <i>t</i></a></td>
+      <td>&nbsp;<a href="JavaScript: velocity1()" style="text-decoration: none">Gráfico <i>v</i> vs. <i>t</i></a>&nbsp;&nbsp; </td>
+    </tr>
+    <tr>
+      <td><b>&nbsp;Animação 2:</b></td>
+      <td>&nbsp;<a href="JavaScript: position2()" style="text-decoration: none">Gráfico <i>x</i> vs. <i>t</i></a></td>
+      <td>&nbsp;<a href="JavaScript: velocity2()" style="text-decoration: none">Gráfico <i>v</i> vs. <i>t</i></a></td>
+    </tr>
+    <tr>
+      <td><b>&nbsp;Animação 3:&nbsp;&nbsp; </b></td>
+      <td>&nbsp;<a href="JavaScript: position3()" style="text-decoration: none">Gráfico <i>x</i> vs. <i>t</i></a>&nbsp;&nbsp; </td>
+      <td>&nbsp;<a href="JavaScript: velocity3()" style="text-decoration: none">Gráfico <i>v</i> vs. <i>t</i></a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">Cada uma das animações mostra um conjunto de três camiões de 
+brinquedo que se deslocam para a direita.&nbsp;O movimento dos camiões pode ser 
+descrito de duas maneiras: através do gráfico posição vs. tempo e velocidade vs. 
+tempo <b>(a posição é dada em centímetros e o tempo em segundos)</b>.&nbsp; 
+<a href="JavaScript: position0()">Início</a> </p>
+
+<p align="left"><i>Quando obtiveres um bom gráfico, carrega no botão do lado 
+direito do rato quando o cursor está em cima do gráfico para captares uma 
+imagem, a qual podes aumentar para ver melhor. Esta ferramenta é muito útil para 
+estudares pontos específicos, como a origem do gráfico.</i></p>
+
+<p align="left">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+	Manuel Filipe Costa</p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var gidV=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build3()",100);
+}
+
+
+
+function build3(){
+    if(!loaded) return;
+    timerID=0;
+    noc=10;
+	dt=2.5e-6;
+	fps=10;
+
+	 document.circuit.setDT(dt);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(fps); 
+	 
+    document.circuit.setGrid(3,3);	 
+	id[0]=document.circuit.addObject("sinwave","row=0,col=0,to=v,d=1,freq=1200,amp=169.7,phase=0");
+
+	id[2]=document.circuit.addObject("bulb","row=0,col=2,to=v,v=170,w=120");
+	id[3]=document.circuit.addObject("wire","row=0,col=0,to=h");
+	id[4]=document.circuit.addObject("bulb","row=0,col=1,to=v,v=170,w=120");
+	id[5]=document.circuit.addObject("wire","row=1,col=0,to=h");
+	id[6]=document.circuit.addObject("switch","row=0,col=1,to=h,open=1");
+	id[7]=document.circuit.addObject("wire","row=1,col=1,to=h");
+
+    document.circuit.setGrid("rows=4,cols=4");
+	id[0]=document.circuit.addObject("sinwave","row=2,col=0,to=v,label=,d=-1,freq=1200,amp=169.7,phase=0");
+    document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	id[1]=document.circuit.addObject("switch","row=0,col=0,to=h,label=S1,open=1");
+	document.circuit.addObject("bulb","row=1,col=0,to=h,label=A,v=170.0,w=90.0");
+    document.circuit.addObject("wire","row=0,col=0,to=v,label=");
+    document.circuit.addObject("wire","row=0,col=1,to=v,label=");
+	document.circuit.addObject("bulb","row=1,col=1,to=v,label=B,v=170.0,w=120.0");
+	id[2]=document.circuit.addObject("switch","row=1,col=1,to=h,label=S2,open=1");
+	document.circuit.addObject("bulb","row=1,col=2,to=v,label=C,v=170.0,w=120.0");
+	document.circuit.addObject("wire","row=1,col=2,to=h");
+	document.circuit.addObject("wire","row=2,col=2,to=h");
+	id[4]=document.circuit.addObject("switch","row=1,col=3,to=v,label=S4,open=1");
+	id[3]=document.circuit.addObject("switch","row=2,col=1,to=h,label=S3,open=1");
+	document.circuit.addObject("bulb","row=2,col=2,to=v,label=D,v=170.0,w=200.0");
+	document.circuit.addObject("wire","row=2,col=2,to=h");
+	document.circuit.addObject("wire","row=3,col=2,to=h");
+	id[5]=document.circuit.addObject("switch","row=2,col=3,to=v,label=S5,open=1");
+	 document.circuit.addObject("wire","row=3,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=3,col=0,to=h,label=");
+
+
+
+   	document.dataGraph.setLabelY("d.d.p. (V) & Corrente (x100) (A)");
+    document.circuit.parse();
+    resetCircuit();
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[0],gidV,1,"t*20","v");
+    document.circuit.makeDataConnection(id[0],gidV,2,"t*20","i*100");
+    document.circuit.updateDataConnections();
+}
+
+
+function resetCircuit(){
+    if(!loaded) return;
+    isRunning=document.circuit.isClockRunning();
+    document.circuit.reset();
+    document.dataGraph.setAutoscaleY(true);   
+    document.dataGraph.clearSeries(1);
+    document.dataGraph.clearSeries(2);
+    document.dataGraph.setStripChart(1,50,true);
+    document.dataGraph.setStripChart(2,50,true);
+    document.dataGraph.setSeriesRGB(1,255,0,0);  
+    document.dataGraph.setSeriesStyle(1,true,3);
+    document.dataGraph.setSeriesRGB(2,0,0,255);  
+    document.dataGraph.setSeriesStyle(2,true,3);
+	document.dataGraph.setLastPointMarker(1,true); 
+	document.dataGraph.setMarkerSize(1,0.6); 
+	document.dataGraph.setLastPointMarker(2,true); 
+	document.dataGraph.setMarkerSize(2,0.6);    
+    document.dataGraph.setLabelX("Tempo (s)");  
+    //document.dataGraph.setLabelY("Voltage & Current");
+    document.dataGraph.setFormat("%3.1e");
+    gidV=document.dataGraph.getGraphID();
+    if(isRunning)document.circuit.forward();
+}
+
+
+function change1(){
+	if(!loaded) return;
+	running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[1],0);
+	if(running) document.circuit.forward();
+}
+
+
+function change2(){
+	if(!loaded) return;
+	running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[2],0);
+	if(running) document.circuit.forward();
+}
+
+function change3(){
+	if(!loaded) return;
+	running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[3],0);
+	if(running) document.circuit.forward();
+}
+
+
+function change4(){
+	if(!loaded) return;
+	running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[4],0);
+	if(running) document.circuit.forward();
+}
+
+	
+function change5(){
+	if(!loaded) return;
+	running = document.circuit.isClockRunning();
+    document.circuit.pause();
+	document.circuit.setValue(id[5],0);
+	if(running) document.circuit.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 31.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Problema 31.1</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><span lang="pt">&nbsp;<font size="2"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="250" name="circuit" mayscript>
+        
+        
+        
+        
+        
+        
+        
+        <param name="numberofdt" value="10">
+        <param name="dt" value="1e-6">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="dataGraph,circuit">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></font></span></td>
+      <td>
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataGraph.DataGraph.class" 
+      name="dataGraph" width="300" height="250" mayscript>
+        <param name="XMin" value="0">
+        <param name="XMax" value="2">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+    </tr>
+    <tr>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="circuitParameters">
+ <p align="center"><span lang="pt">
+	<input type="button" value="começar" onclick="document.circuit.forward()" 
+ name="continue"><input type="button" value="pausa" onclick="document.circuit.pause()" name="pause"><input 
+ type="button" value="início" onclick="JavaScript:resetCircuit()" name="resetb">&nbsp;&nbsp;&nbsp; 
+	<b>
+ Abrir / Fechar Interruptor #:&nbsp; </b><input type="button" value="S1" onclick="JavaScript:change1()" 
+ name="switch1"><input type="button" value="S2" onclick="JavaScript:change2()" name="switch2"><input 
+ type="button" value="S3" onclick="JavaScript:change3()" name="switch3"><input type="button" 
+ value="S4" onclick="JavaScript:change4()" name="switch4"><input type="button" value="S5" 
+ onclick="JavaScript:change5()" name="switch5"></span></p>
+</form>
+
+       
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+<p>Assume que o circuito tem uma fonte de tensão ideal<span lang="pt">. O 
+gráfico mostra a d.d.p. em função do tempo nos terminais da fonte de tensão <b>
+<font color="#FF0000">(a vermelho)</font></b> e a intensidade da corrente (x 
+100) debitada pela fonte <b>
+<font color="#0000FF">(a azul)</font>&nbsp;(a d.d.p. é dada em volts, a intensidade 
+da corrente em amperes e o tempo em segundos)</b>.&nbsp; Um valor da intensidade 
+da corrente de 50 no gráfico corresponde, na verdade, a uma intensidade da 
+corrente de 0.50 A.&nbsp; 
+<a href="JavaScript:document.circuit.reset();build3()">Início</a></span></p>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Problema da autoria de Anne J. Cox.<br>
+<i>Script </i>da autoria de Wolfgang Christian e Anne J. Cox. Modificado por 
+Paulo Simeão Carvalho.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

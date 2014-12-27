@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var cid=0;
+var q1=6;
+var q2=12;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+
+function initApplet(){
+              if(!loaded) return;
+    
+    timerID=0;
+    document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+    document.efield.setCaption("Seleciona uma Configuração");
+    document.efield.setShowFieldVectors(false);
+     document.efield.setShowTime(false);
+	  document.efield.setDrag(true);  
+     cid=document.efield.addTestCharge(2.0,2.0,0,0);
+     document.efield.setRGB(cid,255,0,0);
+    document.efield.setShowFVector(cid,true);
+     document.efield.setShowFComponents(cid,true);
+     document.efield.setShowFOnDrag(cid,true);
+	  document.efield.setDrag(false);
+     
+     document.efield.setAutoRefresh(true);
+}
+
+function first(){
+     if(!loaded) return;
+     document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+    document.efield.setShowFieldVectors(false);
+     document.efield.setShowTime(false);
+	  document.efield.setDrag(true);  
+     cid=document.efield.addTestCharge(2.0,2.0,0,0);
+     document.efield.setRGB(cid,255,0,0);
+    document.efield.setShowFVector(cid,true);
+     document.efield.setShowFComponents(cid,true);
+     document.efield.setShowFOnDrag(cid,true);
+	  document.efield.setDrag(false);
+
+	  document.efield.setCaption("Primeira Carga Fixa");
+      document.efield.setAutoRefresh(false);
+      document.efield.setChargeRGB(0,0,0);
+     document.efield.addCharge(3,0,q2);
+     document.efield.setAutoRefresh(true);
+}
+function second(){
+    if(!loaded) return;
+    document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+    document.efield.setShowFieldVectors(false);
+     document.efield.setShowTime(false);
+	  document.efield.setDrag(true);  
+     cid=document.efield.addTestCharge(2.0,2.0,0,0);
+     document.efield.setRGB(cid,255,0,0);
+    document.efield.setShowFVector(cid,true);
+     document.efield.setShowFComponents(cid,true);
+     document.efield.setShowFOnDrag(cid,true);
+	  document.efield.setDrag(false);
+
+	  document.efield.setCaption("Segunda Carga Fixa");
+     document.efield.setChargeRGB(0,0,0);
+     document.efield.addCharge(0,4,q1);
+     document.efield.setAutoRefresh(true);
+}
+function both(){
+     if(!loaded) return;
+     document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+    document.efield.setShowFieldVectors(false);
+     document.efield.setShowTime(false);
+	  document.efield.setDrag(true);  
+     cid=document.efield.addTestCharge(2.0,2.0,0,0);
+     document.efield.setRGB(cid,255,0,0);
+    document.efield.setShowFVector(cid,true);
+     document.efield.setShowFComponents(cid,true);
+     document.efield.setShowFOnDrag(cid,true);
+	  document.efield.setDrag(false);
+
+    document.efield.setCaption("Ambas as Cargas Fixas");
+    document.efield.setAutoRefresh(false);
+     document.efield.setShowFOnDrag(cid,false);
+     document.efield.setShowFComponents(cid,true);
+	  document.efield.setChargeRGB(0,0,0);
+     document.efield.addCharge(3,0,q2);
+     document.efield.addCharge(0,4,q1);
+    document.efield.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 22.1</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Exploração 22.1 - Equilíbrio</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+      CODE="eField4.EField.class" NAME="efield" WIDTH="300" HEIGHT="300" HSPACE="0" VSPACE="0" 
+      ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-2.0,6.0,-2.0,6.0">
+        <param name="GridSize" value="64">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="efield">
+                <param name="resources" value="efield_pt.rc">
+
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Duas cargas elétricas fixas e uma carga elétrica de prova, estão distribuídas 
+conforme mostra a animação <b>(a posição é dada em metros e a força é dada em 
+newtons)</b>.&nbsp; A seta preta representa a força elétrica resultante na carga 
+de prova vermelha.&nbsp;As forças exercidas nas cargas fixas não são mostradas. Podes 
+explorar a animação e examinar as forças com apenas a <a href="JavaScript:first()">
+primeira</a> carga fixa, com a <a href="JavaScript:second()">segunda</a> carga 
+fixa ou com
+<a href="JavaScript:both()">ambas</a>&nbsp;as cargas fixas.&nbsp; Nota que o valor da 
+força exercida na carga de prova vermelha é apresentado juntamente com as suas 
+coordenadas (caixa de texto de fundo amarelo), apenas quando tens só uma das 
+cargas fixas, mas não quando tens as duas cargas presentes. <a href="JavaScript:initApplet()">
+Início</a>&nbsp;
+</p>
+<p>&nbsp;</p>
+<p align="left"> © 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

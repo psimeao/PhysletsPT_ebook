@@ -1,0 +1,385 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0; 
+var addarrows=false;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+       document.selection.reset();
+       newvee1=document.selection.D1.value;
+       if( !checkRange(newvee1,0,4)){
+     alert("A velocidade do carrinho que se desloca para a direita deve estar entre 0 m/s e 4 m/s. O valor inserido foi "+newvee1+" m/s.");
+     return;
+  } 
+  
+         newvee2=document.selection.D2.value;
+       if( !checkRange(newvee2,-4,0)){
+     alert("A velocidade do carrinho que se desloca para a esquerda deve estar entre -4 m/s e 0 m/s. O valor inserido foi "+newvee2+" m/s.");
+     return;
+  } 
+    
+       newem=document.selection.D3.value;
+       if( !checkRange(newem,0.25,4)){
+     alert("A massa do carrinho que se desloca para a direita deve estar entre 0.25 kg e 4,00 kg. O valor escolhido foi "+newem+" kg.");
+     return;
+  } 
+  
+  m1=eval(document.selection.D3.value);
+  v1=eval(document.selection.D1.value);
+  v2=eval(document.selection.D2.value);
+
+   document.Animator3.setAutoRefresh(false); 
+   document.DataGraph.setAutoRefresh(false);
+    document.Animator3.setDefault(); 
+	document.DataGraph.setDefault(); 
+	
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-70);
+	document.Animator3.setTimeDisplay(false);
+	document.Animator3.setCaption("Escolhe valores para v1, v2 e m1");
+	document.Animator3.setGridUnit(0);
+	
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0.55");
+	document.Animator3.setForce(id1,"0","0",-0.6,0.55,0,0); 
+	document.Animator3.setDisplayOffset(id1,-30,0);
+      document.Animator3.setMass(id1,m1);
+    
+    rid=document.Animator3.addRectangle(50,m1*8,"0","0");
+    document.Animator3.setRGB(rid,200,200,0);
+    document.Animator3.setDisplayOffset(rid,0,4*m1);
+    document.Animator3.setAnimationSlave(id1,rid);
+    
+    id2=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0.55");
+    document.Animator3.setForce(id2,"0","0",0.6,0.55,0,0); 
+    document.Animator3.setMass(id2,1);
+
+    rid=document.Animator3.addRectangle(50,8,"0","0");
+    document.Animator3.setRGB(rid,0,200,200);
+    document.Animator3.setDisplayOffset(rid,30,4);
+    document.Animator3.setAnimationSlave(id2,rid);
+
+        document.Animator3.setShapeRGB(0,0,0); 
+        document.Animator3.addRectangle(400,12,"0","0.35");
+      document.Animator3.setShapeRGB(166,166,166); 
+    id=document.Animator3.addRectangle(400,10,"0","0.35");
+    document.Animator3.setAutoRefresh(true); 
+
+   
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,0.5);
+
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setLastPointMarker(1,true); 
+     document.DataGraph.setSeriesRGB(1,200,200,0);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setLastPointMarker(2,true); 
+     document.DataGraph.setSeriesRGB(2,0,200,200);
+     document.DataGraph.setMarkerSize(1,0.6);
+     document.DataGraph.setMarkerSize(2,0.6);
+     document.DataGraph.setLabelY("v_{x} (m/s)"); 
+     document.DataGraph.setLabelX("Tempo (s)"); 
+     zeroln=document.DataGraph.addFunction("x","0");
+     document.DataGraph.setRGB(zeroln,200,200,200);
+     document.DataGraph.setTitle("Velocidade vs Tempo");
+     gid=document.DataGraph.getGraphID();
+   
+   document.DataGraph.setAutoRefresh(true);
+     
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"p1 (kg m/s)");
+     document.DataTable.setSeriesLabel(2,"p2 (kg m/s)");
+     document.DataTable.setSeriesLabel(3,"p total (kg m/s)");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();  
+	  document.Animator3.deleteDataConnections();  
+     document.Animator3.updateDataConnections(); 
+
+}
+
+
+function runApplet() {
+ if(!loaded) return;
+       newvee1=document.selection.D1.value;
+       if( !checkRange(newvee1,0,4)){
+     alert("A velocidade do carrinho que se desloca para a direita deve estar entre 0 m/s e 4 m/s. O valor inserido foi "+newvee1+" m/s.");
+     return;
+  } 
+  
+         newvee2=document.selection.D2.value;
+       if( !checkRange(newvee2,-4,0)){
+     alert("A velocidade do carrinho que se desloca para a esquerda deve estar entre -4 m/s e 0 m/s. O valor inserido foi "+newvee2+" m/s.");
+     return;
+  } 
+    
+       newem=document.selection.D3.value;
+       if( !checkRange(newem,0.25,4)){
+     alert("A massa do carrinho que se desloca para a direita deve estar entre 0.25 kg e 4,00 kg. O valor inserido foi "+newem+" kg.");
+     return;
+  } 
+  
+  m1=eval(document.selection.D3.value);
+  
+  v1=eval(document.selection.D1.value);
+  v2=eval(document.selection.D2.value);
+  totalpee=eval(m1*v1+v2);
+
+   document.Animator3.setAutoRefresh(false); 
+   document.DataGraph.setAutoRefresh(false);
+    document.Animator3.setDefault(); 
+	document.DataGraph.setDefault(); 
+	
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-60);
+	document.Animator3.setOneShot(0,0.5,"Fim da Animação");
+	document.Animator3.setGridUnit(0);
+	
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0.55");
+	document.Animator3.setForce(id1,"0","0",-0.6,0.55,eval(v1),0); 
+	document.Animator3.setDisplayOffset(id1,-30,0);
+      document.Animator3.setMass(id1,m1);
+    
+    rid=document.Animator3.addRectangle(50,m1*8,"0","0");
+    document.Animator3.setRGB(rid,200,200,0);
+    document.Animator3.setDisplayOffset(rid,0,4*m1);
+    document.Animator3.setAnimationSlave(id1,rid);
+    
+    id2=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0.55");
+    document.Animator3.setForce(id2,"0","0",0.6,0.55,eval(v2),0); 
+    document.Animator3.setMass(id2,1);
+        
+    document.Animator3.addInteraction(id1,id2,"4000*(-x+0.5)*(-x+0.5)*step(-x+0.5)","x");  
+    
+    rid=document.Animator3.addRectangle(50,8,"0","0");
+    document.Animator3.setRGB(rid,0,200,200);
+    document.Animator3.setDisplayOffset(rid,30,4);
+    document.Animator3.setAnimationSlave(id2,rid);
+
+        document.Animator3.setShapeRGB(0,0,0); 
+        document.Animator3.addRectangle(400,12,"0","0.35");
+      document.Animator3.setShapeRGB(166,166,166); 
+    id=document.Animator3.addRectangle(400,10,"0","0.35");
+    document.Animator3.setAutoRefresh(true); 
+
+   
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,0.5);
+
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);
+     document.DataGraph.setLastPointMarker(1,true); 
+     document.DataGraph.setSeriesRGB(1,200,200,0);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.setSeriesStyle(2,true,3);
+     document.DataGraph.setLastPointMarker(2,true); 
+     document.DataGraph.setSeriesRGB(2,0,200,200);
+     document.DataGraph.setMarkerSize(1,0.6);
+     document.DataGraph.setMarkerSize(2,0.6);
+     document.DataGraph.setLabelY("v_{x} (m/s)"); 
+     document.DataGraph.setLabelX("Tempo (s)"); 
+     zeroln=document.DataGraph.addFunction("x","0");
+     document.DataGraph.setRGB(zeroln,200,200,200);
+     document.DataGraph.setTitle("Velocidade vs Tempo");
+     gid=document.DataGraph.getGraphID();
+     
+if(addarrows){
+
+	vee1=eval(document.selection.D1.value);
+	vee2=eval(document.selection.D2.value);
+	em1=eval(document.selection.D3.value);
+	yee=eval((vee1+vee2)/2);
+
+	diff=eval((vee1-vee2));
+	vbefore=eval(diff/2);
+	vmbefore=eval(-diff/2);
+	
+	vee1fin=eval(((em1-1)*vee1+2*vee2)/(em1+1));
+	vee2fin=eval(vee1-vee2+vee1fin);
+	yaft=eval((vee1fin+vee2fin)/2);
+	diffaft=eval((vee1fin-vee2fin));
+	
+	vafter=eval((diffaft)/2);
+	vmafter=eval(-(diffaft)/2);
+    document.DataGraph.addObject("arrow","x=0.05,y="+yee+",h=0,v="+vbefore);
+	aid2=document.DataGraph.addObject("arrow","x=0.05,y="+yee+",h=0,v="+vmbefore);
+    
+    aid3=document.DataGraph.addObject("arrow","x=0.45,y="+yaft+",h=0,v="+vmafter);
+    aid4=document.DataGraph.addObject("arrow","x=0.45,y="+yaft+",h=0,v="+vafter);
+}
+
+   else{
+   } 
+   
+   document.DataGraph.setAutoRefresh(true);
+     
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"p1 (kg m/s)");
+     document.DataTable.setSeriesLabel(2,"p2 (kg m/s)");
+     document.DataTable.setSeriesLabel(3,"p total (kg m/s)");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();  
+	  document.Animator3.deleteDataConnections();  
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx");  
+     document.Animator3.makeDataConnection(id1,tid,1,"m*vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"m*vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,3,totalpee,"0");
+     document.Animator3.updateDataConnections(); 
+    
+    document.Animator3.forward(); 
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 8.4</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><font face="Book Antiqua" style="font-size: 16pt">Ilustração 
+8.4 - Velocidades Relativas em colisões</font></h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="400" height="200"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+    <tr>
+      <td><applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="animator4.Animator.class" align="middle" width="400" height="60"
+        name="Animator3" mayscript>
+          <param name="FPS" value="20">
+          <param name="dt" value="0.005">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataGraph,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="318" height="45"
+hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p><b>
+      <input type="button" value="registar valores e começar" onclick="JavaScript:runApplet()"> </b>
+      <input
+      type="button" value="continuar" onclick="document.Animator3.forward()"><input
+      type="button" value="pausa" onclick="document.Animator3.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator3.stepForward()"><input type="button"
+      value="início"
+      onclick="document.Animator3.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+<form name="selection">
+  <p align="center"><b><font color="#CC9900"><i>v</i><sub>1</sub> = <input type="text" size="3" value="2" name="D1">m/s</font>,<font color="#0099CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>v</i><sub>2</sub> =</font><font color="#CC9900"> <input type="text" size="3" value="-2" name="D2"></font><font color="#0099CC">m/s</font>,<font color="#CC9900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <i>m</i><sub>1</sub> = <input type="text" size="2" value="1" name="D3">kg</font>,&nbsp;&nbsp;&nbsp;<font color="#FFCC00">&nbsp;&nbsp;&nbsp;&nbsp;
+  </font>e&nbsp;&nbsp;&nbsp;<font color="#FFCC00">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#0099CC">
+	<i>m</i><sub>2</sub> = 1 kg</font>.</b></p>
+
+       
+<p align="center"><b><span style="font-size: 9pt"><font face="Arial">
+ <input onclick="javascript:addarrows = (this.checked);" type="checkbox" value="velocity" name="options"></font></span></b><font face="Arial"><b><span style="font-size: 9pt">seleciona 
+a caixa e depois carrega em &quot;registar valores e começar&quot;, para ver as setas que 
+representam o valor das velocidades relativas entre os dois carrinhos.</span></b></font></p>
+</form>
+
+
+
+<p align="center"><font face="Arial"><font color="#FF0000"><b><i>
+<span style="font-size: 9pt">Por favor espera até a animação estar completamente 
+carregada</span></i></b></font><b><font color="#FF0000"><i><span style="font-size: 9pt">.</span></i></font></b></font></p>
+
+       
+<p><b><span style="font-size: 9pt"><font face="Arial">Descrição da Animação</font></span></b></p>
+<p><font face="Arial"><span style="font-size: 9pt">Nestas colisões não existem 
+forças externas a atuar nos carrinhos. É possível escolher valores para a 
+velocidade inicial de cada carrinho e para a massa do carrinho que se desloca 
+para a direita (amarelo escuro).&nbsp; Carrega em &quot;registar valores e começar&quot; 
+para ver a animação <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;Foram 
+estabelecidos limites para os valores que podes escolher:</span></font></p>
+<p align="center"><font face="Arial"><span style="font-size: 9pt">0,25 kg &lt; <i>m</i><sub>1</sub> 
+&lt; 4,00 kg,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0 m/s &lt; <i>v</i><sub>1</sub>&nbsp; &lt; 4 m/s,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -4 m/s &lt; &nbsp;<i>v</i><sub>2</sub>&nbsp; 
+&lt; 0 m/s.</span></font></p>
+
+<p><font face="Arial"><span style="font-size: 9pt">Na tabela está indicado o 
+valor do momento linear de cada carrinho, assim como o momento linear total do 
+sistema dos dois carrinhos. Podes ainda selecionar a caixa que permite ver as 
+setas que representam os valores das velocidades relativas, antes e depois das 
+colisões entre os dois carrinhos.
+<a href="JavaScript:initApplet()">Início</a>&nbsp; </span></font></p>
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

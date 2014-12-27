@@ -1,0 +1,290 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("config()",100);
+}
+  	
+function config(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.BField3.setAutoRefresh(false);
+    document.BField3.setDefault();
+    document.BField2.setAutoRefresh(false);
+    document.BField2.setDefault();
+   document.BField3.setShowFieldLineOnDoubleClick(false);
+   document.BField3.setShowFieldVectors(false); 
+  document.BField2.addObject("text","text=Seleciona uma Animação ,x=-3.5,y=4.5");
+   c1=document.BField3.addObject("wire","x=-3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+
+  c1=document.BField3.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+   
+   c1=document.BField3.addObject("compass","r=15,x=1,y=0");
+   document.BField3.setDragable(c1,true);
+document.BField3.setAutoRefresh(true);
+document.BField2.setAutoRefresh(true);
+
+}
+
+function config_a(){
+    if(!loaded) return;
+    document.BField3.setAutoRefresh(false);
+    document.BField3.setDefault();
+    document.BField2.setAutoRefresh(false);
+    document.BField2.setDefault();
+    document.BField3.setShowFieldLineOnDoubleClick(false);
+   document.BField3.setShowFieldVectors(false); 
+
+   
+	document.BField2.setShowFieldLineOnClick(true);
+	document.BField2.setShowFieldVectors(false);
+   c1=document.BField3.addObject("wire","x=-3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+
+  c1=document.BField3.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+   
+   c1=document.BField3.addObject("compass","r=15,x=1,y=0");
+   document.BField3.setDragable(c1,true);
+
+	document.BField2.addObject("text","text=Configuração 1,x=-2,y=4.5");
+ document.BField2.setDefaultRGB(255,0,0);
+	c1=document.BField2.addObject("wire","x=-3,y=0,i=-1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+	
+ c1=document.BField2.addObject("wire","x=3,y=0,i=-1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+	
+c1=document.BField2.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+	
+c1=document.BField2.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+document.BField3.setAutoRefresh(true);
+document.BField2.setAutoRefresh(true);
+
+}
+
+function config_b(){
+    if(!loaded) return;
+    document.BField3.setAutoRefresh(false);
+    document.BField3.setDefault();
+    document.BField2.setAutoRefresh(false);
+    document.BField2.setDefault();
+  document.BField3.setShowFieldLineOnDoubleClick(false);
+   document.BField3.setShowFieldVectors(false); 
+
+	document.BField2.setShowFieldLineOnClick(true);
+	document.BField2.setShowFieldVectors(false);
+   c1=document.BField3.addObject("wire","x=-3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+
+  c1=document.BField3.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+   
+   c1=document.BField3.addObject("compass","r=15,x=1,y=0");
+   document.BField3.setDragable(c1,true);
+   
+	document.BField2.addObject("text","text=Configuração 2,x=-2,y=4.5");
+  document.BField2.setDefaultRGB(255,0,0);
+	c1=document.BField2.addObject("wire","x=-3,y=0,i=-1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+ c1=document.BField2.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+c1=document.BField2.addObject("wire","x=0,y=-3,i=-1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+c1=document.BField2.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+document.BField3.setAutoRefresh(true);
+document.BField2.setAutoRefresh(true);
+
+}
+
+function config_c(){
+   if(!loaded) return;
+    document.BField3.setAutoRefresh(false);
+    document.BField3.setDefault();
+    document.BField2.setAutoRefresh(false);
+    document.BField2.setDefault();
+ document.BField3.setShowFieldLineOnDoubleClick(false);
+   document.BField3.setShowFieldVectors(false); 
+  
+	document.BField2.setShowFieldLineOnClick(true);
+	document.BField2.setShowFieldVectors(false);
+   c1=document.BField3.addObject("wire","x=-3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+
+  c1=document.BField3.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+  c1=document.BField3.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField3.setDragable(c1,false);
+   document.BField3.setShowFVector(c1,false);
+   
+   c1=document.BField3.addObject("compass","r=15,x=1,y=0");
+   document.BField3.setDragable(c1,true);
+   
+	document.BField2.addObject("text","text=Configuração 3,x=-2,y=4.5");
+  document.BField2.setDefaultRGB(255,0,0);
+	c1=document.BField2.addObject("wire","x=-3,y=0,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+ c1=document.BField2.addObject("wire","x=3,y=0,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+
+c1=document.BField2.addObject("wire","x=0,y=-3,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+	
+c1=document.BField2.addObject("wire","x=0,y=3,i=1,r=2");
+   document.BField2.setDragable(c1,false);
+   document.BField2.setShowFVector(c1,false);
+document.BField3.setAutoRefresh(true);
+document.BField2.setAutoRefresh(true);
+
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 27.2</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 27.2</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" 
+      ARCHIVE="Physlets.jar" 
+      CODE="bfield.BField.class" NAME="BField3" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField3,BField2">
+        <param name="Resources" value="bfield_pt.rc">
+      </applet></td>
+      <td>
+      <applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+      CODE="bfield.BField.class" NAME="BField2" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+&nbsp;&nbsp;
+<a href="JavaScript:config_a()" style="text-decoration: none">Configuração 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp; &nbsp;<a href="JavaScript:config_b()" style="text-decoration: none">Configuração 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>
+&nbsp;&nbsp;
+<a href="JavaScript:config_c()" style="text-decoration: none">Configuração 3</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>A animação mostra quatro fios que transportam corrente elétrica (cada fio 
+transporta corrente elétrica numa direção perpendicular ao ecrã, para fora ou 
+para dentro deste).&nbsp;Usa a bússola para determinares as linhas do campo magnético, 
+no painel da esquerda.&nbsp; <a href="JavaScript:config()">Início</a> </p>
+
+
+<p>&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 32.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   id=document.animator.addObject("doppler","r=10,c=1,n=10,period=2");
+   document.animator.setRGB(id,128,128,255);
+   id=document.animator.addObject("circle","r=10");
+   document.animator.setRGB(id,0,0,0);
+   id=document.animator.addObject("curve","n=200,x=s,y=4*sin(s*pi-t*pi-pi/2)/(s+1),start=0,stop=20");
+   document.animator.setRGB(id,255,128,128);
+   document.animator.setAutoRefresh(true);   
+   //document.animator.forward();
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+</style>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 32.2 - Crista da Onda</h2>
+<div align="center">
+  <center>
+  <table bgColor="#c0c0c0" border="1">
+    <tr>
+      <td>
+      <applet codeBase="../../classes" height="350" archive="Physlets.jar" 
+      width="350" align="middle" code="animator4.Animator.class" name="animator" mayscript>
+        <param NAME="FPS" VALUE="10">
+        <param NAME="ShowControls" VALUE="false">
+        <param NAME="dt" VALUE="0.1">
+        <param NAME="PixPerUnit" VALUE="10">
+        <param NAME="GridUnit" VALUE="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+        <param name="Resources" value="animator_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+ <p align="center">
+	<input onclick="document.animator.forward()" type="button" value="começar"><input 
+ onclick="document.animator.pause()" type="button" value="pausa"><input 
+ onclick="document.animator.stepForward()" type="button" value="passo &gt;&gt;"><input 
+ onclick="document.animator.reset()" type="button" value="início"></p>
+</form>
+
+
+<p align="center"><font color="#ff0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#ff0000"><i>.</i></font></b></p>
+
+
+<p class="style1">
+   <b>Descrição da Animação</b></p>
+
+
+<p align="left">Embora ondas com diferentes frequências produzam efeitos 
+diferentes quando interagem com a matéria, a propagação destas pelo espaço é 
+muito semelhante.&nbsp; Ondas eletromagnéticas têm regiões de alta e baixa força de 
+campo, que são análogas às regiões de alta e baixa pressão de um onda sonora.&nbsp; 
+As analogias entre as ondas eletromagnéticas e as ondas sonoras podem ser úteis, mas não 
+devem ser levadas muito longe.&nbsp; Esta ilustração mostra essa analogia.&nbsp;
+<a href="javascript:initApplet(20)">Início</a>&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

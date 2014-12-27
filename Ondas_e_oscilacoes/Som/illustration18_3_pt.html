@@ -1,0 +1,237 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var fid1=0;
+var fid2=0;
+var fid3=0;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initGraph()",100);
+}
+
+function initGraph(){
+   if(!loaded) return;
+   document.funcForm.reset();   
+   document.funcForm.f1.value=100;
+   timerID=0;
+   lambda=eval(3.43);
+   document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setDefault();
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-20,20);
+   document.DataGraph.setMinMaxY(-0.35,0.35); 
+
+document.DataGraph2.setAutoRefresh(false);
+   document.DataGraph2.setDefault();
+   document.DataGraph2.setAutoscaleX(false);
+   document.DataGraph2.setAutoscaleY(false);
+   document.DataGraph2.setMinMaxX(-20,20);
+   document.DataGraph2.setMinMaxY(-0.35,0.35); 
+
+document.DataGraph3.setAutoRefresh(false);
+   document.DataGraph3.setDefault();
+   document.DataGraph3.setDt(0.001);
+   document.DataGraph3.setFPS(15);
+   cid=document.DataGraph3.getClockID();
+   document.DataGraph2.setExternalClock(cid);
+    document.DataGraph.setExternalClock(cid);
+    document.DataGraph3.setAutoscaleX(false);
+   document.DataGraph3.setAutoscaleY(false);
+   document.DataGraph3.setMinMaxX(-20,20);
+   document.DataGraph3.setMinMaxY(-0.75,0.75); 
+   
+   fid1=document.DataGraph.addFunction("x","0.25*sin(2*pi*x/3.43-2*pi*100*0)");
+   fid2=document.DataGraph2.addFunction("x","0.25*sin(2*pi*x/3.43-2*pi*100*0)");
+   fid3=document.DataGraph3.addFunction("x","0.25*sin(2*pi*x/3.43-2*pi*100*0)+0.25*sin(2*pi*x/3.43-2*pi*100*0)");   
+   
+   document.DataGraph.setRGB(fid1,128,0,0);
+   document.DataGraph2.setRGB(fid2,0,128,0);
+   document.DataGraph3.setRGB(fid3,0,0,128); 
+   document.DataGraph.setTimeDisplay(false);
+   document.DataGraph2.setTimeDisplay(false);
+   document.DataGraph3.setTimeDisplay(false);
+   document.DataGraph.setTitle("y_{1}(x,t)"); 
+   document.DataGraph2.setTitle("y_{2}(x,t)"); 
+   document.DataGraph3.setTitle("Y(x,t) = y_{1}(x,t)+y_{2}(x,t)"); 
+   	document.DataGraph.setAutoRefresh(true);
+   	document.DataGraph2.setAutoRefresh(true); 
+   	document.DataGraph3.setAutoRefresh(true);   
+}
+
+function changeFunctionF(fStr){ 
+  if(!loaded) return;
+   f=fStr;
+       if( !checkRange(f,50,150)){
+     alert("A frequência deve estar entre 50 e 150 Hz. O valor inserido foi "+f);
+     return;
+  } 
+frequency=eval(fStr);
+
+   lambda=eval(3.43);
+   document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setDefault();
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-20,20);
+   document.DataGraph.setMinMaxY(-0.35,0.35); 
+
+document.DataGraph2.setAutoRefresh(false);
+   document.DataGraph2.setDefault();
+   document.DataGraph2.setAutoscaleX(false);
+   document.DataGraph2.setAutoscaleY(false);
+   document.DataGraph2.setMinMaxX(-20,20);
+   document.DataGraph2.setMinMaxY(-0.35,0.35); 
+
+document.DataGraph3.setAutoRefresh(false);
+   document.DataGraph3.setDefault();
+   document.DataGraph3.setDt(0.001);
+   document.DataGraph3.setFPS(15);
+   cid=document.DataGraph3.getClockID();
+   document.DataGraph2.setExternalClock(cid);
+    document.DataGraph.setExternalClock(cid);
+    document.DataGraph3.setAutoscaleX(false);
+   document.DataGraph3.setAutoscaleY(false);
+   document.DataGraph3.setMinMaxX(-20,20);
+   document.DataGraph3.setMinMaxY(-0.75,0.75);
+
+   fid1=document.DataGraph.addFunction("x","0.25*sin(2*pi*x/3.43-2*pi*100*t)");
+   fid2=document.DataGraph2.addFunction("x","0.25*sin(2*pi*x*"+frequency+"/343-2*pi*"+frequency+"*t)");
+   fid3=document.DataGraph3.addFunction("x","0.25*sin(2*pi*x*"+frequency+"/343-2*pi*"+frequency+"*t)+0.25*sin(2*pi*x/3.43-2*pi*100*t)");   
+   document.DataGraph.setRGB(fid1,128,0,0);
+   document.DataGraph2.setRGB(fid2,0,128,0);
+   document.DataGraph3.setRGB(fid3,0,0,128);
+      document.DataGraph.setTimeDisplay(false);
+   document.DataGraph2.setTimeDisplay(false);
+   document.DataGraph3.setTimeDisplay(true);
+   document.DataGraph.setAutoRefresh(true); 
+   document.DataGraph2.setAutoRefresh(true);
+   document.DataGraph3.setAutoRefresh(true);  
+   document.DataGraph3.startClock(); 
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 18.3</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 18.3 - Interferência de Ondas Sonoras e Batimentos</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes"    ARCHIVE="Physlets.jar"  
+archive="DataGraph4_.jar,DataTable4_.jar,STools4.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="450" height="100"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1.0">
+          <param name="XMax" value="1.0">
+          <param name="YMin" value="-0.2">
+          <param name="YMax" value="1.2">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="false">
+          <param name="ShowControls" value="false">
+          <param name="DataFile">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="DataGraph,DataGraph2,DataGraph3">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes" ARCHIVE="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="450" height="100"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1.0">
+          <param name="XMax" value="1.0">
+          <param name="YMin" value="-0.2">
+          <param name="YMax" value="1.2">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="false">
+          <param name="ShowControls" value="false">
+          <param name="DataFile">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes" ARCHIVE="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph3" width="450" height="200"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1.0">
+          <param name="XMax" value="1.0">
+          <param name="YMin" value="-0.2">
+          <param name="YMax" value="1.2">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="false">
+          <param name="ShowControls" value="false">
+          <param name="DataFile">
+        </applet></td>
+    </tr>
+  </table>
+  </center>  </div>
+<form name="funcForm">
+<p align="center">
+<font color="#008000">
+<input type="button" value="registar valores e começar"
+  name="testBtn" onclick="changeFunctionF(document.funcForm.f1.value)"></font>&nbsp;<input type="button" value="continuar"
+      onclick="document.DataGraph3.startClock()"><input type="button" value="pausa"
+      onclick="document.DataGraph3.pause()"><b><input type="button" value="&lt;&lt; passo" name="stepb" onclick="document.DataGraph3.stepTimeBack();"><input type="button" value="passo &gt;&gt;" name="step" onclick="document.DataGraph3.stepTimeForward();"></b>&nbsp;</p>
+<p align="center"><b><font color="#008000"><i>f</i><span lang="en-us"> </span>=</font></b><font color="#008000"><span lang="en-us"> </span>
+<input type="text" name="f1" size="5" value="100"></font>&nbsp;<font color="#008000"><b>Hz</b>&nbsp;</font> </p>
+</form>
+
+
+<p align="center"><b><font color="#FF0000"><i>Por favor espera até a animação 
+estar completamente carregada.</i></font></b></p>
+
+       
+<p align="left">
+<b>Descrição da Animação</b></p>
+<p align="left">
+Esta animação mostra duas ondas sonoras e a sua sobreposição.&nbsp;A <b>
+<font color="#FF0000">onda vermelha </font></b>tem um comprimento de onda <i>λ</i><font face="Symbol"> </font>
+= 3,43 m e uma frequência de <i>f</i> = 100 Hz, à qual é somada uma <font color="#008000"><b>
+onda verde,</b></font> cuja frequência podes mudar; a onda resultante é mostrada 
+a <b>
+<font color="#0000FF">
+azul</font> (a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp; 
+<a href="JavaScript:initGraph()">Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+&nbsp;</p>
+
+    
+
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+  
+  <p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

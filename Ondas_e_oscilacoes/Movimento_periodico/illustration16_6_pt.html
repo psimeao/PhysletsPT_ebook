@@ -1,0 +1,312 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+
+<script language="JavaScript">
+var stry=0;  
+var i=0; 
+var fid2=0;
+var fid3=0;
+var gid=0;
+var timerID=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("quantum('sin(3*2*pi*x)')",100);
+}
+
+ 
+ 
+function quantum(fStr){
+     	if(!loaded) return;
+        fid=0;
+    	fid2=0;
+    	fid3=0;
+    	newem=document.selection2.D3.value;
+     
+		
+	if(!isFinite(newem) ){
+       alert("n tem que ser um número!");
+       return;
+} 
+    N=eval(document.selection2.D3.value); 
+                 
+    if(N!=parseInt(N)){
+       alert("n tem que ser um inteiro!");
+       return;
+	}
+   
+   if( !checkRange(newem,1,25)){
+     alert("Introduz um número entre 1 e 25. O valor inserido foi "+newem+".");
+     return;
+}   
+   funcStr2=fStr;
+   valid=document.DataGraph.isValidFunction(funcStr2, "x,t");
+   
+   if(!valid){
+       alert("Esta função não é válida:  "+funcStr2);
+       return;
+}
+   N=eval(document.selection2.D3.value);
+   document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setDefault();
+   document.DataGraph.deleteAllFunctions(); 
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(0,1);
+   document.DataGraph.setMinMaxY(-2.3,2.3);
+   document.DataGraph2.setAutoRefresh(false);
+   document.DataGraph2.setDefault();
+   document.DataGraph2.deleteAllFunctions(); 
+   document.DataGraph2.deleteFunction(fid2); 
+   document.DataGraph2.setAutoscaleX(false);
+   document.DataGraph2.setAutoscaleY(false);
+   document.DataGraph2.setMinMaxY(-2.1,2.1);
+   document.DataGraph2.setMinMaxX(0,1);
+   document.DataGraph2.setDrawZero(true);
+   fid3=document.DataGraph2.addFunction("x",fStr);
+   document.DataGraph2.setSeriesStyle(1,true,2);
+   document.DataGraph2.setRGB(fid3,0,128,128);
+   document.DataGraph2.setTitle("Função importada");
+   document.DataGraph2.setLabelX("x");
+   document.DataGraph2.setLabelY("f(x)");
+   document.DataGraph2.setAutoRefresh(true); 
+     	
+   document.DataGraph3.setAutoRefresh(false);
+   document.DataGraph3.setDefault();
+   document.DataGraph3.deleteAllFunctions(); 
+   document.DataGraph3.deleteFunction(fid); 
+   document.DataGraph3.setAutoscaleX(false);
+   document.DataGraph3.setAutoscaleY(false);
+   document.DataGraph3.setMinMaxX(0,1);
+   document.DataGraph3.setMinMaxY(-1.2,1.2);
+   document.DataGraph3.setDrawZero(true);
+   fid=document.DataGraph3.addFunction("x","sin("+N+"*2*pi*x/1)");
+   document.DataGraph3.setSeriesStyle(1,true,2);
+   document.DataGraph3.setRGB(fid,128,0,128);
+   document.DataGraph3.setTitle("sen("+N+"*2*pi*x/L)");
+   document.DataGraph3.setLabelX("x");
+   document.DataGraph3.setLabelY("sen("+N+"*2*pi*x)");
+   document.DataGraph3.setAutoRefresh(true); 
+     	
+
+   fid2=document.DataGraph.addFunction("x","2*sin("+N+"*2*pi*x)*("+fStr+")");
+   document.DataGraph.setFunctionRange(fid2,0,2,1000);
+   gid=document.DataGraph.getGraphID();
+   document.DataGraph.setSeriesStyle(1,true,-2);
+   document.DataGraph.setTitle("Área = Integral de: (2/L)*sen("+N+"*2*pi*x/L)*f(x)"); 
+   document.DataGraph.setLabelX("x");
+   document.DataGraph.setLabelY("2*sen("+N+"*2*pi*x)*f(x)");
+   
+   document.datatable.setAutoRefresh(false);
+   document.datatable.setDefault();
+   document.datatable.setNumericFormat(1,"%5i");
+   document.datatable.setNumericFormat(2,"%5i");
+   document.datatable.setNumericFormat(3,"%5.2f");
+   document.datatable.setSeriesLabel(1,"x Inicial");
+   document.datatable.setSeriesLabel(2,"x Final"); 
+   document.datatable.setSeriesLabel(3,"Integral"); 
+   document.datatable.setAutoRefresh(true);
+   tid2=document.datatable.getTableID();
+   
+   iid=document.Integral.getID();  
+   document.Integral.deleteDataConnections();
+   document.DataGraph.makeDataConnection(fid2,gid,1,"x","y"); 
+   document.DataGraph.makeDataConnection(fid2,iid,1,"x","y");     
+   sid2=document.Integral.getDefiniteIntegralID(0,1);  
+   document.DataGraph.makeDataConnection(sid2,tid2,1,0,"0"); 
+   document.DataGraph.makeDataConnection(sid2,tid2,2,1,"0"); 
+   document.DataGraph.makeDataConnection(sid2,tid2,3,"integral","0"); 
+   
+    document.DataGraph.updateDataConnections();    
+   	document.DataGraph.setAutoRefresh(true);    
+}
+
+
+
+function integratequantum(){
+   if(!loaded) return;
+   tid2=document.datatable.getTableID();
+   iid=document.Integral.getID();  
+   document.Integral.deleteDataConnections();
+   document.DataGraph.makeDataConnection(fid2,gid,1,"x","y"); 
+   document.DataGraph.makeDataConnection(fid2,iid,1,"x","y");     
+   sid2=document.Integral.getDefiniteIntegralID(0,1);  
+   document.DataGraph.makeDataConnection(sid2,tid2,1,0,"0"); 
+   document.DataGraph.makeDataConnection(sid2,tid2,2,1,"0"); 
+   document.DataGraph.makeDataConnection(sid2,tid2,3,"integral","0"); 
+   document.DataGraph.updateDataConnections();     
+}
+
+
+function redo(fStr){ 
+   	if(!loaded) return;
+   valid=document.DataGraph.isValidFunction(fStr, "x,y");
+   	
+   	if(!valid){
+   	alert("Esta função não é válida:  "+fStr);
+   	return;
+}
+    document.DataGraph.deleteFunction(fid2); 
+    document.DataGraph2.deleteFunction(fid3);
+	quantum(fStr);
+	integratequantum();    
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 16.6</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 16.6 - Séries de Fourier: características 
+quantitativas<applet codebase="../../classes/" 
+archive="Physlets.jar"
+code="filters.Integral.class" name="Integral" width="0" height="0" hspace="0"
+vspace="0" align="middle" mayscript>
+  
+  
+  
+  
+  
+  
+  
+  <param name="Independent" value="x">
+  <param name="Differential" value="dx">
+  <param name="Integrand" value="y">
+    	<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Integral,DataGraph2,DataGraph3,DataGraph,datatable">
+</applet></h2>
+
+       
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+                <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="230" height="180"
+        hspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td>
+             <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph3"  width="230" height="180"
+        hspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+        </applet>      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="465" height="180"
+        hspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p align="center">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="datatable" width="281" height="45" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="true">
+          <param name="CellWidth" value="120">
+          <param name="NumRows" value="1">
+          <param name="NumCols" value="3">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+        </applet>
+        </p>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection2">
+<div align="center">
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">n =&nbsp;&nbsp; <input type="text" size="3" value="1" name="D3"> 
+      <input type="button" value="alterar a ordem" onclick="f=document.selection2.funcField.value;JavaScript:quantum(f);JavaScript:integratequantum();"></td>
+    </tr>
+    <tr>
+      <td>
+      <input type="text" name="funcField" size="40"
+  value="sin(3*2*pi*x)"><input type="button" value="importar função" name="testbtn"
+  onclick="f=document.selection2.funcField.value; JavaScript:redo(f);"></td>
+    </tr>
+  </table>
+</div>
+  </form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p><span lang="en-us"><u>Qualquer</u> </span><span style="font-family: Arial">
+função periódica ímpar em <i>x</i> (de período <i>L</i> entre 0 e <i>L,</i> 
+contrário ao entre –L/2 e L/2) pode ser descrita, de acordo com o teorema de 
+Fourier, por um conjunto de séries de Fourier da forma</span><span lang="en-us"> 
+:</span></p>
+<p align="center">&nbsp;f(x) = Σ A<sub>n</sub> sen (n*2*π*x/L), 
+</p>
+
+
+<p align="left" style="margin-bottom: 0"><font face="Arial">em que <b><i>A</i><sub>n</sub></b> é o 
+resultado do integral que representa a sobreposição entre a função inicial e um 
+componente particular de Fourier (um termo nas séries de Fourier representado 
+pelo número inteiro </font><i><font face="Arial">n</font><span style="font-family: Arial">)</span></i><font face="Arial">.</font>&nbsp;
+<font face="Arial">De forma a tornar este resultado exacto, deve existir um 
+fator 2/L incluído no integral</font>.<span style="font-family: Arial"> Nesta 
+animação vamos estudar as funções periódicas<span style="color:red"> </span>
+ímpares em <i>x</i>, de<span style="color:red"> </span>acordo com o teorema de 
+Fourier. </span>
+<a href="JavaScript:document.selection2.reset();quantum('sin(3*2*pi*x)')">Início</a>.</p>
+
+       
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

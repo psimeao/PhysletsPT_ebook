@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var timerID=0;
+var pixPerUnit=150;
+var push=0;
+var netFVector=0;
+var netTVector=0;
+var drawVector=false;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(0,0);
+		document.Animator.setPixPerUnit(pixPerUnit);
+		document.Animator.setGridUnit(0);
+		document.Animator.setTimeVisibility(false);
+		document.Animator.setCaption("Animação 1");
+		document.Animator.addObject("rectangle","x=0,y=0,w=422,h=202");
+		table=document.Animator.addObject("rectangle","x=0,y=0,w=420,h=200");
+		document.Animator.setRGB(table,255,245,225);
+		
+		beam0=document.Animator.addObject("rectangle","x=0,y=0,w=402,h=7");
+		beam=document.Animator.addObject("rectangle","x=0,y=0,w=400,h=5");
+		document.Animator.setRGB(beam,255,150,0);
+		cg=document.Animator.addObject("circle","r=4");
+		document.Animator.setAutoRefresh(true);
+}
+
+	
+function showForces(){
+		if(!loaded) return;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(0,0);
+		document.Animator.setPixPerUnit(pixPerUnit);
+		document.Animator.setGridUnit(0);
+		document.Animator.setTimeVisibility(false);
+		document.Animator.setCaption("Animação 2");
+				document.Animator.addObject("rectangle","x=0,y=0,w=422,h=202");
+		table=document.Animator.addObject("rectangle","x=0,y=0,w=420,h=200");
+		document.Animator.setRGB(table,255,245,225);
+		beam0=document.Animator.addObject("rectangle","x=0,y=0,w=402,h=7");
+                beam=document.Animator.addObject("rectangle","x=0,y=0,w=400,h=5");
+		document.Animator.setRGB(beam,255,150,0);
+		cg=document.Animator.addObject("circle","r=4");
+
+		f1=document.Animator.addObject("arrow2","x=1.333,y=-0.6,v=0.6,h=-0.3,thickness=5");
+		f2=document.Animator.addObject("arrow2","x=-1.033,y=0.6,v=-0.6,h=-0.3,thickness=5");
+		f3=document.Animator.addObject("arrow2","x=-1,y=-0.9,v=0.9,h=0,thickness=5");
+		f4=document.Animator.addObject("arrow2","x=1.633,y=0,v=0,h=-0.3,thickness=5");
+		f5=document.Animator.addObject("arrow2","x=0.5,v=-0.4,h=0,thickness=5");
+		document.Animator.setAutoRefresh(true);
+}
+	
+
+function drawForce(){
+		if(!loaded) return;
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(0,0);
+		document.Animator.setPixPerUnit(pixPerUnit);
+		document.Animator.setGridUnit(0);
+		document.Animator.setTimeVisibility(false);
+		document.Animator.setCaption("Animação 3");
+				document.Animator.addObject("rectangle","x=0,y=0,w=422,h=202");
+		table=document.Animator.addObject("rectangle","x=0,y=0,w=420,h=200");
+		document.Animator.setRGB(table,255,245,225);
+		beam0=document.Animator.addObject("rectangle","x=0,y=0,w=402,h=7");
+                beam=document.Animator.addObject("rectangle","x=0,y=0,w=400,h=5");
+		document.Animator.setRGB(beam,255,150,0);
+		cg=document.Animator.addObject("circle","r=4");
+
+		f1=document.Animator.addObject("arrow2","x=1.333,y=-0.6,v=0.6,h=-0.3,thickness=5");
+		f2=document.Animator.addObject("arrow2","x=-1.033,y=0.6,v=-0.6,h=-0.3,thickness=5");
+		f3=document.Animator.addObject("arrow2","x=-1,y=-0.9,v=0.9,h=0,thickness=5");
+		f4=document.Animator.addObject("arrow2","x=1.633,y=0,v=0,h=-0.3,thickness=5");
+		f5=document.Animator.addObject("arrow2","x=0.5,v=-0.4,h=0,thickness=5");
+		f6=document.Animator.addObject("arrow2","x=1,y=0.5,v=0,h=0.2,thickness=5");
+		document.Animator.setRGB(f6,0,0,255);
+		document.Animator.setResizable(f6,true);
+		document.Animator.setDragable(f6,true);
+		document.Animator.setAutoRefresh(true);
+		drawVector=true;
+}
+	
+	
+function check(){
+
+		if(drawVector==false){
+			alert("Primeiro tens que desenhar o vetor força, antes de verificares a resposta.");
+			return;
+}
+		document.Animator.setAutoRefresh(false);
+		document.Animator.addObject("text","text=Verificação da Força,x=-0.5,y=0.5");
+		document.Animator.setX(netFVector,20);
+		document.Animator.setX(netTVector,20);
+			
+			with (Math) {
+			f1x=-0.3;
+			f1y=0.6;
+			f2x=-0.3;
+			f2y=-0.6;
+			f3x=0;
+			f3y=0.9;
+			f4x=-0.3;
+			f4y=0;
+			f5x=0;
+			f5y=-0.4;
+			f6x=document.Animator.getW(f6);
+			f6y=document.Animator.getH(f6);
+			
+			netFx=f1x+f2x+f3x+f4x+f5x+f6x;
+			netFy=f1y+f2y+f3y+f4y+f5y+f6y;
+			
+			r1x=document.Animator.getXPos(f1)+f1x;
+			r2x=document.Animator.getXPos(f2)+f2x;
+			r3x=document.Animator.getXPos(f3)+f3x;
+			r4x=document.Animator.getXPos(f4)+f4x;
+			r5x=document.Animator.getXPos(f5)+f5x;
+			r6x=document.Animator.getXPos(f6)+f6x;
+			r6y=document.Animator.getYPos(f6)+f6y;
+			
+			t1=r1x*f1y;
+			t2=r2x*f2y;
+			t3=r3x*f3y;
+			t4=r4x*f4y;
+			t5=r5x*f5y;
+			t6=r6x*f6y-r6y*f6x;
+
+			scale=2;			
+			netT=eval(t1+t2+t3+t4+t5+t6);				
+}
+
+		netFVector=document.Animator.addObject("arrow2","x=0,y=0,v="+netFy+",h="+netFx+",thickness=5");
+		document.Animator.setRGB(netFVector,255,0,0);
+		netTVector=document.Animator.addObject("text","x=-0.6,y=-0.85,text=Momento (Torque) Resultante = ,calc="+netT);
+		document.Animator.setFormat(netTVector,"%3.2f");
+		document.Animator.setRGB(netTVector,0,150,0);
+		document.Animator.setAutoRefresh(true);		
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 13.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 13.3 - A Força e o Momento (Torque) da Força no Equilíbrio</h2>
+<div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="500" HEIGHT="300"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="20">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+       <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+  </td>
+  </tr>
+</table>
+  </center>
+</div>
+<center>
+<table bgColor="#c0c0c0" border="1">
+  <tr>
+    <td align="middle">&nbsp;&nbsp;
+	<a href="javascript:onclick=startProb()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+    <td align="middle"> &nbsp;&nbsp; 
+	<a href="javascript:onclick=showForces()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+    <td align="middle">
+&nbsp;&nbsp;
+<a href="javascript:onclick=drawForce()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp; </td>
+    <td align="middle"> &nbsp;&nbsp; 
+	<a href="javascript:onclick=check()" style="text-decoration: none">Verifica a tua 
+	resposta</a>&nbsp;&nbsp; </td>
+  </tr>
+</table>
+</center>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">Uma barra rígida, de massa desconhecida, está em cima de uma 
+mesa sem atrito conforme mostra a <a href="javascript:onclick=startProb()">
+Animação 1</a>.&nbsp;O circulo preto mostra a localização do centro de massa<b> (a 
+posição é dada em metros e o tempo em segundos)</b>. <u>O ponto de observação é 
+de cima da mesa</u>. Despreza-se a influência do atrito entre a mesa e a barra&nbsp;
+<a href="javascript:onclick=startProb()">Início</a></p>
+
+<p align="left">Seleciona a <a href="javascript:onclick=showForces()">Animação 
+2</a> 
+para ver as forças que atuam na barra (a <i>força gravítica local</i> e a <i>força normal</i> 
+equilibram-se e não são mostradas na animação; elas apontam para dentro e para força 
+da página, respetivamente).&nbsp; Assume que o comprimento dos vetores é 
+proporcional ao valor das forças, em newtons.&nbsp; 
+</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">Ilustração da autoria de Aaron Titus. <br>
+<i>Script</i> da autoria de Aaron Titus e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

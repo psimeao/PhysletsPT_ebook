@@ -1,0 +1,255 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("demo1()",100);
+}
+  	
+function demo1(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(2); 
+   
+   boxid=document.Animator.addBox(305,305,"0","0"); 
+   document.Animator.setOnScreenSize(boxid,10);
+    
+   cursorid1=document.Animator.addCursor(14,"0","5");
+   document.Animator.setMass(cursorid1,0.1);
+   document.Animator.setDragable(cursorid1,false);
+     document.Animator.setRGB(cursorid1,200,0,0);
+     
+   cursorid2=document.Animator.addCursor(14,"0","-5");
+   document.Animator.setMass(cursorid2,0.1);
+   document.Animator.setDragable(cursorid2,false);  
+    document.Animator.setRGB(cursorid2,0,200,0);
+  
+   
+   cid=document.Animator.addCircle(15,"0","0");
+   document.Animator.setShowFVector(cid,true);
+   document.Animator.setDragable(cid,false);     
+   document.Animator.setMass(cid,0.1);   
+   document.Animator.setForce(cid,"-2*x*step(abs(x)-14)","-2*y*step(abs(y)-14)",0,0,0,0); 
+   
+   marker1=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setForce(marker1,"0","0",0,0,0,0);
+   document.Animator.setRGB(marker1,255,0,0);
+   document.Animator.setShowFVector(marker1,true);
+   document.Animator.setAnimationSlave(cid,marker1);
+   
+   marker2=document.Animator.addArrow("0","0","5","5");
+   document.Animator.setForce(marker2,"0","0",0,0,0,0);
+   document.Animator.setRGB(marker2,0,250,0);
+   document.Animator.setShowFVector(marker2,true);
+   document.Animator.setAnimationSlave(cid,marker2);
+  
+       
+   document.Animator.setCaption("Seleciona uma Animação");
+   document.Animator.setAutoRefresh(true);  
+   
+
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"vx (m/s)");
+    document.DataTable.setSeriesLabel(2,"vy (m/s)"); 
+    document.DataTable.setSeriesLabel(3,"ax (m/s^2)");
+    document.DataTable.setSeriesLabel(4,"ay (m/s^2)"); 
+
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    
+    document.Animator.updateDataConnections();
+}
+
+
+function attractionDemo(force){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(2); 
+   document.Animator.setOneShot(0,10,"Fim da Animação");
+   boxid=document.Animator.addBox(305,305,"0","0"); 
+   document.Animator.setOnScreenSize(boxid,10);
+    
+   cursorid1=document.Animator.addCursor(14,"0","5");
+   document.Animator.setRGB(cursorid1,200,0,0);
+   document.Animator.setMass(cursorid1,0.1);
+   document.Animator.setDragable(cursorid1,true);
+     
+   cursorid2=document.Animator.addCursor(14,"0","-5");
+   document.Animator.setRGB(cursorid2,0,200,0);
+   document.Animator.setMass(cursorid2,0.1);
+   document.Animator.setDragable(cursorid2,true);  
+
+  
+   
+   cid=document.Animator.addCircle(15,"0","0");
+   document.Animator.setShowFVector(cid,true);
+   document.Animator.setDragable(cid,true);     
+   document.Animator.setMass(cid,0.1);   
+   document.Animator.setForce(cid,"-2*x*step(abs(x)-14)","-2*y*step(abs(y)-14)",0,0,0,0); 
+   
+   marker1=document.Animator.addArrow("3","4","5","5");
+   document.Animator.setForce(marker1,"0","0",0,0,0,0);
+   document.Animator.setRGB(marker1,255,0,0);
+   document.Animator.setShowFVector(marker1,true);
+   document.Animator.setAnimationSlave(cid,marker1);
+   
+   marker2=document.Animator.addArrow("0","0","5","5");
+   document.Animator.setForce(marker2,"0","0",0,0,0,0);
+   document.Animator.setRGB(marker2,0,250,0);
+   document.Animator.setShowFVector(marker2,true);
+   document.Animator.setAnimationSlave(cid,marker2);
+  
+   document.Animator.addInteraction(cursorid1,cid,force,"r"); 
+   document.Animator.addInteraction(cursorid2,cid,force,"r"); 
+   document.Animator.addInteraction(marker1,cursorid1,force,"r"); 
+   document.Animator.addInteraction(marker2,cursorid2,force,"r"); 
+       
+   document.Animator.setCaption("Forças");
+   document.Animator.setAutoRefresh(true);  
+   
+   
+    document.DataTable.setSeriesLabel(1,"vx (m/s)");
+    document.DataTable.setSeriesLabel(2,"vy (m/s)"); 
+    document.DataTable.setSeriesLabel(3,"ax (m/s^2)");
+    document.DataTable.setSeriesLabel(4,"ay (m/s^2)"); 
+
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    document.Animator.deleteDataConnections();
+    
+    document.Animator.makeDataConnection(cid,tid,1,"vx","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"vy","0"); 
+    document.Animator.makeDataConnection(cid,tid,3,"ax","0"); 
+    document.Animator.makeDataConnection(cid,tid,4,"ay","0"); 
+    
+    document.Animator.updateDataConnections();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 4.2</title>
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Exploração 4.2 - Forças atrativas e repulsivas</h2>
+
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator"
+        width="300" height="300" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="300" height="45"
+hspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="4">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+<div align="center">
+          <center>
+          <input type="button" value="começar" name="StartBtn"
+  onclick="document.Animator.forward()"><input type="button" value="parar" name="StopBtn"
+  onclick="document.Animator.pause()"></center></div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100" align="center">
+		<a
+        href="JavaScript:attractionDemo('-10*step(-r+10)')" style="text-decoration: none">
+		Atração</a></td>
+      <td width="100" align="center">
+		<a href="JavaScript:attractionDemo('4*step(-r+10)')" style="text-decoration: none">
+		Repulsão</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+	<p align="left"><b>Descrição da Animação</b></p>
+
+<p align="left">Os cursores verde e vermelho (em forma de cruz) da animação 
+exercem forças constantes, atrativas ou repulsivas, sobre a bola preta quando se 
+encontram a uma distância <b>inferior a 10 cm</b> daquela.&nbsp; Os vetores <u>
+verde</u> e
+<u>vermelho</u> representam as forças associadas a cada cursor, respetivamente; 
+o <u>vetor azul </u>representa a força resultante. Quando a bola toca uma 
+parede, esta exerce uma força sobre a bola, fazendo-a ricochetear. </p>
+
+<p align="left">Antes de começares a animação, seleciona o tipo de força 
+pretendida (atrativa ou repulsiva). Arrasta e posiciona no espaço os cursores 
+e/ou a bola <b>(a posição é dada em centímetros e o tempo em segundos). </b>
+Finalmente, pressiona o botão &quot;começar&quot; para ver o efeito das forças sobre a 
+bola.&nbsp;&nbsp; <a href="JavaScript:demo1()">
+Início</a>.</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+Exploração modificada por Paulo Simeão Carvalho e Edite Briosa.</p>
+
+<p style="margin-top: 0; margin-bottom: 0">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

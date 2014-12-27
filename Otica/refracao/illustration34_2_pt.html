@@ -1,0 +1,99 @@
+﻿<html xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 34.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("fiberoptic()",100);
+}
+  	
+function fiberoptic(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+	  document.Optics.addIndexChange(1.0,2.3);
+	  document.Optics.addIndexChange(2.0,-2.3);
+     document.Optics.setDirection(1);
+	  document.Optics.setPropertyDrag(true);
+	  document.Optics.setDrag(true);
+	  document.Optics.setRayRGB(255,255,255);
+     document.Optics.addISource(1.5,-0.8,100,-0.2);
+     document.Optics.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+</style>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 34.2 - <b>Fibras óticas</b></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="optics.OpticsApplet.class" name="Optics" width="300" 
+      height="400" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="PixPerUnit" value="100">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics">
+        <param name="Resources" value="optics_pt.rc">
+       </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p class="style1">
+   <b>Descrição da Animação</b></p>
+<p>
+   Quando a luz incide num meio ótico de índice de refração mais baixo do que o 
+	meio de onde partiu, segundo um ângulo maior que o ângulo crítico, toda a 
+	luz é refletida na interface entre os dois meios. Na animação, uma fonte de luz de raios paralelos 
+	está num meio com um índice de refração maior que o do meio envolvente <b>(o 
+	ângulo é dado em graus)</b>.&nbsp;
+	<a href="javascript:fiberoptic()">Início</a>.</p>
+<p class="style1" style="margin-top: 0; margin-bottom: 0">
+   &nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Ilustração da autoria de Melissa 
+Dancy.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa
+</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

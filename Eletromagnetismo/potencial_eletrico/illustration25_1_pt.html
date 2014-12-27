@@ -1,0 +1,216 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 25.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript" SRC="../../javascript/tools.js"> 
+</script>
+<script language="JavaScript"> 
+
+charge=0.0001;
+xo=-4.0;
+x=xo;
+count=0;
+y=2.5;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+	document.EField.setCaption("Seleciona uma carga");
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+   document.EField.setShowEOnDrag(true);
+   document.EField.setShowVOnDrag(true);
+   count=0;
+   x=xo;
+}
+
+
+function line(){
+      if(!loaded) return;
+      q1=eval(document.selection.A1.value);
+   
+   if(!checkRange(q1,1,6)){
+   alert("O valor da carga deve estar entre 1 C e 6 C. O valor inserido foi "+q1+" C.");
+   return;
+}
+   
+   document.EField.setDefault();
+   document.EField.setAutoRefresh(false);
+   document.EField.setShowTime(false);
+	document.EField.setCaption("");
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+   document.EField.setShowEOnDrag(true);
+   document.EField.setShowVOnDrag(true);
+   count=0;
+   x=xo;
+
+
+
+   
+   
+   for( i=0; i<2; i++){
+     
+     for( j=0; j<20; j++){
+       c1=document.EField.addCharge(x,y,-charge);
+       c1=document.EField.addCharge(x,-y,charge);
+       count++;
+       x+=0.2;
+}
+     
+}
+        document.EField.setPotential("-2*y*step(2.5-y)*step(y+2.5)",-4,4,-4,4);
+   tid=document.EField.addObject("testcharge","x=0,y=-1,r=4,q="+q1);
+     document.EField.setRGB(tid,255,0,0);
+     document.EField.setDragable(tid,true);
+  	id=document.EField.addObject("arrow","x=0,y=0,v=vy,h=vx");
+  	document.EField.setAnimationSlave(tid,id);
+  	id2=document.EField.addObject("text","text=vetor,x=0,y=0");
+  	document.EField.setDisplayOffset(id2,5,20);
+	document.EField.setAnimationSlave(id,id2);
+	id3=document.EField.addObject("text","text=velocidade,x=0,y=0");
+  	document.EField.setDisplayOffset(id3,5,10);
+	document.EField.setAnimationSlave(id,id3);
+
+  	
+   document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesRGB(1,0,255,0);  
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setSeriesRGB(2,255,0,255);  
+    document.DataGraph.setSeriesStyle(2,true,3);
+       document.DataGraph.setLastPointMarker(1,true); 
+	document.DataGraph.setMarkerSize(1,0.6); 
+        document.DataGraph.setLastPointMarker(2,true); 
+	document.DataGraph.setMarkerSize(2,0.6); 
+	document.DataGraph.setLabelX("Distância à placa inferior (m)");
+	document.DataGraph.setLabelY("Energia (J)"); 
+	  gid=document.DataGraph.getGraphID();
+     document.DataGraph.setAutoRefresh(true);
+  	document.EField.deleteDataConnections();
+ 	cid1=document.EField.makeDataConnection(tid,gid,1,"2.5+y","(vx*vx+vy*vy)/2");
+    cid2=document.EField.makeDataConnection(tid,gid,2,"2.5+y","p*q");
+    document.EField.updateDataConnections();    
+    document.EField.setAutoRefresh(true);
+    document.EField.forward();
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 25.1 - Energia e Potencial Elétrico</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center" rowspan="2">
+      <applet CODEBASE="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" NAME="EField" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="true">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Range" value="-4,4,-4,4">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField,DataGraph">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+      <td align="center">
+      
+      <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="300" height="230" mayscript>
+          <param name="XMin" value="0">
+          <param name="XMax" value="2">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+    <tr>
+      <td align="center">
+      
+      <b> <font color="#00FF00">− Ec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+      <font color="#FF00FF">− Ep</font></b></td>
+    </tr>
+    </table>
+  </center>
+</div>
+
+<form name="selection">
+ <p align="center"> 
+ <input 
+        type="button" value="inserir valor e começar" onclick="line()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	&nbsp;<b>carga&nbsp;=</b>&nbsp;
+  <input type="text" name="A1" size="3" value="1"><b> C</b>&nbsp;
+  </p>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+
+ <p style="margin-bottom: 0">A animação apresenta uma carga de prova positiva 
+	num campo elétrico uniforme, criado por duas placas paralelas com a mesma 
+	carga mas de sinal oposto.&nbsp; Arrasta a carga de prova entre as placas 
+	carregadas e posiciona-a em qualquer ponto; depois carrega no botão&nbsp; 
+	&quot;inserir valor e começar&quot; para a veres movimentar-se.&nbsp; Podes também ler 
+	a posição (<i>x</i>;<i>y</i>), o potencial elétrico (também designado por 
+	voltagem, <i>V</i>) e a intensidade do campo elétrico (<font face="Arial">|<i>E</i>|)
+	</font>na janela 
+	esquerda da animação.&nbsp; O gráfico da direita mostra a energia cinética e 
+	a energia potencial da carga de prova, em função da posição relativamente à 
+	placa inferior.&nbsp;&nbsp; <a href="JavaScript:line()">Início</a>.</p>
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

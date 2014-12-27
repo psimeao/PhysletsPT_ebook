@@ -1,0 +1,315 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 7.3</title>
+<script language="JavaScript">
+var timerID=0;
+var curid=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initAppletA()",100);
+}
+  	
+function initAppletA(){ 
+      if(!loaded) return;
+       timerID=0;     
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.shiftPixOrigin(17,0);
+   document.animator.setPixPerUnit(24.7);
+   document.animator.setGridUnit(1);
+  curid0=document.animator.addCircle(12,"-10","0"); 
+   document.animator.setRGB(curid0,0,0,0);
+   curid=document.animator.addCircle(10,"-10","0"); 
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainY(curid,0,-5,5);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,false); 
+     document.animator.setAnimationSlave(curid,curid0);
+   document.animator.setForce(curid,"-2*x","0",5,0,0,0); 
+   rid=document.animator.addRectangle(20,50,"-8","0"); 
+   sid=document.animator.addConnectorSpring(curid,rid);
+   document.animator.swapZOrder(sid,curid);   
+   document.animator.setRGB(sid,0,0,0);
+   document.animator.setOneShot(0,30, "Fim da Animação"); 
+   document.animator.setAutoRefresh(true);  
+   document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setDefault();
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-6,6);
+   document.DataGraph.setMinMaxY(0,28);
+
+   efunction=document.DataGraph.addFunction("x","25");
+   document.DataGraph.setRGB(efunction,0,215,215);
+      efunction=document.DataGraph.addFunction("x","25.03");
+   document.DataGraph.setRGB(efunction,0,215,215);
+         efunction=document.DataGraph.addFunction("x","24.97");
+   document.DataGraph.setRGB(efunction,0,215,215);
+   document.DataGraph.setLabelY("Energia (J)"); 
+   document.DataGraph.setLabelX("Posição (m)"); 
+   document.DataGraph.setTitle("Diagrama de Energia"); 
+   gid=document.DataGraph.getGraphID();
+   fid=document.DataGraph.addFunction("x","x*x");
+         document.DataGraph.clearSeries(2);
+   document.DataGraph.setLastPointMarker(2,true); 
+   document.DataGraph.setSeriesStyle(2,true,3);  
+   document.DataGraph.setMarkerSize(2,0.6); 
+   document.DataGraph.setSeriesRGB(2,0,0,255);
+   document.DataGraph.setAutoRefresh(true);
+   document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"Ec (J)");
+    document.DataTable.setSeriesLabel(2,"Ep (J)");  
+    document.DataTable.setSeriesLabel(3,"Ec + Ep (J)"); 
+    document.DataTable.setSeriesLabel(4,"Posição (m)"); 
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();  
+
+	document.Bar1.setMin(0);
+    document.Bar1.setMax(25);
+    document.Bar1.setPosRGB(255,150,0);
+    bid1=document.Bar1.getID(); 
+ 
+    document.Bar1.setNumericFormat("%+-3.1f");  
+    
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(25);
+    document.Bar2.setPosRGB(0,0,255);
+    bid2=document.Bar2.getID();    
+    document.Bar2.setNumericFormat("%+-3.1f");       
+	  
+	 
+     
+    document.animator.deleteDataConnections();	 
+      document.animator.makeDataConnection(curid,bid1,1,"0.5*vx*vx","0"); 
+     document.animator.makeDataConnection(curid,bid2,1,"x*x","0");  
+    document.animator.makeDataConnection(curid,gid,2,"x","x*x"); 
+    document.animator.makeDataConnection(curid,tid,1,"0.5*vx*vx","0"); 
+    document.animator.makeDataConnection(curid,tid,2,"x*x","0"); 
+    document.animator.makeDataConnection(curid,tid,3,"x*x+0.5*vx*vx","0"); 
+    document.animator.makeDataConnection(curid,tid,4,"x","0"); 
+    document.animator.updateDataConnections();
+}
+
+function initAppletB(){
+   if(!loaded) return;
+   timerID=0;      
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.shiftPixOrigin(17,0);
+   document.animator.setPixPerUnit(24.7);
+   document.animator.setGridUnit(1);
+   curid=document.animator.addCircle(10,"-10","0"); 
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainY(curid,0,-5,5);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,false); 
+
+   document.animator.setForce(curid,"-2*x","0",5,0,0,0); 
+   rid=document.animator.addRectangle(20,50,"-8","0"); 
+   sid=document.animator.addConnectorSpring(curid,rid);
+   document.animator.swapZOrder(sid,curid);   
+   document.animator.setRGB(sid,0,0,0);
+   document.animator.setOneShot(0,30, "Fim da Animação"); 
+   document.animator.setAutoRefresh(true);  
+   document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setDefault();
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-6,6);
+   document.DataGraph.setMinMaxY(0,28);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.setSeriesStyle(1,true,3);  
+   document.DataGraph.setMarkerSize(1,0.6); 
+   document.DataGraph.setSeriesRGB(1,255,150,0);
+      document.DataGraph.clearSeries(2);
+   document.DataGraph.setLastPointMarker(2,true); 
+   document.DataGraph.setSeriesStyle(2,true,3);  
+   document.DataGraph.setMarkerSize(2,0.6); 
+   document.DataGraph.setSeriesRGB(2,0,0,255);
+    document.DataGraph.clearSeries(3);
+   document.DataGraph.setLastPointMarker(3,true); 
+   document.DataGraph.setSeriesStyle(3,true,3);  
+   document.DataGraph.setMarkerSize(3,0.2); 
+   document.DataGraph.setSeriesRGB(3,0,215,215);
+   document.DataGraph.setLabelY("Energia (J)"); 
+   document.DataGraph.setLabelX("Posição (m)"); 
+   document.DataGraph.setTitle("Diagrama de Energia"); 
+   gid=document.DataGraph.getGraphID();
+   fid=document.DataGraph.addFunction("x","x*x");
+   document.DataGraph.setAutoRefresh(true);
+   document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"Ec (J)");
+    document.DataTable.setSeriesLabel(2,"Ep (J)");  
+    document.DataTable.setSeriesLabel(3,"Ec + Ep (J)"); 
+    document.DataTable.setSeriesLabel(4,"Posição (m)"); 
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();  
+
+	document.Bar1.setMin(0);
+    document.Bar1.setMax(25);
+    document.Bar1.setPosRGB(255,150,0);
+    bid1=document.Bar1.getID(); 
+ 
+    document.Bar1.setNumericFormat("%+-3.1f");  
+    
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(25);
+    document.Bar2.setPosRGB(0,0,255);
+    bid2=document.Bar2.getID();    
+    document.Bar2.setNumericFormat("%+-3.1f");       
+	  
+	 
+     
+    document.animator.deleteDataConnections();	 
+      document.animator.makeDataConnection(curid,bid1,1,"0.5*vx*vx","0"); 
+     document.animator.makeDataConnection(curid,bid2,1,"x*x","0");  
+    document.animator.makeDataConnection(curid,tid,1,"0.5*vx*vx","0"); 
+    document.animator.makeDataConnection(curid,tid,2,"x*x","0"); 
+    document.animator.makeDataConnection(curid,tid,3,"x*x+0.5*vx*vx","0"); 
+    document.animator.makeDataConnection(curid,tid,4,"x","0"); 
+    document.animator.makeDataConnection(curid,gid,1,"x","0.5*vx*vx"); 
+    document.animator.makeDataConnection(curid,gid,2,"x","x*x");
+    document.animator.makeDataConnection(curid,gid,3,"x","x*x+0.5*vx*vx");
+    document.animator.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 7.3 - Diagramas de Energia Potencial</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/" code="dataGraph.DataGraph.class"
+        archive="Physlets.jar" width="360"
+        height="300" align="middle" name="DataGraph" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td width="2" rowspan="3">
+      <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar1"  width="40" height="407" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+        </applet></td>
+      <td width="4" rowspan="3">
+      <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar2" width="40" height="407" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes" code="animator4.Animator.class"
+        archive="Physlets.jar"
+        align="Middle" width="360" height="50" name="animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,Bar1,Bar2,DataGraph,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+	<applet codebase="../../classes/" code="dataTable.DataTable.class"
+	archive="Physlets.jar" align="middle"
+	width="359" height="45" name="DataTable" mayscript>
+  		<param name="ShowScrollBars" value="false">
+  		<param name="LastOnTop" value="true">
+  		<param name="CellWidth" value="40">
+  		<param name="NumRows" value="1">
+  		<param name="NumCols" value="4">
+  		<param name="ShowControls" value="false">
+  		<param name="ShowRowHeader" value="false">
+  		<param name="ShowColHeader" value="true">
+  		<param name="SizeToFit" value="true">
+	</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <p align="center">
+  <input type="button" value="começar" onclick="document.animator.forward()"><input type="button"
+    value="pausa" onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo"
+    onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.animator.stepForward()"><input type="button" value="início"
+    onclick="document.animator.reset()"></p>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>Uma mola com uma constante de 2 N/m está presa a uma bola vermelha de massa 1 
+kg, inicialmente deslocada 5 m da sua posição de equilíbrio <b>(a posição é dada 
+em metros, o tempo em segundos e a energia em joule)</b>.&nbsp; As energias 
+cinética, potencial e total da bola são fornecidas no gráfico. Um gráfico de 
+barras mostra também a energia cinética e a energia potencial da bola. 
+Finalmente, a tabela mostra todos os valores de energia. <a href="javascript:initAppletA()">
+Início</a></p>
+<p>Podes também ver <a href="javascript:initAppletB()">&nbsp;a energia cinética</a> 
+no gráfico. </p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

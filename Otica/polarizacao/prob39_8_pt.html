@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("cWave()",100);
+}
+  	
+function cWave(){ 
+      if(!loaded) return;
+       timerID=0;
+         document.EMWave.deleteAll();
+		  document.EMWave.setLineDensity(2); 
+         document.EMWave.setPixPerUnit(8);
+         document.EMWave.setShapeRGB(22,100,234);
+         document.EMWave.addFilledSquare(-20,20);
+         document.EMWave.setShapeRGB(222,23,27);
+         document.EMWave.addAxes(0,0,-20,10);
+         document.EMWave.setShapeRGB(245,222,55);
+         document.EMWave.addCircularLeft(-20,20,10,0);
+         document.EMWave.forward();
+
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+    </script>
+
+
+<title>Polarization 9</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 39.8</h2>
+<div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+      <applet codebase="../../classes/" code="wave3d.Wave3d.class" archive="Physlets.jar"
+      name="EMWave" width="300" height="400" hspace="0" vspace="0" align="left" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Animate" value="true">
+        <param name="Orientation" value="0">
+        <param name="orientation" value="0">
+        <param name="framesPerSec" value="10">
+        <param name="translation" value=".4">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EMWave">
+      </applet>
+    </td>
+    </table>
+  </center>
+</div>
+<form>
+ <p align="center">
+	<input type="button" value="começar" onclick="document.EMWave.forward()"><input type="button" value="pausa" onclick="document.EMWave.pause()"><input type="button" 
+ value="passo &gt;&gt;" onclick="document.EMWave.stepTimeForward()"><input type="button" 
+ value="início" onclick="cWave()"></p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>A animação mostra o campo elétrico de uma onda luminosa. Clica e arrasta para 
+a direita ou para a esquerda, para rodares a animação em torno do eixo Z; clica e 
+arrasta para cima ou para baixo, para rodares a animação no plano XY.&nbsp; <script LANGUAGE="JavaScript">
+      </script>
+
+      <a href="JavaScript:cWave()">Início</a>.</p>
+
+<p>
+&nbsp;</p>
+<p align="left">Problema da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

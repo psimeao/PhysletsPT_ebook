@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("heat()",100);
+}
+  	
+function heat(){ 
+      if(!loaded) return;
+       timerID=0;   
+	document.animator.setAutoRefresh(false); 
+	document.animator.setDefault(); 
+	document.animator.shiftPixOrigin(-200,0); 
+	document.animator.setGridUnit(0);
+	id=document.animator.getClockID();
+	document.animator.setVisibility(id,false);
+	id=document.animator.getEnsembleID();
+   	document.animator.setShowCoordinates(id,false);
+        document.animator.setShapeRGB(0,0,0);
+	document.animator.addRectangle(400,140,"20","0");
+	document.animator.setShapeRGB(255,255,0);
+	document.animator.addObject("circle","r=10,x=-.5,y=0"); 
+	document.animator.setShapeRGB(255,0,0);
+	cid=document.animator.addObject("circle","r=5,x=3,y=0");
+	document.animator.setDragable(cid,true);
+	document.animator.setConstrainY(cid,0,-250,250);
+	document.animator.setShowConstraintPath(cid,false);
+	document.animator.setShapeRGB(255,255,255);
+	document.animator.addLine(0,4,"3","-2");
+	cap1=document.animator.addObject("text","text=Terra, x=2, y=3");
+	document.animator.setObjectFont(cap1,"Helvetica",1,10);
+	document.animator.addLine(0,4,"4.56","-2");
+	cap2=document.animator.addObject("text","text=Marte, x=4.5, y=-3");
+	document.animator.setObjectFont(cap2,"Helvetica",1,10);
+	document.animator.addLine(0,4,"15.58","-2");
+	cap3=document.animator.addObject("text","text=Júpiter, x=15, y=3");
+	document.animator.setObjectFont(cap3,"Helvetica",1,10);
+	document.animator.addLine(0,4,"28.6","-2");
+	cap4=document.animator.addObject("text","text=Saturno, x=28, y=3");
+	document.animator.setObjectFont(cap4,"Helvetica",1,10);
+	document.animator.addLine(0,4,"2.16","-2");
+	cap5=document.animator.addObject("text","text=Vénus, x=0.5, y=-3");
+	document.animator.setObjectFont(cap5,"Helvetica",1,10);
+
+  	
+  	document.DataTable1.setAutoRefresh(false);
+   	document.DataTable1.setDefault();
+   	document.DataTable1.setDataStride(1,2);
+   	document.DataTable1.setDataStride(2,2);
+   	document.DataTable1.setDataStride(3,2);
+   	document.DataTable1.setSeriesLabel(1,"posição (x10^6 km)");
+   	document.DataTable1.setSeriesLabel(2,"potência/área (W/m^2)");
+   	document.DataTable1.setSeriesLabel(3,"temperatura (K)");
+     document.DataTable1.sizeToFit(true);
+     tid=document.DataTable1.getTableID();
+
+   document.animator.makeDataConnection(cid,tid,1,"x*50","0");
+   document.animator.makeDataConnection(cid,tid,2,"(1370/(x/3)^2)","0");
+   document.animator.makeDataConnection(cid,tid,3,"(1370/(4*(5.67*10^-8)*(x/3)^2))^.25","0");
+   document.animator.updateDataConnections();
+   document.animator.setAutoRefresh(true);
+   document.DataTable1.setAutoRefresh(true);   
+} 
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 19.3</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 19.3 - Transferência de Energia como Radiação</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<p align="center">
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="400" height="140" name="animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.5">
+  <param name="showControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,DataTable1">
+        <param name="Resources" value="animator_pt.rc">
+  </applet></td>
+  <tr>
+    <td>
+		<applet code="dataTable.DataTable.class" archive="Physlets.jar" 
+   		codebase="../../classes/" align="baseline"
+		width="400" height="50"  name="DataTable1" mayscript>
+		<PARAM NAME="ShowScrollBars" VALUE="false">
+		<PARAM NAME="LastOnTop" VALUE="true">
+		<PARAM NAME="CellWidth" VALUE="40">
+		<PARAM NAME="NumRows" VALUE="1">
+		<PARAM NAME="NumCols" VALUE="3">
+		<PARAM NAME="ShowControls" VALUE="false">
+		<PARAM NAME="ShowRowHeader" VALUE="false">
+		<PARAM NAME="ShowColHeader" VALUE="true">
+		<param name="showControls" value="false">
+		</applet></td>
+</table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">A animação mostra uma bola vermelha que podes deslocar, 
+aproximando ou afastando do Sol e colocar em posições, que correspondem a alguns 
+dos planetas do sistema solar.&nbsp; <a href="Javascript:heat()">Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

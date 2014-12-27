@@ -1,0 +1,52 @@
+ppd 600 400 30.25 0 0.0
+er -10 50 54 320 0.0 0.0 false false true false false
+er 46 50 4 320 0.0 0.0 false false true false false
+pn 50 50 1
+pn 46 50 1
+pn 50 80 1
+pn 46 80 1
+pn 50 110 1
+pn 46 110 1
+pn 50 140 1
+pn 46 140 1
+pn 50 170 1
+pn 46 170 1
+pn 50 200 1
+pn 46 200 1
+pn 50 230 1
+pn 46 230 1
+pn 50 260 1
+pn 46 260 1
+pn 50 290 1
+pn 46 290 1
+pn 50 310 1
+pn 46 310 1
+pn 50 340 1
+pn 46 340 1
+pn 50 370 1
+pn 46 370 1
+ec 400 200 10 0.0 0.0 true false true false false
+pp 400 200 1
+pp 400 200 1
+pp 400 200 1
+ec 150 50 10 0.0 0.0 true false true false false
+pn 150 50 1
+pn 150 50 1
+pn 150 50 1
+ec 150 250 8 0.0 0.0 true false true false false
+pp 150 250 1
+pp 150 250 1
+ec 550 450 8 0.0 0.0 true false true false false
+pp 550 450 1
+pp 550 450 1
+ec 750 200 8 0.0 0.0 true false true false false
+pp 750 200 1
+pp 750 200 1
+ec 450 250 8 0.0 0.0 true false true false false
+pp 450 250 1
+pp 450 250 1
+ec 150 450 6 0.0 0.0 true false true false false
+pp 150 450 1
+ec 1050 800 6 0.0 0.0 true false true false false
+pp 1050 800 1
+pp 1050 800 1

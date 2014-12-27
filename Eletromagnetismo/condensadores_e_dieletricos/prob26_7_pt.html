@@ -1,0 +1,325 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 26.7</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+
+sid=0;lid=0;
+cond1=0;cond2=0;dielec=0;idc=0;text1=0;text2=0;
+circ1=0;circ2=0;line=0;arrow1=0;arrow2=0;text3=0;
+dummy=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initPage()",100);
+}
+  	
+function initPage(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowEOnDrag(true);
+   document.poisson.setShowVOnDrag(false);
+   document.poisson.setTolerance(.005);
+   document.poisson.set(0,"chargescale","scale=8");
+   document.poisson.setCaption("Animação 1");
+   
+   //circ1=document.poisson.addObject("circle","x=-0.5,y=0,r=1");
+   //circ2=document.poisson.addObject("circle","x=-0.8,y=0,r=1");
+   //document.poisson.addObject("connectorline","id1=circ1,id2=circ2"); // error in javaconsole
+   
+   document.poisson.set(0,"charge","plus,r=255,g=0,b=0");
+   document.poisson.set(0,"charge","minus,r=0,g=0,b=255");
+   
+   cond1=document.poisson.addObject("conductor","v=10,w=200,h=5,x=-.5,y=-.6");
+   		document.poisson.setResizable(cond1,false);
+   		document.poisson.setDragable(cond1,false);
+   		document.poisson.setRGB(cond1,255,216,160);
+   cond2=document.poisson.addObject("conductor","v=-10,w=200,h=5,x=-.5,y=.6");
+   		document.poisson.setResizable(cond2,false);
+   		document.poisson.setRGB(cond2,255,216,160);
+  
+
+   		
+   dielec=document.poisson.addObject("dielectric","chi=15,w=200,h=100,y=0,x=-.5");
+   		document.poisson.setDragable(dielec,true); 
+   		document.poisson.setResizable(dielec,false);
+   		document.poisson.setRGB(dielec,207,224,191);
+   	idc=document.poisson.addObject("constraint","xmin=-1, xmax=.7");
+   		document.poisson.setVisibility(idc,false);
+   		document.poisson.setConstraint(dielec,idc);
+   	//text1=document.poisson.addObject("text","text=Q=,calc=q");
+   	//	document.poisson.setDisplayOffset(text1,-80,0);
+   	//	document.poisson.setAnimationSlave(cond1,text1);
+   	//	document.poisson.setFormat(text1,"%-+5.1f");
+	text3=document.poisson.addObject("text","text=Arrasta-me");
+   		document.poisson.setDisplayOffset(text3,0,0);
+   		document.poisson.setAnimationSlave(dielec,text3);
+   	//text2=document.poisson.addObject("text","text=Q=,calc=q");
+   	//	document.poisson.setDisplayOffset(text2,30,0);
+   	//	document.poisson.setAnimationSlave(cond2,text2);
+   	//	document.poisson.setFormat(text2,"%-+5.1f");
+     
+   //arrow1=document.poisson.addObject("arrow","x=-0.1,y=-0.8,h=-0.4,v=0");
+   //arrow2=document.poisson.addObject("arrow","x=0.1,y=-0.8,h=0.4,v=0");
+   //text3=document.poisson.addObject("text","x=0,y=-0.85,text=U");
+   document.poisson.setShowCharge(cond1,true);
+   document.poisson.setShowCharge(cond2,true);
+   //document.poisson.setShowCharge(dielec,true);
+   document.poisson.setAutoRefresh(true);
+   
+   document.splotter.setAutoRefresh(false);
+   document.splotter.setDefault();
+   
+   sid=document.poisson.getPotentialArrayID();
+   
+   document.splotter.set(0,"type","threed");  
+   document.splotter.set(0,"mode","dualshade"); 
+   document.splotter.set(0,"style","xyticks=false,zticks=false"); 
+   document.splotter.set(0,"scale","zmin=-12,zmax=12");
+   document.splotter.setRotationAngle(160);
+   document.splotter.set(0,"view","scalefactor=10");
+   document.splotter.setElevationAngle(20);
+   lid=document.splotter.getPlotID();
+   
+   document.splotter2.setAutoRefresh(false);
+   document.splotter2.setDefault();
+   
+   sidq=document.poisson.getChargeArrayID();
+   
+   document.splotter2.set(0,"type","threed");  
+   document.splotter2.set(0,"mode","dualshade"); 
+   document.splotter2.set(0,"style","xyticks=false,zticks=false"); 
+   document.splotter2.set(0,"scale","zmin=-12,zmax=12");
+   document.splotter2.setRotationAngle(160);
+   document.splotter2.set(0,"view","scalefactor=10");
+   document.splotter2.setElevationAngle(20);
+   lid2=document.splotter2.getPlotID();
+   
+ 
+     
+   document.poisson.setAutoRefresh(true);
+   document.splotter.setAutoRefresh(true);
+    document.splotter2.setAutoRefresh(true); 
+   
+   document.poisson.deleteDataConnections();
+   document.poisson.makeDataConnection(sid,lid,0,"0","0");
+     document.poisson.makeDataConnection(sidq,lid2,0,"0","0");
+
+}
+
+
+function charge(){
+   if(!loaded) return;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowEOnDrag(true);
+   document.poisson.setShowVOnDrag(false);
+   document.poisson.setTolerance(.005);
+   document.poisson.set(0,"chargescale","scale=8");
+      document.poisson.setCaption("Animação 2");
+   
+   //circ1=document.poisson.addObject("circle","x=-0.5,y=0,r=1");
+   //circ2=document.poisson.addObject("circle","x=-0.8,y=0,r=1");
+   //document.poisson.addObject("connectorline","id1=circ1,id2=circ2"); // error in javaconsole
+   
+   document.poisson.set(0,"charge","plus,r=255,g=0,b=0");
+   document.poisson.set(0,"charge","minus,r=0,g=0,b=255");
+   
+   cond1=document.poisson.addObject("conductor","v=10,w=200,h=5,x=-.5,y=-.6");
+   		document.poisson.setResizable(cond1,false);
+   		document.poisson.setDragable(cond1,false);
+   		document.poisson.setRGB(cond1,255,216,160);
+   		document.poisson.setConstantQ(cond1,18,true);
+   cond2=document.poisson.addObject("conductor","v=-10,w=200,h=5,x=-.5,y=.6");
+   		document.poisson.setResizable(cond2,false);
+   		document.poisson.setRGB(cond2,255,216,160);
+   		document.poisson.setConstantQ(cond2,-18,true);
+  
+
+   		
+   dielec=document.poisson.addObject("dielectric","chi=15,w=200,h=100,y=0,x=-.5");
+   		document.poisson.setDragable(dielec,true); 
+   		document.poisson.setResizable(dielec,false);
+   		document.poisson.setRGB(dielec,207,224,191);
+   	idc=document.poisson.addObject("constraint","xmin=-1, xmax=.7");
+   		document.poisson.setVisibility(idc,false);
+   		document.poisson.setConstraint(dielec,idc);
+   	//text1=document.poisson.addObject("text","text=Q=,calc=q");
+   	//	document.poisson.setDisplayOffset(text1,-80,0);
+   	//	document.poisson.setAnimationSlave(cond1,text1);
+   	//	document.poisson.setFormat(text1,"%-+5.1f");
+	text3=document.poisson.addObject("text","text=Arrasta-me");
+   		document.poisson.setDisplayOffset(text3,0,0);
+   		document.poisson.setAnimationSlave(dielec,text3);
+   	//text2=document.poisson.addObject("text","text=Q=,calc=q");
+   	//	document.poisson.setDisplayOffset(text2,30,0);
+   	//	document.poisson.setAnimationSlave(cond2,text2);
+   	//	document.poisson.setFormat(text2,"%-+5.1f");
+     
+   //arrow1=document.poisson.addObject("arrow","x=-0.1,y=-0.8,h=-0.4,v=0");
+   //arrow2=document.poisson.addObject("arrow","x=0.1,y=-0.8,h=0.4,v=0");
+   //text3=document.poisson.addObject("text","x=0,y=-0.85,text=U");
+   document.poisson.setShowCharge(cond1,true);
+   document.poisson.setShowCharge(cond2,true);
+   //document.poisson.setShowCharge(dielec,true);
+   document.poisson.setAutoRefresh(true);
+   
+   document.splotter.setAutoRefresh(false);
+   document.splotter.setDefault();
+   
+   sid=document.poisson.getPotentialArrayID();
+   
+   document.splotter.set(0,"type","threed");  
+   document.splotter.set(0,"mode","dualshade"); 
+   document.splotter.set(0,"style","xyticks=false,zticks=false"); 
+   document.splotter.set(0,"scale","zmin=-12,zmax=12");
+   document.splotter.setRotationAngle(160);
+   document.splotter.set(0,"view","scalefactor=10");
+   document.splotter.setElevationAngle(20);
+   lid=document.splotter.getPlotID();
+   
+   document.splotter2.setAutoRefresh(false);
+   document.splotter2.setDefault();
+   
+   sidq=document.poisson.getChargeArrayID();
+   
+   document.splotter2.set(0,"type","threed");  
+   document.splotter2.set(0,"mode","dualshade"); 
+   document.splotter2.set(0,"style","xyticks=false,zticks=false"); 
+   document.splotter2.set(0,"scale","zmin=-12,zmax=12");
+   document.splotter2.setRotationAngle(160);
+   document.splotter2.set(0,"view","scalefactor=10");
+   document.splotter2.setElevationAngle(20);
+   lid2=document.splotter2.getPlotID();
+   
+ 
+     
+   document.poisson.setAutoRefresh(true);
+   document.splotter.setAutoRefresh(true);
+    document.splotter2.setAutoRefresh(true); 
+   
+   document.poisson.deleteDataConnections();
+   document.poisson.makeDataConnection(sid,lid,0,"0","0");
+     document.poisson.makeDataConnection(sidq,lid2,0,"0","0");
+
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+	
+</script>
+</head>
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 26.7</h2>
+    <div align="center">
+      <center>
+      <table border="1" bgcolor="#c0c0c0">
+        <tr>
+          <td>
+ <applet codebase="../../classes" archive="Physlets.jar"
+code="splotter.SPlotter.class" name="splotter" width="250" 
+height="250" hspace="0" vspace="0"
+align="middle" mayscript>
+  <param name="Function" value="x*y">
+  <param name="GridPts" value="32">
+  <param name="Levels" value="10">
+  <param name="Type" value="threed">
+  <param name="ShowControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="splotter,splotter2,poisson">
+        <param name="Resources" value="poisson_pt.rc">
+</applet></td>
+          <td>
+ <applet codebase="../../classes" archive="Physlets.jar"
+code="splotter.SPlotter.class" name="splotter2" width="250" 
+height="250" hspace="0" vspace="0"
+align="middle" mayscript>
+  <param name="Function" value="x*y">
+  <param name="GridPts" value="32">
+  <param name="Levels" value="10">
+  <param name="Type" value="threed">
+  <param name="ShowControls" value="false">
+  <param name="Resources" value="poisson_pt.rc">
+</applet></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+ <p align="center">
+ <applet code="poisson.Poisson.class" codebase="../../classes"
+archive="Physlets.jar" align="middle" width="507" height="250"
+name="poisson" mayscript>
+  <param name="ShowControls" value="false">
+  <param name="Range" value="-2,2,-1,1">
+  <param name="ShowContours" value="false">
+  <param name="ShowGrid" value="false">
+  <param name="ShowFieldVectors" value="false">
+  <param name="GridSize" value="50">
+  <param name="Gutter" value="24">
+  <param name="Resources" value="poisson_pt.rc">
+</applet></td>
+        </tr>
+      </table>
+      </center>
+</div>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:initPage()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:charge()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>As animações apresentam um condensador plano com um dielétrico amovível. Os 
+gráficos mostram o potencial elétrico (gráfico da esquerda) e a carga elétrica 
+(gráfico da direita), em função das coordenadas (<i>x</i>, <i>y</i>) da posição, na animação&nbsp; <b>
+(a posição é dada em metros e a intensidade do campo elétrico é dada em 
+newtons/coulomb)</b>.&nbsp;Podes clicar sobre um gráfico e rodá-lo, para teres uma 
+perspetiva diferente. Podes também mover o dielétrico para dentro ou para fora 
+do condensador, clicando no centro do dielétrico e arrastando-o com o botão do 
+rato.&nbsp;
+<a href="JavaScript:initPage()">Início</a>.    </p>
+
+<p><i>Nota:&nbsp; se a animação disser &quot;Falha na convergência&quot; depois de moveres 
+o dielétrico (em particular se o moveres de uma ponta à outra), clica novamente 
+sobre o dielétrico para obrigar a animação a recalcular.&nbsp; </i> </p>
+
+<p>&nbsp;</p>
+<p align="left"> <i>Problema da autoria de Anne J. Cox.<br>
+Script </i>da autoria de Morten Brydensholt.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

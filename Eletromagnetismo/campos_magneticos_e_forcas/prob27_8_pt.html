@@ -1,0 +1,180 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+
+var charge=-1
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;   
+   document.animator.setAutoRefresh(false); 
+   document.animator.setTolerance(0.1); 
+   document.animator.setDefault();
+   document.animator.setOneShot(0,1.28, "Fim da Animação");  
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(0);
+   
+   backgr=document.animator.addObject("rectangle","x=-11,y=9, h=100, w=170");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=10,y=0, h=300, w=250");
+   document.animator.setRGB(backgr,250,250,250);
+   backgr=document.animator.addObject("rectangle","x=-13,y=-7.5, h=150, w=200");
+   document.animator.setRGB(backgr,50,50,50);
+   
+   
+   bin=document.animator.addObject("text","x=-12,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-12,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-15,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-18,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-9,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=8.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   bin=document.animator.addObject("text","x=-6,y=5.5,text=x");
+   document.animator.setRGB(bin,150,150,150);
+   
+   numy=9;
+   for(p=0; p<numy; p++){
+      ypos=3*p;
+   
+   
+   numPart=8;
+   for(i=0; i<numPart; i++){
+   		xpos=3*i;
+   		xid=document.animator.addObject("text","x=-0.6+"+eval(xpos)+",y=11.5-"+eval(ypos)+",text=x");
+   		document.animator.setRGB(xid,150,150,150);
+   }}
+   
+   
+   id2=document.animator.addObject("rectangle","x=-11,y=13, h=50, w=170");
+   document.animator.setRGB(id2,128,255,128);
+   
+   
+   
+   document.animator.setSticky(id2,true);
+   id3=document.animator.addObject("rectangle","x=-11,y=2, h=50, w=170");
+   document.animator.setRGB(id3,128,128,255);
+   document.animator.setSticky(id3,true);
+   
+   document.animator.addObject("text","text=+ + + + + + + + + + + + +, x=-18.7, y=11");
+   document.animator.addObject("text","text=-  -  -  -  -  -  -  -  -  -  -  -, x=-18.7, y=3");
+
+   cid=document.animator.addObject("circle","x=-23, y=7.5, r=5, m=0.5");
+   document.animator.setRGB(cid,0,0,250);
+   document.animator.setTrail(cid,500);
+   document.animator.setSticky(cid,true);
+   document.animator.setForce(cid,"-"+eval(charge)+"*(step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*2*vy+step(x+2.5)*2*vy)","-"+eval(charge)+"*(-step(19.5-abs(x))*step(-2.5+abs(x))*step(-x)*(2*vx-80)-step(x+2.5)*vx*2)",-23,7.5,40,0);
+   document.animator.setDragable(cid,false); 
+ 
+   id4=document.animator.addObject("rectangle","x=-2.5,y=12, h=84, w=20");
+   document.animator.setRGB(id4,255,128,128);
+   document.animator.setSticky(id4,true);
+   id5=document.animator.addObject("rectangle","x=-2.5,y=-5, h=244, w=20");
+   document.animator.setRGB(id5,255,128,128);
+   id6=document.animator.addObject("rectangle","x=23,y=0, h=300, w=20");
+   document.animator.setRGB(id6,255,128,128);
+   document.animator.setSticky(id6,true);
+   id7=document.animator.addObject("rectangle","x=10,y=-15.5, h=20, w=250");
+   document.animator.setRGB(id7,255,128,128);
+   document.animator.setSticky(id7,true);
+   id8=document.animator.addObject("rectangle","x=10,y=15.5, h=20, w=250");
+   document.animator.setRGB(id8,255,128,128);
+   document.animator.setSticky(id8,true);
+   document.animator.setSticky(id5,true);
+   document.animator.setAutoRefresh(true);  
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 27.8</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 27.8</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+      <applet codebase="../../classes/"
+      archive="Physlets.jar" code="animator4.Animator.class"  
+      id="animator" name="animator" width="450" height="300" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.02">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+        <param name="Resources" value="animator_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="parameterForm">
+  <p align="center">
+  <input type="button" value="começar" 
+  onclick="document.animator.forward()"><input type="button" value="pausa" 
+  onclick="document.animator.pause()"><input type="button" value="passo &gt;&gt;" 
+  onclick="document.animator.stepForward()"><input type="button" value="início" 
+  onclick="init()"></p>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p style="margin-bottom: 0">A animação mostra uma partícula que atravessa um 
+espectrómetro de massa <b> (a posição é dada em metros e o tempo em segundos)</b>.&nbsp; 
+Existe um campo magnético constante que aponta para dentro do ecrã. Existe ainda 
+um campo elétrico constante, mas apenas na primeira região.&nbsp;
+<a href="JavaScript:init()">Início</a></p>
+<p><i><span style="color:black">(NOTA: Para uma introdução ao espectrómetro de 
+massa ver a
+</span><font color="#0000FF">Exploração 27.3</font> )</i></p>
+<p align="left">&nbsp;</p>
+<p align="left"> Problema da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

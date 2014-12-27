@@ -1,0 +1,327 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var gidV=0;
+var noc=10;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build0()",100);
+}
+
+function build0(){
+	if(!loaded) return;
+    timerID=0;
+    id[0]=0;
+    document.circuit.pause();
+    document.circuit.setDefault();
+    document.circuit.setGrid("rows=2,cols=4"); 
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+	document.circuit.addObject("wire","row=0,col=0,to=v,label=");
+    document.circuit.addObject("wire","row=0,col=3,to=v,label=");
+    document.circuit.parse();
+    document.circuit.reset();
+
+    document.dataGraph.setTitle("Seleciona uma Animação");
+
+ }
+ 
+ function build1(){
+	 document.circuit.setNumberOfDT(noc);
+	 document.circuit.setDT(1.0e-6);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(10);
+	    
+    document.circuit.setGrid("rows=2,cols=3");
+    id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=1.0,r=1.0E-9");
+    id[0]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=A,c=3.0E-6");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+    id[1]=document.circuit.addObject("resistor","row=0,col=2,to=v,label=,r=100");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.parse();
+    resetC();
+    document.dataGraph.setTitle("Circuito inicial");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t","-v");
+    document.circuit.updateDataConnections();
+ }
+
+
+function build2a(){
+	if(!loaded) return;
+    timerID=0;
+        document.circuit.pause();
+    document.circuit.setDefault();
+	 document.circuit.setNumberOfDT(noc);
+	 document.circuit.setDT(1.0e-6);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(10);
+	    
+    document.circuit.setGrid("rows=2,cols=4");
+    id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=1.0,r=1.0E-9");
+    id[0]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[3]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=,c=3.0E-6");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=2,to=v,label=A,c=3.0E-6");
+    id[1]=document.circuit.addObject("resistor","row=0,col=3,to=v,label=,r=100.0");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+
+
+    document.circuit.parse();
+    resetC();
+    document.dataGraph.setTitle("Gráfico A");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t/2","-v");
+    document.circuit.updateDataConnections();
+ }
+ 
+ function build2b(){
+ 	if(!loaded) return;
+    timerID=0;
+        document.circuit.pause();
+    document.circuit.setDefault();
+	 document.circuit.setNumberOfDT(noc);
+	 document.circuit.setDT(1.0e-6);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(10);
+	    
+    document.circuit.setGrid("rows=2,cols=4");
+    id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=1.0,r=1.0E-9");
+    id[0]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[3]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=,c=3.0E-6");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=2,to=v,label=A,c=3.0E-6");
+    id[1]=document.circuit.addObject("resistor","row=0,col=3,to=v,label=,r=100.0");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+
+
+    document.circuit.parse();
+    resetC();
+    document.dataGraph.setTitle("Gráfico B");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t*2","-v/2");
+    document.circuit.updateDataConnections();
+ }
+
+function build2c(){
+	if(!loaded) return;
+    timerID=0;
+        document.circuit.pause();
+    document.circuit.setDefault();
+	 document.circuit.setNumberOfDT(noc);
+	 document.circuit.setDT(1.0e-6);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(10);
+	    
+    document.circuit.setGrid("rows=2,cols=4");
+    id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=1.0,r=1.0E-9");
+    id[0]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[3]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=,c=3.0E-6");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=2,to=v,label=A,c=3.0E-6");
+    id[1]=document.circuit.addObject("resistor","row=0,col=3,to=v,label=,r=100.0");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+
+
+    document.circuit.parse();
+    resetC();
+    document.dataGraph.setTitle("Gráfico C");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t","-v");
+    document.circuit.updateDataConnections();
+ }
+
+function build2d(){
+	if(!loaded) return;
+    timerID=0;
+        document.circuit.pause();
+    document.circuit.setDefault();
+	 document.circuit.setNumberOfDT(noc);
+	 document.circuit.setDT(1.0e-6);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(10);
+	    
+    document.circuit.setGrid("rows=2,cols=4");
+    id[5]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=1.0,r=1.0E-9");
+    id[0]=document.circuit.addObject("switch","row=0,col=0,to=h,label=,open=0");
+    id[3]=document.circuit.addObject("capacitor","row=0,col=1,to=v,label=,c=3.0E-6");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=2,to=v,label=A,c=3.0E-6");
+    id[1]=document.circuit.addObject("resistor","row=0,col=3,to=v,label=,r=100.0");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.addObject("wire","row=0,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=0,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=2,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+
+
+    document.circuit.parse();
+    resetC();
+    document.dataGraph.setTitle("Gráfico D");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[2],gidV,1,"t/2","-v/2");
+    document.circuit.updateDataConnections();
+ }
+
+function change(){ 
+	if(!loaded) return;
+	v=0.0;//dummy value
+	document.circuit.pause();
+	//document.circuit.setValue(id[6],v); 
+	document.circuit.setValue(id[0],v.toString()); 
+	document.circuit.forward();
+}
+
+function resetC(){
+	if(!loaded) return;
+    isRunning=document.circuit.isClockRunning();
+    document.circuit.pause();
+    document.circuit.reset(); 
+    document.dataGraph.setDefault();
+    document.dataGraph.clearSeries(1);
+    document.dataGraph.setSeriesRGB(1,255,0,0);  
+    document.dataGraph.setSeriesStyle(1,true,3);
+    document.dataGraph.setLastPointMarker(1,true);     
+    document.dataGraph.setMarkerSize(1,0.6);
+    document.dataGraph.setAutoscaleX(true);
+    document.dataGraph.setAutoscaleY(false);
+    document.dataGraph.setMinMaxY(0,1);
+    document.dataGraph.setLabelX("Tempo (s)");  
+    document.dataGraph.setLabelY("d.d.p. (V)");
+    document.dataGraph.setFormat("%3.1e");
+    gidV=document.dataGraph.getGraphID();
+    if(isRunning)document.circuit.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 30.13</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Problema 30.13</span></h2>
+<div align="center">
+  <center>
+  <table border="2" cellspacing="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="200" name="circuit" mayscript>
+        <param name="numberofdt" value="10">
+        <param name="dt" value="1.0e-6">
+        <param name="noc" value="10">
+        <param name="fps" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="circuit,dataGraph">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+      <td>
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataGraph.DataGraph.class" 
+      name="dataGraph" width="300" height="200" mayscript>
+        <param name="XMin" value="0">
+        <param name="XMax" value="2">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+      </applet></span></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="Function">
+ <p align="center"><span lang="pt">
+	<input onclick="document.circuit.forward()" type="button" value="começar"><input 
+ type="button" value="pausa" onclick="document.circuit.pause()" name="pause"><input type="button" 
+ value="início" onclick="JavaScript:resetC()" name="resetb"><input type="button" value="abrir / fechar" 
+ onclick="Javascript:change()"> </span> </p>
+</form>
+<center>
+<table border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td align="center" width="120"><span lang="pt">
+	<a href="JavaScript:build1()" style="text-decoration: none">Circuito inicial</a></span></td>
+    <td align="center" width="100"><span lang="pt">
+	<a href="JavaScript:build2a()" style="text-decoration: none">Gráfico A</a>
+    </span>
+    </td>
+    <td align="center" width="100"><span lang="pt">
+	<a href="JavaScript:build2b()" style="text-decoration: none">Gráfico B</a></span></td>
+    <td align="center" width="100"><span lang="pt">
+	<a href="JavaScript:build2c()" style="text-decoration: none">Gráfico C</a></span></td>
+    <td align="center" width="100"><span lang="pt">
+	<a href="JavaScript:build2d()" style="text-decoration: none">Gráfico D</a></span></td>
+  </tr>
+</table>
+</center>
+<p align="center"><span lang="pt"><font color="#ff0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font></span></p>
+<p><span lang="pt">Nesta animação, cada gráfico apresenta a diferença de 
+potencial no condensador A. Corre a animação do <a href="JavaScript:build1()">
+Circuito inicial</a> para veres a diferença de potencial quando apenas está 
+presente um condensador (condensador A) no circuito. Inicialmente o condensador 
+deve ser carregado, pelo que depois deverás abrir o interruptor&nbsp; <b>(a 
+diferença de potencial é dada em volts, a resistência em ohms e o tempo em 
+segundos)</b>.&nbsp;</span></p>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Problema da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e Anne J. Cox.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

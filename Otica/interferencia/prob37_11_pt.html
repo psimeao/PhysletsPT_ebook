@@ -1,0 +1,292 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 37.11</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var lastID=0;
+var firstID=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("setDefault()",100);
+}
+  	
+function setDefault(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.reflection2.setDefault();
+	document.reflection2.setWavelength(56);
+	id1=document.reflection2.addObject("film","n=1,w=10");
+	id2=document.reflection2.addObject("film","n=1,w=17");
+	firstID=id1;
+	lastID=id2;
+	document.DataTable2.setDefault();
+   document.DataTable2.setSeriesLabel(1,"E (N/C)");
+   document.DataTable2.setSeriesLabel(2,"E ref (N/C)");  
+   document.DataTable2.setSeriesLabel(3,"E trans (N/C)");
+   document.DataTable2.setSeriesLabel(4,"Comp. onda (x10^-8 m)");
+   tid=document.DataTable2.getTableID();
+   document.reflection2.deleteDataConnections(); 
+   cid=document.reflection2.makeDataConnection(firstID,tid,1,"magRight","0"); 
+   document.reflection2.makeDataConnection(firstID,tid,2,"magLeft","0");  
+   document.reflection2.makeDataConnection(lastID,tid,3,"magRight","0");
+	document.reflection2.makeDataConnection(firstID,tid,4,"wavelength","0"); 
+	document.reflection2.forward();
+}
+
+function multiLayer6(){
+	if(!loaded) return;
+	document.reflection2.setAutoRefresh(false);	
+	document.reflection2.setDefault();
+	document.reflection2.setWavelength(56);
+	nh=2.3;
+	nl=1.35;
+	lamh=14/nh;
+	laml=14/nl;
+	lstr="n="+nl+",w="+laml;
+	hstr="n="+nh+",w="+lamh;
+
+	id1 = document.reflection2.addObject("film","n=1,w=10");
+	firstID=id1;
+	id2 = document.reflection2.addObject("film",hstr);
+	id3 = document.reflection2.addObject("film",lstr);
+	id4 = document.reflection2.addObject("film",hstr);
+	id5 = document.reflection2.addObject("film",lstr);
+	id6 = document.reflection2.addObject("film",hstr);
+	id7 = document.reflection2.addObject("film",lstr);
+	id8 = document.reflection2.addObject("film","n=1,w=17");
+	lastID=id8;
+	document.reflection2.setShowValue(id2,false);
+	document.reflection2.setShowValue(id3,false);
+	document.reflection2.setShowValue(id4,false);
+	document.reflection2.setShowValue(id5,false);
+	document.reflection2.setShowValue(id6,false);
+	document.reflection2.setShowValue(id7,false);	
+	document.reflection2.setRGB(id2,200,200,255);
+	document.reflection2.setRGB(id3,200,255,200);
+	document.reflection2.setRGB(id4,200,200,255);
+	document.reflection2.setRGB(id5,200,255,200);
+	document.reflection2.setRGB(id6,200,200,255);
+	document.reflection2.setRGB(id7,200,255,200);
+	document.reflection2.setAutoRefresh(true);
+	document.DataTable2.setDefault();
+   document.DataTable2.setSeriesLabel(1,"E (N/C)");
+   document.DataTable2.setSeriesLabel(2,"E ref (N/C)");  
+   document.DataTable2.setSeriesLabel(3,"E trans (N/C)");
+   document.DataTable2.setSeriesLabel(4,"Comp. onda (x10^-8 m)");
+   tid=document.DataTable2.getTableID();
+   document.reflection2.deleteDataConnections(); 
+   cid=document.reflection2.makeDataConnection(firstID,tid,1,"magRight","0"); 
+   document.reflection2.makeDataConnection(firstID,tid,2,"magLeft","0");  
+   document.reflection2.makeDataConnection(lastID,tid,3,"magRight","0");
+	document.reflection2.makeDataConnection(firstID,tid,4,"wavelength","0"); 
+   document.reflection2.setAutoRefresh(true);
+   document.reflection2.forward();
+
+}
+
+function addLayer(){
+		if(!loaded) return;
+		document.reflection2.setAutoRefresh(false);	
+		document.reflection2.setWavelength(56);	
+       nh=2.3;
+		nl=1.35;
+		lamh=14/nh;
+		laml=14/nl;
+		lstr="n="+nl+",w="+laml;
+	    hstr="n="+nh+",w="+lamh;
+	    if(lastID!=firstID){
+	       document.reflection2.removeObject(lastID);
+	    }
+	    idN2 = document.reflection2.addObject("film",hstr);
+		idN1=document.reflection2.addObject("film",lstr);
+		lastID=document.reflection2.addObject("film","n=1,w=17");
+		document.reflection2.setShowValue(idN1,false);
+		document.reflection2.setShowValue(idN2,false);      
+		document.reflection2.setRGB(idN1,200,200,255);
+	   document.reflection2.setRGB(idN2,200,255,200);
+		tid=document.DataTable2.getTableID(); 
+ 		document.reflection2.setAutoRefresh(true);
+ 		document.reflection2.deleteDataConnections(); 
+       cid=document.reflection2.makeDataConnection(firstID,tid,1,"magRight","0"); 
+       document.reflection2.makeDataConnection(firstID,tid,2,"magLeft","0");  
+       document.reflection2.makeDataConnection(lastID,tid,3,"magRight","0");
+	    document.reflection2.makeDataConnection(firstID,tid,4,"wavelength","0"); 
+ 		document.reflection2.forward();
+ 		
+}
+
+function multiLayer12(){
+	if(!loaded) return;
+	document.reflection2.setAutoRefresh(false);	
+	document.reflection2.setDefault();
+	document.reflection2.setWavelength(56);
+	nh=2.3;
+	nl=1.35;
+	lamh=14/nh;
+	laml=14/nl;
+   lstr="n="+nl+",w="+laml;
+	hstr="n="+nh+",w="+lamh;
+	id1 = document.reflection2.addObject("film","n=1,w=10");
+	firstID=id1;
+	id2 = document.reflection2.addObject("film",hstr);
+	id3 = document.reflection2.addObject("film",lstr);
+	id4 = document.reflection2.addObject("film",hstr);
+	id5 = document.reflection2.addObject("film",lstr);
+	id6 = document.reflection2.addObject("film",hstr);
+	id7 = document.reflection2.addObject("film",lstr);
+	id8 = document.reflection2.addObject("film",hstr);
+	id9 = document.reflection2.addObject("film",lstr);
+	id10 = document.reflection2.addObject("film",hstr);
+	id11 = document.reflection2.addObject("film",lstr);
+	id12 = document.reflection2.addObject("film",hstr);
+	id13 = document.reflection2.addObject("film",lstr);
+	id14 = document.reflection2.addObject("film","n=1,r=15");
+	lastID=id14;
+	document.reflection2.setShowValue(id2,false);
+	document.reflection2.setShowValue(id3,false);
+	document.reflection2.setShowValue(id4,false);
+	document.reflection2.setShowValue(id5,false);
+	document.reflection2.setShowValue(id6,false);
+	document.reflection2.setShowValue(id7,false);
+	document.reflection2.setShowValue(id8,false);
+	document.reflection2.setShowValue(id9,false);
+	document.reflection2.setShowValue(id10,false);
+	document.reflection2.setShowValue(id11,false);
+	document.reflection2.setShowValue(id12,false);
+	document.reflection2.setShowValue(id13,false);
+	document.reflection2.setRGB(id2,200,200,255);
+	document.reflection2.setRGB(id3,200,255,200);
+	document.reflection2.setRGB(id4,200,200,255);
+	document.reflection2.setRGB(id5,200,255,200);
+	document.reflection2.setRGB(id6,200,200,255);
+	document.reflection2.setRGB(id7,200,255,200);
+	document.reflection2.setRGB(id8,200,200,255);
+	document.reflection2.setRGB(id9,200,255,200);
+	document.reflection2.setRGB(id10,200,200,255);
+	document.reflection2.setRGB(id11,200,255,200);
+	document.reflection2.setRGB(id12,200,200,255);
+	document.reflection2.setRGB(id13,200,255,200);
+	document.reflection2.setAutoRefresh(true);
+	document.DataTable2.setDefault();
+   document.DataTable2.setSeriesLabel(1,"E (N/C)");
+   document.DataTable2.setSeriesLabel(2,"E ref (N/C)");  
+   document.DataTable2.setSeriesLabel(3,"E trans (N/C)");
+   document.DataTable2.setSeriesLabel(4,"Comp. onda (x10^-8 m)");
+   document.DataTable2.sizeToFit(true);
+   tid=document.DataTable2.getTableID();
+   document.reflection2.setAutoRefresh(true);
+   document.reflection2.deleteDataConnections(); 
+   cid=document.reflection2.makeDataConnection(firstID,tid,1,"magRight","0"); 
+   document.reflection2.makeDataConnection(firstID,tid,2,"magLeft","0");  
+   document.reflection2.makeDataConnection(lastID,tid,3,"magRight","0");
+	document.reflection2.makeDataConnection(firstID,tid,4,"wavelength","0"); 
+   document.reflection2.forward();
+
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 37.11</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <p align="center">
+    <applet code="reflection.ReflectionApplet.class" codebase="../../classes" 
+    align="middle" width="500" height="170" 
+    archive="Physlets.jar" 
+    name="reflection2" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="PPU" value="4">
+      <param name="MaxAmp" value="8">
+      <param name="Wavelength" value="5">
+      <param name="WaveVelocity" value="2">
+      <param name="FPS" value="15">
+    </applet></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <applet code="dataTable.DataTable.class" codebase="../../classes" 
+    align="middle" width="500" height="45" 
+    archive="Physlets.jar" 
+    name="DataTable2" mayscript>
+      <param name="ShowScrollBars" value="false">
+      <param name="SizeToFit" value="true">
+      <param name="LastOnTop" value="true">
+      <param name="CellWidth" value="87">
+      <param name="NumRows" value="1">
+      <param name="NumCols" value="4">
+      <param name="ShowControls" value="false">
+      <param name="ShowRowHeader" value="false">
+      <param name="ShowColHeader" value="true">
+       <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="reflection2,DataTable2">
+    </applet></td>
+  </tr>
+  <tr>
+    <td>
+    <p align="center">
+    <input type="button" name="addBtn" value="adicionar camada " 
+    onclick="addLayer()">&nbsp; 
+    <input type="button" name="sixLayerBtn" 
+    value="6 camadas " onclick="multiLayer6()">&nbsp; 
+    <input type="button" name="twelveLayerBtn" 
+    value="12 camadas" onclick="multiLayer12()">&nbsp; 
+    <input type="button" name="clearBtn" 
+    value="apagar" onclick="setDefault()"></td>
+  </tr>
+</table>
+</center>
+<form>
+  <p align="center">&nbsp;<input type="button" value="começar" 
+  onclick="document.reflection2.forward()"><input type="button" value="pausa" 
+  onclick="document.reflection2.pause()"><input type="button" 
+  value="passo &gt;&gt;" onclick="document.reflection2.stepTimeForward()"><input 
+  type="button" value="início" onclick="document.reflection2.reset();"></p>
+</form>
+<p></p>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">A animação mostra como a deposição de camadas alternadas de 
+materiais pode ser usada para criar um espelho <b>(a posição é dada em unidades 
+arbitrárias)</b>. Para explorares melhor este processo, vê a ilustração sobre os 
+espelhos dielétricos (<font color="#0000FF">Ilustração 37.2</font>). Cada 
+material, por si próprio, permite que a luz se transmita através dele; mas 
+quando embutido entre camadas de uma maneira particular, estes materiais 
+comportam-se como um espelho, refletindo a maior parte da radiação incidente.&nbsp;&nbsp;&nbsp;
+<a href="JavaScript:setDefault()">Início</a>.</p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

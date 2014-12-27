@@ -1,0 +1,238 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb3_1_0()",100);
+}
+  	
+function mjb3_1_0(){ 
+      if(!loaded) return;
+       timerID=0;
+   	id1=0;
+   	id2=0;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+   	document.Animator.shiftPixOrigin(0,-35);
+   	document.Animator.addRectangle(40,102,"12","1");
+   	document.Animator.addRectangle(850,10,"1","-4.5");
+        
+        document.Animator.setShapeRGB(0,180,180);
+   	document.Animator.addRectangle(38,100,"12","1");
+   	document.Animator.setShapeRGB(180,180,180);
+   	document.Animator.addRectangle(850,8,"1","-4.5");
+    id1=document.Animator.setCaption("Seleciona uma Animação");
+    document.Animator.setShowCoordinates(id1,true);
+    document.Animator.setCoordinateOffset(id1,0,-6);
+   	document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb3_1_1(){
+   	if(!loaded) return;
+   	id1=0;
+   	id2=0;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,-35);
+   	document.Animator.addImage("images/uppull.gif","-5.7+(3.3*t)*sin(4*t)","3.8+step(1-t)*(-1+t)-2.5+step(t-2)*(-0.1+2.95*(t-2))");
+   	document.Animator.addRectangle(40,102,"12","1");
+   	document.Animator.addRectangle(850,10,"1","-4.5");
+        
+        document.Animator.setShapeRGB(0,180,180);
+   	document.Animator.addRectangle(38,100,"12","1");
+   	document.Animator.setShapeRGB(180,180,180);
+   	document.Animator.addRectangle(850,8,"1","-4.5");
+   	document.Animator.setShapeRGB(0,0,0);
+   	id2=document.Animator.addCircle(10,"-5+(3.3*t)*sin(4*t)","step(1-t)*(-1+t)-2.5+step(t-2)*(2.97*(t-2))");
+   	document.Animator.setTrail(id2,300);
+   	document.Animator.setFootPrints(id2,0);
+   	document.Animator.setShapeRGB(0,0,255);
+   	document.Animator.addLine(0,1,"-5+(3.3*t)*sin(4*t)","0.5+step(1-t)*(-1+t)-2.5+step(t-2)*(2.95*(t-2))");
+   	document.Animator.setShapeRGB(255,0,0);
+    id1=document.Animator.setCaption("Animação 1");
+    document.Animator.setShowCoordinates(id1,true);
+    document.Animator.setCoordinateOffset(id1,0,-6);
+    document.Animator.setOneShot(0,5,"Fim da Animação");
+   	document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb3_1_2() { 
+	if(!loaded) return;
+	id1=0;
+  	id2=0;
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,-35);
+   	document.Animator.addImage("images/uppull.gif","(-5.7+15*t)*step(1-t)+8.9*step(t-1)+step(t-3.8)*0.5","0.26+step(t-1)*3.5*(t-1)*(1-step(t-3.8))+step(t-3.8)*9.78");
+   	document.Animator.addRectangle(40,102,"12","1");
+   	document.Animator.addRectangle(850,10,"1","-4.5");
+        
+        document.Animator.setShapeRGB(0,180,180);
+   	document.Animator.addRectangle(38,100,"12","1");
+   	document.Animator.setShapeRGB(180,180,180);
+   	document.Animator.addRectangle(850,8,"1","-4.5");
+   	document.Animator.setShapeRGB(0,0,0);
+   	id2=document.Animator.addCircle(10,"(-5+15*t)*step(1-t)+9.5*step(t-1)+step(t-3.8)*0.5","-3.5+step(t-1)*3.5*(t-1)*(1-step(t-3.8))+step(t-3.8)*10");
+   	document.Animator.setTrail(id2,300);
+   	document.Animator.setFootPrints(id2,0);
+   	document.Animator.setShapeRGB(0,0,255);
+   	document.Animator.addLine(0,1,"(-5+15*t)*step(1-t)+9.5*step(t-1)+step(t-3.8)*0.5","-3.1+step(t-1)*3.5*(t-1)*(1-step(t-3.8))+step(t-3.8)*10");
+   	document.Animator.setShapeRGB(255,0,0);
+   	id1=document.Animator.setCaption("Animação 2");
+    document.Animator.setShowCoordinates(id1,true);
+    document.Animator.setCoordinateOffset(id1,0,-6);
+    document.Animator.setOneShot(0,3.85,"Fim da Animação");
+}
+
+
+function mjb3_1_3() { 
+	if(!loaded) return;
+	id1=0;
+	id2=0;
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,-35);
+   	document.Animator.addImage("images/uppull.gif","(-5.7+4.42*t)","0.3+(8*t-1.5*t*t)");
+   	document.Animator.addRectangle(40,102,"12","1");
+   	document.Animator.addRectangle(850,10,"1","-4.5");
+        
+        document.Animator.setShapeRGB(0,180,180);
+   	document.Animator.addRectangle(38,100,"12","1");
+   	document.Animator.setShapeRGB(180,180,180);
+   	document.Animator.addRectangle(850,8,"1","-4.5");
+   	document.Animator.setShapeRGB(0,0,0);
+   	id2=document.Animator.addCircle(10,"(-5+4.42*t)","-3.5+(8.03*t-1.5*t*t)");
+   	document.Animator.setTrail(id2,300);
+   	document.Animator.setFootPrints(id2,0);
+   	document.Animator.setShapeRGB(0,0,255);
+   	document.Animator.addLine(0,1,"(-5+4.42*t)","-3.0+(8*t-1.5*t*t)");
+   	document.Animator.setShapeRGB(255,0,0);
+   	id1=document.Animator.setCaption("Animação 3");
+    document.Animator.setShowCoordinates(id1,true);
+    document.Animator.setCoordinateOffset(id1,0,-6);
+    document.Animator.setOneShot(0,3.4,"Fim da Animação");
+}
+
+
+function mjb3_1_4() { 
+	if(!loaded) return;
+	id1=0;
+	id2=0;
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,-35);
+   	document.Animator.addImage("images/uppull.gif","-5.7+(3.001*t)","3.8+step(1-t)*(-1+t)-2.5+step(t-2)*(-0.1+3*(t-2))");
+   	document.Animator.addRectangle(40,102,"12","1");
+   	document.Animator.addRectangle(850,10,"1","-4.5");
+        
+        document.Animator.setShapeRGB(0,180,180);
+   	document.Animator.addRectangle(38,100,"12","1");
+   	document.Animator.setShapeRGB(180,180,180);
+   	document.Animator.addRectangle(850,8,"1","-4.5");
+   	document.Animator.setShapeRGB(0,0,0);
+   	id2=document.Animator.addCircle(10,"-5+(3.001*t)","step(1-t)*(-1+t)-2.5+step(t-2)*(3*(t-2))");
+   	document.Animator.setTrail(id2,300);
+   	document.Animator.setFootPrints(id2,0);
+   	document.Animator.setShapeRGB(0,0,255);
+   	document.Animator.addLine(0,1,"-5+(3.001*t)","0.5+step(1-t)*(-1+t)-2.5+step(t-2)*(3*(t-2))");
+   	document.Animator.setShapeRGB(255,0,0);
+   	id1=document.Animator.setCaption("Animação 4");
+    document.Animator.setShowCoordinates(id1,true);
+    document.Animator.setCoordinateOffset(id1,0,-6);
+    document.Animator.setOneShot(0,5,"Fim da Animação");
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 6.4</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema<span lang="en-us"> 6.</span>4</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+		ARCHIVE="Physlets.jar" align="middle" width="400"
+		height="165" name="Animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.05">
+  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+</div>
+
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td  align="center">
+	&nbsp;
+	<a href="JavaScript:mjb3_1_1()" style="text-decoration: none">Animação 1</a></td>
+    <td  align="center">
+	&nbsp;
+	<a href="JavaScript:mjb3_1_2()" style="text-decoration: none">Animação 2</a></td>
+    <td  align="center">
+	&nbsp;
+	<a href="JavaScript:mjb3_1_3()" style="text-decoration: none">Animação 3</a></td>
+    <td  align="center">
+	&nbsp;
+	<a href="JavaScript:mjb3_1_4()" style="text-decoration: none">Animação 4</a></td>
+  </tr>
+</table>
+</center></div>
+
+       
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p align="left">Uma bola de <i>bowling</i> inicialmente em repouso, é levantada 
+desde o solo até à parte de cima de uma prateleira, por ação de um agente 
+exterior <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp; A bola 
+começa do repouso e acaba em repouso. &nbsp;<a href="JavaScript:mjb3_1_0()">Início</a></p>
+
+<p>&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

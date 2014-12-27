@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 8.6</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("brownian()",100);
+}
+  	
+function brownian(){ 
+      if(!loaded) return;
+       timerID=0;
+    n=80;
+    document.Molecular.setAutoRefresh(false); 
+    document.Molecular.setDefault();
+    
+    document.Molecular.setClockOneShot(0,5);
+    document.Molecular.setShowControls(false);
+    document.Molecular.setPeriodicH(false);
+    document.Molecular.setPeriodicV(false);
+    document.Molecular.createParticles(n);
+    for(i=0;i<n;i++){
+       document.Molecular.setParticleSize(i,0.2);
+       document.Molecular.setParticlePos(i,-1.2-(i%10)*0.5,-1.5+0.5*Math.floor(i/11.5));
+       document.Molecular.setParticleVel(i,0,0);
+    }
+    document.Molecular.setParticlePos(0,-14.6,0);
+    document.Molecular.setParticleVel(0,3,0);
+    document.Molecular.setParticleMass(0,80);
+    document.Molecular.setParticleRGB(0,255,0,0);
+    document.Molecular.setParticleSize(0,5);
+    pid=document.Molecular.addParticleDataSource(0);
+    document.Molecular.setAutoRefresh(true); 
+    
+    document.Bar.setNumericFormat("%+-3.1f"); 
+    document.Bar.setMin(0);
+    document.Bar.setMax(360);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID();
+    
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setSeriesLabel(2,"p(kg.m/s)");
+     document.DataTable.setSeriesLabel(3,"Ec (J)");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+   
+    document.Molecular.deleteDataConnections();  
+    document.Molecular.makeDataConnection(pid,bid,1,"vx*vx*m/2","0");
+    document.Molecular.makeDataConnection(pid,tid,1,"t","0");   
+    document.Molecular.makeDataConnection(pid,tid,2,"vx*m","0");
+    document.Molecular.makeDataConnection(pid,tid,3,"vx*vx*m/2","0");
+    document.Molecular.updateDataConnections();     
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 8.6 - Visão Microscópica de uma colisão</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="molecular.MolecularApplet.class" name="Molecular"  width="420"
+        height="150" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="InitialP" value="0">
+          <param name="Mode" value="5">
+          <param name="FPS" value="15">
+          <param name="dt" value="0.05">
+          <param name="PeriodicH" value="false">
+          <param name="PeriodicV" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Molecular,Bar,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+      <td align="center" rowspan="3">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar"  width="20" height="203" 
+         hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="272" height="45" hspace="0"
+vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="SpecForm">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="começar" onclick="document.Molecular.forward()"><input type="button"
+    value="pausa" onclick="document.Molecular.pause()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Molecular.stepForward()"><input type="button" value="início"
+    onclick="brownian()" name="resetBtn"></p>
+    </center>
+  </div>
+</form>
+<a href="JavaScript:brownian()">
+
+
+
+<p align="center"><span style="text-decoration: none"><font color="#FF0000"><b><i>
+Por favor espera até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+	</a>
+
+<p><b>Descrição da Animação</b></p>
+<p style="margin-bottom: 0">Nesta animação, uma bola vermelha de massa 80 kg, 
+com uma energia cinética inicial de 360 J, está dentro de uma caixa rígida que 
+contém um cilindro constituído por 80 pequenas esferas de 1 kg de massa cada uma <b>
+(a posição é dada em metros, o tempo em segundos e a energia do gráfico de 
+barras é dada em joules). </b>A bola vermelha colide com o cilindro e separa as 
+esferas que o constituem. A barra do gráfico mostra a energia cinética da bola 
+vermelha. A tabela apresenta o tempo decorrido, bem como o momento linear e a 
+energia cinética da bola vermelha. <a href="javascript:brownian()">
+Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

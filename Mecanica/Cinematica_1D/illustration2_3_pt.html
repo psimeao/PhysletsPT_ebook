@@ -1,0 +1,370 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="Javascript">
+var timerID=0;
+var start=0;
+var end=0;
+var endval=0;  
+var startval=0; 
+var slope=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+  		document.selection.reset();
+  		startvalue=document.selection.D1.value;
+       
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(5);
+   document.Animator.shiftPixOrigin(-100,0);
+ document.Animator.addObject("rectangle","x=0,y=-24,w=700,h=40");
+     rid=document.Animator.addObject("rectangle","x=0,y=-24,w=700,h=38");
+     document.Animator.setRGB(rid,155,155,155);
+     
+   document.Animator.setOneShot(0,12.0,"Fim da Animação");  
+  
+    cid=document.Animator.addObject("image","file=images/r_ghini.gif,x=-70+1*t*t,y=4");
+    document.Animator.setRGB(cid,255,0,0);
+    tid=document.Animator.addObject("text","text=x =,calc=x+70");
+     document.Animator.setRGB(tid,0,0,0);
+     document.Animator.setAnimationSlave(cid,tid);
+     document.Animator.setFormat(tid,"%-+5.1f");
+     document.Animator.setDisplayOffset(tid,65,-4);
+     document.Animator.setAutoRefresh(true);
+    
+     document.DataGraph.setAutoRefresh(false);      
+     document.DataGraph.setDefault();
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(-0.1,12.1);
+     document.DataGraph.setMinMaxY(-3,200);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);  
+     document.DataGraph.setMarkerSize(1,0.2);
+     document.DataGraph.setSeriesRGB(1,255,0,0);
+     document.DataGraph.setLabelY("x (cm)"); 
+     document.DataGraph.setLabelX("t (s)"); 
+     document.DataGraph.setTitle("Posição_{x} vs Tempo"); 
+     document.DataGraph.setLastPointMarker(1,true); 
+    
+     gid=document.DataGraph.getGraphID();
+     document.Animator.deleteDataConnections(); 
+     conid=document.Animator.makeDataConnection(cid,gid,1,"t","x+70");  
+     document.DataGraph.setAutoRefresh(true);  
+  
+     document.Animator.updateDataConnections();    
+}
+ 
+     
+function add_rise_run_slope(){
+  		if(!loaded) return;
+  		startvalue=document.selection.D1.value;
+       
+        if( !checkRange(startvalue,0,12)){
+     	alert("O instante inicial deve estar entre os 0 s e os 12 s. O valor inserido foi "+startvalue+" s.");
+     	return;
+} 
+		endvalue=document.selection.D2.value;
+       
+       	if( !checkRange(endvalue,0,12)){
+     	alert("O instante final deve estar entre os 0 s e os 12 s. O valor inserido foi "+endvalue+" s.");
+     	return;
+} 
+        interval=eval(endvalue-startvalue);
+       	if( !checkRange(interval,0.0001,12)){
+     	alert("O instante final deve ser superior ao instante inicial. O instante inicial inserido foi "+startvalue+" s e o instante final inserido foi "+endvalue+" s.");
+     	return;
+}   
+ 
+   	start=eval(document.selection.D1.value);
+   	end=eval(document.selection.D2.value);
+   	endval=eval(end*end);  
+   	startval=eval(start*start); 
+   	slope=eval(( endval-startval)/(end-start));
+   
+     document.DataGraph.deleteSeries(2);
+     document.DataGraph.deleteSeries(3);
+     document.DataGraph.deleteSeries(4);
+     document.DataGraph.deleteSeries(5);
+     document.DataGraph.deleteSeries(11);
+          
+     document.DataGraph.setSeriesStyle(2,true,0); 
+     document.DataGraph.setSeriesRGB(2,60,60,60);  
+     document.DataGraph.setLastPointMarker(2,false);
+     document.DataGraph.addDatum(2,start,0);
+     document.DataGraph.addDatum(2,start,startval);
+     document.DataGraph.setSeriesStyle(3,true,0);  
+     document.DataGraph.setSeriesRGB(3,60,60,60); 
+     document.DataGraph.setLastPointMarker(3,false);
+     document.DataGraph.addDatum(3,end,0);
+     document.DataGraph.addDatum(3,end,startval);
+     
+     document.DataGraph.setSeriesStyle(4,true,0);  
+     document.DataGraph.setSeriesRGB(4,0,255,0); 
+     document.DataGraph.setLastPointMarker(4,false);
+     document.DataGraph.addDatum(4,start,startval);
+     document.DataGraph.addDatum(4,end,startval);
+     
+     document.DataGraph.setSeriesStyle(5,true,0);  
+     document.DataGraph.setSeriesRGB(5,0,255,0); 
+     document.DataGraph.setLastPointMarker(5,false);
+     document.DataGraph.addDatum(5,end,startval);
+     document.DataGraph.addDatum(5,end,endval);
+     document.DataGraph.setSeriesStyle(11,true,0);  
+     document.DataGraph.setSeriesRGB(11,0,0,255); 
+     document.DataGraph.setLastPointMarker(11,false);
+     document.DataGraph.addDatum(11,start-1,startval-slope);
+     document.DataGraph.addDatum(11,end+1,endval+slope);
+
+}
+
+
+function startProb3(){
+   if(!loaded) return;
+   document.Animator3.setAutoRefresh(false);      
+   document.Animator3.setDefault();
+   document.Animator3.setPixPerUnit(2);
+   document.Animator3.setGridUnit(1);
+   id=document.Animator3.getEnsembleID();
+   document.Animator3.setShowCoordinates(id,false);
+   document.Animator3.setTimeDisplay(false);
+   document.Animator3.shiftPixOrigin(-140,-78);
+   pid=document.Animator2.getClockID();
+
+   document.Animator2.setAutoRefresh(false);      
+   document.Animator2.setDefault();
+   document.Animator2.setPixPerUnit(2);
+   document.Animator2.setGridUnit(5);
+   document.Animator2.shiftPixOrigin(-100,0);
+   document.Animator2.setOneShot(0,12,"Fim da Animação");  
+   document.Animator3.addObject("image","file=images/xvst_mjb.gif,x=-29,y=98");
+    document.Animator2.addObject("rectangle","x=0,y=-24,w=700,h=40");
+     rid=document.Animator2.addObject("rectangle","x=0,y=-24,w=700,h=38");
+     document.Animator2.setRGB(rid,155,155,155);
+     
+    lid=document.Animator3.addObject("line","h=20*cos(atan(0.9*t/13.5)),v=20*sin(atan(0.9*t/13.5)),x=0.5+13.5*t,y=-0.5+0.45*t*t");
+    document.Animator3.setRGB(lid,0,0,255);
+    lid=document.Animator3.addObject("line","h=-20*cos(atan(0.9*t/13.5)),v=-20*sin(atan(0.9*t/13.5)),x=0.5+13.5*t,y=-0.5+0.45*t*t");
+    document.Animator3.setRGB(lid,0,0,255);
+    sid=document.Animator3.addObject("circle","r=2,x=13.5*t,y=0.45*t*t");
+    document.Animator3.setRGB(sid,255,0,0);
+    document.Animator3.setTrail(sid,200);
+    document.Animator3.addObject("text","text=declive=,calc=2*t,x=-16+13.5*t,y=8+0.45*t*t");
+    cid=document.Animator2.addObject("image","file=images/r_ghini.gif,x=-70+1*t*t,y=4");
+    document.Animator2.setRGB(cid,255,0,0);
+    tid=document.Animator2.addObject("text","text=x=,calc=x+70");
+    document.Animator2.setRGB(tid,0,0,0);
+    document.Animator2.setAnimationSlave(cid,tid);
+    document.Animator2.setFormat(tid,"%-+5.1f");
+    document.Animator2.setDisplayOffset(tid,65,-4);
+    document.Animator3.setAutoRefresh(true);
+      document.Animator2.setAutoRefresh(true);  
+    document.Animator3.deleteDataConnections();	 
+    document.Animator3.updateDataConnections();
+    document.Animator3.setExternalClock(pid); 
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+		loaded=false;
+		timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 2.3 - traduzido 
+por Paulo Simeão Carvalho e Edite Briosa</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 2.3 - Velocidade média e Velocidade instantânea</h2>
+
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class" NAME="DataGraph" WIDTH="440" HEIGHT="230" HSPACE="0"
+    VSPACE="0" ALIGN="middle" mayscript>
+      <param name="Function">
+      <param name="XMin" value="-25">
+      <param name="XMax" value="25">
+      <param name="YMin" value="-1">
+      <param name="YMax" value="1">
+      <param name="DataFile">
+      <param name="AutoScaleX" value="false">
+      <param name="AutoScaleY" value="true">
+      <param name="ShowControls" value="false">
+    </applet>
+    </td>
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="440" HEIGHT="100"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="10">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="PixPerUnit" value="10">
+      <param name="GridUnit" value="1.0">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph">
+        <param name="Resources" value="animator_pt.rc">
+    </applet>
+    </td>
+  </tr>
+</table>
+</center></div>
+
+<form name="selection">
+  <div align="center"><center><p>
+    <input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="reiniciar a animação"
+  	onclick="document.Animator.reset()"></p>
+  </center></div>
+    <div align="center">
+      <b>
+      &nbsp;&nbsp;&nbsp;&nbsp; <i>t</i><sub>inicial</sub>: <input type="text" size="2" value="5"  name="D1"> 
+      s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>t</i><sub>final</sub>: <input type="text" size="2" value="10" name="D2"></td> 
+      s&nbsp;&nbsp;&nbsp;
+      </b>
+      <input type="button" value="mostrar avanço, elevação e declive" name="testbtn"
+  onclick="add_rise_run_slope()"></div>
+    <div align="center">
+      &nbsp;</div>
+      </div>
+    </div>
+  </center></div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>A animação mostra um Lamborghini de brinquedo cuja velocidade varia (neste 
+caso, aumenta) ao longo do tempo <b>(a posição é dada em centímetros e o tempo é 
+dado em segundos)</b>.&nbsp; 
+<a href="JavaScript:startProb()">
+Início</a></p>
+<p><i>Quando obtiveres um bom gráfico, podes fazer uma cópia carregando com o 
+botão direito do rato em cima do gráfico. Depois, podes aumentar o tamanho do 
+gráfico para veres melhor. </i></p>
+
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p><b>Sabias que ... </b></p>
+<p>Quando a velocidade de um objeto varia, dizemos que esse objeto está a 
+acelerar. Nesse caso, a velocidade média num determinado intervalo de tempo não 
+é igual à velocidade instantânea em cada instante desse intervalo. Como podemos 
+determinar a velocidade instantânea do objeto?&nbsp;</p>
+
+<p>Carrega no botão &quot;mostrar avanço, elevação e declive&quot; da animação. O declive 
+do segmento de reta azul representa a velocidade média&nbsp; do Lamborghini no 
+intervalo de tempo escolhido. À medida que o intervalo de tempo vai sendo 
+reduzido, o valor da velocidade média aproxima-se do da velocidade instantânea, 
+conforme mostra a animação <a
+href="JavaScript:startProb3()">Velocidade Instantânea</a>.&nbsp;</p>
+
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator3" WIDTH="400" HEIGHT="230"
+    HSPACE="0" VSPACE="0" ALIGN="Middle">
+      <param name="FPS" value="10">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="PixPerUnit" value="10">
+      <param name="GridUnit" value="1.0">
+        <param name="Resources" value="animator_pt.rc">
+    </applet>
+    </td>
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class"  name="Animator2" WIDTH="400" HEIGHT="100"
+    HSPACE="0" VSPACE="0" ALIGN="Middle">
+      <param name="FPS" value="10">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="PixPerUnit" value="10">
+      <param name="GridUnit" value="1.0">
+      <param name="Resources" value="animator_pt.rc">
+    </applet>
+    </td>
+  </tr>
+</table>
+</center></div>
+
+<form name="specForm2">
+  <div align="center"><center>
+    <p>
+    <input type="button" value="começar"
+  onclick="document.Animator3.forward()"><input type="button" value="pausa"
+  onclick="document.Animator3.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator3.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator3.stepForward()"><input type="button" value="início"
+  onclick="startProb3()"></p>
+  </center></div>
+</form>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+
+<p align="center"><a
+href="JavaScript:startProb3()">Velocidade Instantânea</a></p>
+
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="left">O valor da velocidade instantânea é assim dado pelo declive da 
+curva no gráfico posição <i>vs.</i> tempo, em qualquer instante. Sabemos também 
+que o declive é obtido pela primeira derivada da função, neste caso a derivada 
+da função <i>x</i>(t).&nbsp;O Lamborghini move-se de acordo com a equação: <i>x</i>(<i>t</i>) 
+= 1.0*<i>t</i><sup>2</sup>, pelo que o valor da sua velocidade é dado pela 
+função <i>v</i>(<i>t</i>) = 2*<i>t</i>, que é o declive mostrado na animação
+<a
+href="JavaScript:startProb3()">Velocidade Instantânea</a>.</p>
+
+<p align="left">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+	Manuel Filipe Costa</p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

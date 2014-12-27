@@ -1,0 +1,269 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script><script LANGUAGE="Javascript">
+var efield=0;  
+var velval=50; 
+var echarge=1;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+  		document.selection.reset();
+  		velval=document.selection.D1.value;      
+        if( !checkRange(velval,0,100)){
+     	alert("A velocidade inicial deve estar entre 0 e 100. O valor inserido foi:"+velval);
+     	return;
+        } 
+		efield=document.selection.D2.value;
+       
+       	if( !checkRange(efield,-20,20)){
+     	alert("O campo elétrico deve estar entre -20 e 20. O valor inserido foi:"+efield);
+     	return;
+         } 
+		echarge=document.selection.D3.value;
+       
+       	if( !checkRange(echarge,0,10)){
+     	alert("A carga deve estar entre 0 e 10. O valor inserido foi:"+echarge);
+     	return;
+        } 
+
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(0); 
+   document.Animator.shiftPixOrigin(-100,0);
+   
+   wallbot=document.Animator.addObject("rectangle","x=50,y=-38,h=20,w=500");
+   document.Animator.setSticky(wallbot,true);
+   document.Animator.setRGB(wallbot,255,255,255);
+      walltop=document.Animator.addObject("rectangle","x=50,y=38,h=20,w=500");
+   document.Animator.setSticky(walltop,true);
+      document.Animator.setRGB(walltop,255,255,255);
+   
+   document.Animator.addObject("rectangle","x=50,y=0,h=600,w=202");
+   idf=document.Animator.addObject("rectangle","x=50,y=0,h=398,w=200");
+   document.Animator.setRGB(idf,240,240,240);
+   
+   idtop=document.Animator.addObject("rectangle","x=50,y=35,h=15,w=200");
+   idbot=document.Animator.addObject("rectangle","x=50,y=-35,h=15,w=200");
+
+   
+  
+    if(efield>0){
+    document.Animator.setRGB(idbot,255,0,0);
+	document.Animator.addObject("text","x=0,y=-36,text=+  +  +  +  +  +  +  +  +  +  +  +  +");
+	
+     document.Animator.setRGB(idtop,0,0,255);
+    document.Animator.addObject("text","x=0,y=32,text=-   -   -   -   -   -   -   -   -   -   -   -");
+    }
+ 
+    
+        if(efield<0){
+    document.Animator.setRGB(idbot,0,0,255);
+	document.Animator.addObject("text","x=0,y=32,text=+  +  +  +  +  +  +  +  +  +  +  +  +");
+	
+     document.Animator.setRGB(idtop,255,0,0);
+    document.Animator.addObject("text","x=0,y=-36,text=-   -   -   -   -   -   -   -   -   -   -   -");
+    }
+   
+       if(efield==0){
+    document.Animator.setRGB(idbot,240,240,240);
+     document.Animator.setRGB(idtop,240,240,240);
+    }
+   
+   
+   idc=document.Animator.addObject("circle","x=-70,y=0,r=5");
+   document.Animator.setRGB(idc,0,0,255);
+   document.Animator.setForce(idc,"0","-step(x)*step(100-x)*"+efield*echarge,-70,0,eval(velval),0);
+   	document.Animator.setSticky(idc,true);
+   back=document.Animator.addObject("rectangle","x=173,y=0,w=15,h=300");
+      document.Animator.setSticky(back,true);
+   target=document.Animator.addObject("rectangle","x=173,y=25,w=15,h=10");
+   document.Animator.setRGB(target,0,255,0);
+  document.Animator.setTrail(idc,300);
+  document.Animator.setAutoRefresh(true);     
+}
+
+
+function runProb(){
+  		if(!loaded) return;
+  		velval=document.selection.D1.value;      
+        if( !checkRange(velval,0,100)){
+     	alert("A velocidade inicial deve estar entre 0 e 100. O valor inserido foi:"+velval);
+     	return;
+        } 
+		efield=document.selection.D2.value;
+       
+       	if( !checkRange(efield,-20,20)){
+     	alert("O campo eléctrico deve estar entre -20 e 20. O valor inserido foi:"+efield);
+     	return;
+         } 
+		echarge=document.selection.D3.value;
+       
+       	if( !checkRange(echarge,0,10)){
+     	alert("A carga deve estar entre 0 e 10. O valor inserido foi:"+echarge);
+     	return;
+        } 
+
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(0); 
+   document.Animator.shiftPixOrigin(-100,0);
+   
+   wallbot=document.Animator.addObject("rectangle","x=50,y=-38,h=20,w=500");
+   document.Animator.setSticky(wallbot,true);
+   document.Animator.setRGB(wallbot,255,255,255);
+      walltop=document.Animator.addObject("rectangle","x=50,y=38,h=20,w=500");
+   document.Animator.setSticky(walltop,true);
+      document.Animator.setRGB(walltop,255,255,255);
+   
+   document.Animator.addObject("rectangle","x=50,y=0,h=600,w=202");
+   idf=document.Animator.addObject("rectangle","x=50,y=0,h=398,w=200");
+   document.Animator.setRGB(idf,240,240,240);
+   
+   idtop=document.Animator.addObject("rectangle","x=50,y=35,h=15,w=200");
+   idbot=document.Animator.addObject("rectangle","x=50,y=-35,h=15,w=200");
+
+   
+  
+    if(efield>0){
+    document.Animator.setRGB(idbot,255,0,0);
+	document.Animator.addObject("text","x=0,y=-36,text=+  +  +  +  +  +  +  +  +  +  +  +  +");
+	
+     document.Animator.setRGB(idtop,0,0,255);
+    document.Animator.addObject("text","x=0,y=32,text=-   -   -   -   -   -   -   -   -   -   -   -");
+    }
+ 
+    
+        if(efield<0){
+    document.Animator.setRGB(idbot,0,0,255);
+	document.Animator.addObject("text","x=0,y=32,text=+  +  +  +  +  +  +  +  +  +  +  +  +");
+	
+     document.Animator.setRGB(idtop,255,0,0);
+    document.Animator.addObject("text","x=0,y=-36,text=-   -   -   -   -   -   -   -   -   -   -   -");
+    }
+   
+       if(efield==0){
+    document.Animator.setRGB(idbot,240,240,240);
+     document.Animator.setRGB(idtop,240,240,240);
+    }
+   
+   
+   idc=document.Animator.addObject("circle","x=-70,y=0,r=5");
+   document.Animator.setRGB(idc,0,0,255);
+   document.Animator.setForce(idc,"0","-step(x)*step(100-x)*"+efield*echarge,-70,0,eval(velval),0);
+   	document.Animator.setSticky(idc,true);
+   back=document.Animator.addObject("rectangle","x=173,y=0,w=15,h=300");
+      document.Animator.setSticky(back,true);
+   target=document.Animator.addObject("rectangle","x=173,y=25,w=15,h=10");
+   document.Animator.setRGB(target,0,255,0);
+  document.Animator.setTrail(idc,300);
+  document.Animator.setAutoRefresh(true); 
+  document.Animator.forward();     
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+   
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 23.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 23.4 - Usos Práticos de Cargas e Campos Elétricos</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+      CODE="animator4.Animator.class" name="Animator" WIDTH="500" HEIGHT="150" 
+      HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.1">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="registar valores e começar" 
+    onclick="JavaScript:runProb()"> 
+	<input type="button" value="continuar" 
+    onclick="document.Animator.forward()"><input type="button" 
+    value="pausa" onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;" 
+    onclick="document.Animator.stepForward()"><input type="button" 
+    value="início" onclick="startProb()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <b>&nbsp;&nbsp;&nbsp; carga =
+    <input type="text" size="2" value="1" name="D3">&nbsp;x 10<sup>-8 </sup>
+	C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;velocidade inicial = 
+	<input type="text" size="3" value="50" 
+    name="D1">
+    <td>cm/s&nbsp; <br>
+    campo elétrico =
+    <input type="text" size="2" value="0" name="D2"></td>&nbsp; x 10<sup>4</sup> 
+    N/C</b></div>
+  </div>
+  </div>
+  </center>
+  </div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<div align="center">
+  <p align="left"><b>Descrição da Animação</b></div>
+<div align="center">
+  <p align="left">Ao correr a animação com os valores previamente escolhidos, 
+	observamos que a carga positiva atravessa as placas sem se desviar, devido à 
+	ausência de campo elétrico entre aquelas <b>(a posição é dada em 
+	centímetros e o tempo em segundos)</b>.&nbsp;Introduz valores nas diferentes 
+	caixas de texto (carga, velocidade inicial e campo elétrico vertical) e 
+	corre a animação outra vez..&nbsp;
+	<a href="JavaScript:document.selection.reset();startProb()">Início</a>&nbsp; </div>
+<div align="center">
+  <p align="left" style="margin-bottom: 0">&nbsp;</div>
+<p align="left"> Ilustração da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+var id=0;
+var id1=0;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("wave()",100);
+}
+
+
+function wave(){
+	if(!loaded) return;
+timerID=0;
+document.EMWave.setDefault();
+document.slider.setDefault();
+         document.EMWave.setAutoRefresh(false);
+		  document.EMWave.setLineDensity(2); 
+         document.EMWave.setPixPerUnit(8);
+         document.EMWave.setShapeRGB(122,150,134);
+         document.EMWave.addFilledSquare(-25,20);
+         document.EMWave.setShapeRGB(12,25,25);
+         document.EMWave.addAxes(0,0,-25,15);
+         document.EMWave.setShapeRGB(35,135,255);
+         id1=document.EMWave.addLinear(-25,0,10,0,0);
+         document.EMWave.setShapeRGB(205,205,205);
+         document.EMWave.addGrid(0,20,20,1.57);         
+         document.EMWave.setShapeRGB(12,25,25);
+         document.EMWave.addGrid(0,20,0.25,1.57);
+         document.EMWave.setShapeRGB(35,135,255);
+         id=document.EMWave.addLinear(0,20,10,0,0);
+        document.EMWave.setAutoRefresh(true);
+        document.EMWave.forward();
+        	document.slider.setValue(0);
+ 	document.slider.setJSFunction("sliderMoved()");
+
+}
+
+function sliderMoved(){
+	 if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+	pol=document.slider.getValue();
+	amp=Math.cos(pol);
+	document.EMWave.setPolarization(id,eval(pol));
+		document.EMWave.setPolarization(id1,eval(pol));
+	document.EMWave.setXYFactor(id,amp);
+	timerID=0;
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+
+<title>Physlet Physics by Christian and Belloni: Problem 39.10</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 39.10</h2>
+<div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+      <applet codebase="../../classes/" code="wave3d.Wave3d.class" archive="Physlets.jar"
+      name="EMWave" width="300" height="400" hspace="0" vspace="0" align="left" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Animate" value="true">
+        <param name="Orientation" value="0">
+        <param name="orientation" value="0">
+        <param name="framesPerSec" value="10">
+        <param name="translation" value=".4">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EMWave,slider">
+      </applet>
+    </td>
+    <tr>
+    <td>
+ <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" width="300" 
+      height="25" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="min" value="0">
+        <param name="max" value="1.57">
+        <param name="value" value="0">
+        <param name="label" 
+        value="polarização (radianos)">
+      </applet></td>
+    </table>
+  </center>
+</div>
+ &nbsp;<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>A animação mostra uma onda incidente sobre um polarizador (com a direção 
+indicada pela linha a preto). Clica e arrasta para a direita ou para a esquerda, 
+para rodar sobre o eixo Z. Clica e arrasta para cima ou para baixo para rodar no 
+plano XY. Podes usar o cursor para alterar a polarização da onda de entrada; 
+isto também muda a amplitude da onda de saída.&nbsp; <a href="JavaScript:wave()">
+Início</a></p>
+<p>&nbsp;</p>
+<p>Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa </p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

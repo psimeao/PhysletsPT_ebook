@@ -1,0 +1,203 @@
+﻿<html xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Exploration 33.3</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var id6;
+var id7;
+var idc1;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob_1()",100);
+}
+  	
+function prob_1(){ 
+     if(!loaded) return;
+     timerID=0;
+     document.slider.setDefault();
+     document.slider.setValue(1);
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     id2=document.Optics.addObject("mirror","x=4,f=.7");
+     fid1=document.Optics.addObject("circle","x=3.3,y=0,r=2");
+     document.Optics.setRGB(fid1,255,0,255);
+	
+    
+     id7=document.Optics.addObject("source","x=1,y=.7,rays=false");
+      	document.Optics.setResizable(id7,false);
+       document.Optics.setDragable(id7,false);
+            
+ 	 id6=document.Optics.addObject("source","point,slope=0.3,x=1,y=0.35,inc=0.1");
+     idcl=document.Optics.addObject("constraint","xmin=1,xmax=1,ymin=0,ymax=.7");     
+       document.Optics.setVisibility(idcl,false);
+      document.Optics.setConstraint(id6,idcl);
+	document.Optics.setDragable(id6,true);
+	 sid=document.slider.getID();
+	  document.slider.deleteDataConnections();
+	 document.slider.makeDataConnection(sid, idcl, 6, "value","0");
+	 document.slider.makeDataConnection(sid, id7, 6, "value","0");
+	 document.slider.makeDataConnection(sid, id6, 6, "value","0");
+	 	 document.slider.updateDataConnections();
+	 document.Optics.setAutoRefresh(true);
+  
+}
+
+function point(){
+     if(!loaded) return;
+     timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     val=eval(document.slider.getValue());
+     id2=document.Optics.addObject("mirror","x=4,f=.7");
+     fid1=document.Optics.addObject("circle","x=3.3,y=0,r=2");
+     document.Optics.setRGB(fid1,255,0,255);
+	
+    
+     id7=document.Optics.addObject("source","x="+val+",y=.7,rays=false");
+      	document.Optics.setResizable(id7,false);
+       document.Optics.setDragable(id7,false);
+            
+ 	id6=document.Optics.addObject("source","point,slope=0.3,x="+val+",y=.35,inc=0.1");
+    idcl=document.Optics.addObject("constraint","xmin="+val+",xmax="+val+",ymin=0,ymax=.7");     
+    document.Optics.setVisibility(idcl,false);
+    document.Optics.setConstraint(id6,idcl);
+	document.Optics.setDragable(id6,true);
+
+	 sid=document.slider.getID();
+	 document.slider.deleteDataConnections();
+	 document.slider.makeDataConnection(sid, idcl, 6, "value","0");
+	 document.slider.makeDataConnection(sid, id7, 6, "value","0");
+	 document.slider.makeDataConnection(sid, id6, 6, "value","0");
+	 document.slider.updateDataConnections();
+	 document.Optics.setAutoRefresh(true);
+}
+
+function show_rays(){
+     if(!loaded) return;
+     timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     val=eval(document.slider.getValue());
+     id2=document.Optics.addObject("mirror","x=4,f=.7");
+     fid1=document.Optics.addObject("circle","x=3.3,y=0,r=2");
+     document.Optics.setRGB(fid1,255,0,255);
+	
+     id7=document.Optics.addObject("source","x="+val+",y=.7,rays=true");
+     document.Optics.setResizable(id7,false);
+     document.Optics.setDragable(id7,false);
+
+	 sid=document.slider.getID();
+	 document.slider.deleteDataConnections();
+	 document.slider.makeDataConnection(sid, id7, 6, "value","0");
+	 document.Optics.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+.style2 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.style3 {
+	font-family: "Times New Roman", Times, serif;
+}
+.style4 {
+	font-size: small;
+}
+</style>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Exploração 33.3 - Diagrama de raios</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0" width="610">
+    <tr>
+      <td colspan="3" width="600">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="optics.OpticsApplet.class" name="Optics" width="600" height="300" 
+      hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics,slider">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="342">
+      <p align="center">
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" width="342" hspace="0" vspace="0" align="right" mayscript style="height: 38px">
+        <param name="min" value="0">
+        <param name="max" value="4">
+        <param name="value" value="1">
+        <param name="label" value="Posição do objeto">
+        <param name="ShowControls" value="false">
+      </applet></td>
+      <td width="160">
+      <p align="center">&nbsp;<a href="JavaScript:point()" style="text-decoration: none">objeto com fonte pontual</a>&nbsp;</td>
+      <td width="86">
+      <p align="center">&nbsp;<a href="JavaScript:show_rays()" style="text-decoration: none">diagrama de raios</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+</td>
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p class="style1"><b>Descrição da Animação</b></p>
+<p class="style1"><span class="style3">
+<font face="Arial, Helvetica, sans-serif">Nesta animação vais</font><span style="line-height:115%;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;
+mso-ansi-language:PT;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><font face="Arial, Helvetica, sans-serif"> 
+utilizar diagramas de raios, de modo a determinar onde a imagem do 
+objeto irá estar: se será real ou virtual e se será direita ou invertida.</font></span></span><span class="style41"><span style="line-height: 115%; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: PT; mso-fareast-language: EN-US; mso-bidi-language: AR-SA" class="style3"><font face="Arial, Helvetica, sans-serif">
+</font>
+</span></span></p>
+<p class="style1"><span class="style3">
+<font face="Arial, Helvetica, sans-serif">Para</font></span><span class="style41"><span style="line-height: 115%; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: PT; mso-fareast-language: EN-US; mso-bidi-language: AR-SA" class="style3"><font face="Arial, Helvetica, sans-serif"> esquematizar o diagrama de raios do objeto, juntamente com as lentes 
+e a posição aproximada da imagem, precisas de saber onde é que convergem os 
+raios de luz provenientes de cada 
+ponto do objeto. Em vez de tentar desenhar um grande número de raios 
+de vários pontos do objeto, geralmente usam-se <u>três raios</u> a partir da ponta desse 
+objeto.</font></span></span></p>
+<p class="style1"><span class="style41">
+<span style="line-height: 115%; mso-ascii-theme-font: minor-latin; mso-fareast-font-family: Calibri; mso-fareast-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-ansi-language: PT; mso-fareast-language: EN-US; mso-bidi-language: AR-SA" class="style3">
+<font face="Arial, Helvetica, sans-serif">A animação apresenta uma seta (o 
+objeto) à qual está anexa uma fonte pontual de luz, um espelho e um ponto 
+cor-de-rosa que mostra o foco do espelho. </font> </span>
+</span>Podes mover o objeto usando o cursor <b>(</b><span style="mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: PT; mso-fareast-language: PT; mso-bidi-language: AR-SA"><strong>a 
+posição é dada em metros</strong></span><b>)</b>.<span class="style3"><span class="style4"> &nbsp;</span></span><a href="JavaScript:prob_1()"><font face="Arial"><span class="style4"><span style="font-size: 9pt">Início</span></span></font></a>.</p>
+<p align="left">&nbsp;</p>
+
+<p style="margin-top: 0; margin-bottom: 0">Exploração da autoria de Anne J. Cox.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

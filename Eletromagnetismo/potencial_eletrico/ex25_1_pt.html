@@ -1,0 +1,280 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 25.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var cid=0;
+var gid=0;
+var series=1;
+var conid=0;
+var cursor=0;
+var pid=0;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("probo()",100);
+}
+  	
+function probo(){ 
+      if(!loaded) return;
+       timerID=0;
+     cid=0;
+     pid=0;
+     gid=0;
+     series=1;
+     document.EField1.setAutoRefresh(false);
+     document.EField1.setDefault();
+          document.EField2.setAutoRefresh(false);
+     document.EField2.setDefault();
+     document.EField2.setShowTime(false);
+     document.EField1.setShowFieldVectors(true);
+     document.EField1.setShowTime(false);
+     document.EField2.setCaption("Seleciona um Potencial Elétrico");
+     document.EField1.setCaption("Campo Elétrico");
+     document.EField1.setPotential("-0.25/((x+1)*(x+1)+y*y+0.2)+1/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+      cid1=document.EField1.addObject("charge","q=0,x=1,y=0,r=5");
+     document.EField1.setVisibility(cid1,false);
+     cid2=document.EField1.addObject("charge","q=0,x=-1,y=0,r=5");
+     document.EField1.setVisibility(cid2,false);
+     gid=document.EField1.getGraphID();
+     document.EField1.setSeriesStyle(1,true,0);
+     document.EField1.setSeriesRGB(1,255,0,0);
+     document.EField1.deleteDataConnections();
+     cid=document.EField1.addObject("testcharge","x=0,y=0.5,r=2");
+     document.EField1.setRGB(cid,0,0,0);
+      document.EField1.setDragable(cid,true);
+     pid=document.EField1.addObject("image","file=images/pencil.gif");
+     conid=document.EField1.makeDataConnection(cid,gid,1,"x","y"); 
+     document.EField1.setConnectionBlock(conid,true); 
+     document.EField1.setAnimationSlave(cid,pid);
+    document.EField1.setDisplayOffset(pid,-3,53); 
+    document.EField1.setAutoRefresh(true);
+     document.EField2.setAutoRefresh(true);
+}
+
+function probof(){
+     if(!loaded) return;
+     cid=0;
+     pid=0;
+     gid=0;
+     series=1;
+   document.EField1.setAutoRefresh(false);
+     document.EField1.setDefault();
+     document.EField1.setShowFieldVectors(true);
+     document.EField1.setShowTime(false);
+     document.EField1.setCaption("Campo Elétrico");
+     document.EField1.setPotential("-0.25/((x+1)*(x+1)+y*y+0.2)+1/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+     cid1=document.EField1.addObject("charge","q=0,x=1,y=0,r=5");
+     document.EField1.setVisibility(cid1,false);
+     cid2=document.EField1.addObject("charge","q=0,x=-1,y=0,r=5");
+     document.EField1.setVisibility(cid2,false);
+     gid=document.EField1.getGraphID();
+     document.EField1.setSeriesStyle(1,true,0);
+     document.EField1.setSeriesRGB(1,255,0,0);
+     document.EField1.deleteDataConnections();
+     cid=document.EField1.addObject("testcharge","x=0,y=0.5,r=2");
+     document.EField1.setRGB(cid,0,0,0);
+      document.EField1.setDragable(cid,true);
+     pid=document.EField1.addObject("image","file=images/pencil.gif");
+     conid=document.EField1.makeDataConnection(cid,gid,1,"x","y"); 
+     document.EField1.setConnectionBlock(conid,true); 
+     document.EField1.setAnimationSlave(cid,pid);
+    document.EField1.setDisplayOffset(pid,-3,53); 
+     document.EField1.setShowEquipotentialOnDoubleClick(true); 
+       document.EField1.setAutoRefresh(true);
+
+}
+
+function pota(){
+     if(!loaded) return;
+     document.EField2.setAutoRefresh(false);
+     document.EField2.setDefault();
+     document.EField2.setShowTime(false);
+     document.EField2.setCaption("Potencial 1");
+     document.EField2.setShowContours(true);
+     document.EField2.setShowFieldLines(false);
+     document.EField2.setShowFieldVectors(false);
+     document.EField2.setShowForce(false);
+     document.EField2.setShowVOnDrag(false);
+     document.EField2.setPotential("-0.25/((x+1)*(x+1)+y*y+0.2)+1/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+     document.EField2.setAutoRefresh(true);   
+     }
+
+function potb(){
+     if(!loaded) return;
+     document.EField2.setAutoRefresh(false);
+     document.EField2.setDefault();
+     document.EField2.setShowTime(false);
+     document.EField2.setCaption("Potencial 2");
+     document.EField2.setShowContours(true);
+     document.EField2.setShowFieldLines(false);
+     document.EField2.setShowFieldVectors(false);
+     document.EField2.setShowForce(false);
+     document.EField2.setShowVOnDrag(false);
+     document.EField2.setPotential("-1/((x+1)*(x+1)+y*y+0.2)+1/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+     document.EField2.setAutoRefresh(true);   
+}
+function potc(){
+     if(!loaded) return;
+     document.EField2.setAutoRefresh(false);
+     document.EField2.setDefault();
+     document.EField2.setShowTime(false);
+     document.EField2.setCaption("Potencial 3");
+     document.EField2.setShowContours(true);
+     document.EField2.setShowFieldLines(false);
+     document.EField2.setShowFieldVectors(false);
+     document.EField2.setShowForce(false);
+     document.EField2.setShowVOnDrag(false);
+     document.EField2.setPotential("-0.25/(x*x+y*y+0.2)-0.5/((x+1)*(x+1)+y*y+0.2)+1/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+     document.EField2.setAutoRefresh(true); 
+ }
+function potd(){
+     if(!loaded) return;
+     document.EField2.setAutoRefresh(false);
+     document.EField2.setDefault();
+     document.EField2.setShowTime(false);
+     document.EField2.setCaption("Potencial 4");
+     document.EField2.setShowContours(true);
+     document.EField2.setShowFieldLines(false);
+     document.EField2.setShowFieldVectors(false);
+     document.EField2.setShowForce(false);
+     document.EField2.setShowVOnDrag(false);
+     document.EField2.setPotential("0.25/((x+1)*(x+1)+y*y+0.2)+0.25/((x-1)*(x-1)+y*y+0.2)",-2,2,-2,2);
+     document.EField2.setAutoRefresh(true); 
+          
+}
+
+
+function drawOn(){
+   document.EField1.setAutoRefresh(false);
+     document.EField1.setConnectionBlock(conid,false); 
+     document.EField1.setSeriesStyle(series,true,0);
+     document.EField1.setSeriesRGB(series,255,0,0);
+     document.EField1.setVisibility(pid,true);
+     document.EField1.setVisibility(cid,false);
+     document.EField1.setVisibility(cursor,false);
+     document.EField1.setAutoRefresh(true);
+}
+function drawOff(){
+     document.EField1.setAutoRefresh(false);
+     document.EField1.setVisibility(pid,false);
+     document.EField1.setVisibility(cid,true);
+     document.EField1.setVisibility(cursor,true);
+     document.EField1.setConnectionBlock(conid,true);
+     series++;
+     document.EField1.setSeriesStyle(series,true,0);
+     document.EField1.setSeriesRGB(series,255,0,0);
+     conid=document.EField1.makeDataConnection(cid,gid,series,"x","y");
+     document.EField1.setConnectionBlock(conid,true);
+     document.EField1.setAutoRefresh(true);
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Exploração 25.1 - Investigar as Linhas Equipotenciais</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="50%" align="center">
+      <applet CODEBASE="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" NAME="EField1" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="true">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Range" value="-2,2,-2,2">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField1,EField2">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+      <td width="50%" align="center">
+      <applet CODEBASE="../../classes/" archive="Physlets.jar" 
+      code="eField4.EField.class" NAME="EField2" WIDTH="250" 
+      HEIGHT="250" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-2,2,-2,2">
+        <param name="GridSize" value="64">
+        <param name="Resources" value="efield_pt.rc">
+     </applet></td>
+    </tr>
+    </table>
+  </center>
+</div>
+<form>
+<p align="center">
+<input type="button" 
+      value="desenhar" onclick="drawOn()"><input type="button" value="não desenhar" 
+      onclick="drawOff()"><input type="button" value="início" onclick="probo()">
+</p>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;&nbsp; <a href="JavaScript:pota()" style="text-decoration: none">Potencial 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp; <a href="JavaScript:potb()" style="text-decoration: none">Potencial 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp; <a href="JavaScript:potc()" style="text-decoration: none">Potencial 3</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp; <a href="JavaScript:potd()" style="text-decoration: none">Potencial 4</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>O painel da esquerda mostra um diagrama do campo elétrico.&nbsp; As setas 
+representam o sentido do campo elétrico e as cores representam a sua intensidade.&nbsp; <a href="JavaScript:probo()">Início</a></p>
+<p style="margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0"><b>Exploração</b></p>
+<p>Precisas de ajuda?&nbsp; <a href="JavaScript:probof()">Ativa as Linhas de 
+Contorno</a> para veres os verdadeiros contornos no diagrama do campo elétrico, 
+ao fazeres um duplo clique com o botão esquerdo do rato.</p>
+<p align="left"> &nbsp;</p>
+<p align="left"> Exploração da autoria de Mario Belloni e Wolfgang Christian, 
+modificada por Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

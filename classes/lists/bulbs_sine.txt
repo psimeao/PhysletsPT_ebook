@@ -1,0 +1,14 @@
+setGrid("rows=8,cols=5");
+setNumberOfDT(1000);
+setDT(0.01);
+setNOC(10);
+setFPS(10.0);
+addObject("wire","row=1,col=1,to=h");
+addObject("wire","row=2,col=1,to=v");
+addObject("bulb","row=1,col=2,to=v,v=10.0,w=10.0,label=B1");
+addObject("bulb","row=1,col=3,to=v,v=10.0,w=10.0,label=B2");
+addObject("source","row=1,col=1,to=v,d=1,func=10*sin(t*2*pi/10),label=");
+addObject("ameter","row=2,col=2,to=v,label=,d=1,r=0.1");
+addObject("wire","row=1,col=2,to=h");
+addObject("wire","row=2,col=2,to=h");
+addObject("wire","row=3,col=1,to=h");

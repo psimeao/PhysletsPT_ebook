@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var id1=0;
+var conid=0;
+var timerID=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("demo()",100);
+}
+
+
+function demo(){
+   if(!loaded) return;
+   timerID=0;      
+   document.Animator.setAutoRefresh(false); 
+   document.DataGraph.setAutoRefresh(false);     
+   document.Animator.setDefault();
+   document.Animator.shiftPixOrigin(0,30);
+   id1=document.Animator.addObject("circle","x=9.8, r=10, m=1");
+   document.Animator.setForce(id1,"0","-9.8*m",10,0,0,0);
+   document.Animator.setShowVVector(id1,true);
+   document.Animator.setConstrainR(id1,9.8,0,0);
+   document.Animator.setShowConstraintPath(id1,false);
+   document.Animator.setDragable(id1,false);
+   
+   id2=document.Animator.addObject("circle","x=0, y=0, r=2");
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.addObject("caption","text=Pêndulo");
+   
+   idarrow=document.Animator.addObject("arrow","h=fx/4, v=fy/4");
+   document.Animator.setRGB(idarrow,255,0,0);
+   document.Animator.setAnimationSlave(id1,idarrow);
+   
+   idarrow=document.Animator.addObject("arrow","h=0, v=-9.8*m/4");
+   document.Animator.setRGB(idarrow,0,0,255);
+   document.Animator.setAnimationSlave(id1,idarrow);
+   
+   document.Animator.setAutoRefresh(true);  
+
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-3,3);
+   document.DataGraph.setMinMaxY(-3,3);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setSeriesStyle(1,false,3);
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.setSeriesRGB(1,0,0,255);
+   document.DataGraph.setMarkerSize(1,0.3);
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.setLabelY("Ómega (rad/s)"); 
+   document.DataGraph.setLabelX("Teta (radianos)"); 
+   document.DataGraph.setTitle("Espaço de Fase"); 
+   gid=document.DataGraph.getGraphID();
+   document.DataGraph.setAutoRefresh(true);   
+   
+   document.Animator.deleteDataConnections(); 
+   omega="(x*vy-y*vx)/100";
+   theta="atan2(x,-y)";  // note the change in axes so that discontinuity occurs at the top of the swing
+   conid=document.Animator.makeDataConnection(id1,gid,1,theta,omega);  
+   document.Animator.updateDataConnections();
+}
+
+
+function  dragBob(){
+    document.Animator.pause();
+    document.Animator.setDragable(id1,true);
+    document.Animator.setConnectionBlock(conid,true);   
+}
+
+
+function forward(){
+    document.Animator.setConnectionBlock(conid,false);
+    document.Animator.setDragable(id1,false);
+    document.Animator.forward();
+}
+
+
+function step(){
+    document.Animator.setConnectionBlock(conid,false);
+    document.Animator.setDragable(id1,false);
+    document.Animator.stepForward();
+}
+
+
+function resetApplet(){
+    document.Animator.setConnectionBlock(conid,false);
+    document.Animator.setDragable(id1,false);
+    document.Animator.reset();
+    document.DataGraph.clearSeries(1);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 16.4</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Exploração 16.4 - Movimento Pendular, Forças e Espaço de Fase</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes"
+        archive="Physlets.jar" name="Animator" width="233"
+        height="240" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.05">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+          <param name="OnLoad" value="initApplets()">
+          <param name="AppletNames" value="Animator,DataGraph">
+          <param name="Resources" value="animator_pt.rc">
+      </applet></td>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="252" height="240"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="buttonForm">
+  <p align="center">
+  <input type="button" value="arrastar o pêndulo" onclick="dragBob();" name="dragBtn">&nbsp;<input type="button" value="começar" onclick="forward()"><input
+  type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+  value="passo &gt;&gt;" onclick="step()"><input type="button" value="início"
+  onclick="resetApplet()"></p>
+  <form>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p align="left"><span style="font-family: Arial">Um prumo de pêndulo de massa 1 
+kg é ligado a uma corda de comprimento 9.8 m, de massa desprezável, para formar 
+um pêndulo <b>(a posição é dada em metros e o tempo é dado em segundos)</b>. O 
+gráfico da velocidade angular (rad/s) em função do ângulo (rad) é representado 
+na animação. Este gráfico é, por vezes, chamado de representação do “<i>espaço 
+de fase</i>” do movimento. Adicionalmente,</span></p>
+<ul>
+    <li>
+	<p style="margin-top: 3px"><span style="font-family: Arial">A seta vermelha representa a força 
+	total</span></li>
+    <li>
+	<p style="margin-top: 3px"><span style="font-family: Arial">A seta azul representa a força 
+	gravítica </span></li>
+    <li>
+	<p style="margin-top: 3px"><span style="font-family: Arial">A seta verde representa a velocidade</span></li>
+</ul>
+  <p style="margin-bottom: 0"><span style="font-family: Arial">A representação 
+	do<i> espaço de fase</i> do movimento é apenas outra maneira de descrever o 
+	movimento de um objeto (tal como o da posição <i>vs</i><span style="color:red">.
+	</span>tempo). Por exemplo, como seria a representação do<i> espaço de fase</i> 
+	do<i> </i>movimento circular? Bem, <i>x </i>e <i>ν </i>&nbsp;teriam de ter a 
+	mesma frequência, teriam de estar desfasados um do outro por π/ 2 radianos 
+	(ou 90º), e</span> x<sub>máx</sub> e v<sub>máx</sub> 
+	<span style="font-family: Arial">teriam de ter a mesma magnitude. Isto 
+	acontece com o movimento harmónico simples, em que</span> ω = 1 rad/s.&nbsp;
+	<a href="javascript:demo()">Início</a></p>
+  
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+  
+  <p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+  
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

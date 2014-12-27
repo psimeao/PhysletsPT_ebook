@@ -1,0 +1,117 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 17.13</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initPage()",100);
+   }
+
+
+function initPage(){
+    if(!loaded) return;
+	timerID=0;
+	document.datagraph.setAutoRefresh(false);
+	document.datagraph.setDefault();
+	document.datagraph.setAutoscaleX(false);
+	document.datagraph.setAutoscaleY(false);
+	document.datagraph.setTimeDisplay(true);
+        document.datagraph.setDt(0.1);
+         document.datagraph.setFPS(10);
+	document.datagraph.setMinMaxY(-3,3);
+	document.datagraph.setMinMaxX(-8,8);  
+	document.datagraph.setLabelY("y (cm)");  
+	document.datagraph.setLabelX("x (cm)");
+	document.datagraph.setDrawZero(true);
+	fid=document.datagraph.addFunction("x","2.3*sin(2*pi/7.2*(x-1.9*t))");
+	fid2=document.datagraph.addFunction("x","1.2*sin(2*pi/8.1*(x-1.2*t))-10");
+	document.datagraph.setRGB(fid2,255,0,0);
+	document.datagraph.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Problema 17.13</h2>
+<div align="center">
+  <center>
+  <table border="1"  bgcolor="#C0C0C0">
+    <tr>
+      <td>
+	<applet CODEBASE="../../classes/" 
+	ARCHIVE="Physlets.jar" CODE="dataGraph.DataGraph.class" 
+	NAME="datagraph" WIDTH="500" HEIGHT="200" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript> 
+		<param name="ShowControls" value="false"> 
+		<param name="Function" value=""> 
+		<param name="DataFile" value=""> 
+		 		 <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="datagraph">
+        <param name="Resources" value="datagraph_pt.rc">
+	</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+  <form name="funcForm">
+      <P align="center">
+      <input type="button" value="começar"
+      onclick="document.datagraph.forward()"><input type="button" value="pausa"
+      onclick="document.datagraph.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.datagraph.stepTimeBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.datagraph.stepTimeForward()"> 
+      </form>
+</td>
+</tr></table>
+
+</td>
+
+  </tr>
+	<tr><td>
+
+    
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+<p align="left">A animação mostra a preto uma onda que se está a propagar
+<span lang="en-us">(<b>a posição é dada em centímetros e o tempo é dado em 
+segundos</b>).</span>&nbsp;
+<a href="javascript:initPage()">Início</a>.</p>
+
+    
+
+<p align="left">&nbsp;</p>
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+    
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

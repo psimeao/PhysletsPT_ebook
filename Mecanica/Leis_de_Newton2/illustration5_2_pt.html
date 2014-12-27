@@ -1,0 +1,320 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb10_8()",100);
+}
+  	
+function mjb10_8(){ 
+      if(!loaded) return;
+       timerID=0;
+  	document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+  	document.animator.setPixPerUnit(100);
+  	document.animator.setGridUnit(0);
+	document.animator.setTimeDisplay(false);
+	document.animator.shiftPixOrigin(0,0);
+     document.animator.addObject("text","text=Escolhe uma animação para começar,x=-1.25,y=-1.4");
+      lid1=document.animator.addObject("line","h=40,v=0,x=-1.5,y=0");
+      lid2=document.animator.addObject("line","v=40,h=0,x=0,y=-1.5");
+      document.animator.addObject("text","text=x+,x=1.25,y=-0.15");
+      document.animator.addObject("text","text=y+,x=0.1,y=1.35");
+      document.animator.setAutoRefresh(true);
+}
+
+function mjb10_8a(){
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+  	document.animator.setPixPerUnit(100);
+  	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(0,0);
+    document.animator.addObject("text","text=Velocidades inicial e final,x=-0.8,y=-1.4");
+      lid1=document.animator.addObject("line","h=40,v=0,x=-1.5,y=0");
+      lid2=document.animator.addObject("line","v=40,h=0,x=0,y=-1.5");
+      document.animator.addObject("text","text=x+,x=1.25,y=-0.15");
+      document.animator.addObject("text","text=y+,x=0.1,y=1.3");
+      document.animator.addObject("text","text=vf,x=-0.8,y=0.88+(100)*(1-step(t-0.3))");
+      document.animator.addObject("text","text=v0,x=-0.2,y=1+(100)*(1-step(t-0.25))+100*step(t-0.6)");
+      document.animator.addObject("text","text=-v0,x=-0.6,y=0.65+(100)*(1-step(t-0.6))");
+
+          id0=document.animator.addObject("circle","r=6,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id0,0,0,0);
+   id1=document.animator.addObject("circle","r=5,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id1,155,155,0);
+     aid=document.animator.addObject("arrow","h=-0.6*sin(2*pi*t),v=0.6*cos(2*pi*t),x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(aid,0,0,155);
+
+     aid=document.animator.addObject("arrow","h=-0.6,v=0,x=0,y=100-100*step(t-0.25)+1*100*step(t-0.72)+1");
+     document.animator.setRGB(aid,0,0,155);
+     aid=document.animator.addObject("arrow","h=-0.6*sin(2*pi*0.3),v=0.6*cos(2*pi*0.3),x=1*cos(2*pi*0.3),y=100-100*step(t-0.3)+1*sin(2*pi*0.3)");
+     document.animator.setRGB(aid,0,0,155);
+
+     
+   document.animator.setOneShot(0,5,"Fim da Animação");
+   document.animator.setAutoRefresh(true);
+}
+
+function mjb10_8b(){
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+  	document.animator.setPixPerUnit(100);
+  	document.animator.setGridUnit(0);
+	document.animator.addObject("text","text=Cálculo da aceleração,x=-0.8,y=-1.4");
+	document.animator.shiftPixOrigin(0,0);
+     lid1=document.animator.addObject("line","h=40,v=0,x=-1.5,y=0");
+      lid2=document.animator.addObject("line","v=40,h=0,x=0,y=-1.5");
+      document.animator.addObject("text","text=x+,x=1.25,y=-0.15");
+      document.animator.addObject("text","text=y+,x=0.1,y=1.3");
+      document.animator.addObject("text","text=vf,x=-0.8,y=0.88+(100)*(1-step(t-0.3))");
+      document.animator.addObject("text","text=v0,x=-0.2,y=1+(100)*(1-step(t-0.25))+100*step(t-0.6)");
+      document.animator.addObject("text","text=-v0,x=-0.6,y=0.65+(100)*(1-step(t-0.6))");
+      document.animator.addObject("text","text=dv,y=0.85,x=-0.22+(100)*(1-step(t-0.8))");
+      document.animator.addObject("text","text=dv=vf-v0,y=-1.15,x=-1+(100)*(1-step(t-0.8))"); 
+
+          id0=document.animator.addObject("circle","r=6,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id0,0,0,0);
+   id1=document.animator.addObject("circle","r=5,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id1,155,155,0);
+      aid=document.animator.addObject("arrow","h=-0.2*cos(2*pi*0.3),v=-0.2*sin(2*pi*0.3),x=1*cos(2*pi*0.3),y=1*sin(2*pi*0.3)+100*(1-step(t-0.86))");
+     document.animator.setRGB(aid,155,0,0);
+     aid=document.animator.addObject("arrow","h=-0.6*sin(2*pi*t),v=0.6*cos(2*pi*t),x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(aid,0,0,155);
+
+     aid=document.animator.addObject("arrow","h=-0.6,v=0,x=0,y=100-100*step(t-0.25)+1*100*step(t-0.72)+1");
+     document.animator.setRGB(aid,0,0,155);
+     aid=document.animator.addObject("arrow","h=-0.6*sin(2*pi*0.3),v=0.6*cos(2*pi*0.3),x=1*cos(2*pi*0.3),y=100-100*step(t-0.3)+1*sin(2*pi*0.3)");
+     document.animator.setRGB(aid,0,0,155);
+     aid=document.animator.addObject("arrow","h=0.6,v=0,x=-0.87*(t-0.5)*4*(1-step(t-0.75))-step(t-0.75)*0.87,y=100*(1-step(t-0.5))-0.22*(t-0.5)*4*(1-step(t-0.75))-step(t-0.75)*0.22+1");
+     document.animator.setRGB(aid,0,155,0);
+     
+     aid=document.animator.addObject("arrow","h=-0.6*4*(t-0.75)*cos(2*pi*0.3)*step(t-0.75),v=-0.6*4*(t-0.75)*sin(2*pi*0.3),x=1*cos(2*pi*0.3),y=100-100*step(t-0.75)+1*sin(2*pi*0.3)-100*step(t-1.175)");
+     document.animator.setRGB(aid,155,0,0);
+     
+   document.animator.setOneShot(0,5,"Fim da Animação");
+   document.animator.setAutoRefresh(true);
+}
+
+
+function mjb10_8c(){ 
+  	if(!loaded) return;
+  	document.animator.setAutoRefresh(false);
+    document.animator.setDefault();
+  	document.animator.setPixPerUnit(100);
+  	document.animator.setGridUnit(0);
+	document.animator.addObject("text","text=Velocidade e aceleração,x=-0.8,y=-1.4");
+	document.animator.shiftPixOrigin(0,0);
+     lid1=document.animator.addObject("line","h=40,v=0,x=-1.55,y=0");
+      lid2=document.animator.addObject("line","v=40,h=0,x=0,y=-1.5");
+      document.animator.addObject("text","text=x+,x=1.25,y=-0.15");
+      document.animator.addObject("text","text=y+,x=0.1,y=1.3");
+     id0=document.animator.addObject("circle","r=6,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id0,0,0,0);
+     id1=document.animator.addObject("circle","r=5,x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(id1,155,155,0);
+     aid=document.animator.addObject("arrow","h=-0.6*cos(2*pi*t),v=-0.6*sin(2*pi*t),x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(aid,155,0,0);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*t),v=0.4*cos(2*pi*t),x=1*cos(2*pi*t),y=1*sin(2*pi*t)");
+     document.animator.setRGB(aid,0,0,155);
+
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.25),v=0.4*cos(2*pi*0.25),x=1*cos(2*pi*0.25),y=100-100*step(t-0.25)+1*sin(2*pi*0.25)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.3),v=0.4*cos(2*pi*0.3),x=1*cos(2*pi*0.3),y=100-100*step(t-0.3)+1*sin(2*pi*0.3)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.35),v=0.4*cos(2*pi*0.35),x=1*cos(2*pi*0.35),y=100-100*step(t-0.35)+1*sin(2*pi*0.35)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.4),v=0.4*cos(2*pi*0.4),x=1*cos(2*pi*0.4),y=100-100*step(t-0.4)+1*sin(2*pi*0.4)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.45),v=0.4*cos(2*pi*0.45),x=1*cos(2*pi*0.45),y=100-100*step(t-0.45)+1*sin(2*pi*0.45)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.5),v=0.4*cos(2*pi*0.5),x=1*cos(2*pi*0.5),y=100-100*step(t-0.5)+1*sin(2*pi*0.5)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.55),v=0.4*cos(2*pi*0.55),x=1*cos(2*pi*0.55),y=100-100*step(t-0.55)+1*sin(2*pi*0.55)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.6),v=0.4*cos(2*pi*0.6),x=1*cos(2*pi*0.6),y=100-100*step(t-0.6)+1*sin(2*pi*0.6)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.65),v=0.4*cos(2*pi*0.65),x=1*cos(2*pi*0.65),y=100-100*step(t-0.65)+1*sin(2*pi*0.65)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.7),v=0.4*cos(2*pi*0.7),x=1*cos(2*pi*0.7),y=100-100*step(t-0.7)+1*sin(2*pi*0.7)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.75),v=0.4*cos(2*pi*0.75),x=1*cos(2*pi*0.75),y=100-100*step(t-0.75)+1*sin(2*pi*0.75)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.7),v=0.4*cos(2*pi*0.7),x=1*cos(2*pi*0.7),y=100-100*step(t-0.7)+1*sin(2*pi*0.7)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.75),v=0.4*cos(2*pi*0.75),x=1*cos(2*pi*0.75),y=100-100*step(t-0.75)+1*sin(2*pi*0.75)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.7),v=0.4*cos(2*pi*0.7),x=1*cos(2*pi*0.7),y=100-100*step(t-0.7)+1*sin(2*pi*0.7)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.75),v=0.4*cos(2*pi*0.75),x=1*cos(2*pi*0.75),y=100-100*step(t-0.75)+1*sin(2*pi*0.75)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.8),v=0.4*cos(2*pi*0.8),x=1*cos(2*pi*0.8),y=100-100*step(t-0.8)+1*sin(2*pi*0.8)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.85),v=0.4*cos(2*pi*0.85),x=1*cos(2*pi*0.85),y=100-100*step(t-0.85)+1*sin(2*pi*0.85)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.9),v=0.4*cos(2*pi*0.9),x=1*cos(2*pi*0.9),y=100-100*step(t-0.9)+1*sin(2*pi*0.9)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*0.95),v=0.4*cos(2*pi*0.95),x=1*cos(2*pi*0.95),y=100-100*step(t-0.95)+1*sin(2*pi*0.95)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*1.0),v=0.4*cos(2*pi*1.0),x=1*cos(2*pi*1.0),y=100-100*step(t-1.0)+1*sin(2*pi*1.0)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*1.05),v=0.4*cos(2*pi*1.05),x=1*cos(2*pi*1.05),y=100-100*step(t-1.05)+1*sin(2*pi*1.05)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*1.1),v=0.4*cos(2*pi*1.1),x=1*cos(2*pi*1.1),y=100-100*step(t-1.1)+1*sin(2*pi*1.1)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*1.15),v=0.4*cos(2*pi*1.15),x=1*cos(2*pi*1.15),y=100-100*step(t-1.15)+1*sin(2*pi*1.15)");
+     document.animator.setRGB(aid,0,55,55);
+     aid=document.animator.addObject("arrow","h=-0.4*sin(2*pi*1.2),v=0.4*cos(2*pi*1.2),x=1*cos(2*pi*1.2),y=100-100*step(t-1.2)+1*sin(2*pi*1.2)");
+     document.animator.setRGB(aid,0,55,55);
+     
+   document.animator.setOneShot(0,5,"Fim da Animação");
+   document.animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 5.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 5.2 - Movimento Circular Uniforme: <b>F</b><sub>c</sub> 
+e <b>a</b><sub>c</sub> </h2>
+
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+ARCHIVE="Physlets.jar" align="middle" width="300"
+height="300" name="animator" mayscript>
+  <param name="FPS" value="15">
+  <param name="dt" value="0.002">
+  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.animator.forward()"><input type="button" value="pausa"
+      onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.animator.stepForward()"><input type="button" value="início"
+      onclick="document.animator.reset()"> </p>
+      </center></div>
+    </form>
+</div>
+
+       
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>Observa a animação, onde <b>a posição é dada em metros e o tempo em segundos</b>.&nbsp; 
+Esta animação mostra um objeto movendo-se numa trajetória circular com uma 
+velocidade de valor constante. A aceleração experimentada pelo objeto pode ser 
+calculada, se medirmos a variação do vetor velocidade num dado intervalo de 
+tempo.&nbsp; <a href="JavaScript:mjb10_8()">Início</a>. </p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>Exploração</b></p>
+<ol type="a">
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0">Corre a
+	<a href="JavaScript:mjb10_8a()">animação 1</a> até obteres dois vetores 
+	velocidade em instantes diferentes. Qual a direção e sentido do vetor 
+	&quot;variação de velocidade&quot;?</p></li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0">Corre agora a
+	<a href="JavaScript:mjb10_8b()">animação 2</a> e compara o valor obtido com 
+	o previsto. De que forma podes relacionar o vetor vermelho com a aceleração 
+	do objeto? </p></li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0">Como prevês que 
+	sejam os vetores velocidade e aceleração, em qualquer posição da trajetória 
+	circular descrita pelo objeto? Faz uma representação esquemática desses 
+	vetores para pelo menos quatro posições diferentes.</p>
+	</li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0">Compara a 
+	representação gráfica que construíste com a da
+	<a href="JavaScript:mjb10_8c()">animação 3</a> .</p></li>
+</ol>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"><b>Sabias que...</b></p>
+
+<p>O <b>Movimento Circular Uniforme</b> é uma composição interessante de 
+conceitos a uma e duas dimensões. Durante o movimento circular uniforme, o <u>
+valor da velocidade do objeto é constante</u> - é isto que significa o termo 
+&quot;uniforme&quot; neste movimento. Contudo, o vetor velocidade muda constantemente de 
+sentido e direção ao longo do tempo (embora como já se disse o seu valor 
+absoluto permaneça constante).
+<a href="JavaScript:mjb10_8a()">Desenha dois vetores velocidade</a> para te 
+convenceres que a direção da velocidade varia no tempo. Lembra-te que a 
+velocidade é um <u>vetor sempre tangente à trajetória</u>. </p>
+<p>E quanto à aceleração, poderá um objeto mover-se numa trajetória circular com 
+uma aceleração constante? Sim, pode!! E porquê? Para responder a esta questão, 
+tens de recordar que, por definição, <u>a aceleração é a grandeza física que nos 
+diz de quanto variou a velocidade em cada segundo</u>. A aceleração é uma 
+grandeza vetorial e assim, o vetor aceleração tem a mesma direção e sentido que 
+o vetor &quot;variação de velocidade&quot;! Em que sentido aponta então o vetor que 
+representa a variação da velocidade? Bem, ele aponta para o centro da trajetória 
+circular. Isto então permite
+<a href="JavaScript:mjb10_8b()">calcular a aceleração</a> do objeto. </p>
+<p>Como existe esta aceleração, então é porque o movimento descrito se deve à 
+existência de uma força (ou a um conjunto de forças, obtendo-se daí uma força 
+resultante), que aponta diretamente para o centro da circunferência. (Nota: se o 
+movimento não for circular e uniforme, a força resultante pode apontar em 
+qualquer direção e sentido). </p>
+<p>À direção que passa pelo centro da circunferência chamamos <u>direção radial</u>; 
+como o vetor aceleração (e consequentemente também o vetor força) do movimento 
+circular uniforme aponta para o centro da circunferência, ele tem o sentido <u>
+centrípeto</u> e por isso falamos em <b>aceleração centrípeta</b> e em <b>força 
+centrípeta</b>.</p>
+
+<p>Portanto, no <b>movimento circular uniforme, </b>o vetor <u>velocidade é 
+sempre tangente à trajetória</u> circular e os vetores <u>aceleração e força 
+centrípeta apontam sempre para o centro da circunferência</u>. A animação 
+seguinte mostra os vetores <a href="JavaScript:mjb10_8c()">velocidade e 
+aceleração</a> enquanto o objeto descreve o movimento circular com velocidade de 
+valor constante. </p>
+
+<p>&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

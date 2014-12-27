@@ -1,0 +1,427 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  
+  <script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("gaslaw1(1,4)",100);
+}
+  	
+function gaslaw1(initM,initv){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.setDefaultMass(initM);
+     document.Molecular.setDefaultSize(0.3);
+     document.Molecular.createParticles(1);
+     document.Molecular.setParticlePos(0,0,0);
+     document.Molecular.setParticleVel(0,initv,0);
+     document.Molecular.setParticleRGB(0,250,0,250);
+     id1=document.Molecular.addParticleDataSource(0);
+     eid=document.Molecular.getEnsembleID();
+
+	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.setTitle("");
+     document.DataGraph.deleteAllSeries();
+     document.DataGraph.setAutoscaleX(true);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.deleteAllSeries();
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.clearSeries(3);
+     
+     document.DataGraph.setSeriesRGB(2,250,0,250);
+	 document.DataGraph.setSeriesLegend(2,55,50,"velocidade");
+     document.DataGraph.setSeriesRGB(1,0,0,255);  
+     document.DataGraph.setSeriesLegend(1,55,20,"momento linear transmitido à parede");
+     document.DataGraph.setLabelX("Tempo");
+       
+
+     document.DataGraph.setSeriesStyle(1,true,3);  
+      document.DataGraph.setMarkerSize(1,0.6); 
+      document.DataGraph.setSeriesStyle(2,true,3);  
+      document.DataGraph.setMarkerSize(2,0.6); 
+	document.DataGraph.setLastPointMarker(1,true);  
+	document.DataGraph.setLastPointMarker(2,true); 
+
+ 
+      gid=document.DataGraph.getGraphID();
+
+	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"massa");
+	document.DataTable.setSeriesLabel(2,"velocidade");
+	document.DataTable.setSeriesLabel(3,"N");
+	document.DataTable.setSeriesLabel(4,"T");
+	document.DataTable.setSeriesLabel(5,"Volume");
+	document.DataTable.setSeriesLabel(6,"P = N*T/V");
+	document.DataTable.addDatum(1,initM);
+
+
+	
+     tid=document.DataTable.getTableID();
+     
+     document.Molecular.deleteDataConnections();
+     document.Molecular.makeDataConnection(id1,tid,2,"vx","0");
+	 document.Molecular.makeDataConnection(eid,tid,3,"n","0");
+     document.Molecular.makeDataConnection(eid,tid,4,"t","0");
+     document.Molecular.makeDataConnection(eid,tid,5,"v-24.36","0");
+     document.Molecular.makeDataConnection(eid,tid,6,"p","0"); 
+	 document.Molecular.makeDataConnection(eid,gid,1,"tempo","pr");
+     document.Molecular.makeDataConnection(id1,gid,2,"t","vx");
+     document.Molecular.updateDataConnections();
+    document.DataGraph.setAutoRefresh(true);
+    document.Molecular.setAutoRefresh(true);
+}
+
+function gaslaw2(){
+     if(!loaded) return;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.setDefaultMass(1);
+     document.Molecular.setDefaultSize(.3);
+     document.Molecular.createParticles(2);
+     document.Molecular.setParticleRGB(0,0,250,250);
+     document.Molecular.setParticlePos(0,0,0);
+     document.Molecular.setParticleVel(0,4,0);
+     id1=document.Molecular.addParticleDataSource(0);
+      document.Molecular.setParticleRGB(1,250,0,250);
+      document.Molecular.setParticlePos(1,0,0);
+     document.Molecular.setParticleVel(1,-2,6);
+     document.Molecular.setDefaultSize(0.3);
+       id2=document.Molecular.addParticleDataSource(1);
+
+     eid=document.Molecular.getEnsembleID();
+	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.deleteAllSeries();  
+     document.DataGraph.setAutoscaleX(true);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.clearSeries(2);
+     document.DataGraph.clearSeries(3);
+     
+     document.DataGraph.setSeriesRGB(2,0,250,250);
+	 document.DataGraph.setSeriesLegend(2,80,50,"energia cinética da partícula 1");
+	 document.DataGraph.setSeriesRGB(3,250,0,250);
+	 document.DataGraph.setSeriesLegend(3,80,70,"energia cinética da partícula 2");
+     document.DataGraph.setSeriesRGB(1,0,0,255);  
+     document.DataGraph.setSeriesLegend(1,55,30,"momento linear transmitido à parede");
+     document.DataGraph.setLabelX("Tempo");
+       document.DataGraph.setTitle("");
+     document.DataGraph.setSeriesStyle(1,true,3);  
+      document.DataGraph.setMarkerSize(1,0.6); 
+      document.DataGraph.setSeriesStyle(2,true,3);  
+      document.DataGraph.setMarkerSize(2,0.6); 
+      document.DataGraph.setSeriesStyle(3,true,3);  
+      document.DataGraph.setMarkerSize(3,0.6); 
+      	document.DataGraph.setLastPointMarker(1,true);  
+	document.DataGraph.setLastPointMarker(2,true); 
+	document.DataGraph.setLastPointMarker(3,true);   
+	     gid=document.DataGraph.getGraphID();
+
+	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"Ec_1");
+	document.DataTable.setSeriesLabel(2,"Ec_2");
+	document.DataTable.setSeriesLabel(3,"N");
+	document.DataTable.setSeriesLabel(4,"T");
+	document.DataTable.setSeriesLabel(5,"Volume");
+	document.DataTable.setSeriesLabel(6,"PA = <dp/dt>");
+     tid=document.DataTable.getTableID();
+     
+     document.Molecular.deleteDataConnections();
+     document.Molecular.makeDataConnection(id1,tid,1,"(vx*vx+vy*vy)/2","0");
+     document.Molecular.makeDataConnection(id2,tid,2,"(vx*vx+vy*vy)/2","0");
+	 document.Molecular.makeDataConnection(eid,tid,3,"n","0");
+     document.Molecular.makeDataConnection(eid,tid,4,"t","0");
+     document.Molecular.makeDataConnection(eid,tid,5,"v-24.36","0");
+     cid=document.Molecular.makeDataConnection(eid,tid,6,"(pr+pl+pt+pb)/4","0");
+     document.Molecular.setConnectionSmoothing(cid,100); 
+	 document.Molecular.makeDataConnection(eid,gid,1,"time","(pr+pl+pt+pb)");
+     document.Molecular.makeDataConnection(id1,gid,2,"t","(vx*vx+vy*vy)/2");
+      document.Molecular.makeDataConnection(id2,gid,3,"t","(vx*vx+vy*vy)/2");
+      document.Molecular.updateDataConnections();
+     document.DataGraph.setAutoRefresh(true);
+         document.Molecular.setAutoRefresh(true);
+}
+
+function gaslaw3(){
+     if(!loaded) return;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.setDefaultMass(1);
+     document.Molecular.setDefaultSize(0.3);
+     document.Molecular.createParticles(30);
+      for(i=0;i<30;i++){
+       document.Molecular.setParticlePos(i,0,0);
+       document.Molecular.setParticleVel(i,-4+8*Math.random(),-4+8*Math.random());
+    }
+     eid=document.Molecular.getEnsembleID();
+   	 hid=document.Molecular.getHistogramID(20,0.0,10.0);
+	document.DataGraph.setAutoRefresh(false);
+	document.DataGraph.setDefault();
+	document.DataGraph.deleteAllSeries();
+    document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(0,8.0);
+    document.DataGraph.setMinMaxY(0,8);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.clearSeries(2);
+     
+
+    document.DataGraph.setSeriesStyle(1,false,-3);
+    document.DataGraph.setSeriesRGB(1,255,0,0);
+    document.DataGraph.setAutoReplaceData(1,true);
+    document.DataGraph.setMarkerSize(1, 2.0);
+
+    document.DataGraph.setLabelY("N"); 
+    document.DataGraph.setLabelX("| v |"); 
+    document.DataGraph.setTitle("Histograma da Rapidez"); 
+
+    gid=document.DataGraph.getGraphID();
+    
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"massa");
+	document.DataTable.setSeriesLabel(2,"PA = <dp/dt>");
+	document.DataTable.setSeriesLabel(3,"N");
+	document.DataTable.setSeriesLabel(4,"T");
+	document.DataTable.setSeriesLabel(5,"Volume");
+	document.DataTable.setSeriesLabel(6,"P = N*T/V");
+	document.DataTable.addDatum(1,1.0);
+	tid=document.DataTable.getTableID();
+     
+     document.Molecular.deleteDataConnections();
+     cid=document.Molecular.makeDataConnection(eid,tid,2,"(pr+pl+pt+pb)/4","0");
+	 document.Molecular.setConnectionSmoothing(cid,100);
+	 document.Molecular.makeDataConnection(eid,tid,3,"n","0");
+     document.Molecular.makeDataConnection(eid,tid,4,"t","0");
+     document.Molecular.makeDataConnection(eid,tid,5,"v-24.36","0");
+     document.Molecular.makeDataConnection(eid,tid,6,"p","0"); 
+	 cid=document.Molecular.makeDataConnection(hid,gid,1,"v","n");   
+    	document.Molecular.setConnectionStride(cid,4);
+    	document.Molecular.updateDataConnections();
+        document.DataGraph.setAutoRefresh(true);
+            document.Molecular.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+  </script>
+  <title>Physlet Physics by Christian and Belloni: Exploration 20.1</title>
+
+  
+  
+  <link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+</head><body onunload="killmenow()">
+<h2 align="center">Exploração 20.1 - Teoria Cinética, Ligações
+Microscópicas e Macroscópicas</h2>
+
+<div align="center">
+<center>
+<table bgcolor="#c0c0c0" border="1">
+  <tbody>
+    <tr>
+      <td><applet name="Molecular" codebase="../../classes/" code="molecular.MolecularApplet.class" archive="Physlets.jar" mayscript="" align="middle" height="216" width="216"> <param name="ShowControls" value="false"> <param name="FPS" value="10"> <param name="dt" value="0.05"> <param name="PeriodicH" value="false"> <param name="InitialP" value="1"> <param name="PeriodicV" value="false"> <param name="ShowControls" value="false"> <param name="OnLoad" value="initApplets()"> <param name="AppletNames" value="Molecular,DataGraph,DataTable"> <param name="Resources" value="molecular_pt.rc"> </applet><br>
+      </td>
+      <td> <applet name="DataGraph" codebase="../../classes/" code="dataGraph.DataGraph.class" archive="Physlets.jar" mayscript="" align="middle" height="216" width="300"> <param name="XMin" value="-1">
+      <param name="XMax" value="1"> <param name="YMin" value="-1"> <param name="YMax" value="1"> <param name="AutoScaleX" value="true"> <param name="AutoScaleY" value="true"> <param name="ShowControls" value="false"> </applet><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</div>
+
+<div align="center">
+<div align="center">
+<center>
+<table bgcolor="#c0c0c0" border="1">
+  <tbody>
+    <tr>
+      <td> <applet name="DataTable" codebase="../../classes/" code="dataTable.DataTable.class" archive="Physlets.jar" align="middle" height="45" width="518"> <param name="ShowScrollBars" value="false" mayscript=""> <param name="LastOnTop" value="true"> <param name="NumRows" value="1"> <param name="NumCols" value="6"> <param name="ShowControls" value="false"> <param name="ShowRowHeader" value="false"> <param name="ShowColHeader" value="true"> </applet><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</div>
+</div>
+
+<center>
+<form><input onclick="document.Molecular.forward()" value="começar" type="button"><input onclick="document.Molecular.pause()" value="pausa" type="button"><input onclick="document.Molecular.stepForward()" value="passo &gt;&gt;" type="button">&nbsp;<input onclick="document.DataGraph.clearSeries(1);document.DataGraph.clearSeries(2)" value="limpar gráfico" type="button">
+</form>
+</center>
+
+<p align="center"><font color="#ff0000"><b><i>Por favor espera até a
+animação estar completamente carregada</i></b></font><b><font color="#ff0000"><i>.</i></font></b></p>
+
+<p> <b>Descrição da Animação</b></p>
+
+<p> Nesta animação <i>N = nR</i> (isto é, <i>k<sub>B</sub></i> = 1).
+Assim, a equação do gás ideal fica <i>PV = NT</i>.&nbsp; Os valores
+médios mostrados,&nbsp; &lt; &gt;,&nbsp;são calculados em intervalos de
+uma unidade de tempo. Usando a lei do gás ideal podemos estabelecer uma
+ligação entre quantidades macroscópicas como temperatura (<i>T</i>) e
+pressão (<i>P</i>) e propriedades microscópicas individuais como a
+energia cinética (<i>E<sub>c</sub> =</i><sup> </sup>1/2 <i>mv</i><sup>2</sup>)
+e o momento linear (<i><b>p</b> = m<b>v</b></i>) de uma
+partícula.&nbsp; <a href="Javascript:gaslaw1(1,4)">
+Início</a></p>
+
+<p style="margin-top: 0pt; margin-bottom: 0pt;"> &nbsp;</p>
+
+<p style="margin-top: 0pt;"> <b>Exploração</b></p>
+
+<p> Comecemos com <a href="Javascript:gaslaw1(1,4)">uma partícula</a>
+fechada numa caixa e saltando entre as duas paredes laterais.&nbsp;</p>
+
+<ol type="a">
+
+  <li>
+    <p style="margin-top: 6px;">Qual a variação do momento linear da
+partícula quando colide com a parede?&nbsp; <i>(dica: usa o gráfico
+velocidade vs. tempo)</i> </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a força média que a parede
+direita sente ao longo do tempo? Lembra-te que&nbsp; <i> <b>F</b></i><sub>média
+    </sub>= Δ<i><b>p</b></i>/Δ<i>t</i>, portanto escolhe um intervalo
+de tempo (aí umas 20 unidades de tempo), multiplica a variação do
+momento linear pelo número de colisões nesse intervalo de tempo e
+depois divide o resultado dessa operação pelo valor do intervalo de
+tempo em que as colisões ocorreram. </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a força média na parede
+esquerda?&nbsp; E nas paredes de cima e de baixo?&nbsp; </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Calcula a força em cada unidade da
+superfície total da caixa, Força/(área das paredes).&nbsp; <b> A
+largura da caixa (dimensão para dentro do ecrã) é 1 m. </b>&nbsp; </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Compara a pressão obtida em (d) com a
+pressão na caixa calculada através da aplicação da lei do gás ideal e
+registada na tabela.
+    </p>
+  </li>
+</ol>
+
+<p>Se <a href="Javascript:gaslaw1(1,8)">aumentarmos a rapidez</a> da
+partícula, o momento transmitido à parede (e a força que esta sente)
+também aumenta, aumentando assim a pressão. Quando a pressão de um gás
+aumenta (e o seu volume permanece constante), a temperatura do gás
+também aumenta.&nbsp;&nbsp; </p>
+
+<ol start="6" type="a">
+
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova rapidez da
+partícula?&nbsp; </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova pressão do gás?&nbsp; </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova temperatura?
+    </p>
+  </li>
+</ol>
+
+<p>Seguindo o mesmo raciocínio, se aumentarmos a massa da partícula, a
+pressão também vai aumentar. Assim, a temperatura também deveria estar
+relacionada com a massa da partícula. Vamos <a href="Javascript:gaslaw1(3,8)">aumentar a massa</a> da
+partícula.&nbsp; </p>
+
+<ol start="9" type="a">
+
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova massa? </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova pressão? </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual é a nova temperatura?&nbsp; (A
+relação entre a temperatura e o valor aumentado da rapidez e da massa é
+que a temperatura é proporcional à energia cinética)
+    </p>
+  </li>
+</ol>
+
+<p>Uma única partícula fechada numa caixa não é uma situação muito
+realista. Vamos acrescentar uma <a href="Javascript:gaslaw2()">segunda
+partícula</a> (com a mesma massa), mas com uma rapidez diferente. Desta
+vez vamos representar no gráfico a energia cinética de cada partícula
+em função do tempo, bem como a variação do momento linear em qualquer
+uma das paredes (a média destes valores dá-nos a pressão). A tabela
+mostra agora a média da variação do momento linear nas paredes.&nbsp;
+Como é que isto se compara com a pressão calculada aplicando a lei do
+gás ideal?</p>
+
+<ol start="12" type="a">
+
+  <li>
+    <p style="margin-top: 6px;">A colisão entre as partículas é uma
+colisão elástica? Como podes saber?&nbsp; </p>
+  </li>
+  <li>
+    <p style="margin-top: 6px;">Qual a ligação entre a temperatura e a
+energia cinética total?
+    </p>
+  </li>
+</ol>
+
+<p>Agora vamos adicionar <a href="Javascript:gaslaw3()">mais algumas
+partículas</a> com a mesma massa, mas com rapidez diferente.&nbsp;A
+tabela mostra o momento transmitido à parede à medida que a partículas
+colidem com ela (&lt;d<b>p</b>/dt&gt;), assim como a pressão calculada
+pela lei dos gases perfeitos. O gráfico mostra agora um histograma da
+rapidez das partículas. Para a animação num determinado instante e
+calcula a energia cinética total do conjunto de partículas. Este valor,
+dividido pelo número de partículas, devia ser igual à temperatura do
+sistema. Este é o <b>teorema da equipartição da energia</b>: a energia
+interna de um gás (a soma da energia de todas as partículas) é igual a <b>(<i>f</i>/2)<i>k<sub>B</sub>NT</i></b>,
+onde <i>f</i> é o número de graus de liberdade dos átomos ou moléculas
+do gás. Neste caso, as partículas têm 2 graus de liberdade; elas podem
+mover-se na direção de <i>x</i> e na direção de <i>y</i>, pelo que <i>f
+</i>= 2.&nbsp; Como estamos a tratar as partículas como esferas rígidas
+(parte das condicionantes do modelo do gás ideal), a energia interna
+média do gás é a energia cinética média das partículas que é igual a <i>k<sub>B</sub>NT</i>
+(nesta animação, <i>k</i><sub><i>B</i> </sub>
+= 1).</p>
+
+<p>&nbsp;</p>
+
+<p align="left">Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite
+Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

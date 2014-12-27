@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 25.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setTimeDisplay(false);
+	document.Animator.addObject("circle","x=-1,y=4,r=7");
+	idc=document.Animator.addObject("circle","x=-1,y=4,r=6");
+	document.Animator.addObject("circle","x=-1,y=4,r=2");
+	document.Animator.setTrail(idc,200);
+	document.Animator.setCaption("Seleciona uma Animação");
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setAutoRefresh(true);
+}
+
+
+function pathA(){
+     if(!loaded) return;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setTimeDisplay(false);
+	document.Animator.setCaption("Animação 1");
+	document.Animator.addObject("circle","x=-1,y=4-3*t,r=7");
+	idc=document.Animator.addObject("circle","x=-1,y=4-3*t,r=6");
+	document.Animator.addObject("circle","x=-1,y=4,r=2");
+	document.Animator.setTrail(idc,200);
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setOneShot(0,3.6,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+
+function pathB(){
+     if(!loaded) return;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setCaption("Animação 2");
+	document.Animator.setTimeDisplay(false);
+	document.Animator.addObject("circle","x=-7.4+4*t,y=2.8+3*t-t*t,r=7");
+	idc=document.Animator.addObject("circle","x=-7.4+4*t,y=2.8+3*t-t*t,r=6");
+	document.Animator.addObject("circle","x=-7.4,y=2.8,r=2");
+	document.Animator.setTrail(idc,200);
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setOneShot(0,3.2,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+     
+function pathC(){
+     if(!loaded) return;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setCaption("Animação 3");
+	document.Animator.setTimeDisplay(false);
+	document.Animator.addObject("circle","x=-1+3*t,y=3.7+t-t*t,r=7");
+	idc=document.Animator.addObject("circle","x=-1+3*t,y=3.7+t-t*t,r=6");
+	document.Animator.addObject("circle","x=-1,y=3.7,r=2");
+	document.Animator.setTrail(idc,200);
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setOneShot(0,3.5,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+     
+function pathD(){
+     if(!loaded) return;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setCaption("Animação 4");
+	document.Animator.setTimeDisplay(false);
+	document.Animator.addObject("circle","x=5.9-4*t,y=3.4,r=7");
+	idc=document.Animator.addObject("circle","x=5.9-4*t,y=3.4,r=6");
+	document.Animator.addObject("circle","x=5.9,y=3.4,r=2");
+	document.Animator.setTrail(idc,200);
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setOneShot(0,3.4,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+     
+function pathE(){
+    if(!loaded) return;
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();  
+     document.Animator.addObject("image","file=images/potential.gif, x=-15.3, y=10"); 
+	document.Animator.setCaption("Animação 5");	
+	document.Animator.setTimeDisplay(false);
+	document.Animator.addObject("circle","x=step(3.7-t)*(4.5-5*t)+step(t-3.7)*(-14+5*(t-3.7)),y=step(3.7-t)*(0.5-0.2*t*t)+step(t-3.7)*(-2.1-0.2*(t-3.7)*(t-3.7)),r=7");
+	idc=document.Animator.addObject("circle","x=step(3.7-t)*(4.5-5*t)+step(t-3.7)*(-14+5*(t-3.7)),y=step(3.7-t)*(0.5-0.2*t*t)+step(t-3.7)*(-2.1-0.2*(t-3.7)*(t-3.7)),r=6");
+	document.Animator.addObject("circle","x=4.5,y=0.5,r=2");
+	document.Animator.setTrail(idc,200);
+	idh=document.Animator.addObject("image","file=images/darrow.gif, x=0,y=0");
+	document.Animator.setRGB(idc,200,0,0);
+	document.Animator.setAnimationSlave(idc,idh);
+	document.Animator.setDisplayOffset(idh,-7.5,38);
+	document.Animator.setOneShot(0,5.45,"Fim da Animação");
+	document.Animator.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 25.3</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="animator4.Animator.class" 
+      archive="Physlets.jar" codebase="../../classes/" 
+      align="baseline" width="300" height="200"  name="Animator" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.1">
+        <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+      </applet></td>
+    </tr>
+    </table>
+  </center>
+</div>
+
+
+<form name="selection">
+ <p align="center">
+	<input type="button" value="começar" 
+ onclick="document.Animator.forward()"><input type="button" value="pausa" 
+ onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;" 
+ onclick="document.Animator.stepForward()"><input type="button" value="início" 
+ onclick="document.Animator.reset()"></p>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:pathA()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>
+      &nbsp;&nbsp;
+      <a href="JavaScript:pathB()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:pathC()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>
+      &nbsp;&nbsp;
+      <a href="JavaScript:pathD()" style="text-decoration: none">Animação 4</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>
+      &nbsp;&nbsp;
+      <a href="JavaScript:pathE()" style="text-decoration: none">Animação 5</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>Um eletrão<b> </b>move-se através de uma região com um potencial elétrico, 
+definido pelas linhas equipotenciais mostradas na animação <b>(a posição é dada 
+em metros, o tempo é dado em segundos e o potencial elétrico é dado em volts)</b>. 
+&nbsp;&nbsp; 
+<a href="JavaScript:init()">
+Início</a>&nbsp; </p>
+<h4>&nbsp;</h4>
+<p>Problema da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

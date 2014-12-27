@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var x=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb1()",100);
+}
+  	
+function startProb1(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+    document.DataGraph1.setAutoRefresh(false);
+   document.DataGraph1.setDefault();
+   document.DataGraph1.deleteAllSeries();
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+document.Animator.addObject("rectangle","w=620,h=10");
+document.Animator.addObject("rectangle","w=10,h=25,x=2.3,y=0.15");
+document.Animator.addObject("rectangle","w=10,h=25,x=-2.3,y=0.15");
+   track=document.Animator.addObject("rectangle","w=618,h=8");
+   document.Animator.setRGB(track,150,150,150);
+   wall1=document.Animator.addObject("rectangle","w=8,h=23,x=-2.3,y=0.15");
+   document.Animator.setRGB(wall1,150,150,150);
+   wall2=document.Animator.addObject("rectangle","w=8,h=23,x=2.3,y=0.15");
+   document.Animator.setRGB(wall2,150,150,150);
+   
+   x="-0.3+1*cos(2*pi*2*t)";
+   id=document.Animator.addObject("image","file=images/cart_large.gif,x="+x+",y=0.2");
+   hook2=document.Animator.addObject("circle","r=1,y=0.15,x="+x+"+0.6");
+   hook1=document.Animator.addObject("circle","r=1,y=0.15,x="+x);
+   
+   document.Animator.addConnectorSpring(hook1,wall1);
+   document.Animator.addConnectorSpring(hook2,wall2);
+
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=-0.5,y=-0.2");
+		document.Animator.setRGB(xaxis,0,0,0);
+		xtext=document.Animator.addObject("text","x=0,y=-0.4,text=+x");
+		document.Animator.setRGB(xtext,0,0,0);
+
+			document.DataGraph1.setAutoscaleX(false);
+			document.DataGraph1.setAutoscaleY(false);
+			document.DataGraph1.setMinMaxX(0,2);
+			document.DataGraph1.setMinMaxY(-200,200);
+			document.DataGraph1.clearSeries(1);
+	                document.DataGraph1.setSeriesStyle(1,true,3);  
+                        document.DataGraph1.setMarkerSize(1,0.6);  
+			document.DataGraph1.setLabelY("a_{x} (m/s^{2})"); 
+			document.DataGraph1.setLabelX("t (s)"); 
+			document.DataGraph1.setTitle("a_{x} vs. t"); 
+			document.DataGraph1.setLastPointMarker(1,true); 
+			graph1=document.DataGraph1.getGraphID();
+			document.Animator.makeDataConnection(id,graph1,1,"t","ax");  
+
+		document.Animator.setOneShot(0,2,"Fim da Animação");
+   		document.DataGraph1.setAutoRefresh(true);
+   		document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 2.12</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.12</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+        <tr> 
+          <td> 
+            <applet width="500" height="200" code="dataGraph.DataGraph.class" 
+            codebase="../../classes/" archive="Physlets.jar" 
+            align="baseline" name="DataGraph1" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+        </tr>
+        <tr> 
+          <td> 
+            <applet width="500" height="100" code="animator4.Animator.class" codebase="../../classes/" 
+            archive="Physlets.jar" align="baseline" 
+            name="Animator" mayscript>
+                  <param name="FPS" value="10">
+                  <param name="dt" value="0.02">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph1">
+        <param name="Resources" value="animator_pt.rc">
+                </applet></td>
+        </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+      <form>
+        <div align="center">
+          <center>
+          <p>
+			<input type="button" value="começar" onclick="document.Animator.forward()"><input
+          type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+          value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button"
+          value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+          value="início" onclick="document.Animator.reset()"></p>
+          </center>
+        </div>
+      </form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Duas molas estão ligadas às extremidade de um carrinho que está&nbsp; numa 
+calha de ar. O carrinho move-se para a frente e para trás, conforme mostra a 
+animação. O gráfico apresenta o valor da aceleração do carrinho em função do 
+tempo
+<b>(a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp;&nbsp; <a href="JavaScript:startProb1()">
+Início</a></p>
+
+
+<p align="left">&nbsp;</p>
+<p align="left">
+Problema da autoria de Aaron Titus.
+<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

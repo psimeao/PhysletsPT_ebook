@@ -1,0 +1,239 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;		
+	document.dataForm.reset();
+       document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph1.setAutoRefresh(false);
+		document.DataGraph1.setDefault();
+		document.DataGraph1.deleteAllSeries();
+		document.Animator.shiftPixOrigin(0,0);
+		document.Animator.setPixPerUnit(5);
+		document.Animator.setGridUnit(0);
+		document.Animator.setTimeDisplay(false);
+		cid00=document.Animator.addObject("circle","r=5,m=1");
+        document.Animator.setRGB(cid00,205,0,0);
+        cid0=document.Animator.addObject("circle","r=5,m=1");
+        cid=document.Animator.addObject("circle","r=4,m=1");
+        document.Animator.setRGB(cid,205,0,0);
+        document.Animator.setAnimationSlave(cid,cid0);
+        document.Animator.setAnimationSlave(cid,cid00);
+        document.Animator.setForce(cid,"0","0",0,0,0,0);
+		document.Animator.setSticky(cid,true);
+		rid=document.Animator.addObject("rectangle","y=-40,w=300,h=40");
+		document.Animator.setSticky(rid,true);
+		document.Animator.setVisibility(rid,false);
+	
+			document.DataGraph1.setAutoscaleX(true);
+			document.DataGraph1.setAutoscaleY(false);
+			document.DataGraph1.setMinMaxY(-13,13);
+			document.DataGraph1.clearSeries(1);
+	        document.DataGraph1.setSeriesStyle(1,true,-2);  
+            document.DataGraph1.setMarkerSize(1,0.6);  
+			document.DataGraph1.setLabelY("|F|(N)"); 
+			document.DataGraph1.setLabelX("y (m)"); 
+			document.DataGraph1.setTitle("|F| vs. Posição"); 
+			document.DataGraph1.setLastPointMarker(1,true); 
+			gid1=document.DataGraph1.getGraphID();
+			document.Animator.makeDataConnection(cid,gid1,1,"y","-9.8*sign(vy)");  
+			
+			document.DataGraph2.setAutoscaleX(true);
+			document.DataGraph2.setAutoscaleY(true);
+			document.DataGraph2.clearSeries(1);
+	       document.DataGraph2.setSeriesStyle(1,true,3);   		
+            document.DataGraph2.setMarkerSize(1,0.6);  
+			document.DataGraph2.setLabelY("Ec (J)"); 
+			document.DataGraph2.setLabelX("y (m)"); 
+			document.DataGraph2.setTitle("Ec vs. Posição"); 
+			document.DataGraph2.setLastPointMarker(1,true); 
+			gid2=document.DataGraph2.getGraphID();
+			document.Animator.makeDataConnection(cid,gid2,1,"y","0.5*vy*vy+0.5*vx*vx");  
+
+		document.DataGraph1.setDrawGrid(true);
+		document.DataGraph2.setDrawGrid(true);
+	document.DataGraph1.setAutoRefresh(true);
+        	document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+	
+	
+function set(){ 
+	    if(!loaded) return;
+	    timerID=0;		
+		veex=document.dataForm.vFieldx.value;
+    
+	if( !checkRange(veex,-10,10)){
+    alert("A velocidade inicial em x deve estar entre -10 m/s e 10 m/s. O valor escolhido foi "+veex+" m/s.");
+	return;
+} 
+       veex=eval(document.dataForm.vFieldx.value);
+       
+       veey=document.dataForm.vFieldy.value;
+    
+	if( !checkRange(veey,0,25)){
+    alert("A velocidade inicial em y deve estar entre 0 m/s e 25 m/s. O valor escolhido foi "+veey+" m/s.");
+	return;
+} 
+       veey=eval(document.dataForm.vFieldy.value);
+
+
+       document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph1.setAutoRefresh(false);
+		document.DataGraph1.setDefault();
+		document.DataGraph1.deleteAllSeries();
+		document.Animator.shiftPixOrigin(0,0);
+		document.Animator.setPixPerUnit(5);
+		document.Animator.setGridUnit(0);
+		
+		cid00=document.Animator.addObject("circle","r=5,m=1");
+        document.Animator.setRGB(cid00,205,0,0);
+        cid0=document.Animator.addObject("circle","r=5,m=1");
+        cid=document.Animator.addObject("circle","r=4,m=1");
+        document.Animator.setRGB(cid,205,0,0);
+        document.Animator.setAnimationSlave(cid,cid0);
+        document.Animator.setAnimationSlave(cid,cid00);
+         document.Animator.setTrail(cid00,800);
+         document.Animator.setFootPrints(cid00,20);
+        document.Animator.setGhost(cid00,true);
+        document.Animator.setForce(cid,"0","-9.8",0,0,veex,veey);
+		document.Animator.setSticky(cid,true);
+		rid=document.Animator.addObject("rectangle","y=-40,w=1000,h=40");
+		document.Animator.setSticky(rid,true);
+		document.Animator.setVisibility(rid,false);
+        document.Animator.setCollisionMessage("Fim da Animação");
+	
+			document.DataGraph1.setAutoscaleX(true);
+			document.DataGraph1.setAutoscaleY(false);
+			document.DataGraph1.setMinMaxY(-13,13);
+			document.DataGraph1.clearSeries(1);
+	        document.DataGraph1.setSeriesStyle(1,true,-2);  
+            document.DataGraph1.setMarkerSize(1,0.6);  
+			document.DataGraph1.setLabelY("|F| (N)"); 
+			document.DataGraph1.setLabelX("y (m)"); 
+			document.DataGraph1.setTitle("|F| vs. Posição"); 
+			document.DataGraph1.setLastPointMarker(1,true); 
+			gid1=document.DataGraph1.getGraphID();
+			document.Animator.makeDataConnection(cid,gid1,1,"y","-9.8*sign(vy)");  
+			
+			document.DataGraph2.setAutoscaleX(true);
+			document.DataGraph2.setAutoscaleY(true);
+			document.DataGraph2.clearSeries(1);
+	       document.DataGraph2.setSeriesStyle(1,true,3);   		
+            document.DataGraph2.setMarkerSize(1,0.6);  
+			document.DataGraph2.setLabelY("Ec (J)"); 
+			document.DataGraph2.setLabelX("y (m)"); 
+			document.DataGraph2.setTitle("Ec vs. Posição"); 
+			document.DataGraph2.setLastPointMarker(1,true); 
+			gid2=document.DataGraph2.getGraphID();
+			document.Animator.makeDataConnection(cid,gid2,1,"y","0.5*vy*vy+0.5*vx*vx");  
+
+		document.DataGraph1.setDrawGrid(true);
+		document.DataGraph2.setDrawGrid(true);
+	document.DataGraph1.setAutoRefresh(true);
+        	document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+		document.Animator.forward();
+	}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 6.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 6.3 - Trabalho da Força Gravítica</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+            <tr>
+            <td rowspan="2">
+            <applet width="250" height="407" code="animator4.Animator.class" codebase="../../classes/" 
+		archive="Physlets.jar" align="baseline" name="Animator" mayscript>
+                  <param name="FPS" value="15">
+                  <param name="dt" value="0.01">
+                  <param name="showControls" value="false">
+                        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph1,DataGraph2">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+            <td>
+            <applet width="270" height="200" code="dataGraph.DataGraph.class" codebase="../../classes/" 
+            archive="Physlets.jar" align="baseline" name="DataGraph1" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+            </tr>
+  <tr>
+    <td align="center">
+            <applet width="270" height="200" code="dataGraph.DataGraph.class" codebase="../../classes/" 
+            archive="Physlets.jar" align="baseline" name="DataGraph2" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+  </tr>
+</table>
+</center></div>
+<form name="dataForm">
+  <center>
+  <p><b>
+  <input onclick="JavaScript:set()" type="button" value="registar valores e começar">
+  <input onclick="document.Animator.forward()" type="button" value="continuar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início"></b></p>
+  </center>
+  <p align="center"><b> &nbsp;<i>v</i><sub>0x</sub> = 
+  <input type="text" name="vFieldx" size="5" value="0">&nbsp; m/s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>v</i><sub>0y</sub> 
+	= 
+  <input type="text" name="vFieldy" size="5" value="0">&nbsp; m/s</b></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>Uma bola de massa 1 kg está sujeita apenas à força gravítica, conforme mostra 
+a animação <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;A bola 
+começa na posição <i>x </i>= 0 m e <i>y </i>= 0 m.&nbsp; Podes variar a 
+velocidade inicial da bola e ver como isso afeta o seu movimento e a sua energia 
+cinética.&nbsp;Também são mostrados os gráficos da força <i>vs</i>. posição e da 
+energia cinética <i>vs</i>. posição.&nbsp;
+<a href="javascript:initApplet()">
+Início</a> </p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

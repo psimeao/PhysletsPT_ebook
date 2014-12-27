@@ -1,0 +1,24 @@
+button.start Começar
+button.stop Parar
+button.reset Início
+button.submit Enviar Funções
+
+label.qtime QTime
+label.qm MC
+label.help Ajuda
+label.wavefunction Função de Onda
+label.time Tempo:
+label.energy Energia
+label.real Real
+label.imaginary Imaginária
+label.potential Potencial
+label.new Nuevo Sistema
+label.magnitude |Psi|
+label.phase alfa:
+
+
+
+
+
+
+

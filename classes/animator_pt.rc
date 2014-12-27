@@ -1,0 +1,11 @@
+label.time Tempo
+label.collision Colisão
+button.start Começar
+button.stop Pausa
+button.reset Início
+button.forward >>
+button.back <<
+
+
+
+

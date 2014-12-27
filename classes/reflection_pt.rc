@@ -1,0 +1,14 @@
+button.start Começar
+button.stop Parar
+button.reset Início
+button.forward Passo
+button.add Adicionar/Alterar
+label.number nº:
+label.refraction n =
+label.left_wave Onda esquerda
+label.right_wave Onda direita
+label.sum Soma
+label.energy Energia =
+label.time Tempo:
+label.phase Fase =
+label.no_phase Fase não acessível.

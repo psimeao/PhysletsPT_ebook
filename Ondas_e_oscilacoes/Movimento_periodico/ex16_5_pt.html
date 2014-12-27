@@ -1,0 +1,273 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var showVelocity=false;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+
+
+
+function initApplet(){
+   if(!loaded) return;
+   timerID=0;
+   document.control.reset();
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+   curid0=document.animator.addCircle(15,"-10","0"); 
+   curid=document.animator.addCircle(13,"-10","0"); 
+   document.animator.setAnimationSlave(curid,curid0);
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainX(curid,0,0,0);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,false); 
+   document.animator.setForce(curid,"0","0",0,0,0,0); 
+   
+   rid=document.animator.addObject("rectangle","w=20,h=10,x=0,y=-15"); 
+   sid=document.animator.addConnectorSpring(curid,rid); 
+   document.animator.swapZOrder(sid,curid);  
+   document.animator.setAutoRefresh(true);
+	
+	 document.datagraph.setAutoscaleX(true);
+     document.datagraph.setAutoscaleY(true);
+     document.datagraph.setMinMaxY(-12,12);
+     document.datagraph.setMinYRange(true,-1,1);
+     document.datagraph.setMinXRange(true,0,10);
+     document.datagraph.setDrawZero(true);
+     document.datagraph.clearSeries(1);
+     document.datagraph.clearSeries(2);
+     document.datagraph.setMarkerSize(1,0.6);
+     document.datagraph.setSeriesStyle(1,true,3);  
+     document.datagraph.setLastPointMarker(1,true);  
+     document.datagraph.setTitle("Insere parâmetros da força externa");  
+     document.datagraph.setLabelX("Tempo (s)");  
+     document.datagraph.setLabelY("Posição (m)"); 
+     gid1=document.datagraph.getGraphID();
+     document.datagraph.setSeriesLegend(1,360,20,"Posição");
+
+     document.animator.deleteDataConnections(); 
+     conid1=document.animator.makeDataConnection(curid,gid1,1,"t","y"); 
+     
+     if (showVelocity) {
+     document.datagraph.clearSeries(2);
+     document.datagraph.setSeriesStyle(2,true,3);  
+     document.datagraph.setSeriesRGB(2,255,0,0);
+     document.datagraph.setLastPointMarker(2,true); 
+     document.datagraph.setMarkerSize(2,0.6);
+     document.datagraph.setSeriesLegend(2,360,35,"Velocidade");
+     document.datagraph.setLabelY("y e v_y"); 
+     conid2=document.animator.makeDataConnection(curid,gid1,2,"t","vy");    
+}   
+     document.animator.updateDataConnections();
+     document.animator.setAutoRefresh(true);
+     document.datagraph.setAutoRefresh(true);
+}
+
+function new_values(){
+   if(!loaded) return;
+   newforce=document.control.force.value;
+   newefe=document.control.damping.value;
+    newf=document.control.magforce.value;
+   
+        if( !checkRange(newforce,0,5)){
+     alert("A constante da mola deve estar entre 0.5 N/m e 5 N/m. O valor inserido foi "+newb+"N/m.");
+     return;
+} 
+
+      if( !checkRange(newf,-5,5)){
+     alert("A intensidade da força esterna deve estar entre -5 N e 5 N. O valor inserido foi "+newf+"N.");
+     return;
+} 
+    if( !checkRange(newefe,0.1,0.2)){
+     alert("A frquência da força externa deve estar entre 0,10 Hz e 0,20 Hz. O valor inserido foi "+newefe+"Hz.");
+     return;
+} 
+   force=eval(document.control.force.value);
+   f=eval(document.control.damping.value);
+   forcemag=eval(document.control.magforce.value);
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+   curid0=document.animator.addCircle(15,"-10","0"); 
+   curid=document.animator.addCircle(13,"-10","0"); 
+   document.animator.setAnimationSlave(curid,curid0);
+  document.animator.setMass(curid,2);
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainX(curid,0,0,0);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,true); 
+   netforce="-"+force+"*y+"+forcemag+"*cos(2*pi*"+f+"*t)";
+   document.animator.setForce(curid,"0",netforce,0,0,0,0); 
+   document.animator.setSticky(curid,true);
+   collrec=document.animator.addObject("rectangle","w=20,h=10,x=0,y=22"); 
+   document.animator.setSticky(collrec,true);
+   document.animator.setCollisionMessage("Fim da Animação");
+   arrowid=document.animator.addObject("arrow2","x=1.7,y=0,h=0, v=0,thickness=2");
+   	document.animator.setRGB(arrowid,255,0,0);
+   	id=document.animator.addObject("text","x=2.1,y=0,text=F");
+   	document.animator.setRGB(id,255,0,0);
+       tid=document.animator.addObject("text","x=2.5,y=-0.4,text=externa");
+        document.animator.setObjectFont(tid,"Helvetica",1,11);
+   	document.animator.setRGB(tid,255,0,0);
+   rid=document.animator.addObject("rectangle","w=20,h=10,x=0,y=-15"); 
+   sid=document.animator.addConnectorSpring(curid,rid); 
+   document.animator.swapZOrder(sid,curid);  
+   document.animator.setOneShot(0,300, "Fim da Animação"); 
+   document.animator.setAutoRefresh(true);
+	
+	 document.datagraph.setAutoscaleX(true);
+     document.datagraph.setAutoscaleY(true);
+     document.datagraph.setMinMaxY(-12,12);
+     document.datagraph.setMinYRange(true,-1,1);
+     document.datagraph.setMinXRange(true,0,10);
+     document.datagraph.setDrawZero(true);
+     document.datagraph.clearSeries(1);
+     document.datagraph.clearSeries(2);
+     document.datagraph.setMarkerSize(1,0.6);
+     document.datagraph.setSeriesStyle(1,true,3);  
+     document.datagraph.setLastPointMarker(1,true);  
+     document.datagraph.setTitle("F(y)= "+netforce);  
+     document.datagraph.setLabelX("Tempo (s)");  
+     document.datagraph.setLabelY("Posição (m)"); 
+     gid1=document.datagraph.getGraphID();
+     document.datagraph.setSeriesLegend(1,360,20,"Posição");
+
+     document.animator.deleteDataConnections(); 
+     conid1=document.animator.makeDataConnection(curid,gid1,1,"t","y"); 
+     document.animator.makeDataConnection(curid,arrowid,2,"0",forcemag+"*cos(2*pi*"+f+"*t)"); 
+     if (showVelocity) {
+     document.datagraph.clearSeries(2);
+     document.datagraph.setSeriesStyle(2,true,3);   
+     document.datagraph.setSeriesRGB(2,255,0,0);
+     document.datagraph.setLastPointMarker(2,true); 
+     document.datagraph.setMarkerSize(2,0.6);
+     document.datagraph.setSeriesLegend(2,360,35,"Velocidade");
+     document.datagraph.setLabelY("y e v_y"); 
+     conid2=document.animator.makeDataConnection(curid,gid1,2,"t","vy");    
+}   
+     document.animator.updateDataConnections();
+     document.animator.setAutoRefresh(true);
+     document.animator.setOneShot(0,100, "Fim da Animação"); 
+     document.datagraph.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 16.5</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Exploração 16.5 - Movimento Forçado e Ressonância</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/" code="animator4.Animator.class"
+        archive="Physlets.jar" hspace="0" vspace="0"
+        align="middle" width="140" height="250" name="animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="dt" value="0.05">
+          <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,datagraph">
+       	<param name="Resources" value="animator_pt.rc">
+       </applet>
+      </td>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="datagraph" width="460" height="250"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="control">
+  <p align="center">
+    <input type="button" value="inserir parâmetros, depois arrastar a bola" onclick="JavaScript:new_values()">&nbsp;<input type="button" value="começar" onclick="document.animator.forward()"><input type="button" value="pausa"
+  onclick="document.animator.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="initApplet()"></p>
+  <p align="center">
+    <b>mostrar a velocidade</b> <input type="checkbox" name="options"
+  value="velocity" onclick="javascript: showVelocity = (this.checked);">
+  <span lang="en-us">&nbsp;&nbsp;&nbsp;</span><b>força externa, <span lang="en-us">
+    <i>F</i><sub>externa</sub>
+  </span>=<span lang="en-us"> </span>
+    <input type="text" size="3" value="0"
+  name="magforce"><span lang="en-us">cos(2π*</span><input type="text" size="3" value="0.1"
+  name="damping">&nbsp;*<i>t</i>)</b></p>
+  <p align="center"> <b>força restauradora, <i>F</i><sub>y</sub>(<i>y</i>)<span lang="en-us">
+  </span>=<span lang="en-us"> −</span>&nbsp;</b><input type="text" size="7"
+  value="2" name="force"><span lang="en-us"><b> *<i>y</i></b><i>&nbsp; </i> </span></p>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p align="left" style="margin-bottom: 0"> <span style="font-family: Arial">Esta 
+animação mostra uma bola presa a uma mola elástica, que pode ser sujeita a uma 
+força externa (oscilação forçada). Deves começar por introduzir um valor para a 
+intensidade da força externa e respetiva frequência, bem como para a constante 
+da mola da força restauradora.&nbsp; Depois prime o botão “inserir parâmetros, 
+depois arrastar a bola” , arrasta a bola da sua posição inicial e prime o botão 
+“começar” para correr a animação <b>(a posição é dada em metros e o tempo é dado 
+em segundos)</b></span><font face="Arial">.</font><span lang="en-us"> </span>
+<span style="font-family: Arial">Podes ainda selecionar a caixa “ mostrar a 
+velocidade”, para observares na animação o gráfico da velocidade da bola em 
+função do tempo.</span>&nbsp; <a href="JavaScript:initApplet()">Início</a>.&nbsp; <span lang="en-us"> 
+&nbsp;</span></p>
+  
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<p><span style="font-family: Arial">(NOTA: não é permitido que a massa oscile 
+mais do que 22 m)</span></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

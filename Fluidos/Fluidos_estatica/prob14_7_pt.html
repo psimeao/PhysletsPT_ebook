@@ -1,0 +1,448 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 14.7</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+    loaded=true;
+    timerID=setTimeout("mjb13_3_0()",100);
+}
+
+
+function mjb13_3_0() { 
+  if(!loaded) return;
+  id1=0;
+ id2=0;
+    timerID=0;
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.setTimeDisplay(false);
+    document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+    document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","25","0","(8)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4)");
+   document.Animator.addRectangle(85,5,"0","(8)");
+   document.Animator.addRectangle(5,120,"-4","(2)");
+   document.Animator.addRectangle(5,120,"4","(2)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7");
+	document.Animator.addLine("0","5.5","-2","-3.7");
+	document.Animator.addLine("4","0","-2","-3.7");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","0.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","0.9");
+   id1=document.Animator.setCaption("Seleciona uma Animação");
+   document.Animator.setAutoRefresh(true); 
+}
+
+
+function mjb13_3_1() { 
+  if(!loaded) return;
+  id1=0;
+ id2=0;
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","50","0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*3.1*3.1-4.9*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*3.1*3.1-4.9*t*t");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","0.9+2*3.1*3.1-4.9*t*t");
+     document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","0.9+2*3.1*3.1-4.9*t*t");
+   id1=document.Animator.setCaption("Animação 1a");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,2.6,"Fim da Animação");
+   document.Animator.setAutoRefresh(true); 
+}
+
+function mjb13_3_2() { 
+   if(!loaded) return;
+   id1=0;
+   id2=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","50","0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*3.1*3.1-4.9*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*3.1*3.1-4.9*t*t");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","1.4+2*3.1*3.1-4.9*t*t");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","1.4+2*3.1*3.1-4.9*t*t");
+   id1=document.Animator.setCaption("Animação 2a");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,2.6,"Fim da Animação");
+   document.Animator.setAutoRefresh(true); 
+}
+
+function mjb13_3_3() { 
+  if(!loaded) return;
+  id1=0;
+  id2=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","50","0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*3.1*3.1-4.9*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*3.1*3.1-4.9*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*3.1*3.1-4.9*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*3.1*3.1-4.9*t*t");
+         document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","0.4+2*3.1*3.1-4.9*t*t");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","0.4+2*3.1*3.1-4.9*t*t");
+   id1=document.Animator.setCaption("Animação 3a");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,2.6,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb13_3_1b() { 
+  if(!loaded) return;
+  id1=0;
+ id2=0;
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","25","0","(8+2*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*t*t");
+         document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","0.9+2*t*t");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","0.9+2*t*t");
+   id1=document.Animator.setCaption("Animação 1b");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setAutoRefresh(true); 
+}
+
+
+function mjb13_3_2b() { 
+   if(!loaded) return;
+   id1=0;
+   id2=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","25","0","(8+2*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*t*t");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","1.4+2*t*t");
+     document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","1.4+2*t*t");
+   id1=document.Animator.setCaption("Animação 2b");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setAutoRefresh(true); 
+}
+
+
+function mjb13_3_3b() { 
+  if(!loaded) return;
+  id1=0;
+  id2=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(70,-120);
+   	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","-12","3.5");
+	document.Animator.addLine("0","5.5","-16","3.5");
+	document.Animator.addLine("4","0","-16","3.5");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"-14","5.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"-14","7.9");
+   document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"-14","7.9");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(85,7,"-14","3.2");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(83,5,"-14","3.2");
+   document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addLine("0","25","0","(8+2*t*t)");
+   document.Animator.setShapeRGB(255,0,0);
+   document.Animator.addRectangle(85,5,"0","(-4+2*t*t)");
+   document.Animator.addRectangle(85,5,"0","(8+2*t*t)");
+   document.Animator.addRectangle(5,120,"-4","(2+2*t*t)");
+   document.Animator.addRectangle(5,120,"4","(2+2*t*t)");
+   document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addLine("0","5.5","2","-3.7+2*t*t");
+	document.Animator.addLine("0","5.5","-2","-3.7+2*t*t");
+	document.Animator.addLine("4","0","-2","-3.7+2*t*t");
+   document.Animator.setShapeRGB(0,158,255);
+   document.Animator.addRectangle(39,47,"0","-1.3+2*t*t");
+      document.Animator.setShapeRGB(0,0,0);
+   document.Animator.addRectangle(20,20,"0","0.4+2*t*t");
+     document.Animator.setShapeRGB(181,158,115);
+   document.Animator.addRectangle(18,18,"0","0.4+2*t*t");
+   id1=document.Animator.setCaption("Animação 3b");
+   id2=document.Animator.setCaption("Repouso");
+    document.Animator.setShowCoordinates(id2,true);
+    document.Animator.setCoordinateOffset(id2,-70,-240);
+    document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Problema 14.7</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+ARCHIVE="Physlets.jar" align="middle" width="270"
+height="330" id="Animator" name="Animator" mayscript>
+  <param name="FPS" value="15">
+  <param name="dt" value="0.05">
+  <param name="showControls" value="false">
+  		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"> </p>
+  </center></div>
+</form>
+</div>
+
+   <p align="center"><font face="Arial" style="font-size: 9pt"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></font></p>
+
+<p><font face="Arial" style="font-size: 9pt">A animação mostra um bloco de madeira a flutuar na água.&nbsp;O balde está 
+colocado no interior de um elevador
+<b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;<a href="JavaScript:mjb13_3_0()">Início</a> 
+</font> </p>
+
+<ol type="a">
+	<li><font face="Arial" style="font-size: 9pt"><b>O elevador está a descer</b>:&nbsp;</font></li>
+</ol>
+
+ <center><table border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_1()" style="text-decoration: none">
+    Animação 1a</a>&nbsp;&nbsp; </font></td>
+    <td  align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_2()" style="text-decoration: none">
+	Animação 2a</a>&nbsp;&nbsp; </font></td>
+    <td  align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_3()" style="text-decoration: none">
+	Animação 3a</a>&nbsp;&nbsp; </font></td>
+  </tr>
+</table>
+</center>
+<ol type="a" start="2">
+	<li>
+	<p align="left"><font face="Arial" style="font-size: 9pt"><b>O elevador está a subir</b>:&nbsp;</font></p>
+	</li>
+</ol>
+<center><table border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_1b()" style="text-decoration: none">
+	Animação 1b</a>&nbsp;&nbsp; </font></td>
+    <td  align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_2b()" style="text-decoration: none">
+	Animação 2b</a>&nbsp;&nbsp; </font></td>
+    <td  align="center"><p align="center">
+	<font face="Arial" style="font-size: 9pt">&nbsp;&nbsp;
+	<a href="JavaScript:mjb13_3_3b()" style="text-decoration: none">
+	Animação 3b</a>&nbsp;&nbsp; </font></td>
+  </tr>
+</table>
+</center>
+<p align="left">&nbsp;</p>
+<p align="left"> <font face="Arial" style="font-size: 9pt">Problema da autoria de Mario Belloni e Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</font></p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 4.8</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script><script language="JavaScript"> 
+var timerID=0;
+var a=0;
+var atee=0;
+var tmax=0; 
+var w=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb5_4_0()",100);
+}
+  	
+function mjb5_4_0(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.selection.reset();
+    a=eval(document.selection.D1.value);
+   atee=Math.sqrt(a*a);
+   tmax=Math.sqrt(32/(atee+0.1)); 
+   w=50*(9.8+a);
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setOneShot(0,tmax,"Fim da Animação");
+   document.Animator.setTimeDisplay(false);   
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,-250);
+   document.Animator.addObject("line","x=-3,y=10,h=0,v=30");
+   document.Animator.addObject("line","x=3,y=10,h=0,v=30");
+   id1=document.Animator.addObject("box","x=0,y=26,h=80,w=60,s=2");
+   id2=document.Animator.addObject("box","h=20,w=40");
+   document.Animator.setDisplayOffset(id2,0,-30);
+   document.Animator.setAnimationSlave(id1,id2);
+   id30=document.Animator.addObject("rectangle","h=20,w=20");
+    id3=document.Animator.addObject("rectangle","h=18,w=18");
+   document.Animator.setDisplayOffset(id3,0,-10);
+    document.Animator.setDisplayOffset(id30,0,-10);
+   document.Animator.setAnimationSlave(id1,id3);
+   document.Animator.setAnimationSlave(id1,id30);
+    document.Animator.setRGB(id2,0,0,255);
+   document.Animator.setRGB(id3,255,0,0);
+   id4=document.Animator.addObject("text","calc="+w);
+	document.Animator.setFormat(id4,"%3.1f");
+   document.Animator.setDisplayOffset(id4,-21.2,-35);
+   document.Animator.setAnimationSlave(id1,id4);
+   document.Animator.setTrajectory(id1,"0","26+0.5*"+a+"*t^2");
+   id5=document.Animator.addObject("arrow","h=0,v=vy");
+   document.Animator.setRGB(id5,0,155,0);
+   document.Animator.setDisplayOffset(id5,0,-40);
+   document.Animator.setAnimationSlave(id1,id5);
+   document.Animator.setAutoRefresh(true); 
+}
+
+function mjb5_4(){ 
+    if(!loaded) return;
+    newaccel=document.selection.D1.value;
+    
+	if( !checkRange(newaccel,-9.8,9.8)){
+    alert("A aceleração do elevador deve estar entre -9.8 m/s/s e 9.8 m/s/s. O valor inserido foi "+newaccel+" m/s/s.");
+    return;
+} 
+    a=eval(document.selection.D1.value);
+   atee=Math.sqrt(a*a);
+   tmax=Math.sqrt(32/(atee+0.1)); 
+   w=50*(9.8+a);
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setOneShot(0,tmax,"Fim da Animação");
+   document.Animator.setTimeDisplay(false);   
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,-250);
+   document.Animator.addObject("line","x=-3,y=10,h=0,v=30");
+   document.Animator.addObject("line","x=3,y=10,h=0,v=30");
+   id1=document.Animator.addObject("box","x=0,y=26,h=80,w=60,s=2");
+   id2=document.Animator.addObject("box","h=20,w=40");
+   document.Animator.setDisplayOffset(id2,0,-30);
+   document.Animator.setAnimationSlave(id1,id2);
+   id30=document.Animator.addObject("rectangle","h=20,w=20");
+    id3=document.Animator.addObject("rectangle","h=18,w=18");
+   document.Animator.setDisplayOffset(id3,0,-10);
+    document.Animator.setDisplayOffset(id30,0,-10);
+   document.Animator.setAnimationSlave(id1,id3);
+   document.Animator.setAnimationSlave(id1,id30);
+   document.Animator.setRGB(id2,0,0,255);
+   document.Animator.setRGB(id3,255,0,0);
+   id4=document.Animator.addObject("text","calc="+w);
+	document.Animator.setFormat(id4,"%3.1f");
+   document.Animator.setDisplayOffset(id4,-21.2,-35);
+   document.Animator.setAnimationSlave(id1,id4);
+   document.Animator.setTrajectory(id1,"0","26+0.5*"+a+"*t^2");
+   id5=document.Animator.addObject("arrow","h=0,v=vy");
+   document.Animator.setRGB(id5,0,155,0);
+   document.Animator.setDisplayOffset(id5,0,-40);
+   document.Animator.setAnimationSlave(id1,id5);
+   document.Animator.setAutoRefresh(true); 
+   document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 4.8</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/" 
+      archive="Physlets.jar" name="Animator" width="150" 
+      height="300" hspace="0" vspace="0" align="Middle" mayscript>
+        <param name="FPS" value="15">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.02">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+  <p align="center">
+	<input type="button" value="registar a aceleração e começar" 
+  name="StartButton" onclick="mjb5_4()"> 
+	<input 
+  onclick="document.Animator.pause()" type="button" value="pausa"><input 
+  onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><input 
+  onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input 
+  onclick="mjb5_4()" type="button" value="início"> </p>
+  <p align="center"><b>Estabelece a aceleração do elevador: a =
+  <input type="text" size="4" value="0" name="D1">m/s<sup>2</sup> </b></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p style="margin-top: 3px; margin-bottom: 3px">Uma caixa de massa 50 kg está 
+dentro de um elevador, que se desloca para cima ou para baixo com aceleração 
+constante.&nbsp;A caixa está pousada numa balança digital que regista o seu peso em 
+newtons.&nbsp; A seta verde representa a velocidade instantânea do elevador e do 
+seu conteúdo. </p>
+<p style="margin-top: 3px; margin-bottom: 3px">Ajusta o valor da aceleração 
+(-9.8 m/s<sup>2</sup> 
+&lt; a &lt; 9.8 m/s<sup>2</sup> ; a = 0 não produz qualquer alteração da velocidade) e 
+vê como isso afeta o peso da caixa.&nbsp;&nbsp; <a href="JavaScript:mjb5_4_0()">
+Início</a></p>
+
+<p>&nbsp;</p>
+<p>Script da autoria de Steve Mellema e Chuck Niederriter, modificado por Mario 
+Belloni.<br>
+Problema da autoria de Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

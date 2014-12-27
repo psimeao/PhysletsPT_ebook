@@ -1,0 +1,230 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<script language="JavaScript"> 
+var i=0;
+var id1=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb2_10()",100);
+}
+  	
+function mjb2_10(){ 
+      if(!loaded) return;
+       timerID=0;
+   id1=0;       
+    x=9.6;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,40);
+   document.Animator.setGridUnit(0);
+   	document.Animator.addObject("image","file=images/newtmtn_phy.gif,x=-15,y=14.3");
+   for(i=0;i<18;i++){
+   id=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5",0,x,8+i/4,0);
+   document.Animator.setRGB(id,122,15*i,255-12.5*i);
+   document.Animator.setTrail(id,4500);
+}
+   id9=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id9,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5",0,x,8+9/4,0);
+   document.Animator.setRGB(id9,255,0,0);
+   document.Animator.setTrail(id9,4500);
+   
+   document.Animator.setOneShot(0,16.8,"Fim da Animação");
+   time=document.Animator.addObject("text","x=-9,y=-13+1000*step(t-0.02),text=carrega no botão 'começar'");
+   document.Animator.setAutoRefresh(true);
+}
+
+function mjb_new() { 
+   if(!loaded) return;
+   timerID=0;
+   id1=0;       
+    x=9.6;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(0,40);
+   document.Animator.setGridUnit(0);
+   document.Animator.addObject("image","file=images/newtmtn_phy.gif,x=-15,y=14.3");
+
+   id0b=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id0b,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5+100000*step(t-3.8)",0,x,8+0/4,0);
+   document.Animator.setRGB(id0b,122,15*0,255-12.5*0);
+   document.Animator.setTrail(id0b,4500);
+   document.Animator.setFootPrints(id0b,10);
+   document.Animator.setGhost(id0b,true);
+   
+   id0=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id0,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5",0,x,8+0/4,0);
+   document.Animator.setRGB(id0,122,15*0,255-12.5*0);
+
+   id18=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id18,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5",0,x,8+18/4,0);
+   document.Animator.setRGB(id18,122,255,0);
+   document.Animator.setTrail(id18,4500);
+   document.Animator.setFootPrints(id18,10);
+   document.Animator.setGhost(id18,true);
+
+   document.Animator.setCaption("Apenas três bolas");
+
+   id9b=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id9b,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5+100000*step(t-6.1)",0,x,8+9/4,0);
+   document.Animator.setRGB(id9b,255,0,0);
+   document.Animator.setTrail(id9b,4500);
+   document.Animator.setFootPrints(id9b,10);
+   document.Animator.setGhost(id9b,true);
+
+   id9=document.Animator.addObject("circle","r=3,x=0,y=0");
+   document.Animator.setForce(id9,"-1000*x/(x*x+y*y)^1.5","-1000*y/(x*x+y*y)^1.5",0,x,8+9/4,0);
+   document.Animator.setRGB(id9,255,0,0);
+
+   document.Animator.setOneShot(0,16.8,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 1.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 1.1 - Imagens estáticas vs. Animações <i>Physlets</i> </h2>
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">A Ilustração 1.1 descreve como usar as <i>Physlets.</i>&nbsp; Em 
+primeiro lugar, uma <i>Physlet</i> é uma animação&nbsp;(App<b><i>let</i></b>) Java de 
+Física (<b><i>Phys</i></b>ics, em inglês). As <i>Physlets </i>são usadas para 
+animar e ilustrar fenómenos físicos e levantar questões sobre esses fenómenos. 
+Muitas vezes precisas de recolher dados da animação e de fazer alguns cálculos 
+para poderes responder às questões; outras vezes, ver a animação com atenção é 
+suficiente. &nbsp;</p>
+
+<div align="center">
+  <center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td><img src="newtmtn.gif" width="336" height="337"></td>
+  </tr>
+</table>
+
+  </center>
+</div>
+
+<p align="center"> <font color="#FF0000"><b>Imagem do Livro<i> Principia</i> de 
+Isaac Newton (1687)<i>.</i></b></font></p>
+
+<p> As animações apresentadas neste livro<i>&nbsp;</i>serão muito semelhantes às 
+imagens estáticas que vês noutros livros. No entanto, existem diferenças 
+importantes que precisamos esclarecer, já que vamos fazer um uso extensivo deste 
+tipo de animações ao longo do curso.&nbsp; Primeiro, considera a imagem 
+desenhada por Sir Isaac Newton no seu livro <i>Principia</i>. É uma imagem 
+estática que mostra possíveis órbitas de objetos à volta de Terra.&nbsp;É suposto 
+imaginarmos objetos atirados do topo de uma montanha com diferentes velocidades 
+iniciais e imaginar onde é que vão aterrar.&nbsp; (Também é suposto&nbsp; 
+imaginarmos que para as condições certas, os objetos poderiam orbitar em 
+círculos cada vez mais afastados do centro da Terra.)</p>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+          <applet codebase="../../classes/"
+  archive="Physlets.jar" code="animator4.Animator.class" 
+  width="330" height="340" name="Animator" mayscript>
+    <param name="FPS" value="20">
+    <param name="dt" value="0.02">
+    <param name="showControls" value="false">
+    <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+  </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+      <center>
+      <p><form>
+		<input type="button" value="começar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início" onclick="document.Animator.reset()"></form></p>
+      </center>
+    </div> 
+
+
+    
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+    
+  <p>Agora considera a <i>Physlet</i> de uma situação semelhante à 
+	descrita por <i>Isaac Newton</i>.&nbsp; A animação mostra 10 bolas idênticas 
+	que são lançadas do topo de uma montanha. A posição inicial das bolas é a 
+	mesma, mas as suas velocidades iniciais são diferentes<b>.</b> <a href="JavaScript:mjb2_10()">
+	Início</a>&nbsp; </p>
+<p>&nbsp;</p>
+
+<p><b>Sabias que ...</b></p>
+<p>Se observares atentamente verás que todas as órbitas são &quot;círculos achatados&quot; 
+chamados elipses, exceto a órbita da bola vermelha, que é um círculo perfeito. 
+Por outro lado, todas as bolas exceto a vermelha, têm uma rapidez variável ao 
+longo da órbita. As bolas azuis (interiores) deslocam-se mais rapidamente perto 
+da parte inferior do ecrã, enquanto as bolas verdes (exteriores) deslocam-se 
+mais rapidamente perto da parte superior do ecrã. (Nota que decidimos mostrar as 
+órbitas completas das bolas, mesmo para aquelas que colidiriam com a Terra. 
+Fazemos isto para podermos comparar todas as órbitas.)</p>
+
+<p>Este comportamento não é óbvio quando observamos o desenho feito por Newton no seu livro <i>
+Principia</i>, mas fica muito claro quando observamos a animação.&nbsp;Este efeito é 
+ainda mais visível quando vemos apenas&nbsp;
+<a href="JavaScript:mjb_new()">três bolas</a>.&nbsp;As imagens fantasma das bolas são 
+deixadas em intervalos de tempo iguais, para nos ajudar a visualizar melhor este 
+efeito. Não te esqueças de carregar no botão &quot;começar&quot; depois de selecionares a 
+hiperligação!</p>
+
+<p>Nas ciências naturais, as simulações são geralmente deterministas.&nbsp;Tal 
+significa que a animação evolui no tempo de acordo com um modelo matemático 
+pré-definido. Os modelos que construímos para este livro podem ou não ser os 
+modelos que melhor representam a realidade física. De facto, muitas vezes vamos 
+apresentar vários modelos e pedir-te que seleciones aquele que está de acordo 
+com a experiência. <b>NÃO </b>assumas que todas as simulações obedecem às leis 
+da Física!&nbsp; </p>
+
+<p>É importante não confundir determinista com previsível. As simulações que 
+dependem de números aleatórios, que contêm um grande número de variáveis, ou que 
+exibem caos, podem não ser previsíveis, no sentido em que o comportamento exato 
+pode depender de alterações infinitesimais nas condições iniciais.&nbsp;Contudo, 
+mesmo se os detalhes da dinâmica não podem ser determinados, o modelo ainda nos 
+dá informação útil acerca dos tipos de comportamento que podem ocorrer. </p>
+
+<p>&nbsp;</p>
+<p>
+  © 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+	Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>

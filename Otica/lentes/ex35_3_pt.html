@@ -1,0 +1,158 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Exploration 35.3</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var id=0;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob_1()",100);
+}
+  	
+function prob_1(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     id1=document.Optics.addObject("rectangle","y=0,x=5,w=10,h=100");
+     document.Optics.setRGB(id1,0,0,250);
+     document.Optics.setElementSize(.7);
+
+     id2=document.Optics.addObject("lens","x=2.11,f=.8");
+     tid=document.Optics.addObject("text","text=Lente desconhecida");
+     document.Optics.setDisplayOffset(tid,-50,70);
+     document.Optics.setAnimationSlave(id2,tid);
+     tid=document.Optics.addObject("text","text=(com determinada distância focal)");
+     document.Optics.setDisplayOffset(tid,-70,50);
+     document.Optics.setAnimationSlave(id2,tid);
+
+     document.Optics.setDirection(1);    
+     id7=document.Optics.addObject("source","x=1,y=.5,rays=false");
+	idc1=document.Optics.addObject("constraint","xmin=1, xmax=6, ymin=0, ymax=0");
+     document.Optics.setVisibility(idc1,false);
+     document.Optics.setConstraint(id2,idc1);
+        document.Optics.setDragable(id2,true);
+     document.Optics.setResizable(id7,false);
+     //document.Optics.setRGB(id6,0,255,0); 
+     document.Optics.setAutoRefresh(true);   
+}
+
+function prob_2(){
+if(!loaded) return;
+timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     id1=document.Optics.addObject("rectangle","y=0,x=5,w=10,h=100");
+     document.Optics.setRGB(id1,0,0,250);
+     document.Optics.setInfo(true);
+     document.Optics.setElementSize(.7);
+
+     id=document.Optics.addObject("lens","x=3,f=.7");
+     
+
+     document.Optics.setDirection(1);    
+     //id6=document.Optics.addObject("source","point,x=1,y=1,slope=0.7, inc=0.1");
+     id7=document.Optics.addObject("source","x=1,y=.5,rays=false");
+	idc1=document.Optics.addObject("constraint","xmin=1, xmax=6, ymin=0, ymax=0");
+     document.Optics.setVisibility(idc1,false);
+     document.Optics.setConstraint(id,idc1);
+        document.Optics.setDragable(id,true);
+     document.Optics.setResizable(id7,false);
+     //document.Optics.setRGB(id6,0,255,0);
+     document.slider.setValue(.7);
+ 	document.slider.setJSFunction("sliderMoved()"); 
+      document.Optics.setAutoRefresh(true);   
+}
+
+function sliderMoved(){
+	 if(timerID==0) timerID=setTimeout("sliderMoved2()",10);
+}
+
+function sliderMoved2(){
+	focal2=document.slider.getValue();
+	document.Optics.set(id,"lens","f="+focal2);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+<BODY onunload="stopApplet()">
+<h2 align="center">Exploração 35.3 - Efeito de deslocar uma lente</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0" width=610>
+    <tr>
+      <td colspan="3">
+<applet codebase="../../classes/" archive="Physlets.jar" code="optics.OpticsApplet.class"
+name="Optics" width="600" height="300" hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics,slider">
+        <param name="Resources" value="optics_pt.rc">
+</applet></td>
+    </tr>
+    <tr>
+      <td width="15%">
+      <p align="center">&nbsp;<a href="JavaScript:prob_1()" style="text-decoration: none">lente inicial</a>&nbsp;</td>
+      <td width="22%">
+      <p align="center">&nbsp;<a href="JavaScript:prob_2()" style="text-decoration: none">lente com 
+		distância focal 
+		ajustável</a>&nbsp;</td>
+      <td width="60%">
+<p align="center">
+<applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider" width="369" hspace="0" vspace="0" align="middle" mayscript style="height: 37px">
+        <param name="min" value="0.4">
+        <param name="max" value="1">
+        <param name="value" value=".7">
+        <param name="label" 
+        value="distância focal (m)">
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left">
+<b>Descrição da Animação</b></p>
+<p align="left">
+Nesta animação a lente é móvel, mas o objeto não<b> (</b><strong>a 
+posição é dada em metros</strong><b>)</b>.&nbsp; Inicialmente, tens uma lente 
+com distância focal desconhecida (que não podes ajustar com o cursor).&nbsp;
+&nbsp;<a href="JavaScript:prob_1()">Início</a>.&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Exploração da autoria de Anne J. Cox.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

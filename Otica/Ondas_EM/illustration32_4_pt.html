@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 32.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("wave1()",100);
+}
+  	
+function wave1(){ 
+      if(!loaded) return;
+       timerID=0;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(6);
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(22,50,134);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(222,223,27);
+         document.wave3d.addAxes(0,0,-20,10);
+         document.wave3d.setShapeRGB(135,52,55);
+         document.wave3d.addLinear(-20,20,10,0,0);
+         document.wave3d.setShapeRGB(52,135,55);
+         document.wave3d.addLinear(-20,20,10,0,1.57);
+         document.wave3d.setMessage("Onda 1");
+         //document.wave3d.setTimeOneShot(300,"End of Animation");
+          //document.wave3d.forward();
+
+}
+
+function wave2() {
+         if(!loaded) return;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(6);
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(22,50,134);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(222,223,27);
+         document.wave3d.addAxes(0,0,-20,10);
+         id1 = document.wave3d.addWavefunction("10*sin(z*pi/10+t/20)", -20, 20, 0);
+         document.wave3d.setRGB(id1, 135,52,55);
+         //document.wave3d.setShapeRGB(135,52,55);
+         //document.wave3d.addLinear(-20,20,10,0,0);
+         id1 = document.wave3d.addWavefunction("10*sin(z*pi/10+t/20)", -20, 20, -Math.PI/2);
+         document.wave3d.setRGB(id1, 52,135,55);
+         //document.wave3d.setShapeRGB(52,135,55);
+         //document.wave3d.addLinear(-20,20,10,0,1.57);
+         //document.wave3d.setTimeOneShot(300,"End of Animation");
+         document.wave3d.setMessage("Onda 2");
+          //document.wave3d.forward();
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+</style>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 32.4 - Ondas Eletromagnéticas, E x B </h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0" height="425">
+    <tr>
+      <td height="400">
+      <p align="center">
+      <applet codebase="../../classes/" code="wave3d.Wave3d.class" 
+      archive="Physlets.jar" name="wave3d" width="300" 
+      height="400" hspace="0" vspace="0" align="left" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Animate" value="true">
+        <param name="Orientation" value="0">
+        <param name="FPS" value="10">
+        <param name="Dz" value="0.4">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="wave3d">
+      </applet> </td>
+    </tr>
+    <tr>
+      <td height="13">
+      <p align="center"><a href="JavaScript:wave1()">Onda EM 1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="JavaScript:wave2()">Onda EM 2</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.wave3d.forward()"><input 
+      type="button" value="pausa" onclick="document.wave3d.pause()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+
+<p align="center"><font color="#ff0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#ff0000"><i>.</i></font></b></p>
+
+
+<p class="style1">
+   <b>Descrição da Animação</b></p>
+
+
+<p align="left">Esta ilustração apresenta uma <i>representação </i>de uma única 
+onda eletromagnética sinusoidal, que inclui o campo elétrico e magnético em 
+planos perpendiculares a <i>z</i> (direção de propagação da onda).&nbsp;&nbsp; Quando a onda se está a deslocar na 
+direção positiva de <i>z</i>, os dois campos podem ser escritos como:</p>
+<p align="center">E<sub>x</sub> = E<sub>o</sub> sen (k z - ω t),&nbsp;&nbsp;&nbsp;&nbsp; 
+E<sub>y</sub> = 0,&nbsp;&nbsp;&nbsp;&nbsp; E<sub>z</sub> = 0,</p>
+<p align="center">B<sub>x</sub> = 0,&nbsp;&nbsp;&nbsp;&nbsp; B<sub>y</sub> = B<sub>o</sub> 
+sen (k z - ω t),&nbsp;&nbsp;&nbsp;&nbsp; e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B<sub>z</sub> 
+= 0,</p>
+<p align="left">onde E<sub>o</sub> = c B<sub>o</sub> e <i>c</i> é a velocidade da luz 
+em unidades do sistema MKS (atualmente sistema internacional de unidades, SI).&nbsp; </p>
+<p align="left">&nbsp;</p>
+
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

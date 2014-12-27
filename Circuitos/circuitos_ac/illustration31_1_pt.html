@@ -1,0 +1,201 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 31.1</title>
+</head>
+
+<body>
+
+<h2 align="center"><span lang="pt">Ilustração 31.1 - Construção de um Circuito</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><span lang="pt"><font size="2">
+      <applet codebase="../../classes/" archive="Physlets.jar" 
+      code="circuitsimulator.CircuitBuilder.class" name="circuit" width="514" height="500">
+        <param name="numberofdt" value="1000">
+        <param name="dt" value="1.0e-6">
+        <param name="noc" value="10">
+        <param name="fps" value="10">
+        <param name="intergrid" value="54">
+        <param name="imagedir" value="circuitimages">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></font></span></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+       
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>Um &quot;Construtor de Circuitos&quot;<span lang="pt"> pode ser usado para 
+construir e analisar circuitos elétricos DC e AC. O &quot;Construtor de Circuitos&quot; 
+foi criado por Toon Van Hoecke na Universidade de Gent (Bélgica)</span></p>
+<p><span lang="pt"><font size="2" face="Arial">Se pretenderes alterar o tamanho 
+da grelha do circuito, muda o número de linhas e colunas e depois carrega no 
+botão &quot;<font color="#0000FF">Grelha</font>&quot;. Toma então em atenção que todos os 
+componentes do ecrã vão desaparecer. O botão &quot;<font color="#0000FF">Ver -&gt;</font>&quot; 
+é usado para visualizar setas que representam a direção escolhida para a 
+corrente elétrica. Novos componentes do circuito são inseridos pelo método &quot;<font 
+color="#0000FF">drag and drop</font>&quot; (&quot;arrastar e largar&quot;). Seleciona o 
+componente que pretendes acrescentar ao circuito, mantém pressionado o botão do 
+rato, arrasta o componente e só depois solta-o na posição pretendida. Uma vez 
+colocado o componente na grelha do circuito, vai aparecer uma caixa que te 
+permitirá alterar os parâmetros do componente. Qualquer posição vertical ou 
+horizontal entre 2 pontos negros pode ser usada. </font></span></p>
+<p><font face="Arial"><span lang="pt"><font size="2">Os componentes seguintes 
+não são dependentes do sentido da corrente elétrica (não têm polos positivo ou 
+negativo):</font><br>
+</span>
+</p>
+<ul>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/resistorh.gif" width="48" height="13"> <font color="#0000FF">
+  Resistor</font>: valor da resistência em Ohms.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/capacitorh.gif" width="48" height="13"> <font color="#0000FF">
+  Condensador</font>: valor da capacidade em Farads.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/inductorh.gif" width="48" height="13"> 
+	<font color="#0000FF">Bobina</font>: valor da indução em Henries.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/bulbh.gif" width="48" height="13"> <font color="#0000FF">
+	Lâmpada</font>: caracterizada pela d.d.p. máxima (em V) e potência (em W). A 
+	cor varia desde o preto (lâmpada apagada, sem corrente) até branco (corrente 
+	máxima, brilho máximo).&nbsp;</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/wireh.gif" width="48" height="13"> 
+	<font color="#0000FF">Fio</font>: usado nas ligações do circuito.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/switchh.gif" width="48" height="13"> 
+	<font color="#0000FF">Interruptor</font>: pode ser aberto ou fechado.</font></span></li>
+</ul>
+<p><span lang="pt"><font size="2">Alguns componentes são polarizados e portanto, 
+têm um polo positivo e outro negativo. O sentido da corrente pode ser 
+estabelecido, escolhendo &quot;<font color="#0000FF">+ baixo/direita</font>&quot; ou &quot;<font 
+color="#0000FF">+ cima/esquerda</font>&quot; no item <font color="#0000FF">
+Sentido</font>. Os seguintes componentes polarizados podem ser adicionados:</font></span></p>
+<ul>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/batteryh.gif" width="48" height="13"> <font color="#0000FF">
+	Bateria</font>: d.d.p. em V.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/sourceh.gif" width="48" height="13"> 
+	<font color="#0000FF">Fonte de tensão geral</font>: as suas características 
+	(em V) podem ser inseridas a seguir ao botão da fonte e o seu valor por 
+	defeito é &quot;sen(2*</font><font face="Symbol">p</font>*<i>f</i>*<i>t</i>)&quot;<font size="2">, 
+	em que &quot;<i>t</i>&quot; corresponde à variável <i>tempo</i> e &quot;<i>f</i>&quot; é a
+	</font>
+	<i><font size="2">frequência</font></i>.</span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><img border="0" src="circuitimages/currentsourceh.gif" width="48" height="13"> 
+	<font size="2"><font color="#0000FF">Fonte de corrente</font>: valor em A.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/scopeh.gif" width="48" height="13"> <font color="#0000FF">
+  Osciloscópio</font>: simulação de um osciloscópio de 1 canal. Uma janela com o 
+	visor de um osciloscópio particular, pode ser aberta selecionando a opção 
+	&quot;Mostrar Osciloscópio&quot; no menu que aparece quando selecionas o ícone do 
+	osciloscópio inserido no circuito, com o botão direito do rato.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/vmeterh.gif" width="48" height="13"> <font color="#0000FF">
+  Voltímetro</font>: simulação de um voltímetro digital. Usa a opção &quot;Mostrar 
+	Voltímetro&quot; do menu, pressionando o botão direito do rato.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2"><img border="0" src="circuitimages/ameterh.gif" width="48" height="13"> <font color="#0000FF">
+  Amperímetro</font>: simulação de um amperímetro digital. Usa a opção &quot;Mostrar 
+	Amperímetro&quot; do menu, pressionando o botão direito do rato.</font></span></li>
+</ul>
+<p><span lang="pt"><font size="2">O botão &quot;<font color="#0000FF">Calcular</font>&quot; 
+é usado para recalcular dados. Um número de pontos (<font color="#0000FF">#</font>) 
+é então calculado iterativamente, com um passo indicado em <font color="#0000FF">
+dt (s)</font>.&nbsp; O valor do passo é introduzido em segundos (o valor por 
+defeito é de 1e-6 s).</font> 
+</span> </p>
+<p><span lang="pt"><font size="2">O botão &quot;<font color="#0000FF">Começar / Pausa</font>&quot; 
+e o botão &quot;<font color="#0000FF">Início</font>&quot; são usados quando é necessário 
+um relógio em tempo real. Isto ocorre em situações com variações lentas, ou na representação gráfica da d.d.p. ou da corrente elétrica em função 
+do tempo. O número de imagens por segundo é 1/(10*<font color="#0000FF">dt</font>). 
+Tal ocorre em tempo real para valores do passo até 0,01 s.</font></span></p>
+<p><span lang="pt"><font size="2">Podes mover um componente para outra posição 
+do circuito usando a função &quot;<i>drag and drop</i>&quot;&nbsp;(&quot;arrastar e largar&quot;). Outras 
+ações estão disponíveis como opções em menus, que aparecem quando clicas com o 
+botão direito do rato sobre o ícone do componente no circuito. As opções 
+possíveis são apenas ativadas se forem relevantes: </font><br>
+</span>
+</p>
+<ul>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Apagar Componente</font><font size="2">: 
+	apaga o componente selecionado.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Alterar Valor</font><font size="2">: 
+	altera o valor ou função do componente selecionado.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar controlo do Valor</font><font size="2">: 
+	mostra uma janela com um cursor em barra, para mudar dinamicamente o valor 
+	(passos linear ou logarítmico).</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar controlo da 
+	Frequência</font><font size="2">: mostra uma janela com um cursor em barra, 
+	para mudar dinamicamente a frequência de uma fonte AC. Esta opção funciona 
+	apenas quando a variável &quot;<i>f</i>&quot; está presente da descrição da função.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar/Ocultar Valor ou 
+	Função</font><font size="2">: diz respeito à amostragem na grelha do 
+	circuito.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Inserir Nome</font><font size="2">: 
+	permite dar um nome ao componente selecionado.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar Osciloscópio</font><font size="2">: 
+	mostra uma janela do osciloscópio selecionado.</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar Voltímetro</font><font size="2">: 
+	mostra uma janela do voltímetro digital selecionado. O modo de funcionamento 
+	pode ser alterado entre DC e AC (valores rms).</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar Amperímetro</font><font size="2">: 
+	mostra uma janela do amperímetro digital selecionado. O modo de 
+	funcionamento pode ser alterado entre DC e AC (valores rms).</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar gráfico da d.d.p.</font><font size="2">: 
+	mostra um gráfico da d.d.p. para o componente selecionado (usa o botão 
+	&quot;Começar&quot;).&nbsp;</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Mostrar gráfico da Corrente</font><font size="2">: 
+	mostra um gráfico da intensidade da corrente para o componente selecionado 
+	(usa o botão &quot;Começar&quot;).</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Alterar Interruptor</font><font size="2">: 
+	altera o estado do interruptor selecionado (aberto ou fechado).</font></span></li>
+  <li>
+	<p style="margin-top: 3px"><span lang="pt"><font size="2" color="#0000FF">Alterar Polaridade</font><font size="2">: 
+	muda os sinais + e - dos componentes que são polarizados.</font></span></li>
+</ul>
+<p>&nbsp;</p>
+<p><span lang="pt"><font size="2">Ilustração da autoria de Toon Van Hoecke.<br>
+<i>Applet </i>da autoria de Toon Van Hoecke.<br>
+</font></span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+</font>
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

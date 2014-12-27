@@ -1,0 +1,374 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet0()",100);
+}
+  	
+function initApplet0(){ 
+      if(!loaded) return;
+       timerID=0;
+       document.Animator3.setAutoRefresh(false); 
+	document.Animator3.setDefault(); 
+    id=document.Animator3.addRectangle(400,30,"0","0.35");
+    document.Animator3.setRGB(id,150,150,150);
+    
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-80);
+	document.Animator3.setGridUnit(0);
+	document.Animator3.setTimeDisplay(false);
+	document.Animator3.setCaption("Seleciona uma Animação"); 
+	id1=document.Animator3.addImage("images/cart_large.gif","0","0.55");
+	document.Animator3.setMass(id1,1.0);
+	document.Animator3.setDisplayOffset(id1,-26,10);
+	document.Animator3.setConstrainY(id1,0.55,0,0);
+	document.Animator3.setShowConstraintPath(id1,false);
+   	aid=document.Animator3.addArrow("0","0","0","0");
+    document.Animator3.setAnimationSlave(id1,aid);
+    document.Animator3.setShowFVector(aid,true);
+    document.Animator3.setDisplayOffset(aid,0,-15);
+	id2=document.Animator3.addImage("images/2lrhands.gif","-1","1");
+    document.Animator3.setDragable(id2,true);
+    document.Animator3.setDisplayOffset(id2,-30,0);
+    
+     document.DataGraph.setAutoscaleX(true);
+    document.DataGraph.setAutoscaleY(true);
+    document.DataGraph.setMinMaxX(0,20);
+    document.DataGraph.setMinMaxY(-10,10);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setMarkerSize(1,0.6);
+    //document.DataGraph.setLabelY(""); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("Seleciona uma Animação"); 
+    gid=document.DataGraph.getGraphID();
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"x (m)");
+     document.DataTable.setSeriesLabel(2,"Fx (N)");
+     document.DataTable.setSeriesLabel(3,"Ec (J)");   
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+	  
+	  document.Animator3.deleteDataConnections();  
+     document.Animator3.updateDataConnections(); 
+     document.Animator3.setAutoRefresh(true); 
+}
+
+function initAppletA() { 
+       if(!loaded) return;
+       document.Animator3.setAutoRefresh(false); 
+	document.Animator3.setDefault(); 
+    id=document.Animator3.addRectangle(400,30,"0","0.35");
+    document.Animator3.setRGB(id,150,150,150);
+        rid1=document.Animator3.addObject("rectangle","h=60,w=20,x=-5,y=0.5");
+	rid2=document.Animator3.addObject("rectangle","h=60,w=20,x=5,y=0.5");
+	document.Animator3.setSticky(rid1,true);
+	document.Animator3.setSticky(rid2,true);
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-80);
+	document.Animator3.setOneShot(0,20,"Fim da Animação");
+	document.Animator3.setGridUnit(0);
+	document.Animator3.setCaption("Empurrar à direita e à esquerda")
+	id1=document.Animator3.addImage("images/cart_large.gif","0","0.55");
+	document.Animator3.setMass(id1,1.0);
+	document.Animator3.setDisplayOffset(id1,-26,10);
+	document.Animator3.setConstrainY(id1,0.55,0,0);
+	document.Animator3.setShowConstraintPath(id1,false);
+   	aid=document.Animator3.addArrow("0","0","0","0");
+    document.Animator3.setAnimationSlave(id1,aid);
+    document.Animator3.setShowFVector(aid,true);
+    document.Animator3.setDisplayOffset(aid,0,-15);
+	id2=document.Animator3.addImage("images/2lrhands.gif","-1","1");
+    document.Animator3.setDragable(id2,true);
+    document.Animator3.setDisplayOffset(id2,-30,0);
+    
+    document.Animator3.setForce(id1,"0","0",0,0.55,0,0); 
+    document.Animator3.addInteraction(id1,id2,"5*(0.63-x)*step(-y+0.2)*step(x)*step(0.63-x)*step(x-0.55)","x");  
+       document.Animator3.setSticky(id1,true);
+    document.Animator3.setCollisionMessage("Fim da Animação");
+    document.DataGraph.setAutoscaleX(true);
+    document.DataGraph.setAutoscaleY(true);
+    document.DataGraph.setMinMaxX(0,20);
+    document.DataGraph.setMinMaxY(-10,10);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setMarkerSize(1,0.6);
+    document.DataGraph.setLabelY("v_{x} (m/s)"); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("Velocidade_{x} vs Tempo"); 
+    gid=document.DataGraph.getGraphID();
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"x (m)");
+     document.DataTable.setSeriesLabel(2,"vx (m/s)");  
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+	  
+	  document.Animator3.deleteDataConnections(); 
+	  document.Animator3.makeDataConnection(id1,gid,1,"t","vx"); 
+     document.Animator3.makeDataConnection(id1,tid,1,"x","0");  
+     document.Animator3.makeDataConnection(id1,tid,2,"ax","0");  
+     document.Animator3.makeDataConnection(id1,tid,3,"0.5*m*vx*vx","0");  
+     document.Animator3.updateDataConnections(); 
+          document.Animator3.setAutoRefresh(true); 
+          document.Animator3.forward();
+}
+
+function initAppletB() { 
+          if(!loaded) return;
+           document.Animator3.setAutoRefresh(false); 
+	document.Animator3.setDefault(); 
+     id=document.Animator3.addRectangle(400,30,"0","0.35");
+    document.Animator3.setRGB(id,150,150,150);
+        rid1=document.Animator3.addObject("rectangle","h=60,w=20,x=-5,y=0.5");
+	rid2=document.Animator3.addObject("rectangle","h=60,w=20,x=5,y=0.5");
+	document.Animator3.setSticky(rid1,true);
+	document.Animator3.setSticky(rid2,true);
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-80);
+	document.Animator3.setOneShot(0,20,"Fim da Animação");
+	document.Animator3.setGridUnit(0);
+	document.Animator3.setCaption("Empurrar à direita e à esquerda")
+	id1=document.Animator3.addImage("images/cart_large.gif","0","0.55");
+	document.Animator3.setMass(id1,1.0);
+	document.Animator3.setDisplayOffset(id1,-26,10);
+	document.Animator3.setConstrainY(id1,0.55,0,0);
+	document.Animator3.setShowConstraintPath(id1,false);
+   	aid=document.Animator3.addArrow("0","0","0","0");
+    document.Animator3.setAnimationSlave(id1,aid);
+    document.Animator3.setShowFVector(aid,true);
+    document.Animator3.setDisplayOffset(aid,0,-15);
+	id2=document.Animator3.addImage("images/2lrhands.gif","-1","1");
+    document.Animator3.setDragable(id2,true);
+    document.Animator3.setDisplayOffset(id2,-30,0);
+    document.Animator3.setForce(id1,"0","0",0,0.55,0,0); 
+    document.Animator3.addInteraction(id1,id2,"5*(0.63-x)*step(-y+0.2)*step(x)*step(0.63-x)*step(x-0.55)","x");  
+    document.DataGraph.setAutoscaleX(true);
+    document.DataGraph.setAutoscaleY(true);
+    document.DataGraph.setMinMaxX(0,20);
+    document.DataGraph.setMinMaxY(-10,10);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setMarkerSize(1,0.6);
+    document.DataGraph.setLabelY("a_{x} (m/s^{2})"); 
+    document.DataGraph.setLabelX("Tempo"); 
+    document.DataGraph.setTitle("Aceleração_{x} vs Tempo"); 
+    gid=document.DataGraph.getGraphID();
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"x (m)");
+     document.DataTable.setSeriesLabel(2,"Fx (N)");
+     document.DataTable.setSeriesLabel(3,"Ec (J)");   
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+	  document.Animator3.deleteDataConnections(); 
+	  cid=document.Animator3.makeDataConnection(id1,gid,1,"t","ax"); 
+	  document.Animator3.setConnectionSmoothing(cid,5);
+     document.Animator3.makeDataConnection(id1,tid,1,"x","0");  
+     document.Animator3.makeDataConnection(id1,tid,2,"ax","0");  
+     document.Animator3.makeDataConnection(id1,tid,3,"0.5*m*vx*vx","0"); 
+     document.Animator3.updateDataConnections(); 
+          document.Animator3.setAutoRefresh(true); 
+          document.Animator3.forward();
+}
+
+function initAppletC() { 
+       if(!loaded) return;
+       document.Animator3.setAutoRefresh(false); 
+	document.Animator3.setDefault(); 
+    id=document.Animator3.addRectangle(400,30,"0","0.35");
+    document.Animator3.setRGB(id,150,150,150);
+    rid1=document.Animator3.addObject("rectangle","h=60,w=20,x=-5,y=0.5");
+	rid2=document.Animator3.addObject("rectangle","h=60,w=20,x=5,y=0.5");
+	document.Animator3.setSticky(rid1,true);
+	document.Animator3.setSticky(rid2,true);
+	document.Animator3.setPixPerUnit(100); 
+	document.Animator3.shiftPixOrigin(0,-80);
+	document.Animator3.setOneShot(0,20,"Fim da Animação");
+	document.Animator3.setGridUnit(0);
+	document.Animator3.setCaption("Empurrar à direita e à esquerda")
+	id1=document.Animator3.addImage("images/cart_large.gif","0","0.55");
+	document.Animator3.setMass(id1,1.0);
+	document.Animator3.setDisplayOffset(id1,-26,10);
+	document.Animator3.setConstrainY(id1,0.55,0,0);
+	document.Animator3.setShowConstraintPath(id1,false);
+   	aid=document.Animator3.addArrow("0","0","0","0");
+    document.Animator3.setAnimationSlave(id1,aid);
+    document.Animator3.setShowFVector(aid,true);
+    document.Animator3.setDisplayOffset(aid,0,-15);
+	id2=document.Animator3.addImage("images/2lrhands.gif","-1","1");
+    document.Animator3.setDragable(id2,true);
+    document.Animator3.setDisplayOffset(id2,-30,0);
+    
+    document.Animator3.setForce(id1,"0","0",0,0.55,0,0); 
+    document.Animator3.setSticky(id1,true);
+    document.Animator3.setCollisionMessage("Fim da Animação");
+    document.Animator3.addInteraction(id1,id2,"5*(0.63-x)*step(-y+0.2)*step(x)*step(0.63-x)*step(x-0.55)","x");  
+   
+    document.DataGraph.setAutoscaleX(true);
+    document.DataGraph.setAutoscaleY(true);
+    document.DataGraph.setMinMaxX(0,20);
+    document.DataGraph.setMinMaxY(-10,10);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setMarkerSize(1,0.6);
+    document.DataGraph.setLabelY("|F| cos(téta) (N)"); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("|F| cos(téta) vs. Tempo"); 
+    gid=document.DataGraph.getGraphID();
+    
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"x (m)");
+     document.DataTable.setSeriesLabel(2,"Fx (N)");
+     document.DataTable.setSeriesLabel(3,"Ec (J)");   
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+	  
+	  document.Animator3.deleteDataConnections(); 
+	  document.Animator3.makeDataConnection(id1,gid,1,"t","ax*vx/abs(vx)"); 
+     document.Animator3.makeDataConnection(id1,tid,1,"x","0");  
+     document.Animator3.makeDataConnection(id1,tid,2,"ax","0");  
+     document.Animator3.makeDataConnection(id1,tid,3,"0.5*m*vx*vx","0");  
+     document.Animator3.updateDataConnections(); 
+          document.Animator3.setAutoRefresh(true); 
+          document.Animator3.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 7.4</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 7.4 - Forças Exteriores e Energia</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="400" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="animator4.Animator.class" align="middle" width="400" height="97" name="Animator3" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.1">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataGraph,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="236" height="45"
+hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator3.forward()"><input
+      type="button" value="pausa" onclick="document.Animator3.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator3.stepForward()"><input type="button"
+      value="início" onclick="document.Animator3.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;
+		<a href="JavaScript:initAppletA()" style="text-decoration: none">
+		velocidade vs. tempo</a>&nbsp; </td>
+      <td align="center">&nbsp;
+		<a href="JavaScript:initAppletB()" style="text-decoration: none">
+		aceleração vs. tempo</a>&nbsp; </td>
+      <td align="center">&nbsp;
+		<a href="JavaScript:initAppletC()" style="text-decoration: none">|F| 
+		cos(<font face="Symbol">q</font>) vs. posição</a>&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+
+<p align="left">
+Considera o carrinho da animação.&nbsp;Coloca a imagem das duas mãos perto do 
+carrinho para o empurrares <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;A 
+seta debaixo do carrinho mostra o sentido e a intensidade da força exterior, 
+aplicada pela mão. Quando o carrinho sair do ecrã,
+<a href="JavaScript:initApplet0()">reinicia</a> a animação.<p align="left">
+&nbsp;<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

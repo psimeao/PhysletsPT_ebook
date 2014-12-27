@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 29.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("power0()",100);
+}
+  	
+  	
+function power0(){
+    if(!loaded) return;
+    set=false;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.selection.reset();
+     v1=2;
+     v1=eval(document.selection.D2.value);
+	
+	if(!checkRange(v1,0,3)){
+	alert("A rapidez deve estar entre 0 m/s e 3 m/s. O valor inserido foi "+v1+" m/s.");
+	return;
+}
+
+     document.Faraday.setTimeContinuous();
+     id=document.Faraday.addObject("Uwire","x=4,y=0");
+     document.Faraday.setPosFunction("6-"+v1+"*t");
+     document.Faraday.setShowMeter(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);
+     document.Faraday.setFieldFunction("-.642");
+      tfin=12/v1;
+	document.Faraday.setTimeOneShot(tfin,"Fim da Animação");
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph1.clearSeries(1);
+   document.DataGraph1.setSeriesStyle(1,true,3);
+   document.DataGraph1.setMarkerSize(1,0.6);
+   document.DataGraph1.setLastPointMarker(1,true); 
+   document.DataGraph1.setTitle("Corrente vs. Tempo"); 
+   document.DataGraph1.setLabelX("Tempo (s)");
+   document.DataGraph1.setLabelY("Corrente (A)");  
+   gid1=document.DataGraph1.getGraphID();
+   document.DataGraph1.setAutoRefresh(true); 
+   
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,0);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setTitle("Fluxo vs. Tempo"); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+   document.DataGraph2.setLabelY("Fluxo (T m{^2})");
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+   
+   document.Faraday.makeDataConnection(id,gid1,1,"t","v/3");  
+   document.Faraday.makeDataConnection(id,gid2,2,"t","flux");  
+   document.Faraday.updateDataConnections();
+    
+}
+
+function power(){
+    if(!loaded) return;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     v1=2;
+     v1=eval(document.selection.D2.value);
+	
+	if(!checkRange(v1,0,3)){
+	alert("A rapidez deve estar entre 0 m/s e 3 m/s. O valor inserido foi "+v1+" m/s.");
+	return;
+}
+
+     document.Faraday.setTimeContinuous();
+     id=document.Faraday.addObject("Uwire","x=4,y=0");
+     document.Faraday.setPosFunction("6-"+v1+"*t");
+     document.Faraday.setShowMeter(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);
+     document.Faraday.setFieldFunction("-.642");
+     tfin=12/v1;
+	document.Faraday.setTimeOneShot(tfin,"Fim da Animação");
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph1.clearSeries(1);
+   document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setMarkerSize(1,0.6);
+   document.DataGraph1.setLastPointMarker(1,true); 
+   document.DataGraph1.setTitle("Corrente vs. Tempo"); 
+   document.DataGraph1.setLabelX("Tempo (s)");
+   document.DataGraph1.setLabelY("Corrente (A)");  
+   gid1=document.DataGraph1.getGraphID();
+   document.DataGraph1.setAutoRefresh(true);
+   
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,3);
+   document.DataGraph2.setMarkerSize(2,0.6);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setTitle("Fluxo vs. Tempo"); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+   document.DataGraph2.setLabelY("Fluxo (T m{^2})");
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+   
+   document.Faraday.makeDataConnection(id,gid1,1,"t","v/3");  
+   document.Faraday.makeDataConnection(id,gid2,2,"t","flux");  
+   document.Faraday.updateDataConnections();
+    document.Faraday.forward();
+   
+}
+
+
+function show_force(){
+    if(!loaded) return;
+    document.Faraday.setAutoRefresh(false);
+    tid=document.Faraday.addObject("text","text=F=,calc=v*(v/3)/"+v1);
+     document.Faraday.setDisplayOffset(tid,10,-10);
+     document.Faraday.setAnimationSlave(id,tid);
+     document.Faraday.setFormat(tid,"%3.1f");
+     
+     image=document.Faraday.addObject("image","file=images/larrow.gif,x=0,y=0");
+     document.Faraday.setAnimationSlave(id,image);
+     document.Faraday.setDisplayOffset(image,0,20);
+	      document.Faraday.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 29.2 - Força num fio em Movimento num Campo 
+Uniforme</h2>
+<div align="center">
+  <center>
+ 
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td rowspan="2">
+        <p align="center">
+        <applet codebase="../../classes/" 
+        code="faraday.Faraday.class" name="Faraday" width="300" 
+        archive="Physlets.jar" height="287" 
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="PixPerUnit" value="10">
+          <param name="SchematicWidth" value="350">
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="FieldFunction" value="1.5*sin(x/2)">
+          <param name="PositionFunction" value="0">
+          <param name="ShowField" value="true">
+          <param name="ShowGraph" value="false">
+          <param name="DragMode" value="false">
+          <param name="ShowGrid" value="true">
+          <param name="ShowColor" value="true">
+          <param name="ShowCurrentArrow" value="true">
+          <param name="ShowSchematic" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Faraday,DataGraph1,DataGraph2">
+        <param name="Resources" value="faraday_pt.rc">
+        </applet></td>
+        <td align="center">
+        <applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="400" 
+        height="140" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="0">
+          <param name="XMax" value="25">
+          <param name="YMin" value="-100">
+          <param name="YMax" value="100">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+      </tr>
+      <tr>
+        <td>
+        <applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph1" width="400" 
+        height="140" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="0">
+          <param name="XMax" value="25">
+          <param name="YMin" value="-100">
+          <param name="YMax" value="100">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+      </tr>
+      <tr>
+    </table>
+  </center>
+</div>
+<form name="selection">
+ <p align="center"> 
+        <input type="button" value="registar valores e começar" 
+        onclick="power()">
+        <input type="button" 
+        value="mostrar a força" onclick="show_force()"> 
+		<input type="button" value="pausa" 
+        onclick="document.Faraday.pause()"><input type="button" 
+        value="passo &gt;&gt;" onclick="document.Faraday.stepTimeForward()">&nbsp;
+</p>
+<p align="center"><b>rapidez do fio</b> = <input name="D2" size="2" value="1"> 
+m/s </p>
+  </form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left">
+<b>Descrição da Animação</b></p>
+<p align="left" style="margin-bottom: 0">
+A Lei de Faraday-Lenz relaciona a variação do fluxo magnético (<i>Φ</i>) ao 
+longo do tempo, com a força eletromotriz (fem) induzida (que é uma d.d.p.): <i>
+fem</i> = - 
+d<i>Φ</i>/d<i>t</i> 
+<b>&nbsp;</b>.&nbsp;Nesta animação, um fio é deslocado num campo magnético constante, 
+por ação de uma força aplicada&nbsp; <b>(a posição é dada em metros, o tempo em 
+segundos, a corrente elétrica em amperes, a força eletromotriz em volts e o 
+fluxo magnético em tesla vezes metro quadrado). </b>&nbsp; <a href="JavaScript:power0()">
+Início</a></p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+&nbsp;</p>
+<p align="left">Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Mario Belloni e Wolfgang Christian, modificado por 
+Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

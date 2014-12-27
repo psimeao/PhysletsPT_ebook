@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script><script LANGUAGE="JavaScript">
+
+charge=0.05;
+pi=Math.PI;
+count=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+	document.EField.setCaption("Cria uma distribuição de carga");
+   document.EField.setDrag(true);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+	document.EField.setChargeRGB(0,0,0);
+  document.EField.setShowEOnDrag(true);
+   document.EField.setAutoRefresh(true);
+   count=0;
+}
+
+
+function circle(){
+	if(!loaded) return;
+	charge1=eval(4);      
+
+	charge=charge1*0.05;
+    document.EField.setAutoRefresh(false);
+    document.EField.setDefault();
+   document.EField.setCaption("Distribuição de carga");
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+	document.EField.setChargeRGB(0,0,0);
+  document.EField.setShowEOnDrag(true);
+   document.EField.setAutoRefresh(false);
+   count=0;
+   c0=document.EField.addCharge(0,0,-charge*200);
+   document.EField.setLabel(c0,"");
+   for( i=0; i<40; i++){
+     document.EField.setAutoRefresh(false);
+     for( j=0; j<5; j++){
+       x1=2*Math.cos(count*pi/100);
+       y1=2*Math.sin(count*pi/100);  
+       c1=document.EField.addCharge(x1,y1,charge);
+       document.EField.setLabel(c1,"");
+       count++;
+     }
+       document.EField.setAutoRefresh(true);
+   }
+  document.EField.setAutoRefresh(true);
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 24.10</title>
+</head>
+
+<BODY onunload="stopApplet()">
+<h2 align="center">Problema 24.10</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+      CODE="eField4.EField.class" NAME="EField" WIDTH="350" HEIGHT="300" HSPACE="0" 
+      VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="PointChargeMode" value="false">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+ <p align="center">&nbsp;<input 
+ type="button" value="construir a distribuição de carga" onclick="circle()"></p>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+<p>Nesta animação cada carga representa uma linha ou cilindro de carga, que se 
+estende para dentro e para fora do ecrã do computador <b> (a posição é dada em 
+centímetros e a intensidade do campo elétrico é dada em newtons/coulomb)</b>.&nbsp;
+<a href="JavaScript:init()">Início</a>.&nbsp;&nbsp; </p>
+
+<p align="left"> &nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

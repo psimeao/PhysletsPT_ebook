@@ -1,0 +1,300 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var mass1=1;
+var g=1;
+var x0=1;
+var y0=0;
+var vx=0;
+var vy=0.8;
+var vxStr=0;
+var vxStr=0;
+var vee=0;
+var L=0;
+var L2=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initAppletA()",100);
+}
+  	
+function initAppletA(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.dataForm.reset();
+	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setTimeDisplay(false);
+	document.animator.setCaption("Seleciona valores para começar");
+	document.animator.setPixPerUnit(50);
+	document.animator.shiftPixOrigin(0,0);
+	document.animator.setGridUnit(0);
+	document.animator.addObject("circle","r=3");
+	id0=document.animator.addObject("circle","r=6");
+      id1=document.animator.addObject("circle","r=5");
+         document.animator.setAnimationSlave(id1,id0);
+      document.animator.setRGB(id1,0,205,0);
+	document.animator.setMass(id1,mass1);
+	document.animator.setTrail(id1,1000);
+   document.animator.setForce(id1,0,0,1,0,0,0);
+   	document.animator.setAutoRefresh(true);
+   
+     L=mass1*vy*x0-mass1*vx*y0;  
+     L2=L*L/2/mass1;
+     document.datagraph.setAutoRefresh(false);
+     document.datagraph.setDefault();
+     document.datagraph.setAutoscaleX(false);
+     document.datagraph.setAutoscaleY(false);
+     gravity="-6.28*6.28/(r)*"+g;
+     fid=document.datagraph.addFunction("r",gravity);
+     document.datagraph.setRGB(fid,0,0,225);
+     barrier="6.28*6.28/(r*r)*"+L2;
+     fid=document.datagraph.addFunction("r",barrier);
+     document.datagraph.setRGB(fid,205,0,0);
+     
+     fid=document.datagraph.addFunction("r",gravity+"+"+barrier);
+     
+     document.datagraph.setMinMaxX(0,3);
+     document.datagraph.setMinMaxY(-70,70);
+     document.datagraph.clearSeries(1);
+     document.datagraph.setLastPointMarker(1,true); 
+     document.datagraph.setSeriesStyle(1,true,3);
+     document.datagraph.setMarkerSize(1,0.6);
+     document.datagraph.setSeriesRGB(1,0,200,200);
+     document.datagraph.setLabelY("Energia"); 
+     document.datagraph.setLabelX("R"); 
+     document.datagraph.setTitle("Energia vs. Distância"); 
+     gid=document.datagraph.getGraphID();
+     document.datagraph.setAutoRefresh(true);
+     
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"t (anos)");
+    document.datatable.setSeriesLabel(2,"E (massa Terra*UA^2/ano^2)");  
+    document.datatable.setSeriesLabel(3,"L (massa Terra*UA^2/ano)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+}
+
+function initApplet(vxStr,vyStr){
+	if(!loaded) return;
+	timerID=0;
+	document.dataForm.vx.value=vxStr;
+	document.dataForm.vy.value=vyStr;
+   vee=Math.sqrt(vxStr*vxStr+vyStr*vyStr);
+
+       if( !checkRange(vee,0.628,9.42)){
+     alert("o valor da velocidade inicial, (vx^2 + vy^2 )^1/2, deve estar entre 0.628 UA/ano e 9.42 UA/ano. O valor inserido foi "+vee+" UA/ano.");
+     return;
+  } 
+   
+  
+  vx=eval(vxStr);
+   vy=eval(vyStr);
+	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(50);
+	document.animator.shiftPixOrigin(0,0);
+	document.animator.setGridUnit(0);
+	document.animator.addObject("circle","r=3");
+	id0=document.animator.addObject("circle","r=6");
+      id1=document.animator.addObject("circle","r=5");
+         document.animator.setAnimationSlave(id1,id0);
+    document.animator.setRGB(id1,0,205,0);
+	document.animator.setMass(id1,mass1);
+	document.animator.setTrail(id1,1000);
+	fx="-6.28*6.28*m*x/(x*x+y*y)/sqrt(x*x+y*y)*"+g;
+	fy="-6.28*6.28*m*y/(x*x+y*y)/sqrt(x*x+y*y)*"+g;
+   document.animator.setForce(id1,fx,fy,1,0,vx,vy);
+   	document.animator.setAutoRefresh(true);
+   
+     L=mass1*vy*x0-mass1*vx*y0;  // angular momentum
+     L2=L*L/2/mass1;
+     document.datagraph.setAutoRefresh(false);
+     document.datagraph.setDefault();
+     document.datagraph.setAutoscaleX(false);
+     document.datagraph.setAutoscaleY(false);
+     gravity="-6.28*6.28/(r)*"+g;
+     fid=document.datagraph.addFunction("r",gravity);
+     document.datagraph.setRGB(fid,0,0,225);
+     barrier="1/(r*r)*"+L2;
+     fid=document.datagraph.addFunction("r",barrier);
+     document.datagraph.setRGB(fid,205,0,0);
+     
+     fid=document.datagraph.addFunction("r",gravity+"+"+barrier);
+     
+     document.datagraph.setMinMaxX(0,3);
+     document.datagraph.setMinMaxY(-70,70);
+     document.datagraph.clearSeries(1);
+     document.datagraph.setLastPointMarker(1,true); 
+     document.datagraph.setSeriesStyle(1,true,3);
+     document.datagraph.setMarkerSize(1,0.6);
+     document.datagraph.setSeriesRGB(1,0,200,200);
+     document.datagraph.setLabelY("Energia"); 
+     document.datagraph.setLabelX("R"); 
+     document.datagraph.setTitle("Energia vs. Distância"); 
+     gid=document.datagraph.getGraphID();
+     document.datagraph.setAutoRefresh(true);
+     
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"t (anos)");
+    document.datatable.setSeriesLabel(2,"E (massa Terra*UA^2/ano^2)");  
+    document.datatable.setSeriesLabel(3,"L (massa Terra*UA^2/ano)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+
+    document.animator.deleteDataConnections(); 
+    document.animator.makeDataConnection(id1,gid,1,"sqrt(x*x+y*y)","m*(vx*vx+vy*vy)/2-6.28*6.28*m/sqrt(x*x+y*y)");   
+    
+    document.animator.makeDataConnection(id1,tid,1,"t","0"); 
+    document.animator.makeDataConnection(id1,tid,2,"m*(vx*vx+vy*vy)/2-6.28*6.28*m/sqrt(x*x+y*y)","0"); 
+    document.animator.makeDataConnection(id1,tid,3,"m*(x*vy-y*vx)","0"); 
+    document.animator.updateDataConnections(); 
+    document.animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 12.4</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Exploração 12.4 - Momento Angular e Energia</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar"
+        align="middle" width="250" height="250" name="animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="dt" value="0.01">
+          <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,datagraph,datatable">
+        <param name="Resources" value="animator_pt.rc">
+       </applet></td>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="datagraph" width="300" height="250"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+          <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p align="center">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="datatable" width="477" height="45"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="true">
+          <param name="CellWidth" value="40">
+          <param name="NumRows" value="1">
+          <param name="NumCols" value="3">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+          <param name="Resources" value="animator_pt.rc">
+        </applet>
+        </p>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="registar valores e começar"
+    name="setBtn"
+    onclick="initApplet(document.dataForm.vx.value,document.dataForm.vy.value)">
+    <input type="button" value="continuar" onclick="document.animator.forward()"><input
+    type="button" value="pausa" onclick="document.animator.pause()"><input type="button"
+    value="&lt;&lt; passo" onclick="document.animator.stepBack()"><input type="button"
+    value="passo &gt;&gt;" onclick="document.animator.stepForward()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <center>
+    <p><b><i>v</i><sub>x</sub> = 
+	<input type="text" name="vx" size="6" value="0.628"> U.A./ ano&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<i>&nbsp;v</i><sub>y</sub>
+    = <input type="text" name="vy" size="5" value="7.85"> U.A./ ano</b></p>
+    </center>
+  </div>
+</form>
+<div align="center">
+  <center>
+  <table border="2" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100" align="center">
+		<a href="JavaScript:initApplet(0,6.28)" style="text-decoration: none">
+		Circular</a></td>
+      <td width="100" align="center">
+		<a href="JavaScript:initApplet(0,3.77)" style="text-decoration: none">
+		Ligado</a></td>
+      <td width="100" align="center">
+		<a href="JavaScript:initApplet(0,9.42)" style="text-decoration: none">
+		Não ligado</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p><b>Descrição da Animação</b></p>
+
+<p>Um planeta (de massa igual à da Terra) orbita em torno de uma estrela, como 
+mostra a animação 
+<b>(a posição é dada em unidades astronómicas (U.A.) e o tempo é dado em anos)</b>.&nbsp; 
+Na animação é apresentado um gráfico da energia do planeta. Três curvas são 
+representadas: a preto a energia efetiva total, a azul a energia potencial 
+gravítica e a vermelho a energia efetiva de rotação, obtida 
+pelo termo:&nbsp; L<sup>2</sup>/(2mR<sup>2</sup>).&nbsp; A linha a azul ciano 
+representa a energia total do planeta em função da distância,
+<i>R</i>, à estrela.&nbsp; <a href="JavaScript:initAppletA()">Início</a>. </p>
+
+<p><i>Quando obtiveres um bom gráfico, clica no botão direito do rato sobre ele 
+e depois muda o seu tamanho, para otimizares a sua análise. </i></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

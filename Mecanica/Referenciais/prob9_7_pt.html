@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 9.7</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+ 	document.Animator3.setTimeDisplay(false);
+ 	document.Animator3.setPixPerUnit(5);
+	document.Animator3.setGridUnit(0);
+   id=document.Animator3.addObject("rectangle","w=400,h=400");
+    document.Animator3.setRGB(id,220,220,255);
+   document.Animator3.setCaption("Seleciona uma Animação");
+    
+  	 document.Animator3.setAutoRefresh(true);
+}
+
+
+
+function initApplet(v1,v2,caption){
+   if(!loaded) return;
+    newvee1=document.dataForm.velField.value;
+    if( !checkRange(newvee1,-15,15)){
+   alert("O valor da velocidade do referencial deve estar entre -15 m/s e 15 m/s. O valor inserido foi "+newvee1+" m/s.");
+   return;
+  } 
+
+   v=eval(-document.dataForm.velField.value);
+
+   document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+ 	document.Animator3.setPixPerUnit(5);
+	document.Animator3.setGridUnit(0);
+   id=document.Animator3.addObject("rectangle","w=400,h=400");
+    document.Animator3.setRGB(id,220,220,255);
+   document.Animator3.setCaption(caption);
+    
+    xcoord="60,15,-90,15";
+    ycoord="0,15,0,-15";
+    boat=v+ "*t-30+t*(" + v1 + ")";
+    id=document.Animator3.addRelPolyShape(4,xcoord ,ycoord, boat,"-6.0");
+    document.Animator3.setDisplayOffset(id,-30,0);
+    document.Animator3.setRGB(id,255,64,64);
+    cid=document.Animator3.addCalculation("x =","x","0","0");
+    document.Animator3.setDisplayOffset(cid,-30,0);
+    document.Animator3.setAnimationSlave(id,cid);
+    
+    iid=document.Animator3.addImage("images/pushing_figure.gif","1.4","0.55");
+    document.Animator3.setDisplayOffset(iid,0,50);
+    
+    boat=v+ "*t+30+t*(" + v2 + ")";
+    id=document.Animator3.addRelPolyShape(4,xcoord ,ycoord, boat,"1.5");
+    document.Animator3.setDisplayOffset(id,-30,0);
+    document.Animator3.setRGB(id,0,255,0);
+    cid=document.Animator3.addCalculation("x =","x","-30","0");
+    document.Animator3.setDisplayOffset(cid,-30,0);
+    document.Animator3.setAnimationSlave(id,cid);
+    document.Animator3.setAnimationSlave(id,iid);
+    
+	document.Animator3.setOneShot(0,8,"Fim da Animação");
+	 document.Animator3.setAutoRefresh(true);
+	 document.Animator3.forward();
+}
+
+
+function initAppletB(v1,v2,caption){
+		if(!loaded) return;
+		newvee1=document.dataForm.velField.value;
+       if( !checkRange(newvee1,-15,15)){
+     alert("O valor da velocidade do referencial deve estar entre -15 m/s e 15 m/s. O valor inserido foi "+newvee1+" m/s.");
+     return;
+  } 
+   v=eval(-document.dataForm.velField.value);
+    document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+ 	document.Animator3.setPixPerUnit(5);
+	document.Animator3.setGridUnit(0);
+      id=document.Animator3.addObject("rectangle","w=400,h=400");
+    document.Animator3.setRGB(id,220,220,255);
+    document.Animator3.setCaption(caption);
+    
+    xcoord="60,15,-90,15";
+    ycoord="0,15,0,-15";
+    boat=v+ "*t-0+t*(" + v1 + ")";
+    id=document.Animator3.addRelPolyShape(4,xcoord ,ycoord, boat,"-6.0");
+    document.Animator3.setDisplayOffset(id,-30,0);
+    document.Animator3.setRGB(id,255,64,64);
+    cid=document.Animator3.addCalculation("x =","x","0","0");
+    document.Animator3.setDisplayOffset(cid,-30,0);
+    document.Animator3.setAnimationSlave(id,cid);
+    
+    iid=document.Animator3.addImage("images/pushing_figure.gif","1.4","0.55");
+    document.Animator3.setDisplayOffset(iid,0,50);
+    
+    boat=v+ "*t+30+t*(" + v2 + ")";
+    id=document.Animator3.addRelPolyShape(4,xcoord ,ycoord, boat,"1.5");
+    document.Animator3.setDisplayOffset(id,-30,0);
+    document.Animator3.setRGB(id,0,255,0);
+    cid=document.Animator3.addCalculation("x =","x","-30","0");
+    document.Animator3.setDisplayOffset(cid,-30,0);
+    document.Animator3.setAnimationSlave(id,cid);
+    document.Animator3.setAnimationSlave(id,iid);
+    
+	document.Animator3.setOneShot(0,8,"Fim da Animação");
+	 document.Animator3.setAutoRefresh(true);
+	 document.Animator3.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 9.7</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet code="animator4.Animator.class" codebase="../../classes/"
+archive="Physlets.jar" name="Animator3" width="400"
+height="150" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.05">
+  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="começar" onclick="document.Animator3.forward()"><input type="button"
+    value="pausa" onclick="document.Animator3.pause()"><input type="button" value="&lt;&lt; passo"
+    onclick="document.Animator3.stepBack()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Animator3.stepForward()"><input type="button" value="início"
+    onclick="document.Animator3.reset()"></p>
+    </center>
+    <p><b>A tua velocidade ao longo da margem:&nbsp; v =&nbsp; <input type="text" name="velField" size="5" value="0"> 
+	m/s</b></p>
+  </div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:initApplet(8,-8,'Animação 1')" style="text-decoration: none">
+		Regista <i>v</i> 
+		e observa a Animação 1</a>&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp; &nbsp;<a href="JavaScript:initApplet(8,-4,'Animação 2')" style="text-decoration: none">Regista
+		<i>v</i> 
+		e observa a Animação 2</a>&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp;&nbsp;
+		<a href="JavaScript:initAppletB(0,-6,'Animação 3')" style="text-decoration: none">Regista
+		<i>v</i> e observa a Animação 3</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Assume que estás sentado na margem de um lago e que observas dois barcos à 
+deriva (os barcos não estão à escala).&nbsp;Um colega teu está num dos barcos (<b>a 
+posição é dada em metros e o tempo em segundos)</b>.&nbsp;<a href="JavaScript:position1()">Início</a></p>
+
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

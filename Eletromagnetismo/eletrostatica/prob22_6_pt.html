@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+
+var timerID=0;
+var cid=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.slider.setDefault();
+    document.efield.setAutoRefresh(false);
+	document.efield.setDefault();
+	document.efield.addObject("caption","text=Seleciona uma Configuração");
+	document.efield.setShowTime(false);
+	document.efield.setChargeRGB(0,0,0);
+	id=document.efield.addCharge(0,0,100);
+	document.efield.setDragable(id,false);
+	cid=document.efield.addCharge(8,0,4);
+	document.efield.setDragable(cid,false);
+	document.efield.setChargeRGB(0,0,255);
+	id=document.efield.addTestCharge(4,0.5,0,0);
+	document.efield.setDragable(id,true);
+	document.efield.setAutoRefresh(true);
+	document.slider.setValue(8);
+}
+
+function initApplet1(){
+    if(!loaded) return;
+    timerID=0;
+    document.slider.setDefault();
+    document.efield.setAutoRefresh(false);
+	document.efield.setDefault();
+	document.efield.addObject("caption","text=Configuração 1");
+	document.efield.setShowTime(false);
+	document.efield.setChargeRGB(0,0,0);
+	id=document.efield.addCharge(0,0,100);
+	document.efield.setDragable(id,false);
+	cid=document.efield.addCharge(8,0,4);
+	document.efield.setDragable(cid,false);
+	document.efield.setShowForce(true);
+	document.efield.setChargeRGB(0,0,255);
+	id=document.efield.addTestCharge(4,0.5,0,0);
+	document.efield.setDragable(id,true);
+	document.efield.setAutoRefresh(true);
+	document.slider.setValue(8);
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+function initApplet2(){
+    if(!loaded) return;
+    timerID=0;
+    document.slider.setDefault();
+    document.efield.setAutoRefresh(false);
+	document.efield.setDefault();
+	document.efield.addObject("caption","text=Configuração 2");
+	document.efield.setShowTime(false);
+	document.efield.setChargeRGB(0,0,0);
+	id=document.efield.addCharge(0,0,100);
+	document.efield.setDragable(id,false);
+	cid=document.efield.addCharge(8,0,-4);
+	document.efield.setDragable(cid,false);
+	document.efield.setShowForce(true);
+	document.efield.setChargeRGB(0,0,255);
+	id=document.efield.addTestCharge(4,0.5,0,0);
+	document.efield.setDragable(id,true);
+	document.efield.setAutoRefresh(true);
+	document.slider.setValue(8);
+	document.slider.setJSFunction("sliderMoved()");
+}
+
+function sliderMoved(){
+	 if(timerID==0)timerID=setTimeout("sliderMoved2()",200);
+}
+
+function sliderMoved2(){
+	xpos=eval(document.slider.getValue());
+	document.efield.setXY(cid,xpos,0);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 22.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Problema 22.6</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0" height="235">
+  <tr>
+    <td height="200">
+    <applet code="eField4.EField.class" codebase="../../classes" 
+    archive="Physlets.jar" name="efield" width="400" 
+    height="200" hspace="0" vspace="0" align="middle" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Range" value="-4,12,-1,1">
+             <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="efield,slider">
+        <param name="Resources" value="efield_pt.rc">
+
+    </applet> </td>
+  </tr>
+  <tr>
+    <td height="23">
+    <p align="center">
+    <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+    archive="Physlets.jar" name="slider" width="400" 
+    height="25" hspace="0" vspace="0" align="middle" mayscript>
+      <param name="min" value="1">
+      <param name="max" value="10">
+      <param name="value" value="8">
+      <param name="label" value="Separação">
+      <param name="Resources" value="slider_pt.rc">    
+    </applet> </td>
+  </tr>
+  <tr>
+    <td height="13">
+    <p align="center">
+	<a href="JavaScript:initApplet1()" style="text-decoration: none">Configuração 1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="JavaScript:initApplet2()" style="text-decoration: none">Configuração 2</a></td>
+  </tr>
+</table>
+</center>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>A animação mostra duas cargas elétricas fixas (a preto) e uma carga de prova 
+móvel (a azul)<b>
+(a posição é dada em metros e a força em newtons)</b>.&nbsp; A carga de prova 
+tem uma seta, que indica o sentido e a intensidade relativa da força elétrica 
+resultante. O valor absoluto da carga da esquerda é 25 vezes superior ao da 
+carga da direita. A separação inicial entre as cargas é <i>d</i> = 8,0 m.&nbsp;Quando 
+arrastas a carga de prova, o valor da força exercida sobre ela é apresentado na caixa 
+de texto amarela.&nbsp; <a href="JavaScript:initApplet()">Início</a>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="left">Problema da autoria de Chuck Bennett e de Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

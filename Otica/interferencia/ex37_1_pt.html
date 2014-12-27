@@ -1,0 +1,224 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 37.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob1()",100);
+}
+  	
+function prob1(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+	   document.Ripple.setDrag(false);
+		document.Ripple.addSource(0, 0.5, 1, 0);     
+		document.Ripple.addSource(0, -0.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave1(){
+	if(!loaded) return;
+	document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 1, 1, 0);       
+		document.Ripple.addSource(0, -1, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave2(){
+	if(!loaded) return;
+	document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 2, 1, 0);     
+		document.Ripple.addSource(0, -2, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave1a(){
+	if(!loaded) return;
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 1.5, 1, 0);      
+		document.Ripple.addSource(0, -1.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave2a(){
+	if(!loaded) return;
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 2.5, 1, 0);     
+		document.Ripple.addSource(0, -2.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function onesource(){
+	if(!loaded) return;
+	document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 0, 1, 0);    
+       document.Ripple.forward();
+}
+
+function phase(){
+       if(!loaded) return;
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+	   document.Ripple.setDrag(false);
+		document.Ripple.addSource(0, 0.5, 1, 0);     
+		document.Ripple.addSource(0, -0.5, 1, 90);
+       document.Ripple.forward();
+}
+
+function rotate(){
+      if(!loaded) return;
+       document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+	   document.Ripple.setDrag(false);
+		document.Ripple.addSource(0.5, 0, 1, 0);     
+		document.Ripple.addSource(-0.5,0, 1, 0);
+       document.Ripple.forward();
+}
+
+function amplitude()
+{
+      if(!loaded) return;
+        document.Ripple.showIntensity(false);
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+function intensity(){
+if(!loaded) return;
+        document.Ripple.showIntensity(true);
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+<BODY onunload="stopApplet()">
+<h2 align="center">Exploração 37.1 - Interferência de ondas de duas fontes </h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="ripple.Ripple.class" codebase="../../classes/" 
+      archive="Physlets.jar" name="Ripple" width="320" 
+      height="320" mayscript>
+        <param name="numberOfSources" value="0">
+        <param name="pixPerUnit" value="20">
+        <param name="wavelength" value="2.0">
+        <param name="showControls" value="false">
+        <param name="showIntensity" value="false">
+        <param name="animate" value="true">
+        <param name="fps" value="10">
+        <param name="caption" value="Tanque de ondas">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Ripple">
+        <param name="Resources" value="ripple_pt.rc">        
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <div align="center">
+    <center>
+    <p><input type="button" value="começar" onclick="document.Ripple.forward()"><input 
+    type="button" value="pausa" onclick="document.Ripple.pause()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <center>
+    <p>
+    <input 
+    type="button" value="vista em amplitude" onclick="JavaScript:amplitude()"><input type="button" 
+    value="vista em intensidade" onclick="JavaScript:intensity()"></p>
+    </center>
+  </div>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+<p align="left">Duas fontes de ondas de luz de igual frequência e amplitude são 
+apresentadas nesta animação. Na vista em amplitude, os pontos de amplitude positiva são representados a branco e os 
+de amplitude negativa a preto; as posições de perturbação nula são representadas 
+a cinzento. Na vista em intensidade, os pontos onde a perturbação é máxima 
+(valor positivo ou negativo) são representados a branco, enquanto as regiões de 
+perturbação nula são representadas a preto <b>(a posição é dada em nanómetros)</b>.&nbsp;&nbsp;<a href="JavaScript:prob1()">Início</a>.&nbsp; </p>
+<p align="left">NOTA: Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</p>
+
+<p>&nbsp;</p>
+<p><b>Exploração:</b></p>
+
+<ol type="a">
+  <li>
+	<p style="margin-top: 6px; margin-bottom: 0">Qual deveria parecer o padrão 
+	de interferência observado (tanto na vista em amplitude como na vista em 
+	intensidade), se uma das fontes for removida? <u>Resposta</u>:
+  <a href="JavaScript:onesource()">ver com uma fonte</a>.</li>
+	<li>
+	<p style="margin-top: 6px; margin-bottom: 0">Qual o valor do comprimento de 
+	onda de cada onda? (observa ambas as vistas em amplitude e em intensidade)</li>
+	<li>
+	<p style="margin-top: 6px; margin-bottom: 0">Em qual das vistas se mede o 
+	comprimento de onda, através da medição da distância a partir do meio da 
+	banda de branco até ao meio da faixa branca adjacente, e em que a visão esse 
+	valor mede-se pela distância entre duas bandas brancas (ou bandas negras)? 
+	Porquê?</li>
+	<li>
+	<p style="margin-top: 6px; margin-bottom: 0">Como seria o padrão de 
+	interferência, se as duas fontes estivessem em fase uma com a outra, mas 
+	rodadas 90º sobre o eixo x? Resposta:
+  <a href="JavaScript:rotate()">rodar as fontes</a>.</li>
+	<li>
+	<p style="margin-top: 6px; margin-bottom: 0">Explica por que o padrão de 
+	interferência tem o aspeto representado na animação.<br>
+	<br>
+	<br>
+&nbsp;</li>
+</ol>
+<p>Exploração da autoria de Melissa Dancy e Anne J. Cox.<br>
+	© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

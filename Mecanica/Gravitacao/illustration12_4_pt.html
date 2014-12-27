@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 12.5_ new 12.4</title>
+<script language="JavaScript"> 
+var pi=Math.PI;
+var eps=0.3;
+var rmax=13.;
+var a=rmax/(1.+eps);
+var k=1;
+var mp=1/(4*pi*pi);
+var l=Math.sqrt(2*mp*rmax*rmax*(k/rmax-k/(2*a)));
+var vstart=l/(mp*rmax);
+var av=l/(2*mp);  
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("shm12_2()",100);
+}
+  	
+function shm12_2(){ 
+      if(!loaded) return;
+       timerID=0;
+	pi=Math.PI;
+	eps=0.3;
+	rmax=13.;
+	a=rmax/(1.+eps);
+	k=1.;
+	mp=1./(4.*pi*pi);
+	l=Math.sqrt(2.*mp*rmax*rmax*(k/rmax-k/(2.*a)));
+	vstart=l/(mp*rmax);
+	av=l/(2.*mp); 
+	 
+	document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault();
+	document.Animator.shiftPixOrigin(-10,0);
+	document.Animator.addObject("text","text=Área total varrida =,calc="+av+"*t, x=-10,y=-10");
+    id0=document.Animator.addObject("circle","x=0,y=0,r=21");
+document.Animator.setRGB(id0,0,0,0);
+   id1=document.Animator.addObject("circle","x=0,y=0,r=20");
+document.Animator.setRGB(id1,255,255,0);
+ id2=document.Animator.addObject("circle","r=5,m="+mp);
+ document.Animator.setRGB(id2,0,0,255);
+document.Animator.setForce(id2,"-"+k+"*x/((x*x+y*y)*sqrt(x*x+y*y))","-"+k+"*y/((x*x+y*y)*sqrt(x*x+y*y))",rmax,0.,0.,vstart);
+document.Animator.addObject("line","x=0,y=0,h="+rmax+",v=0");
+document.Animator.addConnectorLine(id1,id2);
+document.Animator.setTrail(id2,1000);
+  document.Animator.setAutoRefresh(true);	
+document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+<body onunload="killmenow()"> 
+<h2 align="center">Ilustração 12.4 - Segunda lei de Kepler</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/" id="Animator7"
+        archive="Physlets.jar" name="Animator" width="315"
+        height="257" hspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center"><form>
+<p align="center">
+<input onclick="document.Animator.forward()" type="button" value="começar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input type="button" value="início"
+      onclick="document.Animator.reset()"></p>
+</form></p>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p><b>Descrição da Animação</b></p>
+<p>Um planeta orbita em torno de uma estrela sob a influência da força de 
+atração gravitacional exercida pela estrela (<b>a distância é dada em Unidades 
+Astronómicas (U.A.) e o tempo em anos; a área total varrida pelo planeta ao 
+longo da sua órbita em relação à estrela é dada em U.A.<sup>2</sup></b>).&nbsp; 
+A animação começa quando o planeta está no afélio da sua órbita, ou seja, no 
+ponto em que ele se encontra mais afastado da estrela. A órbita do planeta é 
+elíptica e a sua trajetória é representada à medida que ele se desloca no 
+espaço.&nbsp;&nbsp;&nbsp;
+<a href="JavaScript:shm12_2()">Início</a>.</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">Ilustração da autoria de Steve Mellema, Chuck Niederriter e 
+Mario Belloni.<br>
+<i>Script</i> autorizado por Steve Mellema e Chuck Niederriter.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

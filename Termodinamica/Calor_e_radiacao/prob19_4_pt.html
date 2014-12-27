@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 19.4</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob1()",100);
+}
+  	
+function prob1(){ 
+      if(!loaded) return;
+       timerID=0;
+  	 document.Animator.shiftPixOrigin(0,0);
+     document.Animator.addRectangle(200,1000,"-10-0.5*t","0");	
+     document.Animator.addRectangle(1000,200,"0","-10-0.5*t");
+     document.Animator.setShapeRGB(0,0,255);
+     document.Animator.addRectangle(198,998,"-10-0.5*t","0");	
+     document.Animator.addRectangle(998,198,"0","-10-0.5*t");
+     document.Animator.setOneShot(0,2,"Fim da Animação");
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+  </head>
+  <body onunload="killmenow()">
+<h2 align="center">Problema 19.4 </h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><applet code="animator4.Animator.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline"
+width="400" height="300" name="Animator" mayscript>
+    <param name="FPS" value="15">
+    <param name="dt" value="0.01"><param name="pixPerUnit" value="10">
+    <param name="showControls" value="false">
+    <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+    <p align="center">
+    <input type="button" value="começar"  onclick="document.Animator.forward()"><input type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button" value="início" onclick="document.Animator.reset()"></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>A animação mostra uma ampliação do canto inferior esquerdo de uma abertura 
+quadrada existente numa folha de um material<b> (a posição é dada em milímetros 
+e o tempo em minutos)</b>.&nbsp;
+
+<p align="center">
+<img border="0" src="prob19_4image.gif" width="404" height="62"><p>A temperatura 
+inicial é 300 K e varia (aumenta ou diminui) 200 K durante o tempo da animação (<font face="Symbol">D</font>t 
+= 2 minutos).&nbsp;A abertura inicial é um quadrado com 20 cm de lado.
+<a href="JavaScript:prob1()">
+Início</a>
+
+<p align="left">&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

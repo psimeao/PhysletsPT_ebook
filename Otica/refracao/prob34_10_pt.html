@@ -1,0 +1,299 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 34.10</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var id1=0;
+var timerID=0;
+
+var idlaser=0;
+var id1=0;
+var id2=0;
+var id3=0;
+var timerID=0;
+var timerID2=0;
+var timerID3=0;
+var idtext=0;
+var idtext1=0;
+var idtext2=0;
+var id=0;
+var dn1=0;
+var dn2=0;
+var lambda=0;
+var n12=0;
+
+x1=486;x2=656;	//y1=1.6246;y2=1.6080;		//flintglas
+y1=1.6523;y2=1.6182;							//carbondisulfid
+	//a=Math.pow(y2/y1,1/(x2-x1));
+	//b=y1/Math.pow(a,x1);
+	a=Math.log(y2/y1)/Math.log(x2/x1);
+	b=y1/Math.pow(x1,a);
+
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initPage()",100);
+}
+  	
+function initPage(){ 
+      if(!loaded) return;
+       timerID=0;
+        document.slider1.setDefault();
+	
+	document.optics.setAutoRefresh(false);
+	document.optics.setDefault();
+	document.optics.setDrag(false);
+	document.optics.setPropertyDrag(false);
+	
+	document.optics.setRayRGB(255,0,0);		//red laser ray
+	idlaser=document.optics.addObject("source","infinite,x=0.75,y=-1.25,s=10,slope=-1");
+		//document.optics.setResizable(idlaser,true);
+		document.optics.setDragable(idlaser,true);
+	document.optics.setInfo(true);
+	
+	id1=document.optics.addObject("dielectric","x=-0.5,dn=0");	//dielectric 1
+		document.optics.setResizable(id1,false);
+	
+	id2=document.optics.addObject("dielectric","x=1.5,dn=0.6182");	//dielectric 2
+		document.optics.setResizable(id2,false);
+		
+	id3=document.optics.addObject("dielectric","x=5.5,dn=-0.6182");	//dielectric 3
+		document.optics.setResizable(id3,false);
+	
+	idtext=document.optics.addObject("text","x=0.5,y=1.5,text=Ar");	//text
+	idtext1=document.optics.addObject("text","x=4,y=1.5,text=Vidro Flint");	//text
+	idtext2=document.optics.addObject("text","x=5.5,y=1.5,text=Ar");	//text
+	idtext3=document.optics.addObject("text","x=4.5,y=-1.5,text=Animação 1");	//text
+
+
+	document.optics.setDisplayOffset(idtext1,20,150);
+	document.optics.setAnimationSlave(id2,idtext1);
+	
+	document.optics.setDisplayOffset(idtext2,20,150);
+	document.optics.setAnimationSlave(id3,idtext2);
+	
+	document.slider1.setValue(656);
+	document.slider1.setFormat(0,"%4.1f");
+	document.slider1.setJSFunction("sliderMoved1a()");
+			
+	document.optics.setAutoRefresh(true);
+}
+
+function animationB(){
+	if(!loaded) return;
+	timerID=0;
+        document.slider1.setDefault();
+	
+	document.optics.setAutoRefresh(false);
+	document.optics.setDefault();
+	document.optics.setDrag(false);
+	document.optics.setPropertyDrag(false);
+	
+	document.optics.setRayRGB(255,0,0);		//red laser ray
+	idlaser=document.optics.addObject("source","infinite,x=0.75,y=-1.25,s=10,slope=-1");
+		//document.optics.setResizable(idlaser,true);
+		document.optics.setDragable(idlaser,true);
+	document.optics.setInfo(true);
+	
+	id1=document.optics.addObject("dielectric","x=-0.5,dn=0");	//dielectric 1
+		document.optics.setResizable(id1,false);
+	
+	id2=document.optics.addObject("dielectric","x=1.5,dn=0.6182");	//dielectric 2
+		document.optics.setResizable(id2,false);
+		
+	id3=document.optics.addObject("dielectric","x=5.5,dn=-0.6182");	//dielectric 3
+		document.optics.setResizable(id3,false);
+	
+	idtext=document.optics.addObject("text","x=0.5,y=1.5,text=Ar");	//text
+	idtext1=document.optics.addObject("text","x=4,y=1.5,text=Vidro Flint");	//text
+	idtext2=document.optics.addObject("text","x=5.5,y=1.5,text=Ar");	//text
+	idtext3=document.optics.addObject("text","x=4.5,y=-1.5,text=Animação 2");	//text
+
+
+	document.optics.setDisplayOffset(idtext1,20,150);
+	document.optics.setAnimationSlave(id2,idtext1);
+	
+	document.optics.setDisplayOffset(idtext2,20,150);
+	document.optics.setAnimationSlave(id3,idtext2);
+	
+	document.slider1.setValue(656);
+	document.slider1.setFormat(0,"%4.1f");
+	document.slider1.setJSFunction("sliderMoved1c()");
+	timerID=0;		
+	document.optics.setAutoRefresh(true);
+}
+
+function sliderMoved1a(){
+   		if(timerID==0) timerID=setTimeout("sliderMoved1b()",100);
+}
+
+function sliderMoved1b(){
+	document.optics.setAutoRefresh(false);	
+	lambda=document.slider1.getValue();
+	
+	//n12=b*Math.pow(a,lambda);	//a and b declared and calculated initially at top
+	n12=b*Math.pow(lambda,a);
+	dn1=n12-1;
+	document.optics.set(id2,"dielectric","dn="+dn1);
+	dn2=-1*dn1+0.0001;	//must be added 0.0001 to avoid n2<1, truncation error.
+	document.optics.set(id3,"dielectric","dn="+dn2);
+	
+	makeSpectrum();
+	document.optics.setAutoRefresh(true);
+timerID=0;
+}
+
+function sliderMoved1c(){
+   		 if(timerID==0)  timerID=setTimeout("sliderMoved1d()",50);
+}
+
+function sliderMoved1d(){
+	document.optics.setAutoRefresh(false);	
+	lambda=document.slider1.getValue();
+	lambda2=1130-lambda;
+	//n12=b*Math.pow(a,lambda);	//a and b declared and calculated initially at top
+	n12=b*Math.pow(lambda2,a);
+	dn1=n12-1;
+	document.optics.set(id2,"dielectric","dn="+dn1);
+	dn2=-1*dn1+0.0001;	//must be added 0.0001 to avoid n2<1, truncation error.
+	document.optics.set(id3,"dielectric","dn="+dn2);
+	
+	makeSpectrum();
+	
+	document.optics.setAutoRefresh(true);
+timerID=0;
+}
+
+
+function makeSpectrum(){
+	if(!loaded) return;
+			WL=lambda;
+
+            if (WL>=380 && WL<440){ 
+              R = -1*(WL-440)/(440-380);
+              G = 0;
+              B = 1;
+            }
+            if (WL>=440 && WL<490){ 
+              R = 0;
+              G = (WL-440)/(490-440);
+              B = 1;
+            }
+            if (WL>=490 && WL<510){ 
+              R = 0;
+              G = 1;
+              B = -1*(WL-510)/(510-490);
+            }
+			 if (WL>=510 && WL<580){ 
+              R = (WL-510)/(580-510);
+              G = 1;
+              B = 0;
+            }
+            if (WL>=580 && WL<645){ 
+              R = 1;
+              G = -1*(WL-645)/(645-580);
+              B = 0;
+            }
+            if (WL>=645 && WL<=780){ 
+              R = 1;
+              G = 0;
+              B = 0;
+            }
+//
+//      LET THE INTENSITY SSS FALL OFF NEAR THE VISION LIMITS
+//
+         if (WL>=700){
+         	SSS=0.3+0.7*(780-WL)/(780-700);
+         }
+         else if (WL<420){
+         	SSS=0.3+0.7*(WL-380)/(420-380);
+         }
+         else{
+         	SSS=1;
+         }
+
+	document.optics.setRGB(idlaser,Math.round(SSS*R*255),Math.round(SSS*G*255),Math.round(SSS*B*255));
+	
+	document.optics.setAutoRefresh(true);
+}
+
+function clearall(){
+	document.optics.setDefault();
+	document.optics.clearAll();
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 34.10</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="optics.OpticsApplet.class" codebase="../../classes/" align="middle" width="700" 
+      height="350" archive="Physlets.jar" name="optics" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="optics,slider1">
+        <param name="Resources" value="optics_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+      archive="Physlets.jar" name="slider1" width="699" 
+      hspace="0" vspace="0" align="middle" mayscript style="height: 38px">
+        <param name="min" value="380">
+        <param name="max" value="760">
+        <param name="value" value="700">
+        <param name="label" value="cor">
+        <param name="ShowControls" value="false">	
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>&nbsp; <a href="JavaScript:initPage()" style="text-decoration: none">Animação 1</a> </td>
+      <td>
+      &nbsp;
+      <a href="JavaScript:animationB()" style="text-decoration: none">Animação 2</a></td>    </tr>  </table>  </center></div><p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>As animações apresentam raios de luz provenientes de uma fonte de feixes paralelos, 
+inicialmente no ar (n = 1), a incidirem num pedaço de vidro.&nbsp; Podes variar 
+o comprimento de onda deslocando o cursor.&nbsp; <a href="javascript:initPage()">
+Início</a>.&nbsp; </p>
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Problema da autoria de Anne J. Cox.<br>
+Script da autoria de Morten Brydensholt e modificado por Anne J. Cox.<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

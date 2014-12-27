@@ -1,0 +1,364 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script> 
+<script LANGUAGE="Javascript">
+var id=new Array();
+var checked1=false;
+var checked2=false;
+var checked3=false;
+var checked4=false;
+var checked5=false;
+var checked6=false;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build()",100);
+}
+
+
+function build(){
+    if(!loaded) return;
+    timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0); 
+   document.Animator.setTimeDisplay(false);
+   box=document.Animator.addObject("rectangle","x=0,y=0,w=160,h=160");
+   document.Animator.setRGB(box,0,250,200);
+   r1=document.Animator.addObject("circle","x=-3,y=3,r=9");
+   r2=document.Animator.addObject("circle","x=0,y=3,r=9");
+   r3=document.Animator.addObject("circle","x=3,y=3,r=9");
+   r4=document.Animator.addObject("circle","x=-3,y=-3,r=9");
+   r5=document.Animator.addObject("circle","x=0,y=-3,r=9");
+   r6=document.Animator.addObject("circle","x=3,y=-3,r=9");
+   document.Animator.setRGB(r1,255,0,0);
+   document.Animator.setRGB(r2,255,0,0);
+   document.Animator.setRGB(r3,255,0,0);
+   document.Animator.setRGB(r4,255,0,0);
+   document.Animator.setRGB(r5,255,0,0);
+   document.Animator.setRGB(r6,255,0,0);
+   bulb1=document.Animator.addObject("circle","x=-3,y=3,r=8");
+   bulb2=document.Animator.addObject("circle","x=0,y=3,r=8");
+   bulb3=document.Animator.addObject("circle","x=3,y=3,r=8");
+   bulb4=document.Animator.addObject("circle","x=-3,y=-3,r=8");
+   bulb5=document.Animator.addObject("circle","x=0,y=-3,r=8");
+   bulb6=document.Animator.addObject("circle","x=3,y=-3,r=8");
+  
+   document.Animator.addObject("text","x=-3.3,y=4.3,text=1");
+   document.Animator.addObject("text","x=-0.3,y=4.3,text=2");
+   document.Animator.addObject("text","x=2.7,y=4.3,text=3");
+   document.Animator.addObject("text","x=-3.3,y=-5.5,text=4");
+   document.Animator.addObject("text","x=-0.3,y=-5.5,text=5");
+   document.Animator.addObject("text","x=2.7,y=-5.5,text=6");
+   document.Animator.addObject("text","x=-3,y=-9.3,text=Circuito 6");
+
+   document.circuit.setAutoRefresh(false);      
+   document.circuit.setDefault();
+   document.circuit.setGrid("rows=4,cols=5");
+   
+   document.circuit.addObject("battery","row=2,col=0,to=v,d=1,v=-20.0");
+   document.circuit.addObject("bulb","row=0,col=0,to=h,v=10,w=10");
+   document.circuit.addObject("bulb","row=0,col=4,to=v,v=10,w=10");
+   document.circuit.addObject("bulb","row=1,col=1,to=h,v=10,w=10");
+   document.circuit.addObject("bulb","row=1,col=3,to=v,v=10,w=10");
+   document.circuit.addObject("bulb","row=2,col=1,to=v,v=10,w=10");
+   document.circuit.addObject("bulb","row=2,col=2,to=v,v=10,w=10");
+   document.circuit.addObject("wire","row=0,col=1,to=h");
+   document.circuit.addObject("wire","row=0,col=2,to=h");
+   document.circuit.addObject("wire","row=1,col=4,to=v");
+   document.circuit.addObject("wire","row=2,col=3,to=v");
+   document.circuit.addObject("wire","row=2,col=3,to=h");
+   document.circuit.addObject("wire","row=3,col=0,to=h");
+   document.circuit.addObject("wire","row=3,col=1,to=h");
+   document.circuit.addObject("wire","row=3,col=2,to=h");
+   document.circuit.addObject("wire","row=1,col=0,to=v");
+   switch1=document.circuit.addObject("switch","row=1,col=0,to=h,open=0");
+   switch2=document.circuit.addObject("switch","row=0,col=0,to=v,open=0");
+   switch3=document.circuit.addObject("switch","row=0,col=3,to=v,open=0");
+   switch4=document.circuit.addObject("switch","row=2,col=0,to=h,open=0");
+   switch5=document.circuit.addObject("switch","row=1,col=2,to=v,open=0");
+   switch6=document.circuit.addObject("switch","row=0,col=3,to=h,open=0");	
+	
+    document.circuit.parse();
+    document.circuit.reset();
+    document.circuit.forward();
+
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"lâmpada 1 (A)"); 
+    document.datatable.setSeriesLabel(2,"lâmpada 2 (A)"); 
+    document.datatable.setSeriesLabel(3,"lâmpada 3 (A)");
+    document.datatable.setSeriesLabel(4,"lâmpada 4 (A)");
+    document.datatable.setSeriesLabel(5,"lâmpada 5 (A)");
+    document.datatable.setSeriesLabel(6,"lâmpada 6 (A)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+    
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(switch1,tid,1,"abs(i)","0"); 
+    document.circuit.makeDataConnection(switch2,tid,2,"abs(i)","0");
+    document.circuit.makeDataConnection(switch3,tid,3,"abs(i)","0");
+    document.circuit.makeDataConnection(switch4,tid,4,"abs(i)","0");
+    document.circuit.makeDataConnection(switch5,tid,5,"abs(i)","0"); 
+    document.circuit.makeDataConnection(switch6,tid,6,"abs(i)","0");      
+    document.circuit.updateDataConnections();
+
+    
+    values=document.circuit.getSourceData(switch1,"i");
+    current1=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch2,"i");
+    current2=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch3,"i");
+    current3=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch4,"i");
+    current4=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch5,"i");
+    current5=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch6,"i");
+    current6=Math.abs(values.split(",")[0]);
+    
+    document.Animator.setRGB(bulb1,100+75*+current1,100+75*+current1,0);
+	document.Animator.setRGB(bulb2,100+75*+current2,100+75*+current2,0);
+	document.Animator.setRGB(bulb3,100+75*+current3,100+75*+current3,0);
+	document.Animator.setRGB(bulb4,100+75*+current4,100+75*+current4,0);
+	document.Animator.setRGB(bulb5,100+75*+current5,100+75*+current5,0);
+	document.Animator.setRGB(bulb6,100+75*+current6,100+75*+current6,0);
+    
+    document.Animator.setAutoRefresh(true);
+
+}
+
+function setBulbs(){
+    if(!loaded) return;
+    if(checked1){document.circuit.setValue(switch1,"open");} 
+      else {document.circuit.setValue(switch1,"close");}
+    if(checked2){document.circuit.setValue(switch2,"open");} 
+       else {document.circuit.setValue(switch2,"close");}
+    if(checked3){document.circuit.setValue(switch3,"open");} 
+       else {document.circuit.setValue(switch3,"close");} 
+    if(checked4){document.circuit.setValue(switch4,"open");} 
+       else {document.circuit.setValue(switch4,"close");} 
+    if(checked5){document.circuit.setValue(switch5,"open");} 
+       else {document.circuit.setValue(switch5,"close");} 
+    if(checked6){document.circuit.setValue(switch6,"open");} 
+       else {document.circuit.setValue(switch6,"close");}       
+       
+    document.circuit.parse();
+    document.circuit.reset();
+    document.circuit.forward();
+    document.circuit.updateDataConnections();
+    timerID=setTimeout("updateAnimator()",500);
+}
+
+function updateAnimator(){
+    if(!loaded) return;
+    values=document.circuit.getSourceData(switch1,"i");
+    current1=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch2,"i");
+    current2=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch3,"i");
+    current3=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch4,"i");
+    current4=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch5,"i");
+    current5=Math.abs(values.split(",")[0]);
+    values=document.circuit.getSourceData(switch6,"i");
+    current6=Math.abs(values.split(",")[0]);
+    
+	if(checked1){document.Animator.setRGB(bulb1,0,250,200);}
+	   else{if(current1<0.01){document.Animator.setRGB(bulb1,30,30,30);}
+	           else{document.Animator.setRGB(bulb1,100+75*+current1,100+75*+current1,0);}}
+	if(checked2){document.Animator.setRGB(bulb2,0,250,200);}
+	   else{if(current2<0.01){document.Animator.setRGB(bulb2,30,30,30);}
+	        else{document.Animator.setRGB(bulb2,100+75*+current2,100+75*+current2,0);}}   
+	if(checked3){document.Animator.setRGB(bulb3,0,250,200);}
+	    else{if(current3<0.01){document.Animator.setRGB(bulb3,30,30,30);}
+	         else{document.Animator.setRGB(bulb3,100+75*+current3,100+75*+current3,0);}}
+	if(checked4){document.Animator.setRGB(bulb4,0,250,200);}
+	    else{if(current4<0.01){document.Animator.setRGB(bulb4,30,30,30);}
+	         else{document.Animator.setRGB(bulb4,100+75*+current4,100+75*+current4,0);}}
+	if(checked5){document.Animator.setRGB(bulb5,0,250,200);}
+	    else{if(current5<0.01){document.Animator.setRGB(bulb5,30,30,30);}
+	         else{document.Animator.setRGB(bulb5,100+75*+current5,100+75*+current5,0);}}
+	if(checked6){document.Animator.setRGB(bulb6,0,250,200);}
+	    else{if(current6<0.01){document.Animator.setRGB(bulb6,30,30,30);}
+	         else{document.Animator.setRGB(bulb6,100+75*+current6,100+75*+current6,0);}}
+    //document.circuit.pause();
+    document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+
+</script> 
+<title>Physlet Physics by Christian and Belloni: Problem 30.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 30.1</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+      <p align="center">
+      <applet CODEBASE="../../classes/" 
+      ARCHIVE="Physlets.jar" 
+      CODE="animator4.Animator.class" name="Animator" WIDTH="200" HEIGHT="200" HSPACE="0" 
+      ALIGN="center" mayscript>
+        <param name="FPS" value="20">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.05">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataTable.DataTable.class" name="datatable" width="455" height="45" hspace="0" 
+      align="center" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="6">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="Function">
+ <p align="center" style="margin-top: 0; margin-bottom: 0"><b>Faz a tua seleção 
+	e carrega no botão para calcular as correntes em cada lâmpada.</b></p>
+	<p align="center" style="margin-top: 5px; margin-bottom: 15px">&nbsp;<input type="button" value="calcular correntes" onclick="Javascript:setBulbs()"></p>
+ <div align="center">
+   <center></font>
+   <table border="0" width="478">
+     <tr>
+       <td align="center"><font size="2">lâmpada 1 <input type="checkbox" name="options1" 
+       value="d1" onclick="javascript:checked1 = (this.checked);"></font></td>
+       <td align="center"><font size="2">lâmpada 2 <input type="checkbox" name="options3" 
+       value="d1" onclick="javascript:checked2 = (this.checked);"></font></td>
+       <td>
+       <p align="center"><font size="2">lâmpada 3 <input type="checkbox" name="options4" 
+       value="d3" onclick="javascript:checked3 = (this.checked);"></font></td>
+       <td>
+       <p align="center"><font size="2">lâmpada 4 <input type="checkbox" name="options5" 
+       value="d3" onclick="javascript:checked4 = (this.checked);"></font></td>
+       <td>
+		<p align="center"><font size="2">lâmpada 5 <input type="checkbox" name="options6" value="d3" 
+       onclick="javascript:checked5 = (this.checked);"></font></td>
+       <td align="center"><font size="2">lâmpada 6 <input type="checkbox" name="options2" 
+       value="d3" onclick="javascript:checked6 = (this.checked);"></font></td>
+     </tr>
+   </table>
+   </center>
+ </div>
+ <p align="center" style="margin-top: 15px"><b><i><font color="#FF0000">A 
+	lâmpada está desenroscada quando a marca é assinalada no quadrado 
+	respetivo.<br>
+ As lâmpadas desenroscadas aparecem transparentes. A cor das lâmpadas ligadas 
+	representa a intensidade do seu brilho.</font></i></b></p>
+</form>
+<div align="center">
+  <p align="justify" style="margin-top: 0; margin-bottom: 0">São dados no quadro 
+	conjuntos de lâmpadas iguais, mas as suas ligações estão escondidas. 
+	Determina como é que as lâmpadas estão ligadas entre si, desenroscando ou 
+	ligando as lâmpadas e verificando os respetivos brilhos. Inicialmente, 
+	todas as lâmpadas estão ligadas e as respetivas correntes indicadas na 
+	tabela (<b>a corrente aparece indicada em unidades SI de corrente elétrica</b>).&nbsp;&nbsp;
+  <a href="JavaScript:build()">Início</a>.</div>
+<div align="center">
+  <p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</div>
+<div align="center">
+  <p align="left" style="margin-top: 0; margin-bottom: 0">Desenha um esquema, 
+	representando o circuito elétrico escondido para cada animação. </div>
+<div align="center">
+  <p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</div>
+<ol type="a">
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1a_pt.html">Circuito 1 - Três lâmpadas</a></div>
+	</li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1b_pt.html">Circuito 2 - Três lâmpadas</a></div>
+	</li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1c_pt.html">Circuito 3 - Quatro lâmpadas</a></div>
+	</li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1d_pt.html">Circuito 4 - Quatro lâmpadas</a></div>
+	</li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1e_pt.html">Circuito 5 - Cinco lâmpadas</a></div>
+	</li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">Circuito 6 - Seis 
+	lâmpadas</div></li>
+	<li>
+	<div align="center">
+		<p align="left" style="margin-top: 3px; margin-bottom: 0">
+		<a href="prob30_1_circuit1g_pt.html">Circuito 7 - Seis lâmpadas</a></div>
+	</li>
+</ol>
+<div align="center">
+&nbsp;</div>
+<div align="center">
+  <applet codebase="../../classes/" 
+  archive="Physlets.jar" 
+  code="circuitsimulator.Circuit.class" width="2" height="2" name="circuit" align="left" mayscript>
+    <param name="numberofdt" value="10">
+    <param name="dt" value="0.05">
+    <param name="fps" value="10">
+    <param name="noc" value="10">
+    <param name="imagedir" value="circuitimages">
+    <param name="OnLoad" value="initApplets()">
+    <param name="AppletNames" value="datatable,circuit,Animator">
+  </applet></div>
+<p align="left">Problema da autoria de Melissa Dancy.<br>
+<i>Script</i> da autoria de Wolfgang Christian e Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

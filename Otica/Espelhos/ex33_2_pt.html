@@ -1,0 +1,133 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Exploration 33.2</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     document.Optics.setElementSize(.8);
+     document.Optics.setDirection(1);       
+     id=document.Optics.addObject("mirror","y=0,x=4,f=1.2");
+     id2=document.Optics.addObject("image","file=opticsimages/new_eye.gif,x=0.45,y=-.62");
+     idap=document.Optics.addObject("beamstop","x=0.8,top=0.73,bottom=0.84");
+      
+     id6=document.Optics.addObject("source","point,x=1,y=.5,slope=0.2, inc=0.05");
+     id7=document.Optics.addObject("source","x=1,y=.5,rays=true");
+	idc1=document.Optics.addObject("constraint","xmin=0, xmax=4, ymin=0, ymax=0");
+     document.Optics.setConstraint(id7,idc1);
+     document.Optics.setDragable(id7,true);
+     document.Optics.setResizable(id7,false);
+     
+     document.Optics.setDisplayOffset(id6,0,50);
+     document.Optics.setResizable(id6,false);
+     document.Optics.setAnimationSlave(id7,id6);
+     document.Optics.setAutoRefresh(true);
+     
+     
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<style type="text/css">
+.style1 {
+	text-decoration: underline;
+}
+.style2 {
+	font-family: "Times New Roman", Times, serif;
+}
+.style3 {
+	font-size: small;
+}
+.style4 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: small;
+}
+</style>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 33.2 - Olhar para espelhos curvos</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0" width=610>
+    <tr>
+      <td>
+<applet codebase="../../classes/" archive="Physlets.jar" code="optics.OpticsApplet.class"
+name="Optics" width="600" height="300" hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowControls" value="false">
+   <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics">
+        </applet></td>
+    </tr>
+    </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left">
+<b>Descrição da Animação</b></p>
+<p align="left" class="style4">
+<font face="Arial" style="font-size: 9pt">Qual a diferença entre uma imagem real e 
+uma imagem virtual? O que é que os teus olhos veem 
+quando olham para um espelho?&nbsp; </font>
+</p>
+<p align="left" class="style4">
+<font face="Arial" style="font-size: 9pt">Uma vez assumido que a luz se desloca em linha reta, quando a luz diverge em um 
+ponto, o cérebro assume que o ponto da qual diverge (ponto da imagem) é onde a 
+luz é originada.&nbsp;Por isso, para uma imagem virtual, o olho/cérebro vê a 
+imagem e pensa que esta se encontra atrás do espelho. </font> </p>
+<p align="left" class="style2">
+<font face="Arial">
+<span class="style3"><span style="font-size: 9pt">Para imagens reais, a luz atravessa o ponto de imagem. Se se colocar um 
+alvo no 
+ponto onde os raios o atravessam, a imagem real pode ser formada no alvo; no 
+entanto se se colocar um alvo no ponto de uma imagem virtual, não se verá nada 
+no alvo (este está atrás do espelho...).</span></span></font><span style="mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: PT; mso-fareast-language: PT; mso-bidi-language: AR-SA"> </span></p>
+<p align="left" class="style2">
+<span style="mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: PT; mso-fareast-language: PT; mso-bidi-language: AR-SA">
+<font face="Arial">Nesta animação, podes arrastar o objeto para a frente e para trás, se premires e arrastares o 
+quadrado castanho <strong>(a posição é 
+dada em metros e o ângulo é dado em graus)</strong>.</font></span><font face="Arial"><span class="style3"><span style="font-size: 9pt">
+<a href="JavaScript:init()">Início</a>. &nbsp;</span></span></font></p>
+<p align="left">
+&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Exploração da autoria de Anne J. Cox.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

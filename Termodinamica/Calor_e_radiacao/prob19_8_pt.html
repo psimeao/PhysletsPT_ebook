@@ -1,0 +1,159 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0; 
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("heat()",100);
+}
+
+function heat(){
+     if(!loaded) return;
+   	timerID=0;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+      document.DataGraph1.setAutoRefresh(false);
+   	document.DataGraph1.setDefault();
+        document.DataGraph2.setAutoRefresh(false);
+   	document.DataGraph2.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,true);
+   	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(100,100,"0","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=-4,y=0,text=T[K] =,calc=308+(293-308)*exp(-t/1.5)");
+	document.Animator.setShapeRGB(255,0,0);
+	document.Animator.addRectangle(86,20,"0","-4");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("text","x=-4,y=-4.5,text=T[K] =,calc=308+(473-308)*exp(-t/1.5)");
+    document.Animator.setOneShot(0,10,"Fim da Animação");
+   	
+   
+   document.DataGraph1.setAutoscaleX(false);
+   document.DataGraph1.setAutoscaleY(false);
+   document.DataGraph1.setMinMaxX(0,10);
+   document.DataGraph1.setLabelX("Tempo");
+   document.DataGraph1.setLabelY("Temperatura (K)");
+   document.DataGraph1.setTitle("Água: Temperatura vs. Tempo");
+  document.DataGraph1.setMinMaxY(275,325);
+   
+   gid1=document.DataGraph1.getGraphID();
+   document.Animator.makeDataConnection(cid,gid1,1,"t","308+(293-308)*exp(-t/1.5)");
+   document.Animator.updateDataConnections();
+      
+   document.DataGraph2.setAutoscaleX(false);
+   document.DataGraph2.setAutoscaleY(false);
+   document.DataGraph2.setMinMaxX(0,10);
+   document.DataGraph2.setLabelX("Tempo");
+   document.DataGraph2.setLabelY("Temperatura (K)");
+   document.DataGraph2.setTitle("Metal: Temperatura vs. Tempo");
+   document.DataGraph2.setMinMaxY(200,500);
+
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.setSeriesStyle(1,true,3);
+     document.DataGraph1.setLastPointMarker(1,true); 
+     document.DataGraph1.setSeriesRGB(1,0,200,255);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,3);
+     document.DataGraph2.setLastPointMarker(1,true); 
+     document.DataGraph2.setSeriesRGB(1,255,0,0);
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph2.setMarkerSize(1,0.6);
+     
+     gid2=document.DataGraph2.getGraphID();
+   document.Animator.makeDataConnection(cid,gid2,1,"t","308+(473-308)*exp(-t/1.5)");
+   document.Animator.updateDataConnections();
+   document.Animator.setAutoRefresh(true);
+   document.DataGraph1.setAutoRefresh(true); 
+    document.DataGraph2.setAutoRefresh(true); 
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<title>Physlet Physics by Christian and Belloni: Problem 19.6</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 19.8</h2>
+<div align="center">
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td rowspan="2">
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="200" height="309" name="Animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.1">
+  <param name="showControls" value="false">
+     <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph1,DataGraph2">
+        <param name="Resources" value="animator_pt.rc">
+	</applet></td>
+    <td>
+	<applet code="dataGraph.DataGraph.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="300" height="150" name="DataGraph1" mayscript>  
+  <param name="showControls" value="false">
+	</applet></td>
+  </tr>
+  <tr>
+    <td>
+	<applet code="dataGraph.DataGraph.class" archive="Physlets.jar" 
+   codebase="../../classes/" align="baseline" width="300" height="150" name="DataGraph2" mayscript>  
+  <param name="showControls" value="false">
+  	</applet></td>
+  </tr>
+	</table>
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p> Um bloco de metal é colocado dentro de um recipiente termicamente isolado 
+contendo água <b>
+(a posição é dada em centímetros, a temperatura em Kelvin e o tempo em unidades 
+arbitrárias)</b>.&nbsp;A largura do recipiente (dimensão para dentro do ecrã) é de 25 
+cm e a largura do bloco de metal (dimensão para dentro do ecrã) é de 10 cm. O 
+bloco de metal tem 2 kg de massa .&nbsp;Os gráficos mostram a temperatura do metal e 
+da água ao longo do tempo. &nbsp;<a href="JavaScript:heat()">Início</a>&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

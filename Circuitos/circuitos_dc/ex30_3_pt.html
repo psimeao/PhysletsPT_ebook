@@ -1,0 +1,242 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var id=new Array();
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build0()",100);
+}
+
+function build0(){
+    if(!loaded) return;
+    timerID=0;
+    document.selection.reset();
+    
+    ravalue=document.selection.R1.value;
+    if( !checkRange(ravalue,1,1000)){
+     alert("A resistência RA deve estar entre 1 e 1000 Ohms. O valor inserido foi "+ravalue);
+     return;
+    } 
+    
+    rbvalue=document.selection.R2.value;
+    if( !checkRange(rbvalue,0.1,10)){
+     alert("o fator multiplicativo deve estar entre 0.1 e 10. O valor inserido foi "+rbvalue);
+     return;
+    } 
+  
+	ra=eval(document.selection.R1.value);
+	rb=ra/eval(document.selection.R2.value);
+
+	document.circuit.setGrid("rows=3,cols=3");
+	id[1]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=12.0,r=1.0E-9");
+	document.circuit.setMaxCurrentValue(id[1],.0833);
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[2]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=A,r="+ra);
+	id[3]=document.circuit.addObject("resistor","row=1,col=1,to=v,label=B,r="+rb);
+	document.circuit.addObject("wire","row=2,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	id[4]=document.circuit.addObject("vmeter","row=1,col=2,to=v,label=,d=-1,r=1000000.0");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=2,col=1,to=h,label=");
+
+    document.circuit.parse();
+    document.circuit.reset();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"Voltímetro (V)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[4],tid,1,"-v","0"); 
+    document.circuit.updateDataConnections();
+    document.circuit.forward();
+}
+
+function build2(){
+    if(!loaded) return;
+    timerID=0;
+    
+    ravalue=document.selection.R1.value;
+    if( !checkRange(ravalue,1,1000)){
+     alert("A resistência RA deve estar entre 1 e 1000 Ohms. O valor inserido foi "+ravalue);
+     return;
+    } 
+    
+    rbvalue=document.selection.R2.value;
+    if( !checkRange(rbvalue,0.1,10)){
+     alert("O fator multiplicativo deve estar entre 0.1 e 10. O valor inserido foi "+rbvalue);
+     return;
+    } 
+    
+	ra=eval(document.selection.R1.value);
+	rb=ra/eval(document.selection.R2.value);
+
+	document.circuit.setGrid("rows=3,cols=3");
+	id[1]=document.circuit.addObject("battery","row=0,col=0,to=v,label=,d=-1,v=12.0,r=1.0E-9");
+	//document.circuit.setMaxCurrentValue(id[1],.0833);
+	document.circuit.addObject("wire","row=0,col=0,to=h,label=");
+	id[2]=document.circuit.addObject("resistor","row=0,col=1,to=v,label=A,r="+ra);
+	id[3]=document.circuit.addObject("resistor","row=1,col=1,to=v,label=B,r="+rb);
+	document.circuit.addObject("wire","row=2,col=0,to=h,label=");
+	document.circuit.addObject("wire","row=1,col=0,to=v,label=");
+	id[4]=document.circuit.addObject("bulb","row=1,col=2,to=v,label=,d=-1,v=4.0,w=0.2");
+	document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+	document.circuit.addObject("wire","row=2,col=1,to=h,label=");
+
+    document.circuit.parse();
+    document.circuit.reset();
+    
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"d.d.p. lâmpada (V)");
+    document.datatable.sizeToFit(true);
+    tid=document.datatable.getTableID();
+   
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[4],tid,1,"-v","0"); 
+    document.circuit.updateDataConnections();
+    document.circuit.forward();
+}
+
+
+function change_R(){
+    if(!loaded) return;
+    timerID=0;
+    
+    ravalue=document.selection.R1.value;
+    if( !checkRange(ravalue,1,1000)){
+     alert("A resistência RA deve estar entre 1 e 1000 Ohms. O valor inserido foi "+ravalue);
+     return;
+    } 
+    
+    rbvalue=document.selection.R2.value;
+    if( !checkRange(rbvalue,0.1,10)){
+     alert("O fator multiplicativo deve estar entre 0.1 e 10. O valor inserido foi "+rbvalue);
+     return;
+    } 
+    
+	ra=eval(document.selection.R1.value);
+	rb=ra/eval(document.selection.R2.value);
+	document.circuit.setValue(id[2],ra.toString());
+	document.circuit.setValue(id[3],rb.toString());
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 30.3</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Exploração 30.3 - Divisor de Diferença de 
+Potencial</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><span lang="pt">&nbsp;<font size="2"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="250" height="200" name="circuit" mayscript>
+        
+        
+        
+        
+        
+        
+        
+        <param name="numberofdt" value="10">
+        <param name="dt" value="0.05">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="datatable,circuit">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></font></span></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataTable.DataTable.class" 
+      name="datatable" width="161" height="45" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="1">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet> </span> </td>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+ <p align="center"><span lang="pt">&nbsp;<b><i>R</i><sub>A</sub></b> <b>= <input name="R1" size="4" value="500">&nbsp; 
+	Ω&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<i>R</i><sub>A</sub>=</b> <b><input name="R2" size="4" value="1"> 
+	&nbsp;x&nbsp; <i>R</i><sub>B</sub>&nbsp;&nbsp;&nbsp;&nbsp;
+ <input onclick="Javascript:change_R()" type="button" value="escolher resistências"> </b>
+	</span></p>
+ <p></p>
+ <p></p>
+</form>
+<span lang="pt">
+</b>
+</span>
+<p></p>
+
+       
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+       
+	<p align="left"><span lang="pt"><b>Descrição da Animação</b></span></p>
+<p><span lang="pt">Na resolução de problemas com circuitos elétricos, não só se 
+pretende saber o que faz um circuito já montado, como também se pretende muitas 
+vezes construir um circuito para uma tarefa específica. Neste caso, o objetivo é 
+desenhar um circuito que funcione como divisor de diferença de potencial (muitas 
+vezes chamado divisor de tensão), com uma diferença de potencial de saída 
+específica <b>(a d.d.p. é dada em volts e a resistência em ohms)</b>.&nbsp;<a href="JavaScript:document.selection.reset(); build0()">Início</a></span></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0"><b>Exploração</b></p>
+<p><span lang="pt">Podes&nbsp;substitui o voltímetro por uma
+<a href="Javascript:build2()">lâmpada.</a>&nbsp; 
+</span></p>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Exploração da autoria de Anne J. Cox.<br>
+<i>Script </i>da autoria de Anne J. Cox e Wolfgang Christian.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

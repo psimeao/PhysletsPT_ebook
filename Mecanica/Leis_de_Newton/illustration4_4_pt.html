@@ -1,0 +1,232 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 4.4</title>
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script> 
+<script language="JavaScript">
+var fbd=false;
+var timerID=0;
+var pi=0;
+var m=0;
+var theta=0;
+var a=0;
+var tmax=0; 
+
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("shm5_3A()",100);
+}
+  	
+function shm5_3A(){ 
+      if(!loaded) return;
+       timerID=0;
+  document.selection.reset();
+   	m=document.selection.mass.value;
+	theta=document.selection.theta.value;
+
+  	pi=Math.PI;
+   	m=m/1000;
+   	theta=theta*pi/180;
+   	a=9.8*Math.sin(theta);
+   	tmax=Math.sqrt(68/Math.cos(theta)/Math.abs(a)); 
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(-120,-198);
+   id1=document.Animator.addPolyShape(4,"0,"+22*Math.cos(theta)+","+22*(Math.cos(theta)-Math.sin(theta))+","+22*-1*Math.sin(theta)+"","0,"+22*Math.sin(theta)+","+22*(Math.cos(theta)+Math.sin(theta))+","+22*Math.cos(theta)+"","25",34*Math.tan(theta));
+   document.Animator.setRGB(id1,195,194,140);
+   document.Animator.setMass(id1,m);
+   document.Animator.setDragable(id1,false);
+   axstr=-9.8*Math.cos(theta)*Math.sin(theta);
+   aystr=-9.8*Math.sin(theta)*Math.sin(theta);
+   document.Animator.setTrajectory(id1,"25.5+0.5*"+axstr+"*0^2","0.5*"+aystr+"*0^2+"+34*Math.tan(theta));
+   id2=document.Animator.addObject("text","text=rapidez =,calc=sqrt(vx^2+vy^2)");
+   document.Animator.setFormat(id2,"%2.2f");
+   document.Animator.setDisplayOffset(id2,-130,40);
+   document.Animator.setAnimationSlave(id1,id2);
+   id6=document.Animator.addPolyShape(3,"0,450,450","0,0,"+450*Math.tan(theta)+"","-9.0","0.");
+   document.Animator.setRGB(id6,200,200,200);
+   document.Animator.setAutoRefresh(true);
+}
+
+function shm5_3B(){ 
+   newmass=document.selection.mass.value;
+     if( !checkRange(newmass,100,500)){
+     alert("O valor da massa deve estar entre 100 gramas e 500 gramas. O valor inserido foi "+newmass+" gramas.");
+     return;
+  } 
+   
+    newtheta=document.selection.theta.value;
+     if( !checkRange(newtheta,10,45)){
+     alert("O valor do ângulo deve estar entre 10 graus e 45 graus. O valor inserido foi "+newtheta+" graus.");
+     return;
+} 
+
+	m=document.selection.mass.value;
+	theta=document.selection.theta.value;
+
+  	pi=Math.PI;
+   	m=m/1000;
+   	theta=theta*pi/180;
+   	a=9.8*Math.sin(theta);
+   	tmax=Math.sqrt(68/Math.cos(theta)/Math.abs(a)); 
+    document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault();
+   document.Animator.setOneShot(0,tmax,"Fim da Animação");
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(-120,-198);
+
+   id1=document.Animator.addPolyShape(4,"0,"+22*Math.cos(theta)+","+22*(Math.cos(theta)-Math.sin(theta))+","+22*-1*Math.sin(theta)+"","0,"+22*Math.sin(theta)+","+22*(Math.cos(theta)+Math.sin(theta))+","+22*Math.cos(theta)+"","25.",+34*Math.tan(theta));
+   document.Animator.setRGB(id1,195,194,140);
+   document.Animator.setMass(id1,m);
+   document.Animator.setDragable(id1,false);
+   axstr=-9.8*Math.cos(theta)*Math.sin(theta);
+   aystr=-9.8*Math.sin(theta)*Math.sin(theta);
+   document.Animator.setTrajectory(id1,"25.5+0.5*"+axstr+"*t^2","0.5*"+aystr+"*t^2+"+34*Math.tan(theta));
+   id2=document.Animator.addObject("text","text=rapidez =,calc=sqrt(vx^2+vy^2)");
+   	document.Animator.setFormat(id2,"%2.2f");
+   	document.Animator.setDisplayOffset(id2,-130,40);
+   document.Animator.setAnimationSlave(id1,id2);
+   id6=document.Animator.addPolyShape(3,"0,450,450","0,0,"+450*Math.tan(theta)+"","-9.0","0.");
+   document.Animator.setRGB(id6,200,200,200);
+   
+if(fbd)
+{
+	astr=""+a;
+	astr1=astr.substring(0,4);
+	   gid=document.Animator.addPolyShape(4,"0,"+22*Math.cos(theta)+","+22*(Math.cos(theta)-Math.sin(theta))+","+22*-1*Math.sin(theta)+"","0,"+22*Math.sin(theta)+","+22*(Math.cos(theta)+Math.sin(theta))+","+22*Math.cos(theta)+"","25.",+34*Math.tan(theta));
+   document.Animator.setRGB(gid,215,214,160);
+  document.Animator.setTrajectory(gid,"-5","26");
+   id8=document.Animator.addObject("arrow","h=0,v="+m*9.8*-3);
+	document.Animator.setRGB(id8,200,0,0);
+	document.Animator.setDisplayOffset(id8,10*(Math.cos(theta)-Math.sin(theta)),10*(Math.cos(theta)+Math.sin(theta)));
+   	document.Animator.setAnimationSlave(gid,id8);
+   id9=document.Animator.addObject("text","text=Força gravítica local");
+   	document.Animator.setDisplayOffset(id9,8,-20);
+	document.Animator.setAnimationSlave(gid,id9);
+   id10=document.Animator.addObject("arrow","h="+m*9.8*-3*Math.cos(theta)*Math.sin(theta)+",v="+m*9.8*3*Math.cos(theta)*Math.cos(theta));
+	document.Animator.setRGB(id10,200,0,0);
+	document.Animator.setAnimationSlave(gid,id10);
+	document.Animator.setDisplayOffset(id10,10*(Math.cos(theta)-Math.sin(theta)),10*(Math.cos(theta)+Math.sin(theta)));
+   	id11=document.Animator.addObject("text","text=Força de reação normal");
+   	document.Animator.setDisplayOffset(id11,10-30*Math.sin(theta),40);
+	document.Animator.setAnimationSlave(gid,id11);
+   
+   document.Animator.addObject("text","x=-10,y=35,text=Aceleração = "+astr1+" m/s^2");
+	
+   	id13=document.Animator.addObject("text","text=Força resultante");
+   	document.Animator.setDisplayOffset(id13,-80,-12);
+	document.Animator.setAnimationSlave(id1,id13);
+	id12=document.Animator.addObject("arrow","h="+m*9.8*-3*Math.cos(theta)*Math.sin(theta)+",v="+m*9.8*-3*Math.sin(theta)*Math.sin(theta));
+	document.Animator.setAnimationSlave(id1,id12);
+	document.Animator.setRGB(id12,0,0,200);
+	document.Animator.setDisplayOffset(id12,10*(Math.cos(theta)-Math.sin(theta)),10*(Math.cos(theta)+Math.sin(theta)));
+}
+
+
+
+
+else
+{
+}
+   	document.Animator.setAutoRefresh(true);
+    document.Animator.forward();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script> 
+</head>
+
+<body onunload="killmenow()"> 
+
+
+<h2 align="center">Ilustração 4.4 - Bloco num plano inclinado</h2>
+
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+
+
+<applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="480"
+        height="400" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form name="selection">
+
+<div align="center">
+          <center>
+<input type="button" height="20" value="registar os valores e começar" name="StartButton1" 
+      onclick="shm5_3B()"> 
+<input type="button" value="continuar" onclick="document.Animator.forward()"><input type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button" value="início" onclick="document.Animator.reset()">
+</center></div>
+    <div align="center">
+      <center><b><i>m</i> =&nbsp;<input type="text" name="mass" size="5" value="250"> gramas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		<i>θ </i>=&nbsp;<input type="text" name="theta" size="4" value="20"> °</b><br>
+      <input type="checkbox" name="options" value="velocity" onclick="javascript:fbd = (this.checked);">    
+  <b>seleciona a caixa, para veres na animação o diagrama de corpo-livre e a 
+		força resultante no bloco.</center></div>
+</form></p>
+
+<p align="center"><font color="#FF0000"><i>Por favor espera até a animação estar 
+completamente carregada.</i></font></p>
+
+</b>
+
+	<p align="left"><b>Descrição da Animação</b></p>
+
+<p>
+Um bloco encontra-se sobre uma superfície sem atrito, como mostra a animação <b>
+(a posição é dada em metros e o tempo em segundos).&nbsp; </b>Podes escolher os 
+valores da massa <i>m </i><b>&nbsp;</b>do bloco (100 g &lt; m &lt; 500 g) e do ângulo de 
+inclinação do plano&nbsp;<i>θ</i> (10<b>°</b>&nbsp;&lt;&nbsp; θ &lt; 45<b>°</b>&nbsp;) e observar de 
+que forma esses valores afetam o movimento do bloco. O diagrama de corpo-livre 
+apenas estará visível se selecionares a caixa de visualização.&nbsp; <a href="javascript:shm5_3A()">
+Início</a>
+</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>Ilustração da autoria de Mario Belloni.<br>
+Script realizado por Steve Mellema, Chuck Niederriter e modificado por Mario 
+Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

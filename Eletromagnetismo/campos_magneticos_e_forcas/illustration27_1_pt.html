@@ -1,0 +1,675 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 27.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+
+var c = new Array();
+for(j=0;j<=50;j++){
+	c[j]=0;
+}
+rid0=0;
+rid1=0;
+rid2=0;
+text1id=0;
+text2id=0;
+text3id=0;
+text4id=0;
+var timerID=0;
+
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initPage()",100);
+}
+  	
+function initPage(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.BField.setAutoRefresh(false);
+	document.BField.setDefault();
+	document.BField.setShowFieldLineOnDoubleClick(true);
+	document.BField.setShowFieldVectors(false);
+	//document.BField.addObject("field","");
+	
+	c[0]=document.BField.addObject("wire","x=0,y=0,i=-0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=N");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=S");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+		
+	document.BField.setFormat(0,"%-+5.1f");
+	
+   cid=document.BField.addObject("compass","x=3,y=-1.5,r=20");
+   document.BField.setDragable(cid,true);
+   
+	document.BField.setAutoRefresh(true);
+}
+
+function addmagnet1(){
+	if(!loaded) return;
+	document.BField.setAutoRefresh(false);
+	
+	c[0]=document.BField.addObject("wire","x=2,y=1,i=0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=-0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=S");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=N");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+
+	document.BField.setAutoRefresh(true);
+}
+function addmagnet2(){
+	if(!loaded) return;
+	document.BField.setAutoRefresh(false);
+	
+	c[0]=document.BField.addObject("wire","x=2,y=-1,i=-0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=N");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=S");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+
+	document.BField.setAutoRefresh(true);
+}
+function addmagnet3(){
+	document.BField.setAutoRefresh(false);
+	c[0]=document.BField.addObject("wire","x=-1,y=0,i=-0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],-10,0);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","h=156,w=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,-5,0);
+	rid1=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid1,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-5,-39);
+	rid2=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid2,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,-5,39);
+	text3id=document.BField.addObject("text","text=S");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-10,-75);
+	text4id=document.BField.addObject("text","text=N");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,-10,65);
+
+	document.BField.setAutoRefresh(true);
+}
+function addmagnet4(){
+	document.BField.setAutoRefresh(false);
+	c[0]=document.BField.addObject("wire","x=0,y=0,i=0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=-0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],-10,0);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","h=156,w=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,-5,0);
+	rid1=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid1,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-5,-39);
+	rid2=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid2,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,-5,39);
+	text3id=document.BField.addObject("text","text=N");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-10,-75);
+	text4id=document.BField.addObject("text","text=S");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,-10,65);
+
+	document.BField.setAutoRefresh(true);
+}
+function clearPage(){
+	if(!loaded) return;
+	document.BField.setAutoRefresh(false);
+	document.BField.setDefault();
+	document.BField.setShowFieldLineOnDoubleClick(true);
+	document.BField.setShowFieldVectors(false);
+	//document.BField.addObject("field","");
+	
+	document.BField.setFormat(0,"%-+5.1f");
+	
+	cid=document.BField.addObject("compass","x=3,y=-1.5,r=20");
+   document.BField.setDragable(cid,true);
+   
+	document.BField.setAutoRefresh(true);
+}
+function serie(){
+	clearPage();
+	addmagnet1();
+	
+	document.BField.setAutoRefresh(false);
+	
+	c[0]=document.BField.addObject("wire","x=-1.1,y=1,i=0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=-0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=S");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=N");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+
+	document.BField.setAutoRefresh(true);
+}
+function parallel(){
+	clearPage();
+	
+	document.BField.setAutoRefresh(false);
+	
+	c[0]=document.BField.addObject("wire","x=-2,y=1,i=0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=-0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=S");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=N");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+	
+	c[0]=document.BField.addObject("wire","x=-2,y=-1.75,i=-0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],0,-10);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,0);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-72+(j-1)*8,-10);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","x=-2.2,y=0,w=156,h=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,0,-5);
+	rid1=document.BField.addObject("rectangle","x=-3,y=0,w=78,h=22");
+		document.BField.setRGB(rid1,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-39,-5);
+	rid2=document.BField.addObject("rectangle","x=-1.4,y=0,w=78,h=22");
+		document.BField.setRGB(rid2,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,39,-5);
+	text3id=document.BField.addObject("text","x=-3.7,y=-0.1,text=N");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-75,-10);
+	text4id=document.BField.addObject("text","x=-1,y=-0.1,text=S");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,65,-10);
+
+	document.BField.setAutoRefresh(true);
+}
+function horseshoe(){
+	clearPage();
+	parallel();
+	
+	document.BField.setAutoRefresh(false);
+	
+	c[0]=document.BField.addObject("wire","x=-3.25,y=-0.475,i=-0.5");
+		document.BField.setDragable(c[0],true);
+		document.BField.setShowForce(c[0],false);
+	c[20]=document.BField.addObject("wire","i=0.5");
+		document.BField.setAnimationSlave(c[0],c[20]);
+		document.BField.setDisplayOffset(c[20],-10,0);
+		document.BField.setShowForce(c[20],false);
+	
+	for(j=1;j<=9;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	for(j=11;j<=19;j++){
+		c[j]=document.BField.addObject("wire","i=-0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],0,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+		c[j]=document.BField.addObject("wire","i=0.5");
+			document.BField.setAnimationSlave(c[0],c[j]);
+			document.BField.setDisplayOffset(c[j],-10,-72+(j-1)*8);
+			document.BField.setShowForce(c[j],false);
+	}
+	
+	rid0=document.BField.addObject("rectangle","h=156,w=24");
+		document.BField.setRGB(rid0,255,255,255);
+		document.BField.setAnimationSlave(c[0],rid0);
+		document.BField.setDisplayOffset(rid0,-5,0);
+	rid1=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid1,255,255,192);
+		document.BField.setAnimationSlave(c[0],rid1);
+		document.BField.setDisplayOffset(rid1,-5,-39);
+	rid2=document.BField.addObject("rectangle","h=78,w=22");
+		document.BField.setRGB(rid2,255,0,0);
+		document.BField.setAnimationSlave(c[0],rid2);
+		document.BField.setDisplayOffset(rid2,-5,39);
+	text3id=document.BField.addObject("text","text=S");
+		document.BField.setObjectFont(text3id,"Helvetica",1,14);
+		document.BField.setRGB(text3id,0,0,0);
+		document.BField.setAnimationSlave(c[0],text3id);
+		document.BField.setDisplayOffset(text3id,-10,-75);
+	text4id=document.BField.addObject("text","text=N");
+		document.BField.setObjectFont(text4id,"Helvetica",1,14);
+		document.BField.setRGB(text4id,255,255,255);
+		document.BField.setAnimationSlave(c[0],text4id);
+		document.BField.setDisplayOffset(text4id,-10,65);
+
+	document.BField.setAutoRefresh(true);
+}
+function setMode(mode){
+  if(eval(mode)==1){document.BField.setShowFieldVectors(true);}
+  else{document.BField.setShowFieldVectors(false);}
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 27.1 - Ímanes e Bússolas</h2>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="3" cellspacing="0" width="750">
+    <tr>
+      <td align="left">
+      <table border="1" cellspacing="1" bgcolor="#C0C0C0">
+        <tr>
+          <td>
+          <applet codebase="../../classes/" archive="Physlets.jar" 
+          code="bfield.BField.class" name="BField" width="387" 
+          height="285" hspace="0" vspace="0" align="middle" mayscript>
+            <param name="ShowControls" value="false">
+            <param name="ShowFieldVectors" value="false">
+            <param name="BxFunction" value="0">
+            <param name="ByFunction" value="0">
+            <param name="Range" value="-5,5,-5,5">
+            <param name="GridSize" value="30">
+            <param name="OnLoad" value="initApplets()">
+        	<param name="AppletNames" value="BField">
+			<param name="Resources" value="bfield_pt.rc">
+          </applet> </td>
+          <td>
+          <table border="1" cellpadding="3" valign="top" width="250">
+            <tr>
+              <th align="center" colspan="2">Adicionar íman:</th>
+            </tr>
+            <tr>
+              <td align="center">&nbsp;<p><a href="javascript:addmagnet1();">
+              <img border="0" src="magne3.gif" width="85" height="12"></a> </p>
+              <p>&nbsp;</td>
+              <td align="center">&nbsp;<p><a href="javascript:addmagnet2();">
+              <img border="0" src="magne4.gif" width="85" height="12"></a> </p>
+              <p>&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="center">&nbsp;<p><a href="javascript:addmagnet4();">
+              <img border="0" src="magne2.gif" width="12" height="82"></a> </p>
+              <p>&nbsp;</td>
+              <td align="center">&nbsp;<p><a href="javascript:addmagnet3();">
+              <img border="0" src="magne1.gif" width="12" height="81"></a> </p>
+              <p>&nbsp;</td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+      </center>
+      <form name="parameterForm">
+        <p align="center">
+        <input type="button" value="ver vetores de campo" 
+        onclick="setMode(1)"><input type="button" value="não ver vetores de campo" 
+        onclick="setMode(0)"><input type="button" value="limpar" 
+        onclick="clearPage()"></p>
+      </form>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">Esta ilustração permite estudar o campo magnético produzido por 
+um íman. Por defeito, a página mostra um íman e uma bússola. Usa a bússola para 
+estudar o campo magnética à volta do íman. Podes adicionar mais ímanes e 
+deslocá-los pelo seu centro. Usa o botão limpar para eliminares todos os ímanes 
+e começares de novo.&nbsp; <a href="JavaScript:initPage()">Início</a></p>
+<p align="left" style="margin-bottom: 0">&nbsp;</p>
+<p align="left"> Ilustração da autoria de Melissa Dancy.<br>
+<i>Script</i> da autoria de Morten Brydensholt.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

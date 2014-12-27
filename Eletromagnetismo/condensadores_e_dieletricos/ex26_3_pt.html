@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 26.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var idc=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.poisson.setAutoRefresh(false);
+   document.poisson.setDefault();
+   document.poisson.set(0, "chargescale","scale=20");
+   document.poisson.setTolerance(1.0e-2);
+   document.poisson.setMaxIterations(500);
+   document.poisson.setShowFieldVectors(false);
+   document.poisson.setShowContours(false);
+   document.poisson.setShowEOnDrag(false);
+   document.poisson.setShowVOnDrag(true); 
+   id=document.poisson.addObject("conductor","v=3,w=80,h=300,x=-0.5,y=0");
+   document.poisson.setResizable(id,false);
+   document.poisson.setDragable(id,false); 
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setVisibility(id,false);
+   id=document.poisson.addObject("dielectric","chi=1.6,w=82, h=300,y=0.0");
+   document.poisson.setDragable(id,false); 
+   document.poisson.setResizable(id,false);   
+   document.poisson.setShowCharge(id,true);
+   document.poisson.setVisibility(id,false);
+   id=document.poisson.addObject("conductor","v=-3,w=80,h=300,x=+0.5,y=0");  
+   document.poisson.setResizable(id,false);
+   document.poisson.setDragable(id,false); 
+   document.poisson.setVisibility(id,false);
+   document.poisson.setShowCharge(id,true);  
+   
+   id=document.poisson.addObject("conductor","v=0,w=300,h=40,x=+0.0,y=1.0");  
+   document.poisson.setResizable(id,false);
+   document.poisson.setDragable(id,false); 
+   document.poisson.setVisibility(id,false);
+   document.poisson.setShowCharge(id,true); 
+   
+   id=document.poisson.addObject("dielectric","chi=10.0,w=300,h=40,x=+0.0,y=-1.0");  
+   document.poisson.setResizable(id,false);
+   document.poisson.setDragable(id,false); 
+   document.poisson.setVisibility(id,false);
+   document.poisson.setShowCharge(id,true); 
+   
+   	idc=document.poisson.addObject("cursor","x=0.8,y=0");
+   	document.poisson.setDragable(idc,true);
+   	id2=document.poisson.addObject("text","x=0,y=0,text=V =,calc=v");
+   	document.poisson.setDisplayOffset(id2,-10,-25);
+   	document.poisson.setAnimationSlave(idc,id2);
+      
+   document.poisson.setShowVOnDrag(true);  
+   document.poisson.setAutoRefresh(true);
+
+}
+
+function markerg(){
+if(!loaded) return;
+idx=document.poisson.getXPos(idc);
+idy=document.poisson.getYPos(idc);
+idm=document.poisson.addObject("circle","x="+idx+",y="+idy+",r=3");
+document.poisson.setRGB(idm,0,220,0);
+
+}
+
+function markerp(){
+
+idx=document.poisson.getXPos(idc);
+idy=document.poisson.getYPos(idc);
+idm=document.poisson.addObject("circle","x="+idx+",y="+idy+",r=3");
+document.poisson.setRGB(idm,220,0,220);
+
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 26.3 - Condutores e Dielétricos</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="poisson.Poisson.class" codebase="../../classes" 
+      archive="Physlets.jar" align="middle" width="450" 
+      height="450" name="poisson"  mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Range" value="-1.2,1.2,-1.2,1.2">
+        <param name="ShowContours" value="true">
+        <param name="ShowGrid" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="GridSize" value="48">
+        <param name="Gutter" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="poisson">
+        <param name="Resources" value="poisson_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">&nbsp;&nbsp;
+		<a href="JavaScript:markerg()" style="text-decoration: none">adicionar 
+		marcador verde</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="JavaScript:markerp()" style="text-decoration: none">adicionar 
+		marcador púrpura</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="JavaScript:init()" style="text-decoration: none">apagar todos os 
+		marcadores</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+
+
+<p>Espera até que o cálculo acabe. Há condutores e dielétricos (isoladores) 
+escondidos na animação. Os círculos a vermelho representam cargas positivas, 
+enquanto que os círculos a azul representam cargas negativas. Esta carga pode 
+estar ligada ou não-ligada (livre); ou seja, pode ser carga acumulada num 
+dielétrico ou a que atravessa um condutor, respetivamente. Podes medir o 
+potencial elétrico em qualquer ponto usando a ponta de prova<b> (a posição é 
+dada em metros e o potencial elétrico é dado em volts)</b>.&nbsp; Clicando em 
+&quot;adicionar marcador&quot;&nbsp;adicionará um marcador circular na posição da ponta de 
+prova.&nbsp;
+<a href="JavaScript:init()">Início</a>.&nbsp; </p>
+<p align="left" style="margin-bottom: 0">
+&nbsp;<p>Problema da autoria de Mario Belloni, Wolfgang Christian e Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 4.5</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var showFBDrope1=false;
+var showFBDredWagon=false;
+var showWholeSystem=false;
+var showFBDsystem=false;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+
+
+function initFlags() {
+	showFBDrope1=false;
+	showFBDredWagon=false;
+	showWholeSystem=false;
+	showFBDsystem=false;
+}
+
+	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+   wagonIDs = new Array();
+
+   timerID=0;   
+   document.Animator.deleteDataConnections();
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(50,-60);
+   document.Animator.setGridUnit(0);
+   
+   rid=document.Animator.addRectangle(800,30,"0","-3.6");
+   document.Animator.setRGB(rid,0,0,128);
+   
+   if(showWholeSystem==true) {
+   	systemID=document.Animator.addObject("rectangle","x=-11+0.25*t*t,y=0,w=350,h=40");
+   	document.Animator.setRGB(systemID,200,200,200);
+
+   }
+      
+   lid=document.Animator.addLine("5","0","6+0.25*t*t","0");
+   imid=document.Animator.addImage("images/rpull.gif","9.5+0.25*t*t","0.5");
+   
+   //draw wagons
+   drawWagon(255,0,0,"0.25*t*t","0");   
+   drawWagon(0,0,255,"-22+0.25*t*t","0");
+   
+   //draw rope between wagons
+   lid2=document.Animator.addObject("arrow2","v=0,h=10,s=0");
+   document.Animator.makeDataConnection(wagonIDs[1],lid2,1,"x+6","y");  
+   
+
+   //draw free-body diagrams
+   
+   if(showFBDrope1==true) {
+   	FBDid=document.Animator.addObject("arrow2","s=0");
+    	document.Animator.makeDataConnection(lid,FBDid,1,"x","y+9");  
+    	document.Animator.makeDataConnection(lid,FBDid,2,"w","h");  
+    	
+    	f1=document.Animator.addObject("arrow2","x=11,y=9,v=0,h=5,thickness=5");
+    	document.Animator.setRGB(f1,0,0,150);
+    	document.Animator.makeDataConnection(FBDid,f1,1,"x+5","y");
+
+    	f2=document.Animator.addObject("arrow2","x=11,y=9,v=0,h=-5,thickness=5");
+    	document.Animator.setRGB(f2,255,0,0);
+    	document.Animator.makeDataConnection(FBDid,f2,1,"x","y");
+   }
+
+   if(showFBDsystem==true) {
+
+   	systemID=document.Animator.addObject("rectangle","x=-11+0.25*t*t,y=9,w=350,h=40");
+   	document.Animator.setRGB(systemID,200,200,200);
+    	
+    	f1=document.Animator.addObject("arrow2","x=6.5,y=9,v=0,h=5,thickness=5");
+    	document.Animator.setRGB(f1,0,0,150);
+    	document.Animator.makeDataConnection(systemID,f1,1,"x+17.5","y");
+   }
+
+    
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"vx (cm/s)");
+
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    document.Animator.makeDataConnection(wagonid,tid,1,"vx","0");  
+    document.Animator.updateDataConnections();
+    document.Animator.setOneShot(0,15,"Fim da Animação");
+    document.Animator.setAutoRefresh(true);
+}
+
+function drawWagon(red,green,blue,x,y) {
+
+   // draw the wagon
+   wagonid=document.Animator.addObject("rectangle","w=120,h=20");
+   document.Animator.setTrajectory(wagonid,x,y);
+   document.Animator.setRGB(wagonid,red,green,blue);
+   rid1=document.Animator.addRectangle(6,10,"0","0");
+   document.Animator.setRGB(rid1,red,green,blue);
+   document.Animator.setAnimationSlave(wagonid, rid1);
+   document.Animator.setDisplayOffset(rid1,57,15);
+   rid2=document.Animator.addRectangle(6,10,"0","0");
+   document.Animator.setRGB(rid2,red,green,blue);
+   document.Animator.setAnimationSlave(wagonid, rid2);
+   document.Animator.setDisplayOffset(rid2,-57,15);   
+   cid1=document.Animator.addCircle(15,"0","0");
+   document.Animator.setAnimationSlave(wagonid, cid1);
+   document.Animator.setDisplayOffset(cid1,40,-15);    
+   cid2=document.Animator.addCircle(15,"0","0");   
+   document.Animator.setAnimationSlave(wagonid, cid2);
+   document.Animator.setDisplayOffset(cid2,-40,-15); 
+   
+   wagonIDs.push(wagonid);
+
+}
+
+function ghost_wagons(){ 
+   drawWagon(255,150,150,"0.25*t*t","0");   
+   drawWagon(150,150,255,"-22+0.25*t*t","0");
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 4.5 - Puxar vagões</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  <applet codebase="../../classes/" archive="Physlets.jar"
+  code="animator4.Animator.class" align="middle" width="550" height="200" name="Animator" mayscript>
+    <param name="FPS" value="20">
+    <param name="dt" value="0.1">
+    <param name="showControls" value="false">
+            <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+  </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/"
+      archive="Physlets.jar"
+      code="dataTable.DataTable.class" name="DataTable" width="80" height="45"
+      hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="CellWidth" value="40">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="1">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início" onclick="document.Animator.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+  <b>
+
+<p align="center"><font color="#FF0000"><i>Por favor espera até a animação estar 
+completamente carregada.</i></font></p>
+
+</b>
+
+	<p align="left"><b>Descrição da Animação</b></p>
+
+<p>Dois vagões, ligados por uma corda de massa desprezável, são puxados por uma 
+força constante aplicada numa corda de massa também desprezável (<b>a posição é 
+dada em centímetros e o tempo em segundos</b>). A massa do vagão vermelho é de 
+2,0 kg e a massa do vagão azul é de 1,2 kg.&nbsp;
+<a href="javascript:initFlags();startProb()">Início</a>&nbsp; </p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 3px; margin-bottom: 3px">(Dica 1: escolhe o sistema físico 
+adequado e representa o diagrama de corpo-livre do sistema)</p>
+<p style="margin-top: 3px; margin-bottom: 3px">(Dica 2: representa graficamente 
+a velocidade do sistema em função do tempo)</p>
+<p style="margin-top: 3px; margin-bottom: 3px">(Dica 3: aplica a segunda lei de 
+Newton)</p>
+<p style="margin-top: 3px; margin-bottom: 3px">&nbsp;</p>
+<p align="left"><b>Sabias que...</b></p>
+<p>Qual o valor da força exercida pela mão sobre a corda e qual o valor da força 
+de tensão na corda que liga os dois vagões? Para responder a estas questões, 
+tens de aplicar a <b>segunda lei de Newton</b>. Para tal, será melhor definires 
+o sistema de corpos a considerar. Vejamos cada uma destas questões em separado:&nbsp; </p>
+
+<p>1. <u>Qual o valor da força exercida pela mão sobre a corda</u>? Começa por 
+definir o sistema sobre o qual vais aplicar a segunda lei de Newton. Dado que 
+pretendemos determinar o valor da força que a mão exerce sobre a corda, será 
+conveniente escolher a corda como o nosso sistema. Quais as forças que atuam 
+sobre a corda? Para o saber, representa um diagrama de corpo-livre!!&nbsp; (&nbsp;
+<a href="javascript:initFlags();showFBDrope1=true;startProb()">Ver o diagrama de 
+corpo-livre da corda durante a animação</a>&nbsp; )</p>
+<p>Repara que há duas forças a atuar na corda: a força da mão sobre a corda no 
+sentido <i>+x </i>e a força que o vagão vermelho exerce sobre a corda, no 
+sentido<i> -x</i>. Estas duas forças têm intensidade igual, portanto a força 
+resultante sobre a corda é zero.&nbsp; Mas então, como pode a força resultante 
+ser nula se a aceleração <i>do sistema</i> não é zero?
+</p>
+<p style="margin-bottom: 6px">Bem, isto só acontece porque a corda tem massa 
+desprezável, portanto estamos a admitir que a sua massa é, para todos os 
+efeitos, nula; assim, tudo se passa como se a força aplicada pela mão se 
+transmitisse integralmente ao vagão vermelho. Desta forma, a força que atua 
+sobre o vagão vermelho, no ponto de contacto com a corda, tem valor igual ao da 
+força aplicada na extremidade da corda. Dizemos assim que <i>a tensão na corda é 
+constante</i>. Por essa razão, a força que o vagão vermelho exerce sobre a corda 
+tem também o mesmo valor!&nbsp; (a força que o vagão exerce sobre a corda e a 
+força que a corda exerce sobre o vagão, constituem aquilo a que se costuma 
+chamar um <b>par de forças ação-reação</b>).&nbsp;
+</p>
+<p style="margin-top: 6px">(NOTA: na verdade, a massa da corda não é, 
+obviamente, nula; é próximo de zero, mas não exatamente zero. Assim, em rigor, a 
+força exercida pela mão e a força exercida pelo vagão não têm o mesmo valor, 
+pelo que <i>a resultante destas duas forças será responsável pela aceleração da 
+corda</i>)
+</p>
+
+<p>Qual o valor da força exercida pelo vagão vermelho sobre a corda? Que sistema 
+devemos agora considerar? Há duas possibilidades: (1) Considerar o vagão 
+vermelho como o sistema, ou (2) Considerar o vagão azul, o vermelho e a corda 
+entre eles como o sistema. Qualquer das escolhas permite chegar à solução, 
+contudo a escolha (2) é a mais direta e assim, a melhor escolha para a resolução 
+rápida do problema.</p>
+
+<p>Considera então os dois vagões e a corda que os une como o sistema, tal como 
+mostra&nbsp;
+<a href="javascript:initFlags();showWholeSystem=true;startProb();ghost_wagons()">
+esta animação</a>.&nbsp; A caixa cinzenta representa o sistema como um todo. 
+Agora, desenha o diagrama de corpo-livre do sistema e depois,
+<a href="javascript:initFlags();showFBDsystem=true;showWholeSystem=true;startProb();ghost_wagons()">
+observa novamente a animação</a> para comparares com a tua resposta.&nbsp;Após teres 
+representado a diagrama de corpo-livre do sistema e identificado as forças que 
+atuam sobre ele, podes aplicar a segunda lei de Newton, determinar a força 
+resultante que atua sobre o vagão vermelho (a partir do cálculo da aceleração do 
+sistema) e finalmente indicar o valor da força que a mão exerce sobre a corda.</p>
+
+<p>2. <u>Qual o valor da força de tensão na corda que liga os dois vagões</u>? 
+Esta questão pode ser respondida, seguindo um procedimento semelhante ao usado 
+para a questão anterior: identifica o teu sistema, desenha um diagrama de 
+corpo-livre do sistema e finalmente aplica a segunda lei de Newton!&nbsp; </p>
+
+<p>&nbsp;</p>
+
+<p style="margin-top: 0; margin-bottom: 0">Ilustração da autoria de Aaron Titus. </p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A 
+Pearson Company<br>© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão 
+Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

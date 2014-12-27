@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var cid=0;
+var conid=0;
+var gid=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.EField.setAutoRefresh(false);
+     document.EField.setDefault();
+     document.EField.setDrag(false);
+	  document.EField.setShowFieldVectors(false);
+     id=document.EField.addRectangle(0, 1.5, 282, 10 );
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(-2, -0.5, 10, 150);
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(2, -0.5, 10, 150 );
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(-3.4, 1.8, 10, 15 );
+     document.EField.setRGB(id,128,128,128);
+     id=document.EField.addRectangle(3.4, 1.8, 10, 15 );
+     document.EField.setRGB(id,128,128,128);
+
+     cid=document.EField.addCharge(0,-1.0,-20);
+	  document.EField.setRGB(cid,0,0,255);
+	  document.EField.setLabel(cid,"-");
+	  document.EField.setDragable(cid,false);
+
+     cid=document.EField.addTestCharge(-2,2.0,0,0);
+	  document.EField.setRGB(cid,255,0,0);
+	  document.EField.setDragable(cid,true);
+	  document.EField.setLabel(cid,"+");
+     document.EField.setShowFVector(cid,false);
+     document.EField.setShowFComponents(cid,false);
+     document.EField.setOnScreenSize(cid,15); 
+     document.EField.setConstraintStr(cid,"2.0",-3,3);
+     document.EField.setShowConstraintPath(cid,false); 
+     document.EField.setAutoRefresh(true);
+
+     document.DataGraph.setAutoRefresh(false);
+     document.DataGraph.setDefault();
+     document.DataGraph.setAutoscaleX(true);
+     document.DataGraph.setAutoscaleY(true);
+     document.DataGraph.setMinMaxX(0,10.0);
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesStyle(1,true,3);  
+     document.DataGraph.setMarkerSize(1,0.6); 
+     document.DataGraph.setLabelX("Tempo (s)");  
+     document.DataGraph.setLabelY("Posição_{x} (m)");  
+     document.DataGraph.setLastPointMarker(1,true);  
+     document.DataGraph.setTitle("Posição vs. Tempo");  
+     gid=document.DataGraph.getGraphID();
+   document.DataGraph.setAutoRefresh(true);
+     document.EField.deleteDataConnections(); 
+     conid=document.EField.makeDataConnection(cid,gid,1,"t","x"); 
+     document.EField.updateDataConnections();    
+}
+
+function hint(){
+     document.EField.setShowFVector(cid,true);
+     document.EField.setShowFComponents(cid,true);
+}
+
+function dampSpeed(){
+     document.EField.setSpeed(cid,0);  
+}
+
+function play(){
+     document.DataGraph.clearSeries(1);
+     document.EField.setSpeed(cid,0); 
+     document.EField.forward();  
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 22.12</title>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Problema 22.12</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" 
+      ARCHIVE="Physlets.jar" 
+      CODE="dataGraph.DataGraph.class" NAME="DataGraph" WIDTH="400" 
+      HEIGHT="200" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="-1">
+        <param name="XMax" value="1">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="DataFile">
+        <param name="AutoScaleX" value="false">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+      </applet> </td>
+    </tr>
+    <tr>
+      <td align="center">
+      <applet CODEBASE="../../classes/" 
+      ARCHIVE="Physlets.jar" 
+      CODE="eField4.EField.class" NAME="EField" WIDTH="400" HEIGHT="185" 
+      HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.1">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-2,4">
+        <param name="GridSize" value="64">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField,DataGraph">
+        <param name="Resources" value="efield_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="SpecForm">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="velocidade = 0" onclick="dampSpeed()"> 
+	<input type="button" value="começar" onclick="play()"><input type="button" 
+    value="pausa" onclick="document.EField.pause()"><input 
+    type="button" value="passo &gt;&gt;" onclick="document.EField.stepForward()"><input 
+    type="button" value="início" onclick="document.EField.reset();">&nbsp;&nbsp;&nbsp; </p>
+    </center>
+  </div>
+</form>
+<font face="Verdana, Arial, Helvetica">
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+</font>
+<p>Uma bola vermelha carregada eletricamente e com 100 g de massa, é colocada em 
+cima de uma mesa. Uma carga é colocada fixa debaixo da mesa. Observa a animação 
+e o movimento da bola vermelha.&nbsp; Podes arrastar a bola no inicio da 
+animação, para qualquer posição que queiras. Despreza o atrito entre a mesa e a 
+bola.&nbsp;
+<a href="JavaScript:initApplet()">Início</a></p>
+
+<p>&nbsp;</p>
+<p align="left"> © 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

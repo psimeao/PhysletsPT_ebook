@@ -1,0 +1,321 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("posição1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.selection.reset();
+    document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setCaption("Escolhe uma Força Externa para começar");
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0); 
+         
+   id1=document.Animator.addObject("circle","y=-10,r=6,m=1");
+   document.Animator.setConstrainR(id1,10,0,0);
+   document.Animator.setShowConstraintPath(id1,true);
+   document.Animator.setDragable(id1,false);
+   id2=document.Animator.addObject("circle","x=0,y=0,r=2");
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.setShowFVector(id1,true);       
+   document.Animator.setForce(id1,"0","0",0,-10,0,0); 
+   document.Animator.setAutoRefresh(true);  
+   document.Bar.setValue(0);
+    document.Bar.setMin(0);
+    document.Bar.setMax(500);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID(); 
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"vx (m/s)");
+    document.DataTable.setSeriesLabel(2,"vy (m/s)");  
+    document.DataTable.setSeriesLabel(3,"Ec (J)"); 
+
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+}
+
+
+function noforce(){ 
+      if(!loaded) return;
+      newxnaught=document.selection.D1.value;
+       if( !checkRange(newxnaught,-30,30)){
+     alert("O valor da velocidade inicial deve estar entre -30 m/s e 30 m/s. O valor inserido foi "+newxnaught);
+     return;
+  } 
+   veenx=eval(document.selection.D1.value);
+   document.Animator.setAutoRefresh(false);   
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setOneShot(0,25,"Fim da Animação");
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0);  
+   
+   id1=document.Animator.addObject("circle","y=-10,r=6,m=1");
+   document.Animator.setConstrainR(id1,10,0,0);
+   document.Animator.setShowConstraintPath(id1,true);
+   document.Animator.setDragable(id1,false);
+   id2=document.Animator.addObject("circle","x=0,y=0,r=2");
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.setForce(id1,"0","0",0,-10,veenx,0); 
+  aid=document.Animator.addObject("arrow2","x=0,y=0,thickness=2");
+     document.Animator.setRGB(aid,0,0,255);
+   document.Animator.setCaption("Movimento na horizontal");
+   document.Animator.setAutoRefresh(true);  
+   
+    document.Bar.setMin(0);
+    document.Bar.setMax(500);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID(); 
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"vx (m/s)");
+    document.DataTable.setSeriesLabel(2,"vy (m/s)"); 
+    document.DataTable.setSeriesLabel(3,"Ec (J)"); 
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Animator.deleteDataConnections();
+    document.Animator.makeDataConnection(id1,tid,1,"vx","0"); 
+    document.Animator.makeDataConnection(id1,tid,2,"vy","0"); 
+    document.Animator.makeDataConnection(id1,tid,3,"vx*vx*m/2+vy*vy*m/2","0"); 
+    document.Animator.makeDataConnection(id1,bid,1,"vx*vx*m/2+vy*vy*m/2","0");
+    document.Animator.makeDataConnection(id1,aid,1,"x","y");
+    document.Animator.makeDataConnection(id1,aid,2,"ax/4","ay/4"); 
+    document.Animator.updateDataConnections();
+    document.Animator.forward();
+}
+
+
+function gravity(){   
+         if(!loaded) return;
+         newxnaught=document.selection.D1.value;
+       if( !checkRange(newxnaught,-30,30)){
+     alert("O valor da velocidade inicial deve estar entre -30 m/s e 30 m/s. O valor inserido foi "+newxnaught+" m/s.");
+     return;
+  } 
+   veenx=eval(document.selection.D1.value);
+   
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setOneShot(0,25,"Fim da Animação");
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(0); 
+   
+   id1=document.Animator.addObject("circle","y=-10,r=6,m=1");
+   document.Animator.setConstrainR(id1,10,0,0);
+   document.Animator.setShowConstraintPath(id1,true);
+   document.Animator.setDragable(id1,false);
+   id2=document.Animator.addObject("circle","x=0,y=0,r=2");
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.setForce(id1,"0","-9.8",0,-10,veenx,0);  
+   document.Animator.setCaption("Movimento na vertical");
+ 
+     aid=document.Animator.addObject("arrow2","x=0,y=0,thickness=2");
+    document.Animator.setRGB(aid,0,0,255);
+    document.Bar.setMin(0);
+    document.Bar.setMax(500);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID(); 
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"vx (m/s)");
+    document.DataTable.setSeriesLabel(2,"vy (m/s)"); 
+    document.DataTable.setSeriesLabel(3,"Ec (J)"); 
+
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    
+    document.Animator.deleteDataConnections();
+    
+    document.Animator.makeDataConnection(id1,tid,1,"vx","0"); 
+    document.Animator.makeDataConnection(id1,tid,2,"vy","0");  
+    document.Animator.makeDataConnection(id1,tid,3,"vx*vx*m/2+vy*vy*m/2","0"); 
+    document.Animator.makeDataConnection(id1,bid,1,"vx*vx*m/2+vy*vy*m/2","0");
+        document.Animator.makeDataConnection(id1,aid,1,"x","y");
+    document.Animator.makeDataConnection(id1,aid,2,"ax/4","ay/4");  
+    document.Animator.updateDataConnections();
+       document.Animator.setAutoRefresh(true); 
+       document.Animator.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 6.5</title>
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 6.5 - Movimento circular</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/" 
+        archive="Physlets.jar" 
+        name="Animator" width="300" height="300" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataTable,Bar">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+      <td align="center">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="15" height="300" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="264" height="45"
+hspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+  <p align="center">
+  <input type="button" value="continuar" onclick="document.Animator.forward()"><input type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button" value="início" onclick="document.Animator.reset()"></p>
+  <p align="center">
+  <b>&nbsp;<i>v</i><sub>0x</sub> = <input type="text" size="2" value="0"
+  name="D1"> m/s</b></p>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">
+      <font color="#000066">&nbsp;&nbsp; </font>
+      <a href="JavaScript:noforce()" style="text-decoration: none"><font color="#000066">insere <i>v</i> e 
+		corre a animação: movimento na horizontal</font></a><font color="#000066">&nbsp;&nbsp;&nbsp;
+		</font></td>
+      <td align="center">
+      &nbsp;&nbsp;
+      <a href="JavaScript:gravity()" style="text-decoration: none">insere <i>v</i> e corre a animação: 
+		movimento na vertical</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p align="left">Uma bola preta de massa 1 kg é obrigada a mover-se com uma 
+trajetória circular por ação de uma haste, como se mostra na animação&nbsp;<b>(a 
+posição é dada em metros, o tempo em segundos e a energia em Joules)</b>.&nbsp; </p>
+<p align="left">Na animação em que o <a href="JavaScript:noforce()">movimento é 
+na horizontal</a> a haste está na horizontal, paralela à superfície da mesa. Não 
+há atrito entre a bola e a mesa, pelo que a única força horizontal que atua 
+sobre a bola é a força exercida pela haste.&nbsp; Na animação onde o
+<a href="JavaScript:gravity()">movimento é na vertical</a> a haste está no plano 
+vertical e a bola é sujeita à força exercida pela haste e à força gravítica 
+local (vertical, para baixo). Podes dar valores para a velocidade inicial e 
+escolher qualquer um dos movimentos. O vetor a azul representa a força 
+resultante que atua sobre a bola, enquanto a barra do gráfico mostra a 
+energia cinética da bola, em Joules.&nbsp; <a href="JavaScript:position1()">
+Início</a>.&nbsp; 
+</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"><b>Sabias que...</b></p>
+
+<p align="left">Na animação <a href="JavaScript:noforce()">movimento na vertical</a>, 
+começa por escolher um valor para a velocidade inicial e depois
+      <a href="JavaScript:noforce()"><font color="#000066">insere <i>v</i> e 
+corre a animação: movimento na horizontal</font></a>.&nbsp; Experimenta fazer 
+isto para vários valores de <i>v</i>. Em que direção aponta a força resultante? 
+Nesta animação, a única força que atua na horizontal é a força exercida pela 
+haste e que é responsável pelo movimento circular da bola. A direção desta força 
+é sempre radial e aponta sempre para o centro da circunferência (é, portanto, 
+uma <b>
+força centrípeta</b>). Com esta força, será que o valor da velocidade da bola 
+varia? Não. O vetor velocidade da bola varia no tempo, mas não o seu valor (ou 
+seja, <u>a sua rapidez é constante</u>). Ora, o Teorema do Trabalho-Energia 
+diz-nos que, como o trabalho realizado pela força exercida pela haste é nulo 
+(porque essa força é sempre perpendicular ao deslocamento da bola), não há 
+qualquer variação da energia cinética da bola. Pode-se dizer, com toda a 
+generalidade, que uma força centrípeta nunca realiza trabalho. A bola descreve, 
+então, um <b>movimento circular uniforme</b>.</p>
+
+<p align="left">Parta ver o efeito da força gravítica na animação
+      <a href="JavaScript:gravity()">movimento na vertical</a>, escolhe um valor 
+para a velocidade inicial e depois
+      <a href="JavaScript:gravity()">insere <i>v</i> e corre a animação: 
+movimento na vertical</a>.&nbsp; Em que direção aponta a força resultante? Neste 
+caso, a análise física do problema pode ser um pouco mais complicada. Existe uma 
+força com a direção radial da trajetória circular e que é exercida pela haste 
+(tal como no movimento na horizontal), mas agora também há a força gravítica 
+local que atua sobre a bola e que aponta sempre para baixo.&nbsp; Portanto, a 
+força resultante <u>não aponta sempre para o interior da trajetória circular</u>! 
+Será que isso significa que o valor da velocidade da bola varia? Claro que sim! 
+Embora a componente centrípeta da força resultante não realize trabalho, a 
+componente tangencial proveniente da força gravítica realiza trabalho e portanto 
+faz variar a rapidez da bola ao longo da trajetória.&nbsp; </p>
+
+<p align="left">&nbsp;</p>
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 
+Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel 
+Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

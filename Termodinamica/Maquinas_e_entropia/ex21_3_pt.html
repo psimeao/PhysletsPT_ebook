@@ -1,0 +1,472 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script> 
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("gaslaw2()",100);
+}
+  	
+function gaslaw2(){ 
+      if(!loaded) return;
+       timerID=0;
+	
+	document.Molecular.setAutoRefresh(false); 
+    document.Molecular.setDefault();
+    document.Molecular.setProbabilityFunction("0");
+    document.Molecular.setDefaultSize(0.6);
+    document.Molecular.setDefaultColor(255,0,0);
+    document.Molecular.setDefaultMass(1.0);
+    document.Molecular.createParticlesL(10);
+    document.Molecular.setDefaultColor(0,0,255);
+    document.Molecular.setDefaultMass(1.1);
+    document.Molecular.createParticlesL(30);
+    document.Molecular.setTempL(200);
+    document.Molecular.createParticlesR(0);
+    document.Molecular.setTempR(200);
+    document.Molecular.setAutoRefresh(true);
+    
+	document.Molecular.setWallTempL("esquerda",200);
+	document.Molecular.setWallTempR("direita",200); 
+  
+  	id=document.Animator.getClockID();
+	document.Animator.setVisibility(id,false);
+         
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"N-esquerda");
+	document.DataTable.setSeriesLabel(2,"N-direita");
+	tid=document.DataTable.getTableID();
+	
+    document.Molecular.deleteDataConnections(); 
+    eidL=document.Molecular.getEnsembleLeftID();
+    eidR=document.Molecular.getEnsembleRightID();
+    document.Molecular.makeDataConnection(eidL,tid,1,"n","0");
+    document.Molecular.makeDataConnection(eidR,tid,2,"n","0");
+    document.Molecular.updateDataConnections();
+}
+
+
+function prob2(){
+if(!loaded) return;
+	document.Molecular.setProbabilityFunction("0.5");
+
+}
+
+function prob3(){
+if(!loaded) return;
+	document.Molecular.setProbabilityFunction("6.7*(m-1)");
+
+}
+
+function gaslaw3(){
+    if(!loaded) return;
+    document.Molecular.setAutoRefresh(false); 
+    document.Molecular.setDefault();
+    document.Molecular.setProbabilityFunction("0.8");
+    document.Molecular.setDefaultSize(0.6);
+    document.Molecular.setDefaultMass(1.0);
+    document.Molecular.setTempL(300);
+    document.Molecular.createParticlesL(6);
+    document.Molecular.setParticleRGBL(0,0,0,255);
+    document.Molecular.setParticleRGBL(1,0,0,125);
+    document.Molecular.setParticleRGBL(2,0,255,255);
+    document.Molecular.setParticleRGBL(3,0,175,200);
+    document.Molecular.setParticleRGBL(4,255,0,0);
+    document.Molecular.setParticleRGBL(5,192,51,0);
+     
+    document.Molecular.setTempL(300);
+    document.Molecular.createParticlesR(0);
+    document.Molecular.setTempR(300);
+    document.Molecular.setAutoRefresh(true);
+    document.Molecular.setWallTempL("esquerda",200);
+	document.Molecular.setWallTempR("direita",200); 
+  
+             
+   	document.DataTable.setDefault();
+	document.DataTable.sizeToFit(true);
+	document.DataTable.setSeriesLabel(1,"N-esquerda");
+	document.DataTable.setSeriesLabel(2,"N-direita");
+	tid=document.DataTable.getTableID();
+	
+    document.Molecular.deleteDataConnections(); 
+    eidL=document.Molecular.getEnsembleLeftID();
+    eidR=document.Molecular.getEnsembleRightID();
+    document.Molecular.makeDataConnection(eidL,tid,1,"n","0");
+    document.Molecular.makeDataConnection(eidR,tid,2,"n","0");
+}
+
+function stats2(){
+	if(!loaded) return;
+	id=document.Animator.getClockID();
+	document.Animator.setVisibility(id,false);
+	document.Animator.setShapeRGB(255,255,255);
+	document.Animator.addObject("rectangle","h=150,w=400,x=0,y=0");
+	document.Animator.setShapeRGB(150,150,150);
+	document.Animator.addObject("rectangle","h=50,w=100,x=-12,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=12,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=-12,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=12,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=0,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=0,y=-3.75");
+
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("rectangle","h=50,w=5,x=-12,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=12,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=-12,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=12,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=0,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=0,y=-3.75");
+
+
+
+	document.Animator.setShapeRGB(0,0,255);
+    document.Animator.addObject("circle","r=3,x=-13,y=2.5");
+    document.Animator.addObject("circle","r=3,x=-1,y=2.5");
+	document.Animator.addObject("circle","r=3,x=11,y=2.5");
+	document.Animator.addObject("circle","r=3,x=-11,y=-5");
+	document.Animator.addObject("circle","r=3,x=1,y=-5");
+	document.Animator.addObject("circle","r=3,x=13,y=-5");
+
+	
+    document.Animator.setShapeRGB(0,0,125);
+    document.Animator.addObject("circle","r=3,x=-15,y=5");
+    document.Animator.addObject("circle","r=3,x=3,y=5");
+	document.Animator.addObject("circle","r=3,x=15,y=5");
+	document.Animator.addObject("circle","r=3,x=-15,y=-4.5");
+	document.Animator.addObject("circle","r=3,x=-3,y=-4.5");
+	document.Animator.addObject("circle","r=3,x=15,y=-4.5");
+  	 	
+    	
+    document.Animator.setShapeRGB(0,255,255);
+    document.Animator.addObject("circle","r=3,x=-9,y=3");
+    document.Animator.addObject("circle","r=3,x=-3,y=3");
+	document.Animator.addObject("circle","r=3,x=15,y=3");
+	document.Animator.addObject("circle","r=3,x=-15,y=-3");
+	document.Animator.addObject("circle","r=3,x=3,y=-3");
+	document.Animator.addObject("circle","r=3,x=9,y=-3");      
+        
+    document.Animator.setShapeRGB(0,175,200);
+    document.Animator.addObject("circle","r=3,x=-10,y=5");
+    document.Animator.addObject("circle","r=3,x=4,y=5");
+	document.Animator.addObject("circle","r=3,x=8,y=5");
+	document.Animator.addObject("circle","r=3,x=-8,y=-2");
+	document.Animator.addObject("circle","r=3,x=-4,y=-2");
+	document.Animator.addObject("circle","r=3,x=8,y=-2"); 	
+    	
+   	document.Animator.setShapeRGB(255,0,0);
+    document.Animator.addObject("circle","r=3,x=-13,y=4");
+    document.Animator.addObject("circle","r=3,x=-13,y=-4");
+	document.Animator.addObject("circle","r=3,x=11,y=4");
+	document.Animator.addObject("circle","r=3,x=11,y=-4");
+	document.Animator.addObject("circle","r=3,x=-1,y=4");
+	document.Animator.addObject("circle","r=3,x=-1,y=-4");
+         
+    document.Animator.setShapeRGB(192,51,0);
+    document.Animator.addObject("circle","r=3,x=-11,y=4");
+    document.Animator.addObject("circle","r=3,x=-11,y=-4");
+	document.Animator.addObject("circle","r=3,x=13,y=4");
+	document.Animator.addObject("circle","r=3,x=13,y=-4");
+	document.Animator.addObject("circle","r=3,x=1,y=4");
+	document.Animator.addObject("circle","r=3,x=1,y=-4");
+
+}
+
+function stats1(){
+	if(!loaded) return;
+	id=document.Animator.getClockID();
+	document.Animator.setVisibility(id,false);
+	document.Animator.setShapeRGB(255,255,255);
+	document.Animator.addObject("rectangle","h=150,w=400,x=0,y=0");
+
+	document.Animator.setShapeRGB(150,150,150);
+	document.Animator.addObject("rectangle","h=50,w=100,x=-7.5,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=7.5,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=-7.5,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=100,x=7.5,y=-3.75");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addObject("rectangle","h=50,w=5,x=-7.5,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=7.5,y=3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=-7.5,y=-3.75");
+	document.Animator.addObject("rectangle","h=50,w=5,x=7.5,y=-3.75");
+
+	document.Animator.setShapeRGB(0,0,255);
+    document.Animator.addObject("circle","r=3,x=-10,y=2.5");
+    document.Animator.addObject("circle","r=3,x=9,y=-4");
+	document.Animator.addObject("circle","r=3,x=9,y=4");
+	document.Animator.addObject("circle","r=3,x=-5,y=-4");
+	
+    document.Animator.setShapeRGB(0,0,125);
+    document.Animator.addObject("circle","r=3,x=-5,y=2.5");
+    document.Animator.addObject("circle","r=3,x=10,y=-2");
+	document.Animator.addObject("circle","r=3,x=9,y=2");
+	document.Animator.addObject("circle","r=3,x=-9,y=-2");
+  	 		
+    document.Animator.setShapeRGB(0,255,255);
+    document.Animator.addObject("circle","r=3,x=-6,y=2.5");
+    document.Animator.addObject("circle","r=3,x=3,y=4");
+    document.Animator.addObject("circle","r=3,x=9,y=-3");
+	document.Animator.addObject("circle","r=3,x=-5,y=-3");   
+        
+    document.Animator.setShapeRGB(0,175,200);
+   	document.Animator.addObject("circle","r=3,x=-6,y=3.5");
+    document.Animator.addObject("circle","r=3,x=11,y=3");
+    document.Animator.addObject("circle","r=3,x=7,y=-3");
+	document.Animator.addObject("circle","r=3,x=-6,y=-2");
+    	
+   	document.Animator.setShapeRGB(255,0,0);
+    document.Animator.addObject("circle","r=3,x=-9,y=4");
+    document.Animator.addObject("circle","r=3,x=-9,y=-4");
+	document.Animator.addObject("circle","r=3,x=6,y=4");
+	document.Animator.addObject("circle","r=3,x=6,y=-4");
+	         
+    document.Animator.setShapeRGB(192,51,0);
+    document.Animator.addObject("circle","r=3,x=-10,y=4.5");
+    document.Animator.addObject("circle","r=3,x=-10,y=-4.5");
+	document.Animator.addObject("circle","r=3,x=5,y=4.5");
+	document.Animator.addObject("circle","r=3,x=5,y=-4.5");
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Exploration 21.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+<h2 align="center">Exploração 21.3 - Entropia, Probabilidade e Microestados</h2>
+
+<div align="center">
+  <center>
+  <table border="1"  bgcolor="#c0c0c0">
+    <tr>
+      <td>
+      <APPLET name="Molecular" codeBase="../../classes/" 
+      code="molecular.MolecularMembrane.class" align="middle" width="380" height="300" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="ShowControls" VALUE="false">
+      <PARAM NAME="FPS" VALUE="10">
+      <PARAM NAME="dt" VALUE="0.05">
+      <Param name="InitialP" value="1">
+      <param name="PeriodicV" value="false">
+      <Param name="ShowControls" value="false">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Molecular,DataTable">
+      <param name="Resources" value="molecular_pt.rc">      
+      </APPLET></td>
+    </tr>
+    </table>
+  </center>
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#c0c0c0">
+      <tr>
+        <td>
+        <APPLET name="DataTable" codeBase="../../classes/" 
+	code="dataTable.DataTable.class" align="middle" width="194" height="45" 
+	ARCHIVE="Physlets.jar" mayscript>
+	<PARAM NAME="ShowScrollBars" VALUE="false">
+	<PARAM NAME="LastOnTop" VALUE="true">
+	<PARAM NAME="NumRows" VALUE="1">
+	<PARAM NAME="NumCols" VALUE="2">
+	<PARAM NAME="ShowControls" VALUE="false">
+	<PARAM NAME="ShowRowHeader" VALUE="false">
+	<PARAM NAME="ShowColHeader" VALUE="true">
+</APPLET></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+</div>
+
+<CENTER>
+<FORM>
+&nbsp;<input onclick="document.Molecular.forward()" type="button" value="começar"><input onclick="document.Molecular.stepForward()" type="button" value="passo &gt;&gt;"></FORM></CENTER>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+<p align="left">
+   <b>Descrição da Animação</b></p>
+
+<p align="left"> Na animação, dois recipientes encontram-se separados por uma 
+&quot;membrana&quot;. Inicialmente, as partículas não podem atravessar a membrana. As 
+partículas a vermelho são idênticas às partículas a azul. Quando as partículas 
+estiverem distribuídas de modo razoavelmente uniforme, estão criadas as condições 
+para a passagem das partículas através da membrana.&nbsp;&nbsp;&nbsp;
+<a href="Javascript:gaslaw2()">Início</a>. </p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+
+&nbsp;<p align="left" style="margin-top: 0">
+
+<b>Exploração</b><p align="left"> Experimenta <a href="Javascript:prob2()">
+permitir a passagem de partículas através da membrana</a>.&nbsp; A animação 
+permite que quase todas as partículas que incidem na membrana a atravessem (em 
+ambas as direções). Quando houver sensivelmente o mesmo número de partículas em 
+ambos os recipientes, pára a animação e conta o número de partículas vermelhas e 
+azuis de cada lado da membrana. Deixa então a animação continuar e pára-a 
+novamente alguns segundos depois, quando novamente houver aproximadamente o 
+mesmo número de partículas em ambos os recipientes. Novamente, conta o número de 
+partículas vermelhas e azuis de cada lado da membrana. </p>
+
+
+<ol type="a">
+  <li>
+<p style="margin-top: 6px">Dado que há 30 partículas azuis e 10 partículas vermelhas no total, se tivesses 
+feito várias contagens da forma acima descrita, o que esperas acerca do número 
+médio de partículas vermelhas e azuis de cada lado da membrana (ou seja, quando 
+há cerca de 20 partículas em cada recipiente)?</li>
+  <li>
+<p style="margin-top: 6px">Agora, <a href="Javascript:gaslaw2()">corre a animação</a>.&nbsp; Quando as 
+partículas estiverem uniformemente distribuídas no recipiente da esquerda, 
+experimenta <a href="Javascript:prob3()">deixar as partículas atravessar a 
+membrana de uma forma diferente</a>.&nbsp; Novamente, a animação permite que quase todas 
+as partículas atravessem esta segunda membrana.&nbsp;&nbsp; 
+  </li>
+  <li>
+<p style="margin-top: 6px">Quando houver sensivelmente o mesmo número de partículas de ambos os lados da 
+membrana, conta as partículas vermelhas e azuis que se encontram de ambos os 
+lados. O que é diferente na maneira como esta membrana está projetada para 
+funcionar?&nbsp;&nbsp; 
+  </li>
+  <li>
+<p style="margin-top: 6px">Será possível que a primeira membrana tenha um comportamento semelhante à 
+segunda?&nbsp;&nbsp; 
+  </li>
+  <li>
+<p align="left" style="margin-top: 6px"> Este comportamento da membrana é realista?</p>
+
+
+  </li>
+</ol>
+
+
+<p align="left">A razão pela qual a segunda membrana não parece &quot;natural&quot; ou 
+realista deve-se à segunda lei da termodinâmica. Uma formulação da segunda lei é 
+que a entropia de um sistema isolado permanece sempre a mesma ou aumenta (quando 
+a entropia é vista como uma grandeza que mede o grau de desordem do sistema). 
+Por outras palavras, os sistemas &quot;naturais&quot; ou &quot;reais&quot; evoluem no sentido do 
+aumento da sua desordem. Nestas animações, a primeira membrana parece &quot;natural&quot; 
+porque permite uma evolução da desordem do sistema - uma distribuição aleatória 
+das partículas vermelhas e azuis de ambos os lados da membrana. Tal não se 
+verifica na segunda membrana, que apenas permite a passagem das partículas azuis 
+e portanto o recipiente da direita terá sempre mais partículas azuis no seu 
+interior.&nbsp; </p>
+<p align="left">Uma outra forma de interpretar a segunda lei da termodinâmica é 
+em termos probabilísticos. É possível com a primeira animação (primeira 
+membrana) obter 0 partículas vermelhas no recipiente esquerdo, mas tal não é 
+muito provável (tal como é possível que ganhes no euromilhões, mas é pouco 
+provável). Também é possível, na segunda animação, a membrana ter o comportamento 
+observado, mas tal é novamente muito pouco provável. Considera agora a animação 
+com <a href="Javascript:gaslaw3()">apenas seis partículas</a>: 4 azuis e 2 
+vermelhas. Para facilitar a observação, colorimos as azuis com diferentes 
+sombras a azul e as vermelhas com diferentes sombras a vermelho. Corre a 
+animação e observa com que frequência há 3 partículas azuis do lado direito e há 
+3 partículas de ambos os lados. O que se segue permitir-te-á calcular a 
+probabilidade de tal acontecer e mostrar que quando há 3 partículas de cada lado 
+da membrana, há 20% de probabilidade de haver 3 partículas azuis no recipiente 
+da direita.&nbsp; </p>
+
+
+<ol type="a" start="6">
+  <li>
+
+
+<p align="left" style="margin-top: 6px">Considerando as diferentes combinações das 3 partículas de ambos 
+os lados da membrana, repara que há 4 maneiras diferentes de obter 3 partículas 
+azuis do lado direito e duas partículas vermelhas e uma azul do lado esquerdo 
+(escreve estas combinações e <a href="Javascript:stats1()">clica aqui</a> para 
+as mostrar).&nbsp; De forma semelhante, há 4 maneiras diferentes de ter 3 
+partículas azuis no recipiente da esquerda.&nbsp;&nbsp; </p>
+
+
+  </li>
+  <li>
+
+
+<p align="left" style="margin-top: 6px">Há 6 combinações de obter a partícula vermelha clara no lado 
+esquerdo e a vermelha escura no lado direito, cada uma com duas partículas azuis 
+(<a href="Javascript:stats2()">clica aqui para mostrar esta situação</a>). Novamente, há 6 combinações para obter a partícula vermelha escura do lado 
+esquerdo e a vermelha clara do lado direito.</p>
+
+
+  </li>
+  <li>
+
+
+<p align="left" style="margin-top: 6px">Este estudo dá no total quantas combinações de 3 partículas de 
+cada lado?&nbsp; Dado que todos estes estados são igualmente prováveis, tens 
+apenas 20% de probabilidade de ter 3 partículas azuis no recipiente da direita.&nbsp; </p>
+
+
+  </li>
+</ol>
+
+
+<div align="center">
+  <center>
+  <table border="1"bgcolor="#c0c0c0">
+    <tr>
+      <td>
+	<APPLET name="Animator" codeBase="../../classes/" 
+      code="animator4.Animator.class" align="middle" width="400" height="150" 
+      ARCHIVE="Physlets.jar">
+	<PARAM NAME="FPS" VALUE="10">
+	<param name="GridUnit" value="0">
+	<PARAM NAME="dt" VALUE="0.05">
+	<PARAM NAME="showControls" VALUE="false"></APPLET></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="left">À medida que acrescentamos mais partículas, torna-se menos 
+provável ter partículas todas da mesma cor num dos lados da membrana. Com 40 
+partículas, 30 azuis e 10 vermelhas, há apenas aproximadamente 0.02% de 
+probabilidade de, com 20 partículas de cada lado, ter 20 azuis do lado esquerdo 
+da membrana e 10 vermelhas e 10 azuis do lado direito. Isto não é impossível, 
+mas é muito pouco provável.&nbsp; Um estado mais ordenado (20 partículas azuis 
+do lado direito) é estatisticamente menos provável que um estado menos ordenado 
+(partículas vermelhas de ambos os lados da membrana, que é uma mistura mais 
+comum).&nbsp; A <b>Entropia</b> está relacionada com o número de estados disponíveis 
+que correspondem a uma dada combinação (matematicamente, <i>S</i> =<i> k</i><sub>B</sub>ln<i>W,</i> 
+onde <i>S</i> é a entropia, <i>W </i>é o número de combinações equivalentes ou 
+microestados e <i>k</i><sub>B</sub> é a constante de Boltzmann).&nbsp;  </p>
+
+
+<p align="left">Voltando ao nosso exemplo das 6 partículas, há mais estados 
+correspondentes a 1 partícula vermelha em cada recipiente que a 2 partículas 
+vermelhas num único recipiente, pelo que 1 partícula vermelha em cada recipiente 
+é um estado de maior probabilidade para o sistema. Na maior parte dos casos, 
+contudo, estamos a lidar com mais do que 6 partículas (tipicamente será com o 
+número de Avogadro), pelo que os estados muito ordenados são muito pouco 
+prováveis de ocorrer. Relacionar a entropia com a noção de probabilidade, dá-nos 
+uma visão da segunda lei da termodinâmica que não impede a existência dos 
+estados ordenados num sistema; apenas nos diz que eles são muito pouco prováveis 
+de ocorrer.&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p align="left">Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

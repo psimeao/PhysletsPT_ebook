@@ -1,0 +1,389 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script> 
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("entropy0()",100);
+}
+  	
+function entropy0(){ 
+      if(!loaded) return;
+       timerID=0;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setTimeDisplay(false);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,false);
+	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(50,100,"-2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(52,100,"2.5","0");
+	document.Animator.setShapeRGB(255,0,0);
+	cid=document.Animator.addRectangle(50,100,"2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=0,y=1,text=T[K]");
+	document.Animator.addObject("text","x=-4,y=1,text=T[K]");
+	document.Animator.addObject("text","x=-4.3,y=-1,calc=300");
+	document.Animator.addObject("text","x=0,y=-1,calc=500");
+        document.Animator.setCaption("Seleciona uma Animação"); 
+
+   	document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+    document.DataGraph1.setAutoscaleX(false);
+    document.DataGraph1.setAutoscaleY(false);
+    document.DataGraph1.setMinMaxX(0,5.);
+    document.DataGraph1.setLabelX("Tempo");
+    document.DataGraph1.setLabelY("Temperatura (K)");
+    document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0.0,1000.0);
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,255,0,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+ 	gid1=document.DataGraph1.getGraphID();
+ 	
+    document.Bar1.reset();
+    document.Bar2.reset();
+    document.Bar1.setBarWidth(20);
+    document.Bar1.setNumericFormat("%3.0f");
+    document.Bar1.setPosRGB(0,200,255);
+    document.Bar1.setNegRGB(0,180,230);
+  	bid1=document.Bar1.getID();
+  	document.Bar1.setValue(0);
+  	document.Bar2.setValue(0);
+  	document.Bar2.setBarWidth(20);
+    document.Bar2.setNumericFormat("%3.0f");
+    document.Bar2.setPosRGB(255,0,0);
+    document.Bar2.setNegRGB(230,0,0);
+  	bid2=document.Bar2.getID();
+
+ 	document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"Variação Entropia-azul");
+    document.DataTable.setSeriesLabel(2,"Variação Entropia-vermelho");  
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+
+
+	document.Animator.updateDataConnections();
+	document.Animator.setAutoRefresh(true);
+	document.DataGraph1.setAutoRefresh(true);
+}
+
+
+
+function entropy1() { 
+   	if(!loaded) return;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,false);
+	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(50,100,"-2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(52,100,"2.5","0");
+	document.Animator.setShapeRGB(255,0,0);
+	cid=document.Animator.addRectangle(50,100,"2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=0,y=1,text=T[K]");
+	document.Animator.addObject("text","x=-4,y=1,text=T[K]");
+	text=document.Animator.addObject("text","x=-4.3,y=-1,calc=300+100*t/15");
+	document.Animator.setFormat(text,"%3.1f");
+      text=document.Animator.addObject("text","x=0,y=-1,calc=500-100*t/15");
+    	document.Animator.setFormat(text,"%3.1f");
+     document.Animator.setOneShot(0,5,"Fim da Animação");
+    document.Animator.setCaption("Animação 1");
+   	document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+    document.DataGraph1.setAutoscaleX(false);
+    document.DataGraph1.setAutoscaleY(false);
+    document.DataGraph1.setMinMaxX(0,5);
+    document.DataGraph1.setLabelX("Tempo (s)");
+    document.DataGraph1.setLabelY("Temperatura (K)");
+    document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0.0,1000.0);
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,255,0,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+ 	gid1=document.DataGraph1.getGraphID();
+ 	
+    document.Bar1.setBarWidth(30);
+    document.Bar1.setNumericFormat("%3.1f");
+    document.Bar1.setPosRGB(0,200,255);
+    document.Bar1.setNegRGB(0,180,230);
+  	bid1=document.Bar1.getID();
+  	
+  	document.Bar2.setBarWidth(30);
+    document.Bar2.setNumericFormat("%3.1f");
+    document.Bar2.setPosRGB(255,0,0);
+    document.Bar2.setNegRGB(230,0,0);
+  	bid2=document.Bar2.getID();
+
+ 	document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"Variação Entropia-azul");
+    document.DataTable.setSeriesLabel(2,"Variação Entropia-vermelho");  
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+	
+  
+	document.Animator.makeDataConnection(cid,gid1,1,"t","300+100*t/15");
+	document.Animator.makeDataConnection(cid,gid1,2,"t","500-100*t/15");
+	document.Animator.makeDataConnection(cid,bid1,1,"200*t/15","0");
+	document.Animator.makeDataConnection(cid,bid2,1,"-200*t/15","0");
+	document.Animator.makeDataConnection(cid,tid,1,"2*ln((300+100*t/15)/300)","0");
+	document.Animator.makeDataConnection(cid,tid,2,"2*ln((500-100*t/15)/500)","0");
+
+
+	document.Animator.updateDataConnections();
+	document.Animator.setAutoRefresh(true);
+	document.DataGraph1.setAutoRefresh(true);
+}
+
+function entropy2() { 
+   	if(!loaded) return;
+   	document.Animator.setAutoRefresh(false);
+   	document.Animator.setDefault();
+   	document.Animator.shiftPixOrigin(0,0);
+   	document.Animator.setPixPerUnit(10);
+   	document.Animator.setGridUnit(0);
+   	id=document.Animator.getEnsembleID();
+   	document.Animator.setShowCoordinates(id,false);
+	document.Animator.setShapeRGB(0,200,255);
+	cid=document.Animator.addRectangle(50,100,"-2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(52,100,"2.5","0");
+	document.Animator.setShapeRGB(255,0,0);
+	cid=document.Animator.addRectangle(50,100,"2.5","0");
+	document.Animator.setShapeRGB(0,0,0);
+	document.Animator.addRectangle(10,110,"5.5","0");
+	document.Animator.addRectangle(10,110,"-5.5","0");
+	document.Animator.addRectangle(120,10,"0","-5.5");
+	document.Animator.addRectangle(120,10,"0","+5.5");
+	document.Animator.addObject("text","x=0,y=1,text=T[K]");
+	document.Animator.addObject("text","x=-4,y=1,text=T[K]");
+	text=document.Animator.addObject("text","x=-4.3,y=-1,calc=300-100*t/15");
+	document.Animator.setFormat(text,"%3.1f");
+       text=document.Animator.addObject("text","x=0,y=-1,calc=500+100*t/15");
+        document.Animator.setFormat(text,"%3.1f");
+      document.Animator.setOneShot(0,5.,"Fim da Animação");
+        document.Animator.setCaption("Animação 2"); 
+
+   	document.DataGraph1.setAutoRefresh(false);
+	document.DataGraph1.setDefault();
+	document.DataGraph1.deleteAllSeries();
+    document.DataGraph1.setAutoscaleX(false);
+    document.DataGraph1.setAutoscaleY(false);
+    document.DataGraph1.setMinMaxX(0,5.);
+    document.DataGraph1.setLabelX("Tempo (s)");
+    document.DataGraph1.setLabelY("Temperatura (K)");
+    document.DataGraph1.setTitle("Temperatura vs. Tempo");
+  	document.DataGraph1.setMinMaxY(0.0,1000.0);
+    document.DataGraph1.clearSeries(1);
+    document.DataGraph1.setSeriesStyle(1,true,3);
+    document.DataGraph1.setLastPointMarker(1,true); 
+    document.DataGraph1.setSeriesRGB(1,0,200,255);
+    document.DataGraph1.clearSeries(2);
+    document.DataGraph1.setSeriesStyle(2,true,3);
+    document.DataGraph1.setLastPointMarker(2,true); 
+    document.DataGraph1.setSeriesRGB(2,255,0,0);
+    document.DataGraph1.setMarkerSize(1,0.6);
+    document.DataGraph1.setMarkerSize(2,0.6);
+ 	gid1=document.DataGraph1.getGraphID();
+ 	
+    document.Bar1.setBarWidth(20);
+    document.Bar1.setNumericFormat("%3.1f");
+    document.Bar1.setPosRGB(0,200,255);
+    document.Bar1.setNegRGB(0,180,230);
+  	bid1=document.Bar1.getID();
+  	
+  	document.Bar2.setBarWidth(20);
+    document.Bar2.setNumericFormat("%3.1f");
+    document.Bar2.setPosRGB(255,0,0);
+    document.Bar2.setNegRGB(230,0,0);
+  	bid2=document.Bar2.getID();
+
+ 	document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"Variação Entropia-azul");
+    document.DataTable.setSeriesLabel(2,"Variação Entropia-vermelho");  
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+	
+  
+	document.Animator.makeDataConnection(cid,gid1,1,"t","300-100*t/15");
+	document.Animator.makeDataConnection(cid,gid1,2,"t","500+100*t/15");
+	document.Animator.makeDataConnection(cid,bid1,1,"-200*t/15","0");
+	document.Animator.makeDataConnection(cid,bid2,1,"+200*t/15","0");
+	document.Animator.makeDataConnection(cid,tid,1,"2*log((300-100*t/15)/300)","0");
+	document.Animator.makeDataConnection(cid,tid,2,"2*log((500+100*t/15)/500)","0");
+
+
+	document.Animator.updateDataConnections();
+	document.Animator.setAutoRefresh(true);
+	document.DataGraph1.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<title>Physlet Physics by Christian and Belloni: Illustration 21.3</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 21.3 - Entropia e Trocas de Calor</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td rowspan="2">
+	<applet code="animator4.Animator.class" 
+	archive="Physlets.jar" 
+   	codebase="../../classes/" align="baseline" width="200" height="250"  name="Animator" mayscript>
+  	<param name="FPS" value="10">
+  	<param name="dt" value="0.2">
+  	<param name="showControls" value="false">
+  	<param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Animator,DataGraph1,Bar1,Bar2,DataTable">
+      <param name="Resources" value="animator_pt.rc">
+	</applet></td>
+      <td>
+	<applet code="dataGraph.DataGraph.class" 
+	archive="Physlets.jar" 
+   	codebase="../../classes/" align="baseline" width="330" height="200"  name="DataGraph1" mayscript>  
+  	<param name="showControls" value="false">
+	<param name="Resources" value="datagraph_pt.rc">
+	</applet></td>
+      <td>
+	<APPLET name="Bar1" codeBase="../../classes/" 
+      code="dataGraph.Bar.class" align="middle" width="40" height="200" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Value" VALUE="0"> 
+      <PARAM NAME="Vertical" VALUE="true">
+      <PARAM NAME="Max" VALUE="100">
+      <PARAM NAME="Min" VALUE="-100">
+      <PARAM NAME="AutoScale" VALUE="false">
+      <PARAM NAME="ShowControls" VALUE="true">
+      </APPLET></td>
+      <td>
+	<APPLET name="Bar2" codeBase="../../classes/" 
+      code="dataGraph.Bar.class" align="middle" width="40" height="200"
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Value" VALUE="0">
+      <PARAM NAME="Vertical" VALUE="true">
+      <PARAM NAME="Max" VALUE="100">
+      <PARAM NAME="Min" VALUE="-100">
+      <PARAM NAME="AutoScale" VALUE="false">
+      <PARAM NAME="ShowControls" VALUE="true">
+      </APPLET></td>
+    </tr>
+    <tr>
+      <td>
+	<APPLET name="DataTable" codeBase="../../classes/" 
+	code="dataTable.DataTable.class" align="middle" width="330" height="45" 
+	ARCHIVE="Physlets.jar" mayscript>
+	<PARAM NAME="ShowScrollBars" VALUE="false">
+	<PARAM NAME="LastOnTop" VALUE="true">
+	<PARAM NAME="NumRows" VALUE="1">
+	<PARAM NAME="NumCols" VALUE="2">
+	<PARAM NAME="ShowControls" VALUE="false">
+	<PARAM NAME="ShowRowHeader" VALUE="false">
+	<PARAM NAME="ShowColHeader" VALUE="true">
+	</APPLET></td>
+      <td colspan="2">
+      <p align="center">Calor transferido</p>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<div align="center">
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center" >&nbsp;&nbsp;
+		<a href="JavaScript:entropy1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+      <td align="center" >&nbsp;&nbsp;
+		<a href="JavaScript:entropy2()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+     </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+<p align="left">
+   <b>Descrição da Animação</b></p>
+
+<p align="left"> As duas animações apresentam dois objetos do mesmo tamanho, 
+com a mesma massa e a mesma capacidade térmica (<i>C</i> = <i>mc </i>= 2 , em 
+ambos, onde <i>m</i> é a massa do objeto e <i>c</i> é a capacidade térmica mássica do 
+material de que é feito). Inicialmente os objetos estão em contacto térmico um 
+com o outro e a temperaturas diferentes <b>(o tempo é dado em segundos, a 
+temperatura é dada em kelvin e as trocas de calor são dadas em joules)</b>.&nbsp; 
+As barras coloridas do gráfico à direita representam o calor trocado entre os 
+objetos azul e vermelho.&nbsp;
+<a href="JavaScript:entropy0()">Início</a>.</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+
+&nbsp;<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> </p>
+</html>

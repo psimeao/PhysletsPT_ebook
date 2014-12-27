@@ -1,0 +1,188 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 37.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob1()",100);
+}
+  	
+function prob1(){ 
+      if(!loaded) return;
+       timerID=0;
+document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+	   document.Ripple.setDrag(false);
+		document.Ripple.addSource(0, 0.5, 1, 0);     
+		document.Ripple.addSource(0, -0.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave1(){
+if(!loaded) return;
+document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 1, 1, 0);  
+	   document.Ripple.setDrag(false);     
+		document.Ripple.addSource(0, -1, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave2(){
+if(!loaded) return;
+document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 2, 1, 0);  
+	   document.Ripple.setDrag(false);     
+		document.Ripple.addSource(0, -2, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave1a(){
+if(!loaded) return;
+document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 1.5, 1, 0);  
+	   document.Ripple.setDrag(false);     
+		document.Ripple.addSource(0, -1.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function wave2a(){
+if(!loaded) return;
+document.Ripple.setDefault();
+       document.Ripple.deleteAll(); 
+		document.Ripple.setWavelength(2);
+		document.Ripple.addSource(0, 2.5, 1, 0);  
+	   document.Ripple.setDrag(false);     
+		document.Ripple.addSource(0, -2.5, 1, 0);
+       document.Ripple.forward();
+}
+
+function answer1(){
+if(!loaded) return;
+	alert("À medida que a separação aumenta, o padrão de interferência torna-se cada vez mais compacto.");
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 37.2 - Efeito da separação entre fontes</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet code="ripple.Ripple.class" codebase="../../classes/" 
+      archive="Physlets.jar" name="Ripple" width="320" 
+      height="370" mayscript>
+        <param name="numberOfSources" value="0">
+        <param name="pixPerUnit" value="20">
+        <param name="wavelength" value="2.0">
+        <param name="showControls" value="false">
+        <param name="showIntensity" value="true">
+        <param name="animate" value="true">
+        <param name="fps" value="10">
+        <param name="caption" value="Tanque de ondas">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Ripple">
+        <param name="Resources" value="ripple_pt.rc">        
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <div align="center">
+    <center>
+    <p><input type="button" value="começar" onclick="document.Ripple.forward()"><input 
+    type="button" value="pausa" onclick="document.Ripple.pause()"></p>
+    </center>
+  </div>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+<p align="left">Duas fontes de ondas de luz de igual frequência e amplitude, são 
+apresentadas nesta animação. A magnitude do campo elétrico é representada pelas 
+áreas claras e escuras. Quanto mais clara for a cor num ponto, maior é a 
+magnitude do campo elétrico nesse ponto <b>(a posição é dada em nanómetros)</b>.</p>
+<p align="left"><i>NOTA: Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</i></p>
+
+<p>&nbsp;</p>
+<p><b>Exploração:</b></p>
+
+<p align="left">Começa a animação com uma separação entre as fontes de&nbsp; <a 
+href="JavaScript:prob1()">0.5 comprimentos de onda</a>.</p>
+<ol type="a">
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0px">Prevê qual o 
+	padrão de interferência que seria visto, se a separação na origem for 
+	aumentado até 1 comprimento de onda. Depois de teres feito a tua previsão e 
+	anotado o teu raciocínio, verifica na animação para ver se estavas certo. Se 
+	a tua previsão estiver incorreta, reexamina o teu raciocínio, olhando para a 
+	animação com a separação de <a href="JavaScript:wave1()">um comprimento de 
+	onda</a>.</p></li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0px">Quando te 
+	sentires confiante na tua compreensão deste assunto, testa-a prevendo qual o 
+	padrão de interferência se a separação entre as fontes for de 1,5 
+	comprimentos de onda. Verifica o teu prognóstico com a animação
+	<a href="JavaScript:wave1a()">separação de 1,5 comprimentos de onda</a>.</p>
+	</li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0px">Como teste 
+	final, prevê o padrão de interferência para separações de 2,0 e 2,5 
+	comprimentos de onda. Verifica a tua previsão com as animações
+	<a href="JavaScript:wave2()">separação de 2,0 comprimentos de onda</a> e
+	<a href="JavaScript:wave2a()">separação de 2,5 comprimentos de onda</a>.</p>
+	</li>
+	<li>
+	<p align="left" style="margin-top: 6px; margin-bottom: 0px">Se o alvo for 
+	colocado sobre o lado direito da janela de visualização, como mudará o 
+	padrão de interferência quando a distância entre as fontes vai aumentando?</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p align="left">Exploração da autoria de Melissa Dancy.<br>
+	© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

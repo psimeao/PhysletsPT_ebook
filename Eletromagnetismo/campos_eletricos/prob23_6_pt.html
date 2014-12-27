@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="Javascript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;		
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(2);
+   document.Animator.setGridUnit(0); 
+   document.Animator.shiftPixOrigin(-100,0);
+   document.Animator.addObject("rectangle","x=50,y=0,h=400,w=200");
+   idf=document.Animator.addObject("rectangle","x=50,y=0,h=400,w=198");
+   document.Animator.setRGB(idf,150,255,150);
+   idc=document.Animator.addObject("circle","x=-70,y=0,r=5");
+   document.Animator.setRGB(idc,0,0,255);
+   document.Animator.setForce(idc,"0","-step(x)*step(100-x)*10",-70,0,60,0);
+   	document.Animator.setSticky(idc,true);
+   back=document.Animator.addObject("rectangle","x=173,y=0,w=15,h=300");
+      document.Animator.setSticky(back,true);
+      document.Animator.setTrail(idc,300);
+     document.Animator.setAutoRefresh(true);      
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 23.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 23.6</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" 
+      ARCHIVE="Physlets.jar" 
+      CODE="animator4.Animator.class" name="Animator" WIDTH="500" HEIGHT="200" 
+      HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+        <param name="FPS" value="20">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.05">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="1.0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="selection">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="começar" 
+    onclick="document.Animator.forward()"><input type="button" 
+    value="pausa" onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;" 
+    onclick="document.Animator.stepForward()"><input type="button" 
+    value="início" onclick="startProb()"></p>
+    </center>
+  </div>
+  </div>
+  </div>
+  </center>
+  </div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<div align="center">
+  <p align="left">Um eletrão é disparado através de uma região de campo elétrico 
+	constante, apresentada a verde na animação <b>(a posição é dada em 
+	centímetros e o tempo em μs, ou seja, 10<sup>-6</sup> 
+  s)</b>.&nbsp;&nbsp;
+	<a href="JavaScript:startProb()">Início</a></div>
+<p>&nbsp;</p>
+<p align="left">Problema da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

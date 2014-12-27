@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 14.1</title>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+    loaded=true;
+timerID=setTimeout("fluid0()",100);
+}
+
+
+function fluid0(){
+    if(!loaded) return;
+    timerID=0;
+m1=2;
+density1=1000;
+	
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+        document.Animator.setPixPerUnit(20);
+   	document.Animator.setGridUnit(1);
+    document.Animator.shiftPixOrigin(60,-100);
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,200,"-5.1","0");
+    document.Animator.addRectangle(4,250,"5.1","1.25");
+	document.Animator.addRectangle(208,4,"0","-5.1");
+	document.Animator.addRectangle(40,2,"-6","4.95");
+	document.Animator.addRectangle(46,2,"-6.1","5.15");
+	document.Animator.addRectangle(2,100,"-7","2.5");
+	document.Animator.addRectangle(2,100,"-7.2","2.6");
+	document.Animator.addRectangle(4,160,"-11.1","-1");
+    document.Animator.addRectangle(4,160,"-5.9","-1");
+	document.Animator.addRectangle(108,4,"-8.5","-5.1");
+	
+	
+	document.Animator.setShapeRGB(0,155,255);
+	document.Animator.addPiston(200,"0","10+.1*step(t-.0001)*step(("+m1+"*2)*4/10-t)","0","-5");
+	document.Animator.addRectangle(44,2,"-6*step(t-.01)*step(("+m1+"*2)*4/10-t)","5.05*step(t-.01)*step(("+m1+"*2)*4/10-t)");
+	document.Animator.addRectangle(2,100,"-7.1*step(t-.01)*step(("+m1+"*2)*4/10-t)","2.5*step(t-.01)*step(("+m1+"*2)*4/10-t)");
+	document.Animator.addRectangle(2,100,"-7.1*step(t-.01)*step(("+m1+"*2)*4/10-t)","-2.5*step(t-.01)*step(("+m1+"*2)*4/10-t)");
+	document.Animator.addPiston(100,"0","1.28*(t-.01)/(("+m1+"*2)*4/10)*step(t-.01)*step(("+m1+"*2)*4/10-t)+.64*"+m1+"*step(t-("+m1+"*2)*4/10)","-8.5","-5");
+		document.Animator.setShapeRGB(0,0,0);
+		document.Animator.addPiston(80,"0",+m1+"*2+0.1","0","4.95-10*t/4");
+	    id2=document.Animator.addPiston(78,"0",+m1+"*2","0","5-10*t/4");
+	    document.Animator.setRGB(id2,255,180,180);
+       document.Animator.addObject("image","file=images/uarrow.gif,x=-0.5,y=5-10*t/4+100*step(t-3.95)");
+	
+      document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);     
+}
+
+function fluid1(){
+    if(!loaded) return;
+    timerID=0;
+m1=2;
+density1=1000;
+	
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setPixPerUnit(20);
+    document.Animator.setTimeDisplay(false);
+   document.Animator.setGridUnit(2);
+    document.Animator.shiftPixOrigin(60,-100);
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,200,"-5.1","0");
+    document.Animator.addRectangle(4,250,"5.1","1.25");
+	document.Animator.addRectangle(208,4,"0","-5.1");
+	document.Animator.addRectangle(40,2,"-6","4.95");
+	document.Animator.addRectangle(46,2,"-6.1","5.15");
+	document.Animator.addRectangle(2,100,"-7","2.5");
+	document.Animator.addRectangle(2,100,"-7.2","2.6");
+	document.Animator.addRectangle(4,160,"-11.1","-1");
+    document.Animator.addRectangle(4,160,"-5.9","-1");
+	document.Animator.addRectangle(108,4,"-8.5","-5.1");
+	document.Animator.setShapeRGB(0,155,255);
+	document.Animator.addPiston(200,"0","10+.1*step(t-.0001)*step(3-t)","0","-5");
+	document.Animator.addRectangle(44,2,"-6*step(t-.01)*step(3-t)","5.05*step(t-.01)*step(3-t)");
+	document.Animator.addRectangle(2,100,"-7.1*step(t-.01)*step(3-t)","2.5*step(t-.01)*step(3-t)");
+	document.Animator.addRectangle(2,100,"-7.1*step(t-.01)*step(3-t)","-2.5*step(t-.01)*step(3-t)");
+	document.Animator.addPiston(100,"0","3.75*(t-.01)/3*step(t-.01)*step(3-t)+3.75*step(t-3)","-8.5","-5");
+	    
+	    document.Animator.setShapeRGB(0,0,0);
+	    id0=document.Animator.addRectangle(142,214,"0","10.3-6.7*t/3*step(3-t)-6.7*step(t-3)");
+	    document.Animator.setShapeRGB(255,180,180);
+            id2=document.Animator.addRectangle(140,212,"0","10.3-6.7*t/3*step(3-t)-6.7*step(t-3)");
+	    document.Animator.setShapeRGB(0,0,0);
+	    document.Animator.addRectangle(130,209,"0","10.42-6.7*t/3*step(3-t)-6.7*step(t-3)");
+	    id3=document.Animator.addRectangle(128,208,"0","10.42-6.7*t/3*step(3-t)-6.7*step(t-3)");
+	    document.Animator.setRGB(id3,205,205,205);
+       document.Animator.addObject("image","file=images/uarrow.gif,x=-0.5,y=5-6.7*t/3*step(3-t)-107*step(t-3)");
+	 document.Animator.setOneShot(0,4,"Fim da Animação");
+       document.Animator.setAutoRefresh(true);     
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Exploração 14.1 - Flutuar ou Afundar</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+	<applet code="animator4.Animator.class" archive="Physlets.jar" 
+	codebase="../../classes/"
+	width="450" height="450" name="Animator" mayscript>
+	    <param name="FPS" value="15">
+		<param name="dt" value="0.02">
+		<param name="showControls" value="false">
+				<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+<form name="selection">
+        <INPUT onclick="document.Animator.forward()" type="button" value="começar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td></form>            
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b><p align="left">A animação mostra um 
+bloco com massa 0,185 kg, com forma cúbica, que pode ser alterada <b>(a posição 
+é dada em centímetros)</b>.<b>&nbsp; </b><a href="JavaScript:fluid0()">
+Início</a><p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;<p align="left"><b>Exploração</b><p align="left">Vamos <a href="Javascript:fluid1()">mudar a forma do bloco</a> 
+de maneira a manter a dimensão para dentro do ecrã, mas aumentado a largura e a 
+altura e tornando-o oco (as paredes têm 0,21 cm de espessura).&nbsp; 
+<p align="left"><i>NOTA: O peso (massa*9.8 m/s<sup>2</sup>) da água deslocada (quer 
+esta fique no reservatório ou não) é igual à força de impulsão que a água exerce 
+no bloco. <u>No caso do objeto flutuar, a força de impulsão é igual à força 
+gravítica local que atua no bloco</u>. 
+</i> 
+<p align="left">&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

@@ -1,0 +1,151 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob11()",100);
+}
+  	
+function prob11(){ 
+      if(!loaded) return;
+       timerID=0;
+
+        document.Animator3.setAutoRefresh(false);
+        document.Animator3.setDefault();
+        document.Animator3.shiftPixOrigin(0,-25);
+
+        id1=document.Animator3.addRectangle(40,30,"min(20*t-20,5.0*t-5)","1.5");
+        document.Animator3.setRGB(id1,0,0,0); 
+          id1=document.Animator3.addRectangle(38,28,"min(20*t-20,5.0*t-5)","1.5");
+        document.Animator3.setRGB(id1,255,0,0);        
+        id=document.Animator3.addCircle(10,"0","0"); 
+        document.Animator3.setDisplayOffset(id,+12,-16);
+        document.Animator3.setAnimationSlave(id1,id);
+        id=document.Animator3.addCircle(10,"0","0"); 
+        document.Animator3.setDisplayOffset(id,-12,-16);
+        document.Animator3.setAnimationSlave(id1,id);
+        
+        id20=document.Animator3.addRectangle(30,15,"max(-20*t+23.5,5.0*t-1.5)","0.75");
+        document.Animator3.setRGB(id20,0,0,0);
+        id2=document.Animator3.addRectangle(28,13,"max(-20*t+23.5,5.0*t-1.5)","0.75");
+        document.Animator3.setRGB(id2,0,255,0);
+
+        id=document.Animator3.addCircle(10,"0","0"); 
+        document.Animator3.setDisplayOffset(id,+10,-9);
+        document.Animator3.setAnimationSlave(id2,id);
+        id=document.Animator3.addCircle(10,"0","0"); 
+        document.Animator3.setDisplayOffset(id,-10,-9);
+        document.Animator3.setAnimationSlave(id2,id);
+        
+        document.Animator3.setShapeRGB(100,90,90);
+        document.Animator3.addRectangle(400,50,0,-3);
+        document.Animator3.setOneShot(0,2,"Fim da Animação");
+        document.Animator3.setAutoRefresh(true);
+        
+        document.DataTable.setDefault();
+        document.DataTable.setSeriesLabel(1,"v camião (m/s)");
+        document.DataTable.setSeriesLabel(2,"v carro (m/s)");  
+        document.DataTable.sizeToFit(true);
+        document.DataTable.setAutoRefresh(true);   
+	    tid=document.DataTable.getTableID();
+	  
+	  document.Animator3.deleteDataConnections();
+     document.Animator3.makeDataConnection(id1,tid,1,"vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx","0");  
+     document.Animator3.updateDataConnections(); 
+}
+
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 4.12</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 4.12</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+	<applet code="animator4.Animator.class" codebase="../../classes/"
+	archive="Physlets.jar" name="Animator3"
+	width="400" height="80" mayscript>
+  		<param name="FPS" value="10">
+  		<param name="dt" value="0.05">
+  		<param name="pixPerUnit" value="10">
+  		<param name="gridUnit" value="1">
+  		<param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+  <applet codebase="../../classes/" archive="Physlets.jar"
+  code="dataTable.DataTable.class" name="DataTable" width="200" height="45"
+  hspace="0" vspace="0" align="middle" mayscript>
+    <param name="ShowScrollBars" value="false">
+    <param name="LastOnTop" value="true">
+    <param name="CellWidth" value="40">
+    <param name="NumRows" value="1">
+    <param name="NumCols" value="2">
+    <param name="ShowControls" value="false">
+    <param name="ShowRowHeader" value="false">
+    <param name="ShowColHeader" value="true">
+    <param name="SizeToFit" value="true">
+  </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <p align="center">
+	<input type="button" value="começar" onclick="document.Animator3.forward()"><input
+  type="button" value="pausa" onclick="document.Animator3.pause()"><input type="button"
+  value="&lt;&lt; passo" onclick="document.Animator3.stepBack()"><input type="button"
+  value="passo &gt;&gt;" onclick="document.Animator3.stepForward()"><input type="button" value="início"
+  onclick="document.Animator3.reset()"></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Um camião de massa 2000 kg e um carro pequeno, colidem frontalmente conforme 
+se mostra na animação <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp; 
+Assume que a colisão ocorre em 0,05 segundos.&nbsp; <a href="JavaScript:prob11()">
+Início</a>&nbsp;
+
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Script modificado por Paulo Simeão 
+Carvalho e Edite Briosa.</p>
+<p style="margin-top: 0; margin-bottom: 0">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

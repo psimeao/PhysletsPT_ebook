@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+	document.Animator.setTimeDisplay(false);
+   document.Animator.shiftPixOrigin(-160,0);
+       document.Animator.setCaption("Seleciona uma Animação"); 
+     document.Animator.setAutoRefresh(true);    
+}
+
+function initApplet1(){
+	if(!loaded) return;
+	timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+
+   document.Animator.shiftPixOrigin(-160,0);
+     fStr="2*t";
+     fStr2="2*t-0.4";
+   document.Animator.setOneShot(0,16,"Fim da Animação");  
+   
+   		xaxis=document.Animator.addObject("arrow","v=0,h=10");
+		yaxis=document.Animator.addObject("arrow","v=10,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.Animator.addObject("text","y=9,x=-2.5,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		man_id=document.Animator.addObject("image","file=images/man2.gif,x="+fStr2+",y=-5.3");
+    
+    star_id=document.Animator.addObject("circle","r=70,x="+fStr+",y=7");
+    document.Animator.setRGB(star_id,0,0,0);
+
+    star_id=document.Animator.addObject("circle","r=69,x="+fStr+",y=7");
+    document.Animator.setRGB(star_id,255,255,55);
+    electron_id2=document.Animator.addObject("circle","r=11,x="+fStr+",y=-12");
+     document.Animator.setRGB(electron_id2,0,0,0);
+    electron_id=document.Animator.addObject("circle","r=10,x="+fStr+",y=-12");
+     document.Animator.setRGB(electron_id,255,155,155);
+    
+     tid=document.Animator.addObject("text","text=e-");
+     document.Animator.setRGB(tid,0,0,0);
+     document.Animator.setAnimationSlave(electron_id,tid);
+     document.Animator.setDisplayOffset(tid,-5,-5);
+     document.Animator.addObject("rectangle","h=10,w=1200,x=0,y=-7.7");
+   rid=document.Animator.addObject("rectangle","h=8,w=1200,x=0,y=-7.7");
+    document.Animator.setRGB(rid,150,150,150); 
+     document.Animator.setAutoRefresh(true);  
+}
+
+
+function initApplet2(){
+	if(!loaded) return;
+	timerID=0;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(-160,0);
+     fStr="2*t";
+     fStr2="2*t-0.4";
+   		xaxis=document.Animator.addObject("arrow","v=0,h=10");
+		yaxis=document.Animator.addObject("arrow","v=10,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=9,y=-2,text=+x");
+		ytext=document.Animator.addObject("text","y=9,x=-2.5,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		document.Animator.setOneShot(0,16,"Fim da Animação");  
+   man_id=document.Animator.addObject("image","file=images/man2.gif,x="+fStr2+",y=-0.3");
+    electron_id=document.Animator.addObject("circle","r=6,x="+fStr+",y=-50");
+     document.Animator.setRGB(electron_id,255,155,155);
+     document.Animator.addObject("rectangle","h=10,w=1200,x=0,y=-2.7");
+     rid=document.Animator.addObject("rectangle","h=8,w=1200,x=0,y=-2.7");
+    document.Animator.setRGB(rid,150,150,150);
+     document.Animator.setAutoRefresh(true);
+   
+}
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 1.2</title>
+<link rel="stylesheet" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 1.2 - Animações, Unidades e Medições</h2>
+
+<div align="center">
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet CODEBASE="../../classes"
+    ARCHIVE="Physlets.jar"
+    CODE="animator4.Animator.class" name="Animator" WIDTH="400" HEIGHT="314"
+    HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+      <param name="FPS" value="10">
+      <param name="ShowControls" value="false">
+      <param name="dt" value="0.1">
+      <param name="PixPerUnit" value="10">
+      <param name="GridUnit" value="1.0">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+
+    </applet></td>
+    <center>
+
+  </tr>
+  </table>
+</center></div>
+
+<form name="specForm">
+      <div align="center"><center><p>
+    <input onclick="document.Animator.forward()" type="button" value="começar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início"></p>
+  </center></div>
+</form>
+
+<div align="center">
+  <center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td> <a href="JavaScript:initApplet1()" style="text-decoration: none">Animação 1</a> </td>
+    <td>
+&nbsp;<a href="JavaScript:initApplet2()" style="text-decoration: none">Animação 2</a> </td>
+  </tr>
+</table>
+
+  </center>
+</div>
+
+
+    
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+    
+<p><b>Descrição da Animação</b></p>
+<p>A animação 1 mostra um eletrão, uma pessoa e uma estrela, cujo movimento 
+começou antes do início da animação. A animação 2 mostra apenas uma pessoa, 
+também em movimento. <a href="JavaScript:initApplet()">Início</a> </p>
+<p>&nbsp;</p>
+<p>
+  © 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+	Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

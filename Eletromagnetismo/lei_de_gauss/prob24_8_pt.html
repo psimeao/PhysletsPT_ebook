@@ -1,0 +1,193 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var charge=0.8;
+var charge2=0.4;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setCaption("Seleciona uma Configuração");
+   document.EField.setPointChargeMode(true);
+  document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+   document.EField.setChargeRGB(0,0,0);
+   document.EField.setAutoRefresh(true);
+}
+
+
+function initApplet1(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+  document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);
+   document.EField.setCaption("Configuração 1");
+   document.EField.addCharge(1,0,charge);
+   document.EField.addObject("circle","r=10,x=1,y=0");
+   document.EField.setPointChargeMode(false);
+   document.EField.setAutoRefresh(true);
+}
+
+function initApplet2(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setCaption("Configuração 2");
+  document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);   
+   document.EField.addCharge(1,0,charge);
+   document.EField.addCharge(-1,0,charge);
+   document.EField.addObject("circle","r=10,x=1,y=0");
+    document.EField.addObject("circle","r=10,x=-1,y=0");
+    document.EField.setAutoRefresh(true);
+}
+
+function initApplet3(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);  
+   document.EField.setCaption("Configuração 3");
+   document.EField.addCharge(-1,0,charge);
+   document.EField.addCharge(1,0,-charge);
+      document.EField.addObject("circle","r=10,x=-1,y=0");
+   document.EField.addObject("circle","r=10,x=1,y=0");
+   document.EField.setAutoRefresh(true);
+
+}
+
+function initApplet4(){
+   if(!loaded) return;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowEOnDrag(true);
+   document.EField.setShowTime(false);
+	document.EField.setDrag(false);
+   document.EField.setShowForce(false);
+   document.EField.setShowFieldVectors(true);  
+   document.EField.setCaption("Configuração 4");
+   document.EField.setPointChargeMode(false);
+   document.EField.addCharge(1,0,charge2);
+   document.EField.addCharge(0,1,charge2);
+   document.EField.addCharge(-1,0,charge2);
+   document.EField.addCharge(0,-1,charge2);
+      document.EField.addObject("circle","r=10,x=1,y=0");
+   document.EField.addObject("circle","r=10,x=0,y=1");
+   document.EField.addObject("circle","r=10,x=-1,y=0");
+   document.EField.addObject("circle","r=10,x=0,y=-1");
+   document.EField.setAutoRefresh(true);
+
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 24.8</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Problema 24.8</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet CODEBASE="../../classes/" ARCHIVE="Physlets.jar" 
+      CODE="eField4.EField.class" NAME="EField" WIDTH="250" HEIGHT="250" HSPACE="0" 
+      VSPACE="0" ALIGN="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="PointChargeMode" value="true">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="false">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="2" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">&nbsp;&nbsp; 
+		<a href="JavaScript:initApplet1()" style="text-decoration: none">Configuração 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp; 
+		<a href="JavaScript:initApplet2()" style="text-decoration: none">Configuração 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp; 
+		<a href="JavaScript:initApplet3()" style="text-decoration: none">Configuração 3</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td align="center">&nbsp;&nbsp; 
+		<a href="JavaScript:initApplet4()" style="text-decoration: none">
+      Configuração 4</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+<p>Embora os campos elétricos possam ser bastante complexos próximo de uma 
+distribuição de carga, frequentemente eles simplificam-se bastante para grandes 
+distâncias dessa distribuição de carga <b> (a posição é dada em metros e a 
+intensidade do campo elétrico é dada em&nbsp; newtons/coulomb)</b>.&nbsp;&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.</p>
+
+<p align="left"> &nbsp;</p>
+<p align="left"> © 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

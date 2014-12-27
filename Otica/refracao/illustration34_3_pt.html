@@ -1,0 +1,517 @@
+﻿<html xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 34.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var timerID2=0;
+var timerID3=0;
+var timerID4=0;
+var timerID5=0;
+
+var lid=0;
+var lid2=0;
+var lid3=0;
+var mid=0;
+var mid2=0;
+var mid3=0;
+var gid=0;
+var conid1=0;
+var conid2=0;
+var conid3=0;
+var text1=0;
+var text2=0;
+var text3=0;
+var text4=0;
+var text5=0;
+var text6=0;
+var rect1=0;
+var circ1=0;
+var circ2=0;
+var circ3=0;
+var circ4=0;
+var circ5=0;
+var circ6=0;
+var circ7=0;
+var circ8=0;
+var conline1=0;
+var conline2=0;
+var conline3=0;
+var conline4=0;
+var conline5=0;
+var conline6=0;
+
+var j=0; 
+var dummy=0;
+var circ4dummy=0;
+var lambda=0;
+var n12=0;
+var n21=0;
+var intencity=0;
+var R=0;
+var G=0;
+var B=0;
+var WL=0;
+var i=0;
+var b1=0;
+var b2=0;
+var x1=350;
+var y1=250;
+var x3=523.2;
+var y3=50;
+var x4=100;
+var y4=100;
+var x5=300;
+var y5=192;
+var x6=0;
+var y6=0;
+var x7=0;
+var y7=0;
+var x8=0;
+var y8=0;
+var am=0;
+var bm=0;
+var an=0;
+var bn=0;
+var ak=0;
+		
+var lambdaW=0;
+var n12W=0;
+var n21W=0;
+var intencityW=0;
+var RW=0;
+var GW=0;
+var BW=0;
+var WLW=0;
+var iW=0;
+var b1W=0;
+var b2W=0;
+var x6W=0;
+var y6W=0;
+var x8W=0;
+var y8W=0;
+var amW=0;
+var bmW=0;
+var anW=0;
+var bnW=0;
+var akW=0;
+		
+//Arrays
+		var circArray5= new Array();
+		var circArray6= new Array();
+		var circArray8= new Array();
+
+//Precalculations
+		nx1=486;nx2=656;	//calculating refraction index
+		ny1=1.6523;ny2=1.6182;	
+		a=Math.log(ny2/ny1)/Math.log(nx2/nx1);
+		b=ny1/Math.pow(nx1,a);
+				
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+       
+ 	document.slider.setDefault();
+	document.animator.setAutoRefresh(false);
+	document.animator.setDefault(); 
+	document.animator.setPixPerUnit(1); 
+	document.animator.shiftPixOrigin(-350,-175); 
+	document.animator.setGridUnit(0);
+	//document.animator.setClockOneShot(0,55);
+	document.animator.setTimeVisibility(false);
+	
+	rect1=document.animator.addObject("rectangle","x=350,y=175,w=700,h=350");
+		document.animator.setRGB(rect1,0,0,0);
+	
+	text2=document.animator.addObject("text","x=325,y=80,m=100,text=n = ,calc=m");//m is a setable dummy greater than zero
+		document.animator.setObjectFont(text2,"helvetica",0,12);
+		document.animator.setRGB(text2,255,240,240);
+		document.animator.setFormat(text2,"%4.4f");
+	text3=document.animator.addObject("text","x=25,y=150,m=100,text=Fonte de Luz");//m is a setable dummy greater than zero
+		document.animator.setObjectFont(text3,"helvetica",0,10);
+		document.animator.setRGB(text3,0,0,0);
+		document.animator.setFormat(text3,"%4.4f");
+	
+	circ1=document.animator.addObject("circle","x=" +x1+ ",y=" +y1+ ",r=2");
+		document.animator.setRGB(circ1,0,0,0);
+	circ2=document.animator.addObject("circle","x=176.8,y=50,r=2");
+		document.animator.setRGB(circ2,0,0,0);
+	circ3=document.animator.addObject("circle","x=" +x3+ ",y=" +y3+ ",r=2");
+		document.animator.setRGB(circ3,0,0,0);
+	circ4=document.animator.addObject("circle","x=" +x4+ ",y=" +y4+ ",r=5");
+		document.animator.setRGB(circ4,0,0,0);
+		document.animator.setDragable(circ4,false);
+		document.animator.setConstrainR(circ4,220,x5,y5);
+		document.animator.setShowConstraintPath(circ4,false);
+	
+	document.animator.setDisplayOffset(text3,-40,20);
+	document.animator.setAnimationSlave(circ4,text3);
+	
+	circ5=document.animator.addObject("circle","x=" +x5+ ",y=" +y5+ ",r=2");
+		document.animator.setRGB(circ5,0,0,0);
+		document.animator.setVisibility(circ5,false);
+	circ6=document.animator.addObject("circle","x=" +x1+ ",y=" +y1+ ",r=2");
+		document.animator.setRGB(circ6,0,0,0);
+		document.animator.setVisibility(circ6,false);
+	//circ7=document.animator.addObject("circle","x=" + (x5+300) + ",y=" +y5+ ",r=2");
+		//document.animator.setRGB(circ7,0,0,0);
+	circ8=document.animator.addObject("circle","x=" + (x5+300) + ",y=" +y3+ ",r=2");
+		document.animator.setRGB(circ8,0,0,0);
+	conline1=document.animator.addConnectorLine(circ2,circ1);
+		document.animator.setRGB(conline1,200,200,200);
+	conline2=document.animator.addConnectorLine(circ3,circ1);
+		document.animator.setRGB(conline2,200,200,200);
+	conline3=document.animator.addConnectorLine(circ2,circ3);
+		document.animator.setRGB(conline3,200,200,200);
+	conline4=document.animator.addConnectorLine(circ4,circ5);
+		document.animator.setRGB(conline4,0,0,0);
+	conline6=document.animator.addConnectorLine(circ6,circ8);	//refracted 2
+		document.animator.setRGB(conline6,0,0,0);
+	conline5=document.animator.addConnectorLine(circ5,circ6);	//refracted 1
+		document.animator.setRGB(conline5,0,0,0);
+		document.animator.setVisibility(conline4,true);
+		document.animator.setVisibility(conline5,true);
+		document.animator.setVisibility(conline6,true);
+	lambda=656;
+	document.slider.setValue(656);
+	document.slider.setFormat(0,"%4.1f");
+	
+        document.animator.setVisibility(conline4,true);
+		document.animator.setVisibility(conline5,true);
+		document.animator.setVisibility(conline6,true);
+	
+	refractionLines();	
+	document.animator.setMass(text2,n12);//not used
+	document.animator.setMass(text3,b2);
+	makeSpectrum();
+    document.animator.setRGB(conline4,R,G,B);
+	document.animator.setRGB(conline5,Math.round(R*0.5),Math.round(G*0.5),Math.round(B*0.5));
+	document.animator.setRGB(circ4,R,G,B);
+	document.animator.setRGB(conline6,R,G,B);
+	document.animator.setRGB(text3,R,G,B);
+	
+
+			
+			
+	document.slider.setJSFunction("sliderMoved1a()");
+			
+	document.animator.setAutoRefresh(true);
+} 
+
+function sliderMoved1a(){
+	 if(timerID==0)  timerID=setTimeout("sliderMoved1b()",50);
+}
+
+function sliderMoved1b(){
+	document.animator.setAutoRefresh(false);
+	
+	lambda=document.slider.getValue();
+
+		document.animator.setVisibility(conline4,true);
+		document.animator.setVisibility(conline5,true);
+		document.animator.setVisibility(conline6,true);
+	
+	refractionLines();
+		
+	document.animator.setMass(text2,n12);//not used
+	document.animator.setMass(text3,b2);
+	
+	makeSpectrum();
+
+	//****** Now draw the entire spectra from the rgb codes 
+	document.animator.setRGB(conline4,R,G,B);
+	document.animator.setRGB(conline5,Math.round(R*0.5),Math.round(G*0.5),Math.round(B*0.5));
+	document.animator.setRGB(circ4,R,G,B);
+	document.animator.setRGB(conline6,R,G,B);
+	document.animator.setRGB(text3,R,G,B);
+	
+	document.animator.setAutoRefresh(true);
+    timerID=0;  
+}
+
+
+
+
+function refractionLines(){
+			n12=b*Math.pow(lambda,a);
+			n21=1/n12;
+			i=30/180*Math.PI+Math.atan((y5-y4)/(x5-x4));//incidence angle 1
+			b1=Math.asin(Math.sin(i)/n12);	//refraction angle 1
+			b2=Math.asin(Math.sin((60/180*Math.PI-b1))/n21);	//refraction angle 2
+			//refraction line k, m
+			am=Math.tan((b1-30/180*Math.PI));
+			//x7=x5+300;	//way out
+			//y7=y5+am*(x7-x5);
+			//document.animator.setYPos(circ7,y7);
+			
+			bm=y5-x5*am;
+			an=(y3-y1)/(x3-x1);
+			bn=y1-x1*an;
+			x6=(bn-1*bm)/(am-1*an);
+			//y6=(am*bn+an*bm)/(an-1*am);
+			y6=an*x6+bn;
+			document.animator.setXPos(circ6,x6);	//intersection 2
+			document.animator.setYPos(circ6,y6);
+			x8=x6+350;
+			ak=Math.tan(-1*(b2-30/180*Math.PI));
+			y8=y6+ak*(x8-x6);
+			document.animator.setXPos(circ8,x8);
+			document.animator.setYPos(circ8,y8);
+}
+
+function makeSpectrum(){
+	if(!loaded) return;
+			WL=lambda;
+
+            if (WL>=380 && WL<440){ 
+              R = -1*(WL-440)/(440-380);
+              G = 0;
+              B = 1;
+            }
+            if (WL>=440 && WL<490){ 
+              R = 0;
+              G = (WL-440)/(490-440);
+              B = 1;
+            }
+            if (WL>=490 && WL<510){ 
+              R = 0;
+              G = 1;
+              B = -1*(WL-510)/(510-490);
+            }
+			 if (WL>=510 && WL<580){ 
+              R = (WL-510)/(580-510);
+              G = 1;
+              B = 0;
+            }
+            if (WL>=580 && WL<645){ 
+              R = 1;
+              G = -1*(WL-645)/(645-580);
+              B = 0;
+            }
+            if (WL>=645 && WL<=780){ 
+              R = 1;
+              G = 0;
+              B = 0;
+            }
+//
+//      LET THE INTENSITY intencity FALL OFF NEAR THE VISION LIMITS
+//
+         if (WL>=700){
+         	intencity=0.3+0.7*(780-WL)/(780-700);
+         }
+         else if (WL<420){
+         	intencity=0.3+0.7*(WL-380)/(420-380);
+         }
+         else{
+         	intencity=1;
+         }
+		
+			R=Math.round(intencity*R*255);
+			G=Math.round(intencity*G*255);
+			B=Math.round(intencity*B*255);
+}
+
+
+function showWhiteLight(){
+	if(!loaded) return;
+	timerID=-1;	
+		document.animator.setAutoRefresh(false);
+				document.animator.setVisibility(conline4,false);
+		document.animator.setVisibility(conline5,false);
+		document.animator.setVisibility(conline6,false);
+		document.animator.setVisibility(circ4,false);
+	for (j=0;j<=37;j++){
+		lambdaW=750-10*j;
+		
+		refractionLinesWhite();
+			
+		makeSpectrumWhite();
+		
+		circArray6[j]=document.animator.addObject("circle","x=" +x6W+ ",y=" +y6W+ ",r=2");
+			document.animator.setVisibility(circArray6[j],false);
+		circArray8[j]=document.animator.addObject("circle","x=" + x8W + ",y=" +y8W+ ",r=2");
+			document.animator.setVisibility(circArray8[j],false);
+		
+		dummy=document.animator.addConnectorLine(circ5,circArray6[j]);
+			//RW2=Math.round(RW*0.99+250/(0.00001*RW^2+1));
+			//GW2=Math.round(GW*0.99+250/(0.00001*GW^2+1));
+			//BW2=Math.round(BW*0.99+250/(0.00001*BW^2+1));
+			document.animator.setRGB(dummy,(RW+255)/2,(GW+255)/2,(BW+255)/2);
+		dummy=document.animator.addConnectorLine(circArray6[j],circArray8[j]);
+			document.animator.setRGB(dummy,RW,GW,BW);	
+	}
+	circ4dummy=document.animator.addObject("circle","x=" +x4+ ",y=" +y4+ ",r=5");	//circ4dummy don't slave
+		document.animator.setRGB(circ4dummy,255,255,255);	//white
+		//document.animator.setVisibility(circ4dummy,false);
+	dummy=document.animator.addConnectorLine(circ4dummy,circ5);
+		document.animator.setRGB(dummy,255,255,255);		//one white ligthray	
+	document.animator.setRGB(text3,255,255,255);
+	
+	document.animator.setAutoRefresh(true);
+}
+
+
+function refractionLinesWhite(){
+			n12W=b*Math.pow(lambdaW,a);
+			n21W=1/n12W;
+			iW=30/180*Math.PI+Math.atan((y5-y4)/(x5-x4));//incidence angle 1
+			b1W=Math.asin(Math.sin(iW)/n12W);	//refraction angle 1
+			b2W=Math.asin(Math.sin((60/180*Math.PI-b1W))/n21W);	//refraction angle 2
+			//refraction line k, m
+			amW=Math.tan((b1W-30/180*Math.PI));
+			
+			bmW=y5-x5*amW;
+			anW=(y3-y1)/(x3-x1);
+			bnW=y1-x1*anW;
+			x6W=(bnW-1*bmW)/(amW-1*anW);
+			y6W=anW*x6W+bnW;
+			x8W=x6W+350;
+			akW=Math.tan(-1*(b2W-30/180*Math.PI));
+			y8W=y6W+akW*(x8W-x6W);
+}
+function makeSpectrumWhite(){
+	
+			WLW=lambdaW;
+
+            if (WLW>=380 && WLW<440){ 
+              RW = -1*(WLW-440)/(440-380);
+              GW = 0;
+              BW = 1;
+            }
+            if (WLW>=440 && WLW<490){ 
+              RW = 0;
+              GW = (WLW-440)/(490-440);
+              BW = 1;
+            }
+            if (WLW>=490 && WLW<510){ 
+              RW = 0;
+              GW = 1;
+              BW = -1*(WLW-510)/(510-490);
+            }
+			 if (WLW>=510 && WLW<580){ 
+              RW = (WLW-510)/(580-510);
+              GW = 1;
+              BW = 0;
+            }
+            if (WLW>=580 && WLW<645){ 
+              RW = 1;
+              GW = -1*(WLW-645)/(645-580);
+              BW = 0;
+            }
+            if (WLW>=645 && WLW<=780){ 
+              RW = 1;
+              GW = 0;
+              BW = 0;
+            }
+//
+//      LET THE INTENSITY intencity FALL OFF NEAR THE VISION LIMITS
+//
+         if (WLW>=700){
+         	intencityW=0.3+0.7*(780-WLW)/(780-700);
+         }
+         else if (WLW<420){
+         	intencityW=0.3+0.7*(WLW-380)/(420-380);
+         }
+         else{
+         	intencityW=1;
+         }
+		
+			RW=Math.round(intencityW*RW*255);
+			GW=Math.round(intencityW*GW*255);
+			BW=Math.round(intencityW*BW*255);
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+.style2 {
+	list-style-type: lower-alpha;
+}
+</style>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 34.3 - Prismas e Dispersão</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center">
+      <applet CODEBASE="../../classes/" 
+ARCHIVE="Physlets.jar" 
+CODE="animator4.Animator.class" align="baseline" width="612" height="303" name="animator" mayscript>
+ <param name="FPS" value="10"> 
+<param name="dt" value="0.1"> 
+<param name="showControls" value="false"> 
+<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,slider">
+        <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+    <tr>
+    <td align="center" style="height: 46px">
+                        <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+                        archive="Physlets.jar"
+                        name="slider" width="613" hspace="0" vspace="0" align="middle" mayscript style="height: 40px">
+                          <param name="min" value="380">
+                          <param name="max" value="750">
+                          <param name="value" value="700">
+                          <param name="label" value="comprimento de onda (nm)">
+                        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="form1">
+<p align="center"> 
+<input type="button" value="luz branca" onclick="showWhiteLight()"><input type="button" value="início" onclick="initApplet()"></p>
+</form>
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p class="style1">
+   <b>Descrição da Animação</b></p>
+
+
+<p>&nbsp;A variação no índice de refração permite a separação da luz branca em 
+cores, utilizando um prisma (ou gotas de água). Este fenómeno é designado de 
+<i>dispersão</i>. Quando a velocidade de uma onda, num meio &nbsp;específico, é função 
+da frequência, o meio diz-se dispersivo. Nesta ilustração consideram-se&nbsp;as&nbsp;características dispersivas do vidro (1.6 &lt; n &lt; 1.68), embora o ar também seja 
+dispersivo (1.45 &lt; n &lt; 
+1.47).&nbsp; <a href="javascript:initApplet()">Início</a> </p>
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+Ilustração da autoria de Morten Brydensholt e Anne J. Cox.<br>
+Script da autoria de Morten Brydensholt.<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

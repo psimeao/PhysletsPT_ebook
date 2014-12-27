@@ -1,0 +1,728 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var interaction="5*max(0,(20-x)*step(-2+t))";
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.dataForm.reset();
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setTimeDisplay(false);
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.setCaption("Seleciona uma Animação para começar");
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);  
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-100,100);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+       document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("x (m)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Posição_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"x1 (m)");
+     document.DataTable7.setSeriesLabel(2,"x2 (m)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+     document.Animator3.deleteDataConnections(); 
+}
+
+
+function initApplet7b(){
+   if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,4,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-90,90);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+       document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("v_{x} (m/s)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Velocidade_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"v1 (m/s)");
+     document.DataTable7.setSeriesLabel(2,"v2 (m/s)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx","0"); 
+     document.Animator3.forward();
+}
+
+
+function initApplet7a(){
+   if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,6,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-100,100);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+       document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("x (m)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Posição_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"x1 (m)");
+     document.DataTable7.setSeriesLabel(2,"x2 (m)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","x");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","x");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"x","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"x","0"); 
+     document.Animator3.forward();
+}
+function initApplet7b(){
+   if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,4,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-90,90);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+       document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("v_{x} (m/s)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Velocidade_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"v1 (m/s)");
+     document.DataTable7.setSeriesLabel(2,"v2 (m/s)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"vx","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx","0"); 
+     document.Animator3.forward();
+}
+
+function initApplet7c(){
+    if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,4,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-20,20);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+     document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("p_{x} (kg.m/s)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Momento linear_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"p1 (kg.m/s)");
+     document.DataTable7.setSeriesLabel(2,"p2 (kg.m/s)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","vx*m");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","vx*m");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"vx*m","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"vx*m","0"); 
+     document.Animator3.forward();
+}
+
+function initApplet7d(){
+    if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,4,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(-750,750);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+	 document.DataGraph7.setLastPointMarker(2,true);      
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("a_{x} (m/s^{2})"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Aceleração_{x} vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"a1 (m/s/s)");
+     document.DataTable7.setSeriesLabel(2,"a2 (m/s/s)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","ax");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","ax");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"ax","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"ax","0"); 
+     document.Animator3.forward();
+}
+
+function initApplet7e(){
+    if(!loaded) return;
+   newm=document.dataForm.mField.value;
+       if( !checkRange(newm,0.1,1)){
+     alert("O valor da massa deve estar entre 0,1 kg e 1,0 kg. O valor inserido foi "+newm+" kg.");
+     return;
+  } 
+m1=eval(document.dataForm.mField.value);
+
+   mass1=eval(m1);
+   mass2=eval(0.2);
+	document.Animator3.setAutoRefresh(false);
+	document.Animator3.setDefault();
+	document.Animator3.setPixPerUnit(10);
+	document.Animator3.shiftPixOrigin(-30,0);
+	document.Animator3.setGridUnit(1);
+	document.Animator3.addRectangle(400,50,"3","-4.0");
+      document.Animator3.setShapeRGB(128,128,64);
+    document.Animator3.addRectangle(400,48,"3","-4.0");
+    
+    // left cart
+	document.Animator3.setShapeRGB(255,0,0);  
+	id1=document.Animator3.addImage("../../classes/images/cart_large.gif","0","0");
+	document.Animator3.setDisplayOffset(id1,0,0);
+	calid=document.Animator3.addCalculation("v1 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,0,+10);
+    document.Animator3.setAnimationSlave(id1,calid);
+	document.Animator3.setShowVVector(id1,true);
+	document.Animator3.setMass(id1,mass1);
+	document.Animator3.setForce(id1,"0","0",-3,0,0,0);
+
+    // right cart	
+	document.Animator3.setShapeRGB(0,0,255);
+	id2=document.Animator3.addImage("../../classes/images/cart_large.gif","-6.0","0");
+	document.Animator3.setDisplayOffset(id2,0,0);
+    calid=document.Animator3.addCalculation("v2 =","vx","0","0");
+    document.Animator3.setDisplayOffset(calid,15,+10);
+    document.Animator3.setAnimationSlave(id2,calid);
+	document.Animator3.setShowVVector(id2,true);
+   document.Animator3.setMass(id2,mass2);
+    document.Animator3.setOneShot(0,4,"Fim da Animação");
+    document.Animator3.setForce(id2,"0","0",3.0,0,0,0);
+    
+    document.Animator3.addInteraction(id1,id2,interaction,"x"); 
+    
+    document.Animator3.addImage("../../classes/images/flash.gif","0","10-8*step(2.2-t)*step(-2.0+t)");
+      
+   	document.Animator3.setAutoRefresh(true);
+
+     document.DataGraph7.setAutoscaleX(false);
+     document.DataGraph7.setAutoscaleY(false);
+     document.DataGraph7.setMinMaxX(0,4);
+     document.DataGraph7.setMinMaxY(0,500);
+     document.DataGraph7.clearSeries(1);
+     document.DataGraph7.setLastPointMarker(1,true); 
+     document.DataGraph7.setSeriesStyle(1,true,3);
+     document.DataGraph7.setSeriesRGB(1,255,0,0);
+     document.DataGraph7.clearSeries(2);
+     document.DataGraph7.setLastPointMarker(2,true); 
+     document.DataGraph7.setSeriesStyle(2,true,3);
+     document.DataGraph7.setSeriesRGB(2,0,0,255);
+     document.DataGraph7.setMarkerSize(1,0.6);
+     document.DataGraph7.setMarkerSize(2,0.6);
+     document.DataGraph7.setLabelY("Ec (J)"); 
+     document.DataGraph7.setLabelX("Tempo (s)"); 
+     document.DataGraph7.setTitle("Energia Cinética vs Tempo"); 
+     gid=document.DataGraph7.getGraphID();
+
+     document.DataTable7.setDefault();
+     document.DataTable7.setSeriesLabel(1,"Ec1 (J)");
+     document.DataTable7.setSeriesLabel(2,"Ec2 (J)");  
+     document.DataTable7.sizeToFit(true);
+     tid=document.DataTable7.getTableID();
+
+
+     document.Animator3.deleteDataConnections(); 
+     document.Animator3.makeDataConnection(id1,gid,1,"t","m*vx*vx/2");  
+     document.Animator3.makeDataConnection(id2,gid,2,"t","m*vx*vx/2");  
+
+     document.Animator3.makeDataConnection(id1,tid,1,"m*vx*vx/2","0");  
+     document.Animator3.makeDataConnection(id2,tid,2,"m*vx*vx/2","0"); 
+     document.Animator3.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 8.6</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 8.6 - Colisão explosiva</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar"
+         align="middle" width="400" height="100" name="Animator3" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.02">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataGraph7,DataTable7">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph7" width="400" height="200"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable7" width="221" height="45"
+hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="2">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <div align="center">
+    <center>
+    <p>
+    <input type="button" value="começar" onclick="document.Animator3.forward()"><input type="button"
+    value="pausa" onclick="document.Animator3.pause()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Animator3.stepForward()"><input type="button" value="início"
+    onclick="document.Animator3.reset()"></p>
+    </center>
+  </div>
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#C0C0C0" width="560">
+      <tr>
+        <td width="105" align="center"><a href="JavaScript:initApplet7a()">
+		<span style="text-decoration: none">Registar valor e começar: </span>
+		<font color="#000066">posição</font></a></td>
+        <td width="103" align="center"><a href="JavaScript:initApplet7b()">
+		<span style="text-decoration: none">Registar valor e começar:</span>
+		<font color="#000066">velocidade</font></a></td>
+        <td width="101" align="center"><a href="JavaScript:initApplet7c()">
+		<span style="text-decoration: none">Registar valor e começar:</span>
+		<font color="#000066">momento linear </font> </a></td>
+        <td width="106" align="center"><a href="JavaScript:initApplet7d()">
+		<span style="text-decoration: none">Registar valor e começar:</span>
+		<font color="#000066">aceleração</font></a></td>
+        <td width="109" align="center"><a href="JavaScript:initApplet7e()">
+		<span style="text-decoration: none">Registar valor e começar: </span>
+		<font color="#000066">energia cinética</font> </a></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+  <p align="center"><b>A massa do carrinho direito é 0,2 kg e a massa do 
+	carrinho esquerdo é: <input type="text" name="mField" size="3" value="0.1"> 
+  kg.</b></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left" style="margin-bottom: 0">Nesta animação, aos 2 segundos, ocorre 
+uma explosão. A energia cinética total do sistema aumenta 1200 J devido a esta 
+explosão <b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;&nbsp; 
+<a href="JavaScript:initApplet()">Início</a>&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

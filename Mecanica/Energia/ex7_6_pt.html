@@ -1,0 +1,416 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("interaction0()",100);
+}
+  	
+function interaction0(){ 
+      if(!loaded) return;
+       timerID=0;     
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0);
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Seleciona uma Animação,x=-10,y=-11");
+   cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    fid=document.Integrator.getID();
+    document.Bar.setValue(0);
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID(); 
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();
+    document.Animator.updateDataConnections();
+}
+
+
+function interaction1(){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0);
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   document.Animator.setForce(cid,"-x","0",0,0,0,0);
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Animação 1: Arrasta a bola e começa,x=-12.6,y=-11");
+   cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Integrator.setLineIntegralMode("m*fx","m*fy");
+    fid=document.Integrator.getID();
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID(); 
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();
+    document.Animator.makeDataConnection(cid,fid,1,"x","y");
+    document.Animator.makeDataConnection(cid,tid,1,"x","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"-integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"-integral","0"); 
+    document.Animator.updateDataConnections();
+}
+
+
+function interaction2(){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0); 
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   document.Animator.setForce(cid,"0","y",0,0,0,0);
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Animação 2: Arrasta a bola e começa,x=-12.6,y=-11");
+   cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Integrator.setLineIntegralMode("m*fx","m*fy");
+    fid=document.Integrator.getID();
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID();  
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();  
+    document.Animator.makeDataConnection(cid,fid,1,"x","y");
+    document.Animator.makeDataConnection(cid,tid,1,"x","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"-integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"-integral","0"); 
+    document.Animator.updateDataConnections();
+}
+
+function interaction3(){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0);
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   document.Animator.setForce(cid,"y","x*y",0,0,0,0);
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Animação 3: Arrasta a bola e começa,x=-12.6,y=-11");
+      cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Integrator.setLineIntegralMode("m*fx","m*fy");
+    fid=document.Integrator.getID();
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID(); 
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();
+    document.Animator.makeDataConnection(cid,fid,1,"x","y");
+    document.Animator.makeDataConnection(cid,tid,1,"x","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"-integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"-integral","0"); 
+    document.Animator.updateDataConnections();
+}
+
+
+function interaction4(){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0);
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   document.Animator.setForce(cid,"x","y",0,0,0,0);
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Animação 4: Arrasta a bola e começa,x=-12.6,y=-11");
+      cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Integrator.setLineIntegralMode("m*fx","m*fy");
+    fid=document.Integrator.getID();
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID(); 
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();
+    document.Animator.makeDataConnection(cid,fid,1,"x","y");
+    document.Animator.makeDataConnection(cid,tid,1,"x","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"-integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"-integral","0"); 
+    document.Animator.updateDataConnections();
+}
+
+function interaction5(){       
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);      
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(true); 
+   document.Animator.setPixPerUnit(10);
+   document.Animator.setGridUnit(1);
+      cid0=document.Animator.addCircle(22,"10","0");
+   cid=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(cid,cid0);
+   document.Animator.setRGB(cid,255,0,0);
+   document.Animator.setMass(cid,1); 
+   document.Animator.setDragable(cid,true); 
+   document.Animator.setForce(cid,"x","-y",0,0,0,0);
+   	document.Animator.setShowFVector(cid,true); 
+   document.Animator.addObject("text","text=Animação 5: Arrasta a bola e começa,x=-12.6,y=-11");
+      cid2=document.Animator.addCircle(6,"0","0");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setAutoRefresh(true);  
+   
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x (m)");
+    document.DataTable.setSeriesLabel(2,"y (m)");  
+    document.DataTable.setSeriesLabel(3,"integral (J)");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+    document.Integrator.setLineIntegralMode("m*fx","m*fy");
+    fid=document.Integrator.getID();
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(0,200,200);
+    document.Bar.setNegRGB(0,50,250);
+    bid=document.Bar.getID(); 
+    document.Integrator.deleteDataConnections();
+    document.Animator.deleteDataConnections();
+    document.Animator.makeDataConnection(cid,fid,1,"x","y");
+    document.Animator.makeDataConnection(cid,tid,1,"x","0"); 
+    document.Animator.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"-integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"-integral","0"); 
+    document.Animator.updateDataConnections();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 7.6</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 7.6 - Diferentes interações<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="filters.Integrator.class" name="Integrator" width="0" height="0" hspace="0"
+vspace="0" align="middle" mayscript>
+  
+  
+  
+  
+  
+  
+  
+  <param name="Independent" value="x">
+  <param name="Dependent" value="y">
+  <param name="Differential" value="dx">
+  <param name="Integrand" value="1">
+</applet></h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet code="animator4.Animator.class" codebase="../../classes"
+        archive="Physlets.jar" name="Animator"
+        width="260" height="260" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,Bar,DataTable,Integrator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+      <td align="center" rowspan="3">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="20" height="315" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Min" value="-3">
+          <param name="Max" value="3">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+          </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="260" height="45" hspace="0"
+vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+    <form>
+      <p align="center">
+      <input type="button" value="reiniciar integral" name="resetBtn"
+    onclick="document.Integrator.reset();document.Animator.updateDataConnections();"></p>
+</form>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>&nbsp;
+		<a href="JavaScript:interaction1()" style="text-decoration: none">
+		Animação 1</a></td>
+      <td>&nbsp;
+		<a href="JavaScript:interaction2()" style="text-decoration: none">
+		Animação 2</a></td>
+      <td>&nbsp;
+		<a href="JavaScript:interaction3()" style="text-decoration: none">
+		Animação 3</a></td>
+      <td>&nbsp;
+		<a href="JavaScript:interaction4()" style="text-decoration: none">
+		Animação 4</a></td>
+      <td>&nbsp;
+		<a href="JavaScript:interaction5()" style="text-decoration: none">
+		Animação 5</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>
+<b>Descrição da Animação</b></p>
+<p>
+As cinco animações mostram uma bola vermelha, que podes arrastar com o rato <b>
+(a posição é dada em metros, o tempo em segundos e a energia no gráfico de 
+barras é dada em joules)</b>.&nbsp;O gráfico de barras mostra o integral do simétrico 
+da força ao longo do deslocamento, a partir da origem. Este é o trabalho 
+(negativo) realizado sobre a bola, para a levar até a essa posição. Este 
+integral, quando a força é conservativa, também representa a variação da energia 
+potencial da bola desde a posição inicial até à nova posição. A animação também 
+apresenta uma tabela com os valores da posição e do trabalho (negativo) 
+realizado. <a href="JavaScript:interaction0()">Início</a></p>
+
+<p>
+&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

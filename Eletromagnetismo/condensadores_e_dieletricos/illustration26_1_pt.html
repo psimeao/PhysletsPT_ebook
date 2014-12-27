@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 26.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+
+var timerID=0;
+var loaded=false;
+  	
+function initApplet(){ 
+       timerID=0;
+	document.jacob.loadFile('exp/efelt3_1.ppd');
+}
+
+function config2(){
+	document.jacob.loadFile('exp/efelt3_2.ppd');
+	}
+	
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+	
+</script>
+</head>
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 26.1 - Perspetiva Microscópica de um Condensador</h2>
+<center>
+<table border="1" cellspacing="1" bgcolor="#C0C0C0">
+      <tr>
+        <td>
+<p align="center">
+<applet codebase="./" archive="Jacob.jar" code="jacob.Jacob.class" 
+id="jacob" name="jacob" width="500"
+height="420" hspace="0" vspace="0" align="middle" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.1">
+  <param name="ShowControls" value="false">
+  <param name="ConfigFile" value="exp/efelt3_1.ppd">
+</applet>
+</td>
+       </tr>
+    </table></center>
+
+
+<p><form name="form1"> </p>
+  <p align="center">
+  
+  <input type="button" value="começar" onclick="document.jacob.forward()">
+  <input type="button" value="pausa" onclick="document.jacob.pause()">
+  <input type="button" value="passo &gt;&gt;" onclick="document.jacob.stepForward()">
+  <input type="button" value="início" onclick="initApplet()">
+  <input type="button" value="início com dielétrico" onclick="config2()" class="reset">
+
+  </p>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p align="left"><b>Descrição da Animação</b></p>
+
+
+<p>A animação apresenta um condensador de placas paralelas (também chamado 
+condensador plano, em cima) ligado a uma bateria (no fundo). Esta animação 
+mostra o que acontece quando a bateria é ligada e os eletrões (a azul) são 
+&quot;separados&quot; dos respetivos núcleos atómicos (carregados positivamente). Esta 
+animação apenas mostra, a título ilustrativo, o que acontece a dez átomos.&nbsp;&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.</p>
+
+<p align="left">
+&nbsp;<p align="left" style="margin-top: 0">
+<b>Exploração</b><p align="left" style="margin-top: 6px; margin-bottom: 0">Podes 
+altera a 
+	configuração do condensador, <a href="JavaScript:config2()">introduzindo um 
+	filme dielétrico entre as placas</a><i>. </i></p>
+<p align="left">
+&nbsp;<p align="left"> Ilustração da autoria de Anne J. Cox e Mario Belloni.<br>
+<i>Script</i> da autoria de Morten Brydensholt.<br>
+<i>Applet</i> da autoria de Vojko Valencic.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

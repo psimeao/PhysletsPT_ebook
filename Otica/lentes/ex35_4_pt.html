@@ -1,0 +1,121 @@
+﻿<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 35.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var idr=0;
+var vis=false;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob_1()",100);
+}
+  	
+function prob_1(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Optics.setAutoRefresh(false);
+     document.Optics.setDefault();
+     document.Optics.setElementSize(1.0);
+     id=document.Optics.addObject("lens","x=2.75,f= 1.7");
+     id=document.Optics.addObject("lens","x=2.25,f= 1.7");
+     document.Optics.setDirection(1);
+     id=document.Optics.addObject("source","point,x=1.7,y=0.0,slope=-0.5, inc=0.1");
+     document.Optics.setDragable(id,true);
+     document.Optics.setResizable(id,false);
+     idr=document.Optics.addObject("rectangle","x=2.5,y=0.0,w=80,h=200");
+     document.Optics.setRGB(idr,255,128,128);
+     document.Optics.setAutoRefresh(true);
+}
+
+function answer(){
+  if(!loaded) return;
+  document.Optics.setAutoRefresh(false);
+  document.Optics.setVisibility(idr,vis);
+  document.Optics.setAutoRefresh(true);
+  vis=!vis;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 35.4 - O que está atrás da cortina?</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center">
+      <applet align="middle" code="optics.OpticsApplet.class" 
+      codebase="../../classes/" height="200" name="Optics" 
+      width="500" archive="Physlets.jar" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="align" value="middle">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Optics">
+        <param name="Resources" value="optics_pt.rc">
+      </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>Uma fonte de luz pontual móvel é apresentada juntamente com um elemento 
+ótico, que foi escondido atrás da cortina cor-de-rosa<b> (</b><strong>a posição é dada em metros</strong><b>)</b>.&nbsp; 
+<a href="javascript:prob_1()">Início</a>.&nbsp; </p>
+<p>&nbsp;</p>
+<p><b>Exploração</b></p>
+<ol type="a">
+  <li>
+	<p style="margin-top: 3px">O que está atrás da cortina?&nbsp; Não leias as restantes perguntas sem 
+	teres respondido a esta.</li>
+  <li>
+	<p style="margin-top: 3px">DEPOIS de teres identificado o que está atrás da cortina,
+<a href="javascript:answer()">retira-a</a> para ver se estás certo.&nbsp; 
+	Surpreendido?&nbsp; </li>
+  <li>
+	<p style="margin-top: 3px">A maioria dos alunos prevê que atrás da cortina 
+	está uma lente convergente, 
+	com distância focal de 1 m.&nbsp; Sem remover a cortina, podias saber que 
+	esta previsão estaria incorreta?</li>
+  <li>
+	<p style="margin-top: 3px">Determina a distância focal de cada lente.&nbsp; 
+	Lembra-te que quando 
+	um objeto está no foco da lente, a luz sai da lente paralela ao eixo; e 
+	quando a luz entra na lente paralelamente, converge no foco.&nbsp; 
+  Por isso, desloca o objeto para o foco da primeira lente - a luz deve 
+	convergir no foco da segunda lente.</li>
+</ol>
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Exploração da autoria de Melissa 
+Dancy.</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa </p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Illustration 17.5</title>
+
+<script language="JavaScript">
+var timerID=0;
+var stry=0;
+var i=0;
+var loaded=false;
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initPage()",100);
+}
+
+
+	
+function initPage(){
+	if(!loaded) return;
+	timerID=0;
+	document.animator.setAutoRefresh(false);
+	document.animator.setDefault();
+	document.animator.setPixPerUnit(20);
+	document.animator.setGridUnit(0);
+	document.animator.shiftPixOrigin(-260,60);
+	document.animator.setClockOneShot(0,17.75);
+	document.animator.setDt(0.05);
+	document.animator.setFPS(10);
+        wallid=document.animator.addObject("image","file=images/lydmb7.gif,x=26,y=3");
+	
+	for (i=0; i<=26; i+=0.25){
+		stry="1*exp(-((0.5*"+i+"-5*t+4)^2))";			//frem 1
+		stry+="-1*exp(-((0.5*"+i+"+5*t-4-26)^2))";	//tilbage 1
+		stry+="+2*exp(-((0.5*"+i+"-5*t+4+26)^2))";	//frem 2
+		stry+="-2*exp(-((0.5*"+i+"+5*t-4-26-26)^2))";	//tilbage 2
+		stry+="+3*exp(-((0.5*"+i+"-5*t+4+26+26)^2))";	//frem 3
+		stry+="-3*exp(-((0.5*"+i+"+5*t-4-26-26-26)^2))";	//tilbage 3
+		stry+="+4*exp(-((0.5*"+i+"-5*t+4+26+26+26)^2))";	//frem 4
+		strtotal="x="+i+",y="+stry+",r=1";
+		document.animator.addObject("circle",strtotal);
+	}
+	
+	handid=document.animator.addObject("image","file=images/supermb33c.gif,x=-2.3,y=0.6");
+	stry="1*exp(-((0.5*0-5*t+4)^2))";			//frem 1
+	stry+="+1*exp(-((0.5*0-5*t+4+26)^2))";	//frem 2
+	stry+="+1*exp(-((0.5*0-5*t+4+26+26)^2))";	//frem 3
+	stry+="+1*exp(-((0.5*0-5*t+4+26+26+26)^2))";	//frem 4
+	stry+="+0.6";
+	document.animator.setTrajectory(handid,"-2.3",stry);
+		
+	for (i=0; i<=26; i+=0.25){
+		stry="exp(-((0.5*"+i+"-5*t+4)^2))";			//frem 1 bølge 1
+		stry+="-exp(-((0.5*"+i+"+5*t-30)^2))";
+		stry+="+exp(-((0.5*"+i+"-5*t+30)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-56)^2))";
+		stry+="+exp(-((0.5*"+i+"-5*t+56)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-82)^2))";
+		stry+="+exp(-((0.5*"+i+"-5*t+82)^2))";
+
+		stry+="+exp(-((0.5*"+i+"-5*t+24)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-50)^2))"; 
+		stry+="+exp(-((0.5*"+i+"-5*t+50)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-76)^2))";
+		stry+="+exp(-((0.5*"+i+"-5*t+76)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-102)^2))";
+
+		stry+="+exp(-((0.5*"+i+"-5*t+44)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-70)^2))";
+		stry+="+exp(-((0.5*"+i+"-5*t+70)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-96)^2))";
+		
+		stry+="+exp(-((0.5*"+i+"-5*t+64)^2))";
+		stry+="-exp(-((0.5*"+i+"+5*t-90)^2))";
+		
+		strtotal="x="+i+",y=-8+"+stry+",r=1";
+		document.animator.addObject("circle",strtotal);
+	}
+	handid2=document.animator.addObject("image","file=images/supermb33c.gif,x=-2.3,y=-8+0.6");
+	stry="1*exp(-((0.5*0-5*t+4)^2))";			//frem 1
+	stry+="+1*exp(-((0.5*0-5*t-2+26)^2))";	//frem 2
+	stry+="+1*exp(-((0.5*0-5*t-8+26+26)^2))";	//frem 3
+	stry+="+1*exp(-((0.5*0-5*t-14+26+26+26)^2))";	//frem 4
+	stry+="+0.6-8";
+	document.animator.setTrajectory(handid2,"-2.3",stry);
+	document.animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 17.5 - Comportamento Ressonante numa corda</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+	<applet codebase="../../classes/" archive="Physlets.jar"
+	code="animator4.Animator.class" align="middle" width="600" height="300" name="animator" mayscript>
+		<param name="FPS" value="15">
+		<param name="dt" value="0.05">
+		<param name="showControls" value="false">
+  		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+        <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <p align="center">
+  <input type="button" value="começar" onclick="document.animator.forward();"><input type="button" value="pausa" onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.animator.stepForward()"><input type="button" value="início" onclick="document.animator.reset()"></p>
+</form>
+</td>
+</tr></table>
+
+       
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+       
+
+<p align="left" style="margin-bottom: 0"><span style="font-family: Arial">A 
+animação representa um pulso em duas cordas, repetido várias vezes. As 
+frequências dos pulsos são diferentes <b>(a posição é dada em metros e o tempo 
+é dado em segundos)</b></span>.</td>&nbsp;
+<a href="JavaScript:initPage();document.animator.forward();">Início</a>.</p>
+
+    
+
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>Ilustração da autoria de Morten Brydensholt, Wolfgang Christian e Mario 
+Belloni.<br>
+Script da autoria de Morten Brydensholt, Wolfgang Christian e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

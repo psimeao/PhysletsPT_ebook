@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menu</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #0000CC;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	line-height:normal;
+	font-family:"Times New Roman", Times, serif;
+}
+body,td,th {
+	font-size: 12pt;
+	color: #FFFFFF;
+}
+h1, h1 a {
+
+	font-size:32px;
+
+	font-weight:bold;
+
+	color:#6699FF;
+
+	text-decoration: none;
+
+}
+
+h1 a:hover { text-decoration: underline; }
+h2 { font-size:19px; color:#00FFFF; }
+h3 { font-size:13pt; color:#FFFF00; font-weight:bold; cursor:pointer; }
+h4, h4 a:link, h4 a:visited { font-size:18px; color:#6699FF; text-decoration:none; }
+h4 a:hover { text-decoration:underline; }
+
+ul.lista { list-style:none; margin-left:5px; padding-left:0px; }
+ul.lista>li { border-bottom:0px dotted #CCCCCC; color:#3399FF; }
+ul.lista>li a { cursor:pointer; padding-left:2px; border-left:5px solid #0000CC; }
+ul.lista>li a:hover { border-left:5px solid #FFFFFF; }
+ul.lista>li>ul { list-style:none; margin-left:15px; padding-left:0px; color:#FFFFFF; }
+ul.lista>li>ul>li { padding-left:2px; margin-bottom:1px; border-left:0px solid #FFFFFF; }
+ul.lista>li>ul>li a { border:0; }
+ul.lista>li>ul>li a:link, ul.lista>li>ul>li a:visited { color:#FFFFFF; text-decoration:none; }
+ul.lista>li>ul>li a:hover { border:0; color:#000000; }
+ul.lista>li>ul>li:hover { background-color:#FFFFFF; color:#000000; }
+
+ul.lista { display:none; }
+/* Aqui é definido se o sub-menu aparece para edição ou não. Usar: none OU block */
+ul.lista>li>ul { display:none; }
+
+-->
+</style>
+<base target="_self">
+</head>
+<script language="javascript">
+	function tog(obj) {
+		ob = $(obj).siblings();
+		l = $(ob).get(0);
+		$(l).toggle("fast");
+	}
+	function togm(obj) {
+		$(obj).next('ul').toggle("fast"); 
+	}
+</script>
+<body>
+
+<center>
+<h1><a target="_top" href="../../index.html"><font color="FFFFFF">Índice</font></a></h1>
+<p><h4><a href="menu_dir.htm" target="direita"><font color="#99CCFF">Página Inicial</font></a></h4>
+</p>
+<h2>Eletromagnetismo</h2>
+<hr size="3" color="#6699ff" />
+</center>
+<p class="seccao">
+<h3 onclick="togm(this)">CAP. 22: Eletrostática</h3>
+<ul class="lista">
+    	<li><a onclick="tog(this);">Ilustrações</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="eletrostatica/illustration22_1_pt.html"><font color="#00FFFF">Ilustração 22.1</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/illustration22_2_pt.html"><font color="#00FFFF">Ilustração 22.2</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/illustration22_3_pt.html"><font color="#00FFFF">Ilustração 22.3</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/illustration22_4_pt.html"><font color="#00FFFF">Ilustração 22.4</font></a></li>			
+            </ul>
+        </li>
+        <li><a onclick="tog(this);">Explorações</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_1_pt.html"><font color="#00FFFF">Exploração 22.1</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_2_pt.html"><font color="#00FFFF">Exploração 22.2</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_3_pt.html"><font color="#00FFFF">Exploração 22.3</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_4_pt.html"><font color="#00FFFF">Exploração 22.4</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_5_pt.html"><font color="#00FFFF">Exploração 22.5</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/ex22_6_pt.html"><font color="#00FFFF">Exploração 22.6</font></a></li>			
+			</ul>
+        </li>
+  		<li><a onclick="tog(this);">Problemas</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_1_pt.html"><font color="#00FFFF">Problema 22.1</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_2_pt.html"><font color="#00FFFF">Problema 22.2</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_3_pt.html"><font color="#00FFFF">Problema 22.3</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_4_pt.html"><font color="#00FFFF">Problema 22.4</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_5_pt.html"><font color="#00FFFF">Problema 22.5</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_6_pt.html"><font color="#00FFFF">Problema 22.6</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_7_pt.html"><font color="#00FFFF">Problema 22.7</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_8_pt.html"><font color="#00FFFF">Problema 22.8</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_9_pt.html"><font color="#00FFFF">Problema 22.9</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_10_pt.html"><font color="#00FFFF">Problema 22.10</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_11_pt.html"><font color="#00FFFF">Problema 22.11</font></a></li>			
+            	<li>
+				<a target="direita" href="eletrostatica/prob22_12_pt.html"><font color="#00FFFF">Problema 22.12</font></a></li>			
+            </ul>
+  		</li>
+</ul>
+<h3 onclick="togm(this)">CAP. 23: Campos Elétricos</h3>
+<ul class="lista">
+  		<li><a onclick="tog(this);">Ilustrações</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="campos_eletricos/illustration23_1_pt.html"><font color="#00FFFF">Ilustração 23.1</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/illustration23_2_pt.html"><font color="#00FFFF">Ilustração 23.2</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/illustration23_3_pt.html"><font color="#00FFFF">Ilustração 23.3</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/illustration23_4_pt.html"><font color="#00FFFF">Ilustração 23.4</font></a></li>			
+      		</ul>
+  		</li>
+  		<li><a onclick="tog(this);">Explorações</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="campos_eletricos/ex23_1_pt.html"><font color="#00FFFF">Exploração 23.1</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/ex23_2_pt.html"><font color="#00FFFF">Exploração 23.2</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/ex23_3_pt.html"><font color="#00FFFF">Exploração 23.3</font></a></li>			
+      		</ul>
+  		</li>
+  		<li><a onclick="tog(this);">Problemas</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_1_pt.html"><font color="#00FFFF">Problema 23.1</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_2_pt.html"><font color="#00FFFF">Problema 23.2</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_3_pt.html"><font color="#00FFFF">Problema 23.3</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_4_pt.html"><font color="#00FFFF">Problema 23.4</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_5_pt.html"><font color="#00FFFF">Problema 23.5</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_6_pt.html"><font color="#00FFFF">Problema 23.6</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_7_pt.html"><font color="#00FFFF">Problema 23.7</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_8_pt.html"><font color="#00FFFF">Problema 23.8</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_9_pt.html"><font color="#00FFFF">Problema 23.9</font></a></li>			
+            	<li>
+				<a target="direita" href="campos_eletricos/prob23_10_pt.html"><font color="#00FFFF">Problema 23.10</font></a></li>			
+      		</ul>
+  		</li>
+</ul>
+<h3 onclick="togm(this)">CAP. 24: Lei de Gauss</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="lei_de_gauss/illustration24_1_pt.html"><font color="#00FFFF">Ilustração 24.1</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_gauss/illustration24_2_pt.html"><font color="#00FFFF">Ilustração 24.2</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_gauss/illustration24_3_pt.html"><font color="#00FFFF">Ilustração 24.3</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+	<ul>
+		<li>
+		<a target="direita" href="lei_de_gauss/ex24_1_pt.html"><font color="#00FFFF">Exploração 24.1</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/ex24_2_pt.html"><font color="#00FFFF">Exploração 24.2</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/ex24_3_pt.html"><font color="#00FFFF">Exploração 24.3</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/ex24_4_pt.html"><font color="#00FFFF">Exploração 24.4</font></a></li>
+	</ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+	<ul>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_1_pt.html"><font color="#00FFFF">Problema 24.1</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_2_pt.html"><font color="#00FFFF">Problema 24.2</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_3_pt.html"><font color="#00FFFF">Problema 24.3</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_4_pt.html"><font color="#00FFFF">Problema 24.4</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_5_pt.html"><font color="#00FFFF">Problema 24.5</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_6_pt.html"><font color="#00FFFF">Problema 24.6</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_7_pt.html"><font color="#00FFFF">Problema 24.7</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_8_pt.html"><font color="#00FFFF">Problema 24.8</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_9_pt.html"><font color="#00FFFF">Problema 24.9</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_10_pt.html"><font color="#00FFFF">Problema 24.10</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_11_pt.html"><font color="#00FFFF">Problema 24.11</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_gauss/prob24_12_pt.html"><font color="#00FFFF">Problema 24.12</font></a></li>
+	</ul>
+  </li>
+</ul>
+<h3 onclick="togm(this)">CAP. 25: Potencial Elétrico</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="potencial_eletrico/illustration25_1_pt.html"><font color="#00FFFF">Ilustração 25.1</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/illustration25_2_pt.html"><font color="#00FFFF">Ilustração 25.2</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/illustration25_3_pt.html"><font color="#00FFFF">Ilustração 25.3</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/illustration25_4_pt.html"><font color="#00FFFF">Ilustração 25.4</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this)">Explorações</a>
+    <ul>
+        <li>
+		<a target="direita" href="potencial_eletrico/ex25_1_pt.html"><font color="#00FFFF">Exploração 25.1</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/ex25_2_pt.html"><font color="#00FFFF">Exploração 25.2</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/ex25_3_pt.html"><font color="#00FFFF">Exploração 25.3</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/ex25_4_pt.html"><font color="#00FFFF">Exploração 25.4</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/ex25_5_pt.html"><font color="#00FFFF">Exploração 25.5</font></a></li>
+    </ul>
+  </li>
+  <li><a onclick="tog(this)">Problemas</a>
+    <ul>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_1_pt.html"><font color="#00FFFF">Problema 25.1</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_2_pt.html"><font color="#00FFFF">Problema 25.2</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_3_pt.html"><font color="#00FFFF">Problema 25.3</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_4_pt.html"><font color="#00FFFF">Problema 25.4</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_5_pt.html"><font color="#00FFFF">Problema 25.5</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_6_pt.html"><font color="#00FFFF">Problema 25.6</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_7_pt.html"><font color="#00FFFF">Problema 25.7</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_8_pt.html"><font color="#00FFFF">Problema 25.8</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_9_pt.html"><font color="#00FFFF">Problema 25.9</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_10_pt.html"><font color="#00FFFF">Problema 25.10</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_11_pt.html"><font color="#00FFFF">Problema 25.11</font></a></li>
+        <li>
+		<a target="direita" href="potencial_eletrico/prob25_12_pt.html"><font color="#00FFFF">Problema 25.12</font></a></li>
+    </ul>
+  </li>
+</ul>
+<h3 onclick="togm(this)">CAP. 26: Condensadores e Dielétricos</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/illustration26_1_pt.html"><font color="#00FFFF">Ilustração 26.1</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/illustration26_2_pt.html"><font color="#00FFFF">Ilustração 26.2</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/illustration26_3_pt.html"><font color="#00FFFF">Ilustração 26.3</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/illustration26_4_pt.html"><font color="#00FFFF">Ilustração 26.4</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+  	  <ul>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/ex26_1_pt.html"><font color="#00FFFF">Exploração 26.1</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/ex26_2_pt.html"><font color="#00FFFF">Exploração 26.2</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/ex26_3_pt.html"><font color="#00FFFF">Exploração 26.3</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/ex26_4_pt.html"><font color="#00FFFF">Exploração 26.4</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/ex26_5_pt.html"><font color="#00FFFF">Exploração 26.5</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+      <ul>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_1_pt.html"><font color="#00FFFF">Problema 26.1</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_2_pt.html"><font color="#00FFFF">Problema 26.2</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_3_pt.html"><font color="#00FFFF">Problema 26.3</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_4_pt.html"><font color="#00FFFF">Problema 26.4</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_5_pt.html"><font color="#00FFFF">Problema 26.5</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_6_pt.html"><font color="#00FFFF">Problema 26.6</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_7_pt.html"><font color="#00FFFF">Problema 26.7</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_8_pt.html"><font color="#00FFFF">Problema 26.8</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_9_pt.html"><font color="#00FFFF">Problema 26.9</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_10_pt.html"><font color="#00FFFF">Problema 26.10</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_11_pt.html"><font color="#00FFFF">Problema 26.11</font></a></li>
+        <li>
+		<a target="direita" href="condensadores_e_dieletricos/prob26_12_pt.html"><font color="#00FFFF">Problema 26.12</font></a></li>
+      </ul>
+  </li>
+</ul>
+<h3 onclick="togm(this)">CAP. 27: Campos Magnéticos e Forças</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/illustration27_1_pt.html"><font color="#00FFFF">Ilustração 27.1</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/illustration27_2_pt.html"><font color="#00FFFF">Ilustração 27.2</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/illustration27_3_pt.html"><font color="#00FFFF">Ilustração 27.3</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/illustration27_4_pt.html"><font color="#00FFFF">Ilustração 27.4</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/illustration27_5_pt.html"><font color="#00FFFF">Ilustração 27.5</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+      <ul>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/ex27_1_pt.html"><font color="#00FFFF">Exploração 27.1</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/ex27_2_pt.html"><font color="#00FFFF">Exploração 27.2</font></a></li>
+        <li>
+		<a target="direita" href="campos_magneticos_e_forcas/ex27_3_pt.html"><font color="#00FFFF">Exploração 27.3</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+      <ul>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_1_pt.html"><font color="#00FFFF">Problema 27.1</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_2_pt.html"><font color="#00FFFF">Problema 27.2</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_3_pt.html"><font color="#00FFFF">Problema 27.3</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_4_pt.html"><font color="#00FFFF">Problema 27.4</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_5_pt.html"><font color="#00FFFF">Problema 27.5</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_6_pt.html"><font color="#00FFFF">Problema 27.6</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_7_pt.html"><font color="#00FFFF">Problema 27.7</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_8_pt.html"><font color="#00FFFF">Problema 27.8</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_9_pt.html"><font color="#00FFFF">Problema 27.9</font></a></li>
+		<li>
+		<a target="direita" href="campos_magneticos_e_forcas/prob27_10_pt.html"><font color="#00FFFF">Problema 27.10</font></a></li>
+      </ul>
+  </li>
+</ul>
+<h3 onclick="togm(this)">CAP. 28: Lei de Ampère</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="lei_de_ampere/illustration28_1_pt.html"><font color="#00FFFF">Ilustração 28.1</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_ampere/illustration28_2_pt.html"><font color="#00FFFF">Ilustração 28.2</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_ampere/illustration28_3_pt.html"><font color="#00FFFF">Ilustração 28.3</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_ampere/illustration28_4_pt.html"><font color="#00FFFF">Ilustração 28.4</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+      <ul>
+		<li>
+		<a target="direita" href="lei_de_ampere/ex28_1_pt.html"><font color="#00FFFF">Exploração 28.1</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/ex28_2_pt.html"><font color="#00FFFF">Exploração 28.2</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/ex28_3_pt.html"><font color="#00FFFF">Exploração 28.3</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+      <ul>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_1_pt.html"><font color="#00FFFF">Problema 28.1</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_2_pt.html"><font color="#00FFFF">Problema 28.2</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_3_pt.html"><font color="#00FFFF">Problema 28.3</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_4_pt.html"><font color="#00FFFF">Problema 28.4</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_5_pt.html"><font color="#00FFFF">Problema 28.5</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_6_pt.html"><font color="#00FFFF">Problema 28.6</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_7_pt.html"><font color="#00FFFF">Problema 28.7</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_8_pt.html"><font color="#00FFFF">Problema 28.8</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_9_pt.html"><font color="#00FFFF">Problema 28.9</font></a></li>
+		<li>
+		<a target="direita" href="lei_de_ampere/prob28_10_pt.html"><font color="#00FFFF">Problema 28.10</font></a></li>
+      </ul>
+  </li>
+</ul>
+<h3 onclick="togm(this)">CAP. 29: Lei de Faraday</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="lei_de_faraday/illustration29_1_pt.html"><font color="#00FFFF">Ilustração 29.1</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/illustration29_2_pt.html"><font color="#00FFFF">Ilustração 29.2</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/illustration29_3_pt.html"><font color="#00FFFF">Ilustração 29.3</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+      <ul>
+        <li>
+		<a target="direita" href="lei_de_faraday/ex29_1_pt.html"><font color="#00FFFF">Exploração 29.1</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/ex29_2_pt.html"><font color="#00FFFF">Exploração 29.2</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/ex29_3_pt.html"><font color="#00FFFF">Exploração 29.3</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/ex29_4_pt.html"><font color="#00FFFF">Exploração 29.4</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/ex29_5_pt.html"><font color="#00FFFF">Exploração 29.5</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+      <ul>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_1_pt.html"><font color="#00FFFF">Problema 29.1</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_2_pt.html"><font color="#00FFFF">Problema 29.2</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_3_pt.html"><font color="#00FFFF">Problema 29.3</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_4_pt.html"><font color="#00FFFF">Problema 29.4</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_5_pt.html"><font color="#00FFFF">Problema 29.5</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_6_pt.html"><font color="#00FFFF">Problema 29.6</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_7_pt.html"><font color="#00FFFF">Problema 29.7</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_8_pt.html"><font color="#00FFFF">Problema 29.8</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_9_pt.html"><font color="#00FFFF">Problema 29.9</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_10_pt.html"><font color="#00FFFF">Problema 29.10</font></a></li>
+        <li>
+		<a target="direita" href="lei_de_faraday/prob29_11_pt.html"><font color="#00FFFF">Problema 29.11</font></a></li>
+      </ul>
+  </li>
+</ul>
+</p>
+<script type="text/javascript" src="jquery-1.3.2.js"></script>
+<p style="margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0" align="center"><b>
+<font size="1" color="#C0C0C0">
+
+CONTACTOS</font></b></p>
+
+<p style="margin-top: 0; margin-bottom: 0" align="center">
+
+<font size="1" color="#C0C0C0">
+
+<a style="color: #FFFFFF; text-decoration: none" href="mailto:psimeao@fc.up.pt">Paulo Simeão Carvalho</a></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0" align="center">
+
+<font size="1" color="#C0C0C0">
+
+<a style="color: #FFFFFF; text-decoration: none" href="mailto:edite.briosa@sapo.pt">Edite Pereira Briosa</a></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p><center><p style="font-size:10px; color:#CCCCCC; border:0px solid #CCCCCC; width:85px;"><?php	$count_my_page = ("hitcounter.txt");	$hits = file($count_my_page);	$hits[0] ++;	$fp = fopen($count_my_page , "w");	fputs($fp , "$hits[0]");	fclose($fp);	echo "Acessos: $hits[0]";?></p></center>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

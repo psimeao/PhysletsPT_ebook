@@ -1,0 +1,128 @@
+element.foreground				 155  122 243	//83 64 198
+element.background				255 222 173
+element.highlight				 50 190  50
+element.movable					255 173 222
+element.transient				255   222   173 //255 0 0 
+element.arrow					255   222   173 //255 0 0
+element.arrow.fc				  0   0 255
+
+particle.pos.foreground				255  20  20
+particle.pos.background				255 255 255
+particle.pos.earrow				255  20  20
+particle.pos.marrow				  0   0   0
+
+particle.neg.foreground				 20  20 255
+particle.neg.background				255 255 255
+particle.neg.earrow				 20  20 255
+particle.neg.marrow				  0   0   0
+
+dipol.foreground				  0   0   0
+
+actionlabel.foreground			 	  0   0   0
+actionlabel.background				182 182 220
+
+controls.foreground			 	  0   0 150
+controls.background				202 202 182
+
+canvas.background				169 186 193
+
+starter.foreground				255 255 255
+starter.background				 10  10 150
+
+loader.foreground				255 255 255
+loader.background				 10 150  10
+
+filemenu					"Ficheiro"
+filemenu.open					"Abrir"
+filemenu.save					"Guardar"
+filemenu.quit					"Sair"
+
+actionmenu					"Acção"
+actionmenu.editmenu				"Editar"
+actionmenu.forcemenu				"Força"
+actionmenu.miscmenu				"Inserir"
+actionmenu.plotmenu				"Mostrar"
+					
+actionmenu.delete					"Remover"
+actionmenu.move					"Mover"
+actionmenu.scale					"Escala"
+actionmenu.force.set			"Inserir força"
+actionmenu.force.del			"Remover"
+actionmenu.force.circ			"Circular"
+actionmenu.force.rotate			"Rodando"
+actionmenu.force.translate	   		"Translacionando"
+actionmenu.setconst				"Inserir constante de integração"
+actionmenu.tagmove				"Movimento do Objecto"
+actionmenu.tagio				  	"Transição de cargas"
+actionmenu.setzero				"Inserir ponto de potencial nulo"
+actionmenu.setconstzero				"Congelar cargas"
+actionmenu.connect				"Ligar objectos"
+actionmenu.plotlint				"Trabalho"
+actionmenu.plotpot				"Potencial"
+actionmenu.plotenergy			"Energia"
+actionmenu.plotcurr			"Corrente"
+actionmenu.plotfield			"Equipotenciais Imprimir/Apagar"
+
+
+createmenu				"Construir"
+createmenu.circle					"Círculo"
+createmenu.rectangle				"Rectângulo"
+createmenu.ring					"Anel"
+createmenu.particle.pos					"Cargas Positivas"
+createmenu.particle.neg					"Cargas Negativas"
+createmenu.dipol						"Dipolo"
+
+nummenu					"Número de partículas"
+
+actionlabel.create.circle			"Acção: construir círculo"
+actionlabel.create.rectangle			"Acção: construir rectângulo"
+actionlabel.create.ring				"Acção: construir anel"
+actionlabel.create.particle.pos			"Acção: construir cargas positivas"
+actionlabel.create.particle.neg			"Acção: construir cargas negativas"
+actionlabel.create.dipol			"Acção: construir dipolo"
+actionlabel.delete				"Acção: remover"
+actionlabel.move				"Acção: mover"
+actionlabel.scale				"Acção: tamanho"
+actionlabel.force.set				"Acção: inserir força"
+actionlabel.force.del				"Acção: remover força"
+actionlabel.force.circ				"Acção: inserir força circular"
+actionlabel.force.rotate		     		"Acção: inserir força na rotação"
+actionlabel.force.translate 				"Acção: inserir força harmónica na translação"
+actionlabel.plotcurr				"Acção: inserir corrent entre objectos"
+actionlabel.plotfield				"Acção: desenhar linhas equipotenciais a cores, inserir ponto de potencial nulo primeiro"
+
+actionlabel.setconst				"Acção: inserir constante de integração"
+actionlabel.tagmove				"Acção: inserir objecto amovível"
+actionlabel.tagio				"Acção: inserir objecto transparente para partículas"
+actionlabel.setzero  			        "Acção: inserir ponto de potencial nulo"
+
+starter.stop 					"Parar"
+starter.start	 				"Começar"
+
+controls.estep 					"Eléctrico"
+controls.mstep 					"Magnético "
+controls.bstep 					"Inercial"
+controls.susc 					"Dipolo"
+controls.astep					"Vector E"
+controls.astep.mag					"Vector B"
+
+controls.start 					"Correr"
+controls.stop 					"Parar"
+
+controls.magnetism				"Magnéticos"
+controls.field 					"Potencial."
+controls.fieldclear 					"Apagar"
+
+ppd.name					"        Java Constructive Objects - JaCoB"
+ppd.width						800
+ppd.height					600
+
+canvas.doublebuffer				true
+canvas.touchoffset				10
+
+particle.radius				 	5
+visual3d					"Visão 3D"
+visual3d.inc					"Aumentar"
+visual3d.dec					"Diminuir"
+visual3d.inv					"Inverter"	
+

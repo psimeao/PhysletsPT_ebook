@@ -1,0 +1,297 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript" src="../../javascript/physletVectorGrader.js"></script>
+
+<script language="JavaScript"> 
+var timerID=0;
+var showAccelerationVector=false;
+var aScale=0.2;
+gradeMagnitudes=false;
+var gradeAngles=false;
+var gradeComponents=true; //same as gradeMagnitudes=true and gradeAngles=true except tolerance for components is used
+var gradePositions=false; //evaluate the location where vectors are drawn from
+	
+var posTol=0; //absolute
+var compTol=0.1; //absolute
+var magTol=0; //absolute
+var angTol=5*Math.PI/180; //in radians
+var showMagnitude=false;
+var showAngle=false;
+var showLabel=false;
+var setDragable=true;
+var setResizable=true;
+var x1=-0.105;
+var y1=0.205;
+var xPos1=0.05;
+var yPos1=-0.04;
+var label1="delta v";
+var xVectorCompAnswers=0;
+var yVectorCompAnswers=0;
+var xVectorPosAnswers=0;
+var yVectorPosAnswers=0;
+var labelAnswers=0;
+var appletLoaded=false;
+
+var x=0.25;
+var y=0;
+var xTailPos=0;
+var yTailPos=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;		
+       reinitArrays();		
+	xVectorCompAnswers=new Array();
+	yVectorCompAnswers=new Array();
+	xVectorPosAnswers=new Array();
+	yVectorPosAnswers=new Array();
+	labelAnswers=new Array();
+	var appletLoaded=true;
+	xVectorCompAnswers[0]=x1;
+	yVectorCompAnswers[0]=y1;	
+	xVectorPosAnswers[0]=xPos1;
+	yVectorPosAnswers[0]=yPos1;
+	labelAnswers[0]=label1;
+		x0=-0.5;
+		y0=-0.068;
+		vy=0;
+		vx=0.5;
+		b=0.075;
+		Fx="-step(0.075-sqrt(x^2+y^2))*0.0005*x/(x^2+y^2)^1.5";
+		Fy="-step(0.075-sqrt(x^2+y^2))*0.0005*y/(x^2+y^2)^1.5";
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(0,-50);
+		document.Animator.setPixPerUnit(400);
+		document.Animator.setGridUnit(0.025);
+		background=document.Animator.addObject("rectangle","x=0,y=0,w=600,h=400");
+		document.Animator.setRGB(background,0,150,0);
+		
+		hole0=document.Animator.addObject("circle","r=31,x=0,y=0");
+		document.Animator.setRGB(hole0,0,0,0);
+                hole=document.Animator.addObject("circle","r=30,x=0,y=0");
+		document.Animator.setRGB(hole,150,150,150);
+		
+		id0=document.Animator.addObject("circle","r=11,m=0.050");
+		document.Animator.setForce(id0,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id0,0,0,0);
+               id=document.Animator.addObject("circle","r=10,m=0.050");
+		document.Animator.setForce(id,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id,255,255,255);
+				
+		document.Animator.setOneShot(0,2.5,"Fim da Animação");
+		
+		if(showAccelerationVector==true){
+			aVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aVector,2,"ax*"+aScale,"ay*"+aScale);
+			document.Animator.updateDataConnections();
+}
+
+		axisOriginX=-0.37;
+		axisOriginY=0.27;
+		axisLength=0.14;
+		offsetX=0.1;
+		offsetY=0.05;
+		
+		xaxis=document.Animator.addObject("arrow","x="+axisOriginX+",y="+axisOriginY+",v=0,h="+axisLength);
+		yaxis=document.Animator.addObject("arrow","x="+axisOriginX+",y="+axisOriginY+",v="+axisLength+",h=0");
+		document.Animator.setRGB(xaxis,255,255,255);
+		document.Animator.setRGB(yaxis,255,255,255);
+		
+		xtext=document.Animator.addObject("text","x="+(axisOriginX+offsetX)+",y="+(axisOriginY-offsetY)+",text=+x");
+		ytext=document.Animator.addObject("text","y="+(axisOriginY+offsetX)+",x="+(axisOriginX-offsetY)+",text=+y");
+		document.Animator.setRGB(xtext,255,255,255);
+		document.Animator.setRGB(ytext,255,255,255);
+		
+		showVelocityVectors();
+		
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+function showData() {
+		if(!loaded) return;
+		x=document.Animator.addObject("text","x=0,y=0,text=x:,calc=x");		
+		y=document.Animator.addObject("text","x=0,y=0,text=y:,calc=y");		
+		vx=document.Animator.addObject("text","x=0,y=0,text=vx:,calc=vx");		
+		vy=document.Animator.addObject("text","x=0,y=0,text=vy:,calc=vy");		
+		
+		document.Animator.setAnimationSlave(id,x);
+		document.Animator.setAnimationSlave(id,y);
+		document.Animator.setAnimationSlave(id,vx);
+		document.Animator.setAnimationSlave(id,vy);
+		document.Animator.setDisplayOffset(x,-50,20);
+		document.Animator.setDisplayOffset(y,-50,0);
+		document.Animator.setDisplayOffset(vx,10,20);
+		document.Animator.setDisplayOffset(vy,10,0);
+}
+
+function showVelocityVectors() {
+		if(!loaded) return;
+		scale=0.5;
+		x1=-0.05;
+		y1=-0.068;
+		v1x=0.5*scale;
+		v1y=0*scale;
+		x2=0.083;
+		y2=0.001;
+		v2x=0.28*scale;
+		v2y=0.415*scale;
+		label1="v_1";
+		label2="v_2";
+		
+		v1=document.Animator.addObject("arrow2","x="+x1+",y="+y1+",v="+v1y+",h="+v1x+",filled,thickness=5");
+		labelID1=document.Animator.addObject("text","x=0,y=0,text="+label1);
+		document.Animator.makeDataConnection(v1,labelID1,1,"x+w*0.5","y+h*0.5");
+		document.Animator.setDragable(v1,true);
+
+		v2=document.Animator.addObject("arrow2","x="+x2+",y="+y2+",v="+v2y+",h="+v2x+",filled,thickness=5");
+		labelID2=document.Animator.addObject("text","x=0,y=0,text="+label2);
+		document.Animator.makeDataConnection(v2,labelID2,1,"x+w*0.5","y+h*0.5");
+		document.Animator.setDragable(v2,true);
+		document.Animator.updateDataConnections();
+
+}
+
+function showAccVector() {
+	showAccelerationVector=true;
+	startProb();
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 3.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Exploração 3.3 - Aceleração de uma bola de golfe</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <tr>
+  <td>
+  		<table border=0><tr><td>
+
+<MAP NAME="palette_sm">
+<AREA SHAPE=RECT COORDS="3,1,69,67" HREF="javascript:onclick=draw()" ALT="Draw New Vector">
+<AREA SHAPE=RECT COORDS="5,69,69,133" HREF="javascript:onclick=clearScreen()" ALT="Clear Drawing">
+<AREA SHAPE=default NOHREF>
+</map>
+
+<IMG SRC="palette_sm.jpg" USEMAP="#palette_sm" width="72" height="135">
+ 
+		  </td></tr>
+		  <tr><td align="center">
+		</td></tr>
+		</table>
+
+  </td>
+    <td align="center">
+<applet width="469" height="300" code="animator4.Animator.class" codebase="../../classes/" 
+archive="Physlets.jar" align="baseline" name="Animator" mayscript>
+                  <param name="FPS" value="15">
+                  <param name="dt" value="0.05">
+                  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+  </tr>
+</table>
+</center></div>
+
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Uma bola de golfe contorna o buraco, como mostra a animação <b>(a posição é 
+dada em metros e o tempo em segundos)</b>.&nbsp; Os vetores velocidade da bola 
+imediatamente antes e depois de contornar o buraco, são mostrados na animação.&nbsp;
+<a href="JavaScript:startProb()">Início</a>
+</p>
+<p>( Nota que a rapidez da bola não sofreu alteração, facto que em geral não 
+representa a realidade )
+</p>
+
+<p>
+&nbsp;</p>
+<p>
+<b>Exploração</b></p>
+<p>
+Supõe que queremos saber a aceleração média da bola de golfe, no instante em que 
+esta está em contacto com o buraco.&nbsp;&nbsp;
+</p>
+
+<ol type="a">
+  <li>
+	<p style="margin-top: 6px">Desenha o vetor variação de velocidade, usando os vetores velocidade 
+	apresentados na animação. ( Para isso carrega no botão &quot;<i>Desenhar Vetor</i>&quot; 
+	para adicionar um vetor, e arrasta a sua cauda e a sua cabeça para as 
+	posições que achares convenientes. Para apagar todos os vetores desenhados 
+	usa o comando&nbsp; &quot;<i>Apagar Ecrã</i>&quot; )</li>
+  <li>
+	<p style="margin-top: 6px">Qual o valor do vetor variação de velocidade e qual a sua direção e 
+	sentido, durante o intervalo de tempo considerado?</li>
+  <li>
+	<p style="margin-top: 6px">Qual o valor da aceleração média durante este intervalo de tempo?</li>
+  <li>
+	<p style="margin-top: 6px">Para a animação apresentada, em que instante pensas que a aceleração 
+	instantânea vai ser igual à aceleração média da bola de golfe, no intervalo 
+	de tempo dos 0.9 s aos 1.2 s? </li>
+  <li>
+<p style="margin-top: 6px">
+<a href="JavaScript:showAccVector()">Carrega aqui</a> e depois corre a animação, 
+para veres o vetor aceleração.&nbsp;Se o teu vetor variação de velocidade ainda 
+estiver no ecrã, podes parar a animação no momento em que os dois vetores são 
+iguais. Isto aconteceu no instante que tinhas previsto? </li>
+</ol>
+<p align="left">&nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+Exploração da autoria de Aaron Titus, com o apoio da National Science 
+Foundation, Grant No. DUE-9952323 e colocada no domínio público.
+</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

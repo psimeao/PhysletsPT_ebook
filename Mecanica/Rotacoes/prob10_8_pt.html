@@ -1,0 +1,213 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 10.8; modificado por 
+Paulo Simeão Carvalho</title>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb3_11_0()",100);
+}
+  	
+function mjb3_11_0(){ 
+      if(!loaded) return;
+       timerID=0;
+   id1=0;
+        document.Animator.setAutoRefresh(false);
+        document.Animator.setDefault();
+        document.Animator.setTimeDisplay(false);
+        document.Animator.setPixPerUnit(5);
+        document.Animator.setGridUnit(2);
+        document.Animator.setShapeRGB(0,0,255);
+        id1=document.Animator.setCaption("Seleciona uma Animação"); 
+        document.Animator.setAutoRefresh(true);
+}
+
+
+function mjb3_11_1() { 
+  if(!loaded) return;
+   id1=0;
+        document.Animator.setAutoRefresh(false);
+        document.Animator.setDefault();
+        document.Animator.setPixPerUnit(5);
+        document.Animator.setGridUnit(2);
+        document.Animator.setShapeRGB(0,0,255);
+        document.Animator.addParametricCurve(400,0,1,"10*sin(2*pi*s)","10*cos(2*pi*s)");
+        document.Animator.setShapeRGB(255,0,0);
+        rx="10*cos(t*t/8)*step(5-t)-step(t-5)*10*cos(1.25*t)";
+		ry="10*sin(t*t/8)*step(5-t)+step(t-5)*10*sin(-1.25*t)";
+        document.Animator.addCircle(20,rx,ry);
+        document.Animator.setShapeRGB(0,0,0);
+		ax="(-5/8*t*t*cos(t*t/8)-2.5*sin(t*t/8))*step(5-t)+step(t-5)*15.6*cos(1.25*t-6.25)";
+	    ay="(-5/8*t*t*sin(t*t/8)+2.5*cos(t*t/8))*step(5-t)-step(t-5)*15.6*sin(-1.25*t+6.25)";
+	  	document.Animator.addArrow(ax,ay,rx,ry);
+       id1=document.Animator.setCaption("Animação 1");
+       document.Animator.setShowCoordinates(id1,true);
+      document.Animator.setCoordinateOffset(id1,0,-7); 
+      document.Animator.setOneShot(0,8,"Fim da Animação");
+        document.Animator.setAutoRefresh(true);
+}
+
+function mjb3_11_2() { 
+        if(!loaded) return;
+        document.Animator.setAutoRefresh(false);
+        document.Animator.setDefault();
+        document.Animator.setPixPerUnit(5);
+        document.Animator.setGridUnit(2);
+        document.Animator.setShapeRGB(0,0,255);
+        document.Animator.addParametricCurve(400,0,1,"10*sin(2*pi*s)","10*cos(2*pi*s)");
+        document.Animator.setShapeRGB(255,0,0);
+		 rx="10*cos(t*t/8)*step(5-t)-step(t-5)*10*cos(1.25*t)";
+		 ry="10*sin(t*t/8)*step(5-t)+step(t-5)*10*sin(-1.25*t)";
+        document.Animator.addCircle(20,rx,ry);
+        document.Animator.setShapeRGB(0,0,0);
+		 ax="(-5/8*t*t*cos(t*t/8))*step(5-t)+step(t-5)*15.6*cos(1.25*t-6.25)";
+	    ay="(-5/8*t*t*sin(t*t/8))*step(5-t)-step(t-5)*15.6*sin(-1.25*t+6.25)";
+	  	 document.Animator.addArrow(ax,ay,rx,ry);
+       id1=document.Animator.setCaption("Animação 2");
+       document.Animator.setShowCoordinates(id1,true);
+      document.Animator.setCoordinateOffset(id1,0,-7);
+       document.Animator.setOneShot(0,8,"Fim da Animação");
+        document.Animator.setAutoRefresh(true);
+}
+
+function mjb3_11_3() { 
+      if(!loaded) return;
+      id1=0;
+        document.Animator.setAutoRefresh(false);
+        document.Animator.setDefault();
+        document.Animator.setPixPerUnit(5);
+        document.Animator.setGridUnit(2);
+        document.Animator.setShapeRGB(0,0,255);
+        document.Animator.addParametricCurve(400,0,1,"10*sin(2*pi*s)","10*cos(2*pi*s)");
+        document.Animator.setShapeRGB(255,0,0);
+		 rx="10*cos(t*t/8)*step(5-t)-step(t-5)*10*cos(1.25*t)";
+		 ry="10*sin(t*t/8)*step(5-t)+step(t-5)*10*sin(-1.25*t)";
+        document.Animator.addCircle(20,rx,ry);
+        document.Animator.setShapeRGB(0,0,0);
+		 ax="(-5/8*t*t*sin(t*t/8))*step(5-t)+step(t-5)*15.6*sin(1.25*t-6.25)";
+	    ay="( 5/8*t*t*cos(t*t/8))*step(5-t)-step(t-5)*15.6*cos(-1.25*t+6.25)";
+	  	 document.Animator.addArrow(ax,ay,rx,ry);
+        id1=document.Animator.setCaption("Animação 3");
+       document.Animator.setShowCoordinates(id1,true);
+      document.Animator.setCoordinateOffset(id1,0,-7);
+       document.Animator.setOneShot(0,8,"Fim da Animação"); 
+      document.Animator.setAutoRefresh(true);
+}
+
+function mjb3_11_4() { 
+      if(!loaded) return;
+      id1=0;
+        document.Animator.setAutoRefresh(false);
+        document.Animator.setDefault();
+        document.Animator.setPixPerUnit(5);
+        document.Animator.setGridUnit(2);
+        document.Animator.setShapeRGB(0,0,255);
+        document.Animator.addParametricCurve(400,0,1,"10*sin(2*pi*s)","10*cos(2*pi*s)");
+        document.Animator.setShapeRGB(255,0,0);
+		 rx="10*cos(t*t/8)*step(5-t)-step(t-5)*10*cos(1.25*t)";
+		 ry="10*sin(t*t/8)*step(5-t)+step(t-5)*10*sin(-1.25*t)";
+        document.Animator.addCircle(20,rx,ry);
+        document.Animator.setShapeRGB(0,0,0);
+		 ax="(-5/8*t*t*sin(t*t/8))*step(5-t)+step(t-5)*0";
+	    ay="( 5/8*t*t*cos(t*t/8))*step(5-t)-step(t-5)*0";
+	  	 document.Animator.addArrow(ax,ay,rx,ry);
+        id1=document.Animator.setCaption("Animação 4");
+       document.Animator.setShowCoordinates(id1,true);
+      document.Animator.setCoordinateOffset(id1,0,-7);
+       document.Animator.setOneShot(0,8,"Fim da Animação"); 
+      document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 10.8</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  <applet codebase="../../classes/" code="animator4.Animator.class"
+  archive="Physlets.jar" align="middle" width="221" height="212"
+ name="Animator" mayscript>
+    <param name="FPS" value="10">
+    <param name="dt" value="0.05">
+    <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início" onclick="document.Animator.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0" >
+    <tr>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:mjb3_11_1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; &nbsp;</td>
+      <td align="center">&nbsp;&nbsp;&nbsp; 
+		<a href="JavaScript:mjb3_11_2()" style="text-decoration: none">Animação 2</a>&nbsp; &nbsp;</td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:mjb3_11_3()" style="text-decoration: none">Animação 3</a>&nbsp; &nbsp;</td>
+      <td align="center">&nbsp;&nbsp;
+		<a href="JavaScript:mjb3_11_4()" style="text-decoration: none">Animação 4</a>&nbsp; &nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Um carro, inicialmente em repouso, acelera até estar a meio de uma pista 
+circular. Depois desse instante, o carro segue com rapidez constante <b>(a 
+posição é dada em metros e o tempo em segundos)</b>.&nbsp;
+<a href="JavaScript:mjb3_11_0()">Início</a></p>
+
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">
+Problema da autoria de Mario Belloni e Wolfgang Christian. Modificado por Paulo 
+Simeão Carvalho.</p>
+<p style="margin-top: 0; margin-bottom: 0">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p style="margin-top: 0; margin-bottom: 0">
+&nbsp;</p>
+
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

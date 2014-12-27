@@ -1,0 +1,405 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 11.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var position=false;
+var pi=Math.PI;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Forceform.reset();
+   document.selection.reset();
+   m=document.Forceform.MassText.value;
+   theta=document.Forceform.Angletext.value;  
+   m=m/1000;
+   theta=theta*pi/180;
+   r=10;
+   ystart=(33+1.2*r*Math.cos(theta))*Math.tan(theta);   
+   wmax=ystart*9.8*m+2;
+   muk=0.15;
+   energy=m*9.8*17;
+   len=eval(-150/Math.tan(theta));
+   leng=eval(15/Math.sin(theta));
+   friction=muk*m*9.8*Math.cos(theta);
+   wmin=friction*34/Math.cos(theta)+5;
+   a=9.8*Math.sin(theta)/(1+.4);
+   tmax=Math.sqrt(2*leng/a);
+   
+   document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setCaption("Registar valores para começar");
+    document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(220,-100);
+   id6=document.Animator.addPolyShape(3,"0,0,"+len+"","0,150,0","0","0");
+   document.Animator.setRGB(id6,170,170,170);
+   id1=document.Animator.addObject("circle","x=0, y=16, r="+r);
+   document.Animator.setRGB(id1,0,0,0);
+   document.Animator.setMass(id1,m);
+   document.Animator.setDragable(id1,false);
+   
+   axstr=-a*Math.cos(theta);
+   aystr=-a*Math.sin(theta);
+   id2=document.Animator.addObject("text","text=|v| =,calc=sqrt(vx^2+vy^2)");
+   	document.Animator.setFormat(id2,"%2.2f");
+   	document.Animator.setDisplayOffset(id2,-70,40);
+   document.Animator.setAnimationSlave(id1,id2);
+   id3=document.Animator.addObject("text","text=ómega =,calc=sqrt(vx^2+vy^2)*10/"+r);
+   	document.Animator.setFormat(id3,"%2.2f");
+   	document.Animator.setDisplayOffset(id3,-80,25);
+   document.Animator.setAnimationSlave(id1,id3);
+   lid=document.Animator.addLine("1*cos("+a+"/2*1*t^2)","1*sin("+a+"/2*1*t^2)","0.5*"+axstr+"*t^2","16+0.5*"+aystr+"*t^2");
+   document.Animator.setRGB(lid,255,255,255);
+    document.DataGraph.deleteDataConnections();
+	document.Animator.updateDataConnections();
+
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+  
+
+if(position)
+{	
+ document.DataGraph.set(0,"scale","xmin=0,xmax="+leng+",ymin=-1,ymax="+energy);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setLabelY("Energia (J)");
+   document.DataGraph.setLabelX("Posição (m)");
+   gid=document.DataGraph.getGraphID();
+	document.DataGraph.deleteSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setSeriesRGB(1,255,0,150);
+   document.DataGraph.setSeriesLegend(1,350,20,"Ec de Rotação");
+    document.DataGraph.setSeriesLegendRGB(1,255,0,150);    
+    document.DataGraph.setAutoReplaceData(1,true);
+	document.DataGraph.deleteSeries(2);
+    document.DataGraph.setSeriesStyle(2,true,3);
+        document.DataGraph.setLastPointMarker(2,true);
+    document.DataGraph.setSeriesRGB(2,0,0,255);
+        document.DataGraph.setSeriesLegend(2,60,20,"Ep Gravítica");
+    document.DataGraph.setSeriesLegendRGB(2,0,0,255);    
+    document.DataGraph.setAutoReplaceData(2,true);
+    document.DataGraph.setLastPointMarker(2,true);
+
+	document.DataGraph.deleteSeries(3);
+    document.DataGraph.setSeriesStyle(3,true,3);
+    document.DataGraph.setLastPointMarker(3,true);
+    document.DataGraph.setSeriesRGB(3,255,150,0);
+    document.DataGraph.setSeriesLegend(3,200,20,"Ec de Translação");
+    document.DataGraph.setSeriesLegendRGB(3,255,150,0);    
+    document.DataGraph.setAutoReplaceData(3,true);
+    document.DataGraph.setLastPointMarker(3,true);
+   document.DataGraph.setMarkerSize(1,0.6);
+   document.DataGraph.setMarkerSize(2,0.6);
+   document.DataGraph.setMarkerSize(3,0.6);
+}    
+else
+{    
+   document.DataGraph.set(0,"scale","xmin=0,xmax="+tmax+",ymin=-1,ymax="+energy);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setLabelY("Energia (J)");
+   document.DataGraph.setLabelX("Tempo (s) ");
+   gid=document.DataGraph.getGraphID();
+	document.DataGraph.deleteSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setSeriesRGB(1,255,0,150);
+   document.DataGraph.setSeriesLegend(1,350,20,"Ec de Rotação");
+    document.DataGraph.setSeriesLegendRGB(1,255,0,150);    
+    document.DataGraph.setAutoReplaceData(1,true);
+	document.DataGraph.deleteSeries(2);
+    document.DataGraph.setSeriesStyle(2,true,3);
+        document.DataGraph.setLastPointMarker(2,true);
+    document.DataGraph.setSeriesRGB(2,0,0,255);
+        document.DataGraph.setSeriesLegend(2,60,20,"Ep Gravítica");
+    document.DataGraph.setSeriesLegendRGB(2,0,0,255);    
+    document.DataGraph.setAutoReplaceData(2,true);
+    document.DataGraph.setLastPointMarker(2,true);
+
+	document.DataGraph.deleteSeries(3);
+    document.DataGraph.setSeriesStyle(3,true,3);
+    document.DataGraph.setLastPointMarker(3,true);
+    document.DataGraph.setSeriesRGB(3,255,150,0);
+    document.DataGraph.setSeriesLegend(3,200,20,"Ec de Translação");
+    document.DataGraph.setSeriesLegendRGB(3,255,150,0);    
+    document.DataGraph.setAutoReplaceData(3,true);
+    document.DataGraph.setLastPointMarker(3,true);
+   document.DataGraph.setMarkerSize(1,0.6);
+   document.DataGraph.setMarkerSize(2,0.6);
+   document.DataGraph.setMarkerSize(3,0.6);
+   document.DataGraph.deleteDataConnections();
+}
+   document.DataGraph.setAutoRefresh(true);
+   document.Animator.setAutoRefresh(true);
+}
+
+
+function cfn10_3() { 
+   if(!loaded) return;
+   em=document.Forceform.MassText.value;
+   etheta=document.Forceform.Angletext.value;
+   
+  
+       if( !checkRange(em,100,500)){
+     alert("A massa da bola deve estar entre 100 e 500 gramas. O valor inserido foi "+em+" gramas.");
+     return;
+  } 
+  
+         if( !checkRange(etheta,10,40)){
+     alert("O ângulo de inclinação deve estar entre 10 e 40 graus. O valor inserido foi "+etheta+" graus.");
+     return;
+  } 
+  
+  
+  
+   m=eval(document.Forceform.MassText.value);
+   theta=eval(document.Forceform.Angletext.value);
+
+
+   m=m/1000;
+   theta=theta*pi/180;
+   r=10;
+   ystart=(33+1.2*r*Math.cos(theta))*Math.tan(theta);   
+   wmax=ystart*9.8*m+2;
+   muk=0.15;
+   energy=m*9.8*17;
+   len=eval(-150/Math.tan(theta));
+   leng=eval(15/Math.sin(theta));
+   friction=muk*m*9.8*Math.cos(theta);
+   wmin=friction*34/Math.cos(theta)+5;
+   a=9.8*Math.sin(theta)/(1+.4);
+   tmax=Math.sqrt(2*leng/a); // Determine max time before object runs off screen
+   
+
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+    document.Animator.setOneShot(0,tmax,"Fim da Animação");
+   document.Animator.setPixPerUnit(10);
+   document.Animator.shiftPixOrigin(220,-100);
+   id6=document.Animator.addPolyShape(3,"0,0,"+len+"","0,150,0","0","0");
+   document.Animator.setRGB(id6,170,170,170);
+   id1=document.Animator.addObject("circle","x=0, y=0, r="+r);
+   document.Animator.setRGB(id1,0,0,0);
+   document.Animator.setMass(id1,m);
+   document.Animator.setDragable(id1,false);
+   
+   axstr=-a*Math.cos(theta);
+   aystr=-a*Math.sin(theta);
+   document.Animator.setTrajectory(id1,"0.5*"+axstr+"*t^2","16+0.5*"+aystr+"*t^2");
+   id2=document.Animator.addObject("text","text=|v| =,calc=sqrt(vx^2+vy^2)");
+   	document.Animator.setFormat(id2,"%2.2f");
+   	document.Animator.setDisplayOffset(id2,-70,40);
+   document.Animator.setAnimationSlave(id1,id2);
+   id3=document.Animator.addObject("text","text=ómega =,calc=sqrt(vx^2+vy^2)*10/"+r);
+   	document.Animator.setFormat(id3,"%2.2f");
+   	document.Animator.setDisplayOffset(id3,-80,25);
+   document.Animator.setAnimationSlave(id1,id3);
+   lid=document.Animator.addLine("1*cos("+a+"/2*1*t^2)","1*sin("+a+"/2*1*t^2)","0.5*"+axstr+"*t^2","16+0.5*"+aystr+"*t^2");
+   document.Animator.setRGB(lid,255,255,255);
+   document.DataGraph.deleteDataConnections();
+	document.Animator.updateDataConnections();
+
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+  
+
+if(position)
+{	
+ document.DataGraph.set(0,"scale","xmin=0,xmax="+leng+",ymin=-1,ymax="+energy);
+   document.DataGraph.deleteSeries(1);
+   document.DataGraph.setLabelY("Energia (J)");
+   document.DataGraph.setLabelX("Posição (m)");
+   gid=document.DataGraph.getGraphID();
+	document.DataGraph.deleteSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setSeriesRGB(1,255,0,150);
+   document.DataGraph.setSeriesLegend(1,350,20,"Ec de Rotação");
+    document.DataGraph.setSeriesLegendRGB(1,255,0,150);    
+    document.DataGraph.setAutoReplaceData(1,true);
+	document.DataGraph.deleteSeries(2);
+    document.DataGraph.setSeriesStyle(2,true,3);
+        document.DataGraph.setLastPointMarker(2,true);
+    document.DataGraph.setSeriesRGB(2,0,0,255);
+        document.DataGraph.setSeriesLegend(2,60,20,"Ep Gravítica");
+    document.DataGraph.setSeriesLegendRGB(2,0,0,255);    
+    document.DataGraph.setAutoReplaceData(2,true);
+    document.DataGraph.setLastPointMarker(2,true);
+
+	document.DataGraph.deleteSeries(3);
+    document.DataGraph.setSeriesStyle(3,true,3);
+    document.DataGraph.setLastPointMarker(3,true);
+    document.DataGraph.setSeriesRGB(3,255,150,0);
+    document.DataGraph.setSeriesLegend(3,200,20,"Ec de Translação");
+    document.DataGraph.setSeriesLegendRGB(3,255,150,0);    
+    document.DataGraph.setAutoReplaceData(3,true);
+    document.DataGraph.setLastPointMarker(3,true);
+   document.DataGraph.setMarkerSize(1,0.6);
+   document.DataGraph.setMarkerSize(2,0.6);
+   document.DataGraph.setMarkerSize(3,0.6);
+   
+   document.DataGraph.deleteDataConnections();
+   document.Animator.makeDataConnection(id1,gid,2,"((y-16)*(y-16)+x*x)^0.5","m*9.8*(y-1)");          
+	document.Animator.makeDataConnection(id1,gid,3,"((y-16)*(y-16)+x*x)^0.5","0.5*m*vx*vx+0.5*m*vy*vy");          
+	document.Animator.makeDataConnection(id1,gid,1,"((y-16)*(y-16)+x*x)^0.5","0.2*m*vx*vx+0.2*m*vy*vy"); 
+}    
+else
+{    
+   document.DataGraph.set(0,"scale","xmin=0,xmax="+tmax+",ymin=-1,ymax="+energy);
+   document.DataGraph.deleteSeries(1);
+   document.DataGraph.setLabelY("Energia (J)");
+   document.DataGraph.setLabelX("Tempo (s) ");
+   gid=document.DataGraph.getGraphID();
+	document.DataGraph.deleteSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setSeriesRGB(1,255,0,150);
+   document.DataGraph.setSeriesLegend(1,350,20,"Ec de Rotação");
+    document.DataGraph.setSeriesLegendRGB(1,255,0,150);    
+    document.DataGraph.setAutoReplaceData(1,true);
+	document.DataGraph.deleteSeries(2);
+    document.DataGraph.setSeriesStyle(2,true,3);
+        document.DataGraph.setLastPointMarker(2,true);
+    document.DataGraph.setSeriesRGB(2,0,0,255);
+        document.DataGraph.setSeriesLegend(2,60,20,"Ep Gravítica");
+    document.DataGraph.setSeriesLegendRGB(2,0,0,255);    
+    document.DataGraph.setAutoReplaceData(2,true);
+    document.DataGraph.setLastPointMarker(2,true);
+
+	document.DataGraph.deleteSeries(3);
+    document.DataGraph.setSeriesStyle(3,true,3);
+    document.DataGraph.setLastPointMarker(3,true);
+    document.DataGraph.setSeriesRGB(3,255,150,0);
+    document.DataGraph.setSeriesLegend(3,200,20,"Ec de Translação");
+    document.DataGraph.setSeriesLegendRGB(3,255,150,0);    
+    document.DataGraph.setAutoReplaceData(3,true);
+    document.DataGraph.setLastPointMarker(3,true);
+   document.DataGraph.setMarkerSize(1,0.6);
+   document.DataGraph.setMarkerSize(2,0.6);
+   document.DataGraph.setMarkerSize(3,0.6);
+   document.DataGraph.deleteDataConnections();
+   document.Animator.makeDataConnection(id1,gid,2,"t","m*9.8*(y-1)");          
+	document.Animator.makeDataConnection(id1,gid,3,"t","0.5*m*vx*vx+0.5*m*vy*vy");          
+	document.Animator.makeDataConnection(id1,gid,1,"t","0.2*m*vx*vx+0.2*m*vy*vy");  
+}
+
+   document.Animator.updateDataConnections();
+   document.DataGraph.setAutoRefresh(true);
+   document.Animator.setAutoRefresh(true);
+   	
+document.Animator.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script> 
+</head>
+
+<body onunload="killmenow()"> 
+
+<h2 align="center">Exploração 11.3 - Rolando num plano inclinado</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td> 
+  <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="480"
+        height="240" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.05">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1">
+         <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,DataGraph">
+        <param name="Resources" value="animator_pt.rc">
+</applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+    <applet code="dataGraph.DataGraph.class" codebase="../../classes/"
+        archive="Physlets.jar" name="DataGraph" 
+        width="480" height="200" hspace="0" vspace="0" align="Middle" mayscript>
+		<param name="ShowControls" value="false">
+		<param name="XMin" value="0">
+		<param name="XMax" value="50">
+		<param name="YMin" value="0">
+		<param name="YMax" value="8000">
+		<param name="AutoScaleX" value="false">
+		<param name="AutoScaleY" value="false">
+	</applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center"><form name="selection">
+  <p align="center">
+  <input type="button" value="registar valores e começar" onclick="JavaScript:cfn10_3()">
+  <input type="button" value="continuar" onclick="document.Animator.forward()"><input type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.Animator.stepForward()"></p>
+</form>
+<form name="Forceform">
+            <p align="center"><b><i>m</i> =&nbsp;<input type="text" name="MassText" size="5" value="250"> 
+			gramas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>θ</i> =&nbsp;<input type="text" name="Angletext" size="4" value="20">°&nbsp; </b>
+            &nbsp;<br>
+<INPUT onclick="javascript:position = (this.checked);" type=checkbox 
+value=velocity name=options>  <b>seleciona a caixa para veres o gráfico energia&nbsp; 
+			<i>vs</i>. posição, depois carrega em &quot;registar valores e começar&quot;.</b> 
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>
+
+<b>Descrição da Animação</b></p>
+<p>
+
+Uma bola sólida de raio 1,0 m desce um plano inclinado, conforme mostra a 
+animação <b>(a posição é dada em metros e o tempo em segundos)</b>. O plano 
+inclinado faz um ângulo <i>θ</i>
+com a horizontal. Ajusta a massa (100 g &lt; <i>m</i> &lt; 500 g) e/ou o ângulo (10° &lt;
+<i>θ</i> 
+&lt; 40°)&nbsp;e observa os gráficos das energias potencial gravítica, cinética de 
+rotação e cinética de translação, em função da posição ou do tempo.
+<a href="JavaScript:position1()">Início</a></p>
+
+
+            <p style="margin-top: 0; margin-bottom: 0">
+
+&nbsp;</p>
+
+
+<p>Exploração da autoria de Wolfgang Christian e Mario Belloni.<br>
+Script da autoria de Steve Mellema, Chuck Niederriter e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>

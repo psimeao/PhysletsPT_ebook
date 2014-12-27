@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var cid=0;
+var id2=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("mjb16_11()",100);
+}
+
+
+function mjb16_11(){
+	if(!loaded) return;
+   timerID=0;
+	document.animator.setAutoRefresh(false);
+    document.animator.setDefault(); 
+	document.animator.setPixPerUnit(100); 
+	document.animator.shiftPixOrigin(-10,-68);
+	document.animator.setGridUnit(0.1);
+   document.animator.setShapeRGB(255,255,255);
+   document.animator.addRectangle(1,1,"2.7-10*t","0.53");
+    document.animator.setShapeRGB(255,0,0); 
+	cid=document.animator.addRectangle(55,15,"2.7-10*t","0.53");
+	document.animator.addPolyShape(3,"0,0,10","10,0,0","2.8-10*t","0.6");
+    document.animator.addPolyShape(3,"0,20,20","0,10,0","2.5-10*t","0.6");
+    document.animator.addRectangle(12,12,"2.76-10*t","0.63");
+	document.animator.setShapeRGB(0,0,0);
+    document.animator.addCircle(10,"2.85-10*t","0.45");
+    document.animator.addCircle(10,"2.55-10*t","0.45");
+    document.animator.setShapeRGB(150,150,150); 
+    document.animator.addRectangle(620,10,"0.5","0.35");
+    document.animator.addImage("images/uarrow.gif",0,0.3);
+    document.animator.addImage("images/darrow.gif",0,1);
+    id2=document.animator.setCaption("Tu estás aqui");
+    document.animator.setShowCoordinates(id2,true);
+    document.animator.setCoordinateOffset(id2,0,-10);
+    document.animator.setOneShot(0,0.6,"Fim da Animação");
+    document.animator.setAutoRefresh(true); 
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 18.10</title>
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Problema 18.10</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+	<applet CODEBASE="../../classes/"
+	ARCHIVE="Physlets.jar"
+	CODE="animator4.Animator.class" align="middle" width="500" height="140" name="animator" mayscript>
+  		<param name="FPS" value="10">
+  		<param name="dt" value="0.02">
+  		<param name="showControls" value="false">
+  		<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator">
+        <param name="Resources" value="Animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.animator.forward()"><input type="button" value="pausa"
+  onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="document.animator.reset()"></p>
+  </center></div>
+</form>
+
+<p align="center"><b><font color="#FF0000"><i>Por favor espera até a animação 
+estar completamente carregada.</i></font></b></p>
+
+<p style="line-height: 150%">Imagina que estás parado na beira da estrada, 
+quando um carro da polícia passa por ti com a sirene ligada, conforme mostra a 
+animação <b>(a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp;&nbsp;
+<a href="JavaScript:mjb16_11()">Início</a></p>
+
+<p>&nbsp;</p>
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

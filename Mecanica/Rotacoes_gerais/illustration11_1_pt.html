@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var lid=0;
+var timerID=0;
+var aid1=0;
+var aid2=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("cross()",100);
+}
+  	
+function cross(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.animator.setDefault();
+   document.animator.setTimeDisplay(false);
+   document.scriptlistener.setDefault();
+   lid1=document.animator.addObject("line","x=-15,y=0,h=400,v=0");
+   lid2=document.animator.addObject("line","x=0,y=-15,v=400,h=0");
+   document.animator.setRGB(lid1,155,155,155);
+   document.animator.setRGB(lid2,155,155,155);
+   aid1=document.animator.addObject("arrow2","x=0,y=0,h=4,v=10,false,filled,thickness=5");
+   document.animator.setDragable(aid1,false);
+   document.animator.setResizable(aid1,true);
+   document.animator.setRGB(aid1,155,0,0);
+   aid2=document.animator.addObject("arrow2","x=0,y=0,h=10,v=4,false,filled,thickness=5");
+   document.animator.setDragable(aid2,false);
+   document.animator.setResizable(aid2,true);
+   document.animator.setRGB(aid2,0,155,0);
+   
+    document.datatable.setDefault();
+    document.datatable.setSeriesLabel(1,"|r|");
+    document.datatable.setSeriesLabel(2,"|F|");
+    document.datatable.setSeriesLabel(3,"|r x F|");
+    document.datatable.setNumericFormat(1,"%+-4.1f"); 
+    document.datatable.setNumericFormat(2,"%+-4.1f");
+    document.datatable.setNumericFormat(3,"%+-4.1f");
+   document.scriptlistener.setJSFunction("crossmoved()");
+   lid=document.scriptlistener.getID();
+   
+   document.animator.makeDataConnection(aid1,lid,1,"0","0"); 
+   document.animator.makeDataConnection(aid2,lid,1,"0","0");
+}
+
+function crossmoved(){
+	 if(timerID==0) {timerID=setTimeout("crossmoved2()",25);
+}
+}
+
+
+function crossmoved2(){
+     x1=eval(document.animator.getW(aid1));
+     y1=eval(document.animator.getH(aid1));
+     x2=eval(document.animator.getW(aid2));
+     y2=eval(document.animator.getH(aid2));
+   document.datatable.addDatum(1,Math.sqrt(x1*x1+y1*y1));
+     document.datatable.addDatum(2,Math.sqrt(x2*x2+y2*y2));
+     document.datatable.addDatum(3,Math.abs(x1*y2-y1*x2));
+     timerID=0;
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 11.1</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 11.1 - Produto Vetorial<applet codebase="../../classes/" code="script.ScriptListener.class" 
+archive="Physlets.jar" 
+name="scriptlistener" width="0" height="0" hspace="0" vspace="0" align="middle" 
+mayscript>
+
+
+
+
+
+
+
+</applet></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center">
+      <applet code="animator4.Animator.class" codebase="../../classes/" 
+      archive="Physlets.jar" 
+      name="animator" width="220" height="220" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.05">
+        <param name="PixPerUnit" value="10">
+        <param name="GridUnit" value="0">
+              <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,datatable,scriptlistener">
+        <param name="Resources" value="animator_pt.rc">
+</applet> </td>
+    </tr>
+    <tr>
+      <td>
+      <p align="center">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataTable.DataTable.class" name="datatable" 
+      width="220" height="45" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowScrollBars" value="false">
+        <param name="LastOnTop" value="true">
+        <param name="CellWidth" value="40">
+        <param name="NumRows" value="1">
+        <param name="NumCols" value="3">
+        <param name="ShowControls" value="false">
+        <param name="ShowRowHeader" value="false">
+        <param name="ShowColHeader" value="true">
+        <param name="SizeToFit" value="true">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+  <b>
+
+<p align="center"><font color="#FF0000"><i>Por favor espera até a animação estar 
+completamente carregada.</i></font></p>
+
+</b>
+
+<p><b>Descrição da animação</b></p>
+<p>O momento de uma força (torque) é definido como o produto vetorial do vetor 
+de posição da força (<i><b>r</b></i>)<b> </b>relativamente ao eixo de rotação, 
+pelo vetor força (<i><b>F</b></i>). Nesta animação, O vetor <b>
+<span style="color:#9B0000">vermelho </span></b>é<b><span style="color:#9B0000"> 
+<i>r</i> </span></b>e o vetor&nbsp;
+<span style="color: #009B00"><b>v</b></span><b><span style="color:#009B00">erde </span></b>
+é<span style="color:#009B00"><b> <i>F</i>. </b></span>O valor da magnitude dos 
+dois vetores, bem como o valor do seu produto vetorial, são indicados na 
+animação. O momento (torque) é positivo (isto é, o vetor aponta para fora da 
+página) se a força provoca a rotação do objeto no sentido contrário ao dos 
+ponteiros do relógio. O momento (torque) é negativo (ou seja, o vetor aponta 
+para dentro da página) se a força provoca a rotação do objeto no sentido dos 
+ponteiros do relógio. A direção do vetor momento é dada pela regra da mão 
+direita.&nbsp;&nbsp;<a 
+href="JavaScript: cross()">Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

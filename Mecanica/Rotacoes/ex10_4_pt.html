@@ -1,0 +1,256 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 10.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Massform.reset();
+
+	a=0;
+	alpha=0;
+ 	document.Animator.setAutoRefresh(false);
+ 	document.Animator.setDefault();
+ 	document.Animator.setTimeDisplay(false);
+ 	document.Animator.shiftPixOrigin(130,130);
+  	document.Animator.addObject("circle","r=20,x=0,y=0");
+ 	id1=document.Animator.addObject("circle","r=19,x=0,y=0");
+ 	document.Animator.setRGB(id1,255,0,0);
+ 	document.Animator.addLine("2*cos("+alpha+"*0.5*0)","2*sin("+alpha+"*0.5*0)","0","0");
+ 	idb=document.Animator.addObject("image","file=../../classes/images/dpull.gif,x=0,y=0");
+ 	document.Animator.setTrajectory(idb,"1.5","-14");
+ 	document.Animator.addLine("0","-15-0.5*"+a+"*0","2","0");
+ 	idc=document.Animator.addObject("image","file=../../classes/images/lpull.gif,x=0,y=0");
+ 	document.Animator.setTrajectory(idc,"-17","2.5");
+ 	document.Animator.addLine("-15-0.5*"+a+"*t^2","0","0","2");
+    document.Animator.addObject("circle","r=1,x=0,y=0");
+	idt=document.Animator.addObject("text","text=vel. angular = ,calc="+alpha+"*t");
+	document.Animator.setDisplayOffset(idt,-160,-50);
+	document.Animator.setAnimationSlave(id1,idt);
+
+ 	forcetext2=document.Animator.addObject("text","text=F");
+	document.Animator.setDisplayOffset(forcetext2,-20,-30);
+	forcetext2b=document.Animator.addObject("text","text=2");
+	document.Animator.setDisplayOffset(forcetext2b,-13,-35);
+	document.Animator.setAnimationSlave(idb,forcetext2);
+	document.Animator.setAnimationSlave(idb,forcetext2b);
+	
+	forcetext1=document.Animator.addObject("text","text=F");
+	document.Animator.setDisplayOffset(forcetext1,0,-30);
+	forcetext1b=document.Animator.addObject("text","text=1");
+	document.Animator.setDisplayOffset(forcetext1b,7,-35);
+	document.Animator.setAnimationSlave(idc,forcetext1);
+	document.Animator.setAnimationSlave(idc,forcetext1b);
+	
+	
+ 	document.Animator.addObject("circle","r=20,x=-18,y=-18");
+ 	id1=document.Animator.addObject("circle","r=19,x=-18,y=-18");
+ 	document.Animator.setRGB(id1,255,155,155);
+ 	document.Animator.addObject("circle","r=2,x=-18,y=-18");
+ 	document.Animator.addObject("arrow2","h=-10,v=0,x=-18,y=-16,thickness=2");
+ 	document.Animator.addObject("arrow2","h=0,v=-5,x=-16,y=-18,thickness=2");
+ 	document.Animator.addObject("arrow2","h=10,v=5,x=-18,y=-18,thickness=2");
+
+	
+ document.Animator.setAutoRefresh(true);	
+}
+
+
+function cfn(){
+  if(!loaded) return;
+   	f1=document.Massform.force1.value;
+       if( !checkRange(f1,0,10)){
+     alert("F1 deve estar entre 0 N e 10 N. O valor inserido foi "+f1+" N.");
+     return;
+  } 
+  
+     	f2=document.Massform.force2.value;
+       if( !checkRange(f2,0,10)){
+     alert("F2 deve estar entre 0 N e 10 N. O valor inserido foi "+f2+" N.");
+     return;
+  }
+  
+       mass=document.Massform.mass.value;
+       if( !checkRange(mass,0.1,4)){
+     alert("A massa da roldana deve estar entre 0.1 kg e 4,0 kg. O valor inserido foi "+mass+" kg.");
+     return;
+  }
+  rad=document.Massform.radius.value;
+       if( !checkRange(rad,0.5,4)){
+     alert("O raio da roldana deve estar entre 0.5 m e 4,0 m. O valor inserido foi "+rad+" m.");
+     return;
+  }
+  
+	force1=eval(document.Massform.force1.value);
+    force2=eval(document.Massform.force2.value);
+    pulleymass=eval(document.Massform.mass.value);
+    are=eval(document.Massform.radius.value);
+	hand1=eval(are-0.5);
+	hand2=eval(are+0.5);
+    vector1=eval(are-18);
+	vector2=eval(-18+are);
+	
+	arem=eval(are-0.1);
+	radius=eval(are*10);
+	mradius=eval(-are);
+	radiusm=eval(are*10-1);
+	
+	a=eval(2*(force1-force2)/(pulleymass));
+	alpha=eval(a/are);
+ 	document.Animator.setAutoRefresh(false);
+
+ 	document.Animator.setDefault();
+ 	document.Animator.shiftPixOrigin(130,130);
+  	document.Animator.setTimeDisplay(false);
+  	document.Animator.addObject("text","text=Tempo:  ,calc=t,x=-26,y=-26");
+	
+	document.Animator.addObject("circle","r="+radius+",x=0,y=0");
+
+ 	 id1=document.Animator.addObject("circle","r="+radiusm+",x=0,y=0");
+ 	document.Animator.setRGB(id1,255,0,0);
+ 	document.Animator.addObject("circle","r=1,x=0,y=0");
+ 	document.Animator.addLine("cos("+alpha+"*0.5*t*t)*"+arem,"sin("+alpha+"*0.5*t*t)*"+arem,"0","0");
+ 	 idb=document.Animator.addObject("image","file=../../classes/images/dpull.gif,x=0,y=0");
+ 	document.Animator.setTrajectory(idb,"1.5","-14+0.5*"+a+"*t^2");
+ 	document.Animator.setSticky(idb,true);
+ 	document.Animator.addLine("0","-15+0.5*"+a+"*t*t",are,"0");
+ 	 idc=document.Animator.addObject("image","file=../../classes/images/lpull.gif,x=0,y=0");
+ 	document.Animator.setTrajectory(idc,"-17-0.5*"+a+"*t^2","2.5");
+ 	document.Animator.setSticky(idc,true);
+ 	document.Animator.addLine("-15-0.5*"+a+"*t^2","0","0",are);
+	rid1=document.Animator.addObject("rectangle","h=20,w=20,x=-30,y=0");
+	rid2=document.Animator.addObject("rectangle","h=20,w=20,x=-30,y=0");
+	document.Animator.setForce(rid1,"0","0",-30,are,0,0);
+ 	document.Animator.setForce(rid2,"0","0",are,-30,0,0);
+	document.Animator.setSticky(rid1,true);
+	document.Animator.setSticky(rid2,true);
+	document.Animator.setVisibility(rid1,false);
+	document.Animator.setVisibility(rid2,false);
+	document.Animator.setCollisionMessage("Fim da Animação");
+	document.Animator.setOneShot(0,3,"Fim da Animação");
+	idt=document.Animator.addObject("text","text=vel. angular = ,calc="+alpha+"*t");
+	document.Animator.setDisplayOffset(idt,-160,-50);
+	document.Animator.setAnimationSlave(id1,idt);
+ 	
+ 	
+ 	forcetext2=document.Animator.addObject("text","text=F");
+	document.Animator.setDisplayOffset(forcetext2,-20,-30);
+	forcetext2b=document.Animator.addObject("text","text=2");
+	document.Animator.setDisplayOffset(forcetext2b,-13,-35);
+	document.Animator.setAnimationSlave(idb,forcetext2);
+	document.Animator.setAnimationSlave(idb,forcetext2b);
+	
+	forcetext1=document.Animator.addObject("text","text=F");
+	document.Animator.setDisplayOffset(forcetext1,0,-30);
+	forcetext1b=document.Animator.addObject("text","text=1");
+	document.Animator.setDisplayOffset(forcetext1b,7,-35);
+	document.Animator.setAnimationSlave(idc,forcetext1);
+	document.Animator.setAnimationSlave(idc,forcetext1b);
+
+	document.Animator.addObject("circle","r="+radius+",x=-18,y=-18");
+ 	id1=document.Animator.addObject("circle","r="+radiusm+",x=-18,y=-18");
+ 	document.Animator.setRGB(id1,255,155,155);
+ 	document.Animator.addObject("circle","r=2,x=-18,y=-18");
+ 	document.Animator.addObject("arrow2","h=-"+force1+",v=0,x=-18,y="+vector1+",thickness=2");
+ 	document.Animator.addObject("arrow2","h=0,v=-"+force2+",x="+vector2+",y=-18,thickness=2");
+ 	document.Animator.addObject("arrow2","h="+force1+",v="+force2+",x=-18,y=-18,thickness=2");
+	document.Animator.setAutoRefresh(true);	
+ 	document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+<body onunload="killmenow()"> 
+<h2 align="center">Exploração 10.4 - Torque devido à tensão de dois fios</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="360"
+        height="360" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="15">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.02">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                  <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<TABLE WIDTH="100%">
+<TR>
+<TD ALIGN=CENTER width=90%><form name="Massform">
+      <p>
+<input type="button" height="20" value="registar valores e começar" name="StartButton1" 
+      onclick="cfn()">
+  <input type="button" value="continuar" onclick="document.Animator.forward()"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepBack()" type="button" value="&lt;&lt; passo"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início">
+      </p>
+      <table border="0" width="64%">
+        <tr>
+          <td width="50%" align="center">
+           <b><i>F</i><sub>1 </sub>&nbsp;=<i>&nbsp;</i><input type="text" name="force1" size="4" value="10"><i>&nbsp; </i>
+           N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>F</i><sub>2 </sub>
+			=<i>&nbsp;</i><input type="text" name="force2" size="3" value="5"><i>&nbsp; </i>
+           N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+           <i>m</i><sub>roldana</sub> =<i>&nbsp;</i><input type="text" name="mass" size="4" value="1.0"><i> </i>
+           &nbsp;kg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>r</i><sub>roldana</sub><i> 
+			= </i> 
+			<input type="text" name="radius" size="2" value="2"> 
+           m</b></td>
+        </tr>
+      </table>
+</form></TD>
+</TR>
+</TABLE>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">A animação mostra uma roldana sobre mesa, vista de cima. A 
+roldana, em forma de disco, pode rodar em torno de um eixo fixo que passa pelo 
+seu centro. A massa da roldana pode variar entre 0,1 e 4,0 kg e o seu raio, entre 
+0,5 e 4,0 m. A roldana está sujeita a duas forças exercidas no plano da mesa: a 
+tensão nos dois lados da corda (cada uma com valores entre 0 e 10 N), que criam 
+um torque resultante, o qual faz a roldana rodar <b>(a posição é dada em metros, o 
+tempo em segundos e a velocidade angular em radianos por segundo)</b>.&nbsp;</p>
+<p align="left">A animação mostra ainda o diagrama de forças da roldana. Este 
+diagrama apresenta as forças onde elas de facto atuam, incluindo a força 
+exercida pelo eixo sobre a roldana. <a href="JavaScript:initApplet()">Início</a>&nbsp; </p>
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+	<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

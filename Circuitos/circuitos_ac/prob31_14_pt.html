@@ -1,0 +1,176 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var gidV=0;
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build9()",100);
+}
+
+function build9(){
+    if(!loaded) return;
+    timerID=0;
+	  document.circuit.setAutoRefresh(false);
+     document.circuit.setDefault();
+     document.circuit.setImpedanceGraphType(false);
+     document.circuit.setPixPerCell(70);
+          document.circuit.setFrequency(300);
+     document.circuit.setResistance(160,false,true,false);
+    document.circuit.setInductance(220e-3,false,true,false);
+      document.circuit.setCapacitance(2.7e-6,false,true,false);
+     document.circuit.setShowGraph(true);
+     document.circuit.setACVoltage(100,true,false);
+     document.circuit.setTitle("d.d.p. vs Tempo");
+     document.circuit.setAutoRefresh(true);
+}
+
+
+function build9a(){
+    if(!loaded) return;
+    timerID=0;
+	  document.circuit.setAutoRefresh(false);
+     document.circuit.setDefault();
+     document.circuit.setImpedanceGraphType(true);
+     document.circuit.setPixPerCell(70);
+     document.circuit.setResistance(160,false,true,false);
+    document.circuit.setInductance(220e-3,false,true,false);
+      document.circuit.setCapacitance(2.7e-6,false,true,false);
+     document.circuit.setShowGraph(true);
+     document.circuit.setACVoltage(100,true,false);
+     document.circuit.setTitle("Gráfico A");
+     document.circuit.setAutoRefresh(true);
+}
+
+function build9b(){
+    if(!loaded) return;
+    timerID=0;
+	  document.circuit.setAutoRefresh(false);
+     document.circuit.setDefault();
+     document.circuit.setPixPerCell(70);
+     document.circuit.setResistance(80,false,true,false);
+      document.circuit.setInductance(120e-3,false,true,false);
+      document.circuit.setCapacitance(1.7e-6,false,true,false);
+     document.circuit.setShowGraph(true);
+     document.circuit.setImpedanceGraphType(true);
+     document.circuit.setACVoltage(100,true,false);
+     document.circuit.setTitle("Gráfico B");
+     document.circuit.setAutoRefresh(true);
+}
+
+function build9c(){
+    if(!loaded) return;
+    timerID=0;
+	  document.circuit.setAutoRefresh(false);
+     document.circuit.setDefault();
+     document.circuit.setPixPerCell(70);
+     document.circuit.setResistance(160,false,true,false);
+      document.circuit.setInductance(220e-3,false,true,false);
+      document.circuit.setCapacitance(4.7e-6,false,true,false);
+     document.circuit.setShowGraph(true);
+     document.circuit.setImpedanceGraphType(true);
+     document.circuit.setACVoltage(100,true,false);
+     document.circuit.setTitle("Gráfico C");
+     document.circuit.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}	
+	
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 31.14</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Problema 31.14</span></h2>
+<center>
+<table border="1" cellspacing="1" bgcolor="#C0C0C0">
+  <tr>
+    <td colspan="5">
+    <span lang="pt">
+    <applet align="middle" code="circuit.LRCApplet.class" codeBase="../../classes/" height="350" 
+    name="circuit" width="550" ARCHIVE="Physlets.jar" mayscript>
+      <param NAME="Resistor" VALUE="160">
+      <param NAME="Capacitor" VALUE="2.7">
+      <param NAME="Inductor" VALUE="220">
+      <param NAME="Fmin" VALUE="100">
+      <param NAME="FMax" VALUE="500">
+      <param NAME="ShowControls" VALUE="true">
+      <param NAME="ShowCheckBox" VALUE="false">
+      <param NAME="ImpedanceGraphType" VALUE="true">
+      <param NAME="ShowGraph" VALUE="true">
+      <param NAME="PixPerCell" VALUE="70">
+      <param NAME="DefaultCircuit" VALUE="true">
+      <param name="AppletNames" value="circuit">
+      <param name="OnLoad" value="initApplets()">
+      <param name="Resources" value="circuit_pt.rc">
+    </applet> </span> </td>
+  </tr>
+  <tr>
+    <td>
+    <p align="right"><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build9()" style="text-decoration: none">Gráfico da d.d.p.<i> 
+	vs</i>. tempo</a>&nbsp;&nbsp;&nbsp;&nbsp; </span> </td>
+    <td>
+    <p align="right"><span lang="pt">&nbsp;&nbsp; Gráficos da resposta em 
+	frequência:</span></td>
+    <td><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build9a()" style="text-decoration: none">Gráfico A</a>&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+    <td><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build9b()" style="text-decoration: none">Gráfico B</a>&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+    <td><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build9c()" style="text-decoration: none">Gráfico C</a>&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+  </tr>
+</table>
+</center>
+<p></p>
+<p></p>
+<span lang="pt">
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+</span>
+<p align="left"><span lang="pt">O gráfico da d.d.p. <i>vs</i>. tempo desta 
+animação mostra as 
+voltagens nos terminais dos elementos do circuito. Podes variar a 
+frequência do sinal da fonte de tensão <b>(a d.d.p. é dada em volts, a 
+intensidade da corrente em amperes, o tempo em segundos e a frequência em hertz)</b>.&nbsp;
+<a href="JavaScript:build9()">Início</a>. </span> </p>
+<p align="left">&nbsp;</p>
+<p align="left"><span lang="pt">Problema da autoria de Morten Brydensholt e Anne 
+J. Cox.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<span lang="pt">
+</center></center></center>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+
+</span>
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 29.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+     id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,false);
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.addObject("rectangle","x=0,y=0,h=380,w=6");
+     current=document.Faraday.addObject("arrow","filled,x=0,y=-14,h=0,v=28");
+     document.Faraday.setRGB(current,220,220,0);
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.setTimeOneShot(30,"Fim da Animação");
+     document.Faraday.setAnimationSlave(id,id2);
+
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setSeriesStyle(1,true,3);
+   document.DataGraph.setMarkerSize(1,0.6); 
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.clearSeries(2);
+   document.DataGraph.setSeriesRGB(2,255,0,0);
+   document.DataGraph.setSeriesStyle(2,true,3);
+   document.DataGraph.setMarkerSize(2,0.6); 
+   document.DataGraph.setLastPointMarker(2,true); 
+   document.DataGraph.setLabelY("Fluxo (mT m^{2})& fem (mV)"); 
+   document.DataGraph.setLabelX("Tempo (s)"); 
+   document.DataGraph.setTitle("Fluxo (vermelho) & fem (azul)"); 
+   gid=document.DataGraph.getGraphID();
+   document.DataGraph.setAutoRefresh(true); 
+   
+   document.Faraday.makeDataConnection(id,gid,1,"t","v");  
+   document.Faraday.makeDataConnection(id,gid,2,"t","flux");  
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 29.3 - <i>Loop</i> perto de um fio condutor de 
+corrente elétrica</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraph" width="400" 
+      height="150" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="0">
+        <param name="XMax" value="30">
+        <param name="YMin" value="-75">
+        <param name="YMax" value="75">
+        <param name="DataFile">
+        <param name="AutoScaleX" value="false">
+        <param name="AutoScaleY" value="false">
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" code="faraday.Faraday.class" 
+      name="Faraday"  width="400" 
+      archive="Physlets.jar" height="300" 
+      hspace="0" vspace="0" align="middle" mayscript>
+        <param name="PixPerUnit" value="10">
+        <param name="SchematicWidth" value="350">
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="FieldFunction" value="step(x)*(5/x)+step(-x)*(5/x)">
+        <param name="PositionFunction" value="0">
+        <param name="ShowField" value="true">
+        <param name="ShowGraph" value="false">
+        <param name="DragMode" value="false">
+        <param name="ShowGrid" value="true">
+        <param name="ShowColor" value="true">
+        <param name="ShowCurrentArrow" value="true">
+        <param name="ShowSchematic" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Faraday,DataGraph">
+        <param name="Resources" value="Faraday_pt.rc">
+      </applet> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+</form>
+
+
+<p align="center">
+   <form>
+<p align="center">
+<input type="button" value="começar" 
+        onclick="document.Faraday.forward()"><input type="button" value="pausa" 
+        onclick="document.Faraday.pause()"><input type="button" 
+        value="passo &gt;&gt;" onclick="document.Faraday.stepTimeForward()"> </p>
+  </form>
+</p>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p style="margin-bottom: 0">Um <i>loop</i> de fio condutor encontra-se perto de 
+um fio comprido e esticado que transporta corrente elétrica, para cima. É 
+possível arrastar o <i>loop</i> usando o rato.&nbsp;O fluxo magnético através do <i>
+loop</i> e a fem induzida são mostrados no gráfico. A animação pára ao fim de 30 
+segundos<b> 
+(a posição é dada em metros, o campo magnético em militesla, a fem em milivolts 
+e o tempo em segundos)</b>. <a href="JavaScript:initApplet()">
+Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>Exploração da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

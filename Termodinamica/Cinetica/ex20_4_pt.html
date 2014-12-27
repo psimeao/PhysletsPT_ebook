@@ -1,0 +1,415 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("start()",100);
+}
+  	
+function start(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.diatomic.setAutoRefresh(false);  
+   document.diatomic.setDefault();
+   document.diatomic.setRGB(0,224,224,255);
+   document.controlForm.reset();
+   document.datagraph.setDefault();
+   document.datagraph.setAutoscaleX(true);
+   document.datagraph.setAutoscaleY(true);
+   document.datagraph.setMinMaxX(0,1);
+   document.datagraph.setMinMaxY(0,100);
+   document.datagraph.clearSeries(1);
+   document.datagraph.setSeriesStyle(1,true,0);
+   document.datagraph.setSeriesRGB(1,255,0,0);
+   document.datagraph.setStripChart(1,100, true);
+   document.datagraph.setSeriesLegend(1, 59, 50, "Monoatóm");
+   document.datagraph.clearSeries(2);
+   document.datagraph.setSeriesStyle(2,true,0);
+   document.datagraph.setStripChart(2,100, true);
+   document.datagraph.setSeriesRGB(2,0,0,255);
+   document.datagraph.setSeriesLegend(2, 142, 50, "Diatóm");
+   
+   document.datagraph.clearSeries(3);
+   document.datagraph.setSeriesStyle(3,true,0);
+   document.datagraph.setStripChart(3,100, true);
+   document.datagraph.setSeriesRGB(3,0,195,0);
+   document.datagraph.setSeriesLegend(3, 214, 50, "Diat Trans.");
+   document.datagraph.clearSeries(4);
+   document.datagraph.setSeriesStyle(4,true,0);
+   document.datagraph.setStripChart(4,100, true);
+   document.datagraph.setSeriesRGB(4,64,0,64);
+   document.datagraph.setSeriesLegend(4, 302, 50, "Diat Rot.");
+   
+   
+   document.datagraph.setLabelY("Energia"); 
+   document.datagraph.setLabelX("Tempo"); 
+   document.datagraph.setTitle("Energia Cinética"); 
+   gid=document.datagraph.getGraphID();
+   
+   document.datatable.setDefault();
+   document.datatable.setSeriesLabel(1,"Ec Total");
+   document.datatable.setSeriesLabel(2,"<Monatómico>");
+   document.datatable.setSeriesLabel(3,"<Diatómico>");
+   document.datatable.setSeriesLabel(4,"<Diatómico Translação>");
+   document.datatable.setSeriesLabel(5,"<Diatómico Rotação>");
+   document.datatable.sizeToFit(true);
+   tid=document.datatable.getTableID();
+   
+   document.diatomic.addObject("atom","n=15");
+   document.diatomic.addObject("molecule","n=15");
+
+   eid=document.diatomic.getEnsembleID();
+   document.diatomic.makeDataConnection(eid,tid,1,"ke","0"); 
+   document.diatomic.makeDataConnection(eid,tid,2,"ke_atom","0"); 
+   document.diatomic.makeDataConnection(eid,tid,3,"ke_mol","0"); 
+   document.diatomic.makeDataConnection(eid,tid,4,"ke_mol_trans","0"); 
+   document.diatomic.makeDataConnection(eid,tid,5,"ke_mol_rot","0"); 
+   
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke_mol_rot");        
+   document.diatomic.updateDataConnections();  
+   document.diatomic.setAutoRefresh(true);
+}
+
+
+function initParticles(){  
+	if(!loaded) return;
+	nStr=document.controlForm.atomField.value;
+	if(!isFinite(nStr) ){
+       alert("O número de átomos deve ser um número.");
+       return;
+	}       
+   natom=eval(nStr);
+   if(natom<0){
+       alert("O número de átomos tem que ser positivo.");
+       document.controlForm.atomField.value=0;
+       return;
+	}  
+	nStr=document.controlForm.molField.value;
+	if(!isFinite(nStr) ){
+       alert("O número de moléculas deve ser um número.");
+       return;
+	}       
+   nmol=eval(nStr);
+   if(nmol<0){
+       alert("O número de moléculas tem que ser positivo.");
+       document.controlForm.molField.value=0;
+       return;
+	}   
+	document.diatomic.setAutoRefresh(false);  
+   document.diatomic.setDefault();
+   document.diatomic.setRGB(0,224,224,255);
+   document.diatomic.addObject("atom","n="+natom);
+   document.diatomic.addObject("molecule","n="+nmol);
+   document.diatomic.setAutoRefresh(true);  
+   
+   eid=document.diatomic.getEnsembleID();
+   gid=document.datagraph.getGraphID();
+   document.diatomic.makeDataConnection(eid,tid,1,"ke","0"); 
+   cid=document.diatomic.makeDataConnection(eid,tid,2,"ke_atom","0");
+   document.diatomic.setConnectionSmoothing(cid,100); 
+   cid2=document.diatomic.makeDataConnection(eid,tid,3,"ke_mol","0"); 
+   document.diatomic.setConnectionSmoothing(cid2,100); 
+   cid3=document.diatomic.makeDataConnection(eid,tid,4,"ke_mol_trans","0"); 
+   document.diatomic.setConnectionSmoothing(cid3,100); 
+   cid4=document.diatomic.makeDataConnection(eid,tid,5,"ke_mol_rot","0"); 
+   document.diatomic.setConnectionSmoothing(cid4,100); 
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke_mol_rot"); 
+   document.diatomic.updateDataConnections();  
+    document.diatomic.forward();
+}
+
+
+function atoms(){  
+	if(!loaded) return;
+	document.controlForm.atomField.value=20;
+	document.controlForm.molField.value=0;
+	document.diatomic.setAutoRefresh(false);  
+   document.diatomic.setDefault();
+   document.diatomic.setRGB(0,224,224,255);
+   document.diatomic.addObject("atom","n=20");
+   document.diatomic.addObject("molecule","n=0");
+   document.diatomic.setAutoRefresh(true);  
+   
+   eid=document.diatomic.getEnsembleID();
+   gid=document.datagraph.getGraphID();
+   document.diatomic.makeDataConnection(eid,tid,1,"ke","0"); 
+   cid=document.diatomic.makeDataConnection(eid,tid,2,"ke_atom","0");
+   document.diatomic.setConnectionSmoothing(cid,100); 
+   cid2=document.diatomic.makeDataConnection(eid,tid,3,"ke_mol","0"); 
+   document.diatomic.setConnectionSmoothing(cid2,100); 
+   cid3=document.diatomic.makeDataConnection(eid,tid,4,"ke_mol_trans","0"); 
+   document.diatomic.setConnectionSmoothing(cid3,100); 
+   cid4=document.diatomic.makeDataConnection(eid,tid,5,"ke_mol_rot","0"); 
+   document.diatomic.setConnectionSmoothing(cid4,100); 
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke_mol_rot"); 
+   document.diatomic.updateDataConnections();  
+
+}
+
+
+function molecules(){  
+	if(!loaded) return;
+		document.controlForm.atomField.value=0;
+	document.controlForm.molField.value=20;
+	document.diatomic.setAutoRefresh(false);  
+   document.diatomic.setDefault();
+   document.diatomic.setRGB(0,224,224,255);
+   document.diatomic.addObject("atom","n=0");
+   document.diatomic.addObject("molecule","n=20");
+   document.diatomic.setAutoRefresh(true);  
+   
+   eid=document.diatomic.getEnsembleID();
+   gid=document.datagraph.getGraphID();
+   document.diatomic.makeDataConnection(eid,tid,1,"ke","0"); 
+   cid=document.diatomic.makeDataConnection(eid,tid,2,"ke_atom","0");
+   document.diatomic.setConnectionSmoothing(cid,100); 
+   cid2=document.diatomic.makeDataConnection(eid,tid,3,"ke_mol","0"); 
+   document.diatomic.setConnectionSmoothing(cid2,100); 
+   cid3=document.diatomic.makeDataConnection(eid,tid,4,"ke_mol_trans","0"); 
+   document.diatomic.setConnectionSmoothing(cid3,100); 
+   cid4=document.diatomic.makeDataConnection(eid,tid,5,"ke_mol_rot","0"); 
+   document.diatomic.setConnectionSmoothing(cid4,100); 
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke_mol_rot"); 
+   document.diatomic.updateDataConnections();  
+
+}
+
+
+function mix(){  
+	if(!loaded) return;
+		document.controlForm.atomField.value=20;
+	document.controlForm.molField.value=20;
+	document.diatomic.setAutoRefresh(false);  
+   document.diatomic.setDefault();
+   document.diatomic.setRGB(0,224,224,255);
+   document.diatomic.addObject("atom","n=20");
+   document.diatomic.addObject("molecule","n=20");
+   document.diatomic.setAutoRefresh(true);  
+   
+   eid=document.diatomic.getEnsembleID();
+   gid=document.datagraph.getGraphID();
+   document.diatomic.makeDataConnection(eid,tid,1,"ke","0"); 
+   cid=document.diatomic.makeDataConnection(eid,tid,2,"ke_atom","0");
+   document.diatomic.setConnectionSmoothing(cid,100); 
+   cid2=document.diatomic.makeDataConnection(eid,tid,3,"ke_mol","0"); 
+   document.diatomic.setConnectionSmoothing(cid2,100); 
+   cid3=document.diatomic.makeDataConnection(eid,tid,4,"ke_mol_trans","0"); 
+   document.diatomic.setConnectionSmoothing(cid3,100); 
+   cid4=document.diatomic.makeDataConnection(eid,tid,5,"ke_mol_rot","0"); 
+   document.diatomic.setConnectionSmoothing(cid4,100); 
+   document.diatomic.makeDataConnection(eid,gid,1,"t","ke_atom"); 
+   document.diatomic.makeDataConnection(eid,gid,2,"t","ke_mol"); 
+   document.diatomic.makeDataConnection(eid,gid,3,"t","ke_mol_trans");
+   document.diatomic.makeDataConnection(eid,gid,4,"t","ke_mol_rot"); 
+   document.diatomic.updateDataConnections();  
+
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Exploration 20.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Exploração 20.4 - Teorema da Equipartição da Energia</h2>
+
+
+<div align="center">
+  <center>
+  <table border="2" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet code="diatomic.Diatomic.class" codebase="../../classes" 
+      archive="Physlets.jar" 
+      name="diatomic" width="250" height="300" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="Dt" value="0.1">
+        <param name="NumAtom" value="0">
+        <param name="NumMol" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="diatomic,datagraph,datatable">
+        <param name="Resources" value="diatomic_pt.rc">
+      </applet></td>
+      <td>
+      <applet codebase="../../classes" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="datagraph" width="385" 
+      height="300" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="-1">
+        <param name="XMax" value="1">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="DataFile">
+        <param name="AutoScaleX" value="false">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="datagraph_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+  <applet codebase="../../classes" 
+  archive="Physlets.jar" 
+  code="dataTable.DataTable.class" name="datatable" width="642" height="45" 
+  hspace="0" vspace="0" align="middle" mayscript>
+    <param name="ShowScrollBars" value="false">
+    <param name="LastOnTop" value="true">
+    <param name="CellWidth" value="40">
+    <param name="NumRows" value="1">
+    <param name="NumCols" value="5">
+    <param name="ShowControls" value="false">
+    <param name="ShowRowHeader" value="false">
+    <param name="ShowColHeader" value="true">
+    <param name="SizeToFit" value="true">
+    <param name="Resources" value="datatable_pt.rc">
+  </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+  <p align="center">
+  <form>
+  <p align="center">
+<input type="button" value="inserir o número de partículas e começar" name="setBtn" 
+  onclick="initParticles()" tabindex="2">
+<input type="button" value="continuar" name="runBtn" 
+  onclick="document.diatomic.forward()" tabindex="2"><input type="button" 
+  value="pausa" name="pauseBtn" onclick="document.diatomic.pause()" 
+  tabindex="2"><input type="button" value="passo &gt;&gt;" name="stepBtn" 
+  onclick="document.diatomic.stepTimeForward()" tabindex="2"></p>
+  </p></form>
+  
+<form name="controlForm">
+<p align="center">
+<strong>&nbsp;&nbsp;&nbsp; Número de partículas monoatómicas =</strong>
+  <input type="text" name="atomField" size="6" tabindex="3" value="15">&nbsp;&nbsp;
+  <strong>&nbsp;&nbsp; <br>
+Número de partículas diatómicas =</strong> 
+<input type="text" name="molField" size="6" 
+  tabindex="4" value="15"> </p>
+</form>        
+  
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>A energia cinética de uma partícula pode dever-se tanto a movimentos nos 
+eixos dos<i> x</i>, <i>y</i> e <i>z</i> , como a rotações em torno de eixos. O teorema da equipartição da energia diz-nos que a energia cinética de uma partícula é, em 
+média, distribuída de forma equitativa entre os diferentes modos (diferentes 
+graus de liberdade) disponíveis. Num gás monoatómico, um átomo individual tem 3 
+graus de liberdade porque pode deslocar-se nas três direções principais: x, y e 
+z. A energia por partícula tem um valor médio de (<i>n</i>/2)<i>k<sub>B</sub>T</i>, 
+onde <i>n</i> é o número de graus de liberdade,
+<i>k<sub>B</sub></i> 
+é a constante de Boltzman e <i>T</i> é a temperatura em Kelvin.&nbsp;
+<a href="Javascript:start()">Início</a></p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0"><b>Exploração</b></p>
+<ol type="a">
+  <li>
+	<p style="margin-top: 6px">Na animação de <a href="Javascript:atoms()">um gás monoatómico dentro de 
+	uma caixa,</a> por que é que as partículas só têm 2 graus de liberdade? A 
+	tabela mostra a energia cinética total das partículas na caixa, assim como a 
+	energia cinética média das partículas (a média é feita em intervalos de 10 
+	segundos, pelo que é preciso esperar 10 segundos para começar a ler os 
+	valores médios).&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Regista a energia total.&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Qual é a energia por partícula?  </li>
+  <li>
+	<p style="margin-top: 6px">Se a energia for dada em joules/<i>k<sub>B</sub></i>, qual é a temperatura 
+	dentro da caixa?</li>
+</ol>
+<p>Corre agora a animação <a href="Javascript:molecules()">com 20 partículas de 
+um gás diatómico.</a>&nbsp; Nota que o gráfico mostra a energia cinética total 
+das partículas diatómicas a as energias cinética de translação (movimento no 
+plano <i>xy</i>) e de rotação.&nbsp; </p>
+<ol type="a" start="5">
+  <li>
+	<p style="margin-top: 6px">Por que é que a energia cinética de translação é cerca do dobro da energia 
+	cinética de rotação? (Lembra-te que tens que esperar 10 segundos para ler os 
+	valores médios).&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">A partir da energia total, determina a energia 
+	média por partícula.&nbsp;    
+   
+  </li>
+  <li>
+	<p style="margin-top: 6px">Se a energia for dada em joules/<i>k<sub>B</sub></i>, qual a temperatura 
+	do gás dentro da caixa? [Lembra-te que &lt;energia&gt;/partícula = (<i>n</i>/2)<i>k<sub>B</sub>T</i>&nbsp; 
+	e, neste caso, <i>n </i>= 3 (Porquê?).]</li>
+</ol>
+<p>Agora, <a href="Javascript:mix()">tenta uma mistura de 20 partículas 
+monoatómicas e 20 partículas diatómicas.</a>&nbsp; 
+</p>
+<ol type="a" start="8">
+  <li>
+	<p style="margin-top: 6px">Por que é que a temperatura na caixa tem um único valor (e não um valor 
+	para os átomos e outro para as moléculas)?&nbsp;  <i>Dica</i>:<i> pensa no ar à 
+	tua volta, o qual está essencialmente à mesma temperatura, a menos que uma 
+	parte esteja a ser aquecida ou arrefecida por um aquecedor ou ar 
+	condicionado. O ar é uma mistura de gases: com partículas monoatómicas (Argon) 
+	e diatómicas (oxigénio e azoto)</i>.&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Depois de esperar pelo menos 10 segundos, compara as energias cinéticas 
+	médias. De que valor se aproxima a energia cinética monoatómica?&nbsp; </li>
+  <li>
+	<p style="margin-top: 6px">Por que deveriam os dois valores [as duas médias calculadas em (i)], 
+	obtidas num longo intervalo de tempo, serem iguais uma à outra e 
+	superiores à energia cinética de rotação das partículas diatómicas?&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">Explica por que é que a energia total deveria ser igual a (2/2)20k<sub>B</sub>T 
+	+ (3/2)20k<sub>B</sub>T.&nbsp;  </li>
+  <li>
+	<p style="margin-top: 6px">A partir da energia total, dada em joules/k<sub>B</sub>, determina qual a 
+	temperatura da caixa.</li>
+  <li>
+	<p style="margin-top: 6px">Se nesta animação a mistura tiver 15 átomos, quantas partículas diatómicas 
+	deveríamos ter para que as energias cinéticas médias de ambas as partículas 
+	fossem iguais?&nbsp;Verifica a tua resposta usando a animação.</li>
+</ol>
+<p align="left">&nbsp;</p>
+<p align="left">Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e modificado por Anne J. Cox.<br>
+<i>Applet </i>da autoria de Ernesto Martin e modificado por Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

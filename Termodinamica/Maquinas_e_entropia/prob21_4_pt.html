@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script> 
+<SCRIPT language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("otto()",100);
+}
+  	
+function otto(){ 
+      if(!loaded) return;
+       timerID=0;
+
+ 	document.Engine.reset();       
+   	id=document.Engine.getGasID(); 
+   	document.Engine.setTimeOneShot(36,"Fim da Animação"); 
+	
+    document.DataTable1.setDefault();
+    document.DataTable1.setSeriesLabel(1,"P");
+    document.DataTable1.setSeriesLabel(2,"V");  
+    document.DataTable1.setSeriesLabel(3,"N");
+    document.DataTable1.setSeriesLabel(4,"T");
+   	document.DataTable1.sizeToFit(true);
+    tid1=document.DataTable1.getTableID();
+    
+    document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(0,35);
+    document.DataGraph.setMinMaxY(0,25);
+    document.DataGraph.setDrawGrid(false);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesRGB(1,255,0,0);
+    document.DataGraph.setSeriesStyle(1,true,3);
+    document.DataGraph.setMarkerSize(1,0.6); 
+    document.DataGraph.setLabelY("Pressão"); 
+    document.DataGraph.setLabelX("Volume"); 
+    document.DataGraph.setTitle("Diagrama PV"); 
+    document.DataGraph.setLastPointMarker(1,true);
+    document.DataGraph.setAddRepeatedDatum(1,false);
+    gid=document.DataGraph.getGraphID();
+    
+     
+    document.Engine.deleteDataConnections(); 
+   	document.Engine.makeDataConnection(id,gid,1,"v*30","p");
+   	document.Engine.makeDataConnection(id,tid1,1,"p","0"); 
+   	document.Engine.makeDataConnection(id,tid1,2,"v*30","0"); 
+	document.Engine.makeDataConnection(id,tid1,4,"t*30","0");
+	document.Engine.makeDataConnection(id,tid1,3,"p*v/t","0");
+     document.Engine.updateDataConnections();
+   }
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Problem 21.4</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Problema 21.4</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <TBODY>
+  <TR>
+    <TD rowspan="2">
+    <applet  name="Engine" codebase="../../classes/" 
+     ARCHIVE="Physlets.jar"
+      	code="engine.Engine.class"   width="320" height="417" align="Middle" mayscript>
+       <param name="Resources" value="engine_pt.rc">
+       </applet></TD>
+    <TD >
+    <APPLET name="DataGraph" codeBase="../../classes/" 
+      	code="dataGraph.DataGraph.class" align="middle" width="300" height="363" 
+      ARCHIVE="Physlets.jar" mayscript>
+      	<PARAM NAME="Function" VALUE="">
+      	<PARAM NAME="XMin" VALUE="-1">
+      	<PARAM NAME="XMax" VALUE="1">
+      	<PARAM NAME="YMin" VALUE="-1">
+      	<PARAM NAME="YMax" VALUE="1">
+      	<PARAM NAME="DataFile" VALUE="">
+      	<PARAM NAME="AutoScaleX" VALUE="false">
+      	<PARAM NAME="AutoScaleY" VALUE="false">
+      	<PARAM NAME="ShowControls" VALUE="false">
+      	<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="DataGraph,DataTable1,Engine">
+        <param name="Resources" value="datagraph_pt.rc"> 
+     	</APPLET></TD>
+    </TR>
+  <TR>
+    <TD>
+    <APPLET name="DataTable1" codeBase="../../classes/" 
+		code="dataTable.DataTable.class" align="middle" width="300" height="48" 
+      ARCHIVE="Physlets.jar" mayscript>
+		<PARAM NAME="ShowScrollBars" VALUE="false">
+		<PARAM NAME="LastOnTop" VALUE="true">
+		<PARAM NAME="NumRows" VALUE="1">
+		<PARAM NAME="NumCols" VALUE="4">
+		<PARAM NAME="ShowControls" VALUE="false">
+		<PARAM NAME="ShowRowHeader" VALUE="false">
+		<PARAM NAME="ShowColHeader" VALUE="true">
+		</APPLET></TD>
+    </TR>
+</TBODY>  </table>
+  </center>
+  
+</div>
+<form>
+      <p align="center">&nbsp;<input type="button" value="começar" onclick="document.Engine.forward()"><input type="button" value="pausa" onclick="document.Engine.pause()"><input type="button" value="passo &gt;&gt;" onclick="document.Engine.stepTimeForward()"><input type="button" value="início" onclick="document.Engine.reset();document.DataGraph.clearSeries(1);"></p></form>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+<p style="margin-top: 12px">Nesta animação, <i>N</i> = <i>nR</i> (isto é, <i>k</i><sub>B</sub> = 1). 
+Assim, a lei do gás ideal (lei dos gases perfeitos) escreve-se<i> PV = NT</i>.&nbsp; 
+Vamos assumir que a máquina contém um gás ideal <i><b>diatómico</b></i>.&nbsp;
+<a href="Javascript:otto()">Início</a>.&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Anne J. Cox e de Wolfgang Christian.<br>
+<i>Applet</i> autorizado por CoLoS e modificado por Wolfgang Christian.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

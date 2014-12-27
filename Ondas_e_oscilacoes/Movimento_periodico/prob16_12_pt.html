@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("fluid0()",100);
+}
+
+
+function fluid0(){
+    	if(!loaded) return;
+       timerID=0;
+        document.Animator.setAutoRefresh(false);
+       document.Animator.setDefault(); 
+  		all=document.Animator.getEnsembleID();
+         document.Animator.setShowCoordinates(all,false);
+         document.Animator.setGridUnit(0);
+         document.Animator.setShapeRGB(0,0,0);
+
+		document.Animator.addRectangle(888,100,"0","-4");
+	    document.Animator.setShapeRGB(0,158,255);
+      	document.Animator.addRectangle(888,98,"0","-4");
+		document.Animator.setShapeRGB(0,0,0);
+       document.Animator.addRectangle(40,40,"-9","-0.05");    	
+      	document.Animator.setShapeRGB(255,155,0);
+       document.Animator.addRectangle(38,38,"-9","-0.05");
+       document.Animator.setShapeRGB(0,0,0);
+       document.Animator.addRectangle(40,40,"9","-0.05+cos(2*3.1415*t/0.033)");    	
+      	document.Animator.setShapeRGB(255,155,0);
+       document.Animator.addRectangle(38,38,"9","-0.05+cos(2*3.1415*t/0.033)");    	
+      	document.Animator.setOneShot(0,2.8,"Fim da Animação");
+       document.Animator.setAutoRefresh(true);       
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 16.12</title>
+</head>
+
+<body onload="killmenow()">
+
+<h2 align="center">Problema 16.12</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+ARCHIVE="Physlets.jar" align="middle" width="300"
+height="150" name="Animator" mayscript>
+  <param name="FPS" value="15">
+  <param name="dt" value="0.0002">
+  <param name="showControls" value="false">
+  <param name="OnLoad" value="initApplets()">
+  <param name="AppletNames" value="Animator">
+  <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"> </p>
+  </center></div>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+<p><span style="font-family: Arial">Dois cubos idênticos (de aresta L = 10 cm) 
+estão</span><font face="Arial"> a flutuar</font><span style="font-family: Arial"> </span>
+<font face="Arial">em</font><span style="font-family: Arial"> água (ρ = 1000 kg/ m<sup>3</sup>). O cubo que 
+está à esquerda está em equilíbrio, mas o cubo situado à direita está 
+inicialmente deslocado da sua posição de equilíbrio <b>(o tempo é dado em 
+segundos)</b></span>.&nbsp;&nbsp;
+<a href="JavaScript:fluid0()">Início</a>.</p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

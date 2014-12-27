@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb7_6()",100);
+}
+  	
+function mjb7_6(){ 
+      if(!loaded) return;
+       timerID=0;
+cid=0;
+rid=0;
+      document.EField7_6.setAutoRefresh(false);
+      document.EField7_6.setDefault();
+     document.EField7_6.setDrag(false);
+     document.EField7_6.setPotential("y*9.8+x*0.0",-5,5,-5,5);
+	  document.EField7_6.setShowFieldVectors(false);
+     id=document.EField7_6.addRectangle(0,-2.2,250,10);
+     document.EField7_6.setRGB(id,128,128,128);
+     id=document.EField7_6.addRectangle(-2,-4.6,10,150);
+     document.EField7_6.setRGB(id,128,128,128);
+     id=document.EField7_6.addRectangle(2, -4.6, 10, 150 );
+     document.EField7_6.setRGB(id,128,128,128);
+	  document.EField7_6.setChargeRGB(0,255,0);
+     cid=document.EField7_6.addTestCharge(-2.6,-0.16,0,0);
+     document.EField7_6.setConstraintStr(cid,"-sqrt(9-(x)*(x))+1.3",-2.6,2.6);
+     document.EField7_6.setShowConstraintPath(cid,false);
+     document.EField7_6.setShowFVector(cid,false);
+     document.EField7_6.setShowFComponents(cid,false);
+     document.EField7_6.setShowVVector(cid,false);
+     document.EField7_6.setShowVComponents(cid,false);
+     document.EField7_6.setOnScreenSize(cid,10);     
+     rid=document.EField7_6.addTestCharge(0,0,0,0);
+     document.EField7_6.setConstraintStr(rid,"-sqrt(11.9-(x)*(x))+1.45",-3.2,3.2);
+     document.EField7_6.setOnScreenSize(rid,0);  
+     document.EField7_6.setMaxTime(11.2, "Fim da Animação");
+     document.EField7_6.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 7.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 7.1</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+<applet CODEBASE="../../classes/"
+	ARCHIVE="Physlets.jar" CODE="eField4.EField.class"
+  NAME="EField7_6" WIDTH="300" HEIGHT="300" HSPACE="0" VSPACE="0"
+	ALIGN="Middle" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.1">
+  <param name="ShowControls" value="false">
+  <param name="ShowContours" value="false">
+  <param name="ShowFieldLines" value="false">
+  <param name="ShowFieldVectors" value="false">
+  <param name="ShowLabels" value="false">
+  <param name="ShowCharge" value="true">
+  <param name="Potential" value="0">
+  <param name="Range" value="-5,5,-5,5">
+  <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField7_6">
+        <param name="Resources" value="efield_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.EField7_6.forward()"><input type="button" value="pausa"
+  onclick="document.EField7_6.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.EField7_6.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.EField7_6.stepForward()"><input type="button" value="início"
+  onclick="document.EField7_6.reset()"> </p>
+  </center></div>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>Uma bola de massa 2 kg está dentro de uma grande taça e move-se conforme 
+mostra a animação
+<b>(a posição é dada em metros e o tempo em segundos)</b>.&nbsp;Não há atrito entre a 
+bola e a taça, de tal forma que a bola desliza sem rolar.&nbsp;
+<a href="JavaScript:mjb7_6()">
+Início</a></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

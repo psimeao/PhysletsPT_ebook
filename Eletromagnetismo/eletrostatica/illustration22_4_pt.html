@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+  	
+function initApplet(){ 
+       timerID=0;
+   	document.jacob.loadFile('exp/efelt03.ppd'); 
+   	document.jacob.pause();
+}
+
+function induction_1(){
+	document.jacob.loadFile('exp/efelt06d.ppd');
+	document.jacob.pause();
+}
+
+function induction_2(){
+   	document.jacob.loadFile('exp/efelt06c.ppd');
+   	document.jacob.pause();
+}
+
+function static_1(){
+   	document.jacob.loadFile('exp/efelt01.ppd');
+   	document.jacob.pause();
+}
+
+function static_2(){
+   	document.jacob.loadFile('exp/efelt02.ppd');
+   	document.jacob.pause(); 
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 22.4</title>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Ilustração 22.4 - Objetos com carga elétrica e atração eletrostática</h2>
+<div align="center">
+  <center>
+    <tr>
+      <tr>
+      <applet codebase="./" archive="Jacob.jar" code="jacob.Jacob.class" 
+      name="jacob" width="600" height="400" hspace="0" vspace="0" 
+      align="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.1">
+        <param name="ShowControls" value="false">
+        <param name="ConfigFile" value="exp/efelt03.ppd">
+      </applet> </td>
+    </tr>
+  </center>
+</div>
+<form name="SpecForm">
+  <div align="center">
+    <center>
+    <p><input type="button" value="começar" onclick="document.jacob.forward()"><input 
+    type="button" value="pausa" onclick="document.jacob.pause()"><input 
+    type="button" value="passo &gt;&gt;" onclick="document.jacob.stepForward()"></p>
+    </center>
+  </div>
+</form>
+<font face="Verdana, Arial, Helvetica">
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+</font>
+<p style="margin-top: 0"> <b>Descrição da Animação</b></p>
+<p> Estas animações mostram vários materiais com cargas elétricas (vermelho para 
+cargas positivas e azul para cargas negativas). As setas representam as forças 
+entre as partículas.&nbsp; <a href="JavaScript:initApplet()">Início</a> </p>
+<p><b>Exploração</b></p>
+<ol type="a">
+	<li>
+	<p style="margin-top: 6px">Quando esfregas um <a href="JavaScript:initApplet()">
+	balão</a> na tua camisola, o balão adquire carga elétrica negativa. Depois, 
+	o balão vai ser atraído por uma parede, que é eletricamente neutra. Como 
+	explicas este facto?</li>
+	<li>
+	<p style="margin-top: 6px">Considera agora a <a href="JavaScript:induction_1()">animação</a> em que 
+	a placa esquerda está positivamente carregada e a placa direita é neutra. 
+	Por que é que as cargas se organizam da forma observada, na placa direita?</li>
+	<li>
+	<p style="margin-top: 6px">Se ligarmos a placa direita à Terra, o que vai acontecer? Porquê?</li>
+	<li>
+	<p style="margin-top: 6px">Considera agora algumas partículas carregadas perto de uma placa 
+	carregada negativamente. O que acontece às partículas positivas? E às 
+	partículas negativas?</li>
+	<li>
+	<p style="margin-top: 6px">O que acontecerá a partículas neutras colocadas entre duas placas 
+	paralelas com cargas opostas?</li>
+</ol>
+<p>&nbsp;</p>
+<p><b>Sabias que...</b></p>
+<p>Existem várias maneiras de carregar eletricamente os objetos. Uma delas é a 
+eletrização por contato. Como vimos na primeira animação, o <a href="JavaScript:initApplet()">
+balão</a> (ou outro objeto de plástico ou borracha), ao ser esfregado por um 
+tecido, adquire carga negativa devido à fricção. Este balão vai, depois, atrair ou ser 
+atraído por objetos eletricamente neutros. O facto de serem neutros não quer dizer que não têm carga! O 
+que acontece é que o número de cargas positivas e negativas é igual nesses 
+objetos. O modelo 
+mostra que a parede é eletrizada pelo balão (a distribuição das cargas positivas e 
+negativas é alterada) e é isto que permite a atração.</p>
+<p>Outra maneira de carregar eletricamente os objetos é por indução.&nbsp;Na
+<a href="JavaScript:induction_1()">animação</a> as cargas movem-se (na placa da 
+direita) de acordo com as forças a que são submetidas (cargas iguais atraem-se e 
+cargas opostas repelem-se). Se dermos às cargas da direita um lugar para se 
+deslocarem, através por exemplo de uma ligação à <a href="JavaScript:induction_2()">
+  Terra<a/>, as cargas positivas, uma vez separadas das negativas devido à 
+presença da placa da esquerda, saem da placa direita deixando-a carregada 
+negativamente. </p>
+<p>Quando um objeto tem carga elétrica (como o ecrã do teu computador), outros 
+objetos são &quot;atraídos&quot; por ele. Chamamos a isto <a href="JavaScript:static_1()">
+  atração eletrostática</a>.&nbsp; Mesmo que os corpos sejam globalmente
+<a href="JavaScript:static_2()">neutros</a>, como existem cargas no seu&nbsp; 
+interior, esses corpos são eletrizados e depois atraídos por outros corpos eletricamente carregados. 
+Assim, uma placa carregada consegue atrair quer partículas com carga, quer 
+partículas globalmente neutras. É por isso que os ecrãs de televisores, 
+computadores, etc. ficam tão facilmente cheios de pó!</p>
+<p>&nbsp;</p>
+<p align="left"><i>Ilustração da autoria de Anne J. Cox.<br>
+Script</i> da autoria de Morten Brydensholt.<br>
+<i>Applet</i> da autoria de Vojko Valencic.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

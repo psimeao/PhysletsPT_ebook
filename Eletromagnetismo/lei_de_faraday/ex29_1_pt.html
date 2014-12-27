@@ -1,0 +1,262 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 29.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+          document.Faraday.setFieldFunction("0");
+          document.Faraday.setShowBOnDrag(true);
+     document.Faraday.addObject("caption","text=Seleciona uma Configuração ou Campo");
+     id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);     
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.setAnimationSlave(id,id2);
+	  document.Faraday.setAutoRefresh(true);
+}
+
+function initConfig(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+          document.Faraday.addObject("caption","text=Configuração Inicial");
+          document.Faraday.setFieldFunction("-.1*(x-4)*step(x-4)-.2*(x+4)*step(-4-x)");
+          document.Faraday.setShowBOnDrag(true);
+     id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);     
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.setAnimationSlave(id,id2);
+//     document.Faraday.setTimeOneShot(30,"End of Animation - Click on Start Animation to restart.");
+
+	  document.Faraday.setAutoRefresh(true);
+	  document.Faraday.forward();
+}
+
+
+function fielda(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+               document.Faraday.setShowBOnDrag(false);
+          document.Faraday.setFieldFunction("0.1*x*step(x)+0.1*x*step(-x)");
+     document.Faraday.setShowColor(false);
+     document.Faraday.setShowGrid(false);
+      id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);     
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.addObject("text","text=Configuração A,x=-4,y=10");
+     document.Faraday.setAnimationSlave(id,id2);
+	  document.Faraday.setAutoRefresh(true);
+	  document.Faraday.forward();
+}
+
+function fieldb(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+               document.Faraday.setShowBOnDrag(false);
+     document.Faraday.setFieldFunction("-2*step(x-6)+2*step(-x-6)");
+     document.Faraday.setShowColor(false);
+     document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);     
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.setAnimationSlave(id,id2);
+          document.Faraday.addObject("text","text=Configuração B,x=-4,y=10");
+ 	  document.Faraday.setAutoRefresh(true);
+	  document.Faraday.forward();
+}
+
+function field3(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+               document.Faraday.setShowBOnDrag(true);
+     document.Faraday.setFieldFunction("0.1*x*step(x)+0.1*x*step(-x)");
+     document.Faraday.setShowColor(true);
+          document.Faraday.setShowGrid(true);
+           document.Faraday.addObject("text","text=Campo 3, x=-2,y=10");
+
+	  document.Faraday.setAutoRefresh(true);
+}
+
+
+function field2(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+               document.Faraday.setShowBOnDrag(true);
+          document.Faraday.setFieldFunction("-0.1*x*step(x)+0.1*x*step(-x)");
+     document.Faraday.setShowColor(true);
+               document.Faraday.setShowGrid(true);
+               document.Faraday.addObject("text","text=Campo 2, x=-2,y=10");
+	  document.Faraday.setAutoRefresh(true);
+}
+
+function field1(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+               document.Faraday.setShowBOnDrag(true);
+     document.Faraday.setFieldFunction("-2*step(x-6)+2*step(-x-6)");
+     document.Faraday.setShowColor(true);
+               document.Faraday.setShowGrid(true);
+                document.Faraday.addObject("text","text=Campo 1, x=-2,y=10");
+	  document.Faraday.setAutoRefresh(true);
+}
+
+function addloop(){
+	if(!loaded) return;
+	id=document.Faraday.addObject("shell","r=25,x=5,y=0");
+     document.Faraday.setDragable(id,true);
+     document.Faraday.setShowCurrentArrow(id,true);     
+     id2=document.Faraday.addObject("text","text=Arrasta-me");
+     document.Faraday.setDisplayOffset(id2,-25,-40);
+     document.Faraday.setAnimationSlave(id,id2);
+     document.Faraday.forward();
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 29.1 - Lei de Lenz</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" code="faraday.Faraday.class" 
+      name="Faraday" width="400" 
+      archive="Physlets.jar" 
+ 		height="250" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="PixPerUnit" value="10">
+        <param name="SchematicWidth" value="350">
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="FieldFunction" value="0">
+        <param name="PositionFunction" value="0">
+        <param name="ShowField" value="true">
+        <param name="ShowGraph" value="false">
+        <param name="DragMode" value="false">
+        <param name="ShowGrid" value="true">
+        <param name="ShowColor" value="true">
+        <param name="ShowCurrentArrow" value="true">
+        <param name="ShowSchematic" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Faraday">
+        <param name="Resources" value="faraday_pt.rc">
+      </applet>
+       </td>
+    </tr>
+  </table>
+  </center>
+</div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0" width="410">
+    <tr>
+      <td width="33%" align="center">
+		<a href="JavaScript:initConfig()" style="text-decoration: none">
+		Configuração Inicial</a></td>
+      <td width="33%" align="center">
+		<a href="JavaScript:fielda()" style="text-decoration: none">Configuração 
+		A</a></td>
+      <td width="34%" align="center">
+		<a href="JavaScript:fieldb()" style="text-decoration: none">Configuração 
+		B</a></td>
+    </tr>
+    <tr>
+      <td width="33%" align="center">
+		<a href="JavaScript:field1()" style="text-decoration: none">Campo 1</a></td>
+      <td width="33%" align="center">
+		<a href="JavaScript:field2()" style="text-decoration: none">Campo 2</a></td>
+      <td width="34%" align="center">
+		<a href="JavaScript:field3()" style="text-decoration: none">Campo 3</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p style="margin-bottom: 0">A Lei de Lenz é a componente da Lei de Faraday que 
+nos diz qual o sentido da corrente elétrica num <i>loop</i> de fio condutor.&nbsp;A 
+Lei de Lenz indica que a corrente elétrica vai circular no sentido de criar, ela 
+própria, um campo magnético cujo fluxo se opõe às variações de fluxo do campo 
+magnético externo.&nbsp;Ou seja, o campo magnético criado pela corrente no <i>loop</i> 
+vai opor-se à variação do fluxo magnético do campo externo, através da área do <i>
+loop</i> <b>(a posição é dada em metros, o tempo em segundos e o campo magnético 
+em tesla)</b>.&nbsp; 
+<a href="JavaScript:initApplet()">Início</a>&nbsp; </p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<form>
+<p align="left">Adiciona um <i>loop</i> 
+nas animações que mostram os campos:&nbsp;&nbsp;&nbsp; 
+<input type="button" value="adicionar loop" 
+name="loop"
+    onclick="addloop()"></p>
+</form>
+<p>&nbsp;</p>
+<p>Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i>&nbsp; da autoria de Mario Belloni E Wolfgang Christian, modificado 
+por Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

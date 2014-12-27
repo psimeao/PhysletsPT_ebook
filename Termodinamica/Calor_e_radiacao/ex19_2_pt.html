@@ -1,0 +1,207 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script>
+
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("material0()",100);
+}
+  	
+function material0(){ 
+      if(!loaded) return;
+	timerID=0;
+	document.selection.reset();
+	f1=eval(document.selection.D2.value);
+	
+	if(!checkRange(f1,200,1000)){
+	alert("A temperatura deve estar entre 200 K e 600 K. O valor inserido foi "+f1+" K.");
+	return;
+}
+	
+	f2=eval(document.selection.D3.value);
+	if(!checkRange(f2,1,20)){
+	alert("O comprimento deve estar entre 1 m e 20 m. O valor inserido foi "+f2+" m.");
+	return;
+}
+  
+  	document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.setTimeDisplay(false);
+    document.Animator.shiftPixOrigin(0,0);
+    temp1=eval(f1-200);
+    len1=eval(f2);
+    exp1=eval(len1*(f1-200));  
+   	document.Animator.setCaption("Seleciona uma Animação");
+
+    document.Animator.setAutoRefresh(true);
+
+}
+
+
+function material1() {
+	if(!loaded) return;
+		f1=eval(document.selection.D2.value);
+	
+	if(!checkRange(f1,200,1000)){
+	alert("A temperatura deve estar entre 200 K e 600 K. O valor inserido foi "+f1+" K.");
+	return;
+}
+	
+	f2=eval(document.selection.D3.value);
+	if(!checkRange(f2,1,20)){
+	alert("O comprimento deve estar entre 1 m e 20 m. O valor inserido foi "+f2+" m.");
+	return;
+}
+  
+  	document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.shiftPixOrigin(0,0);
+    document.Animator.setCaption("Animação 1");
+    temp1=eval(f1-200);
+    len1=eval(f2);
+    exp1=eval(len1*(f1-200));  
+   	   	document.Animator.addPiston(4,+len1+"+3*"+exp1+"*t/400000","0","-12","5");
+   	document.Animator.addPiston(40,"5+3*"+exp1+"*t/40000","0","-14","-3");
+     document.Animator.setShapeRGB(100,100,255);
+   	document.Animator.addPiston(2,+len1+"+3*"+exp1+"*t/400000","0","-12","5");
+   	document.Animator.addPiston(38,"4.9+3*"+exp1+"*t/40000","0","-14","-3");
+   	document.Animator.setShapeRGB(0,0,0);
+   	document.Animator.addRectangle(10,40,"-12.5","4");
+   	document.Animator.addObject("text","x=-12, y=0, text=10x aumento da ponta direita");
+   	document.Animator.addObject("text","x=2, y=-3, text=Temp[K], calc="+temp1+"*t/4+200");
+    document.Animator.setOneShot(0,4,"Fim da Animação");
+    document.Animator.setAutoRefresh(true);
+    document.Animator.forward();
+}
+
+
+function material2() {
+	if(!loaded) return;
+	f1=eval(document.selection.D2.value);
+	
+	if(!checkRange(f1,200,1000)){
+	alert("A temperatura deve estar entre 200 K e 600 K. O valor inserido foi "+f1+" K.");
+	return;
+}
+	
+	f2=eval(document.selection.D3.value);
+	if(!checkRange(f2,1,20)){
+	alert("O comprimento deve estar entre 1 m e 20 m. O valor inserido foi  "+f2+" m.");
+	return;
+}
+ 
+  	document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.shiftPixOrigin(0,0);
+    temp1=eval(f1-200);
+    len1=eval(f2);
+    exp1=eval(len1*(f1-200));  
+   	document.Animator.setCaption("Animação 2");
+   	document.Animator.addPiston(4,+len1+"+2*"+exp1+"*t/400000","0","-12","5");
+   	document.Animator.addPiston(40,"5+2*"+exp1+"*t/40000","0","-14","-3");
+        document.Animator.setShapeRGB(155,120,100);
+        document.Animator.addPiston(2,+len1+"+2*"+exp1+"*t/400000","0","-12","5");
+   	document.Animator.addPiston(38,"4.9+2*"+exp1+"*t/40000","0","-14","-3");
+   	document.Animator.setShapeRGB(0,0,0);
+   	document.Animator.addRectangle(10,40,"-12.5","4");
+   	document.Animator.addObject("text","x=-12, y=0, text=10x aumento da ponta direita");
+   	document.Animator.addObject("text","x=2, y=-3, text=Temp[K], calc="+temp1+"*t/4+200");
+    document.Animator.setOneShot(0,4,"Fim da Animação");
+    document.Animator.setAutoRefresh(true);
+    document.Animator.forward();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 19.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Exploração19.2 - Expansão Térmica de Materiais</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+	<applet codebase="../../classes/" code="animator4.Animator.class"
+	ARCHIVE="Physlets.jar"
+	align="baseline" width="260" height="260" name="Animator" mayscript>
+  	<param name="FPS" value="10">
+  	<param name="dt" value="0.05">
+  	<param name="showControls" value="false">
+  	<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+	</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<center>
+<div align="center">
+      <form name="selection">
+        <INPUT onclick="document.Animator.forward()" type="button" value="continuar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td><br>
+      <input onclick="JavaScript:material1();" type="button" value="Animação 1: inserir valores e começar">&nbsp;
+        <br>
+      <input onclick="JavaScript:material2();" type="button" value="Animação 2: inserir valores e começar"><p>
+        <b>Comprimento Inicial = <input name="D3" size="3" value="10"> 
+		m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Temperatura final = <input name="D2" size="4" value="400"> K</b> </td>
+		&nbsp;</td>
+        </b></p></form>
+  <center>
+  </form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b></p>
+	<p align="left">Uma barra fina de metal está fixa numa extremidade.&nbsp;<u>A 
+	animação mostra a barra completa</u> e uma <u>visão ampliada da ponta 
+	direita</u> <b>
+	(a posição é dada em metros, o tempo em segundos e a temperatura em Kelvin)</b>. 
+	À medida que a temperatura aumenta, nota que o comprimento da barra também 
+	aumenta.&nbsp;Esta exploração irá ajudar-te a encontrar uma relação quantitativa 
+	para a variação de comprimento da barra, em função do seu comprimento 
+	inicial e da variação de temperatura, que é válida para todos os materiais.&nbsp; <a href="JavaScript:material0()">
+	Início</a> </p>
+	<p align="left" style="margin-bottom: 0"><i>NOTA: A diferença entre os dois 
+materiais é descrita pelo coeficiente de expansão linear, α.&nbsp;</i></p>
+	<p align="left" style="margin-top: 0"><i>Para o material na Animação 1, α 
+	=30 x 10<sup>-6 </sup>/K, enquanto que para o material na Animação 2, α 
+	= 20 x 10<sup>-6 </sup>/K. Quando aquecido, um sólido (mesmo uma barra fina 
+	como a representada na animação), expande nas três dimensões do espaço.&nbsp;A 
+	equação para a expansão em volume é semelhante à equação da expansão linear, 
+	sendo o coeficiente de expansão volúmica aproximadamente igual a 3α.&nbsp; 
+	</i> </p>
+<p align="left">&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+	<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+	</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

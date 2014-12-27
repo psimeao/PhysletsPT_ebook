@@ -1,0 +1,266 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 29.7</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Faraday.setDefault();
+    document.Faraday.setShowColor(false);
+    document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("UWire","x=9");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,false);
+     document.Faraday.setFieldFunction("0");	 
+ 	document.Faraday.setTimeOneShot(10,"Fim da Animação");
+     document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+    document.Animator.setTimeDisplay(false);
+    rid0=document.Animator.addObject("rectangle","x=-6.8,y=-0.6,h=14,w=87");
+    imid=document.Animator.addObject("image","file=images/magne3.gif,x=-11,y=0");
+    document.Animator.setAnimationSlave(imid,rid0);
+    document.Animator.setDisplayOffset(rid0,42,-6);
+    document.Animator.addObject("rectangle","x=0,y=0,h=160,w=10");
+    rid=document.Animator.addObject("rectangle","x=0,y=0,h=158,w=8");
+    document.Animator.setRGB(rid,128,128,128);
+     document.Animator.setCaption("Seleciona uma Animação");
+	  document.Animator.setAutoRefresh(true);
+
+
+}
+
+function animation1(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setDefault();
+    document.Faraday.setShowColor(false);
+    document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("UWire","x=9");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,false);
+     document.Faraday.setFieldFunction("step(t-2)*.4*(t-2)*step(4-t)+step(6-t)*step(t-4)*(.8)+step(t-6)*step(8-t)*(.8-.4*(t-6))");	 
+ 	
+ 	cid=document.Faraday.getClockID();
+ 	
+ 	document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+	document.Animator.setExternalClock(cid);
+        rid0=document.Animator.addObject("rectangle","x=-6.8,y=-0.6,h=14,w=87");
+    imid=document.Animator.addObject("image","file=images/magne3.gif,x=-11*step(2-t)+(-11+2*(t-2))*step(t-2)*step(9-t)+3*step(t-9),y=0");
+    document.Animator.setAnimationSlave(imid,rid0);
+    document.Animator.setDisplayOffset(rid0,42,-6);
+    document.Animator.addObject("rectangle","x=0,y=0,h=160,w=10");
+    rid=document.Animator.addObject("rectangle","x=0,y=0,h=158,w=8");
+    document.Animator.setRGB(rid,128,128,128);
+     document.Animator.setCaption("Animação 1");
+	  document.Animator.setAutoRefresh(true);
+	document.Faraday.setTimeOneShot(10,"Fim da Animação");    
+}
+
+function animation2(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setDefault();
+    document.Faraday.setShowColor(false);
+    document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("UWire","x=9");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,false);
+     document.Faraday.setFieldFunction("step(t-2)*.4*(t-2)*step(4-t)+step(6-t)*step(t-4)*(.8)+step(t-6)*step(8-t)*(.8-.4*(t-6))");	 
+ 	cid=document.Faraday.getClockID();
+ 	
+ 	document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+	document.Animator.setExternalClock(cid);
+        rid0=document.Animator.addObject("rectangle","x=-6.8,y=-0.6,h=14,w=87");
+    imid=document.Animator.addObject("image","file=images/magne4.gif,x=-11*step(2-t)+(-11+2*(t-2))*step(t-2)*step(9-t)+3*step(t-9),y=0");
+    document.Animator.setAnimationSlave(imid,rid0);
+    document.Animator.setDisplayOffset(rid0,42,-6);
+    document.Animator.addObject("rectangle","x=0,y=0,h=160,w=10");
+    
+    rid=document.Animator.addObject("rectangle","x=0,y=0,h=158,w=8");
+    document.Animator.setRGB(rid,128,128,128);
+     document.Animator.setCaption("Animação 2");
+	  document.Animator.setAutoRefresh(true);
+     document.Faraday.setTimeOneShot(10,"Fim da Animação");
+}
+
+function animation3(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setDefault();
+    document.Faraday.setShowColor(false);
+    document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("UWire","x=9");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,false);
+     document.Faraday.setFieldFunction("step(t-2)*.4*(t-2)*step(4-t)+step(6-t)*step(t-4)*(.8)+step(t-6)*step(8-t)*(.8-.4*(t-6))");	 
+ 	cid=document.Faraday.getClockID();
+ 	
+ 	document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+	document.Animator.setExternalClock(cid);
+       rid0=document.Animator.addObject("rectangle","x=-6.8,y=-0.6,h=83,w=14");
+    imid=document.Animator.addObject("image","file=images/magne1.gif,x=-4*step(2-t)+(-4+1*(t-2))*step(t-2)*step(9-t)+3*step(t-9),y=4");
+    document.Animator.setAnimationSlave(imid,rid0);
+    document.Animator.setDisplayOffset(rid0,6,-40);
+    document.Animator.addObject("rectangle","x=0,y=0,h=160,w=10");
+    rid=document.Animator.addObject("rectangle","x=0,y=0,h=158,w=8");
+    document.Animator.setRGB(rid,128,128,128);
+     document.Animator.setCaption("Animação 3");
+	  document.Animator.setAutoRefresh(true);
+	   	document.Faraday.setTimeOneShot(10,"Fim da Animação");
+}
+
+function animation4(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setDefault();
+    document.Faraday.setShowColor(false);
+    document.Faraday.setShowGrid(false);
+     id=document.Faraday.addObject("UWire","x=9");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,false);
+     document.Faraday.setFieldFunction("step(t-2)*.4*(t-2)*step(4-t)+step(6-t)*step(t-4)*(.8)+step(t-6)*step(8-t)*(.8-.4*(t-6))");	 
+
+ 	cid=document.Faraday.getClockID();
+ 	
+ 	document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+	document.Animator.setExternalClock(cid);
+    rid0=document.Animator.addObject("rectangle","x=-6.8,y=-0.6,h=84,w=14");
+    imid=document.Animator.addObject("image","file=images/magne2.gif,x=-4*step(2-t)+(-4+1*(t-2))*step(t-2)*step(9-t)+3*step(t-9),y=4");
+    document.Animator.setAnimationSlave(imid,rid0);
+    document.Animator.setDisplayOffset(rid0,6,-41);
+    document.Animator.addObject("rectangle","x=0,y=0,h=160,w=10");
+    rid=document.Animator.addObject("rectangle","x=0,y=0,h=158,w=8");
+    document.Animator.setRGB(rid,128,128,128);
+     document.Animator.setCaption("Animação 4");
+	  document.Animator.setAutoRefresh(true);
+ 	document.Faraday.setTimeOneShot(10,"Fim da Animação");
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 29.7</h2>
+<div align="center">
+  <center>
+
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <p align="center"><applet codebase="../../classes/" 
+      archive="Physlets.jar" code="faraday.Faraday.class" 
+       name="Faraday" WIDTH="500" HEIGHT="241" HSPACE="0" 
+      VSPACE="0" ALIGN="middle" mayscript>
+        <param name="PixPerUnit" value="10">
+        <param name="SchematicWidth" value="250">
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="FieldFunction" value="0">
+        <param name="PositionFunction" value="25">
+        <param name="ShowField" value="false">
+        <param name="ShowGraph" value="true">
+        <param name="DragMode" value="false">
+        <param name="ShowSchematic" value="true">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Faraday,Animator">
+        <param name="Resources" value="faraday_pt.rc">
+
+
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/" code="animator4.Animator.class" 
+        name="Animator" width="500" 
+        archive="Physlets.jar" height="186" 
+        hspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.05">
+          <param name="GridUnit" value="0">
+          <param name="showControls" value="false">
+          <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+    </table>
+  </center>
+</div>
+  <form>
+      <div align="center">
+        <center>
+        <table border="1" bgcolor="#C0C0C0">
+          <tr>
+            <td>&nbsp;&nbsp;
+			<a href="JavaScript:animation1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp; </td>
+            <td>&nbsp;&nbsp;
+			<a href="JavaScript:animation2()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp; </td>
+            <td>&nbsp;&nbsp;
+			<a href="JavaScript:animation3()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp; </td>
+            <td>&nbsp;&nbsp;
+			<a href="JavaScript:animation4()" style="text-decoration: none">Animação 4</a>&nbsp;&nbsp; </td>
+          </tr>
+        </table>
+        </center>
+</div>
+
+      <p align="center">
+		<input type="button" value="começar" 
+      onclick="document.Faraday.forward()"><input type="button" value="pausa" 
+      onclick="document.Faraday.pause()"><input type="button" 
+      value="passo &gt;&gt;" onclick="document.Faraday.stepTimeForward()"></p>
+  </form>
+
+      
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>A animação mostra um circuito elétrico formado por quatro fios ligados a um galvanómetro, num 
+laboratório (a montagem é vista de cima). Uma corrente elétrica que flui para o 
+terminal <b>+</b>, isto é, no sentido anti-horário, vai defletir o ponteiro para 
+a direita (d.d.p. positiva). Durante o intervalo t = 2 s a t = 8 s, um magnete é 
+empurrado através do circuito (representado pelo retângulo), de baixo para cima. Cada animação começa em t = 
+0 s e acaba em t = 10 s.&nbsp; Observa a d.d.p. (mostrada no gráfico) durante a 
+animação.&nbsp;&nbsp;
+<a href="JavaScript:initApplet()">Início</a>&nbsp; </p>
+<p>(<i>Nota</i>: <i>na parte inferior da animação, em que se vêm os magnetes a 
+atravessar o circuito (retângulo), a montagem é vista de lado; considera que o lado esquerdo 
+corresponde à parte de trás do ecrã do teu computador e que o lado direito 
+corresponde à parte da frente do ecrã</i>)</p>
+<p>&nbsp;</p>
+<p>Problema da autoria de Wolfgang Christian, modificado por Melissa Dancy e 
+Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

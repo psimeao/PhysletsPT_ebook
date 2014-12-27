@@ -1,0 +1,150 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 23.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var id2=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.EField.setAutoRefresh(false);
+   document.EField.setDefault();
+   document.EField.setShowTime(false);
+   id1=document.EField.addObject("charge","x=0,y=0,q=4,r=7");
+   id2=document.EField.addObject("testcharge","x=1,y=1,q=1,r=5");
+   document.EField.setRGB(id2,188,0,62);
+   document.EField.setRGB(id1,255,0,0);
+   document.EField.setShowFVector(id2,true);
+   document.EField.setDragable(id1,false);
+   document.EField.setDragable(id2,true);
+   tid=document.EField.addObject("text","text=r =,calc=(x^2+y^2)^(1/2)");
+     document.EField.setDisplayOffset(tid,0,-20);
+     document.EField.setAnimationSlave(id2,tid);
+   document.slider.setValue(1); 
+   document.slider.setJSFunction("sliderMoved()");
+   document.EField.setAutoRefresh(true);
+}
+
+function show(){
+	document.EField.setShowFieldVectors(true);
+}
+
+function hide(){
+	document.EField.setShowFieldVectors(false);
+}
+
+function sliderMoved(){
+	 if(timerID==0)timerID=setTimeout("sliderMoved2()",100);
+}
+
+function sliderMoved2(){
+	charge=eval(document.slider.getValue());
+	red=Math.round((charge+2)*250/4);
+	//alert("charge="+charge);
+	document.EField.setChargeMagnitude(id2,charge);
+	document.EField.setRGB(id2,red,0,250-red);
+	timerID=0;
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Exploração 23.1 - Campos e Cargas de Prova</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100%">
+      <p align="center">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="eField4.EField.class" name="EField"  width="300" 
+      height="300" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="dt" value="0.02">
+        <param name="ShowControls" value="false">
+        <param name="ShowContours" value="false">
+        <param name="ShowFieldLines" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="ShowLabels" value="false">
+        <param name="ShowCharge" value="true">
+        <param name="Potential" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="64">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField,slider">
+        <param name="Resources" value="efield_pt.rc">
+      </applet></td>
+    </tr>
+    <tr>
+      <td width="100%">
+      <p align="center">
+		<a href="JavaScript:show()" style="text-decoration: none">Mostrar</a> /
+		<a href="JavaScript:hide()" style="text-decoration: none">Esconder</a> os vetores do campo elétrico</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="slider.SliderApplet.class" 
+archive="Physlets.jar" name="slider" width="400" 
+height="25" hspace="0" vspace="0" align="middle" mayscript>
+  <param name="min" value="-2">
+  <param name="max" value="2">
+  <param name="value" value="1">
+  <param name="label" value="Carga de prova (C)">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>A animação mostra uma carga positiva de 4 C localizada no ponto (0 m;0 m) e 
+uma carga de prova de 1 C localizada no ponto (1 m; 1 m).&nbsp; A distância 
+entre as duas cargas é mostrada na animação (<i><b>r</b></i>) assim como&nbsp; o vetor que 
+representa a força elétrica na carga de prova <b>(a posição é dada em metros e 
+a carga em coulombs)</b>.&nbsp; A barra móvel permite alterar o valor da carga 
+de prova.&nbsp;
+<a 
+href="JavaScript:initApplet()">Início</a>&nbsp; </p>
+
+<p>&nbsp;</p>
+<p align="left">Exploração da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 29.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+    document.Faraday.addObject("caption", "text=Seleciona uma Animação");
+     document.Faraday.setFieldFunction("-1");
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph1.clearSeries(1);
+   document.DataGraph1.setSeriesStyle(1,true,0);
+   document.DataGraph1.setLastPointMarker(1,true); 
+   document.DataGraph1.clearSeries(2);
+   document.DataGraph1.setSeriesRGB(2,255,0,0);
+   document.DataGraph1.setSeriesStyle(2,true,0);
+   document.DataGraph1.setLastPointMarker(2,true); 
+   document.DataGraph1.setLabelX("Tempo (s)");
+   document.DataGraph1.setLabelY("fem (mV)");  
+   gid1=document.DataGraph1.getGraphID();
+   document.DataGraph1.setAutoRefresh(true); 
+   
+   document.DataGraph2.clearSeries(1);
+   document.DataGraph2.setSeriesStyle(1,true,0);
+   document.DataGraph2.setLastPointMarker(1,true); 
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,0);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+   document.DataGraph2.setLabelY("Fluxo (mT m^{2})");
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+document.Faraday.updateDataConnections();
+}
+
+function changingField(){
+if(!loaded) return;
+    timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.addObject("text", "text=Campo Magnético variável,x=-8,y=-10.5");
+    
+     document.Faraday.setTimeContinuous();
+     id=document.Faraday.addObject("shell","r=50,x=0,y=-1");
+     document.Faraday.setDragable(id,false);
+     document.Faraday.setShowCurrentArrow(id,true);
+     document.Faraday.setFieldFunction("step(5-t)*sin(t)+step(t-5)*step(8-t)*sin(5)+step(t-8)*sin(t-3)");
+	document.Faraday.setTimeOneShot(16,"Fim da Animação");
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph1.clearSeries(1);
+   document.DataGraph1.setTitle("fem Induzida vs. Tempo"); 
+   document.DataGraph1.setSeriesStyle(1,true,3);
+   document.DataGraph1.setMarkerSize(1,0.6);
+   document.DataGraph1.setLastPointMarker(1,true);  
+   document.DataGraph1.setLabelX("Tempo (s)");
+   document.DataGraph1.setLabelY("fem (mV)");  
+   gid1=document.DataGraph1.getGraphID();
+   document.DataGraph1.setAutoRefresh(true); 
+   
+
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setTitle("Fluxo vs. Tempo"); 
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,3);
+   document.DataGraph2.setMarkerSize(2,0.6);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+  document.DataGraph2.setLabelY("Fluxo (mT m^{2})");
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+   
+   document.Faraday.makeDataConnection(id,gid1,1,"t","v");  
+   document.Faraday.makeDataConnection(id,gid2,2,"t","flux");
+document.Faraday.updateDataConnections();  
+}
+
+function changingArea(){
+if(!loaded) return;
+timerID=0;
+    document.Faraday.setAutoRefresh(false);
+     document.Faraday.setDefault();
+     document.Faraday.setTimeContinuous();
+     id=document.Faraday.addObject("Uwire","x=4,y=0");
+     //document.Faraday.setPosFunction("4*cos(t)");
+     document.Faraday.setPosFunction("step(5-t)*6*sin(t)+step(t-5)*step(8-t)*6*sin(5)+step(t-8)*6*sin(t-3)");
+     document.Faraday.setShowMeter(id,false);
+     document.Faraday.setShowCurrentArrow(id,true);
+     document.Faraday.addObject("text", "text=Área,x=8,y=1");
+     document.Faraday.addObject("text", "text=variável,x=7,y=-1");
+     document.Faraday.setFieldFunction("1");
+	document.Faraday.setTimeOneShot(16,"Fim da Animação");
+	  document.Faraday.setAutoRefresh(true);
+	  
+
+   document.DataGraph1.clearSeries(1);
+   document.DataGraph1.setTitle("fem Induzida vs. Tempo"); 
+   document.DataGraph1.setSeriesStyle(1,true,3);
+   document.DataGraph1.setMarkerSize(1,0.6);
+   document.DataGraph1.setLastPointMarker(1,true); 
+   document.DataGraph1.setLabelX("Tempo (s)");
+   document.DataGraph1.setLabelY("fem (mV)");  
+   gid1=document.DataGraph1.getGraphID();
+   document.DataGraph1.setAutoRefresh(true); 
+   
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setTitle("Fluxo vs. Tempo"); 
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,3);
+   document.DataGraph2.setMarkerSize(2,0.6);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+  document.DataGraph2.setLabelY("Fluxo (mT m^{2})");
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+   
+   document.Faraday.makeDataConnection(id,gid1,1,"t","v");  
+   document.Faraday.makeDataConnection(id,gid2,2,"t","flux");  
+   document.Faraday.updateDataConnections();
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Ilustração 29.1 - Campo Magnético variável e Área variável</h2>
+<div align="center">
+  <center>
+  <form>
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td rowspan="2">
+        <p align="center">
+        <applet codebase="../../classes/" 
+        code="faraday.Faraday.class" name="Faraday" width="300" 
+        archive="Physlets.jar" height="303" 
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="PixPerUnit" value="10">
+          <param name="SchematicWidth" value="350">
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="FieldFunction" value="1.5*sin(x/2)">
+          <param name="PositionFunction" value="0">
+          <param name="ShowField" value="true">
+          <param name="ShowGraph" value="false">
+          <param name="DragMode" value="false">
+          <param name="ShowGrid" value="true">
+          <param name="ShowColor" value="true">
+          <param name="ShowCurrentArrow" value="true">
+          <param name="ShowSchematic" value="false">
+          <param name="OnLoad" value="initApplets()">
+          <param name="AppletNames" value="Faraday,DataGraph2,DataGraph1">
+          <param name="Resources" value="Faraday_pt.rc">
+        </applet></td>
+        <td align="center">
+        <applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="400" 
+        height="150" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="0">
+          <param name="XMax" value="25">
+          <param name="YMin" value="-100">
+          <param name="YMax" value="100">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+      </tr>
+      <tr>
+        <td height="103">
+        <applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph1" width="400" 
+        height="150" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="0">
+          <param name="XMax" value="25">
+          <param name="YMin" value="-100">
+          <param name="YMax" value="100">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet></td>
+      </tr>
+    </table>
+  </center>
+</div>
+<p align="center">
+<form>
+<p align="center">
+<input type="button" value="começar" 
+        onclick="document.Faraday.forward()"><input type="button" value="pausa" 
+        onclick="document.Faraday.pause()"><input type="button" 
+        value="passo &gt;&gt;" onclick="document.Faraday.stepTimeForward()"> </p>
+  </form>
+</p>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:changingField()" style="text-decoration: none">Campo Magnético variável</a>&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:changingArea()" style="text-decoration: none">Área variável</a>&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>Esta ilustração permite ver duas animações. Na primeira, o
+<a href="JavaScript:changingField()">Campo Magnético é variável</a>. A animação 
+mostra um <i>loop</i> a atravessar uma região em que o campo magnético varia, 
+depois é constante e depois varia outra vez. A variação do campo é do tipo <u>
+sinusoidal</u>. Os gráficos à direita mostram a força eletromotriz (fem) 
+induzida no <i>loop</i> e o fluxo magnético através do <i>loop,</i> em função do 
+tempo. O sentido da corrente elétrica no <i>loop</i> é indicado na animação. A 
+cor azul indica que o campo magnético aponta para dentro do monitor e a cor 
+vermelha indica que o campo magnético aponta para fora do monitor. A intensidade da 
+cor indica a magnitude do campo magnético (quanto mais intensa a cor, maior a 
+magnitude do campo).</p>
+<p style="margin-bottom: 0">Na segunda animação, a <a href="JavaScript:changingArea()">
+Área do <i>loop</i> é variável.</a>&nbsp; A animação mostra um <i>loop</i> numa 
+região com campo magnético constante que aponta para fora do monitor. Os gráficos à 
+direita mostram a força eletromotriz (fem) induzida no <i>loop</i> e o fluxo 
+magnético através daquele, em função do tempo. O sentido da corrente no <i>
+loop</i> é indicado na animação <b>(a posição é dada em metros, o campo 
+magnético em miliTesla, a fem em milivolts e o tempo em segundos)</b>.&nbsp;
+<a href="JavaScript:init()">Início</a> </p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>Ilustração da autoria de Melissa Dancy e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

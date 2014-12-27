@@ -1,0 +1,17 @@
+button.reset Apagar
+button.start Começar
+button.stop  Parar
+button.forward >>
+label.udrag Arrastar U
+label.yaxis Voltagem (mV)
+label.xaxis Tempo (s)
+label.bxt B(x,t)
+label.xt x(t)
+label.time Tempo:
+label.current Corrente
+
+
+
+
+
+

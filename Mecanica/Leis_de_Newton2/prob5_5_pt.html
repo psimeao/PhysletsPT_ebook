@@ -1,0 +1,650 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob9_90()",100);
+}
+  	
+function prob9_90(){ 
+      if(!loaded) return;
+       timerID=0;
+   	document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Movimento dos blocos");
+   
+   id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+   document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   document.Animator3.setAutoRefresh(true);
+   
+   document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+
+}
+
+
+function prob9_9a() { 
+   	if(!loaded) return;
+   	timerID=0;
+   	document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Corpo-Livre 1");
+   
+   id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+// free body of bottom rectangle
+   fbid1=document.Animator3.addRectangle(60,20,"0","0");
+   document.Animator3.setRGB(fbid1,255,192,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,-80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-3","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-75,95);
+  
+   // force of top box
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-85,95);
+   
+   // normal force of floor
+   ar2=document.Animator3.addArrow("0","4.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,-80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("6","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,-75,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,-85,100);
+
+// free body of top rectangle
+   fbid1=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(fbid1,192,255,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,80,95);
+   
+   // normal force
+   ar2=document.Animator3.addArrow("0","1.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("3","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,85,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,75,100);
+   
+    document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   	document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+}
+
+
+function prob9_9b() { 
+   if(!loaded) return;
+   document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Corpo-Livre 2");
+   
+   id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+// free body of bottom rectangle
+   fbid1=document.Animator3.addRectangle(60,20,"0","0");
+   document.Animator3.setRGB(fbid1,255,192,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,-80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-3","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-75,95);
+  
+   // force of top box
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-85,95);
+   
+   // normal force of floor
+   ar2=document.Animator3.addArrow("0","4.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,-80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("6","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,-75,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,-85,100);
+
+// free body of top rectangle
+   fbid1=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(fbid1,192,255,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,80,95);
+   
+   // normal force
+   ar2=document.Animator3.addArrow("0","1.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,80,105);
+   
+    document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   	document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+}
+
+function prob9_9c() { 
+   if(!loaded) return;
+   document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Corpo-Livre 3");
+   
+id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+// free body of bottom rectangle
+   fbid1=document.Animator3.addRectangle(60,20,"0","0");
+   document.Animator3.setRGB(fbid1,255,192,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,-80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-3","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-75,95);
+  
+   // force of top box
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-85,95);
+   
+   // normal force of floor
+   ar2=document.Animator3.addArrow("0","4.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,-80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("6","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,-75,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,-85,100);
+
+// free body of top rectangle
+   fbid1=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(fbid1,192,255,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,80,95);
+   
+   // normal force
+   ar2=document.Animator3.addArrow("0","1.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("3","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,85,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-1.5","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,75,100);
+   document.Animator3.addRectangle(500,12,"3","-1.5");
+    
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   	document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+}
+
+function prob9_9d() { 
+   if(!loaded) return;
+   document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Corpo-Livre 4");
+   
+   id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+// free body of bottom rectangle
+   fbid1=document.Animator3.addRectangle(60,20,"0","0");
+   document.Animator3.setRGB(fbid1,255,192,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,-80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-3","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-75,95);
+  
+   // force of top box
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-85,95);
+   
+   // normal force of floor
+   ar2=document.Animator3.addArrow("0","4.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,-80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("6","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,-75,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,-85,100);
+
+// free body of top rectangle
+   fbid1=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(fbid1,192,255,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,80,95);
+   
+   // normal force
+   ar2=document.Animator3.addArrow("0","1.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,80,105);
+   
+   // friction
+   ar3=document.Animator3.addArrow("1.5","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,85,100);
+   
+   
+    document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   	document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+}
+
+function prob9_9e() { 
+   if(!loaded) return;
+   document.Animator3.setAutoRefresh(false);
+   document.Animator3.setDefault(); 
+   document.Animator3.shiftPixOrigin(-75,-75);
+   document.Animator3.setCaption("Corpo-Livre 5");
+   
+   id1=document.Animator3.addRectangle(60,20,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,0,0,0);
+   id1=document.Animator3.addRectangle(58,18,"0.5*t*t","0");
+   document.Animator3.setRGB(id1,255,0,0);
+
+   id0=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(id0,0,0,0);
+   id2=document.Animator3.addRectangle(18,18,"0","0");
+   document.Animator3.setRGB(id2,0,255,0);
+   document.Animator3.setAnimationSlave(id1,id2);
+   document.Animator3.setDisplayOffset(id2,0,20);
+   document.Animator3.setAnimationSlave(id1,id0);
+   document.Animator3.setDisplayOffset(id0,0,20);
+   
+   cid=document.Animator3.addCalculation("x =","x","0","0");
+   document.Animator3.setRGB(cid,0,0,0);
+   document.Animator3.setDisplayOffset(cid,-30,+35);
+   document.Animator3.setAnimationSlave(id2,cid);
+   
+   imid=document.Animator3.addImage("images/rarrow.gif","0","0");
+   document.Animator3.setDisplayOffset(imid,-62,10);
+   document.Animator3.setAnimationSlave(id1,imid);
+
+// free body of bottom rectangle
+   fbid1=document.Animator3.addRectangle(60,20,"0","0");
+   document.Animator3.setRGB(fbid1,255,192,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,-80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-3","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-75,95);
+  
+   // force of top box
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,-85,95);
+   
+   // normal force of floor
+   ar2=document.Animator3.addArrow("0","4.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,-80,105);
+ 
+   // force of push
+   ar3=document.Animator3.addArrow("3","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,-75,100);
+   
+   // friction
+   ar4=document.Animator3.addArrow("-3","0","0","0");
+   document.Animator3.setRGB(ar4,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar4);
+   document.Animator3.setDisplayOffset(ar4,-85,100);
+
+// free body of top rectangle
+   fbid1=document.Animator3.addRectangle(20,20,"0","0");
+   document.Animator3.setRGB(fbid1,192,255,192);
+   document.Animator3.setAnimationSlave(id1,fbid1);
+   document.Animator3.setDisplayOffset(fbid1,80,100); 
+   
+   // force of gravity
+   ar1=document.Animator3.addArrow("0","-1.5","0","0");
+   document.Animator3.setRGB(ar1,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar1);
+   document.Animator3.setDisplayOffset(ar1,80,95);
+   
+   // normal force
+   ar2=document.Animator3.addArrow("0","1.5","0","0");
+   document.Animator3.setRGB(ar2,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar2);
+   document.Animator3.setDisplayOffset(ar2,80,105);
+   
+   // friction
+   ar3=document.Animator3.addArrow("1.5","0","0","0");
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setAnimationSlave(id1,ar3);
+   document.Animator3.setDisplayOffset(ar3,85,100);
+   
+  
+    document.Animator3.addRectangle(500,12,"3","-1.5");
+   document.Animator3.setShapeRGB(190,144,70);
+   document.Animator3.addRectangle(500,10,"3","-1.5");
+   	document.Animator3.setOneShot(0,7,"Fim da Animação");
+   document.Animator3.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 5.5</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 5.5</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  	<applet codebase="../../classes/" archive="Physlets.jar"
+  	code="animator4.Animator.class" align="middle" width="400" height="186" name="Animator3" mayscript>
+    	<param name="FPS" value="10">
+    	<param name="dt" value="0.1">
+    	<param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p>
+		<input type="button" value="começar" onclick="document.Animator3.forward()"><input
+      type="button" value="pausa" onclick="document.Animator3.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.Animator3.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator3.stepForward()"><input type="button"
+      value="início" onclick="document.Animator3.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td align="center">
+		&nbsp; <a href="JavaScript:prob9_9a()" style="text-decoration: none">Corpo-Livre 
+		1</a> </td>
+      <td align="center">
+		&nbsp;&nbsp;<a href="JavaScript:prob9_9b()" style="text-decoration: none">Corpo-Livre 
+		2</a> </td>
+      <td align="center">
+		&nbsp; <a href="JavaScript:prob9_9c()" style="text-decoration: none">Corpo-Livre 
+		3</a></td>
+      <td align="center">
+		&nbsp; <a href="JavaScript:prob9_9d()" style="text-decoration: none">Corpo-Livre 
+		4</a></td>
+      <td align="center">
+		&nbsp;&nbsp;<a href="JavaScript:prob9_9e()" style="text-decoration: none">Corpo-Livre 
+		5</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Um bloco de massa 4 kg está pousado em cima de um outro bloco de massa 8 kg , 
+que é empurrado de acordo com a animação <b>(a posição é dada em metros e o 
+tempo em segundos)</b>.&nbsp;Nesta animação, <b>o comprimento de um vetor é 
+proporcional ao valor da quantidade</b> que representa.&nbsp;
+<a href="JavaScript:prob9_90()">Início</a>&nbsp; </p>
+<p>(<i>Dica: Não te esqueças de incluir as forças de atrito, sempre que há 
+contacto entre duas superfícies</i>).</p>
+
+<p>&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p>Problema modificado por Paulo Simeão Carvalho e Edite Briosa.</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

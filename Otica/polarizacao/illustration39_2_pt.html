@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 39.2</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+document.wave3d.addText("Seleciona uma onda",40,140);
+document.wave3d.forward();
+}
+       
+       
+function linearWave() {
+         if(!loaded) return;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(2); 
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(22,50,134);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(222,223,27);
+         document.wave3d.addAxes(0,0,-20,10);
+         document.wave3d.setShapeRGB(135,52,55);
+         document.wave3d.addLinear(-20,20,10,0,0);
+         //document.wave3d.setTimeOneShot(300,"End of Animation");
+         document.wave3d.forward();
+}
+
+
+function polarizedLinearWave(){
+         if(!loaded) return;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(2); 
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(122,100,134);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(122,123,227);
+         document.wave3d.addAxes(0,0,-20,10);
+         document.wave3d.setShapeRGB(235,222,55);
+         document.wave3d.addLinear(-20,0,10,0,.59);
+         document.wave3d.setShapeRGB(244,99,200);
+         document.wave3d.addFilledRectangle(1.579,20,20); 
+         document.wave3d.setShapeRGB(0,99,0);
+         document.wave3d.addAxes(0,0,1.579,10);        
+         document.wave3d.setShapeRGB(235,92,55);
+         document.wave3d.addLinear(0,20,7,0,0);
+         //document.wave3d.setTimeOneShot(300,"End of Animation");
+
+          document.wave3d.forward();
+
+}
+function circularWave() {
+         if(!loaded) return;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(2); 
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(22,100,234);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(222,23,27);
+         document.wave3d.addAxes(0,0,-20,10);
+         document.wave3d.setShapeRGB(245,222,55);
+         document.wave3d.addCircularRight(-20,20,10,0);
+         //document.wave3d.setTimeOneShot(300,"End of Animation");
+
+          document.wave3d.forward();
+
+
+}
+function polarizedCircularWave(){
+         if(!loaded) return;
+         document.wave3d.deleteAll();
+		  document.wave3d.setLineDensity(2); 			
+         document.wave3d.setPixPerUnit(8);
+         document.wave3d.setShapeRGB(122,100,134);
+         document.wave3d.addFilledSquare(-20,20);
+         document.wave3d.setShapeRGB(22,23,127);
+         document.wave3d.addAxes(0,0,-20,10);
+         document.wave3d.setShapeRGB(88,157,55);
+         document.wave3d.addCircularRight(-20,0,10,0);
+         document.wave3d.setShapeRGB(244,249,100);
+         document.wave3d.addFilledRectangle(1.579,20,20); 
+         document.wave3d.setShapeRGB(0,0,0);
+         document.wave3d.addAxes(0,0,1.579,10);        
+         document.wave3d.setShapeRGB(125,122,155);
+         document.wave3d.addLinear(0,20,10,1.579,0); 
+          document.wave3d.forward();
+        
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+    </script>
+</head>
+<body  onunload="killmenow()">
+
+<h2 align="center">Ilustração 39.2 - Ondas eletromagnéticas polarizadas </h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td colspan="2">
+      <p align="center">
+      <applet codebase="../../classes/" code="wave3d.Wave3d.class" 
+      archive="Physlets.jar" name="wave3d" width="300" height="400" 
+      hspace="0" vspace="0" align="left" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="Animate" value="true">
+        <param name="Orientation" value="0">
+        <param name="orientation" value="0">
+        <param name="framesPerSec" value="10">
+        <param name="translation" value=".4">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="wave3d">
+      </applet> </td>
+    </tr>
+    <tr>
+      <td align="center">
+      <p align="center"><a href="JavaScript:linearWave()">Onda linear</a></p>
+      </td>
+      <td align="center">
+      <a href="JavaScript:polarizedLinearWave()">Onda linear com polarizador</a></td>
+    </tr>
+    <tr>
+      <td align="center">
+      <a href="JavaScript:circularWave()">Onda circular</a></td>
+      <td align="center">
+      <a href="JavaScript:polarizedCircularWave()">Onda circular com polarizador</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+
+<p><span id="result_box" class lang="pt"><span class="hps">A luz é</span>
+<span class="hps">uma</span> <span class="hps">onda que ao se deslocar,</span>
+<span class="hps">altera</span> <span class="hps">os campos elétrico</span>
+<span class="hps">e</span> <span class="hps">magnético do meio onde se propaga</span>.<span class="hps"> 
+Clica e arrasta</span> <span class="hps">para a direita ou</span>
+<span class="hps">para a esquerda, para</span> </span><span class="hps">
+<span id="result_box" lang="pt">rodares a animação</span></span><span id="result_box" class lang="pt">
+<span class="hps">sobre</span> <span class="hps">o eixo</span> </span>
+<span class="hps"><span id="result_box" lang="pt">Z</span></span><span id="result_box" class lang="pt"><span class="hps">.</span>
+<span class="hps">Clica e arrasta</span> <span class="hps">para cima ou</span>
+<span class="hps">para baixo, para rodar a animação</span> <span class="hps">no 
+plano </span></span><span class="hps"><span id="result_box" lang="pt">XY</span></span><span id="result_box" class lang="pt">.
+<span class="hps">Na animação, a onda</span> <span class="hps">é</span>
+<span class="hps">polarizada segundo X,</span> <span class="hps">o que significa 
+que</span> <span class="hps">seu campo elétrico</span> <span class="hps">oscila</span>
+<span class="hps">na direção X</span><span class>.</span></span></p>
+<p>&nbsp;</p>
+<p align="left">Ilustração da autoria de Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

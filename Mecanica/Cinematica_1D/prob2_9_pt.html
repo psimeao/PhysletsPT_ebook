@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+timerID=0;
+var d=0;
+var x0=0;
+var y0=0;
+var vx=0;
+var vy=0;
+var ax=0;
+var ay=0;
+var Fx=0;
+var Fy=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+		x0=0.5;
+		y0=1.5;
+		vx0=0;
+		vy0=0;
+		ax="0";
+		ay="0.05";
+		d=0;
+		Fx="m*"+ax;
+		Fy="m*"+ay+"+"+d+"*-vy*vy*vy/abs(vy)";
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.DataGraph2.setAutoRefresh(false);
+   		document.DataGraph2.setDefault();
+   		document.DataGraph2.deleteAllSeries();
+   		document.Animator.shiftPixOrigin(0,-190);
+		document.Animator.setPixPerUnit(50);
+		document.Animator.setGridUnit(0);
+		
+		ground=document.Animator.addObject("rectangle","x=0,y=-0.2,w=600,h=20");
+		document.Animator.setRGB(ground,0,150,0);
+		
+		id=document.Animator.addObject("image","file=./images/helium_balloon_bw_sm.gif,m=0.01");
+		document.Animator.setForce(id,Fx,Fy,x0,y0,vx0,vy0);
+		
+		xaxis=document.Animator.addObject("arrow","v=0,h=1");
+		yaxis=document.Animator.addObject("arrow","v=1,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=0.8*1,y=+0.2*1,text=+x");
+		ytext=document.Animator.addObject("text","y=0.8*1,x=-0.5*1,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		document.Animator.setOneShot(0,20,"Fim da Animação");			
+			document.DataGraph2.setAutoscaleX(false);
+			document.DataGraph2.setAutoscaleY(false);
+			document.DataGraph2.setMinMaxX(0,20);
+			document.DataGraph2.setMinMaxY(-0.2,1.2);
+			document.DataGraph2.clearSeries(1);
+     			document.DataGraph2.setSeriesStyle(1,true,3);  
+     			document.DataGraph2.setMarkerSize(1,0.6);  
+			document.DataGraph2.setLabelY("v_{y} (m/s)"); 
+			document.DataGraph2.setLabelX("t (s)"); 
+			document.DataGraph2.setTitle("v_{y} vs t"); 
+			document.DataGraph2.setLastPointMarker(1,true); 
+			graph2=document.DataGraph2.getGraphID();
+			document.Animator.makeDataConnection(id,graph2,1,"t","vy");    
+         	document.Animator.updateDataConnections();
+            document.DataGraph2.setAutoRefresh(true);
+            document.Animator.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 2.9</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.9</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+        <tr> 
+          <td> 
+             <applet width="200" height="400" code="animator4.Animator.class" 
+             codebase="../../classes/" archive="Physlets.jar" 
+             align="baseline"  name="Animator" mayscript>
+                  <param name="FPS" value="10">
+                  <param name="dt" value="0.2">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+                  <param name="AppletNames" value="Animator,DataGraph2">
+                  <param name="Resources" value="animator_pt.rc">
+                </applet></td>
+          <td> 
+            <applet width="300" height="400" code="dataGraph.DataGraph.class" 
+            codebase="../../classes/" archive="Physlets.jar" 
+            align="baseline" name="DataGraph2" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+        </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"> </p>
+  </center></div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">A animação mostra a simulação do movimento de um balão de hélio, 
+em que é desprezada a resistência do ar. O gráfico da velocidade em função do 
+tempo para o movimento do balão também é mostrado <b>(a posição é dada em metros 
+e o tempo é dado em segundos)</b>. <a href="JavaScript:startProb()">Início</a></p>
+
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Aaron Titus, com o apoio da National 
+Science Foundation, Grant No. DUE-9952323 e colocado no domínio público.
+<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

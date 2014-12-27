@@ -1,0 +1,205 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Exploration 5.1</title>
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var pi=3.14159265;
+var ghosts=false;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("position1()",100);
+}
+  	
+function position1(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Forceform.reset();
+   m=document.Forceform.MassText.value;
+   vel=document.Forceform.Speedtext.value;
+   r=document.Forceform.Radiustext.value;  
+   f=m/1000*vel*vel/r;
+   tmax=2*pi*r/vel;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+      document.Animator.setTimeDisplay(false);
+   document.Animator.setCaption("Escolhe valores antes de começar");
+   document.Animator.setPixPerUnit(10);
+   id1=document.Animator.addObject("circle","r=2,x=0,y=0");
+
+   id2=document.Animator.addObject("circle","r=10,x=0,y=5");
+   document.Animator.setRGB(id2,255,0,0);
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.setTrail(id2,400);
+   id3=document.Animator.addObject("circle","r=11,x=1,y=0");
+   document.Animator.setRGB(id3,155,155,155);
+   document.Animator.setAnimationSlave(id2,id3);
+   document.Animator.setDisplayOffset(id3,-1,-1);
+   id4=document.Animator.addObject("circle","r=10,x=0,y=5");
+   document.Animator.setRGB(id4,255,0,0);
+
+
+    if(ghosts)
+{ 
+   document.Animator.setFootPrints(id2,8);
+   document.Animator.setGhost(id2,true);  
+}  
+    
+else
+{
+}
+
+   fstr=""+f;
+	fstr1=fstr.substring(0,4);
+   id3=document.Animator.addObject("text","text=Tensão = "+fstr1+" Newtons,x=-9,y=-16");
+   document.Animator.setOneShot(0,tmax,"Fim da Animação");
+document.Animator.setAutoRefresh(true);
+}
+
+
+function shm6_6() { 
+   m=document.Forceform.MassText.value;
+   vel=document.Forceform.Speedtext.value;
+   r=document.Forceform.Radiustext.value;
+  
+  if( !checkRange(m,10,500)){
+     alert("A massa deve estar entre 10 gramas e 500 gramas. O valor inserido foi "+m+" gramas.");
+     return;
+} 
+  
+   if( !checkRange(vel,10,50)){
+     alert("O valor da velocidade deve estar entre 10 m/s e 50 m/s. O valor inserido foi "+vel+" m/s.");
+     return;
+} 
+  
+     if( !checkRange(r,0.5,3.5)){
+     alert("O valor do raio deve estar entre 0,5 m e 3,5 m. O valor inserido foi "+r+" m.");
+     return;
+} 
+  
+  
+   f=m/1000*vel*vel/r;
+   tmax=2*pi*r/vel;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(10);
+   id1=document.Animator.addObject("circle","r=2,x=0,y=0");
+
+   id2=document.Animator.addObject("circle","r=10,x="+r*10+",y=0");
+   document.Animator.setRGB(id2,255,0,0);
+   document.Animator.setTrajectory(id2,"-"+r+"*5*sin("+vel/r+"*t)","5*"+r+"*cos("+vel/r+"*t)");
+   document.Animator.addConnectorLine(id1,id2);
+   document.Animator.setTrail(id2,400);
+   id3=document.Animator.addObject("circle","r=11,x=0,y=0");
+   document.Animator.setRGB(id3,155,155,155);
+   document.Animator.setAnimationSlave(id2,id3);
+   document.Animator.setDisplayOffset(id3,-1,-1);
+   id4=document.Animator.addObject("circle","r=10,x="+r*10+",y=0");
+   document.Animator.setRGB(id4,255,0,0);
+   document.Animator.setTrajectory(id4,"-"+r+"*5*sin("+vel/r+"*t)","5*"+r+"*cos("+vel/r+"*t)");
+
+
+    if(ghosts)
+{ 
+   document.Animator.setFootPrints(id2,8);
+   document.Animator.setGhost(id2,true);  
+}  
+    
+else
+{
+}
+
+   fstr=""+f;
+	fstr1=fstr.substring(0,4);
+   id3=document.Animator.addObject("text","text=Tensão = "+fstr1+" Newton,x=-9,y=-16");
+   document.Animator.setOneShot(0,tmax,"Fim da Animação");
+document.Animator.setAutoRefresh(true);
+document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script> 
+</head>
+
+<body onload="initApplets()"  onunload="killmenow()"> 
+<h2 align="center">Exploração 5.1 - Movimento Circular</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+
+<applet code="animator4.Animator.class" codebase="../../classes/"
+        archive="Physlets.jar" name="Animator" width="380"
+        height="380" hspace="0" vspace="0" align="Middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.005">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="0">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form name="Forceform">
+           <p align="center">
+<input type="button" value="validar e começar" name="StartButton1" onclick="shm6_6()">
+<input onclick="document.Animator.forward()" type="button" value="continuar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator.reset()" type="button" value="início">
+           <p align="center"><b><i>m</i> =&nbsp;<input type="text" name="MassText" size="5" value="250"> 
+			gramas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>v
+			</i>=&nbsp;<input type="text" name="Speedtext" size="5" value="10"> 
+			m/s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>r</i> =&nbsp;<input type="text" name="Radiustext" size="4" value="1"> 
+			m<br>
+           <input onclick="javascript:ghosts = (this.checked);" type="checkbox" value="velocity" name="options">
+           seleciona a caixa para veres imagens &quot;fantasma&quot; a intervalos de tempo 
+			regulares, que assinalam a trajetória do disco.</b>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>
+Um disco efetua um movimento circular sobre uma superfície polida e sem atrito, 
+atado por um fio que está preso ao centro da trajetória circular. Se clicares em 
+cima do disco, obterás <b>a posição deste em metros </b>(multiplicada por um 
+fator de 5); <b>o tempo está indicado em segundos</b>.&nbsp;</p>
+<p style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px" align="center"><b>Podes escolher 
+a massa do disco (10 g &lt; m &lt; 500 g), o valor da velocidade (10 m/s &lt; v &lt; 50 m/s) 
+e/ou o raio da trajetória circular (0,5 m &lt; r &lt; 3,5 m).</b>&nbsp; </p>
+<p style="MARGIN-TOP: 5px; MARGIN-BOTTOM: 0px" align="center"><b>O valor da 
+tensão no fio é automaticamente calculado e indicado na animação</b></p>
+<p>
+Para recomeçares a animação, basta clicar&nbsp; <a href="JavaScript:position1()">
+aqui</a>.</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>

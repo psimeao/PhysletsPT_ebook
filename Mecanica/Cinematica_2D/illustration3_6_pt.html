@@ -1,0 +1,288 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var showVelocityVector=false;
+var showAccelerationVector=false;
+var showAccelerationComponents=false;
+var showTangent=false;
+var vScale=0.5;
+var aScale=0.5;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+		
+	document.Animator.setDefault();
+	document.Animator.setAutoRefresh(false);
+	document.Animator.shiftPixOrigin(0,0);
+	document.Animator.setGridUnit(0);
+	document.Animator.setTimeVisibility(false);
+	document.Animator.setCaption("Seleciona uma Animação");				
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+
+function initAppletA(){
+		if(!loaded) return;
+	with(Math) {	
+	document.Animator.setDefault();
+	document.Animator.setAutoRefresh(false);
+	document.Animator.shiftPixOrigin(0,0);
+	document.Animator.setGridUnit(0);
+    document.Animator.setCaption("Movimento Circular Uniforme");
+	v=23;
+
+		id2a=document.Animator.addObject("circle","r=16,x=0,y=0");
+	   document.Animator.setRGB(id2a,0,0,0);
+	   id2=document.Animator.addObject("circle","r=15,x=0,y=0");
+	   document.Animator.setRGB(id2,255,255,0);
+        id0=document.Animator.addObject("circle","r=7,x=0,y=0");
+	   id=document.Animator.addObject("circle","r=6,x=0,y=0");
+	   document.Animator.setForce(id,"-8000*x/(x*x+y*y)^1.5","-8000*y/(x*x+y*y)^1.5",15,0,0,v);
+	   document.Animator.setRGB(id,0,205,0);
+	   document.Animator.setTrail(id,4500);
+       document.Animator.setAnimationSlave(id,id0);
+	   A=document.Animator.addObject("text","x=15.2,y=-0.4,text=A");
+	   B=document.Animator.addObject("text","x=-0.4,y=15,text=B");
+	   C=document.Animator.addObject("text","x=-16,y=-0.5,text=C");
+	   D=document.Animator.addObject("text","x=-0.4,y=-16,text=D");
+
+	   
+		if(showVelocityVector==true){
+			vVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,vVector,1,"x","y");
+			document.Animator.makeDataConnection(id,vVector,2,"vx*"+vScale,"vy*"+vScale);
+			document.Animator.setRGB(vVector,0,0,255);
+		}
+
+		if(showAccelerationVector==true){
+			aVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aVector,2,"ax*"+aScale,"ay*"+aScale);
+			document.Animator.setRGB(aVector,250,0,0);
+		}
+
+		
+		if(showTangent==true) {
+			tanLine=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine,2,"cos(atan2(vy,vx))*4","sin(atan2(vy,vx))*4");
+			tanLine2=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine2,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine2,2,"-cos(atan2(vy,vx))*4","-sin(atan2(vy,vx))*4");
+		}
+				
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+	}
+}
+
+
+function initAppletB(){
+		if(!loaded) return;
+	with(Math) {
+		
+	document.Animator.setDefault();
+	document.Animator.setAutoRefresh(false);
+	document.Animator.shiftPixOrigin(-90,0);
+	document.Animator.setGridUnit(0);
+	document.Animator.setCaption("Movimento Não Circular");
+	v=10;
+
+		id2a=document.Animator.addObject("circle","r=16,x=0,y=0");
+	   document.Animator.setRGB(id2a,0,0,0);
+	   id2=document.Animator.addObject("circle","r=15,x=0,y=0");
+	   document.Animator.setRGB(id2,255,255,0);
+
+	   id0=document.Animator.addObject("circle","r=7,x=0,y=0");
+	   id=document.Animator.addObject("circle","r=6,x=0,y=0");
+	   document.Animator.setForce(id,"-8000*x/(x*x+y*y)^1.5","-8000*y/(x*x+y*y)^1.5",24,0,0,v);
+	   document.Animator.setRGB(id,0,205,0);
+	   document.Animator.setTrail(id,4500);
+       document.Animator.setAnimationSlave(id,id0);
+       
+	   A=document.Animator.addObject("text","x=-6,y=-0.4,text=C");
+	   B=document.Animator.addObject("text","x=9.5,y=-12,text=D");
+	   C=document.Animator.addObject("text","x=24.4,y=-0.4,text=A");
+	   E=document.Animator.addObject("text","x=9.5,y=11,text=B");
+
+	   
+	if(showVelocityVector==true){
+			vVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,vVector,1,"x","y");
+			document.Animator.makeDataConnection(id,vVector,2,"vx*"+vScale,"vy*"+vScale);
+			document.Animator.setRGB(vVector,0,0,255);
+		}
+
+	if(showAccelerationVector==true){
+			aVector=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,thickness=2");
+			document.Animator.makeDataConnection(id,aVector,1,"x","y");
+			document.Animator.makeDataConnection(id,aVector,2,"ax*"+aScale,"ay*"+aScale);
+			document.Animator.setRGB(aVector,250,0,0);
+		}
+
+
+		
+	if(showTangent==true) {
+			tanLine=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine,2,"cos(atan2(vy,vx))*4","sin(atan2(vy,vx))*4");
+			tanLine2=document.Animator.addObject("arrow2","x=0,y=0,v=0,h=1,s=0");
+			document.Animator.makeDataConnection(id,tanLine2,1,"x","y");
+			document.Animator.makeDataConnection(id,tanLine2,2,"-cos(atan2(vy,vx))*4","-sin(atan2(vy,vx))*4");
+	}
+				
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+	}
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 3.6</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Ilustração 3.6 - Movimento circular e não circular</h2>
+
+<div align="center"><center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <tr>
+    <td align="center">
+<applet width="480" height="380" code="animator4.Animator.class" codebase="../../classes/" 
+     archive="Physlets.jar" align="baseline"  name="Animator" mayscript>
+                  <param name="FPS" value="20">
+                  <param name="dt" value="0.02">
+                  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+         </applet></td>
+  </tr>
+</table>
+</center></div>
+
+    <form>
+      <div align="center"><center><p>
+		<input type="button" value="começar"
+      onclick="document.Animator.forward()"><input type="button" value="pausa"
+      onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+      onclick="document.Animator.stepForward()"><input type="button" value="início"
+      onclick="document.Animator.reset()"> </p>
+      </center></div>
+    </form>
+
+<div align="center">
+  <center>
+
+<table bgcolor="#C0C0C0" border="1">
+  <tr>
+    <td align="center">
+	&nbsp;
+	<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=false;showTangent=false;initAppletA()" style="text-decoration: none">
+	Movimento Circular Uniforme</a>&nbsp; &nbsp; 
+    </td>
+    <td align="center">
+	&nbsp;
+	<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=false;showTangent=false;initAppletB()" style="text-decoration: none">
+	Movimento Não Circular</a>&nbsp; </td>
+  </tr>
+</table>
+
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p><b>Descrição da Animação</b></p>
+<p>Um planeta (verde) gira em torno de uma estrela (amarela) conforme mostram as 
+duas animações. Uma animação mostra o
+<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=false;showTangent=false;initAppletA()">
+movimento circular uniforme</a> do planeta, enquanto a outra mostra o
+<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=false;showTangent=false;initAppletB()">
+movimento não circular</a> do planeta <b>(a posição é dada em 10<sup>3</sup> km 
+e o tempo em anos)</b>.&nbsp; Esta ilustração pretende comparar a velocidade e a 
+aceleração do planeta nas duas animações. <a href="JavaScript:initApplet()">
+Início</a> </p>
+<p>&nbsp;</p>
+<p><b>Sabias que ...</b></p>
+<p>Na animação que mostra o
+<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=false;showTangent=false;initAppletA()">
+movimento circular</a> do planeta, podemos ver que a rapidez é constante, pelo 
+que o movimento do planeta é <u>uniforme</u>. Todavia, usando o nosso sistema 
+habitual de coordenadas <i>xy</i>, vemos que a velocidade varia no tempo. 
+Recorda que o termo velocidade refere-se a um vetor, que possui quer magnitude 
+(o seu valor ou rapidez), quer direção e sentido. Contudo, se usarmos as 
+direções radial e tangencial na descrição do movimento do planeta, a velocidade 
+pode ser descrita como sendo sempre tangencial à trajetória e a aceleração como 
+apontando sempre para o centro da trajetória.
+<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=true;showTangent=true;initAppletA()">
+Carrega aqui</a> para veres o vetor velocidade (azul) juntamente com uma linha 
+preta que representa a tangente à trajetória.
+<a href="JavaScript:onclick=showAccelerationVector=true;showVelocityVector=true;showTangent=true;initAppletA()">
+Aqui </a>podes ver também o vetor aceleração (vermelho). (Nota que o vetor 
+aceleração aponta para a estrela, que está no centro da circunferência)</p>
+
+<p>
+Quando observamos o
+<a href="JavaScript:onclick=showAccelerationVector=false;showAccelerationComponents=false;showVelocityVector=false;showTangent=false;initAppletB()">
+movimento não circular</a> do planeta, podemos ver que a rapidez do planeta não 
+é constante, pelo que o movimento do planeta não é uniforme. Assim, a velocidade 
+muda quer em magnitude, quer em direção e sentido.&nbsp; Contudo, usando as 
+direções radial e tangencial podemos ver que a velocidade é sempre tangente à 
+trajetória.&nbsp;<a href="JavaScript:onclick=showAccelerationVector=false;showVelocityVector=true;showTangent=true;initAppletB()">Carrega 
+aqui</a> para veres o vetor velocidade (azul) e
+<a href="JavaScript:onclick=showAccelerationVector=true;showVelocityVector=true;showTangent=true;initAppletB()">
+aqui</a> para veres também o vetor aceleração (vermelho).&nbsp;<u>Nota agora que a 
+aceleração e a velocidade já não são perpendiculares entre si, na maior parte da 
+trajetória do planeta</u>.</p>
+
+<p>
+Observa ainda que entre os pontos A e C, a rapidez do planeta está a aumentar, 
+enquanto que entre os pontos C e A a rapidez está a diminuir. Isto significa que 
+nos pontos A e C a componente tangencial do vetor aceleração é zero. Na primeira 
+parte do percurso, a componente tangencial da aceleração tem a mesma direção e 
+sentido da velocidade enquanto que na segunda parte do percurso, o sentido é 
+oposto ao da velocidade. </p>
+<p>
+Assim, podemos concluir que se não houver outros planetas ou estrelas por perto, 
+<b>a aceleração de um planeta em órbita à volta de uma estrela aponta sempre 
+para a estrela, quer o movimento do planeta seja uniforme ou não</b>.</p>
+
+<p align="left">&nbsp;</p>
+<p align="left">
+Ilustração da autoria de Aaron Titus e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

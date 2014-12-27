@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+var timerID=0;
+var pid1=0;
+var pid2=0;
+var pid3=0;
+var pid4=0;
+var pid5=0;
+var pid6=0;
+var pid7=0;
+var pcap1=0;
+var pcap2=0;
+var pcap3=0;
+var pcap4=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("pVgas()",100);
+}
+  	
+function pVgas(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Animator.setAutoRefresh(false);
+    document.Animator.setDefault(); 
+    document.Animator.shiftPixOrigin(180,-90);
+   	document.Animator.setShapeRGB(0,182,140);
+  	 document.Animator.addPiston(80,"0","8.9-1.03*t","-14","2.4");
+  	document.Animator.setShapeRGB(255,0,0);
+   	document.Animator.addRectangle(87,5,"-14","2.7");
+	document.Animator.addRectangle(85,5,"-14","11.3-1.03*t");
+   	document.Animator.addRectangle(5,95,"-9.8","7.3");
+	document.Animator.addRectangle(5,95,"-18.2","7.3");
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(30,30,"-14","13-1.03*t");
+   
+   document.Animator.setShapeRGB(0,0,0);
+   pid1=document.Animator.addCircle(22,"-20","5");
+   pid2=document.Animator.addRectangle(22,7,"0","0");
+   document.Animator.setAnimationSlave(pid1,pid2);
+   document.Animator.setDisplayOffset(pid2,20,0);
+   document.Animator.setShapeRGB(155,155,155);
+   pid3=document.Animator.addRectangle(20,5,"0","0");
+   document.Animator.setAnimationSlave(pid1,pid3);
+   document.Animator.setDisplayOffset(pid3,20,0);
+   pid4=document.Animator.addCircle(20,"0","0");
+   document.Animator.setAnimationSlave(pid1,pid4);
+   document.Animator.setDisplayOffset(pid4,0,0);
+   document.Animator.setShapeRGB(255,255,255);
+   pid5=document.Animator.addCircle(18,"0","0");
+   document.Animator.setAnimationSlave(pid1,pid5);
+   document.Animator.setDisplayOffset(pid5,0,0);
+   document.Animator.setShapeRGB(155,155,155);
+   pid6=document.Animator.addCircle(10,"0","0");
+   document.Animator.setAnimationSlave(pid1,pid6);
+   document.Animator.setDisplayOffset(pid6,0,0);
+   document.Animator.setShapeRGB(0,0,0);
+   pid7=document.Animator.addLine("-0.728","0.728","0","0");
+   document.Animator.setAnimationSlave(pid1,pid7);
+   document.Animator.setDisplayOffset(pid7,0,0);
+       document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+}
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 20.10</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 20.10 </h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>
+<applet codebase="../../classes/" code="animator4.Animator.class"
+ARCHIVE="Physlets.jar"
+align="baseline" width="200" height="150" name="Animator" mayscript>
+  <param name="FPS" value="10">
+  <param name="dt" value="0.05">
+  <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"> </p>
+  </center></div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Um objeto é colocado no topo de um recipiente que contém 3 moles de um gás 
+ideal monoatómico, conforme é mostrado na animação <b>(a posição é dada em 
+metros e o tempo em segundos)</b>.&nbsp;A pressão permanece constante, como é 
+indicado pelo manómetro (medidor redondo). <a
+href="JavaScript:pVgas()">Início</a>&nbsp; </p>
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+<i>Script </i>da autoria de Anne J Cox e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

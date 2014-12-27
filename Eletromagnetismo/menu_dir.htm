@@ -1,0 +1,636 @@
+<html>
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="pt">
+ 
+<script LANGUAGE="JavaScript"> 
+var timerID=0;
+var loaded=false;
+ 
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb3_1()",50);
+}
+  	
+function mjb3_1(){ 
+      if(!loaded) return;
+       timerID=0; 
+	document.Animator.setAutoRefresh(false); 
+	document.Animator.setDefault(); 
+	document.Animator.setPixPerUnit(10); 
+	document.Animator.shiftPixOrigin(-250,-90); 
+	document.Animator.setGridUnit(0);
+	document.Animator.setTimeInterval(0,10); 
+	rid=document.Animator.addObject("rectangle","h=400,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,175,203,255);
+	document.Animator.addObject("image","file=images/bg2.gif,x=-0.8,y=22");
+	rid=document.Animator.addObject("rectangle","h=40,w=880,x=10,y=3.8");
+	document.Animator.setRGB(rid,155,155,155);
+	cid=document.Animator.addObject("image","file=images/r_ghini.gif,x=-14+2*t+0.5*t*t,y=7.5");
+	document.Animator.setAutoRefresh(true); 
+	document.Animator.forward();
+	//document.getElementById("waitmsg").style.display="none"; 
+} 
+ 
+function killmenow(){
+	clearTimeout(timerID);
+		loaded=false;
+		timerID=-1;
+}
+</script>
+<title>Title Page</title>
+<link rel="STYLESHEET" type="text/css" href="../workbook.css">
+<base target="_blank">
+<style> 
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+ 
+<body onunload="killmenow()">
+ 
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div><div align="center">
+  <center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td width="100%">
+		<applet code="animator4.Animator.class" codebase="../classes/" 
+		archive="Physlets.jar" name="Animator" width="510" height="111" 
+		hspace="0" align="middle">
+  			<param name="FPS" value="15">
+  			<param name="ShowControls" value="false">
+  			<param name="dt" value="0.1">
+  			<param name="PixPerUnit" value="10">
+  			<param name="GridUnit" value="1.0">
+  			<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+		</applet></td>
+  </tr>
+</table>
+  </center>
+</div>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<hr>
+<div align="center">
+  <p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../Amazon_buy_now.png" /></a></div>
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+<div align="center">
+  <center>
+  <font size="3"><b>ELETROMAGNETISMO</b></font></center>
+</div>
+<div align="center">
+  <center>
+  &nbsp;</center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" width="45%">
+	<tr>
+		<td>
+		<p class="MsoNormal" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+		<p class="MsoNormal" style="margin-top: 0"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 22 – 
+		Eletrostática</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 22.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">A Carga e a Lei de Coulomb</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 22.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Carga elétrica e massa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 22.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Monopolo, Dipolo e Quadrupolo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Equilíbrio</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Efeito de múltiplas cargas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças Eletrostáticas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Simetria de um Dipolo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Eletroscópio Pendular</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 22.6 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Labirinto de Coulomb</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 23 – Campos 
+		Elétricos</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 23.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">O que é o Campo Elétrico?</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 23.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Campos Elétricos de Cargas Pontuais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 23.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Linhas de Campo Elétrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 23.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Usos Práticos de Cargas e Campos Elétricos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 23.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Campos e Cargas de Prova</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 23.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Linhas de Campo e Trajetórias</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 23.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Somando Campos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 24 – Lei de 
+		Gauss</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 24.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Fluxo e Superfícies Gaussianas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 24.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Visões próxima, intermédia e afastada de um filamento com carga</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 24.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Distribuição cilíndrica de carga elétrica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 24.3 –</span></b><span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black"> Objetos com carga elétrica e atração eletrostática</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 24.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Fluxo e Lei de Gauss</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 24.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Simetria no uso da Lei de Gauss</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 24.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Esfera Condutora e Isoladora</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 24.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Aplicação da Lei de Gauss</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 25 – 
+		Potencial Elétrico</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 25.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Energia e Potencial Elétrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 25.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Trabalho e Superfícies Equipotenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 25.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Potencial Elétrico de Esferas Carregadas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 25.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças conservativas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 25.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Investigar as Linhas Equipotenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 25.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Linhas de Campo Elétrico e Linhas Equipotenciais</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 25.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Potencial Elétrico à volta de Condutores</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 25.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Espectrómetro de Massa por Tempo de Voo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 25.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Condutor e Isolador Esférico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 26 – 
+		Condensadores e Dielétricos</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 26.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Perspetiva Microscópica de um Condensador</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 26.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Um condensador ligado a uma bateria</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 26.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Condensador com um Dielétrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 26.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Visão Microscópica de Condensadores em Série e em Paralelo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 26.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Energia</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 26.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Condensadores, Carga Elétrica e Potencial Elétrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 26.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Condutores e Dielétricos</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 26.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Capacidade Equivalente</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 26.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Capacidade de um Condensador Cilíndrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 27 – Campos 
+		Magnéticos e Forças</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 27.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Ímanes e Bússolas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 27.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Campo Magnético da Terra</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 27.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Espectrómetro de Massa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 27.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças Magnéticas em Correntes Elétricas</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 27.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Magnetes permanentes e Ferromagnetismo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 27.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Desenhar Linhas de Campo e Identificar Forças</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 27.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Seletor de velocidade</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 27.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Espectrómetro de Massa</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 28 – Lei de 
+		Ampère</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 28.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Campos criados por fios e espiras (<i>loops</i>)</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 28.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Forças entre fios</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 28.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Lei de Ampère e simetria</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 28.4 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Integral de linha do campo magnético</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 28.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Fio comprido percorrido por corrente uniforme</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 28.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Uma superfície com corrente elétrica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 28.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Configurações de fios para uma força resultante nula</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font></p>
+		<p class="MsoNormal"><b>
+		<span style="font-size:10.0pt;line-height:
+115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Capítulo 29 – Lei de 
+		Faraday</span></b></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 29.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Campo Magnético variável e Área variável</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 29.2 –
+		</span></b><i>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Loop</span></i><span style="font-size:10.0pt;line-height:150%;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black"> num Campo 
+		Magnético variável</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Ilustração 29.3 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Gerador elétrico</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 29.1 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Lei de Lenz</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 29.2 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Força num fio em Movimento num Campo Uniforme</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 29.3 –
+		</span></b><i>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Loop</span></i><span style="font-size:10.0pt;line-height:150%;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black"> perto de um 
+		fio condutor de corrente elétrica</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 29.4 –
+		</span></b><i>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Loop</span></i><span style="font-size:10.0pt;line-height:150%;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black"> num Campo 
+		Magnético variável no tempo</span></p>
+		<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><b>
+		<span style="font-size:10.0pt;line-height:
+150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Exploração 29.5 –
+		</span></b>
+		<span style="font-size:10.0pt;line-height:150%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">Auto-Indutância</span><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%"><font size="2">
+		<span style="font-family: Arial,sans-serif; font-weight: 700">Problemas</span></font><p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;line-height:150%">&nbsp;</td>
+	</tr>
+	</table>
+	</center>
+</div>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<p style="line-height: 150%; margin-left: 0%; margin-right: 0%; margin-top: 6px; margin-bottom: 0" align="left">
+&nbsp;</p>
+<hr>
+<p align="center" style="margin-bottom: 6px"><b><i>© 2014: Paulo Simeão 
+Carvalho, Edite Pereira Briosa, Wolfgang Christian, Mario Belloni, Manuel Filipe 
+Costa</i></b></p>
+<p align="center" style="margin-top: 3px; margin-bottom: 0">&nbsp;</p>
+ 
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+ 
+</html>

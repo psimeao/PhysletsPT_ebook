@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menu</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #0000CC;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	line-height:normal;
+	font-family:"Times New Roman", Times, serif;
+}
+body,td,th {
+	font-size: 12pt;
+	color: #FFFFFF;
+}
+h1, h1 a {
+
+	font-size:32px;
+
+	font-weight:bold;
+
+	color:#6699FF;
+
+	text-decoration: none;
+
+}
+
+h1 a:hover { text-decoration: underline; }
+h2 { font-size:19px; color:#00FFFF; }
+h3 { font-size:13pt; color:#FFFF00; font-weight:bold; cursor:pointer; }
+h4, h4 a:link, h4 a:visited { font-size:18px; color:#6699FF; text-decoration:none; }
+h4 a:hover { text-decoration:underline; }
+
+ul.lista { list-style:none; margin-left:5px; padding-left:0px; }
+ul.lista>li { border-bottom:0px dotted #CCCCCC; color:#3399FF; }
+ul.lista>li a { cursor:pointer; padding-left:2px; border-left:5px solid #0000CC; }
+ul.lista>li a:hover { border-left:5px solid #FFFFFF; }
+ul.lista>li>ul { list-style:none; margin-left:15px; padding-left:0px; color:#FFFFFF; }
+ul.lista>li>ul>li { padding-left:2px; margin-bottom:1px; border-left:0px solid #FFFFFF; }
+ul.lista>li>ul>li a { border:0; }
+ul.lista>li>ul>li a:link, ul.lista>li>ul>li a:visited { color:#FFFFFF; text-decoration:none; }
+ul.lista>li>ul>li a:hover { border:0; color:#000000; }
+ul.lista>li>ul>li:hover { background-color:#FFFFFF; color:#000000; }
+
+ul.lista { display:none; }
+/* Aqui é definido se o sub-menu aparece para edição ou não. Usar: none OU block */
+ul.lista>li>ul { display:none; }
+
+-->
+</style>
+<base target="_self">
+</head>
+<script language="javascript">
+	function tog(obj) {
+		ob = $(obj).siblings();
+		l = $(ob).get(0);
+		$(l).toggle("fast");
+	}
+	function togm(obj) {
+		$(obj).next('ul').toggle("fast"); 
+	}
+</script>
+<body>
+
+<center>
+<h1><a target="_top" href="../../index.html"><font color="FFFFFF">Índice</font></a></h1>
+<p><h4><a href="menu_dir.htm" target="direita"><font color="#99CCFF">Página Inicial</font></a></h4>
+</p>
+<h2>Mecânica</h2>
+<hr size="3" color="#6699ff" />
+</center>
+<p class="seccao">
+<h3 onclick="togm(this)">CAP. 16: Movimento periódico</h3>
+<ul class="lista">
+    	<li><a onclick="tog(this);">Ilustrações</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_1_pt.html"><font color="#00FFFF">Ilustração 16.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_2_pt.html"><font color="#00FFFF">Ilustração 16.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_3_pt.html"><font color="#00FFFF">Ilustração 16.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_4_pt.html"><font color="#00FFFF">Ilustração 16.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_5_pt.html"><font color="#00FFFF">Ilustração 16.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/illustration16_6_pt.html"><font color="#00FFFF">Ilustração 16.6</font></a></li>			
+            </ul>
+        </li>
+        <li><a onclick="tog(this);">Explorações</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_1_pt.html"><font color="#00FFFF">Exploração 16.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_2_pt.html"><font color="#00FFFF">Exploração 16.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_3_pt.html"><font color="#00FFFF">Exploração 16.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_4_pt.html"><font color="#00FFFF">Exploração 16.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_5_pt.html"><font color="#00FFFF">Exploração 16.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_6_pt.html"><font color="#00FFFF">Exploração 16.6</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/ex16_7_pt.html"><font color="#00FFFF">Exploração 16.7</font></a></li>			
+			</ul>
+        </li>
+  		<li><a onclick="tog(this);">Problemas</a>
+        	<ul>
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_1_pt.html"><font color="#00FFFF">Problema 16.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_2_pt.html"><font color="#00FFFF">Problema 16.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_3_pt.html"><font color="#00FFFF">Problema 16.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_4_pt.html"><font color="#00FFFF">Problema 16.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_5_pt.html"><font color="#00FFFF">Problema 16.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_6_pt.html"><font color="#00FFFF">Problema 16.6</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_7_pt.html"><font color="#00FFFF">Problema 16.7</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_8_pt.html"><font color="#00FFFF">Problema 16.8</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_9_pt.html"><font color="#00FFFF">Problema 16.9</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_10_pt.html"><font color="#00FFFF">Problema 16.10</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_11_pt.html"><font color="#00FFFF">Problema 16.11</font></a></li>			
+            	<li>
+				<a target="direita" href="Movimento_periodico/prob16_12_pt.html"><font color="#00FFFF">Problema 16.12</font></a></li>			
+            </ul>
+  		</li>
+</ul>
+<h3 onclick="togm(this)">CAP. 17: Ondas 1D</h3>
+<ul class="lista">
+  		<li><a onclick="tog(this);">Ilustrações</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="Ondas/illustration17_1_pt.html"><font color="#00FFFF">Ilustração 17.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_2_pt.html"><font color="#00FFFF">Ilustração 17.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_3_pt.html"><font color="#00FFFF">Ilustração 17.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_4_pt.html"><font color="#00FFFF">Ilustração 17.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_5_pt.html"><font color="#00FFFF">Ilustração 17.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_6_pt.html"><font color="#00FFFF">Ilustração 17.6</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/illustration17_7_pt.html"><font color="#00FFFF">Ilustração 17.7</font></a></li>			
+      		</ul>
+  		</li>
+  		<li><a onclick="tog(this);">Explorações</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="Ondas/ex17_1_pt.html"><font color="#00FFFF">Exploração 17.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/ex17_2_pt.html"><font color="#00FFFF">Exploração 17.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/ex17_3_pt.html"><font color="#00FFFF">Exploração 17.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/ex17_4_pt.html"><font color="#00FFFF">Exploração 17.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/ex17_5_pt.html"><font color="#00FFFF">Exploração 17.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/ex17_6_pt.html"><font color="#00FFFF">Exploração 17.6</font></a></li>			
+      		</ul>
+  		</li>
+  		<li><a onclick="tog(this);">Problemas</a>
+      		<ul>
+            	<li>
+				<a target="direita" href="Ondas/prob17_1_pt.html"><font color="#00FFFF">Problema 17.1</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_2_pt.html"><font color="#00FFFF">Problema 17.2</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_3_pt.html"><font color="#00FFFF">Problema 17.3</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_4_pt.html"><font color="#00FFFF">Problema 17.4</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_5_pt.html"><font color="#00FFFF">Problema 17.5</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_6_pt.html"><font color="#00FFFF">Problema 17.6</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_7_pt.html"><font color="#00FFFF">Problema 17.7</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_8_pt.html"><font color="#00FFFF">Problema 17.8</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_9_pt.html"><font color="#00FFFF">Problema 17.9</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_10_pt.html"><font color="#00FFFF">Problema 17.10</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_11_pt.html"><font color="#00FFFF">Problema 17.11</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_12_pt.html"><font color="#00FFFF">Problema 17.12</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_13_pt.html"><font color="#00FFFF">Problema 17.13</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_14_pt.html"><font color="#00FFFF">Problema 17.14</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_15_pt.html"><font color="#00FFFF">Problema 17.15</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_16_pt.html"><font color="#00FFFF">Problema 17.16</font></a></li>			
+            	<li>
+				<a target="direita" href="Ondas/prob17_17_pt.html"><font color="#00FFFF">Problema 17.17</font></a></li>			
+      		</ul>
+  		</li>
+</ul>
+<h3 onclick="togm(this)">CAP. 18: Som</h3>
+<ul class="lista">
+  <li><a onclick="tog(this);">Ilustrações</a>
+      <ul>
+        <li>
+		<a target="direita" href="Som/illustration18_1_pt.html"><font color="#00FFFF">Ilustração 18.1</font></a></li>
+        <li>
+		<a target="direita" href="Som/illustration18_2_pt.html"><font color="#00FFFF">Ilustração 18.2</font></a></li>
+        <li>
+		<a target="direita" href="Som/illustration18_3_pt.html"><font color="#00FFFF">Ilustração 18.3</font></a></li>
+        <li>
+		<a target="direita" href="Som/illustration18_4_pt.html"><font color="#00FFFF">Ilustração 18.4</font></a></li>
+      </ul>
+  </li>
+  <li><a onclick="tog(this);">Explorações</a>
+	<ul>
+		<li>
+		<a target="direita" href="Som/ex18_1_pt.html"><font color="#00FFFF">Exploração 18.1</font></a></li>
+		<li>
+		<a target="direita" href="Som/ex18_2_pt.html"><font color="#00FFFF">Exploração 18.2</font></a></li>
+		<li>
+		<a target="direita" href="Som/ex18_3_pt.html"><font color="#00FFFF">Exploração 18.3</font></a></li>
+		<li>
+		<a target="direita" href="Som/ex18_4_pt.html"><font color="#00FFFF">Exploração 18.4</font></a></li>
+		<li>
+		<a target="direita" href="Som/ex18_5_pt.html"><font color="#00FFFF">Exploração 18.5</font></a></li>
+	</ul>
+  </li>
+  <li><a onclick="tog(this);">Problemas</a>
+	<ul>
+		<li>
+		<a target="direita" href="Som/prob18_1_pt.html"><font color="#00FFFF">Problema 18.1</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_2_pt.html"><font color="#00FFFF">Problema 18.2</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_3_pt.html"><font color="#00FFFF">Problema 18.3</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_4_pt.html"><font color="#00FFFF">Problema 18.4</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_5_pt.html"><font color="#00FFFF">Problema 18.5</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_6_pt.html"><font color="#00FFFF">Problema 18.6</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_7_pt.html"><font color="#00FFFF">Problema 18.7</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_8_pt.html"><font color="#00FFFF">Problema 18.8</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_9_pt.html"><font color="#00FFFF">Problema 18.9</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_10_pt.html"><font color="#00FFFF">Problema 18.10</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_11_pt.html"><font color="#00FFFF">Problema 18.11</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_12_pt.html"><font color="#00FFFF">Problema 18.12</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_13_pt.html"><font color="#00FFFF">Problema 18.13</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_14_pt.html"><font color="#00FFFF">Problema 18.14</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_15_pt.html"><font color="#00FFFF">Problema 18.15</font></a></li>
+		<li>
+		<a target="direita" href="Som/prob18_16_pt.html"><font color="#00FFFF">Problema 18.16</font></a></li>
+	</ul>
+  </li>
+</ul>
+</p>
+<script type="text/javascript" src="jquery-1.3.2.js"></script>
+<p style="margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0" align="center"><b>
+<font size="1" color="#C0C0C0">
+
+CONTACTOS</font></b></p>
+
+<p style="margin-top: 0; margin-bottom: 0" align="center">
+
+<font size="1" color="#C0C0C0">
+
+<a style="color: #FFFFFF; text-decoration: none" href="mailto:psimeao@fc.up.pt">Paulo Simeão Carvalho</a></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0" align="center">
+
+<font size="1" color="#C0C0C0">
+
+<a style="color: #FFFFFF; text-decoration: none" href="mailto:edite.briosa@sapo.pt">Edite Pereira Briosa</a></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p><center><p style="font-size:10px; color:#CCCCCC; border:0px solid #CCCCCC; width:85px;"><?php	$count_my_page = ("hitcounter.txt");	$hits = file($count_my_page);	$hits[0] ++;	$fp = fopen($count_my_page , "w");	fputs($fp , "$hits[0]");	fclose($fp);	echo "Acessos: $hits[0]";?></p></center>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="JavaScript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.parameters.reset();   
+   document.Animator.setAutoRefresh(false); 
+   document.DataGraphY.setAutoRefresh(false);     
+   document.DataGraphX.setAutoRefresh(false); 
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.shiftPixOrigin(-20,-10);
+   document.Animator.setCaption("Define os valores para começar");
+   document.Animator.setAutoRefresh(true);  
+
+   document.DataGraphY.setAutoscaleX(true);
+   document.DataGraphY.setAutoscaleY(false);
+   document.DataGraphY.setMinMaxY(-10,10);
+   document.DataGraphY.clearSeries(1);
+   document.DataGraphY.setSeriesStyle(1,true,3);
+   document.DataGraphY.setMarkerSize(1,0.6); 
+   document.DataGraphY.setSeriesRGB(1,28,128,0);
+   document.DataGraphY.setLastPointMarker(1,true); 
+   document.DataGraphY.setLabelY("E_{y} (N/C)"); 
+   document.DataGraphY.setLabelX("Tempo (s)"); 
+   document.DataGraphY.setTitle("E_{y} vs. Tempo"); 
+   gyid=document.DataGraphY.getGraphID();
+   document.DataGraphY.setDrawZero(true);
+   document.DataGraphY.setStripChart(1,200,true);
+   document.DataGraphY.setAutoRefresh(true);  
+   
+   document.DataGraphX.setAutoscaleX(true);
+   document.DataGraphX.setAutoscaleY(false);
+   document.DataGraphX.setMinMaxY(-10,10);
+   document.DataGraphX.clearSeries(1);
+   document.DataGraphX.setSeriesStyle(1,true,3);
+   document.DataGraphX.setMarkerSize(1,0.6); 
+   document.DataGraphX.setSeriesRGB(1,128,0,128);
+   document.DataGraphX.setLastPointMarker(1,true); 
+   document.DataGraphX.setLabelY("E_{x} (N/C)"); 
+   document.DataGraphX.setLabelX("Tempo (s)"); 
+   document.DataGraphX.setTitle("E_{x} vs. Tempo"); 
+   gxid=document.DataGraphX.getGraphID();
+   document.DataGraphX.setDrawZero(true);
+   document.DataGraphX.setStripChart(1,200, true);
+   document.DataGraphX.setAutoRefresh(true);  
+   
+   document.Animator.deleteDataConnections();  
+   document.Animator.updateDataConnections();
+}
+
+
+
+function demo(){ 
+   if(!loaded) return;
+   a1=document.parameters.ampx.value;
+   if(!checkRange(a1,-8,8)){
+  alert("A magnitude do campo elétrico na direção X deve estar entre -8 N/C e 8 N/C. O valor inserido foi "+a1+" N/C.");
+     return;
+}
+        
+   a2=document.parameters.ampy.value;
+   if(!checkRange(a2,-8,8)){
+		alert("A magnitude do campo elétrico na direção Y deve estar entre -8 N/C e 8 N/C. O valor inserido foi "+a2+" N/C.");
+       return;}
+
+   
+   p=document.parameters.phase.value;
+   if(!checkRange(p,-2,2)){
+   	alert("A diferença de fase (em função de pi radianos) deve estar entre -2 e  2.  O valor inserido foi "+p+".");
+   	return;}
+ 
+    f1=a1+"*sin(t)"; 
+   f2=a2+"*sin(t+("+p+")*pi)";
+   
+   document.Animator.setAutoRefresh(false); 
+   document.DataGraphY.setAutoRefresh(false);     
+   document.DataGraphX.setAutoRefresh(false); 
+   document.Animator.setDefault();
+   document.Animator.setTimeDisplay(false);
+   document.Animator.shiftPixOrigin(-20,-10);
+   
+   idx=document.Animator.addObject("arrow2","x=0, y=0,thickness=2");
+   document.Animator.setRGB(idx,128,0,128);
+   idxtext=document.Animator.addObject("text","x=7, y=5, text=Ex = "+a1+" Sin(t)");
+   document.Animator.setRGB(idxtext,128,0,128);
+   
+   idy=document.Animator.addObject("arrow2","x=0,y=0,thickness=2");
+   document.Animator.setRGB(idy,28,128,0);
+   idytext=document.Animator.addObject("text","x=-6, y=10, text=Ey = "+a2+" Sin(t + "+p+"*Pi)"); 
+   document.Animator.setRGB(idytext,28,128,0);   
+ 
+   idsum=document.Animator.addObject("arrow2","filled,x=0,y=0,thickness=2");
+   document.Animator.setRGB(idsum,250,0,0);
+   idsumtext=document.Animator.addObject("text","x=-7, y=-11, text=Vetor soma de Ex com Ey");
+   document.Animator.setRGB(idsumtext,250,0,0);
+   idb=document.Animator.addObject("circle","r=2, x="+f1+", y="+f2);
+   document.Animator.setTrail(idb,200);
+   document.Animator.setAutoRefresh(true);  
+
+   document.DataGraphY.setAutoscaleX(true);
+   document.DataGraphY.setAutoscaleY(false);
+   document.DataGraphY.setMinMaxY(-10,10);
+   document.DataGraphY.clearSeries(1);
+   document.DataGraphY.setSeriesStyle(1,true,3);
+   document.DataGraphY.setMarkerSize(1,0.6); 
+   document.DataGraphY.setSeriesRGB(1,28,128,0);
+   document.DataGraphY.setLastPointMarker(1,true); 
+   document.DataGraphY.setLabelY("E_{y} (N/C)"); 
+   document.DataGraphY.setLabelX("Tempo (s)"); 
+   document.DataGraphY.setTitle("E_{y} vs. Tempo"); 
+   gyid=document.DataGraphY.getGraphID();
+   document.DataGraphY.setDrawZero(true);
+   document.DataGraphY.setStripChart(1,200,true);
+   document.DataGraphY.setAutoRefresh(true);  
+   
+   document.DataGraphX.setAutoscaleX(true);
+   document.DataGraphX.setAutoscaleY(false);
+   document.DataGraphX.setMinMaxY(-10,10);
+   document.DataGraphX.clearSeries(1);
+   document.DataGraphX.setSeriesStyle(1,true,3);
+   document.DataGraphX.setMarkerSize(1,0.6); 
+   document.DataGraphX.setSeriesRGB(1,128,0,128);
+   document.DataGraphX.setLastPointMarker(1,true); 
+   document.DataGraphX.setLabelY("E_{x} (N/C)"); 
+   document.DataGraphX.setLabelX("Tempo (s)"); 
+   document.DataGraphX.setTitle("E_{x} vs. Tempo"); 
+   gxid=document.DataGraphX.getGraphID();
+   document.DataGraphX.setDrawZero(true);
+   document.DataGraphX.setStripChart(1,200, true);
+   document.DataGraphX.setAutoRefresh(true);  
+   
+   document.Animator.deleteDataConnections();  
+   conidy=document.Animator.makeDataConnection(idy,gyid,1,"t",f2);  
+   conidx=document.Animator.makeDataConnection(idx,gxid,1,"t",f1);  
+      document.Animator.makeDataConnection(idb,idx,2,"x","0");
+   document.Animator.makeDataConnection(idb,idy,2,"0","y");
+   document.Animator.makeDataConnection(idb,idsum,2,"x","y");
+   document.Animator.updateDataConnections();
+
+   document.Animator.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 39.1</title>
+
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 39.1 - Polarização</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraphX" width="317" 
+      height="130" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="-1">
+        <param name="XMax" value="1">
+        <param name="YMin" value="-8">
+        <param name="YMax" value="8">
+        <param name="DataFile">
+        <param name="ShowControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="DataGraphX,Animator,DataGraphY">
+      </applet></td>
+      <td rowspan="2" align="center">
+      <applet code="animator4.Animator.class" codebase="../../classes" 
+       archive="Physlets.jar" 
+      name="Animator" width="300" height="266" hspace="0" vspace="0" 
+      align="Middle" mayscript>
+        <param name="FPS" value="10">
+        <param name="ShowControls" value="false">
+        <param name="dt" value="0.05">
+        <param name="PixPerUnit" value="10">
+        <param name="Resources" value="animator_pt.rc">          
+        <param name="GridUnit" value="1.0">
+      </applet></td>
+    </tr>
+    <tr>
+      <td>
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="dataGraph.DataGraph.class" name="DataGraphY" width="318" 
+      height="130" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="Function">
+        <param name="XMin" value="-1">
+        <param name="XMax" value="1">
+        <param name="YMin" value="-8">
+        <param name="YMax" value="8">
+        <param name="DataFile">
+        <param name="ShowControls" value="false">
+      </applet></td>
+    </tr>
+    </table>
+  </center>
+</div><form name="parameters">
+  <p align="center">&nbsp;<input type="button" value="definir valores e começar" 
+  onclick="JavaScript:demo()"> 
+	<input type="button" value="continuar" onclick="document.Animator.forward()"><input 
+  type="button" value="pausa" onclick="document.Animator.pause()"><input type="button" 
+  value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><br>
+  </p>
+  <p align="center" style="margin-top: 0; margin-bottom: 0"><b>E<sub>x</sub> =&nbsp;&nbsp; <input type="text" 
+  name="ampx" size="2" value="8"> N/C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	E<sub>y</sub> =&nbsp; <input type="text" 
+  name="ampy" size="2" value="8"> N/C</b></p>
+  <p align="center" style="margin-top: 0; margin-bottom: 0"><b>diferença de fase 
+	=&nbsp; 
+  <input type="text" name="phase" size="3" 
+  value="1.5"> * π radianos</b></p>
+</form>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+
+<p align="left">
+   <span id="result_box" class lang="pt"><span class="hps">A animação mostra</span>
+	<span class="hps">o</span> <span class="hps">resultado da adição de</span>
+	<span class="hps">dois</span> <span class="hps">campos elétricos</span>
+	<span class="hps">perpendiculares</span> </span><span class="hps">
+	<span id="result_box" lang="pt">entre si</span></span><span id="result_box" class lang="pt"><span class="hps">.</span>
+	<span class="hps">Cada campo</span> <span class="hps">é parte</span>
+	<span class="hps">de uma onda eletromagnética</span> <span class="hps">que 
+	se propaga</span> <span class="hps">ao longo do eixo</span> </span>
+	<span class="hps"><span id="result_box" lang="pt">Z</span></span><span id="result_box" class lang="pt"><span class="hps">.</span>
+	<span class="hps">Cada</span> <span class="hps">campo elétrico</span>
+	<span class="hps">é apresentado</span> <span class="hps">separadamente, nos</span>
+	<span class="hps">dois gráficos</span> <span class="hps">do lado esquerdo da 
+	animação.</span> <span class="hps">Os gráficos mostram</span>
+	<span class="hps">o campo elétrico</span> </span><span class="hps">
+	<span id="result_box" lang="pt">n</span></span><span id="result_box" class lang="pt"><span class="hps">um 
+	ponto</span> <span class="hps">sobre</span> <span class="hps">o eixo </span>
+	</span><span class="hps"><span id="result_box" lang="pt">Z, para vários 
+	instantes</span></span><span id="result_box" class lang="pt"><span class="hps">.</span>
+	<span class="hps">À direita,</span> <span class="hps">a</span>
+	<span class="hps">animação apresenta</span> <span class="hps">ambos os 
+	campos</span> <span class="hps">elétricos e</span> <span class="hps">sua 
+	soma,</span> <span class="hps">no mesmo ponto</span> </span>
+	<span class="hps"><span id="result_box" lang="pt">d</span></span><span id="result_box" class lang="pt"><span class="hps">o 
+	eixo </span></span>
+	<span class="hps"><span id="result_box" lang="pt">Z</span></span><span id="result_box" class lang="pt"> <span class="hps">e</span> <span class="hps">nos mesmos 
+	instantes</span> <span class="hps">que os</span> <span class="hps">dos 
+	gráficos</span> <span class="hps">do lado esquerdo.</span> <span class="hps">
+	É</span> <span class="hps">como se estivesses a</span> <span class="hps">
+	olhar para os campos</span> <span class="hps">elétricos a partir de uma 
+	posição mais alta no eixo</span> Z<span class="hps">. Podes alterar a 
+	amplitude dos campos elétricos, bem como a diferença de fase entre eles e 
+	observar as ondas resultantes.&nbsp; </span></span>
+	<a href="JavaScript:initApplet()"><span id="result_box" lang="pt">Início</span></a>.</p>
+<p align="left">
+   &nbsp;</p>
+
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">Exploração da autoria de 
+Melissa Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa
+</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

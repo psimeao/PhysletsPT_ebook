@@ -1,0 +1,229 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("ex5_3aa()",100);
+}
+  	
+function ex5_3aa(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Molecular.setAutoRefresh(false); 
+     document.Molecular.setDefault();
+     document.Molecular.setShowControls(false);
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setPeriodicV(false);
+     document.Molecular.setAutoRefresh(true);
+
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setSeriesLabel(2,"v verm (m/s)");
+     document.DataTable.setSeriesLabel(3,"");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+
+
+     document.Molecular.deleteDataConnections(); 
+ 
+}
+
+function ex5_3a(vel){
+    if(!loaded) return;
+    v=eval(vel);
+    document.Molecular.setAutoRefresh(false); 
+     document.Molecular.setDefault();
+     document.Molecular.setClockOneShot(0,100);
+     document.Molecular.setShowControls(false);
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setPeriodicV(false);
+     document.Molecular.createParticles(2);
+
+     document.Molecular.setParticlePos(0,0,0);
+     document.Molecular.setParticleVel(0,-v,0);
+     document.Molecular.setParticleMass(0,100);
+     document.Molecular.setParticleRGB(0,255,0,0);
+
+     document.Molecular.setParticlePos(1,2.1,0);
+     document.Molecular.setParticleVel(1,-v,0);
+     document.Molecular.setParticleMass(1,10);
+    document.Molecular.setParticleSize(1,0.6);
+     document.Molecular.setParticleRGB(1,0,255,0);
+
+     pid1=document.Molecular.addParticleDataSource(0);
+     pid2=document.Molecular.addParticleDataSource(1);
+     document.Molecular.setAutoRefresh(true);
+
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setSeriesLabel(2,"v verm (m/s)");
+     document.DataTable.setSeriesLabel(3,"");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+
+
+     document.Molecular.deleteDataConnections(); 
+     document.Molecular.makeDataConnection(pid1,tid,1,"t","0"); 
+     document.Molecular.makeDataConnection(pid1,tid,2,"vx","0");
+     document.Molecular.updateDataConnections();  
+}
+
+function ex5_3b(vel){
+    if(!loaded) return;
+    v=eval(vel);
+    document.Molecular.setAutoRefresh(false); 
+     document.Molecular.setDefault();
+     document.Molecular.setClockOneShot(0,100);
+     document.Molecular.setShowControls(false);
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setPeriodicV(false);
+     document.Molecular.createParticles(3);
+
+     document.Molecular.setParticlePos(0,0,0);
+     document.Molecular.setParticleVel(0,-v,0);
+     document.Molecular.setParticleMass(0,100);
+     document.Molecular.setParticleRGB(0,255,0,0);
+
+     document.Molecular.setParticlePos(1,2.1,0);
+     document.Molecular.setParticleVel(1,-v,0);
+     document.Molecular.setParticleMass(1,10);
+    document.Molecular.setParticleSize(1,0.6);
+     document.Molecular.setParticleRGB(1,0,255,0);
+
+     document.Molecular.setParticlePos(2,4.3,0);
+     document.Molecular.setParticleVel(2,-v,0);
+     document.Molecular.setParticleMass(2,1);
+    document.Molecular.setParticleSize(2,0.3);
+     document.Molecular.setParticleRGB(2,0,0,255);
+
+     pid1=document.Molecular.addParticleDataSource(0);
+     pid2=document.Molecular.addParticleDataSource(1);
+     pid3=document.Molecular.addParticleDataSource(2);
+     document.Molecular.setAutoRefresh(true);
+
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"t (s)");
+     document.DataTable.setSeriesLabel(2,"v verm (m/s)");
+     document.DataTable.setSeriesLabel(3,"v verde (m/s)");  
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+
+
+     document.Molecular.deleteDataConnections(); 
+     document.Molecular.makeDataConnection(pid1,tid,1,"t","0"); 
+     document.Molecular.makeDataConnection(pid1,tid,2,"vx","0");  
+     document.Molecular.makeDataConnection(pid2,tid,3,"vx","0");
+     document.Molecular.updateDataConnections();  
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 8.5</title>
+
+</head>
+
+<body  onunload="killmenow()">
+
+<h2 align="center">Exploração 8.5 - Colisões com duas e três bolas</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="molecular.MolecularApplet.class" name="Molecular" width="400"
+        height="32" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="InitialP" value="3">
+          <param name="FPS" value="15">
+          <param name="dt" value="0.05">
+          <param name="PeriodicH" value="false">
+          <param name="PeriodicV" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Molecular,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+<applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="240" height="45"
+hspace="0" vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="começar" onclick="document.Molecular.forward()"><input type="button"
+    value="pausa" onclick="document.Molecular.pause()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Molecular.stepForward()"></p>
+    </center>
+  </div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p align="center"><font color="#FF0000"><b><i>Podes ver esta animação com </i>
+</b></font><a href="JavaScript:ex5_3a(5)">duas bolas</a><font color="#FF0000"><b><i> 
+ou com</i></b></font> <a href="JavaScript:ex5_3b(5)">três bolas</a> 
+<font color="#FF0000"><b><i>.</i></b></font></p>
+
+<p><b>Descrição da Animação</b><p style="margin-bottom: 0">Se deixares cair 
+verticalmente uma bola de borracha e esta atingir o solo com uma velocidade de 5 
+m/s, a bola ressalta para cima praticamente com a mesma velocidade.&nbsp;Todavia, o 
+que ocorre se deixares cair duas bolas, uma por cima da outra?
+<p style="margin-top: 0; margin-bottom: 0">Podes investigar o que acontece 
+deixando cair simultaneamente uma bola leve e uma bola pesada, estando a bola 
+leve por cima da bola pesada, de forma que a bola pesada atinge o chão primeiro, 
+ressalta para cima e colide com a bola leve ainda durante a descida daquela.
+<p style="margin-top: 0; margin-bottom: 0">Nesta animação,<b> a posição é dada 
+em metros e o tempo em segundos.</b>
+<a href="JavaScript:ex5_3aa()">Início</a>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;<p><em>Nota: A animação vai correr durante 100 segundos.</em></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

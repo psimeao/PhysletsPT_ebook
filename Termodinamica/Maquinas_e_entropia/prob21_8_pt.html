@@ -1,0 +1,486 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="Javascript" src="../../javascript/tools.js">
+</script> 
+<SCRIPT language="JavaScript">
+var timerID=0;
+var step1=false;
+var step2=false;
+var step3=false;
+var step4=false;
+var loaded=false;
+var processloaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("piston0()",100);
+}
+  	
+function piston0(){ 
+      if(processloaded) return;
+      if(!loaded) return;
+       timerID=0;
+     initV=110;
+     finalV=110;
+	step1=false;
+	step2=false;
+	step3=false;
+	step4=false;
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.setBackgroundRGB(120,120,120);
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setDefaultSize(0.5);
+     document.Molecular.setDefaultMass(10.0);
+     document.Molecular.setDefaultColor(0,250,250);
+     eid=document.Molecular.getEnsembleID();
+     document.Molecular.setVolume(110,1);
+     document.Molecular.setTemp(200);
+     document.Molecular.setAutoRefresh(true);
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"P");
+     document.DataTable.setSeriesLabel(2,"V");  
+     document.DataTable.setSeriesLabel(3,"T");
+     document.DataTable.setSeriesLabel(4,"N");
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,400);
+     document.DataGraph.setMinMaxY(0,40);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.addFunction("v","3000/v");
+     document.DataGraph.addFunction("v","4000/v");
+     document.DataGraph.addFunction("v","5000/v");
+	 document.DataGraph.addFunction("v","6000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesRGB(1,120,0,120);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+    
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Diagrama PV"); 
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+      
+    document.Bar.reset();
+    document.Bar.clearSeries(1);
+     document.Bar.setNumericFormat("%-6i");
+     document.Bar.setAutoRefresh(true);
+     bid=document.Bar.getID();  
+     document.Bar.setBarWidth(20);
+}
+
+
+function engine1() {
+	      if(!loaded) return;
+		if(processloaded) return;
+	    if(step1==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 2.");
+	return;
+}
+
+	if(step2==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 3.");
+	return;
+}
+
+	if(step3==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 4.");
+	return;
+}
+
+	if(step4==true){
+	alert("Deves seguir a ordem sequencial. Escolhe 'Início' ou a Fase 1 para recomeçar.");
+	return;
+}
+	step1=true;
+	clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+	    
+	    i=0;
+     	initV=110;
+     	finalV=110;
+
+     document.Molecular.setAutoRefresh(false);
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Evoluindo...");
+     document.Molecular.setBackgroundRGB(120,120,120);
+     document.Molecular.setPeriodicH(false);
+     document.Molecular.setDefaultSize(0.5);
+     document.Molecular.setDefaultMass(10.0);
+     document.Molecular.setDefaultColor(0,250,250);
+     document.Molecular.createParticles(20);
+     eid=document.Molecular.getEnsembleID();
+     document.Molecular.setVolume(110,1);
+     document.Molecular.setTemp(200);
+     document.Molecular.setAutoRefresh(true);
+
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"P");
+     document.DataTable.setSeriesLabel(2,"V");  
+     document.DataTable.setSeriesLabel(3,"T");
+     document.DataTable.setSeriesLabel(4,"N");
+     document.DataTable.sizeToFit(true);
+     tid=document.DataTable.getTableID();
+
+     document.DataGraph.setAutoscaleX(false);
+     document.DataGraph.setAutoscaleY(false);
+     document.DataGraph.setMinMaxX(0,400);
+     document.DataGraph.setMinMaxY(0,40);
+     document.DataGraph.setDrawGrid(false);
+     document.DataGraph.addFunction("v","1000/v");
+     document.DataGraph.addFunction("v","2000/v");
+     document.DataGraph.addFunction("v","3000/v");
+     document.DataGraph.addFunction("v","4000/v");
+     document.DataGraph.addFunction("v","5000/v");
+	 document.DataGraph.addFunction("v","6000/v");
+     document.DataGraph.clearSeries(1);
+     document.DataGraph.setSeriesRGB(1,120,0,120);
+     document.DataGraph.setSeriesStyle(1,true,-1);
+    
+     document.DataGraph.setLabelY("Pressão"); 
+     document.DataGraph.setLabelX("Volume"); 
+     document.DataGraph.setTitle("Diagrama PV"); 
+     document.DataGraph.setLastPointMarker(1, true);
+     document.DataGraph.setAddRepeatedDatum(1,false);
+     gid=document.DataGraph.getGraphID();
+      
+    document.Bar.reset();
+    document.Bar.clearSeries(1);
+     document.Bar.setNumericFormat("%-6i");
+     document.Bar.setAutoRefresh(true);
+     bid=document.Bar.getID();  
+     document.Bar.setBarWidth(20);
+             
+     document.Molecular.deleteDataConnections(); 
+     cid=document.Molecular.makeDataConnection(eid,tid,1,"p","0"); 
+     document.Molecular.makeDataConnection(eid,tid,2,"v","0");  
+     document.Molecular.makeDataConnection(eid,tid,3,"t","0"); 
+     document.Molecular.makeDataConnection(eid,tid,4,"n","0"); 
+     cid=document.Molecular.makeDataConnection(eid,gid,1,"v","p");
+     document.Molecular.forward();
+     timerID=0; 
+     
+	      document.DataGraph.setTitle("Diagrama PV para Fase 1");
+	      if(timerID==0){
+	 timerID=setTimeout("engine11()",5000);
+}	
+}
+
+
+function engine11(){
+	timerID=0;
+
+	initT=200;
+	finalT=150;
+    steps=30;
+    initV=110;
+	finalV=260.74;
+	
+	document.DataGraph.clearSeries(1);
+	document.Molecular.setTemp(initT);
+	document.Molecular.setVolumeIsothermal(initV,1);
+		document.Molecular.addCaption("Processando");
+    for (i=1;i<=steps;i++) {
+     
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+		work1=20*initT*Math.log((initV+i*(finalV-initV)/steps)/initV);
+     	document.Bar.addDatum(1,0,0);
+     }
+        	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);          
+}
+
+function engine2(){
+		if(!loaded) return;
+		if(processloaded) return;
+	    if(step1==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 1.");
+	return;
+}
+
+	if(step2==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 3.");
+	return;
+}
+
+	if(step3==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 4.");
+	return;
+}
+
+	if(step4==true){
+	alert("Deves seguir a ordem sequencial. Escolhe 'Início' ou a Fase 1 para recomeçar.");
+	return;
+}
+	step2=true;
+	clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+	    
+	initT=150;
+	initV=260.74;
+	finalT=150;
+    steps=60;
+	finalV=379.26;
+
+	
+	document.DataGraph.setTitle("Diagrama PV para Fases 1,2");
+	document.Molecular.setTemp(initT);
+	document.Molecular.setVolumeIsothermal(initV,1);
+		document.Molecular.addCaption("Processando");	
+    for (i=1;i<=steps;i++) {
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+     	work1=20*initT*Math.log((initV+i*(finalV-initV)/steps)/initV);
+     	document.Bar.addDatum(1,work1,0);
+   }
+           	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);  
+}
+
+function engine3(){
+		if(!loaded) return;
+		if(processloaded) return;
+	    if(step1==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 1.");
+	return;
+}
+
+	if(step2==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 2.");
+	return;
+}
+
+	if(step3==true){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 4.");
+	return;
+}
+
+	if(step4==true){
+	alert("Deves seguir a ordem sequencial. Escolhe 'Início' ou a Fase 1 para recomeçar.");
+	return;
+}
+	step3=true;
+	clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+	    
+	initT=150;
+	finalT=200;
+    steps=60;
+	initV=379.26;
+	finalV=160;
+
+	
+	document.DataGraph.setTitle("Diagrama PV para Fases 1,2,3");
+	document.Molecular.addCaption("Processando");
+	document.Molecular.setTemp(initT);
+	document.Molecular.setVolumeIsothermal(initV,1);
+
+    for (i=1;i<=steps;i++) {
+     
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+ 		document.Bar.addDatum(1,0,0);
+    }
+            	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);  
+}
+
+function engine4(){
+		if(!loaded) return;
+		if(processloaded) return;
+	    if(step1==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 1.");
+	return;
+}
+
+	if(step2==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 2.");
+	return;
+}
+
+	if(step3==false){
+	alert("Deves seguir a ordem sequencial. Escolhe a Fase 3.");
+	return;
+}
+
+	if(step4==true){
+	alert("Deves seguir a ordem sequencial. Escolhe 'Início' ou a Fase 1 para recomeçar.");
+	return;
+}
+
+	step4=true;
+	clearTimeout(timerID);
+	    alert("Processo iniciado.  Por favor espera que termine."); 
+	    processloaded=true;
+	    
+	initT=200;
+	finalT=200;
+    steps=60;
+	initV=160;
+	finalV=110.0001;
+
+	document.Molecular.addCaption("Processando");
+	document.DataGraph.setTitle("Diagrama PV para Fases 1,2,3,4");
+	document.Molecular.setTemp(initT);
+	document.Molecular.setVolumeIsothermal(initV,1);
+	
+    for (i=1;i<=steps;i++) { 
+     	document.Molecular.setVolumeIsothermal(initV+i*(finalV-initV)/steps,1);
+     	document.Molecular.setTemp(initT+i*(finalT-initT)/steps);
+        work3=20*initT*Math.log((initV+i*(finalV-initV)/steps)/initV);
+   		document.Bar.addDatum(1,work3,0);
+   	}
+   	
+   	step1=false;
+	step2=false;
+	step3=false;
+	step4=false;
+	        	timerID=0;
+     	timerID=setTimeout("freebuttons()",500);  
+}
+
+
+function freebuttons() {
+     timerID=0;
+     document.Molecular.addCaption("Terminado");
+	 processloaded=false;
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</SCRIPT>
+
+
+<title>Physlet Physics by Christian and Belloni: Problem 21.8</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<BODY onunload="killmenow()">
+
+<h2 align="center">Problema 21.8</h2>
+<div align="center">
+<center>
+<table bgcolor="#C0C0C0" border="1">
+  <TBODY>
+  <TR>
+    <TD><APPLET name="Molecular" codeBase="../../classes/" 
+      code="molecular.MolecularPiston.class" align="middle" width="150" height="280" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="ShowControls" VALUE="false">
+      <PARAM NAME="InitialP" VALUE="25">
+      <PARAM NAME="FPS" VALUE="20">
+      <PARAM NAME="dt" VALUE="0.05">
+      <PARAM NAME="PeriodicH" VALUE="false">
+      <PARAM NAME="PistonMass" VALUE="300">
+      <PARAM NAME="Gravity" VALUE="-2.0">
+      <PARAM NAME="ParseMode" VALUE="false">
+      <param name="OnLoad" value="initApplets()">
+      <param name="AppletNames" value="Molecular,DataGraph,Bar,DataTable">
+      <param name="Resources" value="molecular_pt.rc">
+      </APPLET> 
+    </TD>
+    <TD><APPLET name="DataGraph" codeBase="../../classes/" 
+      code="dataGraph.DataGraph.class" align="middle" width="300" height="280" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Function" VALUE="">
+      <PARAM NAME="XMin" VALUE="-1">
+      <PARAM NAME="XMax" VALUE="1">
+      <PARAM NAME="YMin" VALUE="-1">
+      <PARAM NAME="YMax" VALUE="1">
+      <PARAM NAME="DataFile" VALUE="">
+      <PARAM NAME="AutoScaleX" VALUE="false">
+      <PARAM NAME="AutoScaleY" VALUE="true">
+      <PARAM NAME="ShowControls" VALUE="false">
+      <param name="Resources" value="datagraph_pt.rc">
+      </APPLET> 
+    </TD>
+    <TD>
+    <APPLET name="Bar" codeBase="../../classes/" 
+      code="dataGraph.Bar.class" align="middle" width="90" height="280" 
+      ARCHIVE="Physlets.jar" mayscript>
+      <PARAM NAME="Value" VALUE="0">
+      <PARAM NAME="Vertical" VALUE="true">
+      <PARAM NAME="Max" VALUE="3000">
+      <PARAM NAME="Label" VALUE="Q =">
+	  <PARAM NAME="Min" VALUE="-3000">
+      <PARAM NAME="AutoScale" VALUE="false">
+      <PARAM NAME="ShowControls" VALUE="true">
+      <param name="Resources" value="bar_pt.rc">
+      </APPLET></TD></TR></TBODY>  </table>
+  </center>
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#c0c0c0">
+      <tr>
+        <td><APPLET name="DataTable" codeBase="../../classes/" 
+		code="dataTable.DataTable.class" align="middle" width="400" height="45" 
+		ARCHIVE="Physlets.jar" mayscript>
+		<PARAM NAME="ShowScrollBars" VALUE="false">
+		<PARAM NAME="LastOnTop" VALUE="true">
+		<PARAM NAME="NumRows" VALUE="1">
+		<PARAM NAME="NumCols" VALUE="4">
+		<PARAM NAME="ShowControls" VALUE="false">
+		<PARAM NAME="ShowRowHeader" VALUE="false">
+		<PARAM NAME="ShowColHeader" VALUE="true">
+		</APPLET></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+</div>
+
+<CENTER>
+<FORM> 
+  <b>Ciclo da Máquina Frigorífica:</b>&nbsp; 
+	<input onclick="Javascript:engine1()" type="button" value="Fase 1">&nbsp;
+<input onclick="Javascript:engine2()" type="button" value="Fase 2">&nbsp;
+<input onclick="Javascript:engine3()" type="button" value="Fase 3">&nbsp;
+<input onclick="Javascript:engine4()" type="button" value="Fase 4">
+
+
+	&nbsp;</FORM></CENTER>
+
+<p align="center"><b><i><font color="#FF0000">Por favor espera até a animação 
+estar completamente carregada.</font></i></b></p>
+
+   <p align="center">
+   <font color="#ff0000"><b><i>Há um pequeno atraso temporal — uma vez que o 
+	sistema deve estar em equilíbrio — antes de ocorrer a mudança de estado.</i></b></font></p>
+
+<p align="center"><font color="#ff0000"><b><i>Deves seguir a ordem sequencial 
+das Fases.</i></b></font></p>
+
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Nesta animação, <i>N</i> = <i>nR</i> (isto é, <i>k</i><sub>B</sub> = 1). 
+Assim, a lei do gás ideal (lei dos gases perfeitos) escreve-se<i> PV = NT</i>.&nbsp; 
+Assume que se trata de&nbsp; um gás ideal.&nbsp; <a href="Javascript:piston0()">
+Início</a>.</p>
+<p align="left">&nbsp;</p>
+<p align="left">Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></HTML>

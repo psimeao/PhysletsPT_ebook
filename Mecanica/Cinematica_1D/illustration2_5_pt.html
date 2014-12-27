@@ -1,0 +1,348 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var id=0;
+var vectors=0;
+var v=0;
+var alpha=0;
+var x0=0;
+var y0=0;
+var vx=0;
+var vy=0;
+var ax=0;
+var ay=0;
+var Fx=0;
+var Fy=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb0()",100);
+}
+  	
+function startProb0(){ 
+      if(!loaded) return;
+       timerID=0;
+			with (Math) {
+			v=5;
+			alpha=10;
+			x0=4.82;
+			y0=-0.22;
+			vx=-v*cos(alpha*PI/180);
+			vy=v*sin(alpha*PI/180);
+			ax=9.8*sin(alpha*PI/180)*cos(alpha*PI/180);
+			ay=-9.8*sin(alpha*PI/180)*sin(alpha*PI/180);
+		}
+		
+		Fx="(m*"+ax+")";
+		Fy="(m*"+ay+")";
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		//all=document.Animator.getEnsembleID();
+        //document.Animator.setShowCoordinates(all,false);
+        document.DataGraph1.setAutoRefresh(false);
+		document.DataGraph1.setDefault();
+		document.DataGraph1.deleteAllSeries();
+		document.Animator.shiftPixOrigin(20,-20);
+		document.Animator.setPixPerUnit(50);
+		document.Animator.setGridUnit(0);
+                document.Animator.setTimeDisplay(false);
+		background2=document.Animator.addObject("rectangle","x=0,y=-1,w=1000,h=250");
+		document.Animator.setRGB(background2,0,200,0);
+		background=document.Animator.addObject("relshape","x=-5.5,y=-1.5,n=5,h=0/500/100/0/-600,v=150/-88/0/-62/0");
+		document.Animator.setRGB(background,0,150,0);
+
+		document.Animator.addObject("circle","r=10,x=-3.8,y=1.2");
+		hole=document.Animator.addObject("circle","r=9,x=-3.8,y=1.2");
+		document.Animator.setRGB(hole,150,150,150);
+				
+		xaxis2=document.Animator.addObject("arrow","v=-2*sin(10*pi/180),h=2*cos(10*pi/180),y=0.1,x=-0.8");
+		document.Animator.setRGB(xaxis2,255,255,255);
+		xtext2=document.Animator.addObject("text","x=0.2,y=-0.5,text=+x");
+		document.Animator.setRGB(xtext2,255,255,255);
+
+		    document.DataTable.setDefault();
+		    document.DataTable.setSeriesLabel(1,"x (m)");
+		    document.DataTable.setSeriesLabel(2,"vx (m/s)");
+		    document.DataTable.setSeriesLabel(3,"t (s)");  
+		    document.DataTable.sizeToFit(true); 
+
+			document.DataGraph1.setAutoscaleX(false);
+			document.DataGraph1.setAutoscaleY(false);
+			document.DataGraph1.setMinMaxX(0,6);
+			document.DataGraph1.setMinMaxY(-8,8);
+			document.DataGraph1.clearSeries(1);
+			document.DataGraph1.setSeriesStyle(1,true,3);  
+            document.DataGraph1.setMarkerSize(1,0.6);
+			document.DataGraph1.setLabelY("v_{x} (m/s)"); 
+			document.DataGraph1.setLabelX("t (s)"); 
+			document.DataGraph1.setTitle("Seleciona uma Animação"); 
+			document.DataGraph1.setLastPointMarker(1,true); 
+			document.DataGraph1.setAutoRefresh(true);
+			document.Animator.setAutoRefresh(true);
+	}
+
+
+   
+function startProb(whichAnim){
+      if(!loaded) return;
+      timerID=0;
+		if (whichAnim==1){vectors=0;}
+		if (whichAnim==2){vectors=1;}	
+		if (whichAnim==3){vectors=2;}	
+		with (Math) {
+			v=5;
+			alpha=10;
+			x0=4.82;
+			y0=-0.22;
+			vx=-v*cos(alpha*PI/180);
+			vy=v*sin(alpha*PI/180);
+			ax=9.8*sin(alpha*PI/180)*cos(alpha*PI/180);
+			ay=-9.8*sin(alpha*PI/180)*sin(alpha*PI/180);
+		}
+		
+		Fx="(m*"+ax+")";
+		Fy="(m*"+ay+")";
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		all=document.Animator.getEnsembleID();
+        document.Animator.setShowCoordinates(all,false);
+        document.DataGraph1.setAutoRefresh(false);
+		document.DataGraph1.setDefault();
+		document.DataGraph1.deleteAllSeries();
+		document.Animator.shiftPixOrigin(20,-20);
+		document.Animator.setPixPerUnit(50);
+		document.Animator.setGridUnit(0);
+
+		background2=document.Animator.addObject("rectangle","x=0,y=-1,w=1000,h=250");
+		document.Animator.setRGB(background2,0,200,0);
+		background=document.Animator.addObject("relshape","x=-5.5,y=-1.5,n=5,h=0/500/100/0/-600,v=150/-88/0/-62/0");
+		document.Animator.setRGB(background,0,150,0);
+
+		
+		document.Animator.addObject("circle","r=10,x=-3.8,y=1.2");
+		hole=document.Animator.addObject("circle","r=9,x=-3.8,y=1.2");
+		document.Animator.setRGB(hole,150,150,150);
+		
+	        id2=document.Animator.addObject("circle","r=6,m=0.050");
+		document.Animator.setForce(id2,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id2,0,0,0);
+               id=document.Animator.addObject("circle","r=5,m=0.050");
+		document.Animator.setForce(id,Fx,Fy,x0,y0,vx,vy);
+		document.Animator.setRGB(id,255,255,255);		
+		
+		xaxis2=document.Animator.addObject("arrow","v=-2*sin(10*pi/180),h=2*cos(10*pi/180),y=0.1,x=-0.8");
+		document.Animator.setRGB(xaxis2,255,255,255);
+		xtext2=document.Animator.addObject("text","x=0.2,y=-0.5,text=+x");
+		document.Animator.setRGB(xtext2,255,255,255);
+		
+		if(vectors==1) {
+				v1=document.Animator.addObject("arrow2","thickness=5,x=3.8,y=0,h=-2.2945,v=0.4045");
+				document.Animator.setRGB(v1,0,0,0);
+				document.Animator.setDragable(v1,true);
+				document.Animator.setResizable(v1,false);
+				v1Label=document.Animator.addObject("image","file=images/vector_vi.gif");
+				document.Animator.setAnimationSlave(v1,v1Label);
+				document.Animator.setDisplayOffset(v1Label,-20,40);
+				
+                mv1=document.Animator.addObject("arrow2","thickness=5,x=3.8,y=0,h=2.2945,v=-0.4045");
+				document.Animator.setRGB(mv1,255,0,0);
+				document.Animator.setDragable(mv1,true);
+				document.Animator.setResizable(mv1,false);
+				mv1Label=document.Animator.addObject("image","file=images/minus_vector_vi.gif");
+				document.Animator.setAnimationSlave(mv1,mv1Label);
+				document.Animator.setDisplayOffset(mv1Label,-20,-5);
+
+                v2=document.Animator.addObject("arrow2","thickness=5,x=0.72,y=0.52,h=-1.62,v=0.2865");
+				document.Animator.setDragable(v2,true);
+				document.Animator.setResizable(v2,false);
+				document.Animator.setRGB(v2,0,0,0);
+				v2Label=document.Animator.addObject("image","file=images/vector_vf.gif");
+				document.Animator.setAnimationSlave(v2,v2Label);
+				document.Animator.setDisplayOffset(v2Label,-20,40);
+			}
+		
+		if(vectors==2) {
+				v1=document.Animator.addObject("arrow2","thickness=5,x=0.12,y=0.62,h=-1.4575,v=0.257");
+				document.Animator.setDragable(v1,true);
+				document.Animator.setResizable(v1,false);
+				document.Animator.setRGB(v1,0,0,0);
+				v1Label=document.Animator.addObject("image","file=images/vector_vi.gif");
+				document.Animator.setAnimationSlave(v1,v1Label);
+				document.Animator.setDisplayOffset(v1Label,-20,40);				
+				
+				mv1=document.Animator.addObject("arrow2","thickness=5,x=0.12,y=0.62,h=1.4575,v=-0.257");
+				document.Animator.setDragable(mv1,true);
+				document.Animator.setResizable(mv1,false);
+				document.Animator.setRGB(mv1,255,0,0);
+				mv1Label=document.Animator.addObject("image","file=images/minus_vector_vi.gif");
+				document.Animator.setAnimationSlave(mv1,mv1Label);
+				document.Animator.setDisplayOffset(mv1Label,-20,-5);
+				v2=document.Animator.addObject("arrow2","thickness=5,x=-1.68,y=0.94,h=-0.78878,v=0.1389");
+				document.Animator.setDragable(v2,true);
+				document.Animator.setResizable(v2,false);
+				document.Animator.setRGB(v2,0,0,0);
+				v2Label=document.Animator.addObject("image","file=images/vector_vf.gif");
+				document.Animator.setAnimationSlave(v2,v2Label);
+				document.Animator.setDisplayOffset(v2Label,-20,40);
+}
+
+
+		document.Animator.setOneShot(0,6,"Fim da Animação");
+		    document.DataTable.setDefault();
+		    document.DataTable.setSeriesLabel(1,"x (m)");
+		    document.DataTable.setSeriesLabel(2,"vx (m/s)");
+		    document.DataTable.setSeriesLabel(3,"t (s)");  
+		    document.DataTable.sizeToFit(true);
+		    table=document.DataTable.getTableID();  
+		    document.Animator.makeDataConnection(id,table,1,"x","0"); 
+		    document.Animator.makeDataConnection(id,table,2,"sqrt(vx*vx+vy*vy)*vx/abs(vx)","0"); 
+		    document.Animator.makeDataConnection(id,table,3,"t","0"); 
+			document.DataGraph1.setAutoscaleX(false);
+			document.DataGraph1.setAutoscaleY(false);
+			document.DataGraph1.setMinMaxX(0,6);
+			document.DataGraph1.setMinMaxY(-8,8);
+			document.DataGraph1.clearSeries(1);
+			document.DataGraph1.setSeriesStyle(1,true,3);  
+                        document.DataGraph1.setMarkerSize(1,0.6);
+			document.DataGraph1.setLabelY("v_{x} (m/s)"); 
+			document.DataGraph1.setLabelX("t (s)"); 
+			document.DataGraph1.setTitle("Animação "+whichAnim+": v_{x} vs. t"); 
+			document.DataGraph1.setLastPointMarker(1,true); 
+			graph1=document.DataGraph1.getGraphID();
+			document.Animator.makeDataConnection(id,graph1,1,"t","sqrt(vx*vx+vy*vy)*vx/abs(vx)");
+			document.Animator.updateDataConnections();
+			document.DataGraph1.setAutoRefresh(true);  	
+
+		document.Animator.setAutoRefresh(true);
+	}
+
+	
+	function resetToZero() {
+		if (vectors==1){
+			startProb(1);
+			document.Animator.pause();
+}
+		if (vectors==2){
+			startProb(2);
+			document.Animator.pause();
+}
+
+
+		else {document.Animator.reset();
+}
+}
+	
+	
+function destroyApplet(){
+	     window.onerror= function() { return true;}
+	     clearTimeout(timerID);
+	     	loaded=false;
+	     	timerID=-1;
+	}
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 2.5 - traduzido 
+por Paulo Simeão Carvalho e Edite Briosa</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="destroyApplet()">
+
+<h2 align="center">Ilustração 2.5 - Movimento numa rampa</h2>
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+        <tr> 
+            <td>
+         <applet width="500" height="200" code="dataGraph.DataGraph.class" 
+         codebase="../../classes/" 
+         archive="Physlets.jar" 
+         align="baseline" name="DataGraph1" mayscript>
+              <param name="showControls" value="false">
+            </applet></td>
+	<tr>
+	<td>
+	          <applet width="500" height="150" code="animator4.Animator.class" 
+	          codebase="../../classes/" archive="Physlets.jar" 
+	          align="baseline" name="Animator" mayscript>
+                  <param name="FPS" value="10">
+                  <param name="dt" value="0.1">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+                  <param name="AppletNames" value="Animator,DataGraph1,DataTable">
+                  <param name="Resources" value="animator_pt.rc">
+                </applet></td>
+        </tr>
+	<tr>
+	<td>
+	<p align="center">
+	<align="center">
+	<align="center">
+            <applet codebase="../../classes/"
+		archive="Physlets.jar"
+		code="dataTable.DataTable.class" name="DataTable" width="252" height="45"
+		hspace="0" vspace="0" align="middle" mayscript>
+		  <param name="ShowScrollBars" value="false">
+		  <param name="LastOnTop" value="true">
+		  <param name="CellWidth" value="40">
+		  <param name="NumRows" value="1">
+		  <param name="NumCols" value="3">
+		  <param name="ShowControls" value="false">
+		  <param name="ShowRowHeader" value="false">
+		  <param name="ShowColHeader" value="true">
+		  <param name="SizeToFit" value="true">
+		</applet></td>
+        </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"></p>
+  </center></div>
+</form>
+
+<div align="center">
+  <center>
+  <table  border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td> &nbsp;<a href="JavaScript:startProb(1)" style="text-decoration: none">Animação 1</a> </td>
+      <td> &nbsp;<a href="JavaScript:startProb(2)" style="text-decoration: none">Animação 2</a> </td>
+      <td> &nbsp;<a href="JavaScript:startProb(3)" style="text-decoration: none">Animação 3</a> </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b></p>
+<p align="left">Uma bola de golfe sobe uma rampa até que para e depois começa a 
+descer 
+<b>(a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp; 
+<a href="JavaScript:startProb0()">Início</a>&nbsp;
+</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left">
+Ilustração da autoria de Aaron Titus. <br>
+<i>Script</i> da autoria de Aaron Titus e Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeVisibility(false);
+	document.EField.setDrag(false);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setCaption("Seleciona uma Animação");
+	document.EField.setPotential("2*x",-5,5,-5,5);
+		document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=0,vx=0,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+    document.EField.setAutoRefresh(true);
+}
+
+
+function path_a(){
+if(!loaded) return;
+timerID=0;
+	document.EField.setDefault();
+		document.EField.setAutoRefresh(false);
+	document.EField.setCaption("Animação 1");
+	document.EField.setTimeVisibility(true);
+	document.EField.setDrag(false);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setPotential("2*x",-5,5,-5,5);
+	document.EField.setBz(0);
+			
+			document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=-1,vx=2,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+		document.EField.setMaxTime(2,"Fim da Animação");
+
+		document.EField.setAutoRefresh(true);
+}
+
+function path_b(){
+if(!loaded) return;
+timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeVisibility(true);
+			document.EField.setCaption("Animação 2");
+	document.EField.setDrag(false);
+	document.EField.setBz(0);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setPotential("2*x",-5,5,-5,5);
+		document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=0,vx=2,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+		document.EField.setMaxTime(2,"Fim da Animação");
+
+		document.EField.setAutoRefresh(true);
+	//document.EField.forward();
+}
+
+function path_c(){
+if(!loaded) return;
+timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeVisibility(true);
+			document.EField.setCaption("Animação 3");
+	document.EField.setDrag(false);
+		document.EField.setBz(0);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setPotential("2*x",-5,5,-5,5);
+		document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=1,vx=2,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+			document.EField.setMaxTime(2,"Fim da Animação");
+
+		document.EField.setAutoRefresh(true);
+	//document.EField.forward();
+}
+
+
+function path_d(){
+if(!loaded) return;
+timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeVisibility(true);
+			document.EField.setCaption("Animação 4");
+	document.EField.setDrag(false);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setPotential("2*x",-5,5,-5,5);
+	document.EField.setBz(5);
+		document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=.1,vx=2,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+			document.EField.setMaxTime(2,"Fim da Animação");
+
+		document.EField.setAutoRefresh(true);
+	//document.EField.forward();
+}
+
+function path_e(){
+if(!loaded) return;
+timerID=0;
+	document.EField.setAutoRefresh(false);
+	document.EField.setDefault();
+	document.EField.setTimeVisibility(true);
+			document.EField.setCaption("Animação 5");
+	document.EField.setDrag(false);
+	document.EField.setShowFieldVectors(true);
+	document.EField.setPotential("2*x",-5,5,-5,5);
+		document.EField.setBz(-5);
+		document.EField.setChargeLabel("+");
+		document.EField.setChargeRGB(255,0,0);
+	r1=document.EField.addObject("testcharge","x=-4,y=0,r=4,q=.1,vx=2,vy=0");
+	document.EField.setRGB(r1,255,0,0);
+	document.EField.setMaxTime(2,"Fim da Animação");
+		document.EField.setAutoRefresh(true);
+	//document.EField.forward();
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 27.3</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Problema 27.3</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+      <applet codebase="../../classes/" archive="Physlets.jar"
+        code="eField4.EField.class" name="EField" width="400" height="200"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="FPS" value="10">
+          <param name="dt" value="0.05">
+          <param name="ShowControls" value="false">
+          <param name="ShowContours" value="false">
+          <param name="ShowFieldLines" value="false">
+          <param name="ShowFieldVectors" value="false">
+          <param name="ShowLabels" value="false">
+          <param name="ShowCharge" value="true">
+          <param name="Range" value="-5,5,-5,5">
+          <param name="GridSize" value="40">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="EField">
+        <param name="Resources" value="efield_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#c0c0c0">
+    <tr>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:path_a()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:path_b()" style="text-decoration: none">Animação 2</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:path_c()" style="text-decoration: none">Animação 3</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:path_d()" style="text-decoration: none">Animação 4</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+      <td>&nbsp;&nbsp;
+		<a href="JavaScript:path_e()" style="text-decoration: none">Animação 5</a>&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="form1">
+<p align="center">
+<input type="button" value="começar" 
+onclick="document.EField.forward()"><input type="button" value="pausa" 
+onclick="document.EField.pause()"><input type="button" value="&lt;&lt; passo" 
+onclick="document.EField.stepTimeBack()"><input type="button" value="passo &gt;&gt;" 
+onclick="document.EField.stepTimeForward()"><input type="button" value="início" 
+onclick="document.EField.reset()"></p>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p>Uma carga elétrica positiva desloca-se num campo magnético uniforme.&nbsp; As 
+animações mostram os vetores de campo magnético <b>(a posição é dada em 
+milímetros e o tempo em segundos)</b>.&nbsp;
+<a href="JavaScript:init()">Início</a>&nbsp; </p>
+<p>&nbsp;</p>
+<p align="left"> Problema da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+timerID=0;
+var xStr=0;
+var yStr=0;
+var xRope=0;
+var yRope=0;
+var alpha=0;
+var x0=0;
+var y0=0;
+var vx=0;
+var vy=0;
+var ax=0;
+var ay=0;
+var Fx=0;
+var Fy=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+		xStr="-2.9";
+		yStr="(1-step(t-10))*(0.5+2*t)+step(t-10)*(20.5+2*(t-10)-4.9*(t-10)*(t-10))";
+		xRope="-2.9";
+		yRope="(1-step(t-10))*(1+2*t)+step(t-10)*(50)";
+		x0=-7.5;
+		y0=12;
+		vx0=0;
+		vy0=2;
+		ax="0";
+		ay="0";
+		Fx="m*"+ax;
+		Fy="m*"+ay;
+		
+		document.Animator.setAutoRefresh(false);
+		document.Animator.setDefault();
+		document.Animator.shiftPixOrigin(0,-180);
+		document.Animator.setPixPerUnit(10);
+		document.Animator.setGridUnit(0);
+		
+		ground=document.Animator.addObject("rectangle","x=0,y=-1,w=600,h=20");
+		document.Animator.setRGB(ground,0,150,0);
+		document.Animator.setSticky(ground,true);		
+		document.Animator.setForce(ground,"0","0",0,-1,0,0);
+
+		b=document.Animator.addObject("image","file=images/balloon_color_sm.gif,m=1");
+		document.Animator.setForce(b,Fx,Fy,x0,y0,vx0,vy0);
+
+ 		rope=document.Animator.addObject("rectangle","x="+xRope+",y="+yRope+",w=2,h=10");
+		document.Animator.setRGB(rope,255,0,0);
+
+		cargo=document.Animator.addObject("circle","m=1");
+		document.Animator.setTrajectory(cargo,xStr,yStr);		
+		document.Animator.setRGB(cargo,100,100,100);
+		
+		document.Animator.setSticky(cargo,true);
+		document.Animator.setSticky(ground,true);
+		
+		xaxis=document.Animator.addObject("arrow","v=0,h=5");
+		yaxis=document.Animator.addObject("arrow","v=5,h=0");
+		document.Animator.setRGB(xaxis,0,0,0);
+		document.Animator.setRGB(yaxis,0,0,0);
+		
+		xtext=document.Animator.addObject("text","x=0.8*5,y=+0.2*5,text=+x");
+		ytext=document.Animator.addObject("text","y=0.8*5,x=-0.5*5,text=+y");
+		document.Animator.setRGB(xtext,0,0,0);
+		document.Animator.setRGB(ytext,0,0,0);
+		
+		document.Animator.setOneShot(0,12.25,"Fim da Animação");
+		document.DataTable.setDefault();
+		document.DataTable.setSeriesLabel(1,"x (m)");
+		document.DataTable.setSeriesLabel(2,"y (m)");
+		document.DataTable.setSeriesLabel(3,"t (s)");  
+		document.DataTable.sizeToFit(true);
+		table=document.DataTable.getTableID();  
+		document.Animator.makeDataConnection(cargo,table,1,"x","0"); 
+		document.Animator.makeDataConnection(cargo,table,2,"y","0"); 
+		document.Animator.makeDataConnection(cargo,table,3,"t","0"); 
+		document.Animator.setAutoRefresh(true);
+		document.Animator.updateDataConnections();
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 2.10</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.10</h2>
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+        <tr> 
+          <td> 
+            <div align="center"> 
+         <applet width="200" height="400" code="animator4.Animator.class" 
+         codebase="../../classes/" archive="Physlets.jar" 
+         align="baseline"  name="Animator" mayscript>
+                  <param name="FPS" value="10">
+                  <param name="dt" value="0.05">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+                  <param name="AppletNames" value="Animator,DataTable">
+                  <param name="Resources" value="animator_pt.rc">
+                </applet></div>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p align="center">
+            <applet codebase="../../classes/"
+		archive="Physlets.jar"
+		code="dataTable.DataTable.class" name="DataTable" width="200" height="45"
+		hspace="0" vspace="0" align="middle" mayscript>
+		  <param name="ShowScrollBars" value="false">
+		  <param name="LastOnTop" value="true">
+		  <param name="CellWidth" value="40">
+		  <param name="NumRows" value="1">
+		  <param name="NumCols" value="3">
+		  <param name="ShowControls" value="false">
+		  <param name="ShowRowHeader" value="false">
+		  <param name="ShowColHeader" value="true">
+		  <param name="SizeToFit" value="true">
+		</applet></td>
+        </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.Animator.forward()"><input type="button" value="pausa"
+  onclick="document.Animator.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.Animator.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.Animator.stepForward()"><input type="button" value="início"
+  onclick="document.Animator.reset()"></p>
+  </center></div>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left">No instante <i>t</i> = 10 s, a corda que segura a carga num 
+balão de ar quente é cortada e a carga cai em queda livre  
+<b>(a posição é dada em metros e o tempo é dado em segundos)</b>.&nbsp;A tabela 
+dá-nos as coordenadas da carga, em qualquer instante do movimento de queda 
+livre.&nbsp;
+<a href="JavaScript:startProb()">Início</a><p align="left">&nbsp;</p>
+<p align="left">
+Problema da autoria de Aaron Titus.
+<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa<br> </p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

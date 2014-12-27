@@ -1,0 +1,292 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 19.1</title>
+<script language="JavaScript" src="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("heat0()",100);
+}
+  	
+function heat0(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.selection.reset();
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setTimeDisplay(false);
+   	document.Animator.setCaption("Seleciona uma Animação");
+   	document.Animator.setPixPerUnit(0);
+   document.Animator.setAutoRefresh(true);     
+}
+ 
+ 
+function heat1(){
+	if(!loaded) return;
+	m1=eval(document.selection.D2.value);
+	if(!checkRange(m1,1,5)){
+	alert("A massa deve estar entre 1 kg e 5 kg. O valor inserido foi "+m1+" kg.");
+	return;
+}
+	document.Animator.setAutoRefresh(false);         
+   	document.Animator.setDefault();
+   	document.Animator.setCaption("          Baixa Potência");
+         document.Animator.setPixPerUnit(40);
+   	document.Animator.shiftPixOrigin(0,-70);
+   	document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,120,"0","1.5");
+    document.Animator.addRectangle(4,120,"3","1.5");
+	document.Animator.addRectangle(124,4,"1.5","-.05");
+	document.Animator.addRectangle(124,4,"1.5","3");
+        document.Animator.addPiston(40,"0",+m1+"/2","1.5","0");
+  	document.Animator.addRectangle(80,40,"1.5","-.50");
+        document.Animator.setShapeRGB(0,0,255);
+          document.Animator.addPiston(38,"0",+m1+"/2-0.03","1.5","0");
+  	document.Animator.setShapeRGB(255,120,0);
+  	document.Animator.addRectangle(78,38,"1.5","-.50");
+  	document.Animator.setShapeRGB(0,0,0);
+  	document.Animator.addObject("text","text=400 W, x=1,y=-.5");
+      	
+   	tid1=document.Animator.addPiston(14,"0","2.5","-1.5","2");
+   	document.Animator.setRGB(tid1,155,155,155);
+   	tid2=document.Animator.addObject("circle","r=12");
+   	document.Animator.setRGB(tid2,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid2);
+   	document.Animator.setDisplayOffset(tid2,0,0);
+   	tid3=document.Animator.addCircle(14,"0","0");
+   	document.Animator.setRGB(tid3,155,155,155);
+   	document.Animator.setAnimationSlave(tid1,tid3);
+   	document.Animator.setDisplayOffset(tid3,0,100);
+   	tid4=document.Animator.addCircle(20,"0","0");
+   	document.Animator.setRGB(tid4,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid4);
+   	document.Animator.setDisplayOffset(tid4,0,0);
+   	tid5=document.Animator.addPiston(10,"0",".25+.2*t/"+m1,"0","0");
+   	document.Animator.setRGB(tid5,255,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid5);
+   	document.Animator.setDisplayOffset(tid5,0,-1);
+   	tid6=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid6,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid6);
+   	document.Animator.setDisplayOffset(tid6,-10,10);
+   	tid7=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid7,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid7);
+   	document.Animator.setDisplayOffset(tid7,-10,30);
+   	tid8=document.Animator.addLine(".5","0","-11","1");
+   	document.Animator.setRGB(tid8,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid8);
+   	document.Animator.setDisplayOffset(tid8,-10,50);
+   	tid9=document.Animator.addLine(".5","0","-11","3");
+   	document.Animator.setRGB(tid9,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid9);
+   	document.Animator.setDisplayOffset(tid9,-10,70);
+   	tid10=document.Animator.addLine(".5","0","0","0");
+   	document.Animator.setRGB(tid10,0,0,0);
+   	document.Animator.setAnimationSlave(tid1,tid10);
+   	document.Animator.setDisplayOffset(tid10,-10,90);
+   	document.Animator.setShapeRGB(0,0,0);
+   	cap1=document.Animator.addText("20","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap1);
+   	document.Animator.setDisplayOffset(cap1,-36,6);
+   	document.Animator.setObjectFont(cap1,"Helvetica",1,10);
+   	cap2=document.Animator.addText("21","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap2);
+   	document.Animator.setDisplayOffset(cap2,-36,26);
+   	document.Animator.setObjectFont(cap2,"Helvetica",1,10);
+  	cap3=document.Animator.addText("22","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap3);
+   	document.Animator.setDisplayOffset(cap3,-36,46);
+   	document.Animator.setObjectFont(cap3,"Helvetica",1,10);
+   	cap4=document.Animator.addText("23","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap4);
+   	document.Animator.setDisplayOffset(cap4,-36,66);
+   	document.Animator.setObjectFont(cap4,"Helvetica",1,10);
+   	cap5=document.Animator.addText("24","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap5);
+   	document.Animator.setDisplayOffset(cap5,-37,86);
+    document.Animator.setObjectFont(cap5,"Helvetica",1,10);
+   	cap6=document.Animator.addText("o","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap6);
+   	document.Animator.setDisplayOffset(cap6,-7,0);
+   	document.Animator.setObjectFont(cap6,"Helvetica",1,11);
+   	cap7=document.Animator.addText("C","1","0");
+   	document.Animator.setAnimationSlave(tid1,cap7);
+   	document.Animator.setDisplayOffset(cap7,-1,-6);
+   	document.Animator.setObjectFont(cap7,"Helvetica",1,11);
+ 	
+   document.Animator.setOneShot(0,5,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);     
+}
+
+
+function heat2(){
+	if(!loaded) return;
+	m1=eval(document.selection.D2.value);
+	if(!checkRange(m1,1,5)){
+	alert("A massa deve estar entre 1 kg e 5 kg. O valor inserido foi "+m1+" kg.");
+	return;
+}
+
+
+   document.Animator.setAutoRefresh(false);         
+   document.Animator.setDefault();
+         
+    document.Animator.setPixPerUnit(40);
+   document.Animator.setCaption("          Alta Potência");
+   document.Animator.shiftPixOrigin(0,-70);
+   document.Animator.setShapeRGB(0,0,0);
+    document.Animator.addRectangle(4,120,"0","1.5");
+    document.Animator.addRectangle(4,120,"3","1.5");
+	document.Animator.addRectangle(124,4,"1.5","-.05");
+	document.Animator.addRectangle(124,4,"1.5","3");
+       document.Animator.addPiston(40,"0",+m1+"/2","1.5","0");
+  document.Animator.addRectangle(80,40,"1.5","-.50");
+    document.Animator.setShapeRGB(0,0,255);
+    m1=eval(document.selection.D2.value);
+   document.Animator.addPiston(38,"0",+m1+"/2-0.03","1.5","0");
+  document.Animator.setShapeRGB(255,120,0);
+  document.Animator.addRectangle(78,38,"1.5","-.50");
+  document.Animator.setShapeRGB(0,0,0);
+  document.Animator.addObject("text","text=800 W, x=1,y=-.5");
+      	
+   	tid1=document.Animator.addPiston(14,"0","2.5","-1.5","2");
+   document.Animator.setRGB(tid1,155,155,155);
+   tid2=document.Animator.addObject("circle","r=12");
+   document.Animator.setRGB(tid2,155,155,155);
+   document.Animator.setAnimationSlave(tid1,tid2);
+   document.Animator.setDisplayOffset(tid2,0,0);
+   tid3=document.Animator.addCircle(14,"0","0");
+   document.Animator.setRGB(tid3,155,155,155);
+   document.Animator.setAnimationSlave(tid1,tid3);
+   document.Animator.setDisplayOffset(tid3,0,100);
+   tid4=document.Animator.addCircle(20,"0","0");
+   document.Animator.setRGB(tid4,255,0,0);
+   document.Animator.setAnimationSlave(tid1,tid4);
+   document.Animator.setDisplayOffset(tid4,0,0);
+   tid5=document.Animator.addPiston(10,"0",".25+.4*t/"+m1,"0","0");
+   document.Animator.setRGB(tid5,255,0,0);
+   document.Animator.setAnimationSlave(tid1,tid5);
+   document.Animator.setDisplayOffset(tid5,0,-1);
+   tid6=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(tid6,0,0,0);
+   document.Animator.setAnimationSlave(tid1,tid6);
+   document.Animator.setDisplayOffset(tid6,-10,10);
+   tid7=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(tid7,0,0,0);
+   document.Animator.setAnimationSlave(tid1,tid7);
+   document.Animator.setDisplayOffset(tid7,-10,30);
+   tid8=document.Animator.addLine(".5","0","-11","1");
+   document.Animator.setRGB(tid8,0,0,0);
+   document.Animator.setAnimationSlave(tid1,tid8);
+   document.Animator.setDisplayOffset(tid8,-10,50);
+   tid9=document.Animator.addLine(".5","0","-11","3");
+   document.Animator.setRGB(tid9,0,0,0);
+   document.Animator.setAnimationSlave(tid1,tid9);
+   document.Animator.setDisplayOffset(tid9,-10,70);
+   tid10=document.Animator.addLine(".5","0","0","0");
+   document.Animator.setRGB(tid10,0,0,0);
+   document.Animator.setAnimationSlave(tid1,tid10);
+   document.Animator.setDisplayOffset(tid10,-10,90);
+   document.Animator.setShapeRGB(0,0,0);
+   cap1=document.Animator.addText("20","1","0");
+   document.Animator.setAnimationSlave(tid1,cap1);
+   document.Animator.setDisplayOffset(cap1,-36,6);
+   document.Animator.setObjectFont(cap1,"Helvetica",1,10);
+   cap2=document.Animator.addText("21","1","0");
+   document.Animator.setAnimationSlave(tid1,cap2);
+   document.Animator.setDisplayOffset(cap2,-36,26);
+   document.Animator.setObjectFont(cap2,"Helvetica",1,10);
+  cap3=document.Animator.addText("22","1","0");
+   document.Animator.setAnimationSlave(tid1,cap3);
+   document.Animator.setDisplayOffset(cap3,-36,46);
+   document.Animator.setObjectFont(cap3,"Helvetica",1,10);
+   cap4=document.Animator.addText("23","1","0");
+   document.Animator.setAnimationSlave(tid1,cap4);
+   document.Animator.setDisplayOffset(cap4,-36,66);
+   document.Animator.setObjectFont(cap4,"Helvetica",1,10);
+   cap5=document.Animator.addText("24","1","0");
+   document.Animator.setAnimationSlave(tid1,cap5);
+   document.Animator.setDisplayOffset(cap5,-37,86);
+    document.Animator.setObjectFont(cap5,"Helvetica",1,10);
+   cap6=document.Animator.addText("o","1","0");
+   document.Animator.setAnimationSlave(tid1,cap6);
+   document.Animator.setDisplayOffset(cap6,-7,0);
+   document.Animator.setObjectFont(cap6,"Helvetica",1,11);
+   cap7=document.Animator.addText("C","1","0");
+   document.Animator.setAnimationSlave(tid1,cap7);
+   document.Animator.setDisplayOffset(cap7,-1,-6);
+   document.Animator.setObjectFont(cap7,"Helvetica",1,11);
+ 	
+   document.Animator.setOneShot(0,5,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);     
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+<BODY onunload="killmenow()">
+<h2 align="center">Ilustração 19.1 - Capacidade Térmica Mássica</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+		<applet code="animator4.Animator.class" archive="Physlets.jar" 
+   			codebase="../../classes/" width="400" height="250" name="Animator" mayscript>
+   			<param name="FPS" value="10">
+			<param name="dt" value="0.05">
+			<param name="showControls" value="false">
+			<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+			</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<center>
+
+<form name="selection">
+        <p>
+        <INPUT onclick="document.Animator.forward()" type="button" value="começar"><INPUT onclick="document.Animator.pause()" type="button" value="pausa"><INPUT onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"><INPUT onclick="document.Animator.reset()" type="button" value="início"></td></p>
+        <p>
+<input onclick="Javascript:heat1();" type="button" value="baixa potência - registar massa">&nbsp;
+<input type="button" value="alta potência - registar masssa" onclick="Javascript:heat2();"></p>
+        <p>
+        <b>massa =&nbsp;
+      <input name="D2" size="2" value="2"> kg</b> </p>
+   </form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p align="left"><b>Descrição da Animação</b><p align="left">Nesta ilustração, um 
+bloco azul encontra-se dentro de um forno termicamente isolado <b>(o tempo é dado em minutos 
+e a temperatura em graus Celsius)</b>.&nbsp; Assume que o bloco absorve todo o 
+calor do forno.
+<a href="JavaScript:heat0()">Início</a>&nbsp; &nbsp;<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;<p align="left"> Ilustração da autoria de Anne J. Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body></html>

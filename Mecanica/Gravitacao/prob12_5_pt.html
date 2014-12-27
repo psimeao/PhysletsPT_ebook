@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var cid=0;
+var mid=0;
+var conid1=0;
+var gid1=0;
+var conid2=0;
+var gid2=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("mjb6_5()",100);
+}
+  	
+function mjb6_5(){ 
+      if(!loaded) return;
+       timerID=0;
+     document.efield.setAutoRefresh(false);
+     document.efield.setDefault();
+     document.efield.setShowFieldVectors(false);
+     document.efield.setChargeRGB(255,0,0);
+     
+     cid=document.efield.addCharge(0,0,-5);
+	  document.efield.setDragable(cid,false);
+	mid=document.efield.addCharge(0,0,-1.6);
+	  document.efield.setDragable(mid,false);
+	document.efield.setTrajectory(mid,"8*cos(t)","-8*sin(t)");
+     document.efield.setRGB(mid,255,255,255);
+     document.efield.setShowForce(false);
+	  
+     document.efield.setChargeRGB(0,205,0);
+     cid=document.efield.addTestCharge(-1.5,0,0,2);
+     document.efield.setDragable(cid,false);
+   	document.efield.setMaxTime(32,"Fim da Animação");
+
+     document.DataGraph1.setAutoscaleX(false);
+     document.DataGraph1.setAutoscaleY(false);
+     document.DataGraph1.setMinMaxX(-2.5,2.5);
+     document.DataGraph1.setMinMaxY(-2.5,2.5);
+     document.DataGraph1.deleteSeries(1);
+     document.DataGraph1.setSeriesStyle(1,true,3);
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setLabelX("x (10^{6} km)");  
+     document.DataGraph1.setLabelY("y (10^{6} km)");  
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setTitle("Trajetória Orbital");  
+     gid1=document.DataGraph1.getGraphID();
+
+     document.DataGraph2.setAutoscaleX(true);
+     document.DataGraph2.setAutoscaleY(false);
+     document.DataGraph2.setMinMaxY(1,2.5);
+     document.DataGraph2.deleteSeries(1);
+     document.DataGraph2.setSeriesStyle(1,true,3);
+     document.DataGraph2.setMarkerSize(1,0.6);
+     document.DataGraph2.setLabelX("Tempo (anos)");  
+     document.DataGraph2.setLabelY("Raio (10^{6} km)");  
+     document.DataGraph2.setLastPointMarker(1,true);  
+     document.DataGraph2.setTitle("Raio vs. Tempo");  
+     gid2=document.DataGraph2.getGraphID();
+     
+     document.efield.deleteDataConnections(); 
+     conid1=document.efield.makeDataConnection(cid,gid1,1,"x","y");  
+     conid2=document.efield.makeDataConnection(cid,gid2,1,"t","(x*x+y*y)^0.5");
+     document.efield.setAutoRefresh(true);  
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 12.5</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 12.5</h2>
+<div align="center"><div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class" NAME="DataGraph1" WIDTH="240"
+    HEIGHT="220" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+      <param name="Function">
+      <param name="XMin" value="-2.5">
+      <param name="XMax" value="2.5">
+      <param name="YMin" value="-2.5">
+      <param name="YMax" value="2.5">
+      <param name="DataFile">
+      <param name="AutoScaleX" value="false">
+      <param name="AutoScaleY" value="false">
+      <param name="ShowControls" value="false">
+    </applet>
+    </td>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class" NAME="DataGraph2" WIDTH="240"
+    HEIGHT="220" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+    <param name="Resources" value="efield_pt.rc">
+      <param name="Function">
+      <param name="YMin" value="1">
+      <param name="YMax" value="2.5">
+      <param name="DataFile">
+      <param name="AutoScaleX" value="true">
+      <param name="AutoScaleY" value="false">
+      <param name="ShowControls" value="false">
+    </applet>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+	<applet CODEBASE="../../classes/"
+	ARCHIVE="Physlets.jar"
+	CODE="eField4.EField.class" NAME="efield" WIDTH="486" HEIGHT="200"
+	HSPACE="0" VSPACE="0" ALIGN="Middle" mayscript>
+  		<param name="FPS" value="10">
+  		<param name="dt" value="0.05">
+  		<param name="ShowControls" value="false">
+ 		 <param name="ShowContours" value="false">
+  		<param name="ShowFieldLines" value="false">
+  		<param name="ShowFieldVectors" value="false">
+ 		 <param name="ShowLabels" value="false">
+ 		 <param name="ShowCharge" value="true">
+ 		 <param name="Potential" value="0">
+ 		 <param name="Range" value="-5,5,-5,5">
+ 		 <param name="GridSize" value="64">
+	<param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="efield,DataGraph1,DataGraph2">
+        <param name="Resources" value="efield_pt.rc"></applet></td>
+  </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p>
+	<input type="button" value="começar"
+  onclick="document.efield.forward()"><input type="button" value="pausa"
+  onclick="document.efield.pause()"><input type="button" value="&lt;&lt; passo"
+  onclick="document.efield.stepBack()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.efield.stepForward()"><input type="button" value="início"
+  onclick="document.efield.reset()"></p>
+  </center></div>
+</form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+<p>A Animação apresenta um modelo do Sistema Solar. Contudo, o planeta 
+apresentado não tem nem uma órbita circular, nem elíptica <b>(a posição é dada 
+em 10<sup>4</sup> km e o tempo é dado em anos)</b>.&nbsp;
+<a href="JavaScript: mjb6_5()">Início</a>.</p>
+
+<p><i>Quando obtiveres um bom gráfico, clica no botão direito do rato sobre ele 
+e depois muda o seu tamanho, para otimizares a sua análise.</i><span lang="en-us"><i> </i></span></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

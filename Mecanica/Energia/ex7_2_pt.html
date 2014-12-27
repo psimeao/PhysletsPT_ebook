@@ -1,0 +1,288 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+
+<script LANGUAGE="Javascript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+      document.selection.reset();
+   
+   yzero=eval(document.selection.D1.value);
+   
+   document.Animator.setAutoRefresh(false); 
+   document.Animator.setDefault(); 
+   document.Animator.setTimeDisplay(false);
+   document.Animator.shiftPixOrigin(0,-80);
+ 	document.Animator.setPixPerUnit(10); 
+	document.Animator.setGridUnit(1);
+	
+	document.Animator.setShapeRGB(150,50,150);
+   cid=document.Animator.addCircle(21,"0","0");
+   document.Animator.setForce(cid,"0","-9.8",0,16,0,0);
+   id2=document.Animator.addObject("rectangle","x=-5,y=0, h=20,w=410");
+   document.Animator.setRGB(id2,128,255,128);
+   document.Animator.setBouncy(id2,true);
+   document.Animator.setVisibility(id2,false);
+   id1=document.Animator.addObject("rectangle","x=-5,y=-1, h=20,w=410");
+   document.Animator.setRGB(id1,155,155,155);
+
+
+	 document.Bar.setMin(-300);
+    document.Bar.setMax(300);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3i"); 
+     
+    document.Bar2.setMin(-300);
+    document.Bar2.setMax(300);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,150);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3i"); 
+    
+   document.Bar3.setMin(-300);
+    document.Bar3.setMax(300);
+    document.Bar3.setPosRGB(255,150,0);
+    document.Bar3.setNegRGB(0,155,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3i"); 
+     
+    document.Bar4.setMin(-300);
+    document.Bar4.setMax(300);
+    document.Bar4.setPosRGB(0,0,255);
+    document.Bar4.setNegRGB(0,0,150);
+    bid4=document.Bar4.getID(); 
+    document.Bar4.setNumericFormat("%+-3i"); 
+ 
+
+	  
+	  document.Animator.deleteDataConnections();  
+    document.Animator.setAutoRefresh(true); 
+}
+
+function runApplet() {   
+      if(!loaded) return;
+      newy=document.selection.D1.value;
+       if( !checkRange(newy,-15,15)){
+     alert("O nível zero para o cálculo da Ep deve estar entre -15 m e 15 m. O valor inserido foi "+newy+" m.");
+     return;
+  } 
+   
+   yzero=eval(document.selection.D1.value);
+   
+   document.Animator.setAutoRefresh(false); 
+   document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(0,-80);
+ 	document.Animator.setPixPerUnit(10); 
+	document.Animator.setGridUnit(1);
+	
+	document.Animator.setOneShot(0,20,"Fim da Animação");
+	document.Animator.setShapeRGB(150,50,150);
+   cid=document.Animator.addCircle(21,"0","0");
+   document.Animator.setForce(cid,"0","-9.8",0,16,0,0);
+   id2=document.Animator.addObject("rectangle","x=-5,y=0, h=20,w=410");
+   document.Animator.setRGB(id2,128,255,128);
+   document.Animator.setBouncy(id2,true);
+   document.Animator.setVisibility(id2,false);
+   id1=document.Animator.addObject("rectangle","x=-5,y=-1, h=20,w=410");
+   document.Animator.setRGB(id1,155,155,155);
+
+
+	 document.Bar.setMin(-300);
+    document.Bar.setMax(300);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    document.Bar.setNumericFormat("%+-3i"); 
+     
+    document.Bar2.setMin(-300);
+    document.Bar2.setMax(300);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,150);
+    bid2=document.Bar2.getID(); 
+    document.Bar2.setNumericFormat("%+-3i"); 
+    
+   document.Bar3.setMin(-300);
+    document.Bar3.setMax(300);
+    document.Bar3.setPosRGB(255,150,0);
+    document.Bar3.setNegRGB(0,155,0);
+    bid3=document.Bar3.getID(); 
+    document.Bar3.setNumericFormat("%+-3i"); 
+     
+    document.Bar4.setMin(-300);
+    document.Bar4.setMax(300);
+    document.Bar4.setPosRGB(0,0,255);
+    document.Bar4.setNegRGB(0,0,150);
+    bid4=document.Bar4.getID(); 
+    document.Bar4.setNumericFormat("%+-3i"); 
+ 
+
+	  
+	  document.Animator.deleteDataConnections();  
+     document.Animator.makeDataConnection(cid,bid1,1,"vx*vx/2+vy*vy/2","0"); 
+     document.Animator.makeDataConnection(cid,bid2,1,"9.8*(y-1)","0");  
+     document.Animator.makeDataConnection(cid,bid3,1,"vx*vx/2+vy*vy/2","0");  
+     document.Animator.makeDataConnection(cid,bid4,1,"9.8*(y-"+yzero+"-1)","0");  
+     document.Animator.updateDataConnections(); 
+    document.Animator.setAutoRefresh(true); 
+    document.Animator.forward(); 
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 7.2</title>
+
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 7.2 - Escolha do nível de referência para a 
+Energia Potencial</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="animator4.Animator.class" align="middle" width="240" height="200" 
+       name="Animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="dt" value="0.02">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,Bar,Bar2,Bar3,Bar4">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="50" height="200" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+            <param name="BarWidth" value="12">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar2" width="50" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+            <param name="BarWidth" value="12">
+        </applet>
+      </td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar3" width="50" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+            <param name="BarWidth" value="12">
+        </applet>
+      </td>
+            <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar4" width="50" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="true">
+            <param name="BarWidth" value="12">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form name="selection">
+    <div align="center">
+      <center>
+      <p style="margin-left: 4%; margin-right: 4%">
+      <input type="button" value="registar valores e começar" onclick="JavaScript:runApplet()"><font size="2">
+		</font>
+      <input type="button" value="continuar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início"
+      onclick="document.Animator.reset()"></p>
+      </center>
+    </div>
+    <div align="center">
+      <center>
+      <p><b>Para o gráfico de barras à esquerda:&nbsp; <i>y<sub>ref</sub></i> = 
+		0 m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+      </center>
+    </div>
+    <div align="center">
+      <center>
+      <p><b>&nbsp;Para o gráfico de barras à direita:&nbsp; <i>y<sub>ref</sub></i> = <input type="text" size="2" value="0" name="D1">;&nbsp;&nbsp;onde&nbsp; 
+		-15 m &lt; 
+		<i>y<sub>ref </sub></i>&lt; 15 m. </b></p>
+      </center>
+    </div>
+  </form>
+</div>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p><b>Descrição da Animação</b></p>
+<p>A animação mostra uma bola deixada cair para o chão ( 
+<i>y </i>= 0 m), de uma altura de 15 m&nbsp;<b>(a posição é dada em metros e o tempo 
+em segundos)</b>.&nbsp;Nesta animação, assume que a bola sofre uma colisão tal, que 
+conserva toda a sua energia mecânica. </p>
+<p>A animação também apresenta dois gráficos de barras, que representam os 
+diferentes tipos de energia associados à bola: a energia cinética (<font color="#ff9933"><b>laranja</b></font>) 
+e a energia potencial gravítica (<b><font color="#0000ff">azul</font></b>). O 
+gráfico de barras à esquerda mostra a energia cinética e a energia potencial 
+medida a partir de <i>y<sub>ref</sub> </i>= 0 m.&nbsp;O gráfico de barras à direita 
+mostra a energia cinética e a potencial medida a partir de um nível zero de 
+referência variável. Podes escolher o nível zero do referencial introduzindo na 
+caixa de texto um valor, no intervalo -15 m &lt; <i>y</i><sub><i>ref</i> </sub>
+&lt; 15 m&nbsp; e depois carregar no botão &quot;Registar Valores e Começar&quot;.&nbsp;&nbsp;<a href="JavaScript:initApplet()">Início</a></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

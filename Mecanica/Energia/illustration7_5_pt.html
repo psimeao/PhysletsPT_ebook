@@ -1,0 +1,324 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var angles=false;
+var lid=0;
+var all=0;
+var cur1=0;
+var cur2=0;
+var cur3=0;
+var textid=0;
+var v=0;
+var circleid=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   nospring=false;
+   angles=false;
+   document.selection.reset();
+   document.Animator.setAutoRefresh(false); 
+   document.Animator.setDefault(); 
+		document.Animator.shiftPixOrigin(170,-50)
+ 	document.Animator.setPixPerUnit(15); 
+	document.Animator.setGridUnit(0);
+	
+	document.Animator.setOneShot(0,5.8,"Fim da Animação");
+   document.Animator.setShapeRGB(200,200,200);
+   document.Animator.addPolyShape(3,"0,0,173.2","100,0,0","-12","-0.75");
+
+   id1=document.Animator.addObject("circle","r=1,x=-0.5,y=0.3");
+   id2=document.Animator.addObject("circle","r=1,x=-3.66+2.55*step(t-1.44)*(1-step(t-2.62))*sin(1.87*(t-1.44)),y=2.17-1.5*step(t-1.44)*(1-step(t-2.62))*sin(1.87*(t-1.44))");
+   document.Animator.addConnectorSpring(id1,id2);
+
+
+   document.Animator.setShapeRGB(195,194,140);
+   
+   with (Math){
+      theta=atan(0.55);
+      L=22;
+      xpts="0,"+eval(L*sin(theta))+","+eval(L*(cos(theta)+sin(theta)))+","+eval(L*cos(theta));
+      ypts="0,"+eval(L*cos(theta))+","+eval(L*cos(theta)-L*sin(theta))+","+eval(-L*sin(theta));
+      xStr=eval(0.3+1.75*cos(theta)/2)+"*t";
+      yStr=eval(0.6-1.75*sin(theta)/2)+"*t";
+}
+   rid=document.Animator.addPolyShape(4,xpts,ypts,"0","0");
+
+
+   cid=document.Animator.addObject("circle", "r=2,m=1");
+   document.Animator.setForce(cid,"0","0",-8.66025,5,0,0);
+   document.Animator.setAnimationSlave(cid,rid);
+   document.Animator.setDisplayOffset(rid,-16,-6);
+   ar4=document.Animator.addObject("arrow","x=0,y=0,h=-(9)*(4.33+x)*step(4.330125+x),v=(9)*(2.5-y)*step(2.5-y)");
+   document.Animator.setRGB(ar4,200,0,0);
+   document.Animator.setAnimationSlave(cid,ar4);
+   ar1=document.Animator.addObject("arrow","x=0,y=0,h=0,v=-9.34715");
+   document.Animator.setAnimationSlave(cid,ar1);
+   document.Animator.setRGB(ar1,200,0,0);
+   ar2=document.Animator.addObject("arrow","x=0,y=0,h=4.34715,v=7.42063");
+   document.Animator.setRGB(ar2,200,0,0);
+   document.Animator.setAnimationSlave(cid,ar2);
+   document.Animator.setShowFVector(cid,true);
+   
+
+document.Bar.setMin(0);
+    document.Bar.setMax(77);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(77);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,200);
+    bid2=document.Bar2.getID(); 
+
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(77);
+    document.Bar3.setPosRGB(0,255,0);
+    document.Bar3.setNegRGB(0,200,0);
+    bid3=document.Bar3.getID(); 
+    
+     document.Animator.deleteDataConnections();  
+     document.Animator.makeDataConnection(cid,bid1,1,"vx*vx+vy*vy","0"); 
+     document.Animator.makeDataConnection(cid,bid2,1,"9.8*(y-1.05)*2","0");  
+     document.Animator.makeDataConnection(cid,bid3,1,"1.98*step(4.33+x)*0.5*(9)*((4.33+x)^2+(2.5-y)^2)","0");   
+     document.Animator.updateDataConnections(); 
+    document.Animator.setAutoRefresh(true); 
+
+if (angles)
+{
+
+    proid=document.Animator.addObject("protractor","x=-21,y=-3,theta=0.785,theta0=0,s=-50,fixedbase");
+    document.Animator.setRGB(proid,0,0,0);
+    document.Animator.setDragable(proid,true);
+    document.Animator.setResizable(proid,true);
+    angleid=document.Animator.addObject("calculation","text=téta = ");
+    document.Animator.makeDataConnection(proid,angleid,1,"x-3.5","y-1.5");
+    document.Animator.makeDataConnection(proid,angleid,2,"180-180*theta/3.1415","0");
+    document.Animator.setFormat(angleid,"%4.2f");
+    document.Animator.setObjectFont(angleid,"Helvetica",1,12);
+   document.Animator.setRGB(angleid,0,0,0);
+   document.Animator.updateDataConnections();
+    document.Animator.setAutoRefresh(true);	
+}
+}
+
+function runApplet(){
+	if(!loaded) return;
+	timerID=0;
+   document.Animator.setAutoRefresh(false); 
+   document.Animator.setDefault(); 
+		document.Animator.shiftPixOrigin(170,-50)
+ 	document.Animator.setPixPerUnit(15); 
+	document.Animator.setGridUnit(0);
+	
+	document.Animator.setOneShot(0,4,"Fim da Animação");
+   document.Animator.setShapeRGB(200,200,200);
+   document.Animator.addPolyShape(3,"0,0,173.2","100,0,0","-12","-0.75");
+
+   id1=document.Animator.addObject("circle","r=1,x=-0.5,y=0.3");
+   id2=document.Animator.addObject("circle","r=1,x=-3.67+2.55*step(t-1.42)*(1-step(t-2.62))*sin(2.6*(t-1.42)),y=2.18-1.5*step(t-1.44)*(1-step(t-2.62))*sin(2.6*(t-1.42))");
+   document.Animator.addConnectorSpring(id1,id2);
+
+      document.Animator.setShapeRGB(195,194,140);
+   
+   with (Math){
+      theta=atan(0.55);
+      L=22;
+      xpts="0,"+eval(L*sin(theta))+","+eval(L*(cos(theta)+sin(theta)))+","+eval(L*cos(theta));
+      ypts="0,"+eval(L*cos(theta))+","+eval(L*cos(theta)-L*sin(theta))+","+eval(-L*sin(theta));
+      xStr=eval(0.3+1.75*cos(theta)/2)+"*t";
+      yStr=eval(0.6-1.75*sin(theta)/2)+"*t";
+}
+   rid=document.Animator.addPolyShape(4,xpts,ypts,"0","0");
+   
+   document.Animator.setShapeRGB(195,194,140);
+    cid=document.Animator.addObject("circle", "r=2,m=1");
+   document.Animator.setForce(cid,"4.24352-(9)*(4.33+x)*step(4.330125+x)","-2.45+(9)*(2.5-y)*step(2.5-y)",-8.66025,5,0,0);
+   document.Animator.setAnimationSlave(cid,rid);
+   document.Animator.setDisplayOffset(rid,-16,-6);
+   ar4=document.Animator.addObject("arrow","x=0,y=0,h=-(9)*(4.33+x)*step(4.330125+x),v=(9)*(2.5-y)*step(2.5-y)");
+   document.Animator.setRGB(ar4,200,0,0);
+   document.Animator.setAnimationSlave(cid,ar4);
+   ar1=document.Animator.addObject("arrow","x=0,y=0,h=0,v=-9.34715");
+   document.Animator.setAnimationSlave(cid,ar1);
+   document.Animator.setRGB(ar1,200,0,0);
+   ar2=document.Animator.addObject("arrow","x=0,y=0,h=4.34715,v=7.42063");
+   document.Animator.setRGB(ar2,200,0,0);
+   document.Animator.setAnimationSlave(cid,ar2);
+   document.Animator.setShowFVector(cid,true);
+   
+
+document.Bar.setMin(0);
+    document.Bar.setMax(77);
+    document.Bar.setPosRGB(255,150,0);
+    document.Bar.setNegRGB(0,155,0);
+    bid1=document.Bar.getID(); 
+    
+    document.Bar2.setMin(0);
+    document.Bar2.setMax(77);
+    document.Bar2.setPosRGB(0,0,255);
+    document.Bar2.setNegRGB(0,0,200);
+    bid2=document.Bar2.getID(); 
+
+    document.Bar3.setMin(0);
+    document.Bar3.setMax(77);
+    document.Bar3.setPosRGB(0,255,0);
+    document.Bar3.setNegRGB(0,200,0);
+    bid3=document.Bar3.getID(); 
+    
+     document.Animator.deleteDataConnections();  
+     document.Animator.makeDataConnection(cid,bid1,1,"vx*vx+vy*vy","0"); 
+     document.Animator.makeDataConnection(cid,bid2,1,"9.8*(y-1.05)*2","0");  
+     document.Animator.makeDataConnection(cid,bid3,1,"1.98*step(4.33+x)*0.5*(9)*((4.33+x)^2+(2.5-y)^2)","0");   
+     document.Animator.updateDataConnections(); 
+    document.Animator.setAutoRefresh(true); 
+
+if (angles)
+{
+    proid=document.Animator.addObject("protractor","x=-21,y=-3,theta=0.785,theta0=0,s=-50,fixedbase");
+    document.Animator.setRGB(proid,0,0,0);
+    document.Animator.setDragable(proid,true);
+    document.Animator.setResizable(proid,true);
+    angleid=document.Animator.addObject("calculation","text=téta = ");
+    document.Animator.makeDataConnection(proid,angleid,1,"x-3.5","y-1.5");
+    document.Animator.makeDataConnection(proid,angleid,2,"180-180*theta/3.1415","0");
+    document.Animator.setFormat(angleid,"%4.2f");
+    document.Animator.setObjectFont(angleid,"Helvetica",1,12);
+   document.Animator.setRGB(angleid,0,0,0);
+   document.Animator.updateDataConnections(); 
+   document.Animator.setAutoRefresh(true);	 
+}
+
+}
+
+
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 7.5</title>
+
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 7.5 - Sistema caixa-mola num plano inclinado</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><applet codebase="../../classes/"
+        archive="Physlets.jar"
+         code="animator4.Animator.class" align="middle" width="420" height="350" 
+        name="Animator" mayscript>
+          <param name="FPS" value="15">
+          <param name="dt" value="0.02">
+          <param name="showControls" value="false">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator,Bar,Bar2,Bar3">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar"  width="20" height="350" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+                code="dataGraph.Bar.class" name="Bar2" width="20" height="350" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td><applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar3"  width="20" height="350" hspace="0"
+        vspace="0" align="middle" mayscript>
+           <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+    <div align="center">
+      <center>
+      <b><form>
+        <input onclick="JavaScript:runApplet();document.Animator.forward()" type="button" value="registar e começar"> 
+      <input onclick="document.Animator.forward()" type="button" value="continuar"><input onclick="document.Animator.pause()" type="button" value="pausa"><input onclick="document.Animator.stepForward()" type="button" value="passo &gt;&gt;"></b></form>
+      </center>
+    </div>
+      <form name="selection">
+  <p><br>
+   <input type="checkbox" name="options2" value="velocity2" onclick="javascript:angles = (this.checked);">    
+  <b>seleciona a caixa e depois clica em &quot;registar e começar&quot;, para adicionares 
+	um transferidor.</b>
+  </p>
+   </div>
+</form>
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+    <p><b>Descrição da Animação</b></p>
+<p>Uma caixa desliza num plano inclinado, sem atrito.&nbsp; A meio do percurso a 
+caixa atinge uma mola, conforme mostra a animação <b>(a posição é dada em 
+metros, o tempo em segundos e a energia em joules)</b>.&nbsp;É possível adicionar um 
+transferidor à animação, selecionando a caixa e depois clicando em &quot;registar e 
+começar&quot;.&nbsp; A animação também mostra vetores força: um para cada força (os <font color="#FF0000"> <b>
+vermelhos</b></font>) e um para a força resultante (o
+    <font color="#0000FF"> <b> azul</b></font>).&nbsp;A energia do sistema é 
+apresentada em três gráficos de barras: a energia cinética (<font color="#FF9900"><b>laranja</b></font>), 
+a energia potencial gravítica (<font color="#0000FF"><b>azul</b></font>) e a 
+energia potencial elástica (<font color="#008000"><b>verde</b></font>).&nbsp;<a href="JavaScript:initApplet()">Início</a></p>
+    
+<p>&nbsp;</p>
+<p>Ilustração da autoria de Mario Belloni.<br>
+<i>Script</i> da autoria de Steve Mellema e Chuck Niederriter, modificado por 
+Mario Belloni.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+    
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

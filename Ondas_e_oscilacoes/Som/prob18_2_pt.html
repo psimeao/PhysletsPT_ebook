@@ -1,0 +1,366 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var id1=0;
+var id2=0;
+var conid1=0;
+var conid2=0; 
+var gid1=0;
+var gid2=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("mjb16_2_0()",100);
+}
+
+
+function mjb16_2_0() {
+    if(!loaded) return;
+   timerID=0;
+    document.datagraph1.setAutoRefresh(false);
+    document.datagraph2.setAutoRefresh(false);
+    document.pipes.setDefault();    
+    document.datagraph1.setAutoscaleX(false);
+    document.datagraph1.setAutoscaleY(false);
+    document.datagraph1.setMinMaxX(0.1,10);
+    document.datagraph1.setMinMaxY(0.95,1.05);
+    document.datagraph1.deleteSeries(1);
+    document.datagraph1.setSeriesStyle(1,true,3);
+    document.datagraph1.setMarkerSize(1,0.6);
+    document.datagraph1.setSeriesRGB(1,255,0,0);
+    document.datagraph1.setLastPointMarker(1,true); 
+    document.datagraph1.setLabelX("Tempo (ms)");  
+    document.datagraph1.setLabelY("Pressão (atm)");   
+    document.datagraph1.setTitle("Seleciona uma Animação");  
+    gid1=document.datagraph1.getGraphID();
+    document.datagraph2.setAutoscaleX(false);
+    document.datagraph2.setAutoscaleY(false);
+    document.datagraph2.setMinMaxX(0.01,10);
+    document.datagraph2.setMinMaxY(-1.2,1.2);
+    document.datagraph2.deleteSeries(1);
+    document.datagraph2.setSeriesStyle(1,true,3);
+    document.datagraph2.setMarkerSize(1,0.6);
+    document.datagraph2.setSeriesRGB(1,0,0,255);
+    document.datagraph2.setLastPointMarker(1,true); 
+    document.datagraph2.setLabelX("Tempo (ms)");  
+    document.datagraph2.setLabelY("Deslocamento (micrometros)");    
+    gid2=document.datagraph2.getGraphID();
+    document.pipes.setTimeDisplay(false);
+    document.datagraph1.setAutoRefresh(true);
+    document.datagraph2.setAutoRefresh(true);      
+}
+
+
+function mjb16_2_1() {
+    document.datagraph1.setAutoRefresh(false);
+    document.datagraph2.setAutoRefresh(false);
+    document.pipes.setDefault();
+    document.pipes.setMode("a","sin(5*(x-4)-800*pi*t/1000+pi)");    
+    id1=document.pipes.addDetector(4,0); 
+    document.pipes.setDragable(id1,false);
+    
+    document.datagraph1.setAutoscaleX(false);
+    document.datagraph1.setAutoscaleY(false);
+    document.datagraph1.setMinMaxX(0.1,10);
+    document.datagraph1.setMinMaxY(0.95,1.05);
+    document.datagraph1.deleteSeries(1);
+    document.datagraph1.setSeriesStyle(1,true,3);
+    document.datagraph1.setMarkerSize(1,0.6);
+    document.datagraph1.setSeriesRGB(1,255,0,0);
+    document.datagraph1.setLastPointMarker(1,true); 
+    document.datagraph1.setLabelX("Tempo (ms)");  
+    document.datagraph1.setLabelY("Pressão (atm)");   
+    document.datagraph1.setTitle("Animação 1: P vs. t");  
+    gid1=document.datagraph1.getGraphID();
+
+    
+    document.datagraph2.setAutoscaleX(false);
+    document.datagraph2.setAutoscaleY(false);
+    document.datagraph2.setMinMaxX(0.01,10);
+    document.datagraph2.setMinMaxY(-1.2,1.2);
+    document.datagraph2.deleteSeries(1);
+    document.datagraph2.setSeriesStyle(1,true,3);
+    document.datagraph2.setMarkerSize(1,0.6);
+    document.datagraph2.setSeriesRGB(1,0,0,255);
+    document.datagraph2.setLastPointMarker(1,true); 
+    document.datagraph2.setLabelX("Tempo (ms)");  
+    document.datagraph2.setLabelY("Deslocamento (micrometros)");   
+    document.datagraph2.setTitle("Deslocamento vs. Tempo");  
+    gid2=document.datagraph2.getGraphID();
+
+    document.pipes.deleteDataConnections(); 
+    conid1=document.pipes.makeDataConnection(id1,gid1,1,"t","1+p/100");	
+    conid2=document.pipes.makeDataConnection(id1,gid2,1,"t","sin(800*pi*t/1000)");
+    document.pipes.updateDataConnections(); 
+    document.pipes.setClockOneShot(0,10); 
+    document.pipes.setTimeDisplay(false);
+    document.datagraph1.setAutoRefresh(true);
+    document.datagraph2.setAutoRefresh(true);      
+}
+
+
+function mjb16_2_2() {
+   id1=0;
+   id2=0;
+   conid1=0;
+   conid2=0; 
+   gid1=0;
+   gid2=0;   
+    document.datagraph1.setAutoRefresh(false);
+    document.datagraph2.setAutoRefresh(false);
+    document.pipes.setDefault();
+    document.pipes.setMode("a","sin(5*(x-4)-800*pi*t/1000+pi)");
+    id1=document.pipes.addDetector(4,0); 
+   document.pipes.setDragable(id1,false);
+
+    document.datagraph1.setAutoscaleX(false);
+    document.datagraph1.setAutoscaleY(false);
+    document.datagraph1.setMinMaxX(0.1,10);
+    document.datagraph1.setMinMaxY(0.95,1.05);
+    document.datagraph1.deleteSeries(1);
+    document.datagraph1.setSeriesStyle(1,true,3);
+    document.datagraph1.setMarkerSize(1,0.6);
+    document.datagraph1.setSeriesRGB(1,255,0,0);
+    document.datagraph1.setLastPointMarker(1,true); 
+    document.datagraph1.setLabelX("Tempo (ms)");  
+    document.datagraph1.setLabelY("Pressão (atm)");   
+    document.datagraph1.setTitle("Animação 2: P vs. t");  
+    gid1=document.datagraph1.getGraphID();
+
+    document.datagraph2.setAutoscaleX(false);
+    document.datagraph2.setAutoscaleY(false);
+    document.datagraph2.setMinMaxX(0.1,10);
+    document.datagraph2.setMinMaxY(-1.2,1.2);
+    document.datagraph2.deleteSeries(1);
+    document.datagraph2.setSeriesStyle(1,true,3);
+    document.datagraph2.setMarkerSize(1,0.6);
+    document.datagraph2.setSeriesRGB(1,0,0,255);
+    document.datagraph2.setLastPointMarker(1,true); 
+    document.datagraph2.setLabelX("Tempo (ms)");  
+    document.datagraph2.setLabelY("Deslocamento (micrometros)");  
+    document.datagraph2.setTitle("Deslocamento vs. Tempo");  
+    gid2=document.datagraph2.getGraphID();
+
+    document.pipes.deleteDataConnections(); 
+    conid1=document.pipes.makeDataConnection(id1,gid1,1,"t","1+p/100");	
+    conid2=document.pipes.makeDataConnection(id1,gid2,1,"t","cos(800*pi*t/1000)");
+    document.pipes.updateDataConnections(); 
+    document.pipes.setTimeDisplay(false);
+    document.pipes.setClockOneShot(0,10);
+    document.datagraph1.setAutoRefresh(true);
+    document.datagraph2.setAutoRefresh(true);    
+}
+
+
+function mjb16_2_3() {
+   id1=0;
+   id2=0;
+   conid1=0;
+   conid2=0; 
+   gid1=0;
+   gid2=0;   
+    document.datagraph1.setAutoRefresh(false);
+    document.datagraph2.setAutoRefresh(false);
+    document.pipes.setDefault();
+    document.pipes.setMode("a","sin(5*(x-4)-800*pi*t/1000+pi)"); 
+    id1=document.pipes.addDetector(4,0);
+   document.pipes.setDragable(id1,false);
+
+    document.datagraph1.setAutoscaleX(false);
+    document.datagraph1.setAutoscaleY(false);
+    document.datagraph1.setMinMaxX(0.1,10);
+    document.datagraph1.setMinMaxY(0.95,1.05);
+    document.datagraph1.deleteSeries(1);
+    document.datagraph1.setSeriesStyle(1,true,3);
+    document.datagraph1.setMarkerSize(1,0.6);
+    document.datagraph1.setSeriesRGB(1,255,0,0);
+    document.datagraph1.setLastPointMarker(1,true); 
+    document.datagraph1.setLabelX("Tempo (ms)");  
+    document.datagraph1.setLabelY("Pressão (atm)");   
+    document.datagraph1.setTitle("Animação 3: P vs. t");  
+    gid1=document.datagraph1.getGraphID();
+
+    document.datagraph2.setAutoscaleX(false);
+    document.datagraph2.setAutoscaleY(false);
+    document.datagraph2.setMinMaxX(0.1,10);
+    document.datagraph2.setMinMaxY(-1.2,1.2);
+    document.datagraph2.deleteSeries(1);
+    document.datagraph2.setSeriesStyle(1,true,3);
+    document.datagraph2.setMarkerSize(1,0.6);
+    document.datagraph2.setSeriesRGB(1,0,0,255);
+    document.datagraph2.setLastPointMarker(1,true); 
+    document.datagraph2.setLabelX("Tempo (ms)");  
+    document.datagraph2.setLabelY("Deslocamento (micrometros)");  
+    document.datagraph2.setTitle("Deslocamento vs. Tempo");    
+    gid2=document.datagraph2.getGraphID();
+
+    document.pipes.deleteDataConnections(); 
+    conid1=document.pipes.makeDataConnection(id1,gid1,1,"t","1+p/100");	
+    conid2=document.pipes.makeDataConnection(id1,gid2,1,"t","-sin(800*pi*t/1000)");
+    document.pipes.updateDataConnections(); 
+    document.pipes.setTimeDisplay(false);
+    document.pipes.setClockOneShot(0,10);
+    document.datagraph1.setAutoRefresh(true);
+    document.datagraph2.setAutoRefresh(true);  
+}
+
+
+function mjb16_2_4() {
+   id1=0;
+   id2=0;
+   conid1=0;
+   conid2=0; 
+   gid1=0;
+   gid2=0;   
+    document.datagraph1.setAutoRefresh(false);
+    document.datagraph2.setAutoRefresh(false);
+    document.pipes.setDefault();
+    document.pipes.setMode("a","sin(5*(x-4)-800*pi*t/1000+pi)"); 
+    id1=document.pipes.addDetector(4,0);
+   document.pipes.setDragable(id1,false);
+
+    document.datagraph1.setAutoscaleX(false);
+    document.datagraph1.setAutoscaleY(false);
+    document.datagraph1.setMinMaxX(0.1,10);
+    document.datagraph1.setMinMaxY(0.95,1.05);
+    document.datagraph1.deleteSeries(1);
+    document.datagraph1.setSeriesStyle(1,true,3);
+    document.datagraph1.setMarkerSize(1,0.6);
+    document.datagraph1.setSeriesRGB(1,255,0,0);
+    document.datagraph1.setLastPointMarker(1,true); 
+    document.datagraph1.setLabelX("Tempo (ms)");  
+    document.datagraph1.setLabelY("Pressão (atm)");   
+    document.datagraph1.setTitle("Animação 4: P vs. t");  
+    gid1=document.datagraph1.getGraphID();
+
+    document.datagraph2.setAutoscaleX(false);
+    document.datagraph2.setAutoscaleY(false);
+    document.datagraph2.setMinMaxX(0.1,10);
+    document.datagraph2.setMinMaxY(-1.2,1.2);
+    document.datagraph2.deleteSeries(1);
+    document.datagraph2.setSeriesStyle(1,true,3);
+    document.datagraph2.setMarkerSize(1,0.6);
+    document.datagraph2.setSeriesRGB(1,0,0,255);
+    document.datagraph2.setLastPointMarker(1,true); 
+    document.datagraph2.setLabelX("Tempo (ms)");  
+    document.datagraph2.setLabelY("Deslocamento (micrometros)");   
+    document.datagraph2.setTitle("Deslocamento vs. Tempo");   
+    gid2=document.datagraph2.getGraphID();
+
+    document.pipes.deleteDataConnections(); 
+    conid1=document.pipes.makeDataConnection(id1,gid1,1,"t","1+p/100");	
+    conid2=document.pipes.makeDataConnection(id1,gid2,1,"t","-cos(800*pi*t/1000)");
+    document.pipes.updateDataConnections(); 
+    document.pipes.setTimeDisplay(false);
+    document.pipes.setClockOneShot(0,10);
+    document.datagraph1.setAutoRefresh(true);
+    document.datagraph2.setAutoRefresh(true); 
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 18.2</title>
+</head>
+<body onunload="killmenow()">
+<h2 align="center">Problema 18.2</h2>
+<div align="center"><center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td align="center" colspan="2">
+    <applet CODEBASE="../../classes/"
+ARCHIVE="Physlets.jar"
+CODE="pipes.PipeApplet.class" NAME="pipes"  WIDTH="523"
+HEIGHT="46" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+  <param name="Speed" value="343">
+  <param name="ShowControls" value="false">
+  <param name="Pixper" value="25">
+  <param name="FPS" value="10">
+  <param name="Dt" value="0.1">
+  <param name="ShowLegend" value="false">
+  <param name="WallW" value="4">
+    		 <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="pipes,datagraph1,datagraph2">
+    <param name="Resources" value="pipes_pt.rc">
+</applet></td>
+  </tr>
+  <tr>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class" NAME="datagraph1" WIDTH="260"
+    HEIGHT="170" mayscript>
+      <param name="ShowControls" value="false">
+    </applet></td>
+    <td align="center">
+    <applet CODEBASE="../../classes/"
+    ARCHIVE="Physlets.jar"
+    CODE="dataGraph.DataGraph.class"  NAME="datagraph2" WIDTH="260"
+    HEIGHT="170" mayscript>
+      <param name="ShowControls" value="false">
+    </applet></td>
+  </tr>
+</table>
+</center></div>
+
+<form>
+  <div align="center"><center><p><input type="button" value="começar"
+  onclick="document.pipes.forward()"><input type="button" value="pausa"
+  onclick="document.pipes.pause()"><input type="button" value="passo &gt;&gt;"
+  onclick="document.pipes.stepForward()"></p>
+  </center></div>
+</form>
+
+<div align="center"><center>
+
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>&nbsp;&nbsp;
+	<a href="JavaScript:mjb16_2_1()" style="text-decoration: none">Animação 1</a>&nbsp;&nbsp;&nbsp; </td>
+    <td>&nbsp;&nbsp;
+	<a href="JavaScript:mjb16_2_2()" style="text-decoration: none">Animação 2</a> &nbsp;</td>
+    <td>&nbsp;&nbsp;
+	<a href="JavaScript:mjb16_2_3()" style="text-decoration: none">Animação 3</a> &nbsp;</td>
+    <td>&nbsp;&nbsp;
+	<a href="JavaScript:mjb16_2_4()" style="text-decoration: none">Animação 4</a> &nbsp;</td>
+  </tr>
+</table>
+</center></div>
+
+<p align="center"><b><font color="#FF0000"><i>Por favor espera até a animação 
+estar completamente carregada.</i></font></b></p>
+
+<p align="left">A animação mostra a secção reta de uma onda sonora que se 
+propaga num tubo muito comprido. Um detetor (o quadrado laranja) é colocado 
+dentro do tubo e mede adequadamente a pressão no interior do meio <b>(a posição 
+é dada em metros e o tempo é dado em milisegundos)</b>.&nbsp; <a href="JavaScript:mjb16_2_0()">
+Início</a>&nbsp;&nbsp; </p>
+
+<p align="left">&nbsp;</p>
+<p align="left">© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+</html>

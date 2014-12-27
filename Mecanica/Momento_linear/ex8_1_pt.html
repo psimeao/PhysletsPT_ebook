@@ -1,0 +1,307 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Molecular.setAutoRefresh(false);
+    document.DataTable.setAutoRefresh(false);  
+
+     document.Molecular.setDefault();
+     document.Molecular.setClockOneShot(0,100);
+     document.Molecular.addCaption("Seleciona uma Animação");
+     document.Molecular.setAutoRefresh(true);
+  
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Rapidez 1");
+     document.DataTable.setSeriesLabel(2,"Rapidez 2");  
+     document.DataTable.setSeriesLabel(3,"Rapidez 3");
+     document.DataTable.setSeriesLabel(4,"Rapidez 4");
+     document.DataTable.setSeriesLabel(5,"Rapidez 5");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+
+ 
+     document.Molecular.deleteDataConnections(); 
+     document.Molecular.updateDataConnections(); 
+
+}
+
+
+function initAppletA(){
+    if(!loaded) return;
+    timerID=0;
+    document.Molecular.setAutoRefresh(false);
+    document.DataTable.setAutoRefresh(false);  
+
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Animação 1");
+      document.Molecular.setClockOneShot(0,100);
+     document.Molecular.setShowControls(false);
+     document.Molecular.addParticleL(-5,0,-1,0,1);
+     document.Molecular.addParticleL(-2.5,0,3,0,1);
+     document.Molecular.addParticleL(0,0,1,0,1);
+     
+     document.Molecular.addParticleR(0,0,1,0,1);
+     document.Molecular.addParticleR(-3,0,4,0,1);
+     rid=document.Molecular.getEnsembleRightID();
+     lid=document.Molecular.getEnsembleLeftID();
+
+     document.Molecular.setParticleMassL(0,1);
+     document.Molecular.setParticleRGBL(0,0,0,255);
+     document.Molecular.setParticleMassL(1,1);
+     document.Molecular.setParticleRGBL(1,255,0,0);
+     document.Molecular.setParticleMassL(2,1);
+     document.Molecular.setParticleRGBL(2,255,0,0);
+     
+     document.Molecular.setParticleMassR(0,1);
+     document.Molecular.setParticleRGBR(0,255,0,0);
+     document.Molecular.setParticleMassR(1,1);
+     document.Molecular.setParticleRGBR(1,0,0,255);
+     
+     pid1=document.Molecular.addParticleDataSourceL(0);
+     pid2=document.Molecular.addParticleDataSourceL(1);
+     pid3=document.Molecular.addParticleDataSourceL(2);
+     pid4=document.Molecular.addParticleDataSourceR(0);
+     pid5=document.Molecular.addParticleDataSourceR(1);
+     document.Molecular.setProbabilityFunction("0.0");
+     document.Molecular.setAutoRefresh(true);
+  
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Rapidez 1");
+     document.DataTable.setSeriesLabel(2,"Rapidez 2");  
+     document.DataTable.setSeriesLabel(3,"Rapidez 3");
+     document.DataTable.setSeriesLabel(4,"Rapidez 4");
+     document.DataTable.setSeriesLabel(5,"Rapidez 5");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+
+ 
+     document.Molecular.deleteDataConnections(); 
+     document.Molecular.makeDataConnection(pid1,tid,1,"abs(vx)","0");  
+     document.Molecular.makeDataConnection(pid2,tid,2,"abs(vx)","0");  
+     document.Molecular.makeDataConnection(pid3,tid,3,"abs(vx)","0"); 
+     document.Molecular.makeDataConnection(pid4,tid,5,"abs(vx)","0"); 
+     document.Molecular.makeDataConnection(pid5,tid,4,"abs(vx)","0");  
+     document.Molecular.updateDataConnections(); 
+     document.Molecular.forward();
+     timerID=setTimeout("setColor1()",900);
+}
+function initAppletB(){
+    if(!loaded) return;
+    clearTimeout(timerID);
+    document.Molecular.setAutoRefresh(false);
+    document.DataTable.setAutoRefresh(false);  
+
+     document.Molecular.setDefault();
+     document.Molecular.addCaption("Animação 2");
+     document.Molecular.setClockOneShot(0,100);
+     document.Molecular.setShowControls(false);
+     document.Molecular.addParticleL(-5,0,-1,0,1);   
+     document.Molecular.addParticleL(-2.5,0,3,0,1);  
+     document.Molecular.addParticleL(0,0,1,0,1);
+     
+     document.Molecular.addParticleR(0,0,1,0,1);
+     document.Molecular.addParticleR(-3,0,4,0,1);
+     rid=document.Molecular.getEnsembleRightID();
+     lid=document.Molecular.getEnsembleLeftID();
+
+     document.Molecular.setParticleMassL(0,1);
+     document.Molecular.setParticleRGBL(0,0,0,255);
+     document.Molecular.setParticleMassL(1,1);
+     document.Molecular.setParticleRGBL(1,255,0,0);
+     document.Molecular.setParticleMassL(2,2);
+     document.Molecular.setParticleRGBL(2,255,0,0);
+     
+     document.Molecular.setParticleMassR(0,1);
+     document.Molecular.setParticleRGBR(0,0,0,255);
+     document.Molecular.setParticleMassR(1,1);
+     document.Molecular.setParticleRGBR(1,0,0,255);
+     
+     pid1=document.Molecular.addParticleDataSourceL(0);
+     pid2=document.Molecular.addParticleDataSourceL(1);
+     pid3=document.Molecular.addParticleDataSourceL(2);
+     pid4=document.Molecular.addParticleDataSourceR(0);
+     pid5=document.Molecular.addParticleDataSourceR(1);
+     document.Molecular.setProbabilityFunction("1.0*step(m-1.5)");
+     document.Molecular.setAutoRefresh(true);
+  
+     document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"Rapidez 1");
+     document.DataTable.setSeriesLabel(2,"Rapidez 2");  
+     document.DataTable.setSeriesLabel(3,"Rapidez 3");
+     document.DataTable.setSeriesLabel(4,"Rapidez 4");
+     document.DataTable.setSeriesLabel(5,"Rapidez 5");
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+
+ 
+     document.Molecular.deleteDataConnections(); 
+     document.Molecular.makeDataConnection(pid1,tid,1,"abs(vx)","0");  
+     document.Molecular.makeDataConnection(pid2,tid,2,"abs(vx)","0");  
+     document.Molecular.makeDataConnection(pid3,tid,3,"abs(vx)","0"); 
+     document.Molecular.makeDataConnection(pid4,tid,5,"abs(vx)","0"); 
+     document.Molecular.makeDataConnection(pid5,tid,4,"abs(vx)","0");  
+     document.Molecular.updateDataConnections(); 
+     document.Molecular.forward();
+	  timerID=setTimeout("setColor2()",2000);
+}
+function setColor1(){
+     i=Math.floor(3*Math.random());
+     if( Math.random()>0.5){
+             document.Molecular.setParticleRGBL(i,255,0,0);
+         }
+         else{
+             document.Molecular.setParticleRGBL(i,0,0,255);
+         }
+
+     if( Math.random()>0.5){
+             document.Molecular.setParticleRGBR(0,255,0,0);
+             document.Molecular.setParticleRGBR(1,0,0,255);
+         }
+         else{
+             document.Molecular.setParticleRGBR(0,0,0,255);
+             document.Molecular.setParticleRGBR(1,255,0,0);
+         }
+         timerID=setTimeout("setColor1()",1000);
+}
+
+function setColor2(){
+     if( Math.random()>0.5){
+         document.Molecular.setParticleRGBL(2,255,0,0);
+         document.Molecular.setParticleRGBR(0,0,0,255);
+     } 
+     else {
+         document.Molecular.setParticleRGBL(2,0,0,255);
+         document.Molecular.setParticleRGBR(0,255,0,0);
+     }
+     timerID=setTimeout("setColor2()",1000);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 8.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 8.1 - Compreender as Leis de Conservação</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td >
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="molecular.MolecularMembrane.class" name="Molecular" width="400"
+        height="100" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowControls" value="false">
+          <param name="InitialP" value="25">
+          <param name="FPS" value="10">
+          <param name="dt" value="0.1">
+          <param name="PeriodicH" value="false">
+          <param name="PeriodicV" value="false">
+          <param name="MaxParticles" value="80">
+          <param name="Probability" value="0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Molecular,DataTable">
+        <param name="Resources" value="molecular_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td height="45">
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataTable.DataTable.class" name="DataTable" width="400" height="45"
+        hspace="0" vspace="0" align="middle" mayscript>
+          <param name="ShowScrollBars" value="false">
+          <param name="LastOnTop" value="true">
+          <param name="CellWidth" value="40">
+          <param name="NumRows" value="1">
+          <param name="NumCols" value="5">
+          <param name="ShowControls" value="false">
+          <param name="ShowRowHeader" value="false">
+          <param name="ShowColHeader" value="true">
+          <param name="SizeToFit" value="true">
+        </applet>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="SpecForm">
+  <div align="center">
+    <center>
+    <p>
+	<input type="button" value="começar" onclick="document.Molecular.forward()"><input type="button"
+    value="pausa" onclick="document.Molecular.pause()"><input type="button" value="passo &gt;&gt;"
+    onclick="document.Molecular.stepForward()"></p>
+    </center>
+  </div>
+</form>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td width="100" align="center">
+		<a href="JavaScript:initAppletA()" style="text-decoration: none">
+		Animação 1</a></td>
+      <td width="100" align="center">
+		<a href="JavaScript:initAppletB()" style="text-decoration: none">
+		Animação 2</a></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>
+Nestas animações poderás observar várias esferas com a mesma massa, que colidem 
+umas com as outras. Algumas propriedades a considerar são o número de&nbsp; 
+esferas, a cor e as respetivas velocidades. <em>Cada animação durará 100 
+segundos.</em></p>
+<p>
+Para recomeçares a animação, basta clicar <a href="javascript:initApplet()">aqui</a>.</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

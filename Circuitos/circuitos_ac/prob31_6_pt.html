@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var id=new Array();
+var gidV=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("build1a()",100);
+}
+
+function build1a(){
+    if(!loaded) return;
+    timerID=0;
+    id[4]=0;
+    id[5]=0;
+    noc=10;
+	dt=5.0e-6;
+	fps=20; 
+		document.circuit.pause();
+	document.circuit.setDefault();
+	 document.circuit.setDT(dt);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(fps); 
+	  
+	document.circuit.setGrid("rows=2,cols=2");
+    id[0]=document.circuit.addObject("source","row=0,col=1,to=v,func=5*sin(2*3.14*700*t)");
+    id[3]=document.circuit.addObject("resistor","row=0,col=0,to=v,label=,r=1000.0");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=0,to=h,label=,c=5e-7");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.setValueVisible(id[4],false);
+    document.circuit.setValueVisible(id[5],false);
+
+    	 
+	 document.dataGraph.setLabelY("d.d.p.(V)");
+    document.circuit.parse();
+    resetCircuit();
+    document.dataGraph.setTitle("Gráfico A");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[0],gidV,1,"t","v");
+      document.circuit.makeDataConnection(id[3],gidV,2,"t","v");
+      document.circuit.makeDataConnection(id[2],gidV,3,"t","v");
+    document.circuit.updateDataConnections();
+}
+
+function build1b(){
+    if(!loaded) return;
+     timerID=0;
+    id[4]=0;
+    id[5]=0;
+    noc=10;
+	dt=5.0e-6;
+	fps=20;
+		document.circuit.pause();
+	document.circuit.setDefault();
+	 document.circuit.setDT(dt);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(fps); 
+	  
+	document.circuit.setGrid("rows=2,cols=2");
+    id[0]=document.circuit.addObject("source","row=0,col=1,to=v,func=5*sin(2*3.14*700*t)");
+    id[3]=document.circuit.addObject("resistor","row=0,col=0,to=v,label=,r=1000.0");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=0,to=h,label=,c=5e-7");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.setValueVisible(id[4],false);
+    document.circuit.setValueVisible(id[5],false);
+
+    	 
+	 document.dataGraph.setLabelY("d.d.p.(V)");
+    document.circuit.parse();
+    resetCircuit();
+    document.dataGraph.setTitle("Gráfico B");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[0],gidV,1,"t","v");
+      document.circuit.makeDataConnection(id[3],gidV,2,"t","-v");
+      document.circuit.makeDataConnection(id[2],gidV,3,"t","-v");
+    document.circuit.updateDataConnections();
+}
+
+function build1c(){
+    if(!loaded) return;
+	timerID=0;
+    id[4]=0;
+    id[5]=0;
+    noc=10;
+	dt=5.0e-6;
+	fps=20;
+	document.circuit.pause();
+	document.circuit.setDefault();
+	 document.circuit.setDT(dt);
+	 document.circuit.setNOC(noc);
+	 document.circuit.setFPS(fps); 
+	  
+	document.circuit.setGrid("rows=2,cols=2");
+    id[0]=document.circuit.addObject("source","row=0,col=1,to=v,func=5*sin(2*3.14*700*t)");
+    id[3]=document.circuit.addObject("resistor","row=0,col=0,to=v,label=,r=1000.0");
+    id[2]=document.circuit.addObject("capacitor","row=0,col=0,to=h,label=,c=5e-7");
+    document.circuit.addObject("wire","row=1,col=1,to=h,label=");
+    document.circuit.addObject("wire","row=1,col=0,to=h,label=");
+    document.circuit.setValueVisible(id[2],false);
+    document.circuit.setValueVisible(id[3],false);
+    document.circuit.setValueVisible(id[4],false);
+    document.circuit.setValueVisible(id[5],false);
+
+    	 
+	 document.dataGraph.setLabelY("d.d.p.(V)");
+    document.circuit.parse();
+    resetCircuit();
+    document.dataGraph.setTitle("Gráfico C");
+    document.circuit.deleteDataConnections();
+    document.circuit.makeDataConnection(id[0],gidV,1,"t","v");
+      document.circuit.makeDataConnection(id[3],gidV,2,"t","v");
+      document.circuit.makeDataConnection(id[2],gidV,3,"t","-v");
+    document.circuit.updateDataConnections();
+}
+
+function resetCircuit(){
+    if(!loaded) return;
+    isRunning=document.circuit.isClockRunning();
+    document.circuit.reset();
+    document.dataGraph.setAutoscaleY(true);   
+    document.dataGraph.clearSeries(1);
+    document.dataGraph.clearSeries(2);
+    document.dataGraph.setSeriesRGB(1,255,0,0);  
+    document.dataGraph.setSeriesStyle(1,true,3);
+    document.dataGraph.setSeriesRGB(2,0,0,255);  
+    document.dataGraph.setSeriesStyle(2,true,3);
+    document.dataGraph.setSeriesRGB(3,0,255,0);  
+    document.dataGraph.setSeriesStyle(3,true,3); 
+	document.dataGraph.setLastPointMarker(1,true); 
+	document.dataGraph.setMarkerSize(1,0.6); 
+	document.dataGraph.setLastPointMarker(2,true); 
+	document.dataGraph.setMarkerSize(2,0.6); 
+	document.dataGraph.setLastPointMarker(3,true); 
+	document.dataGraph.setMarkerSize(3,0.6);  
+    document.dataGraph.setLabelX("Tempo (s)");  
+    //document.dataGraph.setLabelY("Voltage & Current");
+    document.dataGraph.setFormat("%3.1e");
+    gidV=document.dataGraph.getGraphID();
+    if(isRunning)document.circuit.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	loaded=false;
+	clearTimeout(timerID);
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Problem 31.6</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center"><span lang="pt">Problema 31.6</span></h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td><span lang="pt"><applet codebase="../../classes/" 
+      archive="Physlets.jar" 
+      code="circuitsimulator.Circuit.class" width="200" height="200" name="circuit" mayscript>
+        <param name="numberofdt" value="10">
+        <param name="dt" value="1e-6">
+        <param name="fps" value="10">
+        <param name="noc" value="10">
+        <param name="imagedir" value="circuitimages">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="dataGraph,circuit">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+      <td>
+      <span lang="pt">
+      <applet codebase="../../classes/" 
+      archive="Physlets.jar" code="dataGraph.DataGraph.class" 
+      name="dataGraph" width="300" height="200" mayscript>
+        <param name="XMin" value="0">
+        <param name="XMax" value="2">
+        <param name="YMin" value="-1">
+        <param name="YMax" value="1">
+        <param name="AutoScaleX" value="true">
+        <param name="AutoScaleY" value="true">
+        <param name="ShowControls" value="false">
+        <param name="Resources" value="circuitsimulator_pt.rc">
+      </applet></span></td>
+    </tr>
+    <tr>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="circuitParameters">
+ <p align="center"><span lang="pt">
+	<input type="button" value="começar" onclick="document.circuit.forward()" 
+ name="continue"><input type="button" value="pausa" onclick="document.circuit.pause()" name="pause"><input 
+ type="button" value="início" onclick="JavaScript:resetCircuit()" name="resetb"></span></p>
+</form>
+
+<p align="center"><span lang="pt"><font color="#FF0000"><b><i>Por favor espera 
+até a animação estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></span></p>
+
+<table align="center" border="1" bgcolor="#c0c0c0">
+  <tr>
+    <td align="center"><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build1a()" style="text-decoration: none">Gráfico A</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+	</span> </td>
+    <td align="center"><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build1b()" style="text-decoration: none">Gráfico B</a>&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+    <td align="center"><span lang="pt">&nbsp;&nbsp;
+	<a href="JavaScript:build1c()" style="text-decoration: none">Gráfico C</a>&nbsp;&nbsp;&nbsp;&nbsp; </span></td>
+  </tr>
+</table>
+<p><span lang="pt">Assume que o circuito tem uma fonte de tensão ideal. Na 
+animação, a d.d.p. da fonte é representada a <font color="#FF0000"><b>vermelho</b></font>, 
+a dos terminais do resistor a <font color="#0000FF"><b>azul</b></font> e a do 
+condensador a <font color="#008000"><b>verde </b></font> <b>
+(a d.d.p. é dada em volts e o tempo em segundos)</b>.&nbsp;  
+<a href="JavaScript:build1a()">Início</a>.</span></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><span lang="pt">Problema da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian e Anne J. Cox.<br>
+</span>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p style="color: red; font-size: 1.2em; font-weight: bold"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Illustration 37.1</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="JavaScript" SRC="../../javascript/tools.js">
+</script>
+<script LANGUAGE="JavaScript">
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("init()",100);
+}
+  	
+function init(){ 
+      if(!loaded) return;
+       timerID=0;
+       }
+
+function amplitude(){
+        if(!loaded) return;
+        document.Ripple.showIntensity(false);
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+function intensity(){
+        if(!loaded) return;
+        document.Ripple.showIntensity(true);
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+
+function Wave(){
+   if(!loaded) return;
+   a1=document.Control.wavelength.value;
+   if(!checkRange(a1,0.5,4)){
+   alert("O comprimento de onda deve estar entre 0.5 e 4.  O valor inserido foi "+a1);
+        return;}
+        
+        document.Ripple.setWavelength(eval(a1));
+        document.Ripple.recalculate();
+        document.Ripple.startAnimate();
+}
+
+function configure(){
+
+if(!loaded) return;
+xvar=document.Control.xpos.value;
+   if(!checkRange(xvar,-8,8)){
+		alert("A posição x deve estar entre -8 e 8. O valor inserido foi "+xvar+".");
+        return;
+}
+
+yvar=document.Control.ypos.value;
+   if(!checkRange(yvar,-9,9)){
+		alert("A posição y deve estar entre -9 e 9. O valor inserido foi "+yvar+".");
+       return;
+}
+        
+avar=document.Control.amp.value;
+   if(!checkRange(avar,0,1)){
+		alert("A amplitudo deve estar entre 0 e 1. O valor inserido foi "+avar+".");
+        return;
+}
+        
+pvar=document.Control.phase.value;
+   if(!checkRange(pvar,-180,180)){
+		alert("A fase deve estar entre -180 e 180. O valor inserido foi "+pvar+".");
+        return;
+}
+      
+
+document.Ripple.addSource(eval(xvar),eval(yvar),eval(avar),eval(pvar));
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+
+<h2 align="center">Ilustração 37.1 - Tanque de ondas </h2>
+<div align="center">
+  <center>
+  <form name="Control">
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td width="50%" align="center">
+        <p align="center">
+        <applet code="ripple.Ripple.class" codebase="../../classes/" 
+        archive="Physlets.jar" name="Ripple" 
+        width="291" height="291" align="left" mayscript>
+          <param name="pixPerUnit" value="20">
+          <param name="wavelength" value="2.0">
+          <param name="showControls" value="false">
+          <param name="showIntensity" value="true">
+          <param name="animate" value="true">
+          <param name="fps" value="10">
+          <param name="caption" value="Tanque de ondas">
+           <param name="OnLoad" value="initApplets()">
+          <param name="Resources" value="ripple_pt.rc">           
+        <param name="AppletNames" value="Ripple">
+                </applet> </td>
+        <td width="50%" align="center">
+        <div align="center">
+          <table border="0" width="90%">
+            <tr>
+              <td width="100%" align="center"></center>
+              <p><br>
+              comprimento de onda: 
+              <input type="text" name="wavelength" value="2" 
+              length="10" size="6"></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" align="center"><hr></td>
+            </tr>
+            <tr>
+              <td width="100%" align="center">Inserir valores para uma nova 
+				fonte:<br>
+              <table>
+                <tr>
+                  <td align="right">posição x :</td>
+                  <td>
+                  <input type="text" name="xpos" value="0" length="10" 
+                  size="6"></td>
+                </tr>
+                <tr>
+                  <td align="right">posição y :</td>
+                  <td>
+                  <input type="text" name="ypos" value="0" length="10" 
+                  size="6"></td>
+                </tr>
+                <tr>
+                  <td align="right">amplitude:</td>
+                  <td>
+                  <input type="text" name="amp" value="1" length="10" 
+                  size="6"></td>
+                </tr>
+                <tr>
+                  <td align="right">fase, em graus:</td>
+                  <td>
+                  <input type="text" name="phase" value="0" length="10" 
+                  size="6"></td>
+                </tr>
+              </table>
+              <p>
+				<input type="button" value="adicionar fonte" onclick="configure()"> </p>
+              <p>
+              <input type="button" value="apagar fontes" 
+              onclick="document.Ripple.deleteAll()"></p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+  </center>
+</div>
+
+
+<p align="center">
+              <input type="button" value="registar comprimento de onda e começar" 
+              onclick="Wave()"><input onclick="document.Ripple.forward()" type="button" value="continuar"><input onclick="document.Ripple.pause()" type="button" value="pausa"><br>
+<input type="button" value="mostrar vista em amplitude" 
+onclick="amplitude()"><input type="button" value="mostrar vista em intensidade" 
+onclick="intensity()"></p>
+
+
+<p align="center">
+   <font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+<p><b>Descrição da Animação</b></p>
+
+<p><span style="font-weight: 400">A animação mostra um tanque de ondas, no qual 
+podes ver efeitos de interferência provenientes por duas ou mais fontes. Quando 
+duas ou mais ondas se encontram, elas interferem. As ondas podem interferir 
+construtivamente, resultando numa onda com amplitude superior à das ondas 
+originais, ou podem interferir destrutivamente, de onde resulta uma onda de 
+menor amplitude.</span></p>
+<p align="left">As fontes são representadas por pontos vermelhos. As ondas 
+aparecem a preto e branco. A posição das fontes pode ser alterada clicando na 
+fonte e arrastando-a. Novas fontes podem ser acrescentadas à animação, através 
+dos respetivos campos de texto e o botão &quot;adicionar fonte&quot;; o comprimento de 
+onda da onda gerada por cada fonte, pode ser alterado no campo correspondente e 
+inserido através do botão &quot;registar comprimentos de onda e começar&quot;.&nbsp;&nbsp; </p>
+<p align="left">Na vista em amplitude (selecionando o botão &quot;mostrar vista em 
+amplitude&quot;), os pontos de valor positivo são representados a branco e os 
+negativos a preto; as posições de perturbação nula são representadas a cinzento. 
+Nota que num tanque de ondas real, esta é a vista que poderás ver.</p>
+<p align="left">Na vista em intensidade, onde a intensidade é proporcional ao 
+quadrado da amplitude da onda, os pontos onde a perturbação é máxima (valor 
+positivo ou negativo) são representados a branco, enquanto as regiões de 
+perturbação nula são representadas a preto.&nbsp; Nota que quando observamos 
+ondas luminosas num ecrã, esta é a vista que devemos ver.&nbsp; Dado que a 
+energia da onda é proporcional ao quadrado da amplitude, podemos interpretar 
+esta vista em intensidade como uma visualização da energia da onda..</p>
+
+<p align="left"><i>NOTA: Esta animação calcula sete quadros e depois corre de modo 
+contínuo. Para um número elevado de fontes, ou para comprimentos de onda 
+pequenos, este cálculo pode levar algum tempo, pelo que deves esperar que sejam 
+calculados todos os sete quadros.</i></p>
+<p align="left">&nbsp;</p>
+
+<p align="left">Ilustração da autoria de Mario Belloni e Melissa Dancy.</p>
+	<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br> 
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

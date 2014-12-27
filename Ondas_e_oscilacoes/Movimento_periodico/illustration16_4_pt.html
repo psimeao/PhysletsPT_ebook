@@ -1,0 +1,608 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript">
+var velocity = false;
+var timerID=0;
+var loaded=false;
+
+
+
+function initApplets(){
+	clearTimeout(timerID);
+	loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+
+
+function initApplet(){
+   if(!loaded) return;
+   timerID=0;
+   document.selection.reset();
+   newb=document.selection.D1.value;
+     
+     if( !checkRange(newb,0,5)){
+     alert("O coeficiente de amortecimento deve estar entre 0 Ns/m e 5 Ns/m. O valor inserido foi "+newb+" Ns/m.");
+     return;
+}  
+     newv=document.selection.D2.value;
+     
+     if( !checkRange(newv,0,12)){
+     alert("A velocidade inicial deve estar entre 0 m/s e 5 m/s. O valor inserido foi "+newv+" m/s.");
+     return;
+} 
+        newF=document.selection.D3.value;
+       if( !checkRange(newF,-6,6)){
+     alert("A força externa deve estar entre -6 N e 6 N. O valor inserido foi "+newF+" N.");
+     return;
+} 
+     neww=document.selection.D4.value;
+     
+     if( !checkRange(neww,0,5)){
+     alert("A frequência angular deve estar entre 0 rad/s e 5 rad/s. O valor inserido foi "+neww+" rad/s.");
+     return;
+}
+     
+   b=eval(document.selection.D1.value);
+   v=eval(document.selection.D2.value);
+   F=eval(document.selection.D3.value);
+   w=eval(document.selection.D4.value);
+
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+   curid0=document.animator.addCircle(15,"-10","0"); 
+   curid=document.animator.addCircle(13,"-10","0"); 
+   document.animator.setAnimationSlave(curid,curid0);
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainY(curid,0,-11,10);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,true); 
+   document.animator.setForce(curid,"-2*x-"+b+"*vx+"+F+"*cos("+w+"*t)","0",0,0,v,0); 
+   
+
+   tid=document.animator.addObject("text","text=arrasta-me");
+   document.animator.setAnimationSlave(curid,tid);
+   document.animator.setDisplayOffset(tid,-20,15);
+   
+   rid=document.animator.addObject("rectangle","w=20,h=50,x=-14"); 
+   sid=document.animator.addConnectorSpring(curid,rid); 
+   document.animator.swapZOrder(sid,curid);  
+   document.animator.setOneShot(0,120, "Fim da Animação"); 
+   document.animator.setAutoRefresh(true);
+	   document.DataGraph1.setAutoRefresh(false);      
+   document.DataGraph1.setDefault();
+	 document.DataGraph1.setAutoscaleX(true);
+     document.DataGraph1.setAutoscaleY(true);
+     document.DataGraph1.setMinMaxY(-12,12);
+     document.DataGraph1.setDrawZero(true);
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     
+     
+     document.DataGraph1.setSeriesLegendRGB(1,0,0,0);
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+     document.DataGraph1.setTitle("Insere parâmetros para começar");  
+     document.DataGraph2.setTitle("Seleciona uma Animação");  
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     document.DataGraph1.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph1.getGraphID();
+     document.DataGraph1.setSeriesLegend(1,410,20,"Posição");
+
+     document.animator.deleteDataConnections(); 
+     conid1=document.animator.makeDataConnection(curid,gid1,1,"t","x");  
+     
+     if (velocity) {
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.setSeriesLegend(2,410,25,"Velocidade");
+     document.DataGraph1.setSeriesLegendRGB(2,0,0,0);
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setSeriesRGB(2,255,0,0);
+     document.DataGraph1.setLastPointMarker(2,true); 
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setSeriesLegend(2,410,30,"Velocidade");
+     conid2=document.animator.makeDataConnection(curid,gid1,2,"t","vx");
+     
+}   
+     document.animator.updateDataConnections();
+     document.animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+function defined(){
+   if(!loaded) return;
+   newb=document.selection.D1.value;
+     
+     if( !checkRange(newb,0,5)){
+     alert("O coeficiente de amortecimento deve estar entre 0 Ns/m e 5 Ns/m. O valor inserido foi "+newb+" Ns/m.");
+     return;
+}  
+     newv=document.selection.D2.value;
+     
+     if( !checkRange(newv,0,12)){
+     alert("A velocidade inicial deve estar entre 0 m/s e 5 m/s. O valor inserido foi "+newv+" m/s.");
+     return;
+} 
+        newF=document.selection.D3.value;
+       if( !checkRange(newF,-6,6)){
+     alert("A força externa deve estar entre -6 N e 6 N. O valor inserido foi "+newF+" N.");
+     return;
+} 
+     neww=document.selection.D4.value;
+     
+     if( !checkRange(neww,0,5)){
+     alert("A frequência angular deve estar entre 0 rad/s e 5 rad/s. O valor inserido foi "+neww+" rad/s.");
+     return;
+}
+     
+   b=eval(document.selection.D1.value);
+   v=eval(document.selection.D2.value);
+   F=eval(document.selection.D3.value);
+   w=eval(document.selection.D4.value);
+
+   document.animator.setAutoRefresh(false);      
+   document.animator.setDefault();
+   document.animator.setTimeDisplay(false); 
+   eid=document.animator.getEnsembleID();
+   document.animator.setShowCoordinates(eid,false);
+   document.animator.setPixPerUnit(10);
+   document.animator.setGridUnit(1);
+      curid0=document.animator.addCircle(15,"-10","0"); 
+   curid=document.animator.addCircle(13,"-10","0"); 
+   document.animator.setAnimationSlave(curid,curid0);
+   document.animator.setRGB(curid,255,0,0);
+   document.animator.setConstrainY(curid,0,-11,10);
+   document.animator.setShowConstraintPath(curid,false);
+   document.animator.setDragable(curid,true); 
+   document.animator.setForce(curid,"-2*x-"+b+"*vx+"+F+"*cos("+w+"*t)","0",0,0,v,0); 
+   
+
+   tid=document.animator.addObject("text","text=arrasta-me");
+   document.animator.setAnimationSlave(curid,tid);
+   document.animator.setDisplayOffset(tid,-20,15);
+   
+   rid=document.animator.addObject("rectangle","w=20,h=50,x=-14"); 
+   sid=document.animator.addConnectorSpring(curid,rid); 
+   document.animator.swapZOrder(sid,curid);  
+   document.animator.setOneShot(0,120, "Fim da Animação"); 
+   document.animator.setAutoRefresh(true);
+  document.DataGraph1.setAutoRefresh(false);      
+   document.DataGraph1.setDefault();
+	 document.DataGraph1.setAutoscaleX(true);
+     document.DataGraph1.setAutoscaleY(true);
+     document.DataGraph1.setMinMaxY(-12,12);
+     document.DataGraph1.setDrawZero(true);
+     document.DataGraph1.clearSeries(1);
+     document.DataGraph1.clearSeries(2);
+     
+     
+     document.DataGraph1.setSeriesLegendRGB(1,0,0,0);
+     document.DataGraph1.setSeriesStyle(1,true,3);  
+     document.DataGraph1.setLastPointMarker(1,true);  
+     document.DataGraph1.setMarkerSize(1,0.6);
+
+     document.DataGraph1.setLabelX("Tempo (s)");  
+     
+     gid1=document.DataGraph1.getGraphID();
+     document.DataGraph1.setSeriesLegend(1,410,20,"Posição");
+     document.animator.deleteDataConnections(); 
+     conid1=document.animator.makeDataConnection(curid,gid1,1,"t","x");  
+     
+     if (velocity) {
+     document.DataGraph1.setTitle("Posição e Velocidade vs. Tempo");   
+     document.DataGraph1.setLabelY("Posição (m) e Velocidade (m/s)");
+     
+     document.DataGraph1.clearSeries(2);
+     document.DataGraph1.setSeriesLegend(2,410,25,"Velocidade");
+     document.DataGraph1.setSeriesLegendRGB(2,0,0,0);
+     document.DataGraph1.setSeriesStyle(2,true,3);  
+     document.DataGraph1.setSeriesRGB(2,255,0,0);
+     document.DataGraph1.setLastPointMarker(2,true); 
+     document.DataGraph1.setMarkerSize(2,0.6);
+     document.DataGraph1.setSeriesLegend(2,410,30,"Velocidade");
+     conid2=document.animator.makeDataConnection(curid,gid1,2,"t","vx");
+     
+}
+
+else
+{
+    document.DataGraph1.setTitle("Posição vs. Tempo"); 
+    document.DataGraph1.setLabelY("Posição (m)"); 
+}
+   
+     document.animator.updateDataConnections();
+     document.animator.setAutoRefresh(true);
+     document.DataGraph1.setAutoRefresh(true);
+}
+
+
+function damp1(){
+if(!loaded) return;
+   
+   document.animator2.setAutoRefresh(false);      
+   document.animator2.setDefault();
+   document.animator2.setTimeDisplay(false); 
+   eid=document.animator2.getEnsembleID();
+   document.animator2.setShowCoordinates(eid,false);
+   document.animator2.setPixPerUnit(10);
+   document.animator2.setGridUnit(1);
+      curid0=document.animator2.addCircle(15,"-10","0"); 
+   curid=document.animator2.addCircle(13,"-10","0"); 
+   document.animator2.setAnimationSlave(curid,curid0);
+   document.animator2.setRGB(curid,255,0,0);
+   document.animator2.setConstrainY(curid,0,-11,10);
+   document.animator2.setShowConstraintPath(curid,false);
+   document.animator2.setDragable(curid,false); 
+   document.animator2.setForce(curid,"-2*x-0.2*vx","0",10,0,0,0); 
+  
+   document.animator2.setAnimationSlave(curid,tid);
+   document.animator2.setDisplayOffset(tid,-20,15);
+   
+   rid=document.animator2.addObject("rectangle","w=20,h=50,x=-14"); 
+   sid=document.animator2.addConnectorSpring(curid,rid); 
+   document.animator2.swapZOrder(sid,curid);  
+   document.animator2.setOneShot(0,120, "Fim da Animação"); 
+   document.animator2.setAutoRefresh(true);
+  document.DataGraph2.setAutoRefresh(false);      
+   document.DataGraph2.setDefault();
+	 document.DataGraph2.setAutoscaleX(true);
+     document.DataGraph2.setAutoscaleY(true);
+     document.DataGraph2.setMinMaxY(-12,12);
+     document.DataGraph2.setDrawZero(true);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.clearSeries(2);
+     
+     
+     document.DataGraph2.setSeriesLegendRGB(1,0,0,0);
+     document.DataGraph2.setSeriesStyle(1,true,3);  
+     document.DataGraph2.setLastPointMarker(1,true);  
+     document.DataGraph2.setMarkerSize(1,0.6);
+     document.DataGraph2.setTitle("Subamortecido");  
+     document.DataGraph2.setLabelX("Tempo (s)");  
+     document.DataGraph2.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph2.getGraphID();
+     document.DataGraph2.setSeriesLegend(1,410,20,"Posição");
+
+     document.animator2.deleteDataConnections(); 
+     conid1=document.animator2.makeDataConnection(curid,gid1,1,"t","x");  
+       
+     document.animator2.updateDataConnections();
+     document.animator2.setAutoRefresh(true);
+     document.DataGraph2.setAutoRefresh(true);
+}
+
+function damp2(){
+if(!loaded) return;
+   
+   document.animator2.setAutoRefresh(false);      
+   document.animator2.setDefault();
+   document.animator2.setTimeDisplay(false); 
+   eid=document.animator2.getEnsembleID();
+   document.animator2.setShowCoordinates(eid,false);
+   document.animator2.setPixPerUnit(10);
+   document.animator2.setGridUnit(1);
+      curid0=document.animator2.addCircle(15,"-10","0"); 
+   curid=document.animator2.addCircle(13,"-10","0"); 
+   document.animator2.setAnimationSlave(curid,curid0);
+   document.animator2.setRGB(curid,255,0,0);
+   document.animator2.setConstrainY(curid,0,-11,10);
+   document.animator2.setShowConstraintPath(curid,false);
+   document.animator2.setDragable(curid,false); 
+   document.animator2.setForce(curid,"-2*x-40*vx","0",10,0,0,0); 
+  
+   document.animator2.setAnimationSlave(curid,tid);
+   document.animator2.setDisplayOffset(tid,-20,15);
+   
+   rid=document.animator2.addObject("rectangle","w=20,h=50,x=-14"); 
+   sid=document.animator2.addConnectorSpring(curid,rid); 
+   document.animator2.swapZOrder(sid,curid);  
+   document.animator2.setOneShot(0,120, "Fim da Animação"); 
+   document.animator2.setAutoRefresh(true);
+  document.DataGraph2.setAutoRefresh(false);      
+   document.DataGraph2.setDefault();
+	 document.DataGraph2.setAutoscaleX(true);
+     document.DataGraph2.setAutoscaleY(true);
+     document.DataGraph2.setMinMaxY(-12,12);
+     document.DataGraph2.setDrawZero(true);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.clearSeries(2);
+     
+     
+     document.DataGraph2.setSeriesLegendRGB(1,0,0,0);
+     document.DataGraph2.setSeriesStyle(1,true,3);  
+     document.DataGraph2.setLastPointMarker(1,true);  
+     document.DataGraph2.setMarkerSize(1,0.6);
+     document.DataGraph2.setTitle("Sobreamortecido");  
+     document.DataGraph2.setLabelX("Tempo (s)");  
+     document.DataGraph2.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph2.getGraphID();
+     document.DataGraph2.setSeriesLegend(1,410,20,"Posição");
+
+     document.animator2.deleteDataConnections(); 
+     conid1=document.animator2.makeDataConnection(curid,gid1,1,"t","x");  
+   
+     document.animator2.updateDataConnections();
+     document.animator2.setAutoRefresh(true);
+     document.DataGraph2.setAutoRefresh(true);
+}
+
+
+function damp3(){
+if(!loaded) return;
+   
+   document.animator2.setAutoRefresh(false);      
+   document.animator2.setDefault();
+   document.animator2.setTimeDisplay(false); 
+   eid=document.animator2.getEnsembleID();
+   document.animator2.setShowCoordinates(eid,false);
+   document.animator2.setPixPerUnit(10);
+   document.animator2.setGridUnit(1);
+      curid0=document.animator2.addCircle(15,"-10","0"); 
+   curid=document.animator2.addCircle(13,"-10","0"); 
+   document.animator2.setAnimationSlave(curid,curid0);
+   document.animator2.setRGB(curid,255,0,0);
+   document.animator2.setConstrainY(curid,0,-11,10);
+   document.animator2.setShowConstraintPath(curid,false);
+   document.animator2.setDragable(curid,false); 
+   document.animator2.setForce(curid,"-2*x-3*vx","0",10,0,0,0); 
+  
+   document.animator2.setAnimationSlave(curid,tid);
+   document.animator2.setDisplayOffset(tid,-20,15);
+   
+   rid=document.animator2.addObject("rectangle","w=20,h=50,x=-14"); 
+   sid=document.animator2.addConnectorSpring(curid,rid); 
+   document.animator2.swapZOrder(sid,curid);  
+   document.animator2.setOneShot(0,120, "Fim da Animação"); 
+   document.animator2.setAutoRefresh(true);
+  document.DataGraph2.setAutoRefresh(false);      
+   document.DataGraph2.setDefault();
+	 document.DataGraph2.setAutoscaleX(true);
+     document.DataGraph2.setAutoscaleY(true);
+     document.DataGraph2.setMinMaxY(-12,12);
+     document.DataGraph2.setDrawZero(true);
+     document.DataGraph2.clearSeries(1);
+     document.DataGraph2.clearSeries(2);
+     
+     
+     document.DataGraph2.setSeriesLegendRGB(1,0,0,0);
+     document.DataGraph2.setSeriesStyle(1,true,3);  
+     document.DataGraph2.setLastPointMarker(1,true);  
+     document.DataGraph2.setMarkerSize(1,0.6);
+     document.DataGraph2.setTitle("Criticamente amortecido");  
+     document.DataGraph2.setLabelX("Tempo (s)");  
+     document.DataGraph2.setLabelY("Posição (m)"); 
+     gid1=document.DataGraph2.getGraphID();
+     document.DataGraph2.setSeriesLegend(1,410,20,"Posição");
+
+     document.animator2.deleteDataConnections(); 
+     conid1=document.animator2.makeDataConnection(curid,gid1,1,"t","x");  
+        
+     document.animator2.updateDataConnections();
+     document.animator2.setAutoRefresh(true);
+     document.DataGraph2.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Illustration 16.4</title>
+</head>
+
+<body onunload="killmenow()">
+<h2 align="center">Ilustração 16.4 - Movimento Forçado e Amortecido</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+		<applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph1" width="500"
+        height="250" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="DataGraph1,animator,DataGraph2,animator2">
+      	<param name="Resources" value="animator_pt.rc">
+       </applet></td>
+    </tr>
+    <tr>
+      <td>
+		<applet codebase="../../classes" code="animator4.Animator.class"
+		archive="Physlets.jar"  hspace="0" 
+		vspace="0" align="middle" width="500" height="55" name="animator" mayscript>
+  		<param name="FPS" value="10">
+  		<param name="dt" value="0.1">
+  		<param name="showControls" value="false">
+     	<param name="Resources" value="animator_pt.rc">
+		</applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form>
+  <p align="center">
+  <input type="button" value="inserir os valores, depois arrastar a bola" onclick="JavaScript:defined()">&nbsp;<input type="button" value="começar" onclick="document.animator.forward()"><input
+  type="button" value="pausa" onclick="document.animator.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.animator.stepForward()"><input type="button" value="início"
+  onclick="document.animator.reset()"></p>
+</form>
+<form name="selection">
+  
+  <div align="center">
+    <center>
+  
+  <table border="1" bgcolor="#C0C0C0" height="46">
+    <tr>
+      <td height="25" align="center">
+      
+  <p align="center"><b><i>b</i><span lang="en-us"> </span>=</b>&nbsp;&nbsp; <input type="text" size="3" value="0"
+  name="D1">&nbsp; <strong>Ns/m&nbsp;&nbsp; Nota:</strong>
+  insere b ≥0 Ns/m</p>
+</td>
+      <td height="25" align="center">
+      
+  <b><i>v</i><sub>0<span lang="en-us"> </span></sub>=</b>&nbsp;&nbsp; <input type="text" size="3" value="0"
+  name="D2"> <b><span lang="en-us">&nbsp;m/s&nbsp;&nbsp; </span>Nota:</b>
+  insere |v<sub>0</sub>| ≤ 12 m/s
+</td>
+</tr>
+<tr>
+<td height="1" align="center">
+  <p align="center">
+  <b><i>F</i><sub>0 </sub>=</b>&nbsp;&nbsp; <input type="text" size="3" value="0"
+  name="D3"> <b><span lang="en-us">&nbsp;N&nbsp;&nbsp;&nbsp; </span>Nota:</b>
+  insere |F<sub>0</sub>| ≤ 6 N</td>
+
+<td height="1" align="center">
+  <b><i>ω</i> =</b>&nbsp;&nbsp; <input type="text" size="3" value="1.41"
+  name="D4"> <b><span lang="en-us">&nbsp;rad/s&nbsp;&nbsp; </span>Nota:</b>
+  insere ω ≥ 0 rad/s</td>
+
+    </tr>
+  </table>
+    </center>
+  </div>
+  <p align="center"></p>
+  <p align="center"><b>Marca esta caixa para veres a velocidade</b> <input type="checkbox" name="options"
+  value="velocity" onclick="javascript: velocity = (this.checked);"></p>
+</form>
+</center>
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+<p align="left" style="margin-bottom: 0"><span style="font-family: Arial">Uma 
+massa de 1 kg ligada a uma mola é representada na animação, inicialmente na sua 
+posição de equilíbrio <b>(a posição é dada em metros e o tempo é dado em 
+segundos)</b>. Vários parâmetros relacionados com a mola bem como as condições 
+iniciais do movimento são também apresentados</span><span lang="en-us">.</span>
+<span style="font-family: Arial">Cada vez que uma variável ou a caixa relativa à 
+velocidade é alterada, deves reiniciar a animação premindo no botão “ inserir os 
+valores, depois arrastar a bola”. Depois de teres premido neste botão, arrasta a 
+bola para a posição inicial desejada (caso não consigas arrastá-la para essa 
+posição, coloca-a na posição de equilíbrio) e depois prime “começar”.</span><font face="Arial"><span lang="en-us">&nbsp; </span>
+</font><span lang="en-us">&nbsp; </span> <a href="JavaScript:initApplet()">
+Início</a>.</p>
+
+       
+	<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p><b>Sabias que...</b></p>
+
+       
+<p align="left"><span style="font-family: Arial">Consideramos aqui o movimento 
+ideal de uma massa ligada a uma mola perfeita que obedece à lei de Hook, 
+inicialmente sem qualquer força variável adicional ou amortecimento. </span></p>
+
+<p align="left"><span style="font-family: Arial">Em primeiro lugar, qual é a 
+frequência natural da ondulação da massa? Pela observação da figura na ausência 
+de forças adicionais ou amortecimento e parando a animação num dado instante, 
+podemos medir o período do movimento (cerca de 4,45 segundos, medido de pico a 
+pico). A frequência natural é dada pelo inverso desse valor, ou seja, 0,225 Hz. 
+A frequência angular natural é então de </span><i>ω</i><span style="font-family: Arial"> 
+= 2π <i>f</i> , ou seja 1,41 rad/s. Uma vez que, no sistema massa-mola, o 
+quadrado da frequência angular é igual ao cociente <i>k/m</i>, tiramos assim que 
+a constante da mola <i>k</i> = 2 N/m</span><span lang="en-us">.</span></p>
+  <p align="left"><span style="font-family: Arial">Nesta animação vamos debater 
+	o que acontece a uma massa ligada a uma mola relativamente a uma força 
+	variável adicional e/ou a uma força amortecida. Especificamente, a força 
+	amortecida é - <i>b</i>ν e a força<span style="color:red"> </span>de 
+	excitação é </span><i><span lang="en-us"><font face="Arial">&nbsp;</font>F</span></i><sub>0</sub><span lang="en-us"> 
+	cos(</span><i>ω</i><span lang="en-us"><i>t</i>).</span><span style="font-family: Arial"> 
+	O que acontece ao movimento da massa quando uma força de excitação é ligada? 
+	Quando as frequências<span style="color:red"> </span>naturais e da excitação 
+	são as mesmas, estamos numa situação de <i>ressonância</i> e a amplitude de 
+	oscilação da massa aumenta significativamente<span lang="en-us">!</span></span>
+  
+  <p align="left">&nbsp;<div align="center">
+    <center>
+  <table border="1" bgcolor="#C0C0C0" >
+    <tr>
+      <td>
+		<applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="500"
+        height="250" hspace="0" vspace="0" align="middle" mayscript>
+        <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+		<applet codebase="../../classes" code="animator4.Animator.class"
+		archive="Physlets.jar"  hspace="0" 
+		vspace="0" align="middle" width="500" height="55" name="animator2" mayscript>
+  		<param name="FPS" value="10">
+  		<param name="dt" value="0.1">
+  		<param name="showControls" value="false">
+     	<param name="Resources" value="animator_pt.rc">
+		</applet>
+      </td>
+    </tr>
+  </table>
+    </center>
+</div>
+  </center>
+</div>
+<form>
+  <p align="center">
+  &nbsp;
+  <input type="button" value="começar" onclick="document.animator2.forward()"><input
+  type="button" value="pausa" onclick="document.animator2.pause()"><input type="button" value="&lt;&lt; passo"
+      onclick="document.animator2.stepBack()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.animator2.stepForward()"><input type="button" value="início"
+  onclick="document.animator2.reset()"></p>
+</form>
+</center>
+</div>
+
+  
+  <p>
+<span style="font-family: Arial">Existem três tipos de movimento amortecido que 
+deves analisar</span><font face="Arial">:</font></p>
+<ul>
+  <li><a href="javascript: damp1()">Subamortecido</a>:
+	<span style="font-family: Arial">o amortecimento é tão pequeno que<span style="color:red">
+	</span>existem muitas oscilações antes que o movimento pare</span>.</li>
+  <li><a href="javascript: damp2()">Sobreamortecido</a>:<span style="font-family: Arial"> 
+	o</span><span style="font-family: Arial"> amortecimento é bastante grande; o 
+	sistema demora muito tempo até voltar à sua posição de equilíbrio</span>.&nbsp;&nbsp;</li>
+  <li><a href="javascript: damp3()">Criticamente amortecido</a>:
+	<span style="font-family: Arial">um caso particular em que o tempo para 
+	voltar ao equilíbrio é menor que no sobreamortecido</span>. </li>
+</ul>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p align="left"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

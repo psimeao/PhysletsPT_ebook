@@ -1,0 +1,386 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+
+<script language="JavaScript">
+var timerID=0;
+var acceleration=false;
+var mtwo=false;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0; 
+    acceleration=false;
+    mtwo=false;
+    document.selection.reset();
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault(); 
+   document.animator.setTimeDisplay(false);
+    document.animator.setCaption("Escolhe um intervalo de tempo para a Força Aplicada"); 
+    document.animator.addRectangle(400,30,"0","0.35");
+    id=document.animator.addRectangle(400,28,"0","0.35");
+    document.animator.setRGB(id,150,150,150);
+    
+	document.animator.setPixPerUnit(100); 
+	document.animator.shiftPixOrigin(0,-90);
+	document.animator.setGridUnit(0.1);
+	
+	id1=document.animator.addImage("../../classes/images/cart_large.gif","0","0.55");
+	document.animator.setDisplayOffset(id1,-26,10);
+	document.animator.setConstrainY(id1,0.55,0,0);
+	document.animator.setShowConstraintPath(id1,false);
+   	aid=document.animator.addArrow("0","0","0","0");
+    document.animator.setAnimationSlave(id1,aid);
+    document.animator.setShowFVector(aid,true);
+    document.animator.setDisplayOffset(aid,0,-15);
+    
+    document.animator.setForce(id1,"0","0",0,0.55,0,0); 
+    document.DataGraph.setDefault();
+    document.DataGraph.setAutoRefresh(false);
+   document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(0,3);
+    document.DataGraph.setMinMaxY(-0.1,3.2);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataGraph.setLabelY("F_{x} (N)"); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("Força_{x} vs Tempo"); 
+    gid=document.DataGraph.getGraphID();
+    document.animator.deleteDataConnections();   
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"px (kg.m/s)");
+     document.DataTable.setSeriesLabel(2,"Ec (J)");  
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID(); 
+     document.animator.updateDataConnections(); 
+    document.DataGraph.setAutoRefresh(true);
+    document.animator.setAutoRefresh(true);
+}
+
+
+function initApplet1() { 
+if(!loaded) return;
+    document.animator.setAutoRefresh(false);
+    document.animator.setDefault(); 
+   document.animator.setCaption("Intervalo curto"); 
+    document.animator.addRectangle(400,30,"0","0.35");
+    id=document.animator.addRectangle(400,28,"0","0.35");
+    document.animator.setRGB(id,150,150,150);
+    
+	document.animator.setPixPerUnit(100); 
+	document.animator.shiftPixOrigin(0,-90);
+	document.animator.setOneShot(0,3,"Fim da Animação");
+	document.animator.setGridUnit(0.1);
+	
+	id1=document.animator.addImage("../../classes/images/cart_large.gif","0","0.55");
+	if(mtwo){
+	
+	document.animator.setMass(id1,2);
+	m1=2;
+	document.animator.addObject("text","text=: massa = 2 kg,x=0.6,y=1.13");
+	
+	}
+	
+	else{
+	document.animator.setMass(id1,1);
+    m1=1;
+    document.animator.addObject("text","text=: massa = 1 kg,x=0.6,y=1.13");
+
+	}
+	document.animator.setDisplayOffset(id1,-26,10);
+	document.animator.setConstrainY(id1,0.55,0,0);
+	document.animator.setShowConstraintPath(id1,false);
+   	aid=document.animator.addArrow("0","0","0","0");
+    document.animator.setAnimationSlave(id1,aid);
+    document.animator.setShowFVector(aid,true);
+    document.animator.setDisplayOffset(aid,0,-15);
+	
+	id2=document.animator.addImage("../../classes/images/rarrow.gif","-1+step(t-1)*(0.48+(1)*(t-1)*(t-1)/"+m1+"*(1-step(t-1.1)))+0.05*step(t-1.1)","100*(1-step(t-1))+1-step(t-1)*0.3*(1-step(t-1.1))");
+    document.animator.setDisplayOffset(id2,0,-5);
+    
+    document.animator.setForce(id1,"0","0",0,0.55,0,0); 
+    document.animator.addInteraction(id1,id2,"2*step(-y+0.2)*step(x)*step(0.63-x)*step(x-0.5)","x");  
+    
+    
+document.DataGraph.setDefault();
+document.DataGraph.setAutoRefresh(false);
+if(acceleration){
+     document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(-0.25,1.25);
+    document.DataGraph.setMinMaxY(-0.1,3.2);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setMarkerSize(1,0.6);
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataGraph.setLabelY("F_{x} (N)"); 
+    document.DataGraph.setLabelX("Deslocamento(m)"); 
+    document.DataGraph.setTitle("Força_{x} vs Deslocamento");
+    gid=document.DataGraph.getGraphID();
+    document.animator.deleteDataConnections(); 
+	  cid=document.animator.makeDataConnection(id1,gid,1,"x","ax*"+m1); 
+}  
+
+else{
+   document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(0,3);
+    document.DataGraph.setMinMaxY(-0.1,3.2);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setLabelY("F_{x} (N)"); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("Força_{x} vs Tempo");
+    document.DataGraph.setLastPointMarker(1,true);  
+    gid=document.DataGraph.getGraphID();
+    document.animator.deleteDataConnections(); 
+    cid=document.animator.makeDataConnection(id1,gid,1,"t","ax*"+m1);    
+}
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"px (kg.m/s)");
+     document.DataTable.setSeriesLabel(2,"Ec (J)");  
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+
+     document.animator.makeDataConnection(id1,tid,1,"vx*"+m1,"0");  
+     document.animator.makeDataConnection(id1,tid,2,"0.5*vx*vx*"+m1,"0");  
+     document.animator.updateDataConnections(); 
+    document.DataGraph.setAutoRefresh(true);
+    document.animator.setAutoRefresh(true);
+}
+
+function initApplet2() { 
+   document.animator.setAutoRefresh(false);
+      document.animator.setDefault(); 
+    document.animator.setCaption("Intervalo longo");     
+    document.animator.addRectangle(400,30,"0","0.35");
+    id=document.animator.addRectangle(400,28,"0","0.35");
+    document.animator.setRGB(id,150,150,150);
+    
+	document.animator.setPixPerUnit(100); 
+	document.animator.shiftPixOrigin(0,-90);
+	document.animator.setOneShot(0,3,"Fim da Animação");
+	document.animator.setGridUnit(0.1);
+	
+	id1=document.animator.addImage("../../classes/images/cart_large.gif","0","0.55");
+	if(mtwo){
+	
+	document.animator.setMass(id1,2);
+	m1=2;
+	document.animator.addObject("text","text=: massa = 2 kg,x=0.6,y=1.13");
+	
+	}
+	
+	else{
+	document.animator.setMass(id1,1);
+    m1=1;
+    document.animator.addObject("text","text=: massa = 1 kg,x=0.6,y=1.13");
+
+	}
+	
+	document.animator.setDisplayOffset(id1,-26,10);
+	document.animator.setConstrainY(id1,0.55,0,0);
+	document.animator.setShowConstraintPath(id1,false);
+   	aid=document.animator.addArrow("0","0","0","0");
+    document.animator.setAnimationSlave(id1,aid);
+    document.animator.setShowFVector(aid,true);
+    document.animator.setDisplayOffset(aid,0,-15);
+	
+	id2=document.animator.addImage("../../classes/images/rarrow.gif","-1+step(t-1)*(0.48+(1)*(t-1)*(t-1)/"+m1+"*(1-step(t-2)))+1.1*step(t-2)","100*(1-step(t-1))+1-step(t-1)*0.3*(1-step(t-2))");
+    document.animator.setDisplayOffset(id2,0,-5);
+    
+    document.animator.setForce(id1,"0","0",0,0.55,0,0); 
+    document.animator.addInteraction(id1,id2,"2*step(-y+0.2)*step(x)*step(0.63-x)*step(x-0.5)","x");  
+    
+document.DataGraph.setDefault();
+document.DataGraph.setAutoRefresh(false);
+if(acceleration){
+  	     document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(-0.25,1.25);
+    document.DataGraph.setMinMaxY(-0.1,3.2);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setMarkerSize(1,0.6);
+     document.DataGraph.setLastPointMarker(1,true); 
+    document.DataGraph.setLabelY("F_{x} (N)"); 
+    document.DataGraph.setLabelX("Deslocamento(m)"); 
+    document.DataGraph.setTitle("Força_{x} vs Deslocamento");
+    gid=document.DataGraph.getGraphID();
+    document.animator.deleteDataConnections(); 
+	  cid=document.animator.makeDataConnection(id1,gid,1,"x","ax*"+m1);   
+}  
+else{
+   document.DataGraph.setAutoscaleX(false);
+    document.DataGraph.setAutoscaleY(false);
+    document.DataGraph.setMinMaxX(0,3);
+    document.DataGraph.setMinMaxY(-0.1,3.2);
+    document.DataGraph.clearSeries(1);
+    document.DataGraph.setSeriesStyle(1,true,-2);
+    document.DataGraph.setLastPointMarker(1,true); 
+    document.DataGraph.setLabelY("F_{x} (N)"); 
+    document.DataGraph.setLabelX("Tempo (s)"); 
+    document.DataGraph.setTitle("Força_{x} vs Tempo"); 
+    gid=document.DataGraph.getGraphID();
+    document.animator.deleteDataConnections(); 
+	  cid=document.animator.makeDataConnection(id1,gid,1,"t","ax*"+m1); 
+}
+  
+    document.DataTable.setDefault();
+     document.DataTable.setSeriesLabel(1,"px (kg.m/s)");
+     document.DataTable.setSeriesLabel(2,"Ec (J)");  
+     document.DataTable.sizeToFit(true);
+     document.DataTable.setAutoRefresh(true);   
+	  tid=document.DataTable.getTableID();
+
+     document.animator.makeDataConnection(id1,tid,1,"vx*"+m1,"0");  
+     document.animator.makeDataConnection(id1,tid,2,"0.5*vx*vx*"+m1,"0");  
+     document.animator.updateDataConnections();
+     document.DataGraph.setAutoRefresh(true); 
+    document.animator.setAutoRefresh(true);
+}
+
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Illustration 8.2</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Ilustração 8.2 - Diferença entre Trabalho e Impulso</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+        archive="Physlets.jar"
+        code="dataGraph.DataGraph.class" name="DataGraph" width="400" height="200" hspace="0"
+        vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <applet codebase="../../classes/"
+       archive="Physlets.jar" 
+       code="animator4.Animator.class" align="middle" width="400" height="100"
+        name="animator" mayscript>
+          <param name="FPS" value="20">
+          <param name="dt" value="0.02">
+          <param name="showControls" value="false">
+               <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="animator,DataGraph,DataTable">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p align="center">
+        <applet codebase="../../classes/"
+  archive="Physlets.jar"
+  code="dataTable.DataTable.class" name="DataTable"  width="257" height="45"
+  hspace="0" vspace="0" align="middle" mayscript>
+    <param name="ShowScrollBars" value="false">
+    <param name="LastOnTop" value="true">
+    <param name="CellWidth" value="40">
+    <param name="NumRows" value="1">
+    <param name="NumCols" value="2">
+    <param name="ShowControls" value="false">
+    <param name="ShowRowHeader" value="false">
+    <param name="ShowColHeader" value="true">
+    <param name="SizeToFit" value="true">
+  </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+ <form name="selection">
+ <p align="center">
+ <align="center"><b>
+	<input type="button" value="começar" onclick="document.animator.forward()"><input type="button" value="pausa" onclick="document.animator.pause()"><input type="button" value="&lt;&lt; passo" onclick="document.animator.stepBack()"><input type="button" value="passo &gt;&gt;" onclick="document.animator.stepForward()"></b><input type="button"
+      value="início" onclick="document.animator.reset()"><b><br>
+<input type="checkbox" name="options1" value="mass" onclick="javascript:mtwo = (this.checked);">    
+ seleciona para fixar <i>m</i> = 2 kg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+ <input type="checkbox" name="options" 
+ value="velocity" onclick="javascript:acceleration = (this.checked);">     
+	seleciona para veres o gráfico <i>Força</i> <i>vs.</i> <i>deslocamento</i><br>
+ Depois, escolhe uma das animações abaixo indicadas</b></form>
+  <div align="center"> 
+    <center>
+    <table border="1" bgcolor="#C0C0C0" width="220">
+      <tr>
+        <td align="center">
+		<a href="JavaScript:initApplet1()" style="text-decoration: none">força 
+		aplicada num
+		<b><font color="#000066">curto</font></b> Δ<i>t</i></a></td>
+        <td align="center">
+		<a href="JavaScript:initApplet2()" style="text-decoration: none">força 
+		aplicada num
+		<b><font color="#000066">longo</font></b>&nbsp; Δ<i>t</i></a></td>
+      </tr>
+    </table>
+    </center>
+  </div>
+
+
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+  <p>
+  Nesta animação vais poder estudar o efeito produzido por uma força de valor 
+	constante, que atua sobre um carro durante um certo intervalo de tempo. Para 
+	cada intervalo de tempo durante o qual a força atua é possível variar a 
+	massa do corpo, comparando assim os valores do momento linear e da energia 
+	cinética do carro <b>(a posição é dada em metros e o tempo em segundos)</b>. 
+	Os resultados são apresentados graficamente.&nbsp; <a href="JavaScript:initApplet()">
+	Início</a>.&nbsp;</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

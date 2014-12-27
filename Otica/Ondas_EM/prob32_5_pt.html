@@ -1,0 +1,163 @@
+﻿<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<title>Physlet Physics by Christian and Belloni: Problem 32.5</title>
+<script LANGUAGE="JavaScript">
+var id1=0;
+var id2=0;
+var timerID=0;
+var fid=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",100);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+           document.slider.setDefault();
+   
+    document.datagraph.setAutoRefresh(false);
+    document.datagraph.setDefault();
+   
+    document.wave3d.setDefault();
+    document.wave3d.setAutoRefresh(false);
+    document.wave3d.setPixPerUnit(10);
+    id=document.wave3d.addFilledSquare(-20,20);
+    document.wave3d.setRGB(id, 134, 50, 22);
+    id=document.wave3d.addAxes(0, 0, -20, 12);
+    document.wave3d.setRGB(id, 222, 223, 27);
+    document.wave3d.setLineDensity(3);
+    id1=document.wave3d.addWavefunction("10*sin(.57*z-.17*t)",-20,20,0.785);
+    id2=document.wave3d.addRectangle(0,15,15);
+    document.wave3d.setRGB(id2, 255, 0, 0);
+    cid=document.wave3d.getClockID();
+
+   document.datagraph.setAutoscaleX(false);
+   document.datagraph.setAutoscaleY(false);
+    document.datagraph.setLabelY("y"); 
+     document.datagraph.setLabelX("x"); 
+     document.datagraph.setMinMaxX(-2,2);
+   document.datagraph.setMinMaxY(-2,2); 
+   pos=document.slider.getValue()*10;
+   fid=document.datagraph.addObject("vectorfield","fx=-.7*sin(1.7*t),fy=-.7*sin(1.7*t),n=16");  
+   document.datagraph.setTitle("Campo E no Plano XY"); 
+    document.datagraph.setTimeDisplay(true);
+   	document.datagraph.setAutoRefresh(true);  
+   	document.datagraph.setExternalClock(cid);   
+    
+    document.wave3d.setAngles(0.0,-1.4,-0.2);
+    document.wave3d.setAutoRefresh(true);
+    document.slider.setJSFunction("sliderMoved()");
+  
+
+}
+
+function sliderMoved(){
+     if(timerID==0)  timerID=setTimeout("sliderMoved2()",100);
+}
+
+function sliderMoved2(){
+	document.datagraph.setAutoRefresh(false);
+       pos=document.slider.getValue()*10;
+	document.datagraph.deleteObject(fid);
+	document.wave3d.setZ(id2, eval(pos) );
+    fid=document.datagraph.addObject("vectorfield","n=16, fy=.7*sin(.57*"+pos+"-1.7*t),fx=.7*sin(.57*"+pos+"-1.7*t)"); 
+    document.datagraph.setAutoRefresh(true);
+     timerID=0;
+}
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+</head>
+
+<body onunload="stopApplet()">
+
+<h2 align="center">Problema 32.5</h2>
+<center>
+<table border="1" bgcolor="#C0C0C0">
+  <tr>
+    <td>
+    <applet codebase="../../classes/" code="wave3d.Wave3d.class" 
+    archive="Physlets.jar" 
+    name="wave3d" width="435" height="250" hspace="0" vspace="0" align="left" mayscript>
+      <param name="ShowControls" value="false">
+      <param name="Orientation" value="1">
+      <param name="FPS" value="10">
+      <param name="Dz" value=".5">
+      <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="wave3d,datagraph,slider">
+    </applet></td>
+    <td align="center">
+    <applet codebase="../../classes/" 
+    archive="Physlets.jar" 
+    code="dataGraph.DataGraph.class" name="datagraph"
+    width="250" height="250" hspace="0" vspace="0" align="middle" mayscript>
+      <param name="Function">
+      <param name="XMin" value="-2.0">
+      <param name="XMax" value="2.0">
+      <param name="YMin" value="-2">
+      <param name="YMax" value="2">
+      <param name="AutoScaleX" value="false">
+      <param name="AutoScaleY" value="false">
+      <param name="ShowControls" value="false">
+      <param name="Resources" value="datagraph_pt.rc">
+    </applet> </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+    <p align="center">
+    <applet codebase="../../classes/" code="slider.SliderApplet.class" 
+    archive="Physlets.jar" 
+    name="slider" width="500" hspace="0" vspace="0" align="middle" 
+    mayscript style="height: 44px">
+      <param name="min" value="-2">
+      <param name="max" value="2">
+      <param name="value" value="0">
+      <param name="label" value="posição (mm)">
+    </applet> </td>
+  </tr>
+  </table>
+</center>
+<form>
+  <p align="center">
+	<input type="button" value="começar" 
+  onclick="document.wave3d.forward()"><input type="button" value="pausa" 
+  onclick="document.wave3d.pause()"><input type="button" value="passo &gt;&gt;" 
+  onclick="document.wave3d.stepTimeForward()"></p>
+</form>
+
+
+<p align="center"><font color="#ff0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#ff0000"><i>.</i></font></b></p>
+
+
+<p>Deslocando o cursor, podes variar a posição do quadrado na animação ao longo 
+da onda eletromagnética.&nbsp; Depois podes ver o gráfico à direita, que te 
+mostra a representação do vetor campo elétrico <b>(a posição é dada 
+em milímetros e o tempo é dado em picosegundos [10<sup>-12</sup> segundos])</b>.&nbsp;A 
+animação apenas te mostra o campo elétrico.&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.&nbsp; </p>
+<p>&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">Problema da autoria de Anne J. Cox.<br>
+Script da autoria de Wolfgang Christian, Melissa Dancy e Anne J. Cox</p>
+<p style="margin-top: 0; margin-bottom: 0">© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+<p style="margin-top: 0; margin-bottom: 0"> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

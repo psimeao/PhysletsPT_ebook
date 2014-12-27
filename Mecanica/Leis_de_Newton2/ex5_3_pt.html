@@ -1,0 +1,342 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Exploration 5.3</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript">
+var curid=0;
+var springforce=0;  
+var gravityforce=0; 
+var netforce=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("initApplet()",50);
+}
+  	
+function initApplet(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.dataForm.reset();
+   k=eval(document.dataForm.kField.value);
+
+   springforce=" "+k+"*(-y+5)";  
+   gravityforce= "(-9.8)"; 
+   netforce=springforce + "+" + gravityforce;
+     
+   document.Animator3.setAutoRefresh(false);      
+   document.Animator3.setDefault();
+   document.Animator3.shiftPixOrigin(10,0);
+    document.Animator3.setTimeDisplay(false); 
+   eid=document.Animator3.getEnsembleID();
+   document.Animator3.setPixPerUnit(10);
+   document.Animator3.setGridUnit(1);
+   
+   rid=document.Animator3.addRectangle(100,20,"0","14"); 
+   document.Animator3.setSticky(rid,true);
+   
+   rid2=document.Animator3.addRectangle(100,20,"0","-14");
+   document.Animator3.setRGB(rid2,128,128,128); 
+   document.Animator3.setSticky(rid2,true);
+   
+   curid1=document.Animator3.addCircle(27,"-10","0"); 
+   curid=document.Animator3.addCircle(25,"-10","0"); 
+   document.Animator3.setSticky(curid,true);
+   document.Animator3.setMass(curid,0.5);
+   document.Animator3.setRGB(curid,0,0,255);
+   document.Animator3.setConstrainX(curid,0,-14,14);
+   document.Animator3.setShowConstraintPath(curid,false);
+   document.Animator3.setDragable(curid,true); 
+   document.Animator3.setForce(curid,"0",netforce,0,0,0,0);
+    document.Animator3.setAnimationSlave(curid,curid1);
+   cid2=document.Animator3.addCircle(25,"-10","0"); 
+   document.Animator3.setMass(cid2,0.5);
+   document.Animator3.setRGB(cid2,192,192,255);
+   document.Animator3.setAnimationSlave(curid,cid2);
+   document.Animator3.setDisplayOffset(cid2,-35,0);
+
+
+      
+// force of gravity
+   ar1=document.Animator3.addArrow("0",gravityforce,"0","0");
+   document.Animator3.setRGB(ar1,0,128,0);
+   document.Animator3.setAnimationSlave(curid,ar1);
+   document.Animator3.setDisplayOffset(ar1,-35,0);
+   
+// force of spring
+   ar2=document.Animator3.addArrow("0","0","0","0");
+   document.Animator3.setForce(ar2,"0",springforce,0,0,0,0);
+   document.Animator3.setRGB(ar2,128,0,0);
+   document.Animator3.setShowFVector(ar2,true);
+   document.Animator3.setAnimationSlave(curid,ar2);
+   document.Animator3.setDisplayOffset(ar2,-35,0);
+
+// netForce
+   ar3=document.Animator3.addArrow("0","-4","0","0");
+   //document.Animator3.setForce(ar3,"0","0",0,0,0,0);
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setShowFVector(ar3,true);
+   document.Animator3.setAnimationSlave(curid,ar3);
+   document.Animator3.setDisplayOffset(ar3,0,0);
+     
+   
+   tid=document.Animator3.addText("arrastar","0","0");
+   document.Animator3.setAnimationSlave(curid,tid);
+   document.Animator3.setDisplayOffset(tid,-20,-25);
+   
+   sid=document.Animator3.addConnectorSpring(curid,rid);
+   document.Animator3.swapZOrder(sid,rid);   
+   document.Animator3.setRGB(sid,173,48,0);
+   document.Animator3.setOneShot(0,100, "Fim da Animação"); 
+   document.Animator3.setAutoRefresh(true);  
+
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-14,14);
+   document.DataGraph.setMinMaxY(-70,70);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.setSeriesStyle(1,true,0);
+   document.DataGraph.setLabelY("Força resultante (N)"); 
+   document.DataGraph.setLabelX("Posição (cm)"); 
+   document.DataGraph.setTitle("Força vs. Posição"); 
+   gid=document.DataGraph.getGraphID();
+   
+    document.DataTable12_8.setDefault();
+    document.DataTable12_8.setSeriesLabel(1,"y (cm)");
+    document.DataTable12_8.setSeriesLabel(2,"Fy (N)");  
+    document.DataTable12_8.sizeToFit(true);
+    tid=document.DataTable12_8.getTableID();  
+
+    document.Animator3.deleteDataConnections();	 
+
+    document.Animator3.makeDataConnection(curid,tid,1,"y","0"); 
+    document.Animator3.makeDataConnection(curid,tid,2,"-ay*m","0"); 
+       
+    conid=document.Animator3.makeDataConnection(curid,gid,1,"y","-m*ay"); 
+    document.Animator3.updateDataConnections();
+    document.Animator3.forward();
+}
+
+function initAppletN(){  
+   if(!loaded) return;
+   timerID=0;
+	newem=document.dataForm.kField.value;
+    
+	if( !checkRange(newem,0.1,10)){
+    alert("A constante da mola deve estar entre 0,1 N/m e 10 N/m. O valor inserido foi"+newem+" N/m.");
+	return;
+} 
+   
+   k=eval(document.dataForm.kField.value);
+
+   springforce=" "+k+"*(-y+5)";  
+   gravityforce= "(-9.8)"; 
+   netforce=springforce + "+" + gravityforce;
+     
+   document.Animator3.setAutoRefresh(false);      
+   document.Animator3.setDefault();
+   document.Animator3.shiftPixOrigin(10,0);
+    document.Animator3.setTimeDisplay(false); 
+   eid=document.Animator3.getEnsembleID();
+   document.Animator3.setPixPerUnit(10);
+   document.Animator3.setGridUnit(1);
+   
+   rid=document.Animator3.addRectangle(100,20,"0","14"); 
+   document.Animator3.setSticky(rid,true);
+   
+   rid2=document.Animator3.addRectangle(100,20,"0","-14");
+   document.Animator3.setRGB(rid2,128,128,128); 
+   document.Animator3.setSticky(rid2,true);
+   
+   curid1=document.Animator3.addCircle(27,"-10","0"); 
+   curid=document.Animator3.addCircle(25,"-10","0"); 
+   document.Animator3.setSticky(curid,true);
+   document.Animator3.setMass(curid,0.5);
+   document.Animator3.setRGB(curid,0,0,255);
+   document.Animator3.setConstrainX(curid,0,-14,14);
+   document.Animator3.setShowConstraintPath(curid,false);
+   document.Animator3.setDragable(curid,true); 
+   document.Animator3.setForce(curid,"0",netforce,0,0,0,0);
+    document.Animator3.setAnimationSlave(curid,curid1);
+   cid2=document.Animator3.addCircle(25,"-10","0"); 
+   document.Animator3.setMass(cid2,0.5);
+   document.Animator3.setRGB(cid2,192,192,255);
+   document.Animator3.setAnimationSlave(curid,cid2);
+   document.Animator3.setDisplayOffset(cid2,-35,0);
+
+
+      
+// force of gravity
+   ar1=document.Animator3.addArrow("0",gravityforce,"0","0");
+   document.Animator3.setRGB(ar1,0,128,0);
+   document.Animator3.setAnimationSlave(curid,ar1);
+   document.Animator3.setDisplayOffset(ar1,-35,0);
+   
+// force of spring
+   ar2=document.Animator3.addArrow("0","0","0","0");
+   document.Animator3.setForce(ar2,"0",springforce,0,0,0,0);
+   document.Animator3.setRGB(ar2,128,0,0);
+   document.Animator3.setShowFVector(ar2,true);
+   document.Animator3.setAnimationSlave(curid,ar2);
+   document.Animator3.setDisplayOffset(ar2,-35,0);
+
+// netForce
+   ar3=document.Animator3.addArrow("0","-4","0","0");
+   //document.Animator3.setForce(ar3,"0","0",0,0,0,0);
+   document.Animator3.setRGB(ar3,0,0,0);
+   document.Animator3.setShowFVector(ar3,true);
+   document.Animator3.setAnimationSlave(curid,ar3);
+   document.Animator3.setDisplayOffset(ar3,0,0);
+     
+   
+   tid=document.Animator3.addText("arrastar","0","0");
+   document.Animator3.setAnimationSlave(curid,tid);
+   document.Animator3.setDisplayOffset(tid,-20,-25);
+   
+   sid=document.Animator3.addConnectorSpring(curid,rid);
+   document.Animator3.swapZOrder(sid,rid);   
+   document.Animator3.setRGB(sid,173,48,0);
+   document.Animator3.setOneShot(0,100, "Fim da Animação"); 
+   document.Animator3.setAutoRefresh(true);  
+
+   document.DataGraph.setAutoscaleX(false);
+   document.DataGraph.setAutoscaleY(false);
+   document.DataGraph.setMinMaxX(-14,14);
+   document.DataGraph.setMinMaxY(-70,70);
+   document.DataGraph.clearSeries(1);
+   document.DataGraph.setLastPointMarker(1,true); 
+   document.DataGraph.setSeriesStyle(1,true,0);
+   document.DataGraph.setLabelY("Força resultante (N)"); 
+   document.DataGraph.setLabelX("Posição (cm)"); 
+   document.DataGraph.setTitle("Força vs. Posição"); 
+   gid=document.DataGraph.getGraphID();
+   
+    document.DataTable12_8.setDefault();
+    document.DataTable12_8.setSeriesLabel(1,"y (cm)");
+    document.DataTable12_8.setSeriesLabel(2,"Fy (N)");  
+    document.DataTable12_8.sizeToFit(true);
+    tid=document.DataTable12_8.getTableID();  
+
+    document.Animator3.deleteDataConnections();	 
+
+    document.Animator3.makeDataConnection(curid,tid,1,"y","0"); 
+    document.Animator3.makeDataConnection(curid,tid,2,"-ay*m","0"); 
+       
+    conid=document.Animator3.makeDataConnection(curid,gid,1,"y","-m*ay"); 
+    document.Animator3.updateDataConnections();
+    document.Animator3.forward();
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 5.3 - Força numa mola elástica</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td rowspan="2">
+        <applet codebase="../../classes/" code="dataGraph.DataGraph.class"
+        archive="Physlets.jar" width="300"
+        height="351" align="middle" name="DataGraph" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-1">
+          <param name="XMax" value="1">
+          <param name="YMin" value="-1">
+          <param name="YMax" value="1">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+      <td>
+        <applet codebase="../../classes" code="animator4.Animator.class"
+        archive="Physlets.jar"
+        align="Middle" width="119" height="300" name="Animator3" mayscript>
+          <param name="FPS" value="10">
+          <param name="ShowControls" value="false">
+          <param name="dt" value="0.1">
+          <param name="PixPerUnit" value="10">
+          <param name="GridUnit" value="1.0">
+                <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator3,DataGraph,DataTable12_8">
+        <param name="Resources" value="animator_pt.rc">
+        </applet>
+      </td>
+    </tr>
+    <tr>
+      <td>
+  <applet codebase="../../classes/" code="dataTable.DataTable.class"
+  archive="Physlets.jar" align="middle"
+  width="120" height="45" name="DataTable12_8" mayscript>
+    <param name="ShowScrollBars" value="false">
+    <param name="LastOnTop" value="true">
+    <param name="CellWidth" value="40">
+    <param name="NumRows" value="1">
+    <param name="NumCols" value="2">
+    <param name="ShowControls" value="false">
+    <param name="ShowRowHeader" value="false">
+    <param name="ShowColHeader" value="true">
+    <param name="SizeToFit" value="true">
+  </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<form name="dataForm">
+  <center>
+  <p><b>
+  <input onclick="JavaScript:initAppletN()" type="button" value="insere valores para começar">
+  <input onclick="document.Animator3.forward()" type="button" value="continuar"><input onclick="document.Animator3.pause()" type="button" value="pausa"><input onclick="document.Animator3.stepBack()" type="button" value="&lt;&lt; passo"><input onclick="document.Animator3.stepForward()" type="button" value="passo &gt;&gt;"><input onclick="document.Animator3.reset();document.DataGraph.clearSeries(1)" type="button" value="início"></b></p>
+  </center>
+  <p align="center">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> 
+	constante da mola, <i>k </i>= <input type="text" name="kField" size="5" value="2"> N/m.</b>
+  </p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+       
+	<p align="left"><b>Descrição da Animação</b></p>
+
+       
+<p>O sistema massa-mola apresentado na animação pode ser perturbado da sua 
+posição de equilíbrio. Para tal, seleciona a bola azul escura com o botão do 
+rato e arrasta-a <b>(a posição é dada em metros e o tempo em segundos)</b>. O 
+vetor a negro sobre a bola representa a força resultante que atua nela. Ao 
+lado esquerdo, na bola azul clara, está indicado o diagrama de corpo-livre da 
+bola azul escura. Os vetores vermelho e verde, atuantes na bola azul clara, 
+representam a força exercida pela mola e a força gravítica local, 
+respetivamente. Considera-se que a aceleração gravítica local vale 9.8 m/s<sup>2</sup> .&nbsp;
+<a href="JavaScript:initApplet()">Início</a>.</p>
+
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

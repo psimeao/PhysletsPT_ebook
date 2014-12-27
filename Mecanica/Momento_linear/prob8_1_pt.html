@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("prob5_1()",100);
+}
+  	
+function prob5_1(){ 
+      if(!loaded) return;
+       timerID=0;
+    document.Animator5_1.setAutoRefresh(false);
+    document.Animator5_1.setDefault(); 
+	document.Animator5_1.setPixPerUnit(10); 
+	document.Animator5_1.shiftPixOrigin(-125,0);
+	document.Animator5_1.setGridUnit(1);
+   document.Animator5_1.addRectangle(220,12,"6","-1.5");
+   document.Animator5_1.setShapeRGB(255,255,191);
+   document.Animator5_1.addRectangle(218,10,"6","-1.5");
+   document.Animator5_1.setShapeRGB(0,0,0);
+    document.Animator5_1.addRectangle(180,12,"22","-1.5");
+     document.Animator5_1.setShapeRGB(0,255,0);
+   document.Animator5_1.addRectangle(178,10,"22","-1.5");
+   document.Animator5_1.setShapeRGB(0,0,0); 
+	document.Animator5_1.addRectangle(20,20,"(8*t*step(1.5-t))+(step(3.5-t)*step(t-1.5)*(12+8*(t-1.5)-2*(t-1.5)*(t-1.5)))+step(t-3.5)*(20)","0");
+   document.Animator5_1.setShapeRGB(255,0,0); 
+	document.Animator5_1.addRectangle(18,18,"(8*t*step(1.5-t))+(step(3.5-t)*step(t-1.5)*(12+8*(t-1.5)-2*(t-1.5)*(t-1.5)))+step(t-3.5)*(20)","0");
+   document.Animator5_1.setOneShot(0,4.5,"Fim da Animação");
+   document.Animator5_1.setAutoRefresh(true);
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 8.1</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 8.1</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  <applet codebase="../../classes/" archive="Physlets.jar"
+  code="animator4.Animator.class" align="middle" width="350" height="80"  name="Animator5_1" mayscript>
+    <param name="FPS" value="10">
+    <param name="dt" value="0.1">
+    <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator5_1">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+      <form>
+        <div align="center">
+          <center>
+          <p>
+			<input type="button" value="começar" onclick="document.Animator5_1.forward()"><input
+          type="button" value="pausa" onclick="document.Animator5_1.pause()"><input type="button"
+          value="&lt;&lt; passo" onclick="document.Animator5_1.stepBack()"><input type="button"
+          value="passo &gt;&gt;" onclick="document.Animator5_1.stepForward()"><input type="button"
+          value="início" onclick="document.Animator5_1.reset()"></p>
+          </center>
+        </div>
+      </form>
+</div>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+<p>Uma caixa de massa 1,5 kg desliza sobre gelo durante 1,5 s e depois encontra 
+uma superfície áspera <b>(a posição é dada em metros e o tempo em segundos)</b>. <a href="JavaScript:prob5_1()">
+Início</a></p>
+
+<p>&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

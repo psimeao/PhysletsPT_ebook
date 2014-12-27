@@ -1,0 +1,193 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script LANGUAGE="Javascript" SRC="../../javascript/tools.js">
+</script>
+<script language="JavaScript"> 
+var id1=0;
+var id2=0;
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.selection.reset();
+   document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault(); 
+   document.Animator.setTimeDisplay(false);
+   tid=document.Animator.setCaption("Escolhe uma relação M/m");
+   document.Animator.setDisplayOffset(tid,0,-300);
+   document.Animator.shiftPixOrigin(0,-70);
+   document.Animator.addLine("0","-14.5","4.5","19.5");
+   document.Animator.addLine("0","-14.5","-4.5","19.5");
+   document.Animator.addCircle(92,"0","19.2");
+    document.Animator.setShapeRGB(0,255,0);
+   document.Animator.addCircle(90,"0","19.2");
+   document.Animator.setShapeRGB(0,0,0);
+   id1=document.Animator.addRectangle(13,13,"4.5","5");
+
+   cid=document.Animator.addCalculation("y =","y","0","0");
+   document.Animator.setFormat(cid,"%-+5.1f");
+   document.Animator.setRGB(cid,0,0,0);
+   document.Animator.setDisplayOffset(cid,-25,-25);
+   document.Animator.setAnimationSlave(id1,cid);
+   
+   id2=document.Animator.addRectangle(20,20,"-4.5","0*(-1)+5");
+   cid2=document.Animator.addCalculation("y =","y","0","0");
+   document.Animator.setFormat(cid2,"%-+5.1f");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setDisplayOffset(cid2,-30,-25);
+   document.Animator.setAnimationSlave(id2,cid2);
+   
+   text1=document.Animator.addObject("text","text=M");
+   document.Animator.setDisplayOffset(text1,-30,-5);
+   document.Animator.setAnimationSlave(id2,text1);
+   
+   text2=document.Animator.addObject("text","text=m");
+   document.Animator.setDisplayOffset(text2,15,-5);
+   document.Animator.setAnimationSlave(id1,text2);
+   document.Animator.setAutoRefresh(true);
+}
+
+function mjb4_5() { 
+     if(!loaded) return;
+     newem=document.selection.D1.value;
+       if( !checkRange(newem,0.15,10)){
+     alert("A relação entre as massas deve ser entre 0,25 e 10. o valor inserido foi "+newem+".");
+     return;
+  } 
+  
+        b=eval(document.selection.D1.value);
+        a=4.9*(10-10/(b+0.000001))/(10+10/(b+0.000001));
+        c=Math.sqrt(12/(Math.sqrt(a*a))); 
+        g=-17-12/b;
+        g2=8+10/b;
+        
+id1=0;
+id2=0;
+   document.Animator.setAutoRefresh(false);
+	document.Animator.setDefault(); 
+   document.Animator.shiftPixOrigin(0,-70);
+   document.Animator.addLine("0",+a+"*t*t-14.5","4.5","19.5");
+   document.Animator.addLine("0",+a+"*t*t*(-1)-14.5","-4.5","19.5");
+   document.Animator.addCircle(92,"0","19.2");
+   document.Animator.setShapeRGB(0,255,0);
+   document.Animator.addCircle(90,"0","19.2");
+   document.Animator.setShapeRGB(0,0,0);
+   id1=document.Animator.addRectangle(20/(b),20/(b),"4.5",+a+"*t*t+5");
+
+   cid=document.Animator.addCalculation("y =","y","0","0");
+   document.Animator.setFormat(cid,"%-+5.1f");
+   document.Animator.setRGB(cid,0,0,0);
+   document.Animator.setDisplayOffset(cid,-25,g);
+   document.Animator.setAnimationSlave(id1,cid);
+   
+   id2=document.Animator.addRectangle(20,20,"-4.5",+a+"*t*t*(-1)+5");
+   cid2=document.Animator.addCalculation("y =","y","0","0");
+   document.Animator.setFormat(cid2,"%-+5.1f");
+   document.Animator.setRGB(cid2,0,0,0);
+   document.Animator.setDisplayOffset(cid2,-30,-25);
+   document.Animator.setAnimationSlave(id2,cid2);
+   text1=document.Animator.addObject("text","text=M");
+   document.Animator.setDisplayOffset(text1,-30,-5);
+   document.Animator.setAnimationSlave(id2,text1);
+   
+   text2=document.Animator.addObject("text","text=m");
+   document.Animator.setDisplayOffset(text2,g2,-5);
+   document.Animator.setAnimationSlave(id1,text2);
+   
+   document.Animator.setOneShot(0,c,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+	document.Animator.forward(); 
+}
+
+function killmenow(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Exploration 4.7</title>
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Exploração 4.7 - Máquina de Atwood</h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+  <applet codebase="../../classes/" code="animator4.Animator.class"
+  archive="Physlets.jar" name="Animator" align="middle"
+  width="225" height="350" mayscript>
+    <param name="FPS" value="10">
+    <param name="dt" value="0.05">
+    <param name="showControls" value="false">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+        </applet></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <form>
+    <div align="center">
+      <center>
+      <p> 
+      <input type="button" value="começar" onclick="JavaScript:mjb4_5()"><input type="button" value="continuar" onclick="document.Animator.forward()"><input
+      type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+      value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+      value="início" onclick="document.Animator.reset()"></p>
+      </center>
+    </div>
+  </form>
+</div>
+<form name="selection">
+  <p align="center"><b>Escreve a relação entre as massas: <i>M /</i><em> </em>
+	<i>m</i></b><em><b> </b> </em><b>=</b>&nbsp;&nbsp;
+  <input type="text" size="3" value="1.5"
+  name="D1">&nbsp; <strong><br>
+  Nota:</strong>
+  <b>
+  o valor <i>M / m</i> deverá estar compreendido entre 0,25 e 10.</b></p>
+</form>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+	<p align="left"><b>Descrição da Animação</b></p>
+
+<p>Uma massa M = 10 kg está ligada a uma outra massa<i> m</i> através de um fio 
+e de uma roldana de massas desprezáveis. Nesta animação, poderás variar o valor 
+da relação entre as massas, <i>M / m</i>  , e&nbsp;medir a aceleração dos blocos <b>
+(a posição é dada em metros e o tempo em segundos; considera como valor da 
+aceleração gravítica <i>g</i> = 9,8 m/s<sup>2</sup>)</b>.
+<a href="JavaScript:startProb()">Início</a>.</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a> 
+</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

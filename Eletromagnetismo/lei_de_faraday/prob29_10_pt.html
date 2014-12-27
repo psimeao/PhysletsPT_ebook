@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Physlet Physics by Christian and Belloni: Problem 29.10</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("animation1()",100);
+}
+  	
+function animation1(){ 
+      if(!loaded) return;
+       timerID=0;
+	document.Animator.setAutoRefresh(false);
+     document.Animator.setDefault();
+     document.Animator.setTimeOneShot(16.5,"Fim da Animação");
+     line1=document.Animator.addObject("line","x=0,y=0,h=10*cos(2*t),v=10*sin(2*t)");
+     line2=document.Animator.addObject("line","x=0,y=0,h=-10*cos(2*t),v=-10*sin(2*t)");
+    
+   document.DataGraph2.clearSeries(2);
+   document.DataGraph2.setSeriesRGB(2,255,0,0);
+   document.DataGraph2.setSeriesStyle(2,true,3);
+   document.DataGraph2.setMarkerSize(2,0.6);
+   document.DataGraph2.setLastPointMarker(2,true); 
+   document.DataGraph2.setTitle("FEM Induzida vs. Tempo"); 
+   document.DataGraph2.setLabelX("Tempo (s)");  
+   document.DataGraph2.setLabelY("FEM Induzida (mV)");
+   document.DataGraph2.setMinXRange(true,0,1);
+   document.DataGraph2.setDrawZero(true);
+   gid2=document.DataGraph2.getGraphID();
+   document.DataGraph2.setAutoRefresh(true); 
+   
+   //document.Animator.makeDataConnection(line1,gid1,1,"t","abs(100*sin(2*t))");  
+   document.Animator.makeDataConnection(line1,gid2,2,"t","1.6*sin(2*t)");  
+
+   document.datagraph.setAutoRefresh(false);          
+   document.datagraph.setDefault(); 
+   document.datagraph.setShowAxes(false);
+   document.datagraph.addObject("vectorfield","fx=-1.3,fy=0,n=10");  
+   rid=document.datagraph.addObject("rectangle","y=13,w=300,h=40");
+   document.datagraph.setRGB(rid,230,230,230);
+   document.datagraph.setTitle("Gerador"); 
+   
+   id1=document.datagraph.addObject("box","w=0,h=60,y=4.1");
+   document.datagraph.setRGB(id1,255,0,0);
+   id2=document.datagraph.addObject("box","w=0,h=60,y=4.1");
+   rid=document.datagraph.addObject("rectangle","y=-8,w=8,h=100");
+   document.datagraph.setRGB(rid,128,128,128);
+   rid=document.datagraph.addObject("rectangle","y=-14,w=100,h=25");
+   document.datagraph.setRGB(rid,128,128,128);
+   arrow1=document.datagraph.addObject("arrow","x=5,y=2,h=0,v=0");
+   document.datagraph.setRGB(arrow1,0,155,0);
+   
+   cid=document.Animator.getClockID();    
+   document.Animator.makeDataConnection(cid,id1,2,"100*sin(2*t)","60");   
+   document.Animator.makeDataConnection(cid,id2,2,"100*sin(2*t+pi)","60"); 
+	document.Animator.makeDataConnection(cid,arrow1,1,"7.5*sin(2*t)","4"); 
+	document.Animator.makeDataConnection(cid,arrow1,2,"0","2.5*sin(2*t)"); 
+   document.Animator.updateDataConnections();
+   document.Animator.setAutoRefresh(true);   
+   document.datagraph.setAutoRefresh(true);
+   //document.Animator.forward();
+}
+
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+
+</script>
+</head>
+
+<BODY onunload="stopApplet()">
+
+  <h2 align="center">Problema 29.10<applet codebase="../../classes/" code="animator4.Animator.class" 
+        name="Animator" width="0" 
+        archive="Physlets.jar" height="0" 
+        hspace="0" vspace="0" align="middle" mayscript>
+          
+          
+          
+          
+          
+          
+          
+          <param name="FPS" value="10">
+          <param name="dt" value="0.05">
+          <param name="GridUnit" value="0">
+          <param name="showControls" value="false">
+          <param name="OnLoad" value="initApplets()">
+          <param name="AppletNames" value="Animator,datagraph,DataGraph2">
+          <param name="Resources" value="animator_pt.rc">
+        </applet></h2>
+  <div align="center">
+    <center>
+    <table border="1" bgcolor="#C0C0C0">
+      <tr>
+        <td><applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="datagraph" width="200" 
+        height="200" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="-15">
+          <param name="XMax" value="15">
+          <param name="YMin" value="-15">
+          <param name="YMax" value="15">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="false">
+          <param name="AutoScaleY" value="false">
+          <param name="ShowControls" value="false">
+        </applet></td>
+        <td align="center">
+        <applet codebase="../../classes/" 
+        archive="Physlets.jar" 
+        code="dataGraph.DataGraph.class" name="DataGraph2" width="300" 
+        height="200" hspace="0" vspace="0" align="middle" mayscript>
+          <param name="Function">
+          <param name="XMin" value="0">
+          <param name="XMax" value="10">
+          <param name="YMin" value="-3">
+          <param name="YMax" value="3">
+          <param name="DataFile">
+          <param name="AutoScaleX" value="true">
+          <param name="AutoScaleY" value="false">
+          <param name="ShowControls" value="false">
+        </applet></td>
+      </tr>
+      </table>
+    </center>
+  </div>
+<form>
+  <p align="center">
+        <input type="button" value="começar" onclick="document.Animator.forward()"><input 
+        type="button" value="pausa" onclick="document.Animator.pause()"><input 
+        type="button" value="&lt;&lt; passo" 
+        onclick="document.Animator.stepBack()"><input type="button" 
+        value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input 
+        type="button" value="início" onclick="document.Animator.reset()"></p>
+</form>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+<p>
+O gráfico apresentado na animação mostra a força eletromotriz induzida no <i>
+loop</i> em função do tempo <b>(a posição é dada em centímetros, o tempo em 
+segundos e a força eletromotriz em milivolts)</b>. A seta azul representa o 
+campo magnético e a seta verde mostra a direção e o sentido da corrente induzida 
+no <i>loop</i>.&nbsp; <a href="JavaScript:animation1()">
+Início</a></p>
+  <p>&nbsp;</p>
+<p>Problema da autoria de Melissa Dancy e Anne J. Cox.<br>
+<i>Script</i> da autoria de Wolfgang Christian, Anne J. Cox e&nbsp; Melissa 
+Dancy.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>© 2014 Wolfgang Christian, 
+Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, Manuel Filipe Costa</p>
+
+
+	<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+	<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+<script language="JavaScript"> 
+var timerID=0;
+var loaded=false;
+var i=0;
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("path()",100);
+}
+  	
+function path(){ 
+      if(!loaded) return;
+       timerID=0;     
+document.BField.setAutoRefresh(false);      
+   document.BField.setDefault();
+	x=-40;
+	current=-1;
+	for( j=0; j<20; j++){
+     for( i=0; i<10; i++){
+       c1=document.BField.addWire(x,0,current);
+       x=x+0.4;
+       document.BField.setDragable(c1,false);
+       document.BField.setOptionDrag(c1,false); 
+       document.BField.setShowFVector(c1,false);
+}
+     
+   }
+	
+	   cid=document.BField.addObject("cursor","x=2.3,y=2,r=5"); 
+   document.BField.setDragable(cid,true);
+   	document.BField.setShowFieldVectors(true);
+   	document.BField.setShowBOnDrag(true);
+   	id=document.BField.addObject("constraint","xmin=-2.3,xmax=2.3,ymin=-2,ymax=2");
+   	document.BField.setConstraint(cid,id); 
+	 
+    document.DataTable.setDefault();
+    document.DataTable.setSeriesLabel(1,"x");
+    document.DataTable.setSeriesLabel(2,"y");  
+    document.DataTable.setSeriesLabel(3,"Integral");
+    document.DataTable.sizeToFit(true);
+    tid=document.DataTable.getTableID();
+
+    document.Integrator.setLineIntegralMode("bx","by");
+
+    fid=document.Integrator.getID();
+    
+    document.Bar.setMin(-100);
+    document.Bar.setMax(100);
+    document.Bar.setPosRGB(200,100,0);
+    document.Bar.setNegRGB(100,50,0);
+    bid=document.Bar.getID(); 
+    
+        document.Integrator.deleteDataConnections();
+        
+    document.BField.deleteDataConnections();
+    document.BField.makeDataConnection(cid,fid,1,"x","y");
+
+    document.BField.makeDataConnection(cid,tid,1,"x","0"); 
+    document.BField.makeDataConnection(cid,tid,2,"y","0"); 
+    document.Integrator.makeDataConnection(fid,tid,3,"integral","0"); 
+    document.Integrator.makeDataConnection(fid,bid,1,"integral","0"); 
+    document.BField.setAutoRefresh(true);
+    document.BField.updateDataConnections();
+}
+
+function stopApplet(){
+	window.onerror= function() { return true;}
+	clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+
+</script>
+<title>Physlet Physics by Christian and Belloni: Exploration 28.2</title>
+</head>
+
+<BODY onunload="stopApplet()">
+
+<h2 align="center">Exploração 28.2 - Uma superfície com corrente elétrica <applet codebase="../../classes/"
+archive="Physlets.jar"
+code="filters.Integrator.class" name="Integrator" width="0" height="0" hspace="0"
+vspace="0" align="middle" mayscript>
+  <param name="Independent" value="x">
+  <param name="Dependent" value="y">
+  <param name="Differential" value="dx">
+  <param name="Integrand" value="1">
+</applet> </h2>
+
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+    <tr>
+      <td>
+        <applet CODEBASE="../../classes/" 
+        ARCHIVE="Physlets.jar" 
+      CODE="bfield.BField.class" NAME="BField" WIDTH="350" 
+      HEIGHT="300" HSPACE="0" VSPACE="0" ALIGN="middle" mayscript>
+        <param name="ShowControls" value="false">
+        <param name="ShowFieldVectors" value="true">
+        <param name="BxFunction" value="0">
+        <param name="ByFunction" value="0">
+        <param name="Range" value="-5,5,-5,5">
+        <param name="GridSize" value="24">
+        <param name="OnLoad" value="initApplets()">
+        <param name="AppletNames" value="BField,Bar,DataTable,Integrator">
+        <param name="Resources" value="bfield_pt.rc">
+     </applet>       </td>
+      <td align="center" rowspan="2">
+        <applet codebase="../../classes"
+        archive="Physlets.jar"
+        code="dataGraph.Bar.class" name="Bar" width="15" height="250" hspace="0" vspace="0"
+        align="middle" mayscript>
+          <param name="Min" value="-100">
+          <param name="Max" value="100">
+          <param name="Value" value="0">
+          <param name="Vertical" value="true">
+          <param name="ShowControls" value="false">
+        </applet>
+      </td>
+    </tr>
+  </table>  </center>
+</div>
+<div align="center">
+      <table border="1" bgcolor="#c0c0c0">
+      <tr>
+        <td><applet codebase="../../classes/"
+archive="Physlets.jar"
+code="dataTable.DataTable.class" name="DataTable" width="150" height="45" hspace="0"
+vspace="0" align="middle" mayscript>
+  <param name="ShowScrollBars" value="false">
+  <param name="LastOnTop" value="true">
+  <param name="CellWidth" value="40">
+  <param name="NumRows" value="1">
+  <param name="NumCols" value="3">
+  <param name="ShowControls" value="false">
+  <param name="ShowRowHeader" value="false">
+  <param name="ShowColHeader" value="true">
+  <param name="SizeToFit" value="true">
+</applet></td>
+      </tr>
+      </table>
+  </div>
+ 
+  <div align="center">
+ <form>   <center>
+    <p>
+  <input type="button" value="impor integral = 0" name="resetBtn"
+    onclick="document.Integrator.reset(); document.BField.updateDataConnections();"></p>
+    </center>
+</form>
+  
+</div>
+
+
+   <p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+	estar completamente carregada</i></b></font><b><font color="#FF0000"><i>.</i></font></b></p>
+
+
+   
+  <p align="left"><b>Descrição da Animação</b></p>
+
+
+<p align="left">A lei de Ampère é traduzida pela expressão&nbsp; ∫<b> <i>B</i> </b>•<b> </b>
+d<b><i>l</i> </b>= μ<sub>o</sub><i>I</i>, onde a integração é feita sobre um caminho fechado, 
+d<i><b>l</b></i> é um elemento vetorial do caminho com a direção em que ele é 
+percorrido,&nbsp; μ<sub>o </sub>é a permeabilidade no vazio (4π x 10<sup>-7</sup> 
+Tm/A) e<i> I</i> é a corrente elétrica total no interior do caminho fechado<b> (a 
+posição é dada em milímetros e o campo magnético é dado em militesla, 10<sup>-3</sup> 
+T, pelo que o integral é dado em mT mm = 10<sup>-6</sup> T m)</b>.&nbsp;&nbsp; 
+Para usar a lei de Ampère para calcular a intensidade do campo magnético, o 
+caminho fechado a idealizar tem de ter em conta a simetria do campo, para que o 
+produto escalar <b><i>B</i> • </b>d<b><i>l</i> </b>seja constante ao longo do caminho (ou 
+secções deste).&nbsp; <a href="JavaScript:path()">Início</a>.</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p align="left"> Exploração da autoria de Anne J. Cox.<br>
+<i>Script</i> da autoria de Mario Belloni e Wolfgang Christian, modificado por Anne J. 
+Cox.<br>
+© 2004 by Prentice-Hall, Inc. A Pearson Company<br>
+© 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+Manuel Filipe Costa</p>
+<p> <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 51px; height: 50px;" alt="" src="../../../Kindle.png" target="_blank" /></a>&nbsp; <a href="http://www.amazon.com.br/F%C3%ADsica-Physlets-Ilustra%C3%A7%C3%B5es-Explora%C3%A7%C3%B5es-Introdut%C3%B3ria-ebook/dp/B00QPKCYW6/ref=sr_1_1?ie=UTF8&amp;qid=1418040107&amp;sr=8-1&amp;keywords=F%C3%ADsica+em+Physlets" target="_blank">
+<img style="border: 0px solid ; width: 162px; height: 50px;" alt="" src="../../../Amazon_buy_now.png" /></a></p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

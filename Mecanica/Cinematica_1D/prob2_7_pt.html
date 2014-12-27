@@ -1,0 +1,341 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript"> 
+var timerID=0;
+var showvelocity=false;
+var loaded=false;
+
+function initApplets(){
+	clearTimeout(timerID);
+        loaded=true;
+	timerID=setTimeout("startProb()",100);
+}
+  	
+function startProb(){ 
+      if(!loaded) return;
+       timerID=0;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+	document.Animator.setTimeDisplay(false);
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      document.Animator.setCaption("Seleciona uma Animação");
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+	xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+	xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+
+   document.Animator.setAutoRefresh(true);
+
+}
+
+function example1(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    id=document.Animator.getEnsembleID();
+   		document.Animator.setShowCoordinates(id,false);
+		document.Animator.setCaption("Animação 1");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3+1*t*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+	text=document.Animator.addObject("text","text=vx = ,calc=vx");
+		document.Animator.setFormat(text,"%-+2.1f");
+		document.Animator.setAnimationSlave(id1,text);
+	document.Animator.setDisplayOffset(text,0,4);
+   document.Animator.setOneShot(0,1,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+
+function example2(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,true);
+		
+		document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    document.Animator.setCaption("Animação 2");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3+1.15*t*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+   document.Animator.setOneShot(0,1.2,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+
+
+function example3(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    document.Animator.setCaption("Animação 3");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3-2*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+   document.Animator.setOneShot(0,1.1,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+
+
+function example4(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+   id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,true);
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    document.Animator.setCaption("Animação 4");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3+1.25*t*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+	text=document.Animator.addObject("text","text=vx = ,calc=vx");
+		document.Animator.setFormat(text,"%-+2.1f");
+		document.Animator.setAnimationSlave(id1,text);
+	document.Animator.setDisplayOffset(text,0,4);
+   time=document.Animator.addObject("text","x=-1.8,y=-0.1+1000*step(t-0.02),text=carrrega no botão 'começar'");
+	document.Animator.setOneShot(0,0.89,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+
+
+function example5(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+      id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,true);
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    document.Animator.setCaption("Animação 5");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3-t-1.2*t*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+	text=document.Animator.addObject("text","text=vx = ,calc=vx");
+		document.Animator.setFormat(text,"%-+2.1f");
+		document.Animator.setAnimationSlave(id1,text);
+	document.Animator.setDisplayOffset(text,0,4);
+   time=document.Animator.addObject("text","x=-1.8,y=-0.1+1000*step(t-0.02),text=carrega no botão 'começar'");
+	document.Animator.setOneShot(0,0.94,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+
+function example6(){
+   if(!loaded) return;
+   document.Animator.setAutoRefresh(false);
+   document.Animator.setDefault();
+      id=document.Animator.getEnsembleID();
+   document.Animator.setShowCoordinates(id,true);
+   document.Animator.setTimeDisplay(false);
+   document.Animator.setPixPerUnit(100);
+   document.Animator.setGridUnit(0);
+   document.Animator.shiftPixOrigin(0,-30);
+    document.Animator.setCaption("Animação 6");
+   document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=10");
+    track=document.Animator.addObject("rectangle","x=0,y=0.1,w=800,h=8");
+   document.Animator.setRGB(track,150,150,150);
+      
+   id1=document.Animator.addObject("image","file=images/cart_large.gif,x=-0.3+3*t-1.25*t*t,y=0.3");   
+    cid0=document.Animator.addObject("circle","r=4");
+    cid1=document.Animator.addObject("circle","r=3");
+    document.Animator.setAnimationSlave(id1,cid0);
+    document.Animator.setAnimationSlave(id1,cid1);
+    document.Animator.setDisplayOffset(cid0,30,-7);
+    document.Animator.setDisplayOffset(cid1,30,-7);
+    document.Animator.setRGB(cid1,255,0,0);
+		xaxis=document.Animator.addObject("arrow","v=0,h=1,x=0,y=0");
+		xtext=document.Animator.addObject("text","x=0.5,y=-0.1,text=+x");
+	text=document.Animator.addObject("text","text=vx = ,calc=vx");
+		document.Animator.setFormat(text,"%-+2.1f");
+		document.Animator.setAnimationSlave(id1,text);
+	document.Animator.setDisplayOffset(text,0,4);
+   time=document.Animator.addObject("text","x=-1.8,y=-0.1+1000*step(t-0.02),text=carrega no botão 'começar'");
+	document.Animator.setOneShot(0,1.2,"Fim da Animação");
+   document.Animator.setAutoRefresh(true);
+
+}
+function killmenow(){
+	window.onerror= function() { return true;}
+    clearTimeout(timerID);
+	loaded=false;
+	timerID=-1;
+}
+</script>
+
+<title>Physlet Physics by Christian and Belloni: Problem 2.7</title>
+<link rel="STYLESHEET" type="text/css" href="../../workbook.css">
+</head>
+
+<body onunload="killmenow()">
+
+<h2 align="center">Problema 2.7</h2>
+<div align="center">
+  <center>
+  <table border="1" bgcolor="#C0C0C0">
+        <tr> 
+          <td> 
+            <applet width="480" height="100" code="animator4.Animator.class" 
+            codebase="../../classes/" archive="Physlets.jar" 
+            align="baseline"  name="Animator" mayscript>
+                  <param name="FPS" value="15">
+                  <param name="dt" value="0.01">
+                  <param name="showControls" value="false">
+                  <param name="OnLoad" value="initApplets()">
+        		<param name="AppletNames" value="Animator">
+        <param name="Resources" value="animator_pt.rc">
+                </applet></td>
+        </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+      <form>
+        <div align="center">
+          <center>
+          <p>
+			<input type="button" value="começar" onclick="document.Animator.forward()"><input
+          type="button" value="pausa" onclick="document.Animator.pause()"><input type="button"
+          value="&lt;&lt; passo" onclick="document.Animator.stepBack()"><input type="button"
+          value="passo &gt;&gt;" onclick="document.Animator.stepForward()"><input type="button"
+          value="início" onclick="document.Animator.reset()"></p>
+          </center>
+        </div>
+      </form>
+</div>
+<center>
+<table bgColor="#c0c0c0" border="1">
+  <tr>
+    <td align="middle">&nbsp;<a href="JavaScript:example1()" style="text-decoration: none">Animação 1</a> </td>
+    <td align="middle">&nbsp;<a href="JavaScript:example2()" style="text-decoration: none">Animação 2</a> </td>
+    <td align="middle">&nbsp;<a href="JavaScript:example3()" style="text-decoration: none">Animação 3</a> </td>
+    <td align="middle">&nbsp;<a href="JavaScript:example4()" style="text-decoration: none">Animação 4</a> </td>
+    <td align="middle">&nbsp;<a href="JavaScript:example5()" style="text-decoration: none">Animação 5</a> </td>
+    <td align="middle">&nbsp;<a href="JavaScript:example6()" style="text-decoration: none">Animação 6</a> </td>
+  </tr>
+</table>
+</center>
+
+<p align="center"><font color="#FF0000"><b><i>Por favor espera até a animação 
+estar completamente carregada</i></b></font></p>
+
+<p>Um carrinho de massa 1,0 kg está sujeito a diferentes acelerações constantes, 
+conforme mostram as animações <b>(a posição é dada em metros e o tempo é dado em 
+segundos)</b>.&nbsp;O ponto vermelho mostra onde as medições de posição podem ser 
+feitas.&nbsp;&nbsp;
+<a href="JavaScript:startProb()">Início</a></p>
+
+
+<p align="left">Nota:</p>
+
+
+<blockquote>
+    <ul>
+      <li>
+		<p style="margin-top: 3px">Na Animação 1, o comando que permite a <u>leitura das coordenadas </u>
+		de posição está desativado. </li>
+      <li>
+		<p style="margin-top: 3px">Nas Animações 2 e 3, o cálculo da <u>velocidade</u> está desativado. </li>
+      <li>
+		<p style="margin-top: 3px">Nas Animações 4 até 6, o <u>cronómetro</u> está desativado. </li>
+    </ul>
+</blockquote>
+
+
+<p align="left">
+  &nbsp;</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2004 by Prentice-Hall, Inc. A Pearson Company</p>
+<p align="left" style="margin-top: 0; margin-bottom: 0">
+  © 2014 Wolfgang Christian, Mario Belloni, Paulo Simeão Carvalho, Edite Briosa, 
+	Manuel Filipe Costa</p>
+
+
+<p style="color:red;font-size:1.2em;font-weight:bold;">Para ter acesso à exploração completa da animação, contacte : psimeao@fc.up.pt</p>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-39787347-1', 'auto');ga('send', 'pageview');</script>
+</body>
+
+</html>

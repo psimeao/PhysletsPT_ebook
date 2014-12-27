@@ -1,0 +1,12 @@
+button.stop Parar
+button.start Começar
+label.speed v=
+label.running Executando
+label.wiggler Wiggler
+label.sho SHO
+label.sync Sinc
+label.inertial Inercial
+label.caption Campos do sincrotrão
+
+
+
